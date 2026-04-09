@@ -90,6 +90,7 @@
 | 四象与不同步 | [decade-us](../decade-us.html) |
 | 沙盘加压 | [lab](../lab.html) |
 | 双周操作节奏 | [EVOLUTION_RUNBOOK](./EVOLUTION_RUNBOOK.md) |
+| 法律·战略·规划·舆情·资本·多国政策（综合台） | [战略·舆情 · §6 多源综合推演工作台](../national-strategy-opinion.html#integrated-deduction) |
 | 仓库架构与闸门 | [ARCHITECTURE](./ARCHITECTURE.md) |
 
 ---
