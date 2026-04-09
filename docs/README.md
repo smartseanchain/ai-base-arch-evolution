@@ -5,6 +5,8 @@
 | 文档 | 用途 |
 |------|------|
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | 仓库架构、数据流、内容生成边界、七类模块 |
+| [ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md) | Dagster/Prefect 与 Kafka/Redpanda：何时引入、与本站 Actions+JSON 栈的关系 |
+| [DATA_CONTRACTS.md](./DATA_CONTRACTS.md) | 各 JSON / SQLite 字段职责、关联键、校验入口与可选分析栈 |
 | [SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md) | 全站读数总线、消费方登记、`SiteDataBus`、推荐流水线 |
 | [DATA_ANALYSIS_SITE_CONTENT_SYNC.md](./DATA_ANALYSIS_SITE_CONTENT_SYNC.md) | 数据与分析如何对齐分页模块、叙事 vs 动态块 |
 | [SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md](./SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md) | 全站梳理后按纪律重推演与更新落点 |

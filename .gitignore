@@ -8,3 +8,6 @@ data/evolution.db-shm
 
 # 本地/CI 抓取摘要（可选生成，勿提交）
 ingest-summary.json
+
+# 流水线遥测（每次 analyze / evolution-fast 可生成；保留 artifacts/ 目录用 .gitkeep）
+artifacts/pipeline-metrics-*.json

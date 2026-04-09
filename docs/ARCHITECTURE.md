@@ -58,7 +58,8 @@ flowchart TB
 | `scripts/tests` | 分析规则、闭环、diff 提示等回归 |
 | `analysis_engine.py --check` | 当日分析逻辑产出结构正确（含 `run` 血缘块） |
 | `validate_analysis_snapshot_schema.py` | **已提交** `analysis-snapshot.json` 与 **`docs/schemas/analysis-snapshot.schema.json`** 一致（`jsonschema` Draft 2020-12），避免 hub 读到缺字段旧快照 |
-| `scripts/evolution_io.py` | 共享 **`REPO_ROOT`** 与 **`load_json`**，减少各脚本重复定义路径 |
+| `scripts/evolution_pkg/` | **包化 I/O 与流水线**：`evolution_pkg.io`（`REPO_ROOT`、`load_json`）、`evolution_pkg.pipeline.runner`（analyze / fast 编排与遥测） |
+| `scripts/evolution_io.py` | **兼容层**：`from evolution_io import …` 仍指向 `evolution_pkg.io` |
 
 上述检查（外加 `python3 -m compileall -q scripts`）由 **`scripts/run_validate.sh`** 按固定顺序串行执行；**`make validate`**、**`.githooks/pre-commit`** 与 **CI** 的校验 job 均调用该脚本，避免 Makefile / 钩子 / Actions 步骤漂移。运行前需 **`pip install -r requirements.txt`**（见根目录 README）。
 
@@ -158,7 +159,7 @@ flowchart TB
 
 1. **文档与命名（低成本）**：在 PR / issue 中固定使用上表术语，避免「分析」与「生成」混谈；README 已链到本文。  
 2. **契约（中成本）**：快照已有 `schema_version`；**已增加** `run` 血缘与 `docs/schemas/analysis-snapshot.schema.json` + `validate_analysis_snapshot_schema.py`。`sediment` 条目可选带 `run_id` / `repo_revision`（与 `--sediment` 同跑 analyze 时写入）。大改时递增 `schema_version` 并同步校验脚本。  
-3. **代码分包（高成本，可选）**：将 `scripts/` 拆为 `ingest/`、`analysis/`、`sediment/`、`validate/` 包，**仅**在单测与 import 路径稳定后做；功能上已与上表模块对齐，拆包主要是可维护性。  
+3. **代码分包（进行中）**：已引入 **`scripts/evolution_pkg/`**（`io` + `pipeline`）；其余校验/抓取脚本仍平铺在 `scripts/`，可按域逐步迁入子包。  
 4. **内容生成插槽（按需）**：若引入自动生成草稿，单独目录（如 `scripts/draft/`）+ 明确 **不** 自动写 manifest，输出进 `assets/` 或 PR 附件。
 
 ## 自动化与仓库写入
@@ -169,6 +170,8 @@ flowchart TB
 
 ## 延伸阅读
 
+- **数据契约与主键索引（JSON / 侧车 / 遥测）**：[DATA_CONTRACTS.md](./DATA_CONTRACTS.md)
+- **任务编排（Dagster/Prefect）与事件流（Kafka/Redpanda）选型**：[ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md)
 - **技术栈 + 可实现功能 + 进化能力（总览一篇）**：[TECH_ARCHITECTURE_CAPABILITIES.md](./TECH_ARCHITECTURE_CAPABILITIES.md)
 - **数据与分析如何驱动全站模块与内容更新**：[DATA_ANALYSIS_SITE_CONTENT_SYNC.md](./DATA_ANALYSIS_SITE_CONTENT_SYNC.md)
 - **全站梳理 + 重新推演 + 更新落点（一轮操作手册）**：[SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md](./SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md)

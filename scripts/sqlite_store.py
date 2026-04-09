@@ -10,7 +10,7 @@ import sqlite3
 from datetime import datetime, timezone
 from typing import Any
 
-from evolution_io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT
 
 DB_PATH = REPO_ROOT / "data" / "evolution.db"
 

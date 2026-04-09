@@ -12,6 +12,8 @@
 
 首次克隆或拉取含 `requirements.txt` 的更新后请安装校验依赖（**jsonschema**，用于 `analysis-snapshot` 与 `docs/schemas/` 对齐）：
 
+**可选依赖**（不进入默认 CI）：`requirements-analytics.txt`（DuckDB / Polars）、`requirements-api.txt`（只读 FastAPI）。字段与文件索引见 [docs/DATA_CONTRACTS.md](docs/DATA_CONTRACTS.md)。
+
 ```bash
 python3 -m pip install -r requirements.txt
 ```

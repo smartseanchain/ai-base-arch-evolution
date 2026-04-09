@@ -12,7 +12,7 @@ import json
 import sys
 from pathlib import Path
 
-from evolution_io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT
 
 SEDIMENT = REPO_ROOT / "data" / "sediment.json"
 

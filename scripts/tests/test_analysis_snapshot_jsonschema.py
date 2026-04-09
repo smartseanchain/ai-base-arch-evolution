@@ -6,7 +6,7 @@ import unittest
 
 from jsonschema import Draft202012Validator
 
-from evolution_io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT
 
 SCHEMA_PATH = REPO_ROOT / "docs" / "schemas" / "analysis-snapshot.schema.json"
 

@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "site_version": "1.1.0",
+  "codename": "evolution-surface",
+  "summary": "包化 evolution_pkg、流水线遥测、站点版本展示（总线）",
+  "updated": "2026-04-09"
+}

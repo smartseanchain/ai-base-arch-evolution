@@ -3,6 +3,8 @@
 长期沉淀分析：读取 data/sediment.json 多日条目，汇总因子/页面在 Top 列表中的出现天数与覆盖率，
 写入 assets/sediment-trends.json，供 analysis-hub 与 BI 使用。
 
+条目数极大时可在本地用 Polars/DuckDB 做等价聚合（见 requirements-analytics.txt、docs/DATA_CONTRACTS.md）。
+
 用法:
   python3 scripts/sediment_trends.py
 """
@@ -14,7 +16,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from evolution_io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT
 
 SEDIMENT = REPO_ROOT / "data" / "sediment.json"
 OUT = REPO_ROOT / "assets" / "sediment-trends.json"

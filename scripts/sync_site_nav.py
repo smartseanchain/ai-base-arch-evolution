@@ -20,7 +20,7 @@ import re
 import sys
 from pathlib import Path
 
-from evolution_io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT
 
 PARTIAL_NAV = REPO_ROOT / "partials" / "site-nav.inc.html"
 PARTIAL_SKIP = REPO_ROOT / "partials" / "skip-bar.inc.html"

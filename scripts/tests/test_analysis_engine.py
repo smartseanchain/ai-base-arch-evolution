@@ -5,7 +5,7 @@ import sys
 import unittest
 from collections import Counter
 
-from evolution_io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT
 
 SCRIPTS = REPO_ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:

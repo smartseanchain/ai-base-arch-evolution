@@ -1,0 +1,4 @@
+# 可选：本地 OLAP / DataFrame（不用于默认 CI）
+# 用法: python3 -m pip install -r requirements-analytics.txt
+duckdb>=1.1.0,<2
+polars>=1.0.0,<2

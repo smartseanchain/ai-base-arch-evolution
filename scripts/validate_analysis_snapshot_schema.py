@@ -11,7 +11,7 @@ import sys
 from jsonschema import Draft202012Validator
 from jsonschema.exceptions import ValidationError
 
-from evolution_io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT
 
 OUT = REPO_ROOT / "assets" / "analysis-snapshot.json"
 SCHEMA_PATH = REPO_ROOT / "docs" / "schemas" / "analysis-snapshot.schema.json"

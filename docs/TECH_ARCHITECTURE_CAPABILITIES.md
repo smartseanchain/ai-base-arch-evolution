@@ -13,7 +13,7 @@
 | **样式** | `assets/site.css` 及少量页级 CSS | 全站视觉与组件类名（如 `nexus-tag`、`evolution-*`） |
 | **数据契约（Git 真源）** | `assets/*.json`、`scripts/*.json`（规则/配置）、`data/sediment.json`（可选提交） | 可 diff、可校验的结构化事实；**单一注册表** `evolution-registry.json` 约束页面与沙盘因子 |
 | **本地侧车** | `data/evolution.db`（SQLite，通常 gitignore） | 沉淀查询加速，与 JSON 双写；趋势脚本可读库 |
-| **管道（Python 3）** | `scripts/*.py`，共享 `evolution_io.py` | 抓取、合并、分析、沉淀、趋势、对账、站点辅助（sitemap） |
+| **管道（Python 3）** | `scripts/*.py` + 包 **`evolution_pkg`**（`io`、`pipeline`）；`evolution_io.py` 为兼容入口 | 抓取、合并、分析、沉淀、趋势、对账、站点辅助（sitemap） |
 | **契约校验** | `jsonschema`（`requirements.txt`）、`run_validate.sh` | 快照 Schema、manifest/候选/决策结构、compileall、单测 |
 | **持续集成** | GitHub Actions：`ci.yml`、`ingest-pipeline.yml`、`update-pipeline.yml`、`pr-candidates.yml` | PR/推送闸门；定时或手动产出 artifact；可选 bot 开 PR 更新候选 |
 
@@ -99,6 +99,11 @@ flowchart LR
 | **全自动 artifact 入 main** | Actions 直接 push 快照/候选 | 高：削弱人审与 review 节奏；默认不启用 |
 | **实时告警** | 站外 Webhook / 监控 ingest 失败 | 低到中：已有 Issue 通知可扩展 |
 | **多环境配置** | 分离「个人站」与「机构站」的 `ingest_config` | 中：配置矩阵与文档同步 |
+| **流水线遥测** | `artifacts/pipeline-metrics-*.json`（`run_pipeline_steps.py`） | 低：已落地；见 [DATA_CONTRACTS.md](./DATA_CONTRACTS.md) |
+| **快照 PR 差分** | `diff_analysis_snapshot.py` | 低：已落地 |
+| **可选 DuckDB / 只读 API** | `query_evolution_duckdb.py`、`readonly_api.py` + 可选 requirements 文件 | 低到中：本地工具，不进默认 CI |
+| **任务编排器（Dagster / Prefect）** | 多 DAG、分区回填、跨环境调度时再评估；与 Actions 可并存 | 高：需专职运维或托管产品；见 [ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md) |
+| **事件流（Kafka / Redpanda）** | 多服务实时生产/多消费者回放时再评估；本站默认以 **Git+JSON** 为日志 | 高：集群与 schema 治理；同上篇 |
 
 <a id="index"></a>
 
@@ -114,6 +119,7 @@ flowchart LR
 | 推演认识论与质量控制 | [DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md) |
 | 研究方法与站内资产映射 | [RESEARCH_METHODS_MAP.md](./RESEARCH_METHODS_MAP.md) |
 | 脚本命令表 | [scripts/README.md](../scripts/README.md) |
+| 编排器与消息队列（何时引入） | [ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md) |
 | 方法与字段总线（站内） | [analysis-hub.html#panorama](../analysis-hub.html#panorama) |
 
 ---

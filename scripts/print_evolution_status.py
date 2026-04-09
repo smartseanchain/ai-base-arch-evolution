@@ -8,12 +8,26 @@ from __future__ import annotations
 import json
 import sys
 
-from evolution_io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT
 
 OUT = REPO_ROOT / "assets" / "analysis-snapshot.json"
+SITE_META = REPO_ROOT / "assets" / "site-meta.json"
 
 
 def main() -> None:
+    if SITE_META.is_file():
+        try:
+            meta = json.loads(SITE_META.read_text(encoding="utf-8"))
+            sv = meta.get("site_version", "—")
+            cn = meta.get("codename") or ""
+            print(
+                f"site · version=v{sv}"
+                + (f" · codename={cn}" if cn else "")
+                + (f" · updated={meta.get('updated', '—')}" if meta.get("updated") else "")
+            )
+        except json.JSONDecodeError:
+            print("site · (site-meta.json 解析失败)", file=sys.stderr)
+
     if not OUT.is_file():
         print(
             f"未找到 {OUT} — 请先运行: make analyze "

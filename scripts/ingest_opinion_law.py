@@ -21,7 +21,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
-from evolution_io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT
 
 CONFIG_PATH = REPO_ROOT / "scripts" / "ingest_config.json"
 MAPS_HINTS_PATH = REPO_ROOT / "scripts" / "maps_to_hints.json"

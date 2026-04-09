@@ -102,11 +102,14 @@ flowchart LR
 |------|------|
 | `loadSnapshot()` | `Promise<对象>`，读 `assets/analysis-snapshot.json`（带内存缓存） |
 | `loadTrends()` | `Promise<对象 \| null>`，读 `assets/sediment-trends.json`，失败返回 `null` |
+| `loadSiteMeta()` | `Promise<对象>`，读 `assets/site-meta.json`（站点发布版本 `site_version` 等，带内存缓存） |
 | `mountLiveStrip(el, options)` | 向 DOM 节点写入摘要 HTML（内部 `loadSnapshot`） |
 | `mountAllLiveStrips()` | 挂载所有 `[data-site-data-live]`（DOMContentLoaded 时自动执行） |
-| `clearCache()` | 清空缓存（测试或热替换 JSON 时用） |
+| `clearCache()` | 清空缓存（测试或热替换 JSON 时用；含 site-meta） |
 
-自定义事件：`sitedatabus:ready`，`detail.snapshot` 为快照对象，`detail.trends` 为趋势对象或 `null`（未加载、无文件或 `snapshot-only` 时为 `null`）。
+DOMContentLoaded 时还会执行 **`mountSiteMetaVersion()`**：为所有 **`[data-site-meta-version]`** 写入 `v{site_version}`（顶栏模板见 `partials/site-nav.inc.html`）。
+
+自定义事件：`sitedatabus:ready`，`detail.snapshot` 为快照对象，`detail.trends` 为趋势对象或 `null`（未加载、无文件或 `snapshot-only` 时为 `null`）。**`sitedatabus:meta`**：`detail.meta` 为 `site-meta.json` 对象。
 
 ---
 

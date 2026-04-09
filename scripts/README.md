@@ -1,6 +1,6 @@
 # 可进化管道脚本
 
-**依赖**：校验链需 **`pip install -r requirements.txt`**（`jsonschema`，用于快照与 Schema 文件对齐）。共享模块 **`evolution_io.py`**：`REPO_ROOT`、`load_json`。
+**依赖**：校验链需 **`pip install -r requirements.txt`**（`jsonschema`，用于快照与 Schema 文件对齐）。**架构**：包 **`evolution_pkg`**（`evolution_pkg.io`：`REPO_ROOT`、`load_json`；`evolution_pkg.pipeline`：`make analyze` / `evolution-fast` 编排）。**兼容**：`evolution_io.py` 仍可作为旧 `from evolution_io import …` 入口。
 
 **按能力找脚本**（与 [docs/ARCHITECTURE.md#seven-layers](../docs/ARCHITECTURE.md#seven-layers) 七类模块对齐）：
 
@@ -21,11 +21,14 @@
 | `WRITE_INGEST_SUMMARY=1 bash scripts/run_ingest_only.sh` | 同上并写入根目录 `ingest-summary.json`（**已 gitignore**；CI 默认开启） | 是 |
 | `python3 scripts/ingest_opinion_law.py --full-pool` / `make ingest-full` | 单次忽略 `require_route_match`，全量进池 | 是 |
 | `ingest_config.require_route_match` | `true`：仅保留命中 `routes` 的 RSS/法规线索并清理旧未命中候选 | — |
-| `bash scripts/run_update_pipeline.sh` | compileall → 校验 manifest/候选 → 对账 → 顶栏 → 单测 → `analysis_engine --sediment` → `sediment_trends` → 快照契约 → `analysis_engine --check`；沉淀含 `hint_closure_gaps_n` / `hint_decisions_total`，趋势 JSON 含 `closure_backlog` | 否 |
-| `bash scripts/run_analyze_write.sh` / **`make evolution-fast`** | **仅**写快照/沉淀/趋势 + 快照契约 + `--check`；**不**重跑 manifest/漂移/单测/顶栏。须先在同一工作区跑通 **`make validate`**，提交前仍须 validate | 否 |
+| `bash scripts/run_update_pipeline.sh` | 由 **`evolution_pkg.pipeline.runner`**（经 `run_pipeline_steps.py analyze`）编排：compileall → … → `--check`；结束写 **`artifacts/pipeline-metrics-*.json`**（`SKIP_PIPELINE_TELEMETRY=1` 可关） | 否 |
+| `bash scripts/run_analyze_write.sh` / **`make evolution-fast`** | **`run_pipeline_steps.py fast`**：同上，步骤较少。**不**重跑 manifest/漂移/单测/顶栏。须先 **`make validate`**，提交前仍须 validate | 否 |
+| `python3 scripts/diff_analysis_snapshot.py` | 对比两份 `analysis-snapshot.json`，输出 Markdown 或 `--json`（贴 PR） | 否 |
+| `python3 scripts/query_evolution_duckdb.py` | DuckDB 附加 `data/evolution.db` 跑 SQL（需 `pip install -r requirements-analytics.txt`） | 否 |
+| `PYTHONPATH=scripts python3 -m uvicorn readonly_api:app` | 只读 HTTP：`/snapshot`、`/trends`、`/manifest`（需 `requirements-api.txt`） | 否 |
 | `bash scripts/run_validate.sh` | 与 **`make validate`** 相同的全套校验（compileall + JSON + 对账 + 顶栏 + 单测 + `--check` + 已提交快照契约） | 否 |
 | `make trends` / `python3 scripts/sediment_trends.py` | 仅根据已有沉淀重算 `assets/sediment-trends.json`（不跑分析引擎） | 否 |
-| `make status` / `python3 scripts/print_evolution_status.py` | 打印 `analysis-snapshot.json` 合并计数、hint 决策统计、闭环缺口条数（及 rule_id 列表） | 否 |
+| `make status` / `python3 scripts/print_evolution_status.py` | 先打印 `assets/site-meta.json` 的 **site_version**；再打印 `analysis-snapshot.json` 合并计数、hint 决策统计、闭环缺口条数（及 rule_id 列表） | 否 |
 | `python3 scripts/analysis_engine.py --check` | 跑分析逻辑、校验输出结构，**不写** `analysis-snapshot.json`（CI / pre-commit；**不**与上期快照做 diff 提示）；根级含 **`run.run_id` / `run.repo_revision`** 血缘；`sources` 含 `candidate_review_breakdown`、`hint_decisions` | 否 |
 | `python3 scripts/validate_analysis_snapshot_schema.py` | 用 **jsonschema** 校验**已提交**的 `assets/analysis-snapshot.json` 与 `docs/schemas/analysis-snapshot.schema.json`（无文件则跳过）；已并入 `make validate` | 否 |
 | `python3 scripts/merge_candidates_to_manifest.py <id>…` | 人审后合并进 manifest；**须** `review_state=queued_for_manifest`（`--force` 跳过） | 否 |

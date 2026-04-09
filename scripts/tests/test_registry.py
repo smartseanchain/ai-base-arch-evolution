@@ -7,7 +7,7 @@ import re
 import sys
 import unittest
 
-from evolution_io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT
 
 REGISTRY = REPO_ROOT / "scripts" / "evolution-registry.json"
 LAB = REPO_ROOT / "assets" / "lab.js"

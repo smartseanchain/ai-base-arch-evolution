@@ -7,6 +7,7 @@
 
   var URL_SNAPSHOT = "assets/analysis-snapshot.json";
   var URL_TRENDS = "assets/sediment-trends.json";
+  var URL_SITE_META = "assets/site-meta.json";
 
   /** @type {object|null} */
   var _snap = null;
@@ -16,6 +17,10 @@
   var _trends = null;
   /** @type {Promise<object|null>|null} */
   var _trendsPromise = null;
+  /** @type {object|null} */
+  var _siteMeta = null;
+  /** @type {Promise<object>|null} */
+  var _siteMetaPromise = null;
 
   function esc(s) {
     var d = document.createElement("div");
@@ -61,6 +66,57 @@
     _snapPromise = null;
     _trends = null;
     _trendsPromise = null;
+    _siteMeta = null;
+    _siteMetaPromise = null;
+  }
+
+  function loadSiteMeta() {
+    if (_siteMeta) return Promise.resolve(_siteMeta);
+    if (_siteMetaPromise) return _siteMetaPromise;
+    _siteMetaPromise = fetch(URL_SITE_META)
+      .then(function (r) {
+        if (!r.ok) throw new Error("site-meta " + r.status);
+        return r.json();
+      })
+      .then(function (d) {
+        _siteMeta = d;
+        return d;
+      });
+    return _siteMetaPromise;
+  }
+
+  function mountSiteMetaVersion() {
+    var nodes = document.querySelectorAll("[data-site-meta-version]");
+    if (!nodes.length) return;
+    loadSiteMeta()
+      .then(function (m) {
+        if (!m || m.site_version == null || m.site_version === "") return;
+        var label = "v" + String(m.site_version);
+        var tip = m.codename ? String(m.codename) : "";
+        if (m.summary) {
+          tip = tip ? tip + " — " + String(m.summary) : String(m.summary);
+        }
+        if (m.updated) {
+          tip = tip ? tip + " · " + String(m.updated) : String(m.updated);
+        }
+        for (var i = 0; i < nodes.length; i++) {
+          var el = nodes[i];
+          el.textContent = label;
+          el.setAttribute("aria-label", "站点发布版本 " + label);
+          if (tip) el.setAttribute("title", tip);
+        }
+        try {
+          window.dispatchEvent(
+            new CustomEvent("sitedatabus:meta", { detail: { meta: m } })
+          );
+        } catch (err) {}
+      })
+      .catch(function () {
+        for (var j = 0; j < nodes.length; j++) {
+          nodes[j].textContent = "v?";
+          nodes[j].setAttribute("title", "无法加载 assets/site-meta.json");
+        }
+      });
   }
 
   /**
@@ -207,6 +263,7 @@
   window.SiteDataBus = {
     loadSnapshot: loadSnapshot,
     loadTrends: loadTrends,
+    loadSiteMeta: loadSiteMeta,
     clearCache: clearCache,
     mountLiveStrip: mountLiveStrip,
     mountAllLiveStrips: mountAllLiveStrips,
@@ -218,9 +275,14 @@
     },
   };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", mountAllLiveStrips);
-  } else {
+  function boot() {
     mountAllLiveStrips();
+    mountSiteMetaVersion();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
   }
 })();

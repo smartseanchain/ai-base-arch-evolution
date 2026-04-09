@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from evolution_io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT
 
 
 def get_repo_revision_short(cwd: Path | None = None) -> str:

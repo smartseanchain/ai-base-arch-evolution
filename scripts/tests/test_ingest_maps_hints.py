@@ -4,7 +4,7 @@ from __future__ import annotations
 import sys
 import unittest
 
-from evolution_io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT
 
 SCRIPTS = REPO_ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:

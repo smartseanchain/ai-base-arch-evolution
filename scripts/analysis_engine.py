@@ -16,7 +16,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from evolution_io import REPO_ROOT, load_json
+from evolution_pkg.io import REPO_ROOT, load_json
 from lineage_utils import build_run_block
 
 MANIFEST = REPO_ROOT / "assets" / "evolution-manifest.json"
