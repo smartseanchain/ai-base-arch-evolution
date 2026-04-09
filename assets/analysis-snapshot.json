@@ -1,9 +1,15 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-09T01:47:15Z",
+  "generated_at": "2026-04-09T01:52:04Z",
   "sources": {
     "manifest_signals": 3,
     "candidate_signals": 22,
+    "candidates_in_file": 22,
+    "candidate_review_breakdown": {
+      "pending": 22,
+      "noise": 0,
+      "queued_for_manifest": 0
+    },
     "combined_for_analysis": 25
   },
   "module_heat": [

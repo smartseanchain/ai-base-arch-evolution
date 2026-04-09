@@ -34,12 +34,27 @@
 
     var meta = document.createElement("p");
     meta.className = "muted analysis-snap-meta";
-    meta.innerHTML =
+    var src0 = data.sources || {};
+    var metaHtml =
       "生成时间 <time>" +
       esc(data.generated_at || "—") +
       "</time> · 合并分析样本 <strong>" +
-      esc(String((data.sources && data.sources.combined_for_analysis) || 0)) +
+      esc(String(src0.combined_for_analysis || 0)) +
       "</strong> 条";
+    var br = src0.candidate_review_breakdown;
+    if (br && typeof br === "object") {
+      metaHtml +=
+        " · 候选文件 <strong>" +
+        esc(String(src0.candidates_in_file || 0)) +
+        "</strong>（待审 " +
+        esc(String(br.pending || 0)) +
+        " · 噪点 " +
+        esc(String(br.noise || 0)) +
+        " · 待入库 " +
+        esc(String(br.queued_for_manifest || 0)) +
+        "）";
+    }
+    meta.innerHTML = metaHtml;
     container.appendChild(meta);
 
     var hints = data.evolution_hints || [];

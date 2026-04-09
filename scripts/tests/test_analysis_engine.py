@@ -12,6 +12,7 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 from analysis_engine import (  # noqa: E402
+    candidate_review_breakdown,
     compute_diff_hints,
     evaluate_hint_rules,
     load_hint_rules,
@@ -68,6 +69,21 @@ class TestDiffHints(unittest.TestCase):
         prev = {"sources": {"manifest_signals": 1, "candidate_signals": 0}}
         h = compute_diff_hints(prev, [], [], 3, 0)
         self.assertTrue(any("已入库信号" in x["text"] for x in h))
+
+
+class TestCandidateReviewBreakdown(unittest.TestCase):
+    def test_counts(self) -> None:
+        c = {
+            "signals": [
+                {"status": "candidate", "review_state": "pending"},
+                {"status": "candidate", "review_state": "noise"},
+                {"status": "candidate", "review_state": "queued_for_manifest"},
+            ]
+        }
+        bd = candidate_review_breakdown(c)
+        self.assertEqual(bd["pending"], 1)
+        self.assertEqual(bd["noise"], 1)
+        self.assertEqual(bd["queued_for_manifest"], 1)
 
 
 class TestEvaluateHintRules(unittest.TestCase):

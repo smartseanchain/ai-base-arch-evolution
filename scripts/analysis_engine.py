@@ -39,6 +39,19 @@ def effective_review_state(sig: dict) -> str:
     return "pending"
 
 
+def candidate_review_breakdown(candidates: dict) -> dict[str, int]:
+    bd = {"pending": 0, "noise": 0, "queued_for_manifest": 0}
+    for s in candidates.get("signals") or []:
+        if s.get("status") not in (None, "candidate"):
+            continue
+        rs = effective_review_state(s)
+        if rs in bd:
+            bd[rs] += 1
+        else:
+            bd["pending"] += 1
+    return bd
+
+
 def collect_signals(manifest: dict, candidates: dict) -> list[dict]:
     out: list[dict] = []
     for s in manifest.get("signals") or []:
@@ -367,6 +380,16 @@ def main() -> None:
                     and effective_review_state(s) != "noise"
                 ]
             ),
+            "candidates_in_file": len(
+                [
+                    s
+                    for s in candidates.get("signals") or []
+                    if s.get("status") in (None, "candidate")
+                ]
+            ),
+            "candidate_review_breakdown": candidate_review_breakdown(
+                candidates
+            ),
             "combined_for_analysis": len(signals),
         },
         **analysis,
@@ -381,6 +404,12 @@ def main() -> None:
         src = out["sources"]
         if not isinstance(src, dict) or "combined_for_analysis" not in src:
             print("错误: sources 结构异常", file=sys.stderr)
+            sys.exit(1)
+        br = src.get("candidate_review_breakdown")
+        if not isinstance(br, dict) or not all(
+            k in br for k in ("pending", "noise", "queued_for_manifest")
+        ):
+            print("错误: sources.candidate_review_breakdown 结构异常", file=sys.stderr)
             sys.exit(1)
         print(
             f"OK --check · combined={src['combined_for_analysis']} "

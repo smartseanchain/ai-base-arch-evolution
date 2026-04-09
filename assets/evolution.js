@@ -1,6 +1,6 @@
 /**
  * 观测信号：evolution-manifest.json（已入库）+ evolution-candidates.json（抓取待审）。
- * 沙盘高亮合并两来源的 lab_factors。
+ * 沙盘高亮合并两来源的 lab_factors；候选 review_state=noise 不参与高亮。
  */
 (function () {
   "use strict";
@@ -12,6 +12,20 @@
     var d = document.createElement("div");
     d.textContent = s;
     return d.innerHTML;
+  }
+
+  function effectiveReviewState(sig) {
+    var r = sig.review_state || "pending";
+    if (r === "noise" || r === "queued_for_manifest" || r === "pending") {
+      return r;
+    }
+    return "pending";
+  }
+
+  function reviewStateLabel(rs) {
+    if (rs === "noise") return "噪点";
+    if (rs === "queued_for_manifest") return "待入库";
+    return "待审";
   }
 
   function kindLabel(k) {
@@ -30,10 +44,12 @@
   }
 
   function renderSignalCard(sig, isCandidate) {
+    var rs = isCandidate ? effectiveReviewState(sig) : "";
     var card = document.createElement("article");
     card.className =
       "evolution-signal-card" +
-      (isCandidate ? " evolution-signal-card--candidate" : "");
+      (isCandidate ? " evolution-signal-card--candidate" : "") +
+      (isCandidate && rs === "noise" ? " evolution-signal-card--noise" : "");
     card.setAttribute("data-signal-id", sig.id || "");
     var head = document.createElement("div");
     head.className = "evolution-signal-head";
@@ -42,10 +58,19 @@
       weightClass(sig.weight) +
       '">' +
       esc(kindLabel(sig.kind)) +
-      "</span>" +
-      '<span class="evolution-signal-title">' +
-      esc(sig.title || "") +
       "</span>";
+    if (isCandidate) {
+      var rb = document.createElement("span");
+      rb.className =
+        "evolution-review-badge evolution-review-badge--" +
+        rs.replace(/_/g, "-");
+      rb.textContent = reviewStateLabel(rs);
+      head.appendChild(rb);
+    }
+    var titleEl = document.createElement("span");
+    titleEl.className = "evolution-signal-title";
+    titleEl.textContent = sig.title || "";
+    head.appendChild(titleEl);
     if (sig.since) {
       var since = document.createElement("span");
       since.className = "evolution-signal-since";
@@ -60,11 +85,13 @@
     if (sig.maps_to && sig.maps_to.pages && sig.maps_to.pages.length) {
       var links = document.createElement("p");
       links.className = "evolution-signal-links";
-      links.innerHTML = sig.maps_to.pages
-        .map(function (p) {
-          return '<a href="' + esc(p) + '">' + esc(p) + "</a>";
-        })
-        .join(" · ");
+      sig.maps_to.pages.forEach(function (p, i) {
+        if (i > 0) links.appendChild(document.createTextNode(" · "));
+        var a = document.createElement("a");
+        a.href = p;
+        a.textContent = p;
+        links.appendChild(a);
+      });
       card.appendChild(links);
     }
     if (isCandidate && sig.source) {
@@ -72,14 +99,20 @@
       src.className = "muted evolution-signal-source";
       var st = sig.source.type || "";
       var link = sig.source.item_link || sig.source.url || "";
-      src.innerHTML =
-        '<span class="evolution-candidate-badge">待审</span> 来源：' +
-        esc(st) +
-        (link
-          ? ' · <a href="' +
-            esc(link) +
-            '" rel="noopener noreferrer" target="_blank">打开原文</a>'
-          : "");
+      var badge = document.createElement("span");
+      badge.className = "evolution-candidate-badge";
+      badge.textContent = "抓取";
+      src.appendChild(badge);
+      src.appendChild(document.createTextNode(" 来源：" + st));
+      if (link) {
+        src.appendChild(document.createTextNode(" · "));
+        var la = document.createElement("a");
+        la.href = link;
+        la.rel = "noopener noreferrer";
+        la.target = "_blank";
+        la.textContent = "打开原文";
+        src.appendChild(la);
+      }
       card.appendChild(src);
     }
     return card;
@@ -118,12 +151,24 @@
       h2b.className = "evolution-feed-subhead";
       h2b.textContent = "待审候选（自动抓取）";
       container.appendChild(h2b);
+      var by = { pending: 0, noise: 0, queued_for_manifest: 0 };
+      candOnly.forEach(function (s) {
+        var r = effectiveReviewState(s);
+        if (by[r] !== undefined) by[r] += 1;
+        else by.pending += 1;
+      });
       var meta2 = document.createElement("p");
       meta2.className = "muted evolution-feed-meta";
       meta2.innerHTML =
         "抓取时间 <time>" +
         esc(candidates.fetched_at || candidates.updated || "—") +
-        '</time> · 合并命令见 <a href="evolution-loop.html#ingest">进化闭环 · 抓取管道</a>';
+        '</time> · 待审 ' +
+        by.pending +
+        " · 噪点 " +
+        by.noise +
+        " · 待入库 " +
+        by.queued_for_manifest +
+        ' · 合并命令见 <a href="evolution-loop.html#ingest">进化闭环 · 抓取管道</a>';
       container.appendChild(meta2);
       candOnly.forEach(function (sig) {
         container.appendChild(renderSignalCard(sig, true));
@@ -141,7 +186,7 @@
 
   function collectLabFactors(manifest, candidates) {
     var ids = {};
-    function add(list) {
+    function addFromManifest(list) {
       if (!list || !list.length) return;
       list.forEach(function (sig) {
         if (!sig.maps_to || !sig.maps_to.lab_factors) return;
@@ -150,8 +195,20 @@
         });
       });
     }
-    add(manifest && manifest.signals ? manifest.signals : []);
-    add(candidates && candidates.signals ? candidates.signals : []);
+    function addFromCandidates(list) {
+      if (!list || !list.length) return;
+      list.forEach(function (sig) {
+        if (effectiveReviewState(sig) === "noise") return;
+        if (!sig.maps_to || !sig.maps_to.lab_factors) return;
+        sig.maps_to.lab_factors.forEach(function (id) {
+          ids[id] = true;
+        });
+      });
+    }
+    addFromManifest(manifest && manifest.signals ? manifest.signals : []);
+    addFromCandidates(
+      candidates && candidates.signals ? candidates.signals : []
+    );
     return ids;
   }
 
@@ -184,6 +241,7 @@
     var nc = 0;
     if (candidates && candidates.signals) {
       candidates.signals.forEach(function (s) {
+        if (effectiveReviewState(s) === "noise") return;
         if (s.maps_to && s.maps_to.lab_factors && s.maps_to.lab_factors.length)
           nc++;
       });
@@ -195,9 +253,9 @@
     banner.innerHTML =
       "<p class=\"muted\" style=\"margin:0\"><strong>观测信号：</strong>已入库 " +
       n +
-      " 条 · 候选 " +
+      " 条 · 候选（非噪点）" +
       nc +
-      " 条（含 <code>lab_factors</code> 映射时已高亮；见 <a href=\"evolution-loop.html\">进化闭环</a>）。</p>";
+      " 条含映射（<code>lab_factors</code> 已高亮；<code>noise</code> 不参与）；见 <a href=\"evolution-loop.html\">进化闭环</a>）。</p>";
     grid.parentNode.insertBefore(banner, grid);
   }
 

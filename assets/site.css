@@ -4296,6 +4296,38 @@ tr.synth-cat-row td {
   margin-right: 0.35rem;
 }
 
+.evolution-review-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.12rem 0.42rem;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.evolution-review-badge--pending {
+  background: rgba(232, 168, 56, 0.18);
+  color: var(--warn);
+  border: 1px solid rgba(232, 168, 56, 0.35);
+}
+
+.evolution-review-badge--noise {
+  background: rgba(139, 156, 179, 0.14);
+  color: var(--text-tertiary);
+  border: 1px solid var(--border);
+}
+
+.evolution-review-badge--queued-for-manifest {
+  background: rgba(78, 207, 142, 0.16);
+  color: var(--ok);
+  border: 1px solid rgba(78, 207, 142, 0.35);
+}
+
+.evolution-signal-card--noise {
+  opacity: 0.9;
+}
+
 .evolution-signal-source {
   font-size: 0.8rem;
   margin: var(--space-2) 0 0;

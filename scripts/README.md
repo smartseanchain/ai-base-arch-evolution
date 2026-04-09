@@ -7,7 +7,7 @@
 | `python3 scripts/ingest_opinion_law.py --full-pool` / `make ingest-full` | 单次忽略 `require_route_match`，全量进池 | 是 |
 | `ingest_config.require_route_match` | `true`：仅保留命中 `routes` 的 RSS/法规线索并清理旧未命中候选 | — |
 | `bash scripts/run_update_pipeline.sh` | 校验 manifest/候选 → `analysis_engine --sediment` → `sediment_trends` | 否 |
-| `python3 scripts/analysis_engine.py --check` | 跑分析逻辑、校验输出结构，**不写** `analysis-snapshot.json`（CI / pre-commit；**不**与上期快照做 diff 提示） | 否 |
+| `python3 scripts/analysis_engine.py --check` | 跑分析逻辑、校验输出结构，**不写** `analysis-snapshot.json`（CI / pre-commit；**不**与上期快照做 diff 提示）；`sources` 含 `candidate_review_breakdown` | 否 |
 | `python3 scripts/merge_candidates_to_manifest.py <id>…` | 人审后合并进 manifest；**须** `review_state=queued_for_manifest`（`--force` 跳过） | 否 |
 | `python3 scripts/validate-evolution-manifest.py` | 校验正式库结构 | 否 |
 | `python3 scripts/validate-evolution-candidates.py` | 校验候选结构 | 否 |

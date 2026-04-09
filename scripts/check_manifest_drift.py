@@ -4,7 +4,8 @@
 maps_to.lab_factors 须与 registry（并与 lab.js 解析结果）一致。
 另校验 ingest_config.json、maps_to_hints.json 中的 pages / lab_factors；
 gen-sitemap.py 的 PRIORITY 键须 ⊆ registry.pages；
-partials/site-nav.inc.html 中 href="*.html" 须 ⊆ registry.pages。
+partials/site-nav.inc.html 中 href="*.html" 须 ⊆ registry.pages；
+evolution-hint-rules.json 中 rules[].target_pages 须 ⊆ registry.pages。
 不写文件；供 CI / pre-commit / make validate。
 """
 from __future__ import annotations
@@ -23,6 +24,19 @@ LAB = ROOT / "assets" / "lab.js"
 INGEST_CONFIG = ROOT / "scripts" / "ingest_config.json"
 MAPS_HINTS = ROOT / "scripts" / "maps_to_hints.json"
 GEN_SITEMAP = ROOT / "scripts" / "gen-sitemap.py"
+HINT_RULES = ROOT / "scripts" / "evolution-hint-rules.json"
+
+
+def hint_rules_target_pages(doc: dict) -> set[str]:
+    out: set[str] = set()
+    for r in doc.get("rules") or []:
+        tp = r.get("target_pages")
+        if not isinstance(tp, list):
+            continue
+        for p in tp:
+            if isinstance(p, str) and p.strip():
+                out.add(p.strip())
+    return out
 
 
 def load_registry() -> dict:
@@ -181,6 +195,16 @@ def main() -> None:
                 f"partials/site-nav.inc.html: 未知页面（须 ∈ registry）· {h}"
             )
 
+    if HINT_RULES.is_file():
+        try:
+            hr = json.loads(HINT_RULES.read_text(encoding="utf-8"))
+            for p in sorted(hint_rules_target_pages(hr) - allowed_pages):
+                all_errs.append(
+                    f"evolution-hint-rules.json: target_pages 未知（须 ∈ registry）· {p}"
+                )
+        except json.JSONDecodeError as e:
+            all_errs.append(f"evolution-hint-rules.json: JSON 无效 · {e}")
+
     if INGEST_CONFIG.is_file():
         ic = json.loads(INGEST_CONFIG.read_text(encoding="utf-8"))
         ip, ifac = collect_ingest_maps_refs(ic)
@@ -224,7 +248,7 @@ def main() -> None:
         f"OK: 对账通过 · registry 页面 {len(allowed_pages)} · lab_factors {n_lab} · "
         "已检查 manifest"
         + (" + candidates" if CANDIDATES.is_file() else "")
-        + " + ingest 配置 + site-nav partial"
+        + " + ingest 配置 + site-nav partial + hint-rules"
     )
 
 
