@@ -11,7 +11,7 @@
 | `python3 scripts/merge_candidates_to_manifest.py <id>…` | 人审后合并进 manifest；**须** `review_state=queued_for_manifest`（`--force` 跳过） | 否 |
 | `python3 scripts/validate-evolution-manifest.py` | 校验正式库结构 | 否 |
 | `python3 scripts/validate-evolution-candidates.py` | 校验候选结构 | 否 |
-| `python3 scripts/validate_evolution_hint_decisions.py` | 校验 `assets/evolution-hint-decisions.json`（提示项落实/否决/延期的结构化记录） | 否 |
+| `python3 scripts/validate_evolution_hint_decisions.py` | 校验 `assets/evolution-hint-decisions.json`；`rule_id` 若填写须 ∈ `evolution-hint-rules.json` 的 `rules[].id` | 否 |
 | `python3 scripts/check_manifest_drift.py` | **对账**：`maps_to.pages` ∈ **`scripts/evolution-registry.json`** 且文件存在；`lab_factors` 与 registry 及 **`lab.js` 因子 id 集合一致**；`ingest_config` / `maps_to_hints` / `gen-sitemap` PRIORITY | 否 |
 | `make test` | `scripts/tests` · unittest（`PYTHONPATH=scripts`） | 否 |
 | `python3 scripts/sync_site_nav.py` / `make sync-nav` | 按 **`partials/skip-bar.inc.html`** + **`partials/site-nav.inc.html`** 写回根目录各页（跳过 404、legacy 单页） | 否 |

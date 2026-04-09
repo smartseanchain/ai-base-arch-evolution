@@ -16,7 +16,7 @@
 
 ## 若本周期处理了分析引擎的 evolution_hints
 
-- [ ] 已在 **`assets/evolution-hint-decisions.json`** 追加对应记录（或注明为何本轮无提示可处理）
+- [ ] 已在 **`assets/evolution-hint-decisions.json`** 追加对应记录（或注明为何本轮无提示可处理）；填写 **`rule_id`** 时须与 **`evolution-hint-rules.json`** 中某条 `id` 一致
 
 ## 备注
 

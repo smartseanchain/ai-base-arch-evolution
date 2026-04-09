@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 校验 assets/evolution-hint-decisions.json：结构化记录对 evolution_hints 的落实 / 否决 / 延期。
-可选 rule_id 与快照中 evolution_hints[].rule_id 对齐。
+可选 rule_id：若填写则须为 evolution-hint-rules.json 中某条 rules[].id（与快照 evolution_hints 对齐，避免拼写漂移）。
 related_pages 若存在须 ⊆ evolution-registry.json 的 pages。
 不写文件；供 make validate / CI / pre-commit。
 """
@@ -15,12 +15,31 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DECISIONS_PATH = ROOT / "assets" / "evolution-hint-decisions.json"
 REGISTRY_PATH = ROOT / "scripts" / "evolution-registry.json"
+HINT_RULES_PATH = ROOT / "scripts" / "evolution-hint-rules.json"
 
 ALLOWED_ACTIONS = frozenset({"done", "rejected", "deferred"})
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 MAX_NOTE = 4000
 MAX_SUMMARY = 500
 MAX_RULE_ID = 120
+
+
+def load_hint_rule_ids() -> set[str]:
+    if not HINT_RULES_PATH.is_file():
+        print(f"错误: 缺少 {HINT_RULES_PATH}", file=sys.stderr)
+        sys.exit(1)
+    doc = json.loads(HINT_RULES_PATH.read_text(encoding="utf-8"))
+    out: set[str] = set()
+    for r in doc.get("rules") or []:
+        if not isinstance(r, dict):
+            continue
+        rid = r.get("id")
+        if rid is None:
+            continue
+        s = str(rid).strip()
+        if s:
+            out.add(s)
+    return out
 
 
 def load_registry_pages() -> set[str]:
@@ -35,7 +54,11 @@ def load_registry_pages() -> set[str]:
     return {p.strip() for p in pages if isinstance(p, str) and p.strip()}
 
 
-def validate_decisions(doc: object, allowed_pages: set[str]) -> list[str]:
+def validate_decisions(
+    doc: object,
+    allowed_pages: set[str],
+    hint_rule_ids: set[str],
+) -> list[str]:
     errs: list[str] = []
     if not isinstance(doc, dict):
         return ["根须为 JSON 对象"]
@@ -96,6 +119,13 @@ def validate_decisions(doc: object, allowed_pages: set[str]) -> list[str]:
                 errs.append(
                     f"{prefix}.rule_id 长度须 ≤ {MAX_RULE_ID}"
                 )
+            else:
+                rsid = rule_id.strip()
+                if rsid not in hint_rule_ids:
+                    errs.append(
+                        f"{prefix}.rule_id {rsid!r} 不在 "
+                        "evolution-hint-rules.json 的 rules[].id"
+                    )
         rps = row.get("related_pages")
         if rps is not None:
             if not isinstance(rps, list):
@@ -133,7 +163,8 @@ def main() -> None:
         print(f"错误: JSON 解析失败 — {e}", file=sys.stderr)
         sys.exit(1)
     allowed = load_registry_pages()
-    errs = validate_decisions(doc, allowed)
+    rule_ids = load_hint_rule_ids()
+    errs = validate_decisions(doc, allowed, rule_ids)
     if errs:
         for e in errs:
             print(f"错误: {e}", file=sys.stderr)

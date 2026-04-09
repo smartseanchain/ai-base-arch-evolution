@@ -4343,6 +4343,11 @@ tr.synth-cat-row td {
   margin-bottom: var(--space-4);
 }
 
+.analysis-meta-gaps {
+  color: var(--warn);
+  font-weight: 500;
+}
+
 .analysis-hints {
   margin-bottom: var(--space-5);
 }

@@ -71,6 +71,13 @@
         esc(String(ba.deferred != null ? ba.deferred : 0)) +
         "）";
     }
+    var gapList = data.hint_closure_gaps;
+    if (Array.isArray(gapList) && gapList.length) {
+      metaHtml +=
+        ' · <span class="analysis-meta-gaps">规则闭环缺口 <strong>' +
+        esc(String(gapList.length)) +
+        "</strong> 条</span>";
+    }
     meta.innerHTML = metaHtml;
     container.appendChild(meta);
 

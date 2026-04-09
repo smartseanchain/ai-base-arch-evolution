@@ -35,4 +35,4 @@
 
 `python3 scripts/check_manifest_drift.py`：检查 `maps_to.pages` 是否列入 **`scripts/evolution-registry.json`** 且文件存在；`lab_factors` 是否与 registry / `lab.js` 一致；并校验 ingest 配置与 `maps_to_hints`、`gen-sitemap` PRIORITY。已并入 `make validate` 与 CI。
 
-`python3 scripts/validate_evolution_hint_decisions.py`：校验 **`assets/evolution-hint-decisions.json`** 结构及 `related_pages` ⊆ registry。
+`python3 scripts/validate_evolution_hint_decisions.py`：校验 **`assets/evolution-hint-decisions.json`** 结构及 `related_pages` ⊆ registry；若填写 **`rule_id`** 则须为 **`evolution-hint-rules.json`** 中已有规则的 `id`。
