@@ -9,5 +9,6 @@
 | `python3 scripts/validate-evolution-manifest.py` | 校验正式库结构 | 否 |
 | `python3 scripts/validate-evolution-candidates.py` | 校验候选结构 | 否 |
 | `bash scripts/install-git-hooks.sh` | 启用 `.githooks/pre-commit`（validate + `--check`） | 否 |
+| `SITE_BASE=https://… make sitemap` | 生成根目录 `sitemap.xml` | 否 |
 
 推荐节奏：ingest 单独排期 → 本地审阅 merge → 再跑 `run_update_pipeline.sh`（与 `analysis-hub` 文档一致）。
