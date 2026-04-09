@@ -13,6 +13,7 @@
 ```bash
 make validate    # manifest + 候选 + analysis_engine --check
 make ingest      # 抓取候选（需外网，依赖 scripts/ingest_config.json）
+make ingest-full # 同上但单次 --full-pool（忽略 require_route_match）
 make analyze     # 校验 + 分析引擎 --sediment + 长期趋势
 ```
 

@@ -45,6 +45,9 @@ PRIORITY: dict[str, tuple[str, str]] = {
 
 DEFAULT = ("monthly", "0.8")
 
+# 不参与站点地图（错误页、归档单文件等）
+SKIP_HTML = frozenset({"404.html"})
+
 
 def main() -> None:
     base = os.environ.get("SITE_BASE", "").strip().rstrip("/")
@@ -59,7 +62,9 @@ def main() -> None:
         print("错误: SITE_BASE 须以 http:// 或 https:// 开头", file=sys.stderr)
         sys.exit(1)
 
-    pages = sorted(p.name for p in ROOT.glob("*.html"))
+    pages = sorted(
+        p.name for p in ROOT.glob("*.html") if p.name not in SKIP_HTML
+    )
     if "index.html" in pages:
         pages.remove("index.html")
         pages.insert(0, "index.html")

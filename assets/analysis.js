@@ -257,8 +257,13 @@
       .catch(function () {
         var el = document.getElementById("analysis-dashboard");
         if (el && !el.querySelector(".analysis-snap-meta")) {
-          el.innerHTML =
-            '<p class="muted">无法加载 <code>analysis-snapshot.json</code>。请在项目根运行 <code>python3 scripts/analysis_engine.py</code> 后刷新；本地需 HTTP 服务。</p>';
+          if (window.location.protocol === "file:") {
+            el.innerHTML =
+              '<p class="muted"><strong>无法加载 JSON：</strong>当前为 <code>file://</code>，请用本地 HTTP 或部署后的 <strong>https</strong> 打开。生成数据：<code>make analyze</code> 或 <code>python3 scripts/analysis_engine.py</code>。</p>';
+          } else {
+            el.innerHTML =
+              '<p class="muted">无法加载 <code>assets/analysis-snapshot.json</code>。请在仓库根运行 <code>make analyze</code>（或 <code>python3 scripts/analysis_engine.py</code>）后提交/部署；并确认 <code>assets/</code> 路径正确。</p>';
+          }
         }
       });
   }

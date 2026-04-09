@@ -2,6 +2,5 @@
 User-agent: *
 Allow: /
 
-# 生成 sitemap：SITE_BASE=https://你的域名 python3 scripts/gen-sitemap.py
-# 将下一行与 sitemap.xml 中的 https://example.com 一并替换为你的真实源站
-Sitemap: https://example.com/sitemap.xml
+# 与 sitemap.xml 同源；换域名时请 SITE_BASE=… make sitemap 并改下列一行
+Sitemap: https://smartseanchain.github.io/ai-base-arch-evolution/sitemap.xml

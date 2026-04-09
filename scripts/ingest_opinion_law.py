@@ -9,6 +9,7 @@
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
@@ -158,10 +159,22 @@ def load_config() -> dict:
     return json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    ap = argparse.ArgumentParser(
+        description="抓取 RSS / 法规索引页 → assets/evolution-candidates.json",
+    )
+    ap.add_argument(
+        "--full-pool",
+        action="store_true",
+        help="本次运行忽略 ingest_config.require_route_match（全量进池，且不清理历史未命中 RSS/法规项）",
+    )
+    args = ap.parse_args(argv)
+
     cfg = load_config()
     routes = cfg.get("routes") or []
     require_route_match = bool(cfg.get("require_route_match"))
+    if args.full_pool:
+        require_route_match = False
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     signals: dict[str, dict] = {}
 
@@ -279,4 +292,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
