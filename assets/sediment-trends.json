@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-09T00:45:45Z",
+  "generated_at": "2026-04-09T02:09:26Z",
   "source": "data/evolution.db (SQLite)",
   "summary": {
     "entry_count": 2,
@@ -116,6 +116,18 @@
       "coverage": 0.5,
       "first_seen": "2026-04-08",
       "last_seen": "2026-04-08"
+    }
+  ],
+  "closure_backlog": [
+    {
+      "date": "2026-04-08",
+      "hint_closure_gaps_n": 0,
+      "hint_decisions_total": 0
+    },
+    {
+      "date": "2026-04-09",
+      "hint_closure_gaps_n": 3,
+      "hint_decisions_total": 0
     }
   ],
   "longterm_hints": [

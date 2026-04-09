@@ -386,6 +386,12 @@ def append_sediment(snapshot_meta: dict) -> None:
             candidate_n=int(snapshot_meta.get("candidate_n") or 0),
             top_factors=list(snapshot_meta.get("top_factors") or []),
             top_pages=list(snapshot_meta.get("top_pages") or []),
+            hint_closure_gaps_n=int(
+                snapshot_meta.get("hint_closure_gaps_n") or 0
+            ),
+            hint_decisions_total=int(
+                snapshot_meta.get("hint_decisions_total") or 0
+            ),
         )
         print(f"已更新 SQLite {DB_PATH}")
     except Exception as exc:  # noqa: BLE001
@@ -533,12 +539,17 @@ def main() -> None:
     print(f"已写入 {OUT}")
 
     if args.sediment:
+        hd_tot = int(
+            (out["sources"].get("hint_decisions") or {}).get("total") or 0
+        )
         append_sediment(
             {
                 "manifest_n": len(manifest.get("signals") or []),
                 "candidate_n": len(candidates.get("signals") or []),
                 "top_factors": [x["factor"] for x in analysis["factor_heat"][:5]],
                 "top_pages": [x["page"] for x in analysis["module_heat"][:5]],
+                "hint_closure_gaps_n": len(analysis.get("hint_closure_gaps") or []),
+                "hint_decisions_total": hd_tot,
             }
         )
         print(f"已更新 {SEDIMENT}")

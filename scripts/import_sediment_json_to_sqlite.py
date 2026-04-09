@@ -34,6 +34,8 @@ def main() -> None:
             candidate_n=int(e.get("candidate_n") or 0),
             top_factors=list(e.get("top_factors") or []),
             top_pages=list(e.get("top_pages") or []),
+            hint_closure_gaps_n=int(e.get("hint_closure_gaps_n") or 0),
+            hint_decisions_total=int(e.get("hint_decisions_total") or 0),
         )
         n += 1
     print(f"已导入 {n} 条沉淀到 SQLite（data/evolution.db）")

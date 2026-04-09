@@ -410,6 +410,48 @@
     smallTable("因子持久度（多日 Top）", t.factor_persistence, "factor");
     smallTable("页面持久度（多日 Top）", t.page_persistence, "page");
 
+    var cb = t.closure_backlog;
+    if (Array.isArray(cb) && cb.length && n >= 1) {
+      var csec = document.createElement("section");
+      csec.className = "analysis-panel analysis-closure-backlog-panel";
+      csec.style.marginTop = "0.75rem";
+      var ch = document.createElement("h4");
+      ch.style.fontSize = "1rem";
+      ch.textContent = "规则闭环 backlog（按日 · 近 14 日）";
+      csec.appendChild(ch);
+      var cp = document.createElement("p");
+      cp.className = "muted";
+      cp.style.fontSize = "0.82rem";
+      cp.style.marginTop = "0.25rem";
+      cp.textContent =
+        "缺口 = 当日 analysis 中 hint_closure_gaps 条数；决策累计 = evolution-hint-decisions 总条数（当日晚快照时刻）。";
+      csec.appendChild(cp);
+      var ctbl = document.createElement("table");
+      ctbl.className = "analysis-closure-backlog-table";
+      ctbl.innerHTML =
+        "<thead><tr><th>日期</th><th>闭环缺口</th><th>决策累计</th></tr></thead><tbody></tbody>";
+      var ctb = ctbl.querySelector("tbody");
+      cb.forEach(function (row) {
+        var tr = document.createElement("tr");
+        var gn = row.hint_closure_gaps_n != null ? row.hint_closure_gaps_n : 0;
+        var dt = row.hint_decisions_total != null ? row.hint_decisions_total : 0;
+        tr.innerHTML =
+          "<td><time>" +
+          esc(String(row.date || "—")) +
+          "</time></td><td>" +
+          esc(String(gn)) +
+          "</td><td>" +
+          esc(String(dt)) +
+          "</td>";
+        if (gn > 0) {
+          tr.className = "analysis-closure-backlog-row--gaps";
+        }
+        ctb.appendChild(tr);
+      });
+      csec.appendChild(ctbl);
+      wrap.appendChild(csec);
+    }
+
     container.appendChild(wrap);
   }
 

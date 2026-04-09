@@ -4348,6 +4348,24 @@ tr.synth-cat-row td {
   font-weight: 500;
 }
 
+.analysis-closure-backlog-table {
+  width: 100%;
+  font-size: 0.86rem;
+  border-collapse: collapse;
+}
+
+.analysis-closure-backlog-table th,
+.analysis-closure-backlog-table td {
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.analysis-closure-backlog-row--gaps td:nth-child(2) {
+  color: var(--warn);
+  font-weight: 600;
+}
+
 .analysis-hints {
   margin-bottom: var(--space-5);
 }

@@ -108,6 +108,24 @@ def main() -> None:
             hints.append(
                 f"页面「{top_p['page']}」长期居 Top——可专项审阅该页叙事是否需更新或删陈旧句。"
             )
+
+    closure_backlog: list[dict[str, Any]] = []
+    for e in sorted_e:
+        closure_backlog.append(
+            {
+                "date": e["date"],
+                "hint_closure_gaps_n": int(e.get("hint_closure_gaps_n") or 0),
+                "hint_decisions_total": int(e.get("hint_decisions_total") or 0),
+            }
+        )
+    if total_days >= 3 and len(closure_backlog) >= 3:
+        tail = closure_backlog[-3:]
+        if all(x["hint_closure_gaps_n"] >= 2 for x in tail):
+            hints.append(
+                "近 3 日「规则闭环缺口」均 ≥2：建议在双周节奏中优先补写 "
+                "evolution-hint-decisions（rule_id + done/rejected）。"
+            )
+
     if not hints:
         hints.append(
             "沉淀条目仍较少：坚持每日 --sediment，或合并历史备份后再跑本脚本以观察趋势。"
@@ -124,6 +142,7 @@ def main() -> None:
         },
         "factor_persistence": factor_persistence[:32],
         "page_persistence": page_persistence[:32],
+        "closure_backlog": closure_backlog[-14:],
         "longterm_hints": hints[:6],
     }
 
@@ -140,6 +159,7 @@ def _empty_output() -> dict[str, Any]:
         "summary": {"entry_count": 0, "date_range": None},
         "factor_persistence": [],
         "page_persistence": [],
+        "closure_backlog": [],
         "longterm_hints": [
             "暂无沉淀条目：运行 analysis_engine.py --sediment 数日后再执行本脚本。"
         ],

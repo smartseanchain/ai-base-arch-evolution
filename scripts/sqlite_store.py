@@ -1,5 +1,6 @@
 """
 SQLite 存储（标准库 sqlite3）：沉淀日摘要，与 data/sediment.json 双写。
+含 hint_closure_gaps_n、hint_decisions_total（与 JSON entries 对齐）；旧库启动时自动 ALTER 补列。
 库文件默认 data/evolution.db；可在 .gitignore 中忽略二进制，仅提交 JSON。
 """
 from __future__ import annotations
@@ -20,10 +21,28 @@ CREATE TABLE IF NOT EXISTS sediment_entry (
   candidate_n INTEGER NOT NULL DEFAULT 0,
   top_factors_json TEXT NOT NULL DEFAULT '[]',
   top_pages_json TEXT NOT NULL DEFAULT '[]',
+  hint_closure_gaps_n INTEGER NOT NULL DEFAULT 0,
+  hint_decisions_total INTEGER NOT NULL DEFAULT 0,
   updated_at TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_sediment_date ON sediment_entry(date);
 """
+
+
+def _migrate_sediment_columns(conn: sqlite3.Connection) -> None:
+    """旧库补列（CREATE TABLE 早于 hint_* 字段时）。"""
+    cur = conn.execute("PRAGMA table_info(sediment_entry)")
+    existing = {row[1] for row in cur.fetchall()}
+    if "hint_closure_gaps_n" not in existing:
+        conn.execute(
+            "ALTER TABLE sediment_entry ADD COLUMN hint_closure_gaps_n "
+            "INTEGER NOT NULL DEFAULT 0"
+        )
+    if "hint_decisions_total" not in existing:
+        conn.execute(
+            "ALTER TABLE sediment_entry ADD COLUMN hint_decisions_total "
+            "INTEGER NOT NULL DEFAULT 0"
+        )
 
 
 def connect() -> sqlite3.Connection:
@@ -36,6 +55,7 @@ def connect() -> sqlite3.Connection:
 def init_db() -> None:
     with connect() as conn:
         conn.executescript(DDL)
+        _migrate_sediment_columns(conn)
         conn.commit()
 
 
@@ -46,19 +66,28 @@ def upsert_sediment(
     candidate_n: int,
     top_factors: list[str],
     top_pages: list[str],
+    hint_closure_gaps_n: int = 0,
+    hint_decisions_total: int = 0,
 ) -> None:
     init_db()
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     with connect() as conn:
         conn.execute(
             """
-            INSERT INTO sediment_entry (date, manifest_n, candidate_n, top_factors_json, top_pages_json, updated_at)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO sediment_entry (
+              date, manifest_n, candidate_n,
+              top_factors_json, top_pages_json,
+              hint_closure_gaps_n, hint_decisions_total,
+              updated_at
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(date) DO UPDATE SET
               manifest_n = excluded.manifest_n,
               candidate_n = excluded.candidate_n,
               top_factors_json = excluded.top_factors_json,
               top_pages_json = excluded.top_pages_json,
+              hint_closure_gaps_n = excluded.hint_closure_gaps_n,
+              hint_decisions_total = excluded.hint_decisions_total,
               updated_at = excluded.updated_at
             """,
             (
@@ -67,6 +96,8 @@ def upsert_sediment(
                 candidate_n,
                 json.dumps(top_factors, ensure_ascii=False),
                 json.dumps(top_pages, ensure_ascii=False),
+                int(hint_closure_gaps_n),
+                int(hint_decisions_total),
                 now,
             ),
         )
@@ -80,7 +111,8 @@ def list_sediment_entries() -> list[dict[str, Any]]:
     init_db()
     with connect() as conn:
         cur = conn.execute(
-            "SELECT date, manifest_n, candidate_n, top_factors_json, top_pages_json FROM sediment_entry ORDER BY date"
+            "SELECT date, manifest_n, candidate_n, top_factors_json, top_pages_json, "
+            "hint_closure_gaps_n, hint_decisions_total FROM sediment_entry ORDER BY date"
         )
         rows = cur.fetchall()
     out: list[dict[str, Any]] = []
@@ -92,6 +124,8 @@ def list_sediment_entries() -> list[dict[str, Any]]:
                 "candidate_n": r["candidate_n"],
                 "top_factors": json.loads(r["top_factors_json"] or "[]"),
                 "top_pages": json.loads(r["top_pages_json"] or "[]"),
+                "hint_closure_gaps_n": int(r["hint_closure_gaps_n"] or 0),
+                "hint_decisions_total": int(r["hint_decisions_total"] or 0),
             }
         )
     return out

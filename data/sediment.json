@@ -38,7 +38,9 @@
         "decade.html",
         "nexus.html",
         "edu-nexus.html"
-      ]
+      ],
+      "hint_closure_gaps_n": 3,
+      "hint_decisions_total": 0
     }
   ]
 }
