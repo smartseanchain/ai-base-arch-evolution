@@ -78,6 +78,22 @@
         esc(String(gapList.length)) +
         "</strong> 条</span>";
     }
+    var run = data.run;
+    if (run && typeof run === "object") {
+      var runBits = [];
+      if (run.run_id != null && String(run.run_id) !== "") {
+        runBits.push("<code>run_id</code> " + esc(String(run.run_id)));
+      }
+      if (run.repo_revision != null && String(run.repo_revision) !== "") {
+        runBits.push("<code>rev</code> " + esc(String(run.repo_revision)));
+      }
+      if (runBits.length) {
+        metaHtml +=
+          ' · 运行 <span class="analysis-run-lineage">' +
+          runBits.join(" · ") +
+          "</span>";
+      }
+    }
     meta.innerHTML = metaHtml;
     container.appendChild(meta);
 

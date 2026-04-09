@@ -84,7 +84,7 @@
 | **P2** | 顶栏「整体改造」 vs h1「整体智能化改造」 | ✅ 已：`smart-overhaul` 的 h1 / `<title>` / `og:title` 与顶栏统一为「整体改造」，导语标明智能化方向 |
 | **P2** | timeline 分享标题 vs h1 | ✅ 已：`og:title` / `twitter:title` 与页内 h1「基础设施形态演进」对齐；浏览器 `<title>` 仍用短名「历史演进」 |
 | **P2** | 缺 TOC/legend 的页 | **不建议**为统一而统一；新页按内容选型 |
-| **—** | 架构文档 · 适应度函数 / 血缘 / PR 追溯 | ✅ 已：`ARCHITECTURE.md` 三节 + `EVOLUTION_RUNBOOK` 增补；`analysis-snapshot.run` + `validate_analysis_snapshot_schema.py` + `docs/schemas/analysis-snapshot.schema.json` |
+| **—** | 架构文档 · 适应度函数 / 血缘 / PR 追溯 | ✅ 已：`ARCHITECTURE.md` 三节 + `EVOLUTION_RUNBOOK` 增补；`analysis-snapshot.run` + `validate_analysis_snapshot_schema.py` + `docs/schemas/analysis-snapshot.schema.json`；**`scripts/run_validate.sh`** 统一 `make validate` / pre-commit / CI |
 | **P2** | 主链 SVG `aria-label` | ✅ 已部分：上列各图 + `modules-map` 七层剖面与四路径串联、`nexus` 尺度影响与反馈环、`edu-nexus` 家校政三角·生命周期·AI 触点链（均外层 `role="img"` + 内层 `svg aria-hidden`）。**例外**：`modules-map` 模块星丛与场景轮含可点击 `<a>`，保留根 `svg` 的 `aria-label`，**不**在外层加 `role="img"`；已为星丛各块与场景轮外环链接补 `aria-label`。另：`index` 总览大图内层 `role="img"` + 栅格卡片缩略 `svg aria-hidden`；`net-biz-capital` 主链图由整段 `aria-hidden` 改为可播报；`past-future` 架构对照·形态图标·雷达·情景缩略图补齐；`edu-nexus` §1 四阶与师生双向流同模式；`synthesis` 毗邻图·三簇·§11 循环；`work-infra-energy` 三示意；`decade-us` 四象；`decade-scenes` 热力矩阵；`past-future` 廿年双轨大图；`evolution-triad` 三轨 SVG 滚动区；**`legacy-all-in-one`** 参考架构节外层原有 `role="img"`，内层 `svg` 已补 `aria-hidden` 与分页站一致 |
 
 ---

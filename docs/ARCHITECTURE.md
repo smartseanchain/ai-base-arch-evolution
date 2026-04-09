@@ -58,6 +58,8 @@ flowchart TB
 | `analysis_engine.py --check` | 当日分析逻辑产出结构正确（含 `run` 血缘块） |
 | `validate_analysis_snapshot_schema.py` | **已提交** `analysis-snapshot.json` 与引擎契约一致，避免 hub 读到缺字段旧快照 |
 
+上述检查（外加 `python3 -m compileall -q scripts`）由 **`scripts/run_validate.sh`** 按固定顺序串行执行；**`make validate`**、**`.githooks/pre-commit`** 与 **CI** 的校验 job 均调用该脚本，避免 Makefile / 钩子 / Actions 步骤漂移。
+
 <a id="lineage"></a>
 
 ## 单次运行血缘（run）

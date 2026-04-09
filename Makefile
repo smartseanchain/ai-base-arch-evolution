@@ -13,18 +13,11 @@ help:
 	@echo "make trends     - 仅跑 sediment_trends.py（依赖已有沉淀）"
 	@echo "make status     - 打印 analysis-snapshot 核心计数（无文件则提示 analyze）"
 	@echo "make pipeline   - 同 analyze"
-	@echo "make hooks      - 安装 Git 钩子（pre-commit 跑 validate + check-analysis）"
+	@echo "make hooks      - 安装 Git 钩子（pre-commit 等同 make validate）"
 	@echo "make sitemap    - 需 SITE_BASE=https://... 生成 sitemap.xml"
 
 validate:
-	python3 scripts/validate-evolution-manifest.py
-	python3 scripts/validate-evolution-candidates.py
-	python3 scripts/validate_evolution_hint_decisions.py
-	python3 scripts/check_manifest_drift.py
-	python3 scripts/sync_site_nav.py --check
-	PYTHONPATH=scripts python3 -m unittest discover -s scripts/tests -p 'test_*.py' -q
-	python3 scripts/analysis_engine.py --check
-	python3 scripts/validate_analysis_snapshot_schema.py
+	bash scripts/run_validate.sh
 
 sync-nav:
 	python3 scripts/sync_site_nav.py

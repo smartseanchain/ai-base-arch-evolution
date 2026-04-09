@@ -11,7 +11,7 @@
 ## 本地校验与流水线
 
 ```bash
-make validate    # manifest + 候选 + hint 决策 JSON + 对账（含 hint-rules 结构）+ 顶栏 + 单测 + analysis_engine --check + 已提交 analysis-snapshot 契约
+make validate    # 等同 bash scripts/run_validate.sh（compileall + 全套 JSON/对账/顶栏/单测/analysis + 快照契约）
 make ingest      # 抓取候选（需外网，依赖 scripts/ingest_config.json）
 make ingest-full # 同上但单次 --full-pool（忽略 require_route_match）
 make analyze     # 校验 + 分析引擎 --sediment + 长期趋势
@@ -45,10 +45,9 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 
 ## 持续集成
 
-- `ci.yml`：PR/推送时校验 JSON、**manifest/候选/ingest 配置对账**（见 `scripts/evolution-registry.json`）、`compileall`、`scripts/tests` **unittest**、`analysis_engine --check`
-- `update-pipeline.yml`：定时/手动分析 artifact
+- `ci.yml`：PR/推送时执行 **`bash scripts/run_validate.sh`**（与 `make validate` 一致：compileall、manifest/候选/hint 决策 JSON、对账、顶栏、单测、`analysis_engine --check`、已提交 `analysis-snapshot` 契约）
+- `update-pipeline.yml`：定时/手动分析 artifact；**定时失败**时新建 Issue（与 ingest 对称），便于发现分析脚本或校验回归
 - `ingest-pipeline.yml`：**每周二 UTC 定时**或手动抓取候选 artifact；Job Summary 汇总各 RSS 源成功/失败；**定时失败**会新建 Issue 提醒
-- `update-pipeline.yml`：**定时失败**时同样会新建 Issue（与 ingest 对称），便于发现分析脚本或校验回归
 - `pr-candidates.yml`：**手动**跑 ingest 并直接向 `main` 开 PR 更新 `evolution-candidates.json`（需在仓库 **Settings → Actions → General** 将 workflow 权限设为可读写；合并仍人审）
 - 在 GitHub 开 PR 时自动带出 **`.github/pull_request_template.md`**（合并 manifest/候选请勾选自检项）。新建 Issue 可选用 **「流水线 / 校验失败排查」** 模板（`.github/ISSUE_TEMPLATE/`）。
 
