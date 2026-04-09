@@ -2,6 +2,10 @@
 
 本文回答三件事：**当前文档里已经收纳了哪些研究/推演套路**、它们**落在站内哪里**、以及**哪些可以真正「用起来」**（页面、沙盘、JSON 管道、命令）——与 [DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md)（认识论与单轮流程）、[综合推演 §12](../synthesis.html#methods)（跨学科表）、[§13](../synthesis.html#deep-lens)（深读透镜）互补；**不重复** §12 全文，只做**匹配与可利用性**分级。
 
+## 中枢入口：分析引擎页
+
+**整体梳理（方法 + 演进策略 + JSON 字段导游）**以站内 **[分析引擎 · 方法与演进总线](../analysis-hub.html#panorama)** 为默认起点：该页把 OODA、§11 插槽 ⑦—⑨、hint 闭环、适应度函数、多源综合台与 §12 读数方式汇成两张总表，并链接本文与 `DEDUCTION_STRATEGY`。读完后再下钻本仓库各 `docs/*.md` 与 [综合推演](../synthesis.html)。
+
 <a id="tiers"></a>
 
 ## 1. 可利用性三级（先读这段）

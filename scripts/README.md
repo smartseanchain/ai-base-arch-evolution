@@ -38,7 +38,7 @@
 | `bash scripts/install-git-hooks.sh` | 启用 `.githooks/pre-commit`（等同 `make validate`） | 否 |
 | `SITE_BASE=https://… make sitemap` | 生成根目录 `sitemap.xml` | 否 |
 
-推荐节奏：ingest 单独排期 → 本地审阅 merge → 再跑 `run_update_pipeline.sh`（与 `analysis-hub` 文档一致）。
+推荐节奏：ingest 单独排期 → 本地审阅 merge → 再跑 `run_update_pipeline.sh`（与 [analysis-hub · 方法与演进总线](../analysis-hub.html#panorama) 对表）。
 
 - **`scripts/ingest_config.json`**：`routes` 正则命中后写入 `maps_to`；**`scripts/maps_to_hints.json`** 按 **RSS 链接 host** 与 **标题/摘要关键词** 再合并 `pages` / `lab_factors`（仍须人审）。
 - **`scripts/evolution-hint-rules.json`**：`analysis_engine` 中条件类 `evolution_hints` 的外置规则；可选 **`track_closure`**：触发且决策 JSON 中尚无同 `rule_id` 的 done/rejected 时，快照含 **`hint_closure_gaps`**（分析页高亮）。与**已有** `assets/analysis-snapshot.json` 对比可生成「相较上期」的 diff 提示（`--check` 模式跳过 diff）。

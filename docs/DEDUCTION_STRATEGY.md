@@ -89,6 +89,7 @@
 | 方法 ↔ 工具匹配（A/B/C 可利用性） | [RESEARCH_METHODS_MAP](./RESEARCH_METHODS_MAP.md) |
 | 加深 · 多角度 | [synthesis §13](../synthesis.html#deep-lens) |
 | 四象与不同步 | [decade-us](../decade-us.html) |
+| 分析引擎总线（方法+演进+字段） | [analysis-hub · panorama](../analysis-hub.html#panorama) |
 | 沙盘加压 | [lab](../lab.html) |
 | 双周操作节奏 | [EVOLUTION_RUNBOOK](./EVOLUTION_RUNBOOK.md) |
 | 法律·战略·规划·舆情·资本·多国政策（综合台） | [战略·舆情 · §6 多源综合推演工作台](../national-strategy-opinion.html#integrated-deduction) |

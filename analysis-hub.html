@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="description" content="分析引擎与数据沉淀：模块与因子热力、共现、规则提示；对接进化闭环与综合推演 §11。" />
+  <meta name="description" content="分析引擎中枢：热力·共现·规则与闭环缺口·运行血缘；汇入全部演进策略与定性研究方法（对接 §12、RUNBOOK、manifest/sediment）。" />
   <meta name="theme-color" content="#0c1118" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="基础架构演变推演" />
   <meta property="og:locale" content="zh_CN" />
-  <meta property="og:title" content="分析引擎与数据沉淀 · 基础架构演变推演" />
-  <meta property="og:description" content="分析引擎与数据沉淀：模块与因子热力、共现、规则提示；对接进化闭环与综合推演。" />
-  <title>分析引擎与数据沉淀 · 基础架构演变推演</title>
+  <meta property="og:title" content="分析引擎 · 方法与演进总线 · 基础架构演变推演" />
+  <meta property="og:description" content="热力·共现·规则与闭环缺口；汇入全部演进策略与定性研究方法，对接 §11/§12 与 manifest/sediment。" />
+  <title>分析引擎 · 方法与演进总线 · 基础架构演变推演</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,9 +60,9 @@
 
 
     <div id="main" class="page-head" tabindex="-1">
-      <h1>分析引擎与数据沉淀</h1>
+      <h1>分析引擎 · 方法与演进总线</h1>
       <p class="lead">
-        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页聚合<strong>分析引擎</strong>的产出：在 <code>evolution-manifest.json</code> 与 <code>evolution-candidates.json</code> 上计算<strong>模块页热力、沙盘因子热力、因子共现</strong>，并给出<strong>规则型自我进化提示</strong>（非预测）。能力与存储分层见 <a href="docs/ARCHITECTURE.md#seven-layers">架构文档 · 七类模块</a>。对提示的落实/否决可记在 <code>assets/evolution-hint-decisions.json</code>（见 <a href="docs/EVOLUTION_RUNBOOK.md">双周运行手册</a>），仪表盘会列出最近记录。<strong>数据沉淀</strong>由 <code>data/sediment.json</code> 按日记录摘要，并<strong>双写</strong> <code>data/evolution.db</code>（SQLite）；<strong>长期趋势</strong>由 <code>sediment_trends.py</code> 跨日汇总，写入 <code>assets/sediment-trends.json</code> 并在下方仪表盘展示。运行 <code>python3 scripts/analysis_engine.py</code> 生成 <code>assets/analysis-snapshot.json</code>；加 <code>--sediment</code> 同时写入沉淀与库。若要在规则之上叠加模型与检索，见 <a href="intelligent-evolution.html">智能进化</a>（§11 插槽⑨）。
+        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页既是<strong>仪表盘宿主</strong>，也是<strong>全站定性分析方法 + 可进化策略</strong>汇入<strong>可计算反馈</strong>的中枢：<code>scripts/analysis_engine.py</code> 在 <code>evolution-manifest.json</code> 与 <code>evolution-candidates.json</code> 上产出<strong>模块热力、因子热力、共现、规则提示、相较上期 diff 提示、规则闭环缺口</strong>与<strong>运行血缘</strong>（<code>run_id</code> / <code>repo_revision</code>），供你与 <a href="synthesis.html#methods">综合推演 §12</a>、<a href="synthesis.html#perpetual">§11</a>、<a href="evolution-loop.html">进化闭环</a>、<a href="national-strategy-opinion.html#integrated-deduction">战略·舆情 · 多源台</a> 对表。<strong>方法索引与 A/B/C 可利用性</strong>见 <a href="docs/RESEARCH_METHODS_MAP.md">docs/RESEARCH_METHODS_MAP.md</a>；<strong>认识论与单轮七步</strong>见 <a href="docs/DEDUCTION_STRATEGY.md">docs/DEDUCTION_STRATEGY.md</a>。能力与存储分层见 <a href="docs/ARCHITECTURE.md#seven-layers">架构文档 · 七类模块</a>。对提示的落实/否决记在 <code>assets/evolution-hint-decisions.json</code>（<a href="docs/EVOLUTION_RUNBOOK.md">双周运行手册</a>）。<strong>沉淀与趋势</strong>：<code>data/sediment.json</code> 按日摘要，双写 <code>data/evolution.db</code>；<code>sediment_trends.py</code> → <code>assets/sediment-trends.json</code>。规则之上模型/RAG 见 <a href="intelligent-evolution.html">智能进化</a>（§11 插槽⑨）。全文仍为非预测的<strong>定性脚手架</strong>。
       </p>
     </div>
 
@@ -73,6 +73,8 @@
     </div>
 
     <nav class="toc" aria-label="本页目录">
+      <a href="#panorama">方法与演进全景</a>
+      <a href="#engine-contract">引擎产出与契约</a>
       <a href="#loop">闭环位置</a>
       <a href="#sediment">数据沉淀</a>
       <a href="#sqlite">SQLite</a>
@@ -82,8 +84,120 @@
       <a href="#continuous">持续更新</a>
     </nav>
 
+    <section id="panorama">
+      <h2>1. 分析方法与演进策略：如何汇入本页引擎</h2>
+      <p class="muted" style="margin-top:-0.35rem">下列覆盖本站已文档化的<strong>全部套路</strong>；本引擎提供的是<strong>结构化读数 + 守门契约</strong>，不是替代 §2 判据与人工叙事。</p>
+
+      <h3 style="margin-top:1.1rem;font-size:1.05rem">1.1 全文索引（先选读哪份）</h3>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.88rem;line-height:1.85">
+          <li><strong>认识论 · 三色 · 单轮七步 · 偏误表：</strong><a href="docs/DEDUCTION_STRATEGY.md">docs/DEDUCTION_STRATEGY.md</a></li>
+          <li><strong>§12 各研究方法 ↔ 页面/脚本 ↔ A/B/C 可利用：</strong><a href="docs/RESEARCH_METHODS_MAP.md">docs/RESEARCH_METHODS_MAP.md</a>（与 <a href="synthesis.html#methods">综合推演 §12</a> 行一一对应）</li>
+          <li><strong>跨学科表与问题类型选用：</strong><a href="synthesis.html#methods">§12</a>、<a href="synthesis.html#deep-lens">§13 深读透镜</a></li>
+          <li><strong>持续迭代与扩展插槽 ⑦—⑨：</strong><a href="synthesis.html#perpetual">§11</a></li>
+          <li><strong>双周节奏与人审闸门：</strong><a href="docs/EVOLUTION_RUNBOOK.md">EVOLUTION_RUNBOOK</a></li>
+          <li><strong>观测—编码—分析—反哺数据流与适应度函数：</strong><a href="docs/ARCHITECTURE.md">ARCHITECTURE</a>（<a href="docs/ARCHITECTURE.md#fitness-functions">fitness-functions</a>、<a href="docs/ARCHITECTURE.md#lineage">lineage</a>）</li>
+          <li><strong>法律·战略·舆情·资本·多国政策综合台：</strong><a href="national-strategy-opinion.html#integrated-deduction">战略·舆情 §6</a></li>
+          <li><strong>模型/RAG 分层与闸门：</strong><a href="intelligent-evolution.html">智能进化</a></li>
+          <li><strong>一页总览可进化架构：</strong><a href="evolvable-architecture.html">可进化架构</a></li>
+        </ul>
+      </div>
+
+      <h3 style="margin-top:1.35rem;font-size:1.05rem">1.2 演进策略 → 引擎上可见什么</h3>
+      <div class="card" style="overflow-x:auto;padding:0">
+        <table>
+          <thead>
+            <tr><th>策略 / 机制</th><th>定义与操作入口</th><th>在本引擎侧的截面</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>OODA 闭环</strong></td>
+              <td><a href="evolution-loop.html#ooda">进化闭环 · OODA</a></td>
+              <td>Observe/Orient 后 manifest·候选更新 → 热力与共现<strong>即时重算</strong>；Act 后 diff 提示可对照上期快照</td>
+            </tr>
+            <tr>
+              <td><strong>§11 插槽 ⑦ 抓取编码</strong></td>
+              <td><a href="evolution-loop.html#ingest">ingest</a> → 候选 → 人审 merge</td>
+              <td>候选计入 <code>sources</code> 与候选拆解；noise 剔除后进入合并样本</td>
+            </tr>
+            <tr>
+              <td><strong>§11 插槽 ⑧ 分析反哺</strong></td>
+              <td>本页 + <code>analysis_engine.py</code></td>
+              <td><code>evolution_hints</code>、<code>hint_closure_gaps</code>、热力 Top；驱动是否增 <a href="synthesis.html#matrix">§7</a> 行</td>
+            </tr>
+            <tr>
+              <td><strong>§11 插槽 ⑨ 智能进化</strong></td>
+              <td><a href="intelligent-evolution.html">智能进化</a></td>
+              <td>引擎<strong>不自动</strong>调用模型；产出经闸门进候选/工单后再影响 manifest</td>
+            </tr>
+            <tr>
+              <td><strong>规则闭环（hint）</strong></td>
+              <td><code>scripts/evolution-hint-rules.json</code> + <code>evolution-hint-decisions.json</code></td>
+              <td><code>track_closure</code> 规则触发且未 done/rejected → <code>hint_closure_gaps</code>；<code>sources.hint_decisions</code> 统计</td>
+            </tr>
+            <tr>
+              <td><strong>适应度函数</strong></td>
+              <td><code>make validate</code> / CI · <a href="docs/ARCHITECTURE.md#fitness-functions">清单</a></td>
+              <td>保证快照契约与 registry 对账；<strong>非</strong>本页图表，但与「能否合并」同一守门体系</td>
+            </tr>
+            <tr>
+              <td><strong>多源政策—资本—舆论</strong></td>
+              <td><a href="national-strategy-opinion.html#integrated-deduction">战略·舆情 §6</a></td>
+              <td>信号入库后经本引擎看<strong>模块/因子是否长期偏斜</strong>，与 §7「规制—资本—舆论」行对读</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:1.35rem;font-size:1.05rem">1.3 研究方法（§12）→ 用引擎哪类读数</h3>
+      <p class="muted" style="margin-top:-0.25rem">详表见 <a href="docs/RESEARCH_METHODS_MAP.md">RESEARCH_METHODS_MAP</a>；此处列<strong>与仪表盘最直接相关</strong>的用法。</p>
+      <div class="card" style="overflow-x:auto;padding:0">
+        <table>
+          <thead>
+            <tr><th>方法族（§12）</th><th>优先看引擎里什么</th><th>常与谁并读</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>情景规划 / 三簇</td><td>跨日后 <code>sediment-trends</code> 覆盖率 + 当日热力 Top 是否<strong>稳定重叠</strong></td><td><a href="synthesis.html#forks">§8</a>、<a href="lab.html">沙盘</a></td></tr>
+            <tr><td>系统动力学 / 反馈环</td><td>共现对是否持续上升（<code>cooccurrence</code>）+ diff 提示「共现增强」</td><td><a href="synthesis.html#graph">§3</a>、配方传导链</td></tr>
+            <tr><td>FTA / FMEA / 敏感性</td><td>因子热力顺序变化 + <a href="lab.html">沙盘</a>依赖流（站内核 <strong>A</strong> 级）</td><td><a href="synthesis.html#matrix">§7</a>「谁先绷紧」</td></tr>
+            <tr><td>因果推断（思想）</td><td>改 manifest 一条前提后重跑，看 <code>evolution_hints</code> 是否断链式消失</td><td><a href="synthesis.html#criteria">§2</a></td></tr>
+            <tr><td>红队 / 危机</td><td>人为加压后 Top 模块是否突变 + <code>hint_closure_gaps</code> 是否增条</td><td><a href="risk-geo.html">地缘</a>、§7 增行纪律</td></tr>
+            <tr><td>质性 / 五维切片</td><td>把「可见征候」写成可映射 <code>maps_to.pages</code> 的信号再入库 → 热力验证</td><td><a href="synthesis.html#dimensions">§9</a></td></tr>
+            <tr><td>政策过程 / 双轨</td><td><code>kind_distribution</code> 与模块热力是否向治理/安全页漂移</td><td><a href="national-strategy-opinion.html">战略·舆情</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout imagine" style="margin-top:1rem">
+        <strong>想象：</strong>若某方法族在引擎读数上<strong>长期得不到任何支持</strong>（热力平、无共现、无规则触发），要么该叙事仍停留在话语层，要么 <code>maps_to</code> 映射过粗——应回到 <a href="evolution-loop.html">进化闭环</a> 细化编码或回到 <a href="synthesis.html#criteria">§2</a> 判据降级处理。
+      </div>
+    </section>
+
+    <section id="engine-contract">
+      <h2>2. 引擎产出字段与契约（读 JSON 时对齐）</h2>
+      <p class="muted" style="margin-top:-0.35rem"><code>assets/analysis-snapshot.json</code> 由 <code>analysis_engine.py</code> 写入；CI 与 <code>make validate</code> 用 <code>jsonschema</code> 对照 <a href="docs/schemas/analysis-snapshot.schema.json">docs/schemas/analysis-snapshot.schema.json</a>。下列为阅读仪表盘与自助脚本时的<strong>字段导游</strong>。</p>
+      <div class="card" style="overflow-x:auto;padding:0">
+        <table>
+          <thead>
+            <tr><th>字段（顶层或关键子结构）</th><th>含义</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>schema_version</code></td><td>当前为 <strong>1</strong>；大改时递增并同步校验脚本</td></tr>
+            <tr><td><code>generated_at</code></td><td>UTC 时间戳</td></tr>
+            <tr><td><code>run.run_id</code> / <code>run.repo_revision</code></td><td>单次运行血缘，与当日 <code>sediment</code> / SQLite 对齐</td></tr>
+            <tr><td><code>sources</code></td><td>含 <code>combined_for_analysis</code>、manifest/候选计数、<code>candidate_review_breakdown</code>、<code>hint_decisions</code> 汇总等</td></tr>
+            <tr><td><code>module_heat</code> / <code>factor_heat</code></td><td>站内页与沙盘因子出现频次 Top 列表</td></tr>
+            <tr><td><code>kind_distribution</code></td><td>信号 <code>kind</code>（opinion/policy/law/…）计数分布</td></tr>
+            <tr><td><code>cooccurrence</code></td><td>同一信号内因子两两共现 Top</td></tr>
+            <tr><td><code>evolution_hints</code></td><td>规则模板命中 + 可选「相较上期快照」的 diff 提示 + Top 因子模板/兜底句；对象可含 <code>rule_id</code>、<code>target_pages</code></td></tr>
+            <tr><td><code>hint_closure_gaps</code></td><td><code>track_closure</code> 已触发但决策 JSON 尚无 done/rejected 的 <code>rule_id</code> 列表</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top:1rem;font-size:0.88rem"><strong>模式：</strong><code>python3 scripts/analysis_engine.py --check</code> 跑全部分析逻辑并校验结构，<strong>不写</strong>快照文件（CI 用）。日常写回加 <code>--sediment</code> 以追加沉淀与趋势链。</p>
+    </section>
+
     <section id="loop">
-      <h2>1. 在「自我进化」闭环中的位置</h2>
+      <h2>3. 在「自我进化」闭环中的位置</h2>
       <p class="muted" style="margin-top:-0.35rem">抓取（<a href="evolution-loop.html#ingest">ingest</a>）→ 候选 → 审阅合并（manifest）→ <strong>本页分析</strong> → 根据提示回到 <a href="synthesis.html#perpetual">综合推演 §11</a> 增删配方/表行 → <a href="lab.html">沙盘</a> 压测。分析引擎是<strong>反馈环的量化侧</strong>，不替代定性判断。</p>
       <div class="card">
         <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
@@ -95,7 +209,7 @@
     </section>
 
     <section id="sediment">
-      <h2>2. 数据沉淀</h2>
+      <h2>4. 数据沉淀</h2>
       <p class="muted" style="margin-top:-0.35rem"><code>data/sediment.json</code> 在运行 <code>analysis_engine.py --sediment</code> 时<strong>按日更新一条</strong>（同日重复运行会覆盖当日记录），字段含 manifest/候选条数、热力 Top 因子与页面。不包含外链全文，体量可控。</p>
       <div class="callout extend" style="margin-top:1rem">
         <strong>长期沉淀建议：</strong>将本文件纳入<strong>定期备份</strong>（仓库外对象存储、加密盘或按月快照）；历史条目<strong>勿随意删</strong>，以便 <a href="#longterm">趋势脚本</a> 计算「多日 Top 覆盖率」。若条目极多，可只保留近年 + 冷归档旧文件，分析前合并为一份再跑脚本。
@@ -110,18 +224,18 @@
     </section>
 
     <section id="longterm">
-      <h2>3. 长期趋势（跨日汇总）</h2>
+      <h2>5. 长期趋势（跨日汇总）</h2>
       <p class="muted" style="margin-top:-0.35rem">单日 snapshot 看<strong>当下结构</strong>；跨日看<strong>谁一直在 Top</strong>。运行 <code>python3 scripts/sediment_trends.py</code>，优先从 <a href="#sqlite">SQLite</a> 读多日行（否则读 <code>data/sediment.json</code>），生成 <code>assets/sediment-trends.json</code>（因子/页面「出现在 Top 的天数」与覆盖率、简要提示）。<strong>分析仪表盘</strong>会在快照下方自动追加「长期沉淀与趋势」卡片（需 HTTP 打开页面）。无多日数据时脚本仍写出占位 JSON，提示先积累沉淀。</p>
     </section>
 
     <section id="dashboard">
-      <h2>4. 分析仪表盘（实时自 snapshot）</h2>
+      <h2>6. 分析仪表盘（实时自 snapshot）</h2>
       <p class="muted" style="margin-top:-0.35rem">需本地 HTTP 打开页面以加载 JSON。若空白，请先运行下方命令生成快照。</p>
       <div id="analysis-dashboard" class="analysis-dashboard" aria-live="polite"></div>
     </section>
 
     <section id="cli">
-      <h2>5. 命令</h2>
+      <h2>7. 命令</h2>
       <div class="card">
         <pre style="margin:0;font-size:0.82rem;line-height:1.65;overflow-x:auto">python3 scripts/analysis_engine.py
 python3 scripts/analysis_engine.py --sediment
@@ -131,7 +245,7 @@ python3 scripts/sediment_trends.py</pre>
     </section>
 
     <section id="continuous">
-      <h2>6. 持续更新</h2>
+      <h2>8. 持续更新</h2>
       <p class="muted" style="margin-top:-0.35rem">把「分析 + 沉淀 + 趋势」固化为<strong>可重复的一键步骤</strong>，便于本机 cron 或 CI 挂钟。</p>
       <div class="card">
         <p class="muted" style="margin:0 0 0.75rem;font-size:0.9rem"><strong>一键（推荐）：</strong></p>
@@ -146,7 +260,7 @@ make analyze</pre>
     </section>
 
     <footer>
-      <a href="evolution-loop.html">← 进化闭环</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="synthesis.html#perpetual">综合推演 §11</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
+      <a href="evolution-loop.html">← 进化闭环</a> · <a href="docs/RESEARCH_METHODS_MAP.md">方法匹配</a> · <a href="docs/DEDUCTION_STRATEGY.md">推演策略</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="synthesis.html#perpetual">综合推演 §11</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
   <script src="assets/motion.js"></script>

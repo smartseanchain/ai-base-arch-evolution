@@ -24,6 +24,8 @@ make analyze     # 校验 + 分析引擎 --sediment + 长期趋势
 make status      # 打印当前 analysis-snapshot 计数与闭环缺口（需先有快照）
 ```
 
+**分析引擎总线**（全部定性研究方法、演进策略与 JSON 字段如何对表）：站内 [analysis-hub.html#panorama](analysis-hub.html#panorama)；仓库文档 [docs/RESEARCH_METHODS_MAP.md](docs/RESEARCH_METHODS_MAP.md)、[docs/DEDUCTION_STRATEGY.md](docs/DEDUCTION_STRATEGY.md)。
+
 脚本说明：[scripts/README.md](scripts/README.md)。抓取配置：复制 [scripts/ingest_config.example.json](scripts/ingest_config.example.json) 为 `ingest_config.json` 后填写 RSS / 法规索引页。
 
 ## Git 钩子（可选）
