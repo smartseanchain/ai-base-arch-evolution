@@ -81,10 +81,10 @@
 |--------|----|------|
 | **P0** | 图例条 a11y | ✅ 已：补全 `nexus-legend` 的 `aria-label` |
 | **P1** | 三色文案多义 | 在 ARCHITECTURE 或 CONTRIBUTING 式短注中说明「类名统一、中文按页」 |
-| **P2** | 顶栏「整体改造」 vs h1「整体智能化改造」 | 择一统一 |
-| **P2** | timeline 分享标题 vs h1 | 按需把 og:title 与 h1 对齐 |
+| **P2** | 顶栏「整体改造」 vs h1「整体智能化改造」 | ✅ 已：`smart-overhaul` 的 h1 / `<title>` / `og:title` 与顶栏统一为「整体改造」，导语标明智能化方向 |
+| **P2** | timeline 分享标题 vs h1 | ✅ 已：`og:title` / `twitter:title` 与页内 h1「基础设施形态演进」对齐；浏览器 `<title>` 仍用短名「历史演进」 |
 | **P2** | 缺 TOC/legend 的页 | **不建议**为统一而统一；新页按内容选型 |
-| **P2** | 主链 SVG `aria-label` | 按页补全或 `aria-hidden` |
+| **P2** | 主链 SVG `aria-label` | ✅ 已部分：`decade` 合成条、`architecture` 两图、`lab` 依赖流、`timeline` 驱动力图采用外层 `role="img"` + `aria-label`，内层 `svg aria-hidden` |
 
 ---
 
