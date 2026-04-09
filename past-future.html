@@ -180,8 +180,8 @@
       <div class="arch-compare-grid">
         <div class="arch-panel past-h">
           <header>典型 2016—2018 逻辑架构（示意）</header>
-          <div class="body">
-            <svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg">
+          <div class="body" role="img" aria-label="典型 2016—2018 逻辑架构：单区域单云、厚企业边界与传统数据中心与早期 VPC，单体与共享库">
+            <svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="20" y="20" width="320" height="50" rx="6" fill="#2a3544" stroke="#8b9cb3" />
               <text x="180" y="48" text-anchor="middle" fill="#e8edf4" font-size="11" font-family="Noto Sans SC,sans-serif">企业边界 · 防火墙/DMZ</text>
               <rect x="40" y="90" width="140" height="70" rx="6" fill="#1a2332" stroke="#8b9cb3" />
@@ -199,8 +199,8 @@
         </div>
         <div class="arch-panel future-h">
           <header>2036 预期想象 · 逻辑架构（示意）</header>
-          <div class="body">
-            <svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg">
+          <div class="body" role="img" aria-label="2036 想象逻辑架构：多 Cell、全局策略面、数据驻留与推理分区、策略网关互联">
+            <svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="10" y="12" width="340" height="36" rx="6" fill="#1a2332" stroke="#e8a838" stroke-dasharray="3 2" />
               <text x="180" y="35" text-anchor="middle" fill="#e8edf4" font-size="10" font-family="Noto Sans SC,sans-serif">全局策略面 · IAM · 配额 · 审计总线（可编程）</text>
               <rect x="20" y="62" width="100" height="95" rx="8" fill="#141b26" stroke="#3d9cf5" />
@@ -231,22 +231,22 @@
       <p class="muted" style="margin-top:-0.5rem">从「场所」到「规则」：部署形态的重心逐渐从<strong>在哪里跑</strong>转向<strong>在什么约束下与谁交换数据</strong>。</p>
       <div class="morph-flow" aria-label="形态演进">
         <div class="morph-node">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="14" width="32" height="28" rx="2" fill="#1a2332" stroke="#8b9cb3"/><rect x="14" y="8" width="8" height="8" rx="1" fill="#5c6b7e"/><rect x="26" y="8" width="8" height="8" rx="1" fill="#5c6b7e"/></svg>
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="8" y="14" width="32" height="28" rx="2" fill="#1a2332" stroke="#8b9cb3"/><rect x="14" y="8" width="8" height="8" rx="1" fill="#5c6b7e"/><rect x="26" y="8" width="8" height="8" rx="1" fill="#5c6b7e"/></svg>
           <span>机房中心</span>
         </div>
         <span class="morph-arrow">→</span>
         <div class="morph-node">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><ellipse cx="24" cy="26" rx="18" ry="12" fill="none" stroke="#3d9cf5" stroke-width="2"/><path d="M12 20 Q24 8 36 20" fill="none" stroke="#3d9cf5"/><text x="24" y="32" text-anchor="middle" fill="#3d9cf5" font-size="10" font-family="Noto Sans SC,sans-serif">云</text></svg>
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><ellipse cx="24" cy="26" rx="18" ry="12" fill="none" stroke="#3d9cf5" stroke-width="2"/><path d="M12 20 Q24 8 36 20" fill="none" stroke="#3d9cf5"/><text x="24" y="32" text-anchor="middle" fill="#3d9cf5" font-size="10" font-family="Noto Sans SC,sans-serif">云</text></svg>
           <span>混合云</span>
         </div>
         <span class="morph-arrow">→</span>
         <div class="morph-node">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="20" r="8" fill="#141b26" stroke="#4ecf8e"/><circle cx="32" cy="20" r="8" fill="#141b26" stroke="#3d9cf5"/><circle cx="24" cy="32" r="8" fill="#141b26" stroke="#e8a838"/><line x1="20" y1="24" x2="28" y2="28" stroke="#8b9cb3"/></svg>
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="20" r="8" fill="#141b26" stroke="#4ecf8e"/><circle cx="32" cy="20" r="8" fill="#141b26" stroke="#3d9cf5"/><circle cx="24" cy="32" r="8" fill="#141b26" stroke="#e8a838"/><line x1="20" y1="24" x2="28" y2="28" stroke="#8b9cb3"/></svg>
           <span>Cell 网格</span>
         </div>
         <span class="morph-arrow">→</span>
         <div class="morph-node">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="10" width="36" height="10" rx="2" fill="#1a2332" stroke="#e8a838"/><rect x="6" y="24" width="36" height="14" rx="2" fill="#0c1118" stroke="#3d9cf5"/><circle cx="38" cy="38" r="6" fill="#6366f1" stroke="#a78bfa"/><text x="38" y="41" text-anchor="middle" fill="#fff" font-size="8">AI</text></svg>
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="6" y="10" width="36" height="10" rx="2" fill="#1a2332" stroke="#e8a838"/><rect x="6" y="24" width="36" height="14" rx="2" fill="#0c1118" stroke="#3d9cf5"/><circle cx="38" cy="38" r="6" fill="#6366f1" stroke="#a78bfa"/><text x="38" y="41" text-anchor="middle" fill="#fff" font-size="8">AI</text></svg>
           <span>策略+AI 面</span>
         </div>
       </div>
@@ -255,8 +255,8 @@
     <section>
       <h2>六维迁移：雷达式位移（2016 → 2036）</h2>
       <p class="muted" style="margin-top:-0.5rem">六轴为抽象「关心程度」；<strong>实线多边形</strong>示意 2016，<strong>虚线</strong>示意 2036 预期重心（非量化评分）。</p>
-      <div class="dim-shift">
-        <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg">
+      <div class="dim-shift" role="img" aria-label="六维迁移雷达：交付速度、弹性云化、数据主权、可证明合规、供应链韧性；实线为 2016 重心，虚线为 2036 想象重心">
+        <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <polygon points="200,40 318,110 280,230 120,230 82,110" fill="none" stroke="#2a3544" stroke-width="1" />
           <line x1="200" y1="180" x2="200" y2="40" stroke="#2a3544" stroke-width="1" />
           <line x1="200" y1="180" x2="318" y2="110" stroke="#2a3544" stroke-width="1" />
@@ -287,7 +287,7 @@
           <h3>保守现实主义</h3>
           <p>混合云长期为主；AI 以专有云/ VPC 与<strong>私有化模型+小模型</strong>为主；Cell 只在强监管业务线出现；全球仍多套团队维护多套栈，「统一平台」口号大于现实。</p>
           <div class="scenario-mini">
-            <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="20" y="25" width="70" height="40" rx="4" fill="#1a2332" stroke="#8b9cb3"/>
               <rect x="110" y="25" width="70" height="40" rx="4" fill="#1a2332" stroke="#3d9cf5"/>
               <text x="55" y="50" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">私有</text>
@@ -300,7 +300,7 @@
           <h3>结构化默认</h3>
           <p>数据目录与出境评估成标配；<strong>Cell + 策略网关</strong>在跨国企业与金融政企普及；RAG 接企业知识库成「新 ODBC」；区域级故障与制裁进入 BCP 桌面演练。</p>
           <div class="scenario-mini">
-            <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="15" y="20" width="50" height="45" rx="4" fill="#141b26" stroke="#4ecf8e"/>
               <rect x="75" y="30" width="50" height="25" rx="4" fill="#1a2332" stroke="#e8a838"/>
               <rect x="135" y="20" width="50" height="45" rx="4" fill="#141b26" stroke="#3d9cf5"/>
@@ -313,7 +313,7 @@
           <h3>合规定向协作网</h3>
           <p>跨机构的<strong>最小必要数据协作</strong>在 TEE/联邦/可验证审计下试点成网；仍受反垄断、出口管制与各国 AI 法牵制，不会成为「无摩擦全球数据湖」。</p>
           <div class="scenario-mini">
-            <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="50" cy="40" r="22" fill="none" stroke="#a78bfa" stroke-width="2" stroke-dasharray="3 2"/>
               <circle cx="100" cy="40" r="22" fill="none" stroke="#f472b6" stroke-width="2" stroke-dasharray="3 2"/>
               <circle cx="150" cy="40" r="22" fill="none" stroke="#3d9cf5" stroke-width="2" stroke-dasharray="3 2"/>
