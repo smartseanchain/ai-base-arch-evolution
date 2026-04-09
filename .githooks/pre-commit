@@ -10,4 +10,5 @@ fi
 python3 scripts/validate-evolution-manifest.py
 python3 scripts/validate-evolution-candidates.py
 python3 scripts/check_manifest_drift.py
+PYTHONPATH=scripts python3 -m unittest discover -s scripts/tests -p 'test_*.py' -q
 python3 scripts/analysis_engine.py --check

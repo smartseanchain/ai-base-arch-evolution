@@ -1,8 +1,9 @@
 # 可进化站点 · 常用目标（在项目根执行 make <target>）
-.PHONY: validate ingest ingest-full analyze pipeline check-analysis help hooks sitemap
+.PHONY: validate test ingest ingest-full analyze pipeline check-analysis help hooks sitemap
 
 help:
-	@echo "make validate   - 校验 manifest/候选 + 对账 + analysis_engine --check（与 pre-commit 一致）"
+	@echo "make validate   - 校验 manifest/候选 + 对账 + 单测 + analysis_engine --check（与 pre-commit 一致）"
+	@echo "make test       - scripts/tests 下 unittest（PYTHONPATH=scripts）"
 	@echo "make check-analysis - 分析引擎 --check（不写 snapshot，CI 同款）"
 	@echo "make ingest     - 仅抓取候选（需外网）"
 	@echo "make ingest-full - 同 ingest 但 --full-pool（忽略 require_route_match）"
@@ -15,7 +16,11 @@ validate:
 	python3 scripts/validate-evolution-manifest.py
 	python3 scripts/validate-evolution-candidates.py
 	python3 scripts/check_manifest_drift.py
+	PYTHONPATH=scripts python3 -m unittest discover -s scripts/tests -p 'test_*.py' -q
 	python3 scripts/analysis_engine.py --check
+
+test:
+	PYTHONPATH=scripts python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
 
 check-analysis:
 	python3 scripts/analysis_engine.py --check

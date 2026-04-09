@@ -33,4 +33,4 @@
 
 ## 对账脚本
 
-`python3 scripts/check_manifest_drift.py`：检查 `maps_to.pages` 文件是否存在、`lab_factors` 是否在 `lab.js` 定义。已并入 `make validate` 与 CI。
+`python3 scripts/check_manifest_drift.py`：检查 `maps_to.pages` 是否列入 **`scripts/evolution-registry.json`** 且文件存在；`lab_factors` 是否与 registry / `lab.js` 一致；并校验 ingest 配置与 `maps_to_hints`、`gen-sitemap` PRIORITY。已并入 `make validate` 与 CI。

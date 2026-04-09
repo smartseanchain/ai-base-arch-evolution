@@ -44,10 +44,22 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 
 ## 持续集成
 
-- `ci.yml`：PR/推送时校验 JSON、**manifest/候选对账**（页面与 `lab.js`）、`compileall`、`analysis_engine --check`
+- `ci.yml`：PR/推送时校验 JSON、**manifest/候选/ingest 配置对账**（见 `scripts/evolution-registry.json`）、`compileall`、`scripts/tests` **unittest**、`analysis_engine --check`
 - `update-pipeline.yml`：定时/手动分析 artifact
 - `ingest-pipeline.yml`：**每周二 UTC 定时**或手动抓取候选 artifact；Job Summary 汇总各 RSS 源成功/失败（`ingest-summary.json` 一并上传）
 - 在 GitHub 开 PR 时自动带出 **`.github/pull_request_template.md`**（合并 manifest/候选请勾选自检项）
+
+### 定时流水线与仓库写入（预期）
+
+- **默认**：上述定时/手动 workflow 产出 **artifact**，**不会**自动 push 到 `main`。线上站点里的 `analysis-snapshot.json`、`sediment.json` 等与 Git 一致，仍依赖你在本地 **`make analyze`**（或下载 artifact 人工合并后提交）。
+- 若将来需要「bot 自动开 PR 写回」，须在仓库另配 workflow + `contents: write` 权限与 PAT；当前刻意保持 **人审闸门** 与 artifact 模式。
+
+### 单一注册表
+
+- **`scripts/evolution-registry.json`**：声明允许出现在 `maps_to.pages` 的根目录 HTML（不含 `404.html`）及全部 **`lab_factors`**；须与 **`assets/lab.js`** 中因子 `id` **集合完全一致**。
+- **`check_manifest_drift.py`** 同时校验 `ingest_config.json`、`maps_to_hints.json` 内的页面/因子引用，以及 **`gen-sitemap.py` 的 `PRIORITY` 键** ⊆ 注册表页面。
+
+本地：`make test` 仅跑单测；`make validate` 含单测与全套校验。
 
 ## 许可与合规
 

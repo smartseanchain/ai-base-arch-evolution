@@ -17,6 +17,8 @@ jobs:
           python-version: "3.12"
       - name: Syntax-check Python scripts
         run: python3 -m compileall -q scripts
+      - name: Unit tests (scripts/tests)
+        run: PYTHONPATH=scripts python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
       - name: Validate evolution JSON
         run: |
           python3 scripts/validate-evolution-manifest.py

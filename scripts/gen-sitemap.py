@@ -10,11 +10,13 @@ SITE_BASE 不要末尾斜杠；若站点在子路径，请包含子路径（无�
 """
 from __future__ import annotations
 
+import json
 import os
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+REGISTRY_PATH = ROOT / "scripts" / "evolution-registry.json"
 
 PRIORITY: dict[str, tuple[str, str]] = {
     "index.html": ("weekly", "1.0"),
@@ -61,6 +63,19 @@ def main() -> None:
     if not base.startswith(("http://", "https://")):
         print("错误: SITE_BASE 须以 http:// 或 https:// 开头", file=sys.stderr)
         sys.exit(1)
+
+    if not REGISTRY_PATH.is_file():
+        print(f"错误: 缺少注册表 {REGISTRY_PATH}", file=sys.stderr)
+        sys.exit(1)
+    reg = json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
+    reg_pages = {str(p).strip() for p in (reg.get("pages") or []) if str(p).strip()}
+    for k in PRIORITY:
+        if k not in reg_pages:
+            print(
+                f"错误: PRIORITY 键「{k}」不在 evolution-registry.json pages",
+                file=sys.stderr,
+            )
+            sys.exit(1)
 
     pages = sorted(
         p.name for p in ROOT.glob("*.html") if p.name not in SKIP_HTML

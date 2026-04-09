@@ -1,29 +1,89 @@
 #!/usr/bin/env python3
 """
-对账：evolution-manifest.json（及可选 candidates）中 maps_to.pages 须在仓库根存在对应 HTML；
-maps_to.lab_factors 须在 assets/lab.js 的因子 id 集合内。
+对账：evolution-manifest.json（及候选）中 maps_to.pages 须在 evolution-registry.json 内且文件存在；
+maps_to.lab_factors 须与 registry（并与 lab.js 解析结果）一致。
+另校验 ingest_config.json、maps_to_hints.json 中的 pages / lab_factors；
+gen-sitemap.py 的 PRIORITY 键须 ⊆ registry.pages。
 不写文件；供 CI / pre-commit / make validate。
 """
 from __future__ import annotations
 
+import importlib.util
 import json
 import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+REGISTRY_PATH = ROOT / "scripts" / "evolution-registry.json"
 MANIFEST = ROOT / "assets" / "evolution-manifest.json"
 CANDIDATES = ROOT / "assets" / "evolution-candidates.json"
 LAB = ROOT / "assets" / "lab.js"
+INGEST_CONFIG = ROOT / "scripts" / "ingest_config.json"
+MAPS_HINTS = ROOT / "scripts" / "maps_to_hints.json"
+GEN_SITEMAP = ROOT / "scripts" / "gen-sitemap.py"
 
 
-def lab_factor_ids() -> set[str]:
+def load_registry() -> dict:
+    if not REGISTRY_PATH.is_file():
+        print(f"错误: 缺少注册表 {REGISTRY_PATH}", file=sys.stderr)
+        sys.exit(1)
+    return json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
+
+
+def lab_factor_ids_from_js() -> set[str]:
     text = LAB.read_text(encoding="utf-8")
     return set(re.findall(r'^\s+id:\s*"([a-z0-9_]+)"', text, re.MULTILINE))
 
 
+def gen_sitemap_priority_keys() -> set[str]:
+    spec = importlib.util.spec_from_file_location("_gen_sitemap_mod", GEN_SITEMAP)
+    if spec is None or spec.loader is None:
+        print("错误: 无法加载 gen-sitemap.py", file=sys.stderr)
+        sys.exit(1)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return set(mod.PRIORITY.keys())
+
+
+def collect_ingest_maps_refs(cfg: dict) -> tuple[set[str], set[str]]:
+    pages: set[str] = set()
+    facs: set[str] = set()
+    for r in cfg.get("routes") or []:
+        for p in r.get("pages") or []:
+            if isinstance(p, str) and p.strip():
+                pages.add(p.strip())
+        for f in r.get("lab_factors") or []:
+            if isinstance(f, str) and f.strip():
+                facs.add(f.strip())
+    return pages, facs
+
+
+def collect_hints_refs(h: dict) -> tuple[set[str], set[str]]:
+    pages: set[str] = set()
+    facs: set[str] = set()
+    for m in (h.get("host_suffixes") or {}).values():
+        for p in m.get("pages") or []:
+            if isinstance(p, str) and p.strip():
+                pages.add(p.strip())
+        for f in m.get("lab_factors") or []:
+            if isinstance(f, str) and f.strip():
+                facs.add(f.strip())
+    for row in h.get("keyword_routes") or []:
+        for p in row.get("pages") or []:
+            if isinstance(p, str) and p.strip():
+                pages.add(p.strip())
+        for f in row.get("lab_factors") or []:
+            if isinstance(f, str) and f.strip():
+                facs.add(f.strip())
+    return pages, facs
+
+
 def check_signals(
-    signals: list[dict], label: str, lab_ids: set[str]
+    signals: list[dict],
+    label: str,
+    allowed_pages: set[str],
+    lab_ids: set[str],
 ) -> list[str]:
     errs: list[str] = []
     for s in signals:
@@ -36,6 +96,11 @@ def check_signals(
             if not isinstance(p, str) or not p.strip():
                 continue
             rel = p.strip()
+            if rel not in allowed_pages:
+                errs.append(
+                    f"{label} {sid}: 页面不在 evolution-registry.json · {rel}"
+                )
+                continue
             fp = ROOT / rel
             if not fp.is_file():
                 errs.append(f"{label} {sid}: 页面文件不存在 · {rel}")
@@ -45,25 +110,83 @@ def check_signals(
             f = fac.strip()
             if f not in lab_ids:
                 errs.append(
-                    f"{label} {sid}: 未知沙盘因子 · {f}（请同步 assets/lab.js）"
+                    f"{label} {sid}: 未知沙盘因子 · {f}（请同步 registry 与 assets/lab.js）"
                 )
     return errs
 
 
 def main() -> None:
+    reg = load_registry()
+    raw_pages = reg.get("pages") or []
+    raw_fac = reg.get("lab_factors") or []
+    if not isinstance(raw_pages, list) or not isinstance(raw_fac, list):
+        print("错误: registry pages / lab_factors 须为数组", file=sys.stderr)
+        sys.exit(1)
+
+    allowed_pages = {str(p).strip() for p in raw_pages if str(p).strip()}
+    reg_fac = {str(f).strip() for f in raw_fac if str(f).strip()}
+
+    for rel in sorted(allowed_pages):
+        fp = ROOT / rel
+        if not fp.is_file():
+            print(
+                f"错误: registry 列出但仓库无此文件 · {rel}",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
     if not LAB.is_file():
         print(f"错误: 未找到 {LAB}", file=sys.stderr)
         sys.exit(1)
-    lab_ids = lab_factor_ids()
-    if not lab_ids:
+    lab_js = lab_factor_ids_from_js()
+    if not lab_js:
         print("错误: 未能从 lab.js 解析因子 id", file=sys.stderr)
+        sys.exit(1)
+    if lab_js != reg_fac:
+        only_js = sorted(lab_js - reg_fac)
+        only_reg = sorted(reg_fac - lab_js)
+        print(
+            "错误: lab.js 与 evolution-registry.json 的 lab_factors 不一致",
+            file=sys.stderr,
+        )
+        if only_js:
+            print(f"  仅在 lab.js: {only_js}", file=sys.stderr)
+        if only_reg:
+            print(f"  仅在 registry: {only_reg}", file=sys.stderr)
+        sys.exit(1)
+
+    prio = gen_sitemap_priority_keys()
+    bad_prio = sorted(prio - allowed_pages)
+    if bad_prio:
+        print(
+            "错误: gen-sitemap.py PRIORITY 含未在 registry 声明的页面 · "
+            + ", ".join(bad_prio),
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     all_errs: list[str] = []
+
+    if INGEST_CONFIG.is_file():
+        ic = json.loads(INGEST_CONFIG.read_text(encoding="utf-8"))
+        ip, ifac = collect_ingest_maps_refs(ic)
+        for p in sorted(ip - allowed_pages):
+            all_errs.append(f"ingest_config routes: 未知页面 · {p}")
+        for f in sorted(ifac - reg_fac):
+            all_errs.append(f"ingest_config routes: 未知因子 · {f}")
+
+    if MAPS_HINTS.is_file():
+        hi = json.loads(MAPS_HINTS.read_text(encoding="utf-8"))
+        hp, hf = collect_hints_refs(hi)
+        for p in sorted(hp - allowed_pages):
+            all_errs.append(f"maps_to_hints: 未知页面 · {p}")
+        for f in sorted(hf - reg_fac):
+            all_errs.append(f"maps_to_hints: 未知因子 · {f}")
+
     if MANIFEST.is_file():
         data = json.loads(MANIFEST.read_text(encoding="utf-8"))
         all_errs.extend(
-            check_signals(data.get("signals") or [], "manifest", lab_ids)
+            check_signals(data.get("signals") or [], "manifest", allowed_pages, reg_fac)
         )
     else:
         print(f"警告: 未找到 {MANIFEST}", file=sys.stderr)
@@ -71,18 +194,24 @@ def main() -> None:
     if CANDIDATES.is_file():
         cdata = json.loads(CANDIDATES.read_text(encoding="utf-8"))
         all_errs.extend(
-            check_signals(cdata.get("signals") or [], "candidate", lab_ids)
+            check_signals(
+                cdata.get("signals") or [], "candidate", allowed_pages, reg_fac
+            )
         )
 
     if all_errs:
-        print("manifest / 候选 对账失败：", file=sys.stderr)
+        print("manifest / 候选 / 配置 对账失败：", file=sys.stderr)
         for e in all_errs:
             print(f"  - {e}", file=sys.stderr)
         sys.exit(1)
 
-    n_lab = len(lab_ids)
-    print(f"OK: 对账通过 · lab.js 因子 {n_lab} 个 · 已检查 manifest" +
-          (" + candidates" if CANDIDATES.is_file() else ""))
+    n_lab = len(reg_fac)
+    print(
+        f"OK: 对账通过 · registry 页面 {len(allowed_pages)} · lab_factors {n_lab} · "
+        "已检查 manifest"
+        + (" + candidates" if CANDIDATES.is_file() else "")
+        + " + ingest 配置"
+    )
 
 
 if __name__ == "__main__":
