@@ -84,7 +84,7 @@
 | **P2** | 顶栏「整体改造」 vs h1「整体智能化改造」 | ✅ 已：`smart-overhaul` 的 h1 / `<title>` / `og:title` 与顶栏统一为「整体改造」，导语标明智能化方向 |
 | **P2** | timeline 分享标题 vs h1 | ✅ 已：`og:title` / `twitter:title` 与页内 h1「基础设施形态演进」对齐；浏览器 `<title>` 仍用短名「历史演进」 |
 | **P2** | 缺 TOC/legend 的页 | **不建议**为统一而统一；新页按内容选型 |
-| **P2** | 主链 SVG `aria-label` | ✅ 已部分：`decade` 合成条、`architecture` 两图、`lab` 依赖流、`timeline` 驱动力图采用外层 `role="img"` + `aria-label`，内层 `svg aria-hidden` |
+| **P2** | 主链 SVG `aria-label` | ✅ 已部分：上列各图 + `modules-map` 七层剖面与四路径串联、`nexus` 尺度影响与反馈环、`edu-nexus` 家校政三角·生命周期·AI 触点链（均外层 `role="img"` + 内层 `svg aria-hidden`）。**例外**：`modules-map` 模块星丛与场景轮含可点击 `<a>`，保留根 `svg` 的 `aria-label`，**不**在外层加 `role="img"`（避免呈现性子项隐藏链接） |
 
 ---
 
