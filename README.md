@@ -6,12 +6,12 @@
 - **GitHub Pages**（开启后）：https://smartseanchain.github.io/ai-base-arch-evolution/ — 在仓库 **Settings → Pages** 中选择 **Deploy from a branch**，分支 **main**，文件夹 **/ (root)**，保存后约 1～2 分钟可访问。  
 - 本地预览：直接打开 `index.html`，或用任意静态服务器（`evolution.js` 等需 **http(s)** 才能 `fetch` JSON）。
 
-概念总览见站内 [可进化架构](evolvable-architecture.html)。**双周反哺节奏**（可打印照做）：[docs/EVOLUTION_RUNBOOK.md](docs/EVOLUTION_RUNBOOK.md)。
+概念总览见站内 [可进化架构](evolvable-architecture.html)。**仓库架构与数据流**（Mermaid）：[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)。**双周反哺节奏**（可打印照做）：[docs/EVOLUTION_RUNBOOK.md](docs/EVOLUTION_RUNBOOK.md)。
 
 ## 本地校验与流水线
 
 ```bash
-make validate    # manifest + 候选 + analysis_engine --check
+make validate    # manifest + 候选 + hint 决策 JSON + 对账（含 hint-rules 结构）+ 顶栏 + 单测 + analysis_engine --check
 make ingest      # 抓取候选（需外网，依赖 scripts/ingest_config.json）
 make ingest-full # 同上但单次 --full-pool（忽略 require_route_match）
 make analyze     # 校验 + 分析引擎 --sediment + 长期趋势
@@ -71,5 +71,7 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 - 顶栏内各 `href="*.html"` 须落在 **`scripts/evolution-registry.json`** 的 `pages` 内（`check_manifest_drift` 会查）。
 
 ## 许可与合规
+
+本仓库代码与文档默认遵循根目录 **[LICENSE](LICENSE)**（MIT）。站点引用的外部字体、第三方 API 等仍受其各自许可约束。
 
 抓取须遵守各源站 robots.txt 与版权；候选线索须经人工审阅后再 `merge` 进 `evolution-manifest.json`。

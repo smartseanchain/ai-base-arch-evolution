@@ -20,6 +20,10 @@
 | 8 | 打开 `lab.html`：按热力勾选因子做一轮沙盘 | 与 manifest 映射一致性感性校验 |
 | 9 | `git commit` & `push` | 站点与仓库同步 |
 
+## 关于「规则闭环缺口」
+
+分析页若出现 **hint_closure_gaps** 或「规则闭环缺口 N 条」，表示：`evolution-hint-rules.json` 里 **`track_closure: true`** 的规则已触发，但 **`evolution-hint-decisions.json`** 中尚无同 **`rule_id`** 的 **done** / **rejected** 记录——这是**待办清单**，不是 CI 失败。冷启动或双周尚未处理时出现多条缺口属正常；写入决策后缺口会消失。**延期 deferred** 不算闭环。进化闭环页顶部会拉取快照显示摘要（需 http(s)）。
+
 ## 与人审闸门一致
 
 - 未经审阅 **不** merge 进 manifest。  

@@ -25,4 +25,4 @@
 - **`scripts/ingest_config.json`**：`routes` 正则命中后写入 `maps_to`；**`scripts/maps_to_hints.json`** 按 **RSS 链接 host** 与 **标题/摘要关键词** 再合并 `pages` / `lab_factors`（仍须人审）。
 - **`scripts/evolution-hint-rules.json`**：`analysis_engine` 中条件类 `evolution_hints` 的外置规则；可选 **`track_closure`**：触发且决策 JSON 中尚无同 `rule_id` 的 done/rejected 时，快照含 **`hint_closure_gaps`**（分析页高亮）。与**已有** `assets/analysis-snapshot.json` 对比可生成「相较上期」的 diff 提示（`--check` 模式跳过 diff）。
 
-双周反哺清单：[docs/EVOLUTION_RUNBOOK.md](../docs/EVOLUTION_RUNBOOK.md)。
+双周反哺清单：[docs/EVOLUTION_RUNBOOK.md](../docs/EVOLUTION_RUNBOOK.md)。架构总览：[docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md)。

@@ -2,7 +2,7 @@
 .PHONY: validate test sync-nav check-site-nav ingest ingest-full analyze pipeline check-analysis help hooks sitemap trends
 
 help:
-	@echo "make validate   - 校验 manifest/候选/hint 决策 + 对账 + 顶栏 + 单测 + analysis_engine --check（与 pre-commit 一致）"
+	@echo "make validate   - 校验 manifest/候选/hint 决策 + 对账（含 hint-rules 结构）+ 顶栏 + 单测 + analysis_engine --check（与 pre-commit 一致）"
 	@echo "make test       - scripts/tests 下 unittest（PYTHONPATH=scripts）"
 	@echo "make sync-nav   - 按 partials 写回各页 skip-bar + site-nav"
 	@echo "make check-site-nav - 仅检查顶栏是否与模板一致（CI 同款）"

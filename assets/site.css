@@ -4366,6 +4366,24 @@ tr.synth-cat-row td {
   font-weight: 600;
 }
 
+.evolution-closure-summary {
+  margin-bottom: var(--space-5);
+}
+
+.evolution-closure-summary--warn {
+  border-left: 3px solid var(--warn);
+  padding-left: var(--space-4);
+}
+
+.evolution-closure-summary--ok {
+  border-left: 3px solid var(--ok);
+  padding-left: var(--space-4);
+}
+
+.evolution-closure-summary--muted {
+  opacity: 0.95;
+}
+
 .analysis-hints {
   margin-bottom: var(--space-5);
 }
