@@ -1,6 +1,7 @@
 /*
  * 设计系统 · 深空档案舱（3D 场景化 UI）
  * — 语义色 / 字阶 / 间距 / 圆角与立体层统一，旧变量名保留为别名以免破页。
+ * — 可读性：正文/辅文略提亮、链接与焦点环可辨；触控目标贴近 ~44px 最小点击高度。
  * 动效栈与 motion.js 契约：见 assets/MOTION-ARCHITECTURE.md
  * 演进页（page-triad-future）另载 assets/triad.css
  */
@@ -8,27 +9,27 @@
   /* —— 场景色阶（由远及近：虚空 → 台面 → 浮起） —— */
   --scene-void: #080c12;
   --scene-void-mid: #0b1018;
-  --scene-haze: rgba(120, 170, 255, 0.04);
+  --scene-haze: rgba(120, 170, 255, 0.05);
   --scene-panel: #121a28;
   --scene-panel-2: #161f2e;
   --scene-elevated: #1c2738;
-  --scene-rim: rgba(100, 140, 190, 0.2);
-  --scene-rim-lit: rgba(130, 190, 255, 0.35);
-  --scene-floor-warm: rgba(200, 150, 100, 0.09);
+  --scene-rim: rgba(100, 140, 190, 0.22);
+  --scene-rim-lit: rgba(130, 190, 255, 0.38);
+  --scene-floor-warm: rgba(200, 150, 100, 0.1);
 
-  /* —— 文本层级 —— */
+  /* —— 文本层级（辅文略提亮，减轻长时间阅读疲劳） —— */
   --text-primary: #eef2f9;
-  --text-secondary: #96a4b8;
-  --text-tertiary: #6a7a90;
+  --text-secondary: #aab6ca;
+  --text-tertiary: #7a8ba3;
   --text-display: #f6f8fc;
 
   /* —— 品牌与语义（主键色 / 辅色 / 状态） —— */
-  --scene-key: #5eb0fc;
-  --scene-key-dim: rgba(94, 176, 252, 0.16);
-  --scene-accent-2: #a89cf0;
-  --warn: #e9b24a;
-  --ok: #5ed99a;
-  --danger: #f08088;
+  --scene-key: #6bb8fc;
+  --scene-key-dim: rgba(107, 184, 252, 0.18);
+  --scene-accent-2: #b0a6f2;
+  --warn: #ebb855;
+  --ok: #66dea0;
+  --danger: #f48a90;
 
   /* —— 兼容旧令牌（全站既有 var 引用） —— */
   --bg: var(--scene-void-mid);
@@ -55,8 +56,8 @@
   --leading-snug: 1.45;
   --leading-normal: 1.65;
   --leading-relaxed: 1.75;
-  --prose-width: 65ch;
-  --content-max: 72rem;
+  --prose-width: 68ch;
+  --content-max: 70rem;
 
   /* —— 间距与圆角（8pt 网格近似） —— */
   --space-1: 0.25rem;
@@ -68,7 +69,7 @@
   --space-8: 2rem;
   --space-10: 2.5rem;
   --space-12: 3rem;
-  --space-section: clamp(2.5rem, 6vw, 4.25rem);
+  --space-section: clamp(2.75rem, 5.5vw, 4.5rem);
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -138,7 +139,7 @@ body {
 }
 
 ::selection {
-  background: rgba(94, 176, 252, 0.28);
+  background: rgba(107, 184, 252, 0.3);
   color: var(--text-display);
 }
 
@@ -233,7 +234,8 @@ a:focus:not(:focus-visible) {
   z-index: 1;
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: var(--space-8) clamp(var(--space-4), 4vw, var(--space-6)) var(--space-12);
+  padding: clamp(var(--space-6), 4.5vw, var(--space-10))
+    clamp(var(--space-4), 5vw, var(--space-8)) var(--space-12);
 }
 
 /* 通用页：主栏「台前」落地渐影（演进页用 .wrap.triad-journey::after 单独配置） */
@@ -353,13 +355,13 @@ section h3 {
   }
 
   .card:hover {
-    border-color: rgba(61, 156, 245, 0.34);
+    border-color: rgba(107, 184, 252, 0.32);
     box-shadow:
       var(--depth-inset-lit-strong),
-      0 20px 52px rgba(0, 0, 0, 0.36),
-      0 6px 16px rgba(0, 0, 0, 0.18),
-      0 0 0 1px rgba(61, 156, 245, 0.08);
-    transform: perspective(var(--motion-persp-tight)) rotateX(1.6deg) translateY(-4px) translateZ(4px);
+      0 16px 44px rgba(0, 0, 0, 0.32),
+      0 5px 14px rgba(0, 0, 0, 0.16),
+      0 0 0 1px rgba(107, 184, 252, 0.07);
+    transform: perspective(var(--motion-persp-tight)) rotateX(1deg) translateY(-2px) translateZ(2px);
   }
 }
 
@@ -377,7 +379,7 @@ table {
 
 th, td {
   text-align: left;
-  padding: 0.65rem 0.75rem;
+  padding: 0.75rem 0.85rem;
   border: 1px solid var(--border);
   vertical-align: top;
 }
@@ -1094,12 +1096,14 @@ footer {
   position: relative;
   z-index: 1;
   margin-top: var(--space-12);
-  padding-top: var(--space-6);
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-4);
   border-top: 1px solid var(--scene-rim);
-  color: var(--text-tertiary);
-  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
   letter-spacing: 0.02em;
-  box-shadow: 0 -16px 40px rgba(0, 0, 0, 0.16);
+  line-height: var(--leading-relaxed);
+  box-shadow: 0 -12px 36px rgba(0, 0, 0, 0.14);
 }
 
 /* —— 无障碍：跳过导航 —— */
@@ -1126,13 +1130,16 @@ footer {
 }
 
 .skip-link {
-  font-size: 0.78rem;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--accent);
   text-decoration: none;
-  padding: 0.35rem 0.65rem;
-  border-radius: 6px;
-  border: 1px solid rgba(61, 156, 245, 0.4);
+  min-height: 2.75rem;
+  padding: 0.4rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--scene-key) 42%, transparent);
   background: var(--accent-dim);
 }
 
@@ -1234,9 +1241,12 @@ footer {
 .site-nav .site-links a {
   color: var(--muted);
   text-decoration: none;
-  font-size: 0.78rem;
-  padding: 0.3rem 0.55rem;
-  border-radius: 6px;
+  font-size: var(--text-sm);
+  min-height: 2.75rem;
+  padding: 0.35rem 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
   white-space: nowrap;
 }
 
@@ -1271,8 +1281,9 @@ footer {
 }
 
 .page-head {
-  margin-bottom: var(--space-8);
-  max-width: var(--prose-width);
+  margin-bottom: var(--space-10);
+  max-width: min(100%, var(--prose-width));
+  padding-bottom: var(--space-2);
 }
 
 .page-head h1 {
