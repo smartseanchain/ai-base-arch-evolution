@@ -6,7 +6,7 @@
 - **GitHub Pages**（开启后）：https://smartseanchain.github.io/ai-base-arch-evolution/ — 在仓库 **Settings → Pages** 中选择 **Deploy from a branch**，分支 **main**，文件夹 **/ (root)**，保存后约 1～2 分钟可访问。  
 - 本地预览：直接打开 `index.html`，或用任意静态服务器（`evolution.js` 等需 **http(s)** 才能 `fetch` JSON）。
 
-概念总览见站内 [可进化架构](evolvable-architecture.html)。**仓库架构与数据流**（Mermaid）：[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)；**存储/沉淀/分析/展示等七类模块**：[同一文档 · seven-layers 锚点](docs/ARCHITECTURE.md#seven-layers)。**科学的推演策略与方法**（认识论、单轮流程、偏误清单、与闭环对表）：[docs/DEDUCTION_STRATEGY.md](docs/DEDUCTION_STRATEGY.md)。**全站标题 · 图例 · TOC · 图形展示**三轮梳理：[docs/SITE_REVIEW_THREE_PASSES.md](docs/SITE_REVIEW_THREE_PASSES.md)。**双周反哺节奏**（可打印照做）：[docs/EVOLUTION_RUNBOOK.md](docs/EVOLUTION_RUNBOOK.md)。
+概念总览见站内 [可进化架构](evolvable-architecture.html)。**仓库架构与数据流**（Mermaid）：[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)；**存储/沉淀/分析/展示等七类模块**：[同一文档 · seven-layers 锚点](docs/ARCHITECTURE.md#seven-layers)。**科学的推演策略与方法**（认识论、单轮流程、偏误清单、与闭环对表）：[docs/DEDUCTION_STRATEGY.md](docs/DEDUCTION_STRATEGY.md)。**研究/推演方法与站内页、沙盘、JSON 管道的匹配（A/B/C 可利用性）**：[docs/RESEARCH_METHODS_MAP.md](docs/RESEARCH_METHODS_MAP.md)。**全站标题 · 图例 · TOC · 图形展示**三轮梳理：[docs/SITE_REVIEW_THREE_PASSES.md](docs/SITE_REVIEW_THREE_PASSES.md)。**双周反哺节奏**（可打印照做）：[docs/EVOLUTION_RUNBOOK.md](docs/EVOLUTION_RUNBOOK.md)。
 
 ## 本地校验与流水线
 

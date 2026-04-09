@@ -57,7 +57,7 @@
 
 ## 5. 跨学科外衣：如何选用才不自欺
 
-[综合推演 §12](../synthesis.html#methods) 提供多领域**可借用套路**。纪律是：
+[综合推演 §12](../synthesis.html#methods) 提供多领域**可借用套路**。**每种套路在本站是 A/B/C 哪一级可利用、对应脚本与 JSON 是什么**，见 [RESEARCH_METHODS_MAP.md](./RESEARCH_METHODS_MAP.md)。纪律是：
 
 - **每轮主动只用 1–2 种**，避免清单化表演。
 - 任何外衣都必须能**翻译**成：变量注 → §2 判据 → 传导句 → 征候句。翻译不了则**不采用**该外衣。
@@ -86,6 +86,7 @@
 | 全站鸟瞰与三问 | [index#three-questions](../index.html#three-questions) |
 | 判据 · 配方 · 迭代 | [synthesis §1–§11](../synthesis.html#inventory) |
 | 跨学科办法 | [synthesis §12](../synthesis.html#methods) |
+| 方法 ↔ 工具匹配（A/B/C 可利用性） | [RESEARCH_METHODS_MAP](./RESEARCH_METHODS_MAP.md) |
 | 加深 · 多角度 | [synthesis §13](../synthesis.html#deep-lens) |
 | 四象与不同步 | [decade-us](../decade-us.html) |
 | 沙盘加压 | [lab](../lab.html) |

@@ -162,6 +162,7 @@ flowchart TB
 
 - 适应度函数与血缘：[§ 适应度函数](#fitness-functions)、[§ 单次运行血缘](#lineage)、[§ 决策追溯](#decision-traceability)
 - 推演策略与质量控制（与站内综合推演 / 三问互补）：[DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md)
+- 研究方法与工程资产对照：[RESEARCH_METHODS_MAP.md](./RESEARCH_METHODS_MAP.md)
 - 双周节奏：[EVOLUTION_RUNBOOK.md](./EVOLUTION_RUNBOOK.md)
 - 脚本命令：[../scripts/README.md](../scripts/README.md)
 - 全站**标题 · 三色图例 · TOC · 图形无障碍**三轮对照：[SITE_REVIEW_THREE_PASSES.md](./SITE_REVIEW_THREE_PASSES.md)
