@@ -15,6 +15,7 @@ from analysis_engine import (  # noqa: E402
     candidate_review_breakdown,
     compute_diff_hints,
     evaluate_hint_rules,
+    hint_decisions_stats,
     load_hint_rules,
     run_analysis,
 )
@@ -69,6 +70,28 @@ class TestDiffHints(unittest.TestCase):
         prev = {"sources": {"manifest_signals": 1, "candidate_signals": 0}}
         h = compute_diff_hints(prev, [], [], 3, 0)
         self.assertTrue(any("已入库信号" in x["text"] for x in h))
+
+
+class TestHintDecisionsStats(unittest.TestCase):
+    def test_empty(self) -> None:
+        s = hint_decisions_stats({})
+        self.assertEqual(s["total"], 0)
+        self.assertEqual(s["by_action"]["done"], 0)
+
+    def test_counts(self) -> None:
+        s = hint_decisions_stats(
+            {
+                "decisions": [
+                    {"action": "done"},
+                    {"action": "done"},
+                    {"action": "rejected"},
+                ]
+            }
+        )
+        self.assertEqual(s["total"], 3)
+        self.assertEqual(s["by_action"]["done"], 2)
+        self.assertEqual(s["by_action"]["rejected"], 1)
+        self.assertEqual(s["by_action"]["deferred"], 0)
 
 
 class TestCandidateReviewBreakdown(unittest.TestCase):

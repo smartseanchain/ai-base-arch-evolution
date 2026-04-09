@@ -4373,6 +4373,14 @@ tr.synth-cat-row td {
   margin-right: 0.15rem;
 }
 
+.analysis-decision-rule-id {
+  font-size: 0.78em;
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+  background: rgba(139, 156, 179, 0.12);
+  color: var(--text-secondary);
+}
+
 .analysis-panel {
   margin-bottom: var(--space-6);
 }

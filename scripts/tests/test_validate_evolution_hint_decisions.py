@@ -23,6 +23,7 @@ class TestValidateEvolutionHintDecisions(unittest.TestCase):
                         "recorded_at": "2026-04-01",
                         "hint_summary": "test",
                         "related_pages": ["a.html"],
+                        "rule_id": "top_factors",
                     }
                 ]
             },

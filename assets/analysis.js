@@ -57,6 +57,20 @@
         esc(String(br.queued_for_manifest || 0)) +
         "）";
     }
+    var hd = src0.hint_decisions;
+    if (hd && typeof hd === "object") {
+      var ba = hd.by_action || {};
+      metaHtml +=
+        " · 提示决策 <strong>" +
+        esc(String(hd.total != null ? hd.total : 0)) +
+        "</strong> 条（落实 " +
+        esc(String(ba.done != null ? ba.done : 0)) +
+        " · 否决 " +
+        esc(String(ba.rejected != null ? ba.rejected : 0)) +
+        " · 延期 " +
+        esc(String(ba.deferred != null ? ba.deferred : 0)) +
+        "）";
+    }
     meta.innerHTML = metaHtml;
     container.appendChild(meta);
 
@@ -156,6 +170,13 @@
           " · " + (d.recorded_at || "—") + " · " + (d.id || "—")
         )
       );
+      if (d.rule_id) {
+        li.appendChild(document.createTextNode(" "));
+        var rid = document.createElement("code");
+        rid.className = "analysis-decision-rule-id";
+        rid.textContent = d.rule_id;
+        li.appendChild(rid);
+      }
       var sum = d.hint_summary || d.note;
       if (sum) {
         li.appendChild(document.createTextNode(" — "));

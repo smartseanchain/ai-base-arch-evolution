@@ -21,6 +21,7 @@ CANDIDATES = ROOT / "assets" / "evolution-candidates.json"
 OUT = ROOT / "assets" / "analysis-snapshot.json"
 SEDIMENT = ROOT / "data" / "sediment.json"
 HINT_RULES_PATH = ROOT / "scripts" / "evolution-hint-rules.json"
+HINT_DECISIONS_PATH = ROOT / "assets" / "evolution-hint-decisions.json"
 
 
 def load_json(p: Path) -> dict[str, Any]:
@@ -37,6 +38,23 @@ def effective_review_state(sig: dict) -> str:
     if r in ALLOWED_REVIEW_STATE:
         return str(r)
     return "pending"
+
+
+def hint_decisions_stats(doc: dict[str, Any]) -> dict[str, Any]:
+    """与 evolution-hint-decisions.json 对齐的汇总，写入 analysis-snapshot.sources。"""
+    by_action = {"done": 0, "rejected": 0, "deferred": 0}
+    decs = doc.get("decisions")
+    if not isinstance(decs, list):
+        return {"total": 0, "by_action": dict(by_action)}
+    n = 0
+    for row in decs:
+        if not isinstance(row, dict):
+            continue
+        n += 1
+        a = row.get("action")
+        if a in by_action:
+            by_action[str(a)] += 1
+    return {"total": n, "by_action": dict(by_action)}
 
 
 def candidate_review_breakdown(candidates: dict) -> dict[str, int]:
@@ -390,6 +408,9 @@ def main() -> None:
             "candidate_review_breakdown": candidate_review_breakdown(
                 candidates
             ),
+            "hint_decisions": hint_decisions_stats(
+                load_json(HINT_DECISIONS_PATH)
+            ),
             "combined_for_analysis": len(signals),
         },
         **analysis,
@@ -410,6 +431,16 @@ def main() -> None:
             k in br for k in ("pending", "noise", "queued_for_manifest")
         ):
             print("错误: sources.candidate_review_breakdown 结构异常", file=sys.stderr)
+            sys.exit(1)
+        hd = src.get("hint_decisions")
+        if not isinstance(hd, dict) or "total" not in hd:
+            print("错误: sources.hint_decisions 结构异常", file=sys.stderr)
+            sys.exit(1)
+        ba = hd.get("by_action")
+        if not isinstance(ba, dict) or not all(
+            k in ba for k in ("done", "rejected", "deferred")
+        ):
+            print("错误: sources.hint_decisions.by_action 结构异常", file=sys.stderr)
             sys.exit(1)
         print(
             f"OK --check · combined={src['combined_for_analysis']} "

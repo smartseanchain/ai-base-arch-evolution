@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 校验 assets/evolution-hint-decisions.json：结构化记录对 evolution_hints 的落实 / 否决 / 延期。
+可选 rule_id 与快照中 evolution_hints[].rule_id 对齐。
 related_pages 若存在须 ⊆ evolution-registry.json 的 pages。
 不写文件；供 make validate / CI / pre-commit。
 """
@@ -19,6 +20,7 @@ ALLOWED_ACTIONS = frozenset({"done", "rejected", "deferred"})
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 MAX_NOTE = 4000
 MAX_SUMMARY = 500
+MAX_RULE_ID = 120
 
 
 def load_registry_pages() -> set[str]:
@@ -86,6 +88,14 @@ def validate_decisions(doc: object, allowed_pages: set[str]) -> list[str]:
                 pr.startswith("http://") or pr.startswith("https://")
             ):
                 errs.append(f"{prefix}.pr_url 须为 http(s) URL 或省略")
+        rule_id = row.get("rule_id")
+        if rule_id is not None:
+            if not isinstance(rule_id, str) or not rule_id.strip():
+                errs.append(f"{prefix}.rule_id 须为非空字符串或省略")
+            elif len(rule_id) > MAX_RULE_ID:
+                errs.append(
+                    f"{prefix}.rule_id 长度须 ≤ {MAX_RULE_ID}"
+                )
         rps = row.get("related_pages")
         if rps is not None:
             if not isinstance(rps, list):
@@ -107,6 +117,7 @@ def validate_decisions(doc: object, allowed_pages: set[str]) -> list[str]:
                 "note",
                 "pr_url",
                 "related_pages",
+                "rule_id",
             }:
                 errs.append(f"{prefix} 未知字段: {k!r}")
     return errs

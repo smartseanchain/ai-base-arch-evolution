@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-09T01:52:04Z",
+  "generated_at": "2026-04-09T02:01:24Z",
   "sources": {
     "manifest_signals": 3,
     "candidate_signals": 22,
@@ -9,6 +9,14 @@
       "pending": 22,
       "noise": 0,
       "queued_for_manifest": 0
+    },
+    "hint_decisions": {
+      "total": 0,
+      "by_action": {
+        "done": 0,
+        "rejected": 0,
+        "deferred": 0
+      }
     },
     "combined_for_analysis": 25
   },

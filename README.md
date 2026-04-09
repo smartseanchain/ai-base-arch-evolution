@@ -49,7 +49,7 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 - `ingest-pipeline.yml`：**每周二 UTC 定时**或手动抓取候选 artifact；Job Summary 汇总各 RSS 源成功/失败；**定时失败**会新建 Issue 提醒
 - `update-pipeline.yml`：**定时失败**时同样会新建 Issue（与 ingest 对称），便于发现分析脚本或校验回归
 - `pr-candidates.yml`：**手动**跑 ingest 并直接向 `main` 开 PR 更新 `evolution-candidates.json`（需在仓库 **Settings → Actions → General** 将 workflow 权限设为可读写；合并仍人审）
-- 在 GitHub 开 PR 时自动带出 **`.github/pull_request_template.md`**（合并 manifest/候选请勾选自检项）
+- 在 GitHub 开 PR 时自动带出 **`.github/pull_request_template.md`**（合并 manifest/候选请勾选自检项）。新建 Issue 可选用 **「流水线 / 校验失败排查」** 模板（`.github/ISSUE_TEMPLATE/`）。
 
 ### 定时流水线与仓库写入（预期）
 
