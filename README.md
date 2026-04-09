@@ -61,6 +61,11 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 
 本地：`make test` 仅跑单测；`make validate` 含单测与全套校验。
 
+### 全站顶栏（导航）
+
+- 分页 HTML 的 **`<header class="site-nav">`** 由模板 **`partials/site-nav.inc.html`** 生成：`make sync-nav` 写回、`make check-site-nav` 校验（已含于 `make validate` 与 CI）。
+- 增删导航链时**只改模板**再跑 `make sync-nav`；`index.html` 顶栏「三问」为 `#three-questions`，其余页为 `index.html#three-questions`（由脚本自动区分）。
+
 ## 许可与合规
 
 抓取须遵守各源站 robots.txt 与版权；候选线索须经人工审阅后再 `merge` 进 `evolution-manifest.json`。
