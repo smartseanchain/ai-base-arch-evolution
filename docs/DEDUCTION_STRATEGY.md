@@ -11,7 +11,7 @@
 | **非预测** | 「将在哪」只保留**多分叉形态**与**可观察征候**，不写单点终局年份表。 |
 | **非处方** | 不写「你应该买/投/离」；**十年之问**文末原则是**边界与伦理提示**，不替代专业咨询。 |
 | **可证伪叙述** | 「想象」块应能回答：若未来**出现何种可观察现象**，会削弱本条叙述？（不要求定量，要求**逻辑上可对照**。） |
-| **透明链** | 传导命题须能指回 **§2 判据**中的至少一条「变量共享 / 时间尺度可比 / …」，否则降级为随笔（与 [§11 纪律](../synthesis.html#perpetual) 一致）。 |
+| **透明链** | 传导命题须能指回 **§2 判据**中的至少一条「变量共享 / 时间尺度可比 / …」，否则降级为随笔（与 [§11 纪律](../synthesis-methods.html#perpetual) 一致）。 |
 
 <a id="evidence-layers"></a>
 
@@ -34,10 +34,10 @@
 | 步 | 动作 | 落点 |
 |----|------|------|
 | A | **锚现状**：我们在哪？选 1–2 个枢纽页对齐尺度（如 [立体联结](../nexus.html)、[职基能](../work-infra-energy.html)）。 | 三问之一 |
-| B | **写前提**：本轮默认的法规/技术/组织边界是什么？是否写明**电 / 钱 / 责任 / 时间**至少一维？ | [§11 自我追问](../synthesis.html#perpetual) |
+| B | **写前提**：本轮默认的法规/技术/组织边界是什么？是否写明**电 / 钱 / 责任 / 时间**至少一维？ | [§11 自我追问](../synthesis-methods.html#perpetual) |
 | C | **判据**：两模块组合是否满足 §2「共享变量、传导顺序、尺度可比」？ | [§2](../synthesis.html#criteria) |
-| D | **链与分叉**：传导链 + **至少两种**可区分形态（甲/乙/丙或两簇）。 | [§5–§8](../synthesis.html#recipes) |
-| E | **征候**：每种形态各写 1–3 条**可见征候**（何种新闻/现场/指标变化会支持或削弱）。 | [§9 五维](../synthesis.html#dimensions)、[十年场景](../decade-scenes.html) |
+| D | **链与分叉**：传导链 + **至少两种**可区分形态（甲/乙/丙或两簇）。 | [主篇 §5](../synthesis.html#recipes) · [扩展 §6—§8](../synthesis-extensions.html#stack-domains) |
+| E | **征候**：每种形态各写 1–3 条**可见征候**（何种新闻/现场/指标变化会支持或削弱）。 | [§9 五维](../synthesis-extensions.html#dimensions)、[十年场景](../decade-scenes.html) |
 | F | **加压**（可选）：在 [沙盘](../lab.html) 改因子，看「谁先绷紧」是否改变。 | 依赖流、配方链 |
 | G | **沉淀**（可选）：若出现值得跟踪的**外部信号**，走候选 → 人审 → manifest；规则提示进 [进化闭环](../evolution-loop.html) / [分析引擎](../analysis-hub.html)。 | [ARCHITECTURE · 七类能力](./ARCHITECTURE.md#seven-layers) |
 
@@ -47,7 +47,7 @@
 
 | 偏误 | 表现 | 纠正 |
 |------|------|------|
-| **单因果强迫症** | 一切归因为「AI」或「监管」一个词 | 强制画两段链：技术→组织→个人承受；或换用 [§12 · 因果图式](../synthesis.html#methods) 问混杂路径 |
+| **单因果强迫症** | 一切归因为「AI」或「监管」一个词 | 强制画两段链：技术→组织→个人承受；或换用 [§12 · 因果图式](../synthesis-methods.html#methods) 问混杂路径 |
 | **单一时间线** | 国家叙事=客厅现实 | 用 [十年之问 · 不同步](../decade-us.html#sync)、[战略·舆情 · 双轨](../national-strategy-opinion.html) 拆轨 |
 | **形容词通胀** | 只有「更智能、更卷」无量纲 | 回到 §11：**电/钱/责任/时间**至少写清一个 |
 | **模块硬扭** | 两页变量不可对账仍写「深度融合」 | §2 判据失败 → 不进入 §7 表与 §6 配方 |
@@ -57,12 +57,12 @@
 
 ## 5. 跨学科外衣：如何选用才不自欺
 
-[综合推演 §12](../synthesis.html#methods) 提供多领域**可借用套路**。**每种套路在本站是 A/B/C 哪一级可利用、对应脚本与 JSON 是什么**，见 [RESEARCH_METHODS_MAP.md](./RESEARCH_METHODS_MAP.md)。纪律是：
+[综合推演 §12](../synthesis-methods.html#methods) 提供多领域**可借用套路**。**每种套路在本站是 A/B/C 哪一级可利用、对应脚本与 JSON 是什么**，见 [RESEARCH_METHODS_MAP.md](./RESEARCH_METHODS_MAP.md)。纪律是：
 
 - **每轮主动只用 1–2 种**，避免清单化表演。
 - 任何外衣都必须能**翻译**成：变量注 → §2 判据 → 传导句 → 征候句。翻译不了则**不采用**该外衣。
 
-更深的多视角扫描用 **[§13 深读透镜](../synthesis.html#deep-lens)**（四穿透、六凝视者）。
+更深的多视角扫描用 **[§13 深读透镜](../synthesis-methods.html#deep-lens)**（四穿透、六凝视者）。
 
 <a id="engineering-audit"></a>
 
@@ -84,17 +84,18 @@
 | 需求 | 首选页 / 节 |
 |------|-------------|
 | 全站鸟瞰与三问 | [index#three-questions](../index.html#three-questions) |
-| 判据 · 配方 · 迭代 | [synthesis §1–§11](../synthesis.html#inventory) |
-| 跨学科办法 | [synthesis §12](../synthesis.html#methods) |
+| 判据 · 配方 · 迭代 | [主篇 §1](../synthesis.html#inventory) · [扩展 §6—§9](../synthesis-extensions.html#stack-domains) · [§11](../synthesis-methods.html#perpetual) |
+| 跨学科办法 | [synthesis §12](../synthesis-methods.html#methods) |
 | 方法 ↔ 工具匹配（A/B/C 可利用性） | [RESEARCH_METHODS_MAP](./RESEARCH_METHODS_MAP.md) |
-| 加深 · 多角度 | [synthesis §13](../synthesis.html#deep-lens) |
+| 加深 · 多角度 | [synthesis §13](../synthesis-methods.html#deep-lens) |
 | 四象与不同步 | [decade-us](../decade-us.html) |
 | 分析引擎总线（方法+演进+字段） | [analysis-hub · panorama](../analysis-hub.html#panorama) |
 | 沙盘加压 | [lab](../lab.html) |
 | 双周操作节奏 | [EVOLUTION_RUNBOOK](./EVOLUTION_RUNBOOK.md) |
+| 全站梳理 + 重新推演 + 更新落点（一轮手册） | [SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK](./SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md) |
 | 法律·战略·规划·舆情·资本·多国政策（综合台） | [战略·舆情 · §6 多源综合推演工作台](../national-strategy-opinion.html#integrated-deduction) |
 | 仓库架构与闸门 | [ARCHITECTURE](./ARCHITECTURE.md) |
 
 ---
 
-**修订说明**：升级本文时，请同步检查 [综合推演 §11](../synthesis.html#perpetual) 插槽与 [SITE_REVIEW_THREE_PASSES](./SITE_REVIEW_THREE_PASSES.md) 是否仍与「三色 + 判据 + 分叉」一致。
+**修订说明**：升级本文时，请同步检查 [综合推演 §11](../synthesis-methods.html#perpetual) 插槽与 [SITE_REVIEW_THREE_PASSES](./SITE_REVIEW_THREE_PASSES.md) 是否仍与「三色 + 判据 + 分叉」一致。

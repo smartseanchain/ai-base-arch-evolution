@@ -45,6 +45,8 @@
         <a href="decade-us.html">十年之问</a>
         <a href="modules-map.html">模块图谱</a>
         <a href="synthesis.html">综合推演</a>
+        <a href="synthesis-extensions.html">推演·扩展</a>
+        <a href="synthesis-methods.html">推演·方法</a>
         <a href="risk-geo.html">地缘与商业</a>
         <a href="net-biz-capital.html">网·商·资·工</a>
         <a href="national-strategy-opinion.html">战略·舆情</a>
@@ -63,8 +65,9 @@
     <div id="main" class="page-head" tabindex="-1">
       <h1>进化闭环：让推演随观测「长出来」</h1>
       <p class="lead">
-        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页定义<strong>自动进化</strong>在本站中的含义：<strong>不是</strong>替代人类判断的预测机，而是<strong>可重复的观测—编码—反哺</strong>管道——脚本从 RSS、法规/政策索引页等拉取线索，汇总为 <code>assets/evolution-candidates.json</code>（待审），人审后再并入 <code>assets/evolution-manifest.json</code>；前端 <code>evolution.js</code> 同时展示<strong>已入库</strong>与<strong>候选</strong>，并合并 <code>lab_factors</code> 驱动沙盘高亮。人机分工：机器可做抓取、去重、关键词路由；<strong>法理判断与是否升格为站内核</strong>仍须人审。面向<strong>社会责任取向</strong>的多源信号（舆情/战略/商业等）与推演输出见 <a href="social-responsibility-evolution.html">社会责任 · 可进化推演</a>。
+        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页定义<strong>自动进化</strong>在本站中的含义：<strong>不是</strong>替代人类判断的预测机，而是<strong>可重复的观测—编码—反哺</strong>管道——脚本从 RSS、法规/政策索引页等拉取线索，汇总为 <code>assets/evolution-candidates.json</code>（待审），人审后再并入 <code>assets/evolution-manifest.json</code>；前端 <code>evolution.js</code> 同时展示<strong>已入库</strong>与<strong>候选</strong>，并合并 <code>lab_factors</code> 驱动沙盘高亮。人机分工：机器可做抓取、去重、关键词路由；<strong>法理判断与是否升格为站内核</strong>仍须人审。        面向<strong>社会责任取向</strong>的多源信号（舆情/战略/商业等）与推演输出见 <a href="social-responsibility-evolution.html">社会责任 · 可进化推演</a>。
       </p>
+      <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
     <div class="nexus-legend" aria-label="三色标签说明">
@@ -73,6 +76,36 @@
       <span class="nexus-tag imagine">反哺 — 触发 §11 扩展或新配方/表行</span>
     </div>
 
+    <div class="page-flow-strip" role="img" aria-label="进化闭环三色与页内目录呼应：观测信号入库、编码映射到站页与沙盘因子、反哺综合推演扩展与正文">
+      <svg viewBox="0 0 620 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <marker id="evloopflow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#5c6b7e"/></marker>
+        </defs>
+        <text x="310" y="12" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">下接 OODA 环与 manifest 契约</text>
+        <rect x="28" y="20" width="168" height="38" rx="8" fill="#141b26" stroke="#3d9cf5"/>
+        <text x="112" y="38" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">观测</text>
+        <text x="112" y="50" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">入库 · 权重</text>
+        <line x1="196" y1="39" x2="224" y2="39" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#evloopflow)"/>
+        <rect x="228" y="20" width="168" height="38" rx="8" fill="#141b26" stroke="#f97316"/>
+        <text x="312" y="38" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">编码</text>
+        <text x="312" y="50" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">页 · 配方 · 因子</text>
+        <line x1="396" y1="39" x2="424" y2="39" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#evloopflow)"/>
+        <rect x="428" y="20" width="164" height="38" rx="8" fill="#141b26" stroke="#4ecf8e"/>
+        <text x="510" y="38" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">反哺</text>
+        <text x="510" y="50" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">§11 · 表行</text>
+      </svg>
+    </div>
+
+    <section class="card site-round-extension" id="ext-round-evloop" aria-labelledby="hre-evloop">
+      <h2 class="site-round-extension-h" id="hre-evloop">推演扩展 · 本轮更新（进化闭环）</h2>
+      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">本轮强调 <strong>candidates → manifest</strong> 的 diff 可讲故事：哪些信号被路由丢弃、哪些升格；与 <a href="synthesis.html#continuation">继续推演矩阵</a> 闭环+沙盘行对读。</p>
+      <ul>
+        <li>每条 signal 补「建议读者先读的<strong>2 个站内锚点</strong>」再入库。</li>
+        <li>ingest 路由变更记录简短理由，防「require_route_match 误杀」无声。</li>
+        <li>OODA Decide 与 <code>lab_factors</code> 勾选一致：避免 manifest 与沙盘各说各话。</li>
+        <li>与 <a href="analysis-hub.html">分析引擎</a> 快照同天对照，看热力是否反映 manifest 更新。</li>
+      </ul>
+    </section>
     <aside id="evolution-closure-summary" class="card evolution-closure-summary" aria-live="polite" hidden></aside>
 
     <nav class="toc" aria-label="本页目录">
@@ -87,11 +120,33 @@
     <section id="ooda">
       <h2>1. OODA 与全站对齐</h2>
       <p class="muted" style="margin-top:-0.35rem">借用观察—判断—决策—行动的节奏，但本站<strong>决策</strong>落点是「是否改站、改哪一页、是否增配方」而非企业 OKR。</p>
+      <div class="page-flow-strip page-flow-strip--ooda" role="img" aria-label="OODA 闭环：Observe 观察事实、Orient 对齐全站模块与判据、Decide 是否入库或改站、Act 更新 manifest 与页面">
+        <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <marker id="oodaloop" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0,9 4.5,0 9" fill="#4ecf8e"/></marker>
+          </defs>
+          <ellipse cx="180" cy="180" rx="150" ry="150" fill="none" stroke="#334155" stroke-width="1.5" stroke-dasharray="6 5"/>
+          <path d="M 180 40 A 140 140 0 0 1 310 180" fill="none" stroke="#3d9cf5" stroke-width="3" marker-end="url(#oodaloop)"/>
+          <path d="M 310 180 A 140 140 0 0 1 180 320" fill="none" stroke="#a78bfa" stroke-width="3" marker-end="url(#oodaloop)"/>
+          <path d="M 180 320 A 140 140 0 0 1 50 180" fill="none" stroke="#f97316" stroke-width="3" marker-end="url(#oodaloop)"/>
+          <path d="M 50 180 A 140 140 0 0 1 180 40" fill="none" stroke="#4ecf8e" stroke-width="3" marker-end="url(#oodaloop)"/>
+          <text x="180" y="72" text-anchor="middle" fill="#3d9cf5" font-size="11" font-weight="700" font-family="JetBrains Mono,monospace">Observe</text>
+          <text x="180" y="86" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">可复述事实</text>
+          <text x="268" y="188" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700" font-family="JetBrains Mono,monospace">Orient</text>
+          <text x="268" y="202" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">判据 · 邻居模块</text>
+          <text x="180" y="298" text-anchor="middle" fill="#f97316" font-size="11" font-weight="700" font-family="JetBrains Mono,monospace">Decide</text>
+          <text x="180" y="312" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">注释 vs 入库</text>
+          <text x="92" y="188" text-anchor="middle" fill="#4ecf8e" font-size="11" font-weight="700" font-family="JetBrains Mono,monospace">Act</text>
+          <text x="92" y="202" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">manifest · 正文</text>
+          <text x="180" y="180" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">全站</text>
+          <text x="180" y="196" text-anchor="middle" fill="#5c6b7e" font-size="8" font-family="Noto Sans SC,sans-serif">进化闭环</text>
+        </svg>
+      </div>
       <div class="card">
         <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
           <li><strong>Observe：</strong>从 <a href="national-strategy-opinion.html">战略·舆情</a> 双轨、媒体/平台议程、部委征求意见、招标条款、事故链等收集<strong>可复述事实</strong>（忌只存标题党）。</li>
           <li><strong>Orient：</strong>用 <a href="synthesis.html#criteria">§2 判据</a> 与 <a href="modules-map.html">五系七层</a> 给信号找「邻居模块」——避免孤立热词。</li>
-          <li><strong>Decide：</strong>信号是<strong>一次性注释</strong>还是值得进 §6 配方 / §7 表行 / <a href="assets/lab.js">沙盘因子</a> 提示。</li>
+          <li><strong>Decide：</strong>信号是<strong>一次性注释</strong>还是值得进 <a href="synthesis-extensions.html#stack-domains">扩展页配方</a> / <a href="synthesis-extensions.html#matrix">复合表</a> / <a href="assets/lab.js">沙盘因子</a> 提示。</li>
           <li><strong>Act：</strong>更新 manifest 或候选文件；必要时改 HTML 正文；版本控制留下 diff；读者在 <a href="lab.html">沙盘</a> 与 <a href="national-strategy-opinion.html#evolution-feed-section">战略·舆情 · 信号栏</a> 看到结果。</li>
         </ul>
       </div>
@@ -145,6 +200,7 @@ python3 scripts/analysis_engine.py --sediment</pre>
       <div class="card">
         <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
           <li><strong>可脚本化：</strong>定时拉取 RSS/开放 API、关键词聚类、去重、生成候选 JSON 片段；CI 跑校验脚本后<strong>开 PR</strong> 而非静默上线。</li>
+          <li><strong>可节奏化：</strong>仓库 Actions 按周历跑 ingest / analyze artifact；双周清单见 <a href="docs/EVOLUTION_RUNBOOK.md">EVOLUTION_RUNBOOK</a>；本地在已校验前提下可用 <code>make evolution-fast</code> 反复刷新快照与趋势。</li>
           <li><strong>可做前端：</strong><code>evolution.js</code> 读取 manifest，渲染<strong>信号栏</strong>、沙盘<strong>因子高亮</strong>（需通过 http(s) 访问站点，<code>file://</code> 下 fetch 可能失败）。</li>
           <li><strong>不宜自动化：</strong>把「热搜」直接写成「国家意志」；省略 §2 判据；未经人工审核就改配方正文。</li>
         </ul>
@@ -153,11 +209,11 @@ python3 scripts/analysis_engine.py --sediment</pre>
 
     <section id="human">
       <h2>5. 人必须做什么（站内核纪律）</h2>
-      <p class="muted" style="margin-top:-0.35rem">与 <a href="synthesis.html#perpetual">综合推演 §11</a> 纪律一致：每条入库信号应能回答——若不能，留在私有笔记，不进 manifest。</p>
+      <p class="muted" style="margin-top:-0.35rem">与 <a href="synthesis-methods.html#perpetual">综合推演 §11</a> 纪律一致：每条入库信号应能回答——若不能，留在私有笔记，不进 manifest。</p>
       <div class="callout imagine">
         <strong>三问（入库前）：</strong>能否指回 §2 判据之一？能否映射到至少一个模块页或沙盘因子？若发酵消失，是否仍值得保留为「历史切片」？
       </div>
-      <p class="muted" style="margin-top:1rem;font-size:0.88rem"><strong>扩展插槽 ⑦（§11）：</strong>manifest 新增信号 → 沙盘高亮 → 推演一轮 → 决定是否升格为 §6 配方 / §7 表行 / 教育页案例句；见 <a href="synthesis.html#perpetual">§11 列表</a>。</p>
+      <p class="muted" style="margin-top:1rem;font-size:0.88rem"><strong>扩展插槽 ⑦（§11）：</strong>manifest 新增信号 → 沙盘高亮 → 推演一轮 → 决定是否升格为 §6 配方 / §7 表行 / 教育页案例句；见 <a href="synthesis-methods.html#perpetual">§11 列表</a>。</p>
     </section>
 
     <section id="feed">
@@ -167,9 +223,10 @@ python3 scripts/analysis_engine.py --sediment</pre>
     </section>
 
     <footer>
-      <a href="national-strategy-opinion.html">← 战略·舆情</a> · <a href="social-responsibility-evolution.html">社会责任</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="synthesis.html#perpetual">综合推演 §11</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
+      <a href="national-strategy-opinion.html">← 战略·舆情</a> · <a href="social-responsibility-evolution.html">社会责任</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="synthesis-methods.html#perpetual">综合推演 §11</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
+  <script src="assets/site-data-bus.js"></script>
   <script src="assets/motion.js"></script>
   <script src="assets/evolution.js"></script>
   <script src="assets/closure-summary.js"></script>

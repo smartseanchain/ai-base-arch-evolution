@@ -70,6 +70,8 @@
         <a href="decade-us.html">十年之问</a>
         <a href="modules-map.html">模块图谱</a>
         <a href="synthesis.html">综合推演</a>
+        <a href="synthesis-extensions.html">推演·扩展</a>
+        <a href="synthesis-methods.html">推演·方法</a>
         <a href="risk-geo.html">地缘与商业</a>
         <a href="net-biz-capital.html">网·商·资·工</a>
         <a href="national-strategy-opinion.html">战略·舆情</a>
@@ -88,8 +90,9 @@
     <div id="main" class="page-head" tabindex="-1">
       <h1>教育·职业·人与AI：演进与走向</h1>
       <p class="lead">
-        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页把阅读设计成<strong>走过五个站点</strong>：像人在长廊里<strong>一次次驻足</strong>——每一站是一块<strong>并列展示</strong>，也是一次<strong>把材料收进脑子里的停顿</strong>。时间轴上从<strong>历史纵深</strong>（教育、职业两条长廊）走到<strong>当下交汇</strong>（家庭与个人），再迈向<strong>未来分叉与出站</strong>（走向合成、接回全站）。每站仍先过<strong>时代之门</strong>再进<strong>行业之门</strong>；块内标<strong>依据 / 扩展 / 想象</strong>。可目录跳读，也可沿下方<strong>五步站点轨</strong>顺序走。
+        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页把阅读设计成<strong>走过五个站点</strong>：像人在长廊里<strong>一次次驻足</strong>——每一站是一块<strong>并列展示</strong>，也是一次<strong>把材料收进脑子里的停顿</strong>。时间轴上从<strong>历史纵深</strong>（教育、职业两条长廊）走到<strong>当下交汇</strong>（家庭与个人），再迈向<strong>未来分叉与出站</strong>（走向合成、接回全站）。每站仍先过<strong>时代之门</strong>再进<strong>行业之门</strong>；块内标<strong>依据 / 扩展 / 想象</strong>。可目录跳读，也可沿下方<strong>五步站点轨</strong>顺序走。<strong>数据侧</strong>：全站 manifest/候选经 <a href="analysis-hub.html">分析引擎</a> 汇总为热力与快照；下方读数条随仓库内 JSON 更新，<strong>刷新页面即可与最新推演读数对齐</strong>（非实时推送；定性脚手架，非预测）。
       </p>
+      <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
     <div class="nexus-legend" aria-label="三色标签说明">
@@ -98,15 +101,50 @@
       <span class="nexus-tag imagine">想象 — 走向假设</span>
     </div>
 
+    <div class="page-flow-strip page-flow-strip--triad-rail" role="img" aria-label="五站阅读顺序：教育历史纵深、职业历史纵深、家庭与个人当下交汇、走向合成与分叉、接回全站；与下方 stepper 同步">
+      <svg viewBox="0 0 560 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <marker id="triad5rail" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#5c6b7e"/></marker>
+        </defs>
+        <text x="280" y="11" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">五站长廊 · 可目录跳读或沿轨顺序走</text>
+        <circle cx="52" cy="28" r="10" fill="#141b26" stroke="#3d9cf5"/>
+        <text x="52" y="31" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="700" font-family="JetBrains Mono,monospace">1</text>
+        <line x1="62" y1="28" x2="98" y2="28" stroke="#5c6b7e" stroke-width="1.2" marker-end="url(#triad5rail)"/>
+        <circle cx="118" cy="28" r="10" fill="#141b26" stroke="#38bdf8"/>
+        <text x="118" y="31" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="700" font-family="JetBrains Mono,monospace">2</text>
+        <line x1="128" y1="28" x2="164" y2="28" stroke="#5c6b7e" stroke-width="1.2" marker-end="url(#triad5rail)"/>
+        <circle cx="184" cy="28" r="10" fill="#141b26" stroke="#a78bfa"/>
+        <text x="184" y="31" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="700" font-family="JetBrains Mono,monospace">3</text>
+        <line x1="194" y1="28" x2="230" y2="28" stroke="#5c6b7e" stroke-width="1.2" marker-end="url(#triad5rail)"/>
+        <circle cx="250" cy="28" r="10" fill="#141b26" stroke="#f97316"/>
+        <text x="250" y="31" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="700" font-family="JetBrains Mono,monospace">4</text>
+        <line x1="260" y1="28" x2="296" y2="28" stroke="#5c6b7e" stroke-width="1.2" marker-end="url(#triad5rail)"/>
+        <circle cx="316" cy="28" r="10" fill="#141b26" stroke="#4ecf8e"/>
+        <text x="316" y="31" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="700" font-family="JetBrains Mono,monospace">5</text>
+        <text x="430" y="24" text-anchor="middle" fill="#8b9cb3" font-size="7" font-family="Noto Sans SC,sans-serif">教育 · 职业 · 当下 · 分叉 · 全站</text>
+        <text x="430" y="34" text-anchor="middle" fill="#5c6b7e" font-size="6.5" font-family="Noto Sans SC,sans-serif">每站：时代之门 × 行业之门</text>
+      </svg>
+    </div>
+
+    <section class="card site-round-extension" id="ext-round-triad" aria-labelledby="hre-triad">
+      <h2 class="site-round-extension-h" id="hre-triad">推演扩展 · 本轮更新（人与AI演进）</h2>
+      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">五站本轮各加一问：<strong>「合同与技能谁先行」</strong>；出站时强制接 <a href="synthesis.html#recipes">配方 B</a> 或 <a href="work-infra-energy.html">职基能</a>；对表 <a href="synthesis.html#continuation">继续推演矩阵</a>。</p>
+      <ul>
+        <li>教育/职业两廊并读：标出<strong>同一技术词汇在两廊出现的时间差</strong>。</li>
+        <li>家庭与个人站补「设备与账号<strong>默认归属</strong>」一句，防叙事飘在云上。</li>
+        <li>走向合成站必须产出<strong>至少两枝</strong>可区分征候，再链接 §8 簇。</li>
+        <li>读数条刷新后自问：manifest 是否应增一条 <code>maps_to.pages</code> 指向本页某站。</li>
+      </ul>
+    </section>
     <p class="read-hint" role="note">
-      <strong>读法提示：</strong>五个 <strong>站点</strong>各有一块<strong>站牌</strong>（驻足时看什么、想什么）。站内仍是<strong>时代之门 × 行业之门</strong>两层门牌；滚动时当前站会在视觉上<strong>略向前浮起</strong>，左侧进度与顶栏芯片同步。时间紧可直跳 <a href="#directions">走向合成</a> 与 <a href="#cross">站内对照</a>。图示进视口后会<strong>轻量托起</strong>（若系统开启「减少动态效果」，则保持静态）。
+      <strong>读法提示：</strong>五个 <strong>站点</strong>各有一块<strong>站牌</strong>（驻足时看什么、想什么）。站内仍是<strong>时代之门 × 行业之门</strong>两层门牌；当前站以<strong>边框与步进高亮</strong>标示，左侧进度与顶栏芯片同步。滚动显影与全站其他模块页<strong>同档简化</strong>。时间紧可直跳 <a href="#directions">走向合成</a> 与 <a href="#cross">站内对照</a>。若系统开启「减少动态效果」，则保持静态。
     </p>
 
     <div class="human-journey-hero">
       <p class="human-journey-kicker">五站长廊 · 驻足即展示 · 展示即思考</p>
       <p class="human-journey-axis">入场大门 <span class="human-journey-arrow" aria-hidden="true">→</span> 历史纵深（教育·职业）<span class="human-journey-arrow" aria-hidden="true">→</span> 当下交汇 <span class="human-journey-arrow" aria-hidden="true">→</span> 未来分叉与出站</p>
       <p class="human-journey-tagline">
-        叙事结构是<strong>走路</strong>，不是幻灯片翻页：双扉大门是<strong>总入口</strong>；之后每一节是一座<strong>站台</strong>——你停下来的那一刻，时代条件与行业场景<strong>同时摊在面前</strong>（时代之门 + 行业之门）。前两站偏<strong>历史纵深</strong>，第三站是<strong>多栈日常的当下</strong>，后两站是<strong>走向假设与接回全站</strong>。滚动时区块会带一点<strong>廊道透视</strong>推入前景；左侧光带记录你已走过的路程。锚点仍在<strong>教室、工位与客厅</strong>。
+        叙事结构是<strong>走路</strong>，不是幻灯片翻页：之后每一节是一座<strong>站台</strong>——你停下来的那一刻，时代条件与行业场景<strong>同时摊在面前</strong>（时代之门 + 行业之门）。前两站偏<strong>历史纵深</strong>，第三站是<strong>多栈日常的当下</strong>，后两站是<strong>走向假设与接回全站</strong>。左侧光带记录阅读进度。锚点仍在<strong>教室、工位与客厅</strong>。
       </p>
     </div>
 
@@ -362,7 +400,7 @@
           <li><a href="decade.html">十年展望</a>：六维张力——把「人与 AI」放进监管、地缘、安全叠加里看。</li>
           <li><a href="decade-scenes.html">十年场景</a>：同一十年窗口下各生活/产业场景的具象形态——与本页三角叙事互补。</li>
           <li><a href="decade-us.html">十年之问</a>：把「职业—教育—家庭与 AI」转写为<strong>我们做什么、孩子做什么、家庭与国家可能怎样</strong>。</li>
-          <li><a href="synthesis.html">综合推演</a>：配方 B 等把三角与多页<strong>乘读</strong>；<a href="synthesis.html#perpetual">§11</a> 支持多轮梳理—扩展—推演，与「补丁型走向」同构。</li>
+          <li><a href="synthesis.html">综合推演</a>：配方 B 等把三角与多页<strong>乘读</strong>；<a href="synthesis-methods.html#perpetual">§11</a> 支持多轮梳理—扩展—推演，与「补丁型走向」同构。</li>
           <li><a href="modules-map.html">模块图谱</a>：本页在 <strong>Ⅳ 人与学制接口</strong> 与 L3—L5 堆叠中的位置；五系七层与星丛便于和全站对表。</li>
           <li><a href="lab.html">沙盘工坊</a>：勾选「AI 爆发」「人才稀缺」「强监管」等因子，看对本页三条走向的启示。</li>
           <li><a href="work-infra-energy.html">职业·基建·能源</a>：本页职业偏个体与契约；该页补<strong>社会分工形态</strong>与国家<strong>电力·网络·算力</strong>底座。</li>
@@ -376,6 +414,7 @@
       <a href="edu-nexus.html">← 教育纵轴</a> · <a href="work-infra-energy.html">职业·基建·能源</a> · <a href="past-future.html">廿年视角 →</a> · <a href="index.html">总览</a> · <a href="index.html#three-questions">三问</a> · <a href="assets/MOTION-ARCHITECTURE.md">动效架构说明</a>
     </footer>
   </div>
+  <script src="assets/site-data-bus.js"></script>
   <script src="assets/motion.js"></script>
   <script src="assets/journey-stepper.js"></script>
 </body>

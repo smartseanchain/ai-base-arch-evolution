@@ -36,6 +36,7 @@ flowchart TB
   subgraph site [站点]
     Snap --> Hub[analysis-hub.html]
     ST --> Hub
+    Snap --> Bus[site-data-bus.js · 多页摘要]
     Man --> Evo[evolution.js]
     Cand --> Evo
   end
@@ -111,7 +112,15 @@ flowchart TB
 | **内容生成** | 面向读者的叙事与版式 | 各 `.html` + `assets/lab.js` 等；**结构化线索**来自 `ingest_opinion_law.py` | 本站 **不**把分析引擎当 LLM 用；「生成」= **人写页面** + **脚本写候选 JSON**。若将来接模型，应挂在 [智能进化](../intelligent-evolution.html) 所述插槽，而非混进 `analysis_engine`。 |
 | **进化** | 观测如何升格为站内核 | `review_state`、`merge_candidates_to_manifest.py`、`track_closure` / `hint_closure_gaps`、registry | **人审闸门** + **可审计决策 JSON**；进化状态可拆成：候选池 → 正式 manifest → 规则闭环记录。 |
 | **汇总** | 把多源合成可扫一眼的结论 | **当日**：`analysis-snapshot.json`；**跨日**：`sediment_trends.py` → `sediment-trends.json`；全站导航/地图：`gen-sitemap.py` | 两轨已分离；避免把「趋势」逻辑塞进快照生成器，反之亦然。 |
-| **展示** | 读 JSON 渲染 | `evolution.js`、`analysis.js`、`closure-summary.js`、`lab.html` | 保持 **fetch + 纯展示**；复杂交互集中在少数页（分析枢纽、沙盘、闭环页）。 |
+| **展示** | 读 JSON 渲染 | `evolution.js`、`analysis.js`、`closure-summary.js`、`site-data-bus.js`、`lab.html` | 保持 **fetch + 纯展示**；复杂交互集中在少数页（分析枢纽、沙盘、闭环页）；**总线**供多页挂载同一快照摘要，见 [SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md)。 |
+
+<a id="site-data-bus"></a>
+
+### 全站读数与 `site-data-bus`
+
+- **`assets/site-data-bus.js`**：`loadSnapshot` / `loadTrends`（带内存缓存）、`mountLiveStrip`，并在 DOMContentLoaded 时自动挂载所有 **`[data-site-data-live]`** 占位。
+- **与 `analysis.js` 分工**：仪表盘全量可视化仍在 **`analysis-hub.html`**；其余页用总线挂**一行读数**。枢纽页本身亦挂 **`snapshot-only`** 读数条，且 **`analysis.js` 与总线共用** `loadSnapshot` / `loadTrends` 缓存，避免重复 `fetch`。
+- **「自动更新」含义**：JSON 随流水线提交后，读者刷新即可看到新数；**不**由引擎改写 HTML 正文。完整消费方登记表与扩展步骤见 **[SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md)**。
 
 ### 分层简图（与数据流正交）
 
@@ -160,6 +169,10 @@ flowchart TB
 
 ## 延伸阅读
 
+- **技术栈 + 可实现功能 + 进化能力（总览一篇）**：[TECH_ARCHITECTURE_CAPABILITIES.md](./TECH_ARCHITECTURE_CAPABILITIES.md)
+- **数据与分析如何驱动全站模块与内容更新**：[DATA_ANALYSIS_SITE_CONTENT_SYNC.md](./DATA_ANALYSIS_SITE_CONTENT_SYNC.md)
+- **全站梳理 + 重新推演 + 更新落点（一轮操作手册）**：[SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md](./SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md)
+- 全站推演读数如何随数据/分析引擎更新：[SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md)
 - 适应度函数与血缘：[§ 适应度函数](#fitness-functions)、[§ 单次运行血缘](#lineage)、[§ 决策追溯](#decision-traceability)
 - 推演策略与质量控制（与站内综合推演 / 三问互补）：[DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md)
 - 研究方法与工程资产对照：[RESEARCH_METHODS_MAP.md](./RESEARCH_METHODS_MAP.md)

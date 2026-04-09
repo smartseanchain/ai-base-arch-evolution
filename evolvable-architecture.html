@@ -45,6 +45,8 @@
         <a href="decade-us.html">十年之问</a>
         <a href="modules-map.html">模块图谱</a>
         <a href="synthesis.html">综合推演</a>
+        <a href="synthesis-extensions.html">推演·扩展</a>
+        <a href="synthesis-methods.html">推演·方法</a>
         <a href="risk-geo.html">地缘与商业</a>
         <a href="net-biz-capital.html">网·商·资·工</a>
         <a href="national-strategy-opinion.html">战略·舆情</a>
@@ -63,8 +65,9 @@
     <div id="main" class="page-head" tabindex="-1">
       <h1>可进化架构 · 总览</h1>
       <p class="lead">
-        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本站「<strong>可进化</strong>」指：<strong>外部可观测线索</strong>能经<strong>可重复管道</strong>进入站内核（manifest、配方与沙盘），并由<strong>分析与沉淀</strong>反馈是否漂移——全程保留<strong>人审闸门</strong>，不是自动预言机。本页把各模块<strong>收束为一张架构图</strong>；<strong>仓库内数据流与七类模块</strong>（存储 / 沉淀 / 分析 / 展示等）见 <a href="docs/ARCHITECTURE.md#seven-layers">docs/ARCHITECTURE.md</a>；<strong>适应度函数（校验清单）</strong>、<strong>运行血缘</strong>与<strong>决策追溯</strong>见 <a href="docs/ARCHITECTURE.md#fitness-functions">#fitness-functions</a>、<a href="docs/ARCHITECTURE.md#lineage">#lineage</a>、<a href="docs/ARCHITECTURE.md#decision-traceability">#decision-traceability</a>。<strong>叙事侧推演纪律</strong>（三色分层、单轮流程、偏误自检与工程闭环对表）见 <a href="docs/DEDUCTION_STRATEGY.md">docs/DEDUCTION_STRATEGY.md</a>。工程分期与 WBS 见 <a href="smart-overhaul.html">整体改造</a>，模型分层见 <a href="intelligent-evolution.html">智能进化</a>。
+        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本站「<strong>可进化</strong>」指：<strong>外部可观测线索</strong>能经<strong>可重复管道</strong>进入站内核（manifest、配方与沙盘），并由<strong>分析与沉淀</strong>反馈是否漂移——全程保留<strong>人审闸门</strong>，不是自动预言机。本页把各模块<strong>收束为一张架构图</strong>；<strong>仓库内数据流与七类模块</strong>（存储 / 沉淀 / 分析 / 展示等）见 <a href="docs/ARCHITECTURE.md#seven-layers">docs/ARCHITECTURE.md</a>；<strong>适应度函数（校验清单）</strong>、<strong>运行血缘</strong>与<strong>决策追溯</strong>见 <a href="docs/ARCHITECTURE.md#fitness-functions">#fitness-functions</a>、<a href="docs/ARCHITECTURE.md#lineage">#lineage</a>、<a href="docs/ARCHITECTURE.md#decision-traceability">#decision-traceability</a>。<strong>叙事侧推演纪律</strong>（三色分层、单轮流程、偏误自检与工程闭环对表）见 <a href="docs/DEDUCTION_STRATEGY.md">docs/DEDUCTION_STRATEGY.md</a>。        工程分期与 WBS 见 <a href="smart-overhaul.html">整体改造</a>，模型分层见 <a href="intelligent-evolution.html">智能进化</a>。<strong>技术架构 · 功能 · 进化能力</strong>总览见仓库 <a href="docs/TECH_ARCHITECTURE_CAPABILITIES.md">docs/TECH_ARCHITECTURE_CAPABILITIES.md</a>。
       </p>
+      <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
     <div class="nexus-legend" aria-label="三色标签说明">
@@ -73,6 +76,40 @@
       <span class="nexus-tag imagine">反哺 — §11 · 沉淀 · 可选智能</span>
     </div>
 
+    <div class="page-flow-strip" role="img" aria-label="可进化架构闭环：外部观测进入候选与 manifest，驱动沙盘编码，经分析与沉淀再反哺综合推演与站点迭代">
+      <svg viewBox="0 0 660 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <marker id="evoarchflow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#5c6b7e"/></marker>
+        </defs>
+        <text x="330" y="12" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">全程人审闸门；非自动预言机</text>
+        <rect x="12" y="20" width="144" height="38" rx="8" fill="#141b26" stroke="#3d9cf5"/>
+        <text x="84" y="38" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">观测抓取</text>
+        <text x="84" y="50" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">RSS · 线索</text>
+        <line x1="156" y1="39" x2="180" y2="39" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#evoarchflow)"/>
+        <rect x="184" y="20" width="144" height="38" rx="8" fill="#141b26" stroke="#38bdf8"/>
+        <text x="256" y="38" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">候选 / manifest</text>
+        <text x="256" y="50" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">编码映射</text>
+        <line x1="328" y1="39" x2="352" y2="39" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#evoarchflow)"/>
+        <rect x="356" y="20" width="144" height="38" rx="8" fill="#141b26" stroke="#a78bfa"/>
+        <text x="428" y="38" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">分析 · 沉淀</text>
+        <text x="428" y="50" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">热力 · SQLite</text>
+        <line x1="500" y1="39" x2="524" y2="39" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#evoarchflow)"/>
+        <rect x="528" y="20" width="120" height="38" rx="8" fill="#141b26" stroke="#4ecf8e"/>
+        <text x="588" y="38" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">反哺</text>
+        <text x="588" y="50" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">§11 · 沙盘</text>
+      </svg>
+    </div>
+
+    <section class="card site-round-extension" id="ext-round-evoarch" aria-labelledby="hre-evoarch">
+      <h2 class="site-round-extension-h" id="hre-evoarch">推演扩展 · 本轮更新（可进化架构）</h2>
+      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">总览页本轮把<strong>观测—编码—分析—反哺</strong>画成可审计闭环：每一步产物文件名与 <a href="docs/ARCHITECTURE.md">ARCHITECTURE</a> 一致；对表 <a href="synthesis.html#continuation">继续推演矩阵</a>。</p>
+      <ul>
+        <li>七层闭环与 <a href="analysis-hub.html#panorama">分析总线</a> 能力表交叉检查，防重复造轮子。</li>
+        <li>人机闸门：列出<strong>三条永不准自动化</strong>的 merge 类型（与进化闭环一致）。</li>
+        <li>插槽 ⑦—⑩ 任一扩展须说明「影响读者可见 HTML 还是仅 JSON」。</li>
+        <li>与 <a href="social-responsibility-evolution.html">社会责任</a> 页信号路由对照，防社会责任漂移成口号。</li>
+      </ul>
+    </section>
     <nav class="toc" aria-label="本页目录">
       <a href="#definition">定义与边界</a>
       <a href="#layers">七层闭环</a>
@@ -86,7 +123,7 @@
       <h2>1. 定义与边界</h2>
       <div class="card">
         <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
-          <li><strong>可进化</strong>：信号从进入<strong>候选</strong>到升格为<strong>正式库</strong>，再驱动<strong>热力/沉淀/趋势</strong>，最后回到 <a href="synthesis.html#perpetual">综合推演 §11</a> 与 <a href="lab.html">沙盘</a>——形成<strong>可审计闭环</strong>。</li>
+          <li><strong>可进化</strong>：信号从进入<strong>候选</strong>到升格为<strong>正式库</strong>，再驱动<strong>热力/沉淀/趋势</strong>，最后回到 <a href="synthesis-methods.html#perpetual">综合推演 §11</a> 与 <a href="lab.html">沙盘</a>——形成<strong>可审计闭环</strong>。</li>
           <li><strong>不可自动化</strong>：未经审阅的 merge、直接改 HTML 正文、把热搜等同「国家意志」。</li>
           <li><strong>与「架构拓扑」页区别：</strong><a href="architecture.html">架构拓扑</a>偏<strong>技术栈图示</strong>；本页偏<strong>站点如何随观测迭代</strong>。</li>
         </ul>
@@ -103,7 +140,7 @@
           <li><strong>读者侧同步：</strong><code>evolution.js</code> 渲染信号栏；<a href="lab.html">沙盘</a> 高亮因子。</li>
           <li><strong>分析引擎：</strong><code>analysis_engine.py</code> → <code>analysis-snapshot.json</code>（热力、共现、规则提示）。</li>
           <li><strong>记忆与趋势：</strong><code>--sediment</code> → JSON + <code>data/evolution.db</code>；<code>sediment_trends.py</code> → 跨日持久度。</li>
-          <li><strong>反哺与迭代：</strong>按提示修订 §6/§7/<a href="synthesis.html#perpetual">§11</a>；可选 <a href="intelligent-evolution.html">智能层</a> 仅产出候选/工单。<strong>节奏模板：</strong><a href="docs/EVOLUTION_RUNBOOK.md">双周运行手册</a>。</li>
+          <li><strong>反哺与迭代：</strong>按提示修订 §6/§7/<a href="synthesis-methods.html#perpetual">§11</a>；可选 <a href="intelligent-evolution.html">智能层</a> 仅产出候选/工单。<strong>节奏模板：</strong><a href="docs/EVOLUTION_RUNBOOK.md">双周运行手册</a>。</li>
         </ol>
       </div>
     </section>
@@ -172,7 +209,7 @@
           </tbody>
         </table>
       </div>
-      <p class="muted" style="margin-top:1rem;font-size:0.88rem">全文插槽列表仍以 <a href="synthesis.html#perpetual">综合推演 §11</a> 为准。</p>
+      <p class="muted" style="margin-top:1rem;font-size:0.88rem">全文插槽列表仍以 <a href="synthesis-methods.html#perpetual">综合推演 §11</a> 为准。</p>
     </section>
 
     <section id="reading">
@@ -187,9 +224,10 @@
     </section>
 
     <footer>
-      <a href="index.html">← 总览</a> · <a href="social-responsibility-evolution.html">社会责任</a> · <a href="smart-overhaul.html">整体改造</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="synthesis.html#perpetual">综合推演 §11</a> · <a href="index.html#three-questions">三问</a>
+      <a href="index.html">← 总览</a> · <a href="social-responsibility-evolution.html">社会责任</a> · <a href="smart-overhaul.html">整体改造</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="synthesis-methods.html#perpetual">综合推演 §11</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
+  <script src="assets/site-data-bus.js"></script>
   <script src="assets/motion.js"></script>
 </body>
 </html>

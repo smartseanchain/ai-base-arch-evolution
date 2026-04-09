@@ -20,6 +20,10 @@ def main() -> None:
             "或 python3 scripts/analysis_engine.py",
             file=sys.stderr,
         )
+        print(
+            "提示: 快照生成后，已 validate 前提下可 make evolution-fast 做快速重算。",
+            file=sys.stderr,
+        )
         sys.exit(0)
     try:
         data = json.loads(OUT.read_text(encoding="utf-8"))

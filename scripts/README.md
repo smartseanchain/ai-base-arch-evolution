@@ -21,7 +21,8 @@
 | `WRITE_INGEST_SUMMARY=1 bash scripts/run_ingest_only.sh` | 同上并写入根目录 `ingest-summary.json`（**已 gitignore**；CI 默认开启） | 是 |
 | `python3 scripts/ingest_opinion_law.py --full-pool` / `make ingest-full` | 单次忽略 `require_route_match`，全量进池 | 是 |
 | `ingest_config.require_route_match` | `true`：仅保留命中 `routes` 的 RSS/法规线索并清理旧未命中候选 | — |
-| `bash scripts/run_update_pipeline.sh` | 校验 manifest/候选 → 对账 → 顶栏 → 单测 → `analysis_engine --sediment` → `sediment_trends` → 快照契约 → `analysis_engine --check`；沉淀含 `hint_closure_gaps_n` / `hint_decisions_total`，趋势 JSON 含 `closure_backlog` | 否 |
+| `bash scripts/run_update_pipeline.sh` | compileall → 校验 manifest/候选 → 对账 → 顶栏 → 单测 → `analysis_engine --sediment` → `sediment_trends` → 快照契约 → `analysis_engine --check`；沉淀含 `hint_closure_gaps_n` / `hint_decisions_total`，趋势 JSON 含 `closure_backlog` | 否 |
+| `bash scripts/run_analyze_write.sh` / **`make evolution-fast`** | **仅**写快照/沉淀/趋势 + 快照契约 + `--check`；**不**重跑 manifest/漂移/单测/顶栏。须先在同一工作区跑通 **`make validate`**，提交前仍须 validate | 否 |
 | `bash scripts/run_validate.sh` | 与 **`make validate`** 相同的全套校验（compileall + JSON + 对账 + 顶栏 + 单测 + `--check` + 已提交快照契约） | 否 |
 | `make trends` / `python3 scripts/sediment_trends.py` | 仅根据已有沉淀重算 `assets/sediment-trends.json`（不跑分析引擎） | 否 |
 | `make status` / `python3 scripts/print_evolution_status.py` | 打印 `analysis-snapshot.json` 合并计数、hint 决策统计、闭环缺口条数（及 rule_id 列表） | 否 |

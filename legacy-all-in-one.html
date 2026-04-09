@@ -128,6 +128,26 @@
       margin-bottom: 1rem;
     }
 
+    .site-round-extension {
+      margin-bottom: 1.25rem;
+    }
+
+    .site-round-extension .site-round-extension-h {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .site-round-extension ul {
+      margin: 0.4rem 0 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.75;
+    }
+
     .muted {
       color: var(--muted);
       font-size: 0.9rem;
@@ -857,16 +877,105 @@
       color: var(--muted);
       font-size: 0.8rem;
     }
+
+    /* 与分页站 site-data-bus 读数条对齐（本站不引入 site.css） */
+    .site-data-live-strip-host {
+      margin-bottom: 1rem;
+      min-height: 3.5rem;
+      transition: opacity 0.15s ease;
+    }
+    .site-data-live-strip--loading {
+      opacity: 0.88;
+    }
+    .site-data-live-strip-inner {
+      padding: 0;
+    }
+    .site-data-live-strip-loading {
+      margin: 0;
+      font-size: 0.88rem;
+    }
+    .site-data-live-strip-trends {
+      margin: 0.5rem 0 0;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .site-data-live-strip-kicker {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin: 0 0 0.35rem;
+      color: var(--text);
+    }
+    .site-data-live-strip-body {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .site-data-live-strip-body code,
+    .site-data-live-strip-foot code {
+      font-family: var(--mono);
+      font-size: 0.85em;
+    }
+    .site-data-live-strip-foot {
+      margin: 0.5rem 0 0;
+      font-size: 0.8rem;
+    }
+    .site-data-live-strip-body a,
+    .site-data-live-strip-trends a {
+      color: var(--accent);
+    }
+
+    /* 与分页站一致的导读条（不引入 site.css，避免样式冲突） */
+    .page-flow-strip {
+      margin: 0 0 1.25rem;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+    }
+
+    .page-flow-strip svg {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <p class="legacy-pagination-hint" style="margin:0 0 0.85rem;font-size:0.78rem;line-height:1.55;color:var(--muted)">当前为<strong>单文件归档</strong>。<a href="index.html" style="color:var(--accent);font-weight:600">分页阅读</a>（推荐）· <a href="index.html#three-questions" style="color:var(--accent);font-weight:600">三问导读</a> · 与全站对齐的推进链：<a href="national-strategy-opinion.html" style="color:var(--accent);font-weight:600">战略·舆情</a> → <a href="social-responsibility-evolution.html" style="color:var(--accent);font-weight:600">社会责任</a> → <a href="evolution-loop.html" style="color:var(--accent);font-weight:600">进化闭环</a> → <a href="analysis-hub.html" style="color:var(--accent);font-weight:600">分析引擎</a> · <a href="intelligent-evolution.html" style="color:var(--accent);font-weight:600">智能进化</a> · <a href="evolvable-architecture.html" style="color:var(--accent);font-weight:600">可进化架构</a> · <a href="smart-overhaul.html" style="color:var(--accent);font-weight:600">整体改造</a> → <a href="lab.html" style="color:var(--accent);font-weight:600">沙盘工坊</a> · <a href="synthesis.html#perpetual" style="color:var(--accent);font-weight:600">综合推演 §11</a> · <a href="modules-map.html" style="color:var(--accent);font-weight:600">模块图谱</a></p>
+    <p class="legacy-pagination-hint" style="margin:0 0 0.85rem;font-size:0.78rem;line-height:1.55;color:var(--muted)">当前为<strong>单文件归档</strong>。<a href="index.html" style="color:var(--accent);font-weight:600">分页阅读</a>（推荐）· <a href="index.html#three-questions" style="color:var(--accent);font-weight:600">三问导读</a> · 标题下含<strong>本页内阅读顺序</strong>图示 · 与全站对齐的推进链：<a href="national-strategy-opinion.html" style="color:var(--accent);font-weight:600">战略·舆情</a> → <a href="social-responsibility-evolution.html" style="color:var(--accent);font-weight:600">社会责任</a> → <a href="evolution-loop.html" style="color:var(--accent);font-weight:600">进化闭环</a> → <a href="analysis-hub.html" style="color:var(--accent);font-weight:600">分析引擎</a> · <a href="intelligent-evolution.html" style="color:var(--accent);font-weight:600">智能进化</a> · <a href="evolvable-architecture.html" style="color:var(--accent);font-weight:600">可进化架构</a> · <a href="smart-overhaul.html" style="color:var(--accent);font-weight:600">整体改造</a> → <a href="lab.html" style="color:var(--accent);font-weight:600">沙盘工坊</a> · <a href="synthesis-methods.html#perpetual" style="color:var(--accent);font-weight:600">综合推演 §11</a> · <a href="modules-map.html" style="color:var(--accent);font-weight:600">模块图谱</a></p>
     <header class="hero">
       <h1>基础架构演变推演</h1>
       <p class="lead">
         将技术、合规、地缘、国家安全、资本与组织、个人发展等维度梳理为可浏览的叠加栈，并通过多因子情景沙盘合成「架构启示」。仅供战略规划与研讨，不构成法律或投资建议。
       </p>
+      <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
+      <div class="page-flow-strip" role="img" aria-label="单页归档读法：推荐先打开分页总览与三问导读；本页内按目录从全景、十年、模型栈到步进推演与情景沙盘顺序浏览">
+        <svg viewBox="0 0 640 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <marker id="legarchflow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#5c6b7e"/></marker>
+          </defs>
+          <text x="320" y="11" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">顶栏提示含演进链链接 · 本图为本页内顺序</text>
+          <rect x="12" y="17" width="140" height="34" rx="8" fill="#141b26" stroke="#3d9cf5"/>
+          <text x="82" y="31" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">全景·十年</text>
+          <text x="82" y="42" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">总览表</text>
+          <line x1="152" y1="34" x2="176" y2="34" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#legarchflow)"/>
+          <rect x="180" y="17" width="140" height="34" rx="8" fill="#141b26" stroke="#a78bfa"/>
+          <text x="250" y="31" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">模型·栈</text>
+          <text x="250" y="42" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">平面·分层</text>
+          <line x1="320" y1="34" x2="344" y2="34" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#legarchflow)"/>
+          <rect x="348" y="17" width="140" height="34" rx="8" fill="#141b26" stroke="#f97316"/>
+          <text x="418" y="31" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">地缘·商业</text>
+          <text x="418" y="42" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">矩阵</text>
+          <line x1="488" y1="34" x2="512" y2="34" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#legarchflow)"/>
+          <rect x="516" y="17" width="112" height="34" rx="8" fill="#141b26" stroke="#4ecf8e"/>
+          <text x="572" y="31" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">沙盘</text>
+          <text x="572" y="42" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">依赖流</text>
+        </svg>
+      </div>
       <nav class="toc" aria-label="页面导航">
         <a href="#overview">全景总览</a>
         <a href="#decade">十年周期展望</a>
@@ -885,6 +994,17 @@
         <a href="#flow">依赖流示意</a>
       </nav>
     </header>
+
+    <section class="card site-round-extension" id="ext-round-legacy" aria-labelledby="hre-legacy">
+      <h2 class="site-round-extension-h" id="hre-legacy">推演扩展 · 本轮更新（单页归档）</h2>
+      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">本文件为<strong>全站快照式叠放</strong>；本轮纪律与分页站一致：任何新增段落须能指回 <a href="synthesis.html#criteria" style="color:var(--accent)">主篇 §2 判据</a> 与 <a href="synthesis.html#continuation" style="color:var(--accent)">继续推演矩阵</a> 中的具体行/锚点，避免「只长篇幅不长接口」。</p>
+      <ul>
+        <li>读法上优先用顶栏<strong>演进链</strong>跳到对应分页深描；本页内顺序以导读条为准，矩阵用于选题而非替代正文。</li>
+        <li>沙盘与矩阵章节并读时，为每个勾选因子写一句<strong>可对账输出</strong>（账单/工单/公告栏类），与 <a href="lab.html" style="color:var(--accent)">分页沙盘</a> 同构。</li>
+        <li>十年表、三平面、十层栈若与分页版措辞分叉，以<strong>分页 HTML + manifest</strong> 为真源；本归档仅作离线打包。</li>
+        <li>维护者：改站后应同步重导本文件或改顶栏提示链，并跑全站校验；勿只改此处不改注册表路由。</li>
+      </ul>
+    </section>
 
     <section id="overview">
       <h2>全景总览</h2>
@@ -1770,6 +1890,7 @@
       renderStep();
     })();
   </script>
+  <script src="assets/site-data-bus.js"></script>
   <script src="assets/motion.js"></script>
 </body>
 </html>

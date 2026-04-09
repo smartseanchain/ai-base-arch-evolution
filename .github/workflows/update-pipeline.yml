@@ -8,6 +8,10 @@ on:
     # 每周一 16:00 UTC（约北京时间周一夜间）；可按需改 crontab.guru
     - cron: "0 16 * * 1"
 
+concurrency:
+  group: update-pipeline-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   analyze:
     runs-on: ubuntu-latest

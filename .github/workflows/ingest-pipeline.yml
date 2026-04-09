@@ -12,6 +12,10 @@ on:
 env:
   WRITE_INGEST_SUMMARY: "1"
 
+concurrency:
+  group: ingest-pipeline-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   ingest:
     runs-on: ubuntu-latest

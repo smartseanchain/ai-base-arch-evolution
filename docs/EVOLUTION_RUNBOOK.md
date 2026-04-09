@@ -2,9 +2,39 @@
 
 目标：让「观测 → 入库 → 分析 → 改站内核/沙盘」**按固定节奏发生**，避免只堆 JSON 不反哺正文。
 
+## 自动化周历（GitHub Actions）
+
+| 触发 | Workflow | 作用 |
+|------|----------|------|
+| 每周二 08:00 UTC | **Ingest candidates** | 抓取候选 → artifact（默认不回写 `main`） |
+| 每周一 16:00 UTC | **Update pipeline** | 全量校验 + 写快照/沉淀/趋势 → artifact |
+| 手动 | **PR · refresh candidates** | ingest 后直接开 PR 更新 `evolution-candidates.json`（仍须人审后再 merge manifest） |
+| push / PR | **CI** | `make validate` 同款，阻断坏 JSON 进主分支 |
+
+合并 artifact 到仓库、推送后，线上 Pages 与 `site-data-bus` / `analysis.js` 读数才会变——见根目录 [README.md](../README.md)「定时流水线」。
+
+<a id="accelerate"></a>
+
+## 加速本地迭代（不削弱人审）
+
+- **`make analyze`**：完整前置校验 + 写快照/沉淀/趋势（与 Actions **Update pipeline** 一致；已含 `compileall`）。
+- **`make validate` 通过后**，若**同一工作区**内只反复调 manifest/候选并希望**快速**重算热力与趋势，可用 **`make evolution-fast`**：仅执行 `analysis_engine --sediment` → `sediment_trends` → 快照 Schema → `--check`，**跳过** manifest/漂移/单测/顶栏。改完 JSON 未 validate 就提交会有风险，故**提交前仍须** `make validate`。
+- **只看读数、不写文件**：`make status`。
+- **仅跨日趋势**（沉淀已存在）：`make trends`。
+
+<a id="continuous-push"></a>
+
+## 加快「观测进仓库」的节奏
+
+1. 定时 ingest 的 artifact 下载后替换 `evolution-candidates.json`，或用 **PR · refresh candidates** 减少手工下载步骤。  
+2. 候选审阅与 `merge_candidates_to_manifest` 仍是**闸门**；勿为提速跳过。  
+3. 分析侧：本地优先 **`make evolution-fast`**（在已 validate 前提下）缩短双周内多轮看板刷新。
+
 ## 建议周期
 
-每 **2 周** 一次，单次耗时约 **30～45 分钟**（不含深度改文）。
+每 **2 周** 一次，单次耗时约 **30～45 分钟**（不含深度改文）；熟练且 JSON 已绿时，其中 **步骤 5** 可多次用 `make evolution-fast` 代替完整 `make analyze`。
+
+若需**更大范围**把全站模块、综合推演判据与分析读数放在一轮里重推，见 **[SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md](./SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md)**（可与本次双周 checklist 合并或分天进行）。
 
 ## Checklist
 
@@ -18,7 +48,7 @@
 | 2 | 浏览候选：将噪点标 `review_state: noise`（不参与分析热力）；拟入库标 `queued_for_manifest`；可写 `reviewer_note`（≤500 字） | 本地或 PR 中更新 `evolution-candidates.json` |
 | 3 | 对值得入库的 id（须已 `queued_for_manifest`）：`python3 scripts/merge_candidates_to_manifest.py …`（应急 `--force`） | 更新 `evolution-manifest.json` |
 | 4 | `make validate` | 通过校验 + `analysis_engine --check` + **对账脚本** |
-| 5 | `make analyze`（或 `make trends` 仅刷新趋势） | 更新 `analysis-snapshot.json`（根级 **`run.run_id`** / **`run.repo_revision`** 标识本次流水线，便于与 Actions 日志或本地日志对齐）、**`data/sediment.json`**（当日条目同步 `run_id` / `repo_revision`；含 `hint_closure_gaps_n` / `hint_decisions_total`）、**`assets/sediment-trends.json`**（含 `closure_backlog` 近 14 日） |
+| 5 | `make analyze`（已 `make validate` 且本步要跑多轮时可用 `make evolution-fast`）或 `make trends` 仅刷新趋势 | 更新 `analysis-snapshot.json`（根级 **`run.run_id`** / **`run.repo_revision`** 标识本次流水线，便于与 Actions 日志或本地日志对齐）、**`data/sediment.json`**（当日条目同步 `run_id` / `repo_revision`；含 `hint_closure_gaps_n` / `hint_decisions_total`）、**`assets/sediment-trends.json`**（含 `closure_backlog` 近 14 日） |
 | 6 | 打开 `analysis-hub.html`（或读 `analysis-snapshot.json`） | 看热力与共现；需要核对「哪次跑出来的」时看 `run` 块 |
 | 7 | 处理 **≥1 条** `evolution_hints`（`analysis-snapshot.json` 中为对象时可点链到 `target_pages`）：**落实**或 **显式否决**；在 **`assets/evolution-hint-decisions.json`** 追加一条记录（`id`、`action`: `done` / `rejected` / `deferred`、`recorded_at` 等；**若规则在 `evolution-hint-rules.json` 中 `track_closure: true`，请填写 `rule_id`** 与提示一致，以便快照清空 `hint_closure_gaps`） | 闭环有可检索的决策痕迹；分析页与快照 `sources.hint_decisions` 可看到累计统计 |
 | 8 | 打开 `lab.html`：按热力勾选因子做一轮沙盘 | 与 manifest 映射一致性感性校验 |

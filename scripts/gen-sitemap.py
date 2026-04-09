@@ -25,6 +25,8 @@ PRIORITY: dict[str, tuple[str, str]] = {
     "decade.html": ("monthly", "0.9"),
     "decade-scenes.html": ("monthly", "0.9"),
     "synthesis.html": ("monthly", "0.9"),
+    "synthesis-extensions.html": ("monthly", "0.88"),
+    "synthesis-methods.html": ("monthly", "0.88"),
     "modules-map.html": ("monthly", "0.85"),
     "decade-us.html": ("monthly", "0.85"),
     "edu-nexus.html": ("monthly", "0.85"),

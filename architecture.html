@@ -47,6 +47,8 @@
         <a href="decade-us.html">十年之问</a>
         <a href="modules-map.html">模块图谱</a>
         <a href="synthesis.html">综合推演</a>
+        <a href="synthesis-extensions.html">推演·扩展</a>
+        <a href="synthesis-methods.html">推演·方法</a>
         <a href="risk-geo.html">地缘与商业</a>
         <a href="net-biz-capital.html">网·商·资·工</a>
         <a href="national-strategy-opinion.html">战略·舆情</a>
@@ -65,8 +67,35 @@
     <div id="main" class="page-head" tabindex="-1">
       <h1>参考拓扑与部署形态</h1>
       <p class="lead">整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。上图：<strong>单区域逻辑流量</strong>。下图：<strong>六种可并存形态</strong>，用色标区分典型驱动力。</p>
+      <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
+    <div class="page-flow-strip" role="img" aria-label="架构拓扑页结构：先读单区域逻辑流量大图，再对照六种可并存部署形态与色标驱动力">
+      <svg viewBox="0 0 560 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <marker id="archpgflow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#5c6b7e"/></marker>
+        </defs>
+        <text x="280" y="11" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">参考拓扑 · 与分层模型、模块图谱互证</text>
+        <rect x="32" y="18" width="220" height="34" rx="8" fill="#141b26" stroke="#3d9cf5"/>
+        <text x="142" y="33" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">单区逻辑视图</text>
+        <text x="142" y="44" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">用户 → 工作负载</text>
+        <line x1="252" y1="35" x2="280" y2="35" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#archpgflow)"/>
+        <rect x="284" y="18" width="244" height="34" rx="8" fill="#141b26" stroke="#4ecf8e"/>
+        <text x="406" y="33" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">六种部署形态</text>
+        <text x="406" y="44" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">并存 · 色标驱动力</text>
+      </svg>
+    </div>
+
+    <section class="card site-round-extension" id="ext-round-arch" aria-labelledby="hre-arch">
+      <h2 class="site-round-extension-h" id="hre-arch">推演扩展 · 本轮更新（架构拓扑）</h2>
+      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">本轮每张图旁强制<strong>数据重力句</strong>：主负载与主数据实际落在哪一边界；与 <a href="model.html">分层</a>、<a href="synthesis.html#continuation">继续推演矩阵</a> 硬栈行对读。</p>
+      <ul>
+        <li>六种形态对比时写清<strong>切换成本由谁承担</strong>（业务、平台还是法务）。</li>
+        <li>Cell/多区域叙事必须接 <a href="risk-geo.html">地缘</a> 支付与身份通道。</li>
+        <li>与 <a href="work-infra-energy.html">职基能</a> 对读：拓扑变更是否受电价/机位约束。</li>
+        <li>引用生成式组件时标注<strong>模型 API 所属法域与日志落点</strong>。</li>
+      </ul>
+    </section>
     <section>
       <h2>单区域逻辑视图（SVG）</h2>
       <div class="svg-wrap" role="img" aria-label="参考架构">
@@ -164,6 +193,7 @@
 
     <footer><a href="model.html">← 分层模型</a> · <a href="timeline.html">历史演进 →</a> · <a href="index.html#three-questions">三问</a></footer>
   </div>
+  <script src="assets/site-data-bus.js"></script>
   <script src="assets/motion.js"></script>
 </body>
 </html>

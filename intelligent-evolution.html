@@ -45,6 +45,8 @@
         <a href="decade-us.html">十年之问</a>
         <a href="modules-map.html">模块图谱</a>
         <a href="synthesis.html">综合推演</a>
+        <a href="synthesis-extensions.html">推演·扩展</a>
+        <a href="synthesis-methods.html">推演·方法</a>
         <a href="risk-geo.html">地缘与商业</a>
         <a href="net-biz-capital.html">网·商·资·工</a>
         <a href="national-strategy-opinion.html">战略·舆情</a>
@@ -65,6 +67,7 @@
       <p class="lead">
         整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本站已有<strong>规则化闭环</strong>：<a href="evolution-loop.html">进化闭环</a>（ingest → 候选 → 人审 manifest）与 <a href="analysis-hub.html">分析引擎</a>（热力 · 共现 · 沉淀）。本页把「<strong>智能进化</strong>」定义为：在<strong>不替代人审闸门</strong>的前提下，用<strong>模型、检索与评测</strong>减轻重复劳动、提高映射与摘要质量，并把决策<strong>日志化</strong>以便迭代。全文是<strong>架构与路线说明</strong>，不是现成产品规格。
       </p>
+      <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
     <div class="nexus-legend" aria-label="三色标签说明">
@@ -73,6 +76,40 @@
       <span class="nexus-tag imagine">衔接 — §11 插槽⑨ · 候选侧车</span>
     </div>
 
+    <div class="page-flow-strip" role="img" aria-label="智能进化叠层：规则闭环管道之上叠加模型与检索，输出默认进候选或侧车，经人审闸门再影响 manifest 与正文">
+      <svg viewBox="0 0 680 68" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <marker id="intevflow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#5c6b7e"/></marker>
+        </defs>
+        <text x="340" y="14" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">不替代人审；与进化闭环、分析引擎对表</text>
+        <rect x="8" y="22" width="150" height="40" rx="8" fill="#141b26" stroke="#3d9cf5"/>
+        <text x="83" y="40" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">规则管道</text>
+        <text x="83" y="52" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">ingest · 候选</text>
+        <line x1="158" y1="42" x2="182" y2="42" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#intevflow)"/>
+        <rect x="186" y="22" width="150" height="40" rx="8" fill="#141b26" stroke="#a78bfa"/>
+        <text x="261" y="40" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">模型 / RAG</text>
+        <text x="261" y="52" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">摘要 · 映射</text>
+        <line x1="336" y1="42" x2="360" y2="42" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#intevflow)"/>
+        <rect x="364" y="22" width="150" height="40" rx="8" fill="#141b26" stroke="#f97316"/>
+        <text x="439" y="40" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">人审闸门</text>
+        <text x="439" y="52" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">升格 manifest</text>
+        <line x1="514" y1="42" x2="538" y2="42" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#intevflow)"/>
+        <rect x="542" y="22" width="130" height="40" rx="8" fill="#141b26" stroke="#4ecf8e"/>
+        <text x="607" y="40" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">日志迭代</text>
+        <text x="607" y="52" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">§11 插槽⑨</text>
+      </svg>
+    </div>
+
+    <section class="card site-round-extension" id="ext-round-intevo" aria-labelledby="hre-intevo">
+      <h2 class="site-round-extension-h" id="hre-intevo">推演扩展 · 本轮更新（智能进化）</h2>
+      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">本轮重申：<strong>模型输出默认进候选或侧车</strong>；每条自动摘要须配「人审检查点」与回滚路径；对表 <a href="synthesis.html#continuation">继续推演矩阵</a> 智能+改造+架构行。</p>
+      <ul>
+        <li>分层（规则→LLM→RAG→微调）旁注<strong>哪一层可单独关掉而不伤站点真源</strong>。</li>
+        <li>评测指标与 <a href="docs/ARCHITECTURE.md#decision-traceability">决策追溯</a> 字段对齐，避免黑箱工单。</li>
+        <li>与 <a href="evolution-loop.html">进化闭环</a> 对读：哪些字段只能人改 manifest。</li>
+        <li>§11 插槽⑨ 变更时同步更新 <a href="smart-overhaul.html">整体改造</a> WBS 中的智能子项。</li>
+      </ul>
+    </section>
     <nav class="toc" aria-label="本页目录">
       <a href="#boundary">概念与边界</a>
       <a href="#layers">能力分层</a>
@@ -130,7 +167,7 @@
               <td><strong>L3 检索增强（RAG）</strong></td>
               <td>站内段落检索 + 外源摘要；带引用生成「建议修改点」</td>
               <td>语料切块、向量库、embedding 流水线</td>
-              <td>反哺 <a href="synthesis.html#perpetual">§6/§7/§11</a> 的<strong>草稿级建议</strong></td>
+              <td>反哺 <a href="synthesis-extensions.html#stack-domains">§6/§7</a>、<a href="synthesis-methods.html#perpetual">§11</a> 的<strong>草稿级建议</strong></td>
             </tr>
             <tr>
               <td><strong>L4 排序 / 小模型微调</strong></td>
@@ -210,16 +247,17 @@
 
     <section id="s11">
       <h2>8. 与综合推演 §11 的衔接</h2>
-      <p class="muted" style="margin-top:-0.35rem">在 <a href="synthesis.html#perpetual">§11 持续迭代</a> 中，扩展插槽 <strong>⑦⑧</strong> 已覆盖 manifest 管道与 <a href="analysis-hub.html">分析引擎</a>。本页对应<strong>扩展插槽 ⑨</strong>：在 ⑦⑧ 之上引入<strong>可学习建议层</strong>（模型与检索），且默认写入候选/工单而非直接改站。</p>
+      <p class="muted" style="margin-top:-0.35rem">在 <a href="synthesis-methods.html#perpetual">§11 持续迭代</a> 中，扩展插槽 <strong>⑦⑧</strong> 已覆盖 manifest 管道与 <a href="analysis-hub.html">分析引擎</a>。本页对应<strong>扩展插槽 ⑨</strong>：在 ⑦⑧ 之上引入<strong>可学习建议层</strong>（模型与检索），且默认写入候选/工单而非直接改站。</p>
       <div class="card">
         <p class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">实施时建议：任何自动生成的「配方/表行」草稿须带 <strong>schema 校验 + PR 审阅 + 与 §2 判据的对照句</strong>，再并入正文。</p>
       </div>
     </section>
 
     <footer>
-      <a href="analysis-hub.html">← 分析引擎</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="synthesis.html#perpetual">综合推演 §11</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
+      <a href="analysis-hub.html">← 分析引擎</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="synthesis-methods.html#perpetual">综合推演 §11</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
+  <script src="assets/site-data-bus.js"></script>
   <script src="assets/motion.js"></script>
 </body>
 </html>

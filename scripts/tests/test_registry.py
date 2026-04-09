@@ -29,6 +29,14 @@ class TestRegistry(unittest.TestCase):
         for p in reg["pages"]:
             self.assertTrue((REPO_ROOT / p).is_file(), msg=p)
 
+    def test_registry_pages_have_round_extension_card(self) -> None:
+        """注册内分页须含「推演扩展 · 本轮更新」卡片，防漏插或漂移。"""
+        reg = json.loads(REGISTRY.read_text(encoding="utf-8"))
+        for p in reg["pages"]:
+            text = (REPO_ROOT / p).read_text(encoding="utf-8")
+            self.assertIn("site-round-extension", text, msg=p)
+            self.assertIn("ext-round-", text, msg=p)
+
     def test_priority_subset_registry(self) -> None:
         reg = json.loads(REGISTRY.read_text(encoding="utf-8"))
         reg_pages = set(reg["pages"])

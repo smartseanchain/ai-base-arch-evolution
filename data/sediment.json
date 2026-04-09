@@ -40,7 +40,9 @@
         "edu-nexus.html"
       ],
       "hint_closure_gaps_n": 3,
-      "hint_decisions_total": 0
+      "hint_decisions_total": 0,
+      "run_id": "20260409-4c0ac793",
+      "repo_revision": "97a50e6"
     }
   ]
 }

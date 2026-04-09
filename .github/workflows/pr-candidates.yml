@@ -9,6 +9,10 @@ permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: pr-candidates-bot
+  cancel-in-progress: true
+
 jobs:
   ingest-pr:
     runs-on: ubuntu-latest

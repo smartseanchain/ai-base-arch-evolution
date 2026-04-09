@@ -31,6 +31,19 @@
   var URL_HINT_DECISIONS = "assets/evolution-hint-decisions.json";
 
   var ACTION_LABEL = { done: "已落实", rejected: "已否决", deferred: "延期" };
+  var KIND_LABEL = {
+    opinion: "舆情",
+    policy: "政策",
+    law: "法规线索",
+    market: "市场",
+    tech: "技术",
+    unknown: "其他",
+  };
+
+  /** @type {AnalysisSnapshot|null} */
+  var currentSnap = null;
+  /** @type {Record<string, unknown>|null} */
+  var currentTrends = null;
 
   function esc(s) {
     var d = document.createElement("div");
@@ -53,9 +66,335 @@
     return row;
   }
 
+  function kindLabel(k) {
+    return KIND_LABEL[k] || k || "—";
+  }
+
+  /**
+   * 聚合解读：把快照中的来源、热力、共现、类型、提示条数拼成可读摘要（展示 + 供导出）。
+   * @param {AnalysisSnapshot} data
+   * @returns {string[]}  bullet 文本
+   */
+  function aggregateSnapshotLines(data) {
+    var lines = [];
+    var src = data.sources || {};
+    var n = src.combined_for_analysis != null ? src.combined_for_analysis : 0;
+    var mm = src.manifest_signals != null ? src.manifest_signals : 0;
+    var cc = src.candidate_signals != null ? src.candidate_signals : 0;
+    lines.push(
+      "合并分析样本 **" +
+        n +
+        "** 条（已入库 manifest **" +
+        mm +
+        "** · 参与统计的候选 **" +
+        cc +
+        "**）。"
+    );
+    var mod = (data.module_heat || []).slice(0, 5);
+    if (mod.length) {
+      lines.push(
+        "模块页映射热度领先：" +
+          mod
+            .map(function (x) {
+              return "`" + x.page + "`（" + x.count + "）";
+            })
+            .join("、") +
+          "。"
+      );
+    }
+    var fac = (data.factor_heat || []).slice(0, 5);
+    if (fac.length) {
+      lines.push(
+        "沙盘因子热度领先：" +
+          fac
+            .map(function (x) {
+              return "`" + x.factor + "`（" + x.count + "）";
+            })
+            .join("、") +
+          "。"
+      );
+    }
+    var co = (data.cooccurrence || [])[0];
+    if (co && co.pair && co.pair.length >= 2) {
+      lines.push(
+        "同一信号内共现最强：**" +
+          co.pair[0] +
+          " × " +
+          co.pair[1] +
+          "**（" +
+          co.count +
+          " 次）。"
+      );
+    }
+    var kd = data.kind_distribution || {};
+    var kk = Object.keys(kd);
+    if (kk.length) {
+      lines.push(
+        "信号类型分布：" +
+          kk
+            .map(function (k) {
+              return kindLabel(k) + " " + kd[k];
+            })
+            .join("；") +
+          "。"
+      );
+    }
+    var hints = data.evolution_hints || [];
+    var gaps = data.hint_closure_gaps || [];
+    if (hints.length) {
+      lines.push(
+        "规则 / 相较上期 / Top 因子等提示共 **" +
+          hints.length +
+          "** 条（详见下文清单）。"
+      );
+    }
+    if (gaps.length) {
+      lines.push(
+        "规则闭环缺口 **" +
+          gaps.length +
+          "** 条（须在 `evolution-hint-decisions` 中落实或否决）。"
+      );
+    }
+    if (!mod.length && !fac.length && n === 0) {
+      lines.push("当前快照无热力条目；请检查 manifest / 候选是否含 `maps_to`。");
+    }
+    return lines;
+  }
+
+  /**
+   * @param {Record<string, unknown>} t
+   * @returns {string[]}
+   */
+  function aggregateTrendLines(t) {
+    var lines = [];
+    var sum = t.summary || {};
+    var n = sum.entry_count != null ? sum.entry_count : 0;
+    var dr = sum.date_range || {};
+    if (n > 0) {
+      lines.push(
+        "跨日沉淀 **" +
+          n +
+          "** 日" +
+          (dr.first && dr.last
+            ? "（" + dr.first + " → " + dr.last + "）"
+            : "") +
+          "。"
+      );
+    }
+    var fp = t.factor_persistence || [];
+    var topF = fp
+      .slice()
+      .sort(function (a, b) {
+        return (b.days_in_top || 0) - (a.days_in_top || 0);
+      })
+      .slice(0, 3);
+    if (topF.length) {
+      lines.push(
+        "因子在多日 Top 中较持久：" +
+          topF
+            .map(function (r) {
+              return (
+                "`" +
+                r.factor +
+                "`（" +
+                r.days_in_top +
+                " 天 · 覆盖率 " +
+                (r.coverage != null ? Math.round(r.coverage * 100) : "—") +
+                "%）"
+              );
+            })
+            .join("、") +
+          "。"
+      );
+    }
+    var pp = t.page_persistence || [];
+    var topP = pp
+      .slice()
+      .sort(function (a, b) {
+        return (b.days_in_top || 0) - (a.days_in_top || 0);
+      })
+      .slice(0, 3);
+    if (topP.length) {
+      lines.push(
+        "页面在多日 Top 中较持久：" +
+          topP
+            .map(function (r) {
+              return (
+                "`" +
+                r.page +
+                "`（" +
+                r.days_in_top +
+                " 天 · 覆盖率 " +
+                (r.coverage != null ? Math.round(r.coverage * 100) : "—") +
+                "%）"
+              );
+            })
+            .join("、") +
+          "。"
+      );
+    }
+    var lh = t.longterm_hints || [];
+    if (lh.length) {
+      lh.forEach(function (x) {
+        if (x) lines.push(String(x));
+      });
+    }
+    return lines;
+  }
+
+  /**
+   * @param {string[]} linesMd — 含 ** ` 等 markdown 片段
+   */
+  function linesToPlainUl(linesMd) {
+    var ul = document.createElement("ul");
+    ul.className = "analysis-aggregate-list";
+    linesMd.forEach(function (line) {
+      var li = document.createElement("li");
+      li.innerHTML = line
+        .replace(/\*\*([^*]+)\*\*/g, function (_, m) {
+          return "<strong>" + esc(m) + "</strong>";
+        })
+        .replace(/`([^`]+)`/g, function (_, m) {
+          return "<code>" + esc(m) + "</code>";
+        });
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
+  function renderAggregateReport(container, data) {
+    var lines = aggregateSnapshotLines(data);
+    var card = document.createElement("div");
+    card.className = "card analysis-aggregate-report";
+    card.setAttribute("role", "region");
+    card.setAttribute("aria-label", "聚合解读");
+
+    var h4 = document.createElement("h4");
+    h4.style.marginTop = "0";
+    h4.textContent = "聚合解读（当日快照）";
+    card.appendChild(h4);
+
+    var sub = document.createElement("p");
+    sub.className = "muted";
+    sub.style.fontSize = "0.82rem";
+    sub.style.marginTop = "0.25rem";
+    sub.textContent =
+      "由分析引擎 JSON 自动拼接的定性摘要，便于扫读与复制；非预测，不替代 §2 判据与人工叙事。";
+    card.appendChild(sub);
+
+    card.appendChild(linesToPlainUl(lines));
+
+    var trendsHold = document.createElement("div");
+    trendsHold.id = "analysis-aggregate-trends";
+    trendsHold.className = "analysis-aggregate-trends";
+    trendsHold.hidden = true;
+    card.appendChild(trendsHold);
+
+    var btnRow = document.createElement("div");
+    btnRow.className = "analysis-aggregate-actions";
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn analysis-aggregate-copy-btn";
+    btn.textContent = "复制 Markdown 摘要";
+    btn.setAttribute(
+      "title",
+      "含当日快照要点；若已加载趋势则一并复制"
+    );
+    btn.addEventListener("click", function () {
+      copyMarkdownBrief();
+    });
+    btnRow.appendChild(btn);
+    card.appendChild(btnRow);
+
+    container.appendChild(card);
+  }
+
+  function fillAggregateTrendsSection(t) {
+    var hold = document.getElementById("analysis-aggregate-trends");
+    if (!hold || !t) return;
+    var tlines = aggregateTrendLines(t);
+    if (!tlines.length) return;
+    hold.hidden = false;
+    hold.innerHTML = "";
+    var h5 = document.createElement("h5");
+    h5.className = "analysis-aggregate-trends-title";
+    h5.textContent = "跨日补充（sediment-trends）";
+    hold.appendChild(h5);
+    hold.appendChild(linesToPlainUl(tlines));
+  }
+
+  function buildMarkdownBrief() {
+    var parts = [];
+    parts.push("# 分析引擎 · 聚合摘要\n");
+    if (!currentSnap) return parts.join("");
+    parts.push("> 自动生成于仪表盘；定性脚手架，非预测。\n\n");
+    parts.push("## 元数据\n");
+    parts.push("- 生成时间: " + (currentSnap.generated_at || "—") + "\n");
+    var run = currentSnap.run || {};
+    if (run.run_id) parts.push("- run_id: `" + run.run_id + "`\n");
+    if (run.repo_revision) parts.push("- repo_revision: `" + run.repo_revision + "`\n");
+    parts.push("\n## 当日要点\n");
+    aggregateSnapshotLines(currentSnap).forEach(function (L) {
+      parts.push("- " + L.replace(/<\/?[^>]+>/g, "") + "\n");
+    });
+    if (currentTrends && aggregateTrendLines(currentTrends).length) {
+      parts.push("\n## 跨日要点\n");
+      aggregateTrendLines(currentTrends).forEach(function (L) {
+        parts.push("- " + L + "\n");
+      });
+    }
+    parts.push("\n---\n全页路径: `analysis-hub.html` · 数据: `assets/analysis-snapshot.json`\n");
+    return parts.join("");
+  }
+
+  function copyMarkdownBrief() {
+    var md = buildMarkdownBrief();
+    function ok() {
+      var b = document.querySelector(".analysis-aggregate-copy-btn");
+      if (b) {
+        var t = b.textContent;
+        b.textContent = "已复制";
+        setTimeout(function () {
+          b.textContent = t;
+        }, 2000);
+      }
+    }
+    function fail() {
+      alert("复制失败：请手动全选摘要或换用 https 环境。");
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(md).then(ok).catch(function () {
+        var ta = document.createElement("textarea");
+        ta.value = md;
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand("copy");
+          ok();
+        } catch (e) {
+          fail();
+        }
+        document.body.removeChild(ta);
+      });
+    } else {
+      var ta2 = document.createElement("textarea");
+      ta2.value = md;
+      document.body.appendChild(ta2);
+      ta2.select();
+      try {
+        document.execCommand("copy");
+        ok();
+      } catch (e2) {
+        fail();
+      }
+      document.body.removeChild(ta2);
+    }
+  }
+
   function render(container, data) {
     if (!container || !data) return;
     container.innerHTML = "";
+    currentSnap = data;
 
     var meta = document.createElement("p");
     meta.className = "muted analysis-snap-meta";
@@ -118,6 +457,8 @@
     }
     meta.innerHTML = metaHtml;
     container.appendChild(meta);
+
+    renderAggregateReport(container, data);
 
     var gaps = data.hint_closure_gaps;
     if (Array.isArray(gaps) && gaps.length) {
@@ -368,6 +709,9 @@
 
   function renderTrends(container, t) {
     if (!container || !t || !t.summary) return;
+    currentTrends = t;
+    fillAggregateTrendsSection(t);
+
     var n = t.summary.entry_count || 0;
     if (n < 1 && (!t.longterm_hints || !t.longterm_hints.length)) return;
 
@@ -493,13 +837,35 @@
     container.appendChild(wrap);
   }
 
+  function fetchSnapshotShared() {
+    if (window.SiteDataBus && typeof SiteDataBus.loadSnapshot === "function") {
+      return SiteDataBus.loadSnapshot();
+    }
+    return fetch(URL_SNAP).then(function (r) {
+      if (!r.ok) throw new Error("snap");
+      return r.json();
+    });
+  }
+
+  function fetchTrendsShared() {
+    if (window.SiteDataBus && typeof SiteDataBus.loadTrends === "function") {
+      return SiteDataBus.loadTrends();
+    }
+    return fetch(URL_TRENDS).then(function (r) {
+      if (!r.ok) return null;
+      return r.json();
+    });
+  }
+
   function load() {
     var el = document.getElementById("analysis-dashboard");
-    fetch(URL_SNAP)
-      .then(function (r) {
-        if (!r.ok) throw new Error("snap");
-        return r.json();
-      })
+    if (!el) return;
+    el.setAttribute("aria-busy", "true");
+    el.classList.add("analysis-dashboard--loading");
+    el.innerHTML =
+      '<p class="muted analysis-dashboard-loading">正在加载分析快照与仪表盘…</p>';
+
+    fetchSnapshotShared()
       .then(function (data) {
         render(el, data);
         return fetch(URL_HINT_DECISIONS)
@@ -512,19 +878,13 @@
       })
       .then(function (decDoc) {
         renderDecisions(el, decDoc);
-        return fetch(URL_TRENDS);
-      })
-      .then(function (r) {
-        if (!r.ok) return null;
-        return r.json();
+        return fetchTrendsShared();
       })
       .then(function (trends) {
         if (!trends) return;
-        var el = document.getElementById("analysis-dashboard");
         renderTrends(el, trends);
       })
       .catch(function () {
-        var el = document.getElementById("analysis-dashboard");
         if (el && !el.querySelector(".analysis-snap-meta")) {
           if (window.location.protocol === "file:") {
             el.innerHTML =
@@ -534,6 +894,10 @@
               '<p class="muted">无法加载 <code>assets/analysis-snapshot.json</code>。请在仓库根运行 <code>make analyze</code>（或 <code>python3 scripts/analysis_engine.py</code>）后提交/部署；并确认 <code>assets/</code> 路径正确。</p>';
           }
         }
+      })
+      .finally(function () {
+        el.classList.remove("analysis-dashboard--loading");
+        el.setAttribute("aria-busy", "false");
       });
   }
 

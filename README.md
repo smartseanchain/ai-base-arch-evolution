@@ -6,7 +6,7 @@
 - **GitHub Pages**（开启后）：https://smartseanchain.github.io/ai-base-arch-evolution/ — 在仓库 **Settings → Pages** 中选择 **Deploy from a branch**，分支 **main**，文件夹 **/ (root)**，保存后约 1～2 分钟可访问。  
 - 本地预览：直接打开 `index.html`，或用任意静态服务器（`evolution.js` 等需 **http(s)** 才能 `fetch` JSON）。
 
-概念总览见站内 [可进化架构](evolvable-architecture.html)。**仓库架构与数据流**（Mermaid）：[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)；**存储/沉淀/分析/展示等七类模块**：[同一文档 · seven-layers 锚点](docs/ARCHITECTURE.md#seven-layers)。**科学的推演策略与方法**（认识论、单轮流程、偏误清单、与闭环对表）：[docs/DEDUCTION_STRATEGY.md](docs/DEDUCTION_STRATEGY.md)。**研究/推演方法与站内页、沙盘、JSON 管道的匹配（A/B/C 可利用性）**：[docs/RESEARCH_METHODS_MAP.md](docs/RESEARCH_METHODS_MAP.md)。**全站标题 · 图例 · TOC · 图形展示**三轮梳理：[docs/SITE_REVIEW_THREE_PASSES.md](docs/SITE_REVIEW_THREE_PASSES.md)。**双周反哺节奏**（可打印照做）：[docs/EVOLUTION_RUNBOOK.md](docs/EVOLUTION_RUNBOOK.md)。
+概念总览见站内 [可进化架构](evolvable-architecture.html)。**文档索引表**：[docs/README.md](docs/README.md)。**仓库架构与数据流**（Mermaid）：[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)；**存储/沉淀/分析/展示等七类模块**：[同一文档 · seven-layers 锚点](docs/ARCHITECTURE.md#seven-layers)。**技术栈分层、已实现功能地图、进化能力三层含义（总览）**：[docs/TECH_ARCHITECTURE_CAPABILITIES.md](docs/TECH_ARCHITECTURE_CAPABILITIES.md)。**全站推演内容如何随 JSON + 分析引擎自动对齐读数**（总线、消费方登记、流水线）：[docs/SITE_DATA_UPDATE_FRAMEWORK.md](docs/SITE_DATA_UPDATE_FRAMEWORK.md)。**数据与分析对全站模块与正文/动态块的更新边界**：[docs/DATA_ANALYSIS_SITE_CONTENT_SYNC.md](docs/DATA_ANALYSIS_SITE_CONTENT_SYNC.md)。**科学的推演策略与方法**（认识论、单轮流程、偏误清单、与闭环对表）：[docs/DEDUCTION_STRATEGY.md](docs/DEDUCTION_STRATEGY.md)。**全站梳理、内容对表、重新推演后如何更新**：[docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md](docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md)。**研究/推演方法与站内页、沙盘、JSON 管道的匹配（A/B/C 可利用性）**：[docs/RESEARCH_METHODS_MAP.md](docs/RESEARCH_METHODS_MAP.md)。**全站标题 · 图例 · TOC · 图形展示**三轮梳理：[docs/SITE_REVIEW_THREE_PASSES.md](docs/SITE_REVIEW_THREE_PASSES.md)。**双周反哺节奏**（可打印照做）：[docs/EVOLUTION_RUNBOOK.md](docs/EVOLUTION_RUNBOOK.md)。
 
 ## 本地校验与流水线
 
@@ -21,6 +21,7 @@ make validate    # 等同 bash scripts/run_validate.sh（compileall + 全套 JSO
 make ingest      # 抓取候选（需外网，依赖 scripts/ingest_config.json）
 make ingest-full # 同上但单次 --full-pool（忽略 require_route_match）
 make analyze     # 校验 + 分析引擎 --sediment + 长期趋势
+make evolution-fast  # 仅刷新快照/沉淀/趋势（须先 make validate；双周内多轮调数时省时间）
 make status      # 打印当前 analysis-snapshot 计数与闭环缺口（需先有快照）
 ```
 
@@ -76,7 +77,7 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 
 - **`<div class="skip-bar">`** 与 **`<header class="site-nav">`** 由模板生成：**`partials/skip-bar.inc.html`**、**`partials/site-nav.inc.html`**。`make sync-nav` 写回二者，`make check-site-nav` 校验（已含于 `make validate` 与 CI）。
 - 增删导航链或无障碍快捷链时**只改对应 partial** 再跑 `make sync-nav`。`index.html` 上「三问导读 / 顶栏三问」为 `#three-questions`，其余页为 `index.html#three-questions`（脚本自动区分）。
-- 顶栏内各 `href="*.html"` 须落在 **`scripts/evolution-registry.json`** 的 `pages` 内（`check_manifest_drift` 会查）。
+- 顶栏内各 `href="*.html"` 须落在 **`scripts/evolution-registry.json`** 的 `pages` 内（`check_manifest_drift` 会查）。综合推演拆分子页后，顶栏在「综合推演」旁增加 **推演·扩展**、**推演·方法**（见 [docs/SYNTHESIS_SUBPAGES.md](docs/SYNTHESIS_SUBPAGES.md)）。
 
 ## 许可与合规
 

@@ -260,6 +260,13 @@
   }
 
   function load() {
+    var feed = document.getElementById("evolution-feed");
+    if (feed) {
+      feed.setAttribute("aria-busy", "true");
+      feed.innerHTML =
+        '<p class="muted evolution-feed-loading">正在加载 manifest 与候选清单…</p>';
+    }
+
     var p1 = fetch(MANIFEST)
       .then(function (r) {
         return r.ok ? r.json() : null;
@@ -274,32 +281,35 @@
       .catch(function () {
         return null;
       });
-    Promise.all([p1, p2]).then(function (pair) {
-      var manifest = pair[0];
-      var candidates = pair[1];
-      var feed = document.getElementById("evolution-feed");
-      if (!manifest && !candidates && feed) {
-        if (window.location.protocol === "file:") {
-          feed.innerHTML =
-            '<p class="muted"><strong>无法加载 JSON：</strong>当前为 <code>file://</code> 协议，浏览器会拦截 <code>fetch</code>。请用本地 HTTP（如 <code>python3 -m http.server</code>）或部署后的 <strong>https</strong> 打开；说明见 <a href="evolution-loop.html">进化闭环</a>。</p>';
-        } else {
-          feed.innerHTML =
-            '<p class="muted"><strong>无法加载清单：</strong><code>assets/evolution-manifest.json</code> 与 <code>evolution-candidates.json</code> 均未取回（路径或网络）。请检查部署根目录是否含 <code>assets/</code>。</p>';
+    Promise.all([p1, p2])
+      .then(function (pair) {
+        var manifest = pair[0];
+        var candidates = pair[1];
+        if (!manifest && !candidates && feed) {
+          if (window.location.protocol === "file:") {
+            feed.innerHTML =
+              '<p class="muted"><strong>无法加载 JSON：</strong>当前为 <code>file://</code> 协议，浏览器会拦截 <code>fetch</code>。请用本地 HTTP（如 <code>python3 -m http.server</code>）或部署后的 <strong>https</strong> 打开；说明见 <a href="evolution-loop.html">进化闭环</a>。</p>';
+          } else {
+            feed.innerHTML =
+              '<p class="muted"><strong>无法加载清单：</strong><code>assets/evolution-manifest.json</code> 与 <code>evolution-candidates.json</code> 均未取回（路径或网络）。请检查部署根目录是否含 <code>assets/</code>。</p>';
+          }
+          return;
         }
-        return;
-      }
-      renderFeedSections(feed, manifest, candidates);
-      if (document.getElementById("simOptions")) {
-        injectLabBanner(manifest, candidates);
-        highlightLabFactors(collectLabFactors(manifest, candidates));
-      }
-    }).catch(function () {
-      var feed = document.getElementById("evolution-feed");
-      if (feed) {
-        feed.innerHTML =
-          '<p class="muted">无法加载清单（若用 file:// 打开，请改用本地 HTTP 服务）。说明见 <a href="evolution-loop.html">进化闭环</a>。</p>';
-      }
-    });
+        renderFeedSections(feed, manifest, candidates);
+        if (document.getElementById("simOptions")) {
+          injectLabBanner(manifest, candidates);
+          highlightLabFactors(collectLabFactors(manifest, candidates));
+        }
+      })
+      .catch(function () {
+        if (feed) {
+          feed.innerHTML =
+            '<p class="muted">无法加载清单（若用 file:// 打开，请改用本地 HTTP 服务）。说明见 <a href="evolution-loop.html">进化闭环</a>。</p>';
+        }
+      })
+      .finally(function () {
+        if (feed) feed.setAttribute("aria-busy", "false");
+      });
   }
 
   if (document.readyState === "loading") {

@@ -47,6 +47,8 @@
         <a href="decade-us.html">十年之问</a>
         <a href="modules-map.html">模块图谱</a>
         <a href="synthesis.html">综合推演</a>
+        <a href="synthesis-extensions.html">推演·扩展</a>
+        <a href="synthesis-methods.html">推演·方法</a>
         <a href="risk-geo.html">地缘与商业</a>
         <a href="net-biz-capital.html">网·商·资·工</a>
         <a href="national-strategy-opinion.html">战略·舆情</a>
@@ -64,9 +66,44 @@
 
     <div id="main" class="page-head" tabindex="-1">
       <h1>沙盘工坊</h1>
-      <p class="lead">整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。依赖流<strong>自上而下穿透</strong>；下方为可交互的<strong>七步向导</strong>与<strong>多因子合成</strong>。把勾选结果与 <a href="synthesis.html">综合推演</a> 中的配方 F、<a href="synthesis.html#stack-domains">叠加五域 I—V</a>（含 Q—V）、§7 复合表及 <a href="synthesis.html#perpetual">§11 迭代环</a>对照，可检查叙事是否经得起多轮压测。<a href="evolution-loop.html">进化闭环</a> 中的 <code>evolution-manifest.json</code> 会<strong>高亮</strong>与当前观测信号相关的因子（需本地 HTTP 打开以加载 JSON）。若习惯用<strong>某一研究领域的推演套路</strong>（可靠性树、敏感性分析、情景规划等），见 <a href="synthesis.html#methods">综合推演 · §12</a> 的对照表。</p>
+      <p class="lead">整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。依赖流<strong>自上而下穿透</strong>；下方为可交互的<strong>七步向导</strong>与<strong>多因子合成</strong>。把勾选结果与 <a href="synthesis.html">综合推演</a> 中的配方 F、<a href="synthesis-extensions.html#stack-domains">叠加五域 I—V</a>（含 Q—V）、§7 复合表及 <a href="synthesis-methods.html#perpetual">§11 迭代环</a>对照，可检查叙事是否经得起多轮压测。<a href="evolution-loop.html">进化闭环</a> 中的 <code>evolution-manifest.json</code> 会<strong>高亮</strong>与当前观测信号相关的因子（需本地 HTTP 打开以加载 JSON）。若习惯用<strong>某一研究领域的推演套路</strong>（可靠性树、敏感性分析、情景规划等），见 <a href="synthesis-methods.html#methods">综合推演 · §12</a> 的对照表。</p>
+      <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
+    <div class="page-flow-strip" role="img" aria-label="沙盘工坊使用顺序：先扫依赖流剖面，再勾选因子，走七步向导，最后与综合推演配方与扩展域对照压测">
+      <svg viewBox="0 0 700 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <marker id="labwkflow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#5c6b7e"/></marker>
+        </defs>
+        <text x="350" y="12" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">manifest 可高亮相关因子（本地 HTTP）</text>
+        <rect x="8" y="20" width="158" height="38" rx="8" fill="#141b26" stroke="#3d9cf5"/>
+        <text x="87" y="36" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">依赖流</text>
+        <text x="87" y="48" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">自上而下</text>
+        <line x1="166" y1="39" x2="190" y2="39" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#labwkflow)"/>
+        <rect x="194" y="20" width="158" height="38" rx="8" fill="#141b26" stroke="#a78bfa"/>
+        <text x="273" y="36" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">勾选因子</text>
+        <text x="273" y="48" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">多因子合成</text>
+        <line x1="352" y1="39" x2="376" y2="39" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#labwkflow)"/>
+        <rect x="380" y="20" width="158" height="38" rx="8" fill="#141b26" stroke="#f97316"/>
+        <text x="459" y="36" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">七步向导</text>
+        <text x="459" y="48" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">压测旋钮</text>
+        <line x1="538" y1="39" x2="562" y2="39" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#labwkflow)"/>
+        <rect x="566" y="20" width="126" height="38" rx="8" fill="#141b26" stroke="#4ecf8e"/>
+        <text x="629" y="36" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">对照配方</text>
+        <text x="629" y="48" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">§5 · 五域</text>
+      </svg>
+    </div>
+
+    <section class="card site-round-extension" id="ext-round-lab" aria-labelledby="hre-lab">
+      <h2 class="site-round-extension-h" id="hre-lab">推演扩展 · 本轮更新（沙盘工坊）</h2>
+      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">本轮七步向导每步补<strong>「若旋钮拧紧，哪条 §7 表行先绷紧」</strong>；依赖流与 manifest 高亮同读；对表 <a href="synthesis.html#continuation">继续推演矩阵</a> 沙盘点。</p>
+      <ul>
+        <li>因子勾选后写一句<strong>可对账输出</strong>（哪类账单/工单会先变）。</li>
+        <li>与 <a href="synthesis-extensions.html#stack-domains">§6 五域</a> 叠加时标明域间中介变量。</li>
+        <li>本地 HTTP 打开以加载 JSON 时，记录一次「高亮因子 ↔ 信号 id」对照。</li>
+        <li>压测推翻簇判断时，把反例写入 <a href="synthesis-methods.html#perpetual">§11</a> 笔记而非口头。</li>
+      </ul>
+    </section>
     <section>
       <h2>业务连续性依赖流（SVG）</h2>
       <div class="svg-wrap" role="img" aria-label="业务连续性依赖流：业务与连续性、合规、地缘、技术与安全自上而下">
@@ -127,6 +164,7 @@
 
     <footer><a href="risk-geo.html">← 地缘与商业</a> · <a href="index.html">回总览</a> · <a href="index.html#three-questions">三问</a></footer>
   </div>
+  <script src="assets/site-data-bus.js"></script>
   <script src="assets/motion.js"></script>
   <script src="assets/lab.js"></script>
   <script src="assets/evolution.js"></script>

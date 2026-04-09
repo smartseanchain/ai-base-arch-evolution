@@ -1,7 +1,7 @@
 /**
  * 仅 body.page-triad-future（evolution-triad.html）。
  *
- * 流程：#corridor-gate 入场 → kick 后 updateFromStepper（步进器 is-current / is-passed、aria-current）
+ * 流程：#corridor-gate 默认跳过入场 → kick 后 updateFromStepper（步进器 is-current / is-passed、aria-current）
  * → setEpoch（epoch-corridor|now|future）→ syncStationState（.triad-station）
  * → corridorFill（--corridor-fill）→ updateSpineMarks（.corridor-spine-mark）。
  *
@@ -23,16 +23,9 @@
   var spine = document.querySelector(".corridor-spine");
   var stepper = document.querySelector(".journey-stepper");
 
-  var GATE_MS = prefersReducedMotion() ? 0 : 1500;
-
+  /* 与全站其他模块页一致：不做双扉大门入场长动画，直接跳过（仍保留脊轨/步进逻辑） */
   if (gate) {
-    if (prefersReducedMotion()) {
-      gate.classList.add("corridor-gate--skip");
-    } else {
-      requestAnimationFrame(function () {
-        gate.classList.add("corridor-gate--opening");
-      });
-    }
+    gate.classList.add("corridor-gate--skip");
   }
 
   var epochLabels = [
@@ -169,14 +162,8 @@
     updateSpineMarks();
   }
 
-  var gateKickTimer = null;
-
   function onReduceMotionChange() {
     if (!prefersReducedMotion()) return;
-    if (gateKickTimer) {
-      clearTimeout(gateKickTimer);
-      gateKickTimer = null;
-    }
     if (gate) {
       gate.classList.add("corridor-gate--skip");
       gate.classList.remove("corridor-gate--opening");
@@ -192,14 +179,7 @@
     }
   }
 
-  if (prefersReducedMotion() || !gate) {
-    kick();
-  } else {
-    gateKickTimer = setTimeout(function () {
-      gateKickTimer = null;
-      kick();
-    }, GATE_MS);
-  }
+  kick();
 
   window.addEventListener(
     "hashchange",

@@ -47,6 +47,8 @@
         <a href="decade-us.html">十年之问</a>
         <a href="modules-map.html">模块图谱</a>
         <a href="synthesis.html">综合推演</a>
+        <a href="synthesis-extensions.html">推演·扩展</a>
+        <a href="synthesis-methods.html">推演·方法</a>
         <a href="risk-geo.html">地缘与商业</a>
         <a href="net-biz-capital.html">网·商·资·工</a>
         <a href="national-strategy-opinion.html">战略·舆情</a>
@@ -67,6 +69,7 @@
       <p class="lead">
         整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页是<strong>站级蓝图</strong>（<strong>智能化</strong>方向）：把「智能化」从单点脚本扩展为<strong>六域协同</strong>（数据、管道、分析、前端、运维、治理），并与 <a href="intelligent-evolution.html">智能进化</a>（模型/RAG 分层、§11 插槽⑨）<strong>对齐</strong>。闭环与插槽的<strong>概念总览</strong>见 <a href="evolvable-architecture.html">可进化架构</a>。目标不是一次性大重构，而是<strong>可验收、可分期的改造清单</strong>；定性脚手架与人工闸门不变。
       </p>
+      <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
     <div class="nexus-legend" aria-label="三色标签说明">
@@ -75,6 +78,36 @@
       <span class="nexus-tag imagine">里程碑 — P0→P2</span>
     </div>
 
+    <div class="page-flow-strip" role="img" aria-label="整体改造读法：先认清现状基线与管道 JSON 沉淀，再看六域协同分工，最后按 P0 到 P2 分期验收">
+      <svg viewBox="0 0 620 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <marker id="shovflow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#5c6b7e"/></marker>
+        </defs>
+        <text x="310" y="12" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">站级蓝图 · 可进化架构 / 智能进化 互链</text>
+        <rect x="24" y="20" width="168" height="38" rx="8" fill="#141b26" stroke="#3d9cf5"/>
+        <text x="108" y="38" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">现状基线</text>
+        <text x="108" y="50" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">管道 · 沉淀</text>
+        <line x1="192" y1="39" x2="220" y2="39" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#shovflow)"/>
+        <rect x="224" y="20" width="168" height="38" rx="8" fill="#141b26" stroke="#a78bfa"/>
+        <text x="308" y="38" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">六域协同</text>
+        <text x="308" y="50" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">数据 · 前端 · 治理</text>
+        <line x1="392" y1="39" x2="420" y2="39" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#shovflow)"/>
+        <rect x="424" y="20" width="172" height="38" rx="8" fill="#141b26" stroke="#4ecf8e"/>
+        <text x="510" y="38" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">P0 → P2</text>
+        <text x="510" y="50" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">分期验收</text>
+      </svg>
+    </div>
+
+    <section class="card site-round-extension" id="ext-round-overhaul" aria-labelledby="hre-overhaul">
+      <h2 class="site-round-extension-h" id="hre-overhaul">推演扩展 · 本轮更新（整体改造）</h2>
+      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">WBS 本轮与<strong>可验收里程碑</strong>绑定：每一域交付物对应 ARCHITECTURE 七层之一；对表 <a href="synthesis.html#continuation">继续推演矩阵</a> 工程三页。</p>
+      <ul>
+        <li>六域任一条目补「<strong>若延期，哪条推演读数最先失真</strong>」。</li>
+        <li>数据管道与 <a href="analysis-hub.html">分析快照</a> 字段对照，避免双写无索引。</li>
+        <li>P0→P2 分期旁注<strong>依赖的外部政策/云厂商节奏</strong>属短中长哪档。</li>
+        <li>与 <a href="evolvable-architecture.html">可进化架构</a> 插槽 ⑦—⑩ 映射表保持同文。</li>
+      </ul>
+    </section>
     <nav class="toc" aria-label="本页目录">
       <a href="#principles">目标与原则</a>
       <a href="#baseline">现状基线</a>
@@ -112,7 +145,7 @@
             <tr><td>数据</td><td>manifest / candidates；沉淀 JSON + SQLite（<code>sediment_entry</code>）；snapshot / trends JSON</td><td>统一<strong>人审决策</strong>日志表、语料切块索引、负例库</td></tr>
             <tr><td>管道</td><td><code>ingest_opinion_law.py</code>、merge、validate</td><td>异步队列、LLM 步骤、sidecar schema</td></tr>
             <tr><td>分析</td><td><code>analysis_engine.py</code>、热力/共现、<code>sediment_trends.py</code></td><td><code>analysis_engine --dry-run</code>（待加）、建议工单 JSON、与沉淀自动对账报表</td></tr>
-            <tr><td>前端</td><td><code>evolution.js</code>、<code>analysis.js</code>、各页导航</td><td>建议面板 UI、加载态/错误态统一</td></tr>
+            <tr><td>前端</td><td><code>evolution.js</code>、<code>analysis.js</code>、<code>site-data-bus.js</code>、各页导航</td><td>建议面板 UI、加载态/错误态统一</td></tr>
             <tr><td>运维</td><td>Docker、<code>docker-compose.dev.yml</code>、CI 校验 JSON、<code>update-pipeline</code> artifact</td><td>密钥管理、ingest 与 analysis <strong>分轨</strong>定时、分环境配置</td></tr>
             <tr><td>治理</td><td>§2 判据、人审 merge、§11 插槽</td><td>抽样复核比例、模型版本元数据策略</td></tr>
           </tbody>
@@ -195,7 +228,7 @@
           <li><strong>W2</strong> 语料切块：对关键 HTML/§11 导出块，生成 <code>chunk_id → 路径#锚点</code> 表。</li>
           <li><strong>W3</strong> ingest 插件点：在写入 candidates 前调用「清洗器」接口（规则或 HTTP 内网服务）。</li>
           <li><strong>W4</strong> analysis：dry-run、工单 JSON（仅建议）与 snapshot 分离。</li>
-          <li><strong>W5</strong> 前端：<code>evolution.js</code> / <code>analysis.js</code> 共用 fetch 封装与错误提示。</li>
+          <li><strong>W5</strong> 前端：<code>evolution.js</code> / <code>analysis.js</code> / <code>site-data-bus.js</code> 共用 fetch 封装与错误提示。</li>
           <li><strong>W6</strong> 配置：<code>.env.example</code> 文档化 API Key 与「仅 P1 启用」开关。</li>
           <li><strong>W7</strong> 定时：<code>bash scripts/run_update_pipeline.sh</code>；GitHub Actions 见 <code>.github/workflows/update-pipeline.yml</code>（artifact）；ingest 单独排期。</li>
           <li><strong>W8</strong> 安全：密钥不进仓库；外调模型日志脱敏策略。</li>
@@ -209,7 +242,7 @@
 
     <section id="slots">
       <h2>7. 与综合推演 §11 插槽</h2>
-      <p class="muted" style="margin-top:-0.35rem"><a href="synthesis.html#perpetual">§11</a> 中 ⑦⑧⑨ 已覆盖 manifest 管道、分析引擎与智能分层；本页对应<strong>扩展插槽 ⑩</strong>：把智能化当成<strong>跨页工程</strong>，按上表 WBS 与 P0—P2 推进，避免只在单脚本打补丁。</p>
+      <p class="muted" style="margin-top:-0.35rem"><a href="synthesis-methods.html#perpetual">§11</a> 中 ⑦⑧⑨ 已覆盖 manifest 管道、分析引擎与智能分层；本页对应<strong>扩展插槽 ⑩</strong>：把智能化当成<strong>跨页工程</strong>，按上表 WBS 与 P0—P2 推进，避免只在单脚本打补丁。</p>
       <div class="callout imagine">
         <strong>读法：</strong>落地时以<strong>工作包</strong>拆任务；每期结束检查「是否增加可观测性」与「是否收紧闸门」，再进入下一模型层级。
       </div>
@@ -227,9 +260,10 @@
     </section>
 
     <footer>
-      <a href="evolvable-architecture.html">← 可进化架构</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="synthesis.html#perpetual">综合推演 §11</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
+      <a href="evolvable-architecture.html">← 可进化架构</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="synthesis-methods.html#perpetual">综合推演 §11</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
+  <script src="assets/site-data-bus.js"></script>
   <script src="assets/motion.js"></script>
 </body>
 </html>

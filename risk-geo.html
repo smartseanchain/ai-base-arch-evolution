@@ -47,6 +47,8 @@
         <a href="decade-us.html">十年之问</a>
         <a href="modules-map.html">模块图谱</a>
         <a href="synthesis.html">综合推演</a>
+        <a href="synthesis-extensions.html">推演·扩展</a>
+        <a href="synthesis-methods.html">推演·方法</a>
         <a href="risk-geo.html" class="current">地缘与商业</a>
         <a href="net-biz-capital.html">网·商·资·工</a>
         <a href="national-strategy-opinion.html">战略·舆情</a>
@@ -65,8 +67,39 @@
     <div id="main" class="page-head" tabindex="-1">
       <h1>地缘冲击与商业运营</h1>
       <p class="lead">整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。热力条表示该通道在冲突/制裁情景下对业务的<strong>相对影响幅度</strong>（定性）；右侧为架构响应关键词。</p>
+      <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
+    <div class="page-flow-strip" role="img" aria-label="地缘商业读法：按冲击通道看相对热力，再落到架构与运营响应关键词">
+      <svg viewBox="0 0 600 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <marker id="riskgeoflow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#5c6b7e"/></marker>
+        </defs>
+        <text x="300" y="12" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">定性热力条 · 非精确预测</text>
+        <rect x="40" y="20" width="160" height="36" rx="8" fill="#141b26" stroke="#f97316"/>
+        <text x="120" y="36" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">冲击通道</text>
+        <text x="120" y="48" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">连通 · 云 · 支付</text>
+        <line x1="200" y1="38" x2="228" y2="38" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#riskgeoflow)"/>
+        <rect x="232" y="20" width="160" height="36" rx="8" fill="#141b26" stroke="#3d9cf5"/>
+        <text x="312" y="36" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">热力定性</text>
+        <text x="312" y="48" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">高 · 中 · 低</text>
+        <line x1="392" y1="38" x2="420" y2="38" stroke="#5c6b7e" stroke-width="1.5" marker-end="url(#riskgeoflow)"/>
+        <rect x="424" y="20" width="136" height="36" rx="8" fill="#141b26" stroke="#4ecf8e"/>
+        <text x="492" y="36" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">架构响应</text>
+        <text x="492" y="48" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">多路径 · Exit</text>
+      </svg>
+    </div>
+
+    <section class="card site-round-extension" id="ext-round-risk" aria-labelledby="hre-risk">
+      <h2 class="site-round-extension-h" id="hre-risk">推演扩展 · 本轮更新（地缘与商业）</h2>
+      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">热力条本轮当<strong>检查单</strong>用：每条「高」旁须有一句架构响应是否已在跑；对表 <a href="synthesis.html#recipes">配方 D/G</a> 与 <a href="synthesis.html#continuation">继续推演矩阵</a>。</p>
+      <ul>
+        <li>SME vs 大型组织：分开写<strong>最薄环</strong>（常在支付或身份，而非骨干网）。</li>
+        <li>与 <a href="architecture.html">架构</a> Cell 化叙事交叉：纸面多活是否经过年检演练。</li>
+        <li>制裁情景下标注<strong>合同 force majeure 与数据出境</strong>谁先触发。</li>
+        <li>热力调整时同步想沙盘因子 <code>sanction</code>、<code>geo</code> 是否勾选。</li>
+      </ul>
+    </section>
     <section>
       <h2>冲击通道 × 热力</h2>
       <div class="card">
@@ -166,6 +199,7 @@
 
     <footer><a href="decade.html">← 十年展望</a> · <a href="decade-scenes.html">十年场景</a> · <a href="synthesis.html">综合推演</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a></footer>
   </div>
+  <script src="assets/site-data-bus.js"></script>
   <script src="assets/motion.js"></script>
 </body>
 </html>

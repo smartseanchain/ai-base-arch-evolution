@@ -19,6 +19,17 @@
     el.innerHTML = msg;
   }
 
+  function fetchSnapshotShared() {
+    if (window.SiteDataBus && typeof SiteDataBus.loadSnapshot === "function") {
+      return SiteDataBus.loadSnapshot();
+    }
+    return fetch("assets/analysis-snapshot.json")
+      .then(function (r) {
+        if (!r.ok) throw new Error("snap");
+        return r.json();
+      });
+  }
+
   if (window.location.protocol === "file:") {
     show(
       '<p class="muted" style="margin:0;font-size:0.88rem">规则闭环摘要需通过 <strong>http(s)</strong> 加载快照；本地请用静态服务器打开本站，或直看 <a href="analysis-hub.html">分析引擎</a>。</p>',
@@ -27,11 +38,14 @@
     return;
   }
 
-  fetch("assets/analysis-snapshot.json")
-    .then(function (r) {
-      if (!r.ok) throw new Error("snap");
-      return r.json();
-    })
+  el.hidden = false;
+  el.setAttribute("aria-busy", "true");
+  el.className =
+    "card evolution-closure-summary evolution-closure-summary--muted";
+  el.innerHTML =
+    '<p class="muted" style="margin:0;font-size:0.88rem">正在读取分析快照…</p>';
+
+  fetchSnapshotShared()
     .then(function (data) {
       var gaps = data.hint_closure_gaps;
       var n = Array.isArray(gaps) ? gaps.length : 0;
@@ -88,5 +102,8 @@
         '<p class="muted" style="margin:0;font-size:0.88rem">无法加载 <code>assets/analysis-snapshot.json</code>。请在仓库根运行 <code>make analyze</code> 后部署，或前往 <a href="analysis-hub.html">分析引擎</a> 查看说明。</p>',
         "muted"
       );
+    })
+    .finally(function () {
+      el.removeAttribute("aria-busy");
     });
 })();
