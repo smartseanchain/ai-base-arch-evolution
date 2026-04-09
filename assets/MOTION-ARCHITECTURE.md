@@ -27,7 +27,7 @@
 
 ## 4. 维护提示
 
-- **全站顶栏 `<header class="site-nav">`**：维护 **`partials/site-nav.inc.html`**，再运行 **`make sync-nav`**（见仓库根 README）；勿在单页手改导航链以免漂移。
+- **全站顶栏与 skip-bar**：维护 **`partials/site-nav.inc.html`** 与 **`partials/skip-bar.inc.html`**，再运行 **`make sync-nav`**（见仓库根 README）；勿在单页手改以免漂移。
 - 增删演进页「站点」时：同时改 **五处** HTML（`section` id、`journey-stepper` 链接、`.corridor-spine-mark` 数量）、`journey-stepper.js` 中 `STATION_IDS` / `epochLabels`、站牌文案。
 - 改大门时长时：同时改 **`GATE_MS`**（默认 `1500`，见 `journey-stepper.js`）与 `triad.css` 中 `.corridor-gate--opening` 各子动画（当前最长约门扇 `1.36s` + 延迟、`layer-fade` `1.42s`）；`GATE_MS` 应略大于实际最长结束时间，避免 `kick()` 过早。
 - 演进页样式：`triad.css` 已独立；改 `site.css` 设计令牌时注意 `triad.css` 仍依赖 `:root` 变量。

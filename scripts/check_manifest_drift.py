@@ -3,7 +3,8 @@
 对账：evolution-manifest.json（及候选）中 maps_to.pages 须在 evolution-registry.json 内且文件存在；
 maps_to.lab_factors 须与 registry（并与 lab.js 解析结果）一致。
 另校验 ingest_config.json、maps_to_hints.json 中的 pages / lab_factors；
-gen-sitemap.py 的 PRIORITY 键须 ⊆ registry.pages。
+gen-sitemap.py 的 PRIORITY 键须 ⊆ registry.pages；
+partials/site-nav.inc.html 中 href="*.html" 须 ⊆ registry.pages。
 不写文件；供 CI / pre-commit / make validate。
 """
 from __future__ import annotations
@@ -167,6 +168,19 @@ def main() -> None:
 
     all_errs: list[str] = []
 
+    SITE_NAV_PARTIAL = ROOT / "partials" / "site-nav.inc.html"
+    if SITE_NAV_PARTIAL.is_file():
+        nav_hrefs = set(
+            re.findall(
+                r'href="([a-zA-Z0-9._-]+\.html)"',
+                SITE_NAV_PARTIAL.read_text(encoding="utf-8"),
+            )
+        )
+        for h in sorted(nav_hrefs - allowed_pages):
+            all_errs.append(
+                f"partials/site-nav.inc.html: 未知页面（须 ∈ registry）· {h}"
+            )
+
     if INGEST_CONFIG.is_file():
         ic = json.loads(INGEST_CONFIG.read_text(encoding="utf-8"))
         ip, ifac = collect_ingest_maps_refs(ic)
@@ -210,7 +224,7 @@ def main() -> None:
         f"OK: 对账通过 · registry 页面 {len(allowed_pages)} · lab_factors {n_lab} · "
         "已检查 manifest"
         + (" + candidates" if CANDIDATES.is_file() else "")
-        + " + ingest 配置"
+        + " + ingest 配置 + site-nav partial"
     )
 
 

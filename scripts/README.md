@@ -13,7 +13,7 @@
 | `python3 scripts/validate-evolution-candidates.py` | 校验候选结构 | 否 |
 | `python3 scripts/check_manifest_drift.py` | **对账**：`maps_to.pages` ∈ **`scripts/evolution-registry.json`** 且文件存在；`lab_factors` 与 registry 及 **`lab.js` 因子 id 集合一致**；`ingest_config` / `maps_to_hints` / `gen-sitemap` PRIORITY | 否 |
 | `make test` | `scripts/tests` · unittest（`PYTHONPATH=scripts`） | 否 |
-| `python3 scripts/sync_site_nav.py` / `make sync-nav` | 按 **`partials/site-nav.inc.html`** 写回根目录各页 `<header class="site-nav">`（跳过 404、legacy 单页） | 否 |
+| `python3 scripts/sync_site_nav.py` / `make sync-nav` | 按 **`partials/skip-bar.inc.html`** + **`partials/site-nav.inc.html`** 写回根目录各页（跳过 404、legacy 单页） | 否 |
 | `make check-site-nav` | 顶栏与模板一致（已并入 `make validate`） | 否 |
 | `bash scripts/install-git-hooks.sh` | 启用 `.githooks/pre-commit`（validate + `--check`） | 否 |
 | `SITE_BASE=https://… make sitemap` | 生成根目录 `sitemap.xml` | 否 |

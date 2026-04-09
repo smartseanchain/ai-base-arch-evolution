@@ -4,7 +4,7 @@
 help:
 	@echo "make validate   - 校验 manifest/候选 + 对账 + 顶栏 + 单测 + analysis_engine --check（与 pre-commit 一致）"
 	@echo "make test       - scripts/tests 下 unittest（PYTHONPATH=scripts）"
-	@echo "make sync-nav   - 按 partials/site-nav.inc.html 写回各页 site-nav"
+	@echo "make sync-nav   - 按 partials 写回各页 skip-bar + site-nav"
 	@echo "make check-site-nav - 仅检查顶栏是否与模板一致（CI 同款）"
 	@echo "make check-analysis - 分析引擎 --check（不写 snapshot，CI 同款）"
 	@echo "make ingest     - 仅抓取候选（需外网）"

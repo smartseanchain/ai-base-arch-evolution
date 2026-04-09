@@ -11,7 +11,7 @@
 - [ ] 每条新信号能回答「三问」判据（见站内 `evolution-loop.html` §5 · 人必须做什么）
 - [ ] `maps_to.pages` 与 `lab_factors` 已人工核对；对账脚本无报错
 - [ ] 若新增根目录 HTML 或沙盘因子：已同步 **`scripts/evolution-registry.json`** 与 **`assets/lab.js`**
-- [ ] 若改全站顶栏链接：已更新 **`partials/site-nav.inc.html`** 并执行 **`make sync-nav`**
+- [ ] 若改全站顶栏或 skip-bar：已更新 **`partials/site-nav.inc.html`** / **`partials/skip-bar.inc.html`** 并执行 **`make sync-nav`**
 
 ## 备注
 

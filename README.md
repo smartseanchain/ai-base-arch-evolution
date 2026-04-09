@@ -61,10 +61,11 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 
 本地：`make test` 仅跑单测；`make validate` 含单测与全套校验。
 
-### 全站顶栏（导航）
+### 全站顶栏与 skip-bar
 
-- 分页 HTML 的 **`<header class="site-nav">`** 由模板 **`partials/site-nav.inc.html`** 生成：`make sync-nav` 写回、`make check-site-nav` 校验（已含于 `make validate` 与 CI）。
-- 增删导航链时**只改模板**再跑 `make sync-nav`；`index.html` 顶栏「三问」为 `#three-questions`，其余页为 `index.html#three-questions`（由脚本自动区分）。
+- **`<div class="skip-bar">`** 与 **`<header class="site-nav">`** 由模板生成：**`partials/skip-bar.inc.html`**、**`partials/site-nav.inc.html`**。`make sync-nav` 写回二者，`make check-site-nav` 校验（已含于 `make validate` 与 CI）。
+- 增删导航链或无障碍快捷链时**只改对应 partial** 再跑 `make sync-nav`。`index.html` 上「三问导读 / 顶栏三问」为 `#three-questions`，其余页为 `index.html#three-questions`（脚本自动区分）。
+- 顶栏内各 `href="*.html"` 须落在 **`scripts/evolution-registry.json`** 的 `pages` 内（`check_manifest_drift` 会查）。
 
 ## 许可与合规
 
