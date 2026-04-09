@@ -33,8 +33,11 @@ def main() -> None:
     ba = hd.get("by_action") or {}
     tot = hd.get("total")
     gen = data.get("generated_at") or "—"
+    run = data.get("run") if isinstance(data.get("run"), dict) else {}
+    rid = run.get("run_id") or "—"
+    rev = run.get("repo_revision") or "—"
     print(
-        f"status · generated_at={gen} · "
+        f"status · generated_at={gen} · run_id={rid} · repo_revision={rev} · "
         f"combined={src.get('combined_for_analysis', '—')} · "
         f"manifest={src.get('manifest_signals', '—')} · "
         f"candidate={src.get('candidate_signals', '—')} · "

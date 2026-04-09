@@ -41,6 +41,47 @@ flowchart TB
   end
 ```
 
+<a id="fitness-functions"></a>
+
+## 适应度函数（自动化守护什么）
+
+与「演进式架构」中的 *fitness functions* 同构：下列检查失败即阻断合并或提示修复，避免站内核与展示 silently 漂移。
+
+| 检查 | 守护目标 |
+|------|----------|
+| `validate-evolution-manifest.py` | 正式信号库结构合法、可消费 |
+| `validate-evolution-candidates.py` | 候选池结构合法，避免 ingest 写坏 JSON |
+| `validate_evolution_hint_decisions.py` | 决策记录与 `rule_id`、页面白名单一致，可追溯 |
+| `check_manifest_drift.py` | **单一注册表**：`maps_to.pages`、`lab_factors`、ingest、sitemap、hint-rules 与真实页面/沙盘因子对齐 |
+| `sync_site_nav.py --check` | 顶栏与 partial 一致，避免读者迷路 |
+| `scripts/tests` | 分析规则、闭环、diff 提示等回归 |
+| `analysis_engine.py --check` | 当日分析逻辑产出结构正确（含 `run` 血缘块） |
+| `validate_analysis_snapshot_schema.py` | **已提交** `analysis-snapshot.json` 与引擎契约一致，避免 hub 读到缺字段旧快照 |
+
+<a id="lineage"></a>
+
+## 单次运行血缘（run）
+
+每次执行 `analysis_engine.py` 写入快照时，根级增加 **`run`**：
+
+- **`run_id`**：本次运行的唯一标识（UTC 日期前缀 + 随机十六进制），便于在沉淀与日志中对齐「哪次 analyze」。
+- **`repo_revision`**：`git rev-parse --short HEAD`，非 git 环境为 `unknown`。
+
+同一日多次 `analysis_engine.py --sediment` 时，当日 `data/sediment.json` 条目会更新，并带上**最后一次**运行的 `run_id` / `repo_revision`；SQLite `sediment_entry` 同步双写这两列（旧库启动时自动 `ALTER`）。
+
+人读：`make status` 会打印 `run_id` 与 `repo_revision`。
+
+**JSON Schema（文档契约）**：[`docs/schemas/analysis-snapshot.schema.json`](schemas/analysis-snapshot.schema.json)（与 `validate_analysis_snapshot_schema.py` 的必填项一致；大版本演进时同步改 `schema_version` 与校验脚本）。
+
+<a id="decision-traceability"></a>
+
+## 决策与正文的双向追溯
+
+- **机器侧**：`assets/evolution-hint-decisions.json` 每条可含 `rule_id`（对应 `evolution-hint-rules.json`）、`related_pages`、`action`（done / rejected / deferred）。
+- **PR / 改文**：建议在描述或正文中引用 **`rule_id`** 或决策条目的 **`id`**，与「对应哪条进化提示 / 哪条信号」一并说明（与 [`.github/pull_request_template.md`](../.github/pull_request_template.md) 自检项一致）。
+
+这样分析页上的 **`hint_closure_gaps`**、快照里的统计与人工改 HTML 能落到同一审计链。
+
 ## 关键文件
 
 | 路径 | 作用 |
@@ -104,7 +145,7 @@ flowchart TB
 ### 可继续优化的方向（按成本）
 
 1. **文档与命名（低成本）**：在 PR / issue 中固定使用上表术语，避免「分析」与「生成」混谈；README 已链到本文。  
-2. **契约（中成本）**：为 `analysis-snapshot.json` / `sediment` 条目增加 **schema_version** 字段演进策略（大改时递增 + 校验脚本分支）；当前快照已有 `schema_version`。  
+2. **契约（中成本）**：快照已有 `schema_version`；**已增加** `run` 血缘与 `docs/schemas/analysis-snapshot.schema.json` + `validate_analysis_snapshot_schema.py`。`sediment` 条目可选带 `run_id` / `repo_revision`（与 `--sediment` 同跑 analyze 时写入）。大改时递增 `schema_version` 并同步校验脚本。  
 3. **代码分包（高成本，可选）**：将 `scripts/` 拆为 `ingest/`、`analysis/`、`sediment/`、`validate/` 包，**仅**在单测与 import 路径稳定后做；功能上已与上表模块对齐，拆包主要是可维护性。  
 4. **内容生成插槽（按需）**：若引入自动生成草稿，单独目录（如 `scripts/draft/`）+ 明确 **不** 自动写 manifest，输出进 `assets/` 或 PR 附件。
 
@@ -116,6 +157,7 @@ flowchart TB
 
 ## 延伸阅读
 
+- 适应度函数与血缘：[§ 适应度函数](#fitness-functions)、[§ 单次运行血缘](#lineage)、[§ 决策追溯](#decision-traceability)
 - 双周节奏：[EVOLUTION_RUNBOOK.md](./EVOLUTION_RUNBOOK.md)
 - 脚本命令：[../scripts/README.md](../scripts/README.md)
 - 全站**标题 · 三色图例 · TOC · 图形无障碍**三轮对照：[SITE_REVIEW_THREE_PASSES.md](./SITE_REVIEW_THREE_PASSES.md)

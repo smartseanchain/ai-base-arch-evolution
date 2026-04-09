@@ -14,11 +14,20 @@
 | 2 | 浏览候选：将噪点标 `review_state: noise`（不参与分析热力）；拟入库标 `queued_for_manifest`；可写 `reviewer_note`（≤500 字） | 本地或 PR 中更新 `evolution-candidates.json` |
 | 3 | 对值得入库的 id（须已 `queued_for_manifest`）：`python3 scripts/merge_candidates_to_manifest.py …`（应急 `--force`） | 更新 `evolution-manifest.json` |
 | 4 | `make validate` | 通过校验 + `analysis_engine --check` + **对账脚本** |
-| 5 | `make analyze`（或 `make trends` 仅刷新趋势） | 更新 `analysis-snapshot.json`、**`data/sediment.json`**（含 `hint_closure_gaps_n` / `hint_decisions_total`）、**`assets/sediment-trends.json`**（含 `closure_backlog` 近 14 日） |
-| 6 | 打开 `analysis-hub.html`（或读 `analysis-snapshot.json`） | 看热力与共现 |
+| 5 | `make analyze`（或 `make trends` 仅刷新趋势） | 更新 `analysis-snapshot.json`（根级 **`run.run_id`** / **`run.repo_revision`** 标识本次流水线，便于与 Actions 日志或本地日志对齐）、**`data/sediment.json`**（当日条目同步 `run_id` / `repo_revision`；含 `hint_closure_gaps_n` / `hint_decisions_total`）、**`assets/sediment-trends.json`**（含 `closure_backlog` 近 14 日） |
+| 6 | 打开 `analysis-hub.html`（或读 `analysis-snapshot.json`） | 看热力与共现；需要核对「哪次跑出来的」时看 `run` 块 |
 | 7 | 处理 **≥1 条** `evolution_hints`（`analysis-snapshot.json` 中为对象时可点链到 `target_pages`）：**落实**或 **显式否决**；在 **`assets/evolution-hint-decisions.json`** 追加一条记录（`id`、`action`: `done` / `rejected` / `deferred`、`recorded_at` 等；**若规则在 `evolution-hint-rules.json` 中 `track_closure: true`，请填写 `rule_id`** 与提示一致，以便快照清空 `hint_closure_gaps`） | 闭环有可检索的决策痕迹；分析页与快照 `sources.hint_decisions` 可看到累计统计 |
 | 8 | 打开 `lab.html`：按热力勾选因子做一轮沙盘 | 与 manifest 映射一致性感性校验 |
 | 9 | `git commit` & `push` | 站点与仓库同步 |
+
+## 抓取失败可见性（ingest）
+
+- **GitHub Actions**：`ingest-pipeline` 的 **Job Summary** 会列出各 RSS / 法规源的 `ok` / `failed` 与错误摘要（依赖 `WRITE_INGEST_SUMMARY=1` 与 `ingest-summary.json`）。定时失败会另开 Issue。
+- **本地**：`WRITE_INGEST_SUMMARY=1 bash scripts/run_ingest_only.sh` 写入根目录 `ingest-summary.json`（已 gitignore），便于与 CI 对齐排查。
+
+## PR 与决策追溯
+
+改 HTML 或 manifest 时，建议在 PR 描述中写明：**对应 `evolution-hint-decisions.json` 的 `id` 或 `rule_id`**，或对应 **`evolution-manifest` / 候选 `signals[].id`**。与 [ARCHITECTURE.md § 决策与正文的双向追溯](./ARCHITECTURE.md#decision-traceability) 一致。
 
 ## 关于「规则闭环缺口」
 

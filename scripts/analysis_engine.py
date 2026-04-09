@@ -16,6 +16,8 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from lineage_utils import build_run_block
+
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "assets" / "evolution-manifest.json"
 CANDIDATES = ROOT / "assets" / "evolution-candidates.json"
@@ -392,6 +394,8 @@ def append_sediment(snapshot_meta: dict) -> None:
             hint_decisions_total=int(
                 snapshot_meta.get("hint_decisions_total") or 0
             ),
+            run_id=str(snapshot_meta.get("run_id") or ""),
+            repo_revision=str(snapshot_meta.get("repo_revision") or ""),
         )
         print(f"已更新 SQLite {DB_PATH}")
     except Exception as exc:  # noqa: BLE001
@@ -403,6 +407,7 @@ def _expected_snapshot_keys() -> frozenset[str]:
         {
             "schema_version",
             "generated_at",
+            "run",
             "sources",
             "module_heat",
             "factor_heat",
@@ -471,9 +476,11 @@ def main() -> None:
     analysis = run_analysis(signals, prev_snapshot, hint_rules, decisions_doc)
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    run = build_run_block()
     out = {
         "schema_version": 1,
         "generated_at": now,
+        "run": run,
         "sources": {
             "manifest_signals": len(manifest.get("signals") or []),
             "candidate_signals": len(
@@ -529,6 +536,18 @@ def main() -> None:
         ):
             print("错误: sources.hint_decisions.by_action 结构异常", file=sys.stderr)
             sys.exit(1)
+        run = out.get("run")
+        if not isinstance(run, dict):
+            print("错误: run 须为对象", file=sys.stderr)
+            sys.exit(1)
+        rid = run.get("run_id")
+        rev = run.get("repo_revision")
+        if not isinstance(rid, str) or not rid.strip():
+            print("错误: run.run_id 须为非空字符串", file=sys.stderr)
+            sys.exit(1)
+        if not isinstance(rev, str) or not rev.strip():
+            print("错误: run.repo_revision 须为非空字符串", file=sys.stderr)
+            sys.exit(1)
         gaps_n = len(out.get("hint_closure_gaps") or [])
         print(
             f"OK --check · combined={src['combined_for_analysis']} "
@@ -552,6 +571,8 @@ def main() -> None:
                 "top_pages": [x["page"] for x in analysis["module_heat"][:5]],
                 "hint_closure_gaps_n": len(analysis.get("hint_closure_gaps") or []),
                 "hint_decisions_total": hd_tot,
+                "run_id": run["run_id"],
+                "repo_revision": run["repo_revision"],
             }
         )
         print(f"已更新 {SEDIMENT}")

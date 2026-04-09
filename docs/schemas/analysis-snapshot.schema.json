@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local/arch/analysis-snapshot.schema.json",
+  "title": "analysis-snapshot",
+  "description": "scripts/analysis_engine.py 写入的 assets/analysis-snapshot.json 顶层契约（schema_version=1）。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "generated_at",
+    "run",
+    "sources",
+    "module_heat",
+    "factor_heat",
+    "kind_distribution",
+    "cooccurrence",
+    "evolution_hints",
+    "hint_closure_gaps"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "generated_at": { "type": "string", "minLength": 1 },
+    "run": {
+      "type": "object",
+      "required": ["run_id", "repo_revision"],
+      "properties": {
+        "run_id": { "type": "string", "minLength": 1 },
+        "repo_revision": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    },
+    "sources": { "type": "object" },
+    "module_heat": { "type": "array" },
+    "factor_heat": { "type": "array" },
+    "kind_distribution": { "type": "array" },
+    "cooccurrence": { "type": "array" },
+    "evolution_hints": { "type": "array" },
+    "hint_closure_gaps": { "type": "array" }
+  }
+}

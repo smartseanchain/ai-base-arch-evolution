@@ -10,7 +10,7 @@
 | 沉淀 + 本地库 | `analysis_engine.py --sediment`、`sqlite_store.py`、`import_sediment_json_to_sqlite.py` |
 | 跨日汇总 | `sediment_trends.py` |
 | 规则闭环 JSON | `validate_evolution_hint_decisions.py` |
-| 闸门 / 对账 | `validate-evolution-*.py`、`check_manifest_drift.py`、`sync_site_nav.py` |
+| 闸门 / 对账 | `validate-evolution-*.py`、`validate_analysis_snapshot_schema.py`、`check_manifest_drift.py`、`sync_site_nav.py` |
 | 站点辅助 | `gen-sitemap.py` |
 
 | 命令 | 作用 | 外网 |
@@ -22,7 +22,8 @@
 | `bash scripts/run_update_pipeline.sh` | 校验 manifest/候选 → `analysis_engine --sediment` → `sediment_trends`；沉淀含 `hint_closure_gaps_n` / `hint_decisions_total`，趋势 JSON 含 `closure_backlog` | 否 |
 | `make trends` / `python3 scripts/sediment_trends.py` | 仅根据已有沉淀重算 `assets/sediment-trends.json`（不跑分析引擎） | 否 |
 | `make status` / `python3 scripts/print_evolution_status.py` | 打印 `analysis-snapshot.json` 合并计数、hint 决策统计、闭环缺口条数（及 rule_id 列表） | 否 |
-| `python3 scripts/analysis_engine.py --check` | 跑分析逻辑、校验输出结构，**不写** `analysis-snapshot.json`（CI / pre-commit；**不**与上期快照做 diff 提示）；`sources` 含 `candidate_review_breakdown`、`hint_decisions` | 否 |
+| `python3 scripts/analysis_engine.py --check` | 跑分析逻辑、校验输出结构，**不写** `analysis-snapshot.json`（CI / pre-commit；**不**与上期快照做 diff 提示）；根级含 **`run.run_id` / `run.repo_revision`** 血缘；`sources` 含 `candidate_review_breakdown`、`hint_decisions` | 否 |
+| `python3 scripts/validate_analysis_snapshot_schema.py` | 校验**已提交**的 `assets/analysis-snapshot.json` 顶层字段与 `run`（无文件则跳过）；已并入 `make validate` | 否 |
 | `python3 scripts/merge_candidates_to_manifest.py <id>…` | 人审后合并进 manifest；**须** `review_state=queued_for_manifest`（`--force` 跳过） | 否 |
 | `python3 scripts/validate-evolution-manifest.py` | 校验正式库结构 | 否 |
 | `python3 scripts/validate-evolution-candidates.py` | 校验候选结构 | 否 |

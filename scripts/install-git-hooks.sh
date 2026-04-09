@@ -4,4 +4,4 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 git config core.hooksPath .githooks
-echo "已设置 core.hooksPath=.githooks（pre-commit：校验 manifest/候选 + analysis_engine --check）"
+echo "已设置 core.hooksPath=.githooks（pre-commit：校验 manifest/候选 + analysis_engine --check + 已提交快照契约）"

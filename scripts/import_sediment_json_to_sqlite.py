@@ -36,6 +36,8 @@ def main() -> None:
             top_pages=list(e.get("top_pages") or []),
             hint_closure_gaps_n=int(e.get("hint_closure_gaps_n") or 0),
             hint_decisions_total=int(e.get("hint_decisions_total") or 0),
+            run_id=str(e.get("run_id") or ""),
+            repo_revision=str(e.get("repo_revision") or ""),
         )
         n += 1
     print(f"已导入 {n} 条沉淀到 SQLite（data/evolution.db）")

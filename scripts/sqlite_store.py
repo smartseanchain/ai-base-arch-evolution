@@ -43,6 +43,14 @@ def _migrate_sediment_columns(conn: sqlite3.Connection) -> None:
             "ALTER TABLE sediment_entry ADD COLUMN hint_decisions_total "
             "INTEGER NOT NULL DEFAULT 0"
         )
+    if "run_id" not in existing:
+        conn.execute(
+            "ALTER TABLE sediment_entry ADD COLUMN run_id TEXT NOT NULL DEFAULT ''"
+        )
+    if "repo_revision" not in existing:
+        conn.execute(
+            "ALTER TABLE sediment_entry ADD COLUMN repo_revision TEXT NOT NULL DEFAULT ''"
+        )
 
 
 def connect() -> sqlite3.Connection:
@@ -68,6 +76,8 @@ def upsert_sediment(
     top_pages: list[str],
     hint_closure_gaps_n: int = 0,
     hint_decisions_total: int = 0,
+    run_id: str = "",
+    repo_revision: str = "",
 ) -> None:
     init_db()
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -78,9 +88,10 @@ def upsert_sediment(
               date, manifest_n, candidate_n,
               top_factors_json, top_pages_json,
               hint_closure_gaps_n, hint_decisions_total,
+              run_id, repo_revision,
               updated_at
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(date) DO UPDATE SET
               manifest_n = excluded.manifest_n,
               candidate_n = excluded.candidate_n,
@@ -88,6 +99,8 @@ def upsert_sediment(
               top_pages_json = excluded.top_pages_json,
               hint_closure_gaps_n = excluded.hint_closure_gaps_n,
               hint_decisions_total = excluded.hint_decisions_total,
+              run_id = excluded.run_id,
+              repo_revision = excluded.repo_revision,
               updated_at = excluded.updated_at
             """,
             (
@@ -98,6 +111,8 @@ def upsert_sediment(
                 json.dumps(top_pages, ensure_ascii=False),
                 int(hint_closure_gaps_n),
                 int(hint_decisions_total),
+                str(run_id or ""),
+                str(repo_revision or ""),
                 now,
             ),
         )
@@ -112,22 +127,28 @@ def list_sediment_entries() -> list[dict[str, Any]]:
     with connect() as conn:
         cur = conn.execute(
             "SELECT date, manifest_n, candidate_n, top_factors_json, top_pages_json, "
-            "hint_closure_gaps_n, hint_decisions_total FROM sediment_entry ORDER BY date"
+            "hint_closure_gaps_n, hint_decisions_total, run_id, repo_revision "
+            "FROM sediment_entry ORDER BY date"
         )
         rows = cur.fetchall()
     out: list[dict[str, Any]] = []
     for r in rows:
-        out.append(
-            {
-                "date": r["date"],
-                "manifest_n": r["manifest_n"],
-                "candidate_n": r["candidate_n"],
-                "top_factors": json.loads(r["top_factors_json"] or "[]"),
-                "top_pages": json.loads(r["top_pages_json"] or "[]"),
-                "hint_closure_gaps_n": int(r["hint_closure_gaps_n"] or 0),
-                "hint_decisions_total": int(r["hint_decisions_total"] or 0),
-            }
-        )
+        row = {
+            "date": r["date"],
+            "manifest_n": r["manifest_n"],
+            "candidate_n": r["candidate_n"],
+            "top_factors": json.loads(r["top_factors_json"] or "[]"),
+            "top_pages": json.loads(r["top_pages_json"] or "[]"),
+            "hint_closure_gaps_n": int(r["hint_closure_gaps_n"] or 0),
+            "hint_decisions_total": int(r["hint_decisions_total"] or 0),
+        }
+        run_id = str(r["run_id"] or "").strip()
+        rev = str(r["repo_revision"] or "").strip()
+        if run_id:
+            row["run_id"] = run_id
+        if rev:
+            row["repo_revision"] = rev
+        out.append(row)
     return out
 
 
