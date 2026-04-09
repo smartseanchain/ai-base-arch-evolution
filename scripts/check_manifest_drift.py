@@ -5,7 +5,8 @@ maps_to.lab_factors 须与 registry（并与 lab.js 解析结果）一致。
 另校验 ingest_config.json、maps_to_hints.json 中的 pages / lab_factors；
 gen-sitemap.py 的 PRIORITY 键须 ⊆ registry.pages；
 partials/site-nav.inc.html 中 href="*.html" 须 ⊆ registry.pages；
-evolution-hint-rules.json 中 rules[].target_pages 须 ⊆ registry.pages。
+evolution-hint-rules.json 中 rules[].target_pages 须 ⊆ registry.pages；
+rules[].id 须非空且唯一；track_closure 若存在须为布尔。
 不写文件；供 CI / pre-commit / make validate。
 """
 from __future__ import annotations
@@ -25,6 +26,39 @@ INGEST_CONFIG = ROOT / "scripts" / "ingest_config.json"
 MAPS_HINTS = ROOT / "scripts" / "maps_to_hints.json"
 GEN_SITEMAP = ROOT / "scripts" / "gen-sitemap.py"
 HINT_RULES = ROOT / "scripts" / "evolution-hint-rules.json"
+
+
+def hint_rules_structural_errors(doc: dict) -> list[str]:
+    """校验 rules 形状：id 必填、唯一；track_closure 仅允许布尔。"""
+    errs: list[str] = []
+    rules = doc.get("rules")
+    if rules is None:
+        return ["evolution-hint-rules.json: 缺少 rules"]
+    if not isinstance(rules, list):
+        return ["evolution-hint-rules.json: rules 须为数组"]
+    seen: set[str] = set()
+    for i, r in enumerate(rules):
+        prefix = f"evolution-hint-rules.json: rules[{i}]"
+        if not isinstance(r, dict):
+            errs.append(f"{prefix} 须为对象")
+            continue
+        rid = r.get("id")
+        if rid is None:
+            errs.append(f"{prefix} 缺少 id")
+            continue
+        if not isinstance(rid, str) or not rid.strip():
+            errs.append(f"{prefix}.id 须为非空字符串")
+            continue
+        rs = rid.strip()
+        if rs in seen:
+            errs.append(f"evolution-hint-rules.json: 重复的 rules[].id · {rs!r}")
+        seen.add(rs)
+        tc = r.get("track_closure")
+        if tc is not None and not isinstance(tc, bool):
+            errs.append(
+                f"{prefix}.track_closure 须为布尔或省略，当前: {type(tc).__name__}"
+            )
+    return errs
 
 
 def hint_rules_target_pages(doc: dict) -> set[str]:
@@ -198,6 +232,7 @@ def main() -> None:
     if HINT_RULES.is_file():
         try:
             hr = json.loads(HINT_RULES.read_text(encoding="utf-8"))
+            all_errs.extend(hint_rules_structural_errors(hr))
             for p in sorted(hint_rules_target_pages(hr) - allowed_pages):
                 all_errs.append(
                     f"evolution-hint-rules.json: target_pages 未知（须 ∈ registry）· {p}"
@@ -248,7 +283,7 @@ def main() -> None:
         f"OK: 对账通过 · registry 页面 {len(allowed_pages)} · lab_factors {n_lab} · "
         "已检查 manifest"
         + (" + candidates" if CANDIDATES.is_file() else "")
-        + " + ingest 配置 + site-nav partial + hint-rules"
+        + " + ingest 配置 + site-nav partial + hint-rules（结构+target_pages）"
     )
 
 

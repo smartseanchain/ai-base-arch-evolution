@@ -54,7 +54,7 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 ### 定时流水线与仓库写入（预期）
 
 - **默认**：上述定时/手动 workflow 产出 **artifact**，**不会**自动 push 到 `main`。线上站点里的 `analysis-snapshot.json`、`sediment.json` 等与 Git 一致，仍依赖你在本地 **`make analyze`**（或下载 artifact 人工合并后提交）。
-- **合并 artifact 到主分支（建议）**：在 Actions 运行页下载 `analysis-outputs-*` → 解压后替换仓库内 `assets/analysis-snapshot.json`、`assets/sediment-trends.json`、`data/sediment.json` → 执行 **`make validate`** → `git commit` & push。
+- **合并 artifact 到主分支（建议）**：在 Actions 运行页下载 `analysis-outputs-*` → 解压后替换仓库内 `assets/analysis-snapshot.json`、`assets/sediment-trends.json`、`data/sediment.json` → 执行 **`make validate`** → `git commit` & push。（`data/sediment.json` 的每日条目现含规则闭环 backlog 字段，与 SQLite 双写一致。）
 - **候选 PR**：可用 **`PR · refresh candidates`**（`pr-candidates.yml`）触发 bot 分支；**manifest 仍不自动 merge**，须本地/PR 内 `merge_candidates_to_manifest` 且 `review_state=queued_for_manifest`。
 
 ### 单一注册表

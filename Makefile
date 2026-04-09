@@ -1,5 +1,5 @@
 # 可进化站点 · 常用目标（在项目根执行 make <target>）
-.PHONY: validate test sync-nav check-site-nav ingest ingest-full analyze pipeline check-analysis help hooks sitemap
+.PHONY: validate test sync-nav check-site-nav ingest ingest-full analyze pipeline check-analysis help hooks sitemap trends
 
 help:
 	@echo "make validate   - 校验 manifest/候选/hint 决策 + 对账 + 顶栏 + 单测 + analysis_engine --check（与 pre-commit 一致）"
@@ -10,6 +10,7 @@ help:
 	@echo "make ingest     - 仅抓取候选（需外网）"
 	@echo "make ingest-full - 同 ingest 但 --full-pool（忽略 require_route_match）"
 	@echo "make analyze    - 校验 + 分析引擎 + 沉淀 + 趋势（无抓取）"
+	@echo "make trends     - 仅跑 sediment_trends.py（依赖已有沉淀）"
 	@echo "make pipeline   - 同 analyze"
 	@echo "make hooks      - 安装 Git 钩子（pre-commit 跑 validate + check-analysis）"
 	@echo "make sitemap    - 需 SITE_BASE=https://... 生成 sitemap.xml"
@@ -51,3 +52,6 @@ ingest-full:
 
 analyze pipeline:
 	bash scripts/run_update_pipeline.sh
+
+trends:
+	python3 scripts/sediment_trends.py
