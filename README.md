@@ -1,6 +1,12 @@
 # 基础架构演变推演
 
-静态站点 + **可进化观测管道**（manifest / 候选 / 分析 / 沉淀）。概念总览见站内 [可进化架构](evolvable-architecture.html)（本地打开 `evolvable-architecture.html` 或通过任意静态服务器访问）。
+静态站点 + **可进化观测管道**（manifest / 候选 / 分析 / 沉淀）。
+
+- **仓库**：https://github.com/smartseanchain/ai-base-arch-evolution  
+- **GitHub Pages**（开启后）：https://smartseanchain.github.io/ai-base-arch-evolution/ — 在仓库 **Settings → Pages** 中选择 **Deploy from a branch**，分支 **main**，文件夹 **/ (root)**，保存后约 1～2 分钟可访问。  
+- 本地预览：直接打开 `index.html`，或用任意静态服务器（`evolution.js` 等需 **http(s)** 才能 `fetch` JSON）。
+
+概念总览见站内 [可进化架构](evolvable-architecture.html)。
 
 ## 本地校验与流水线
 
@@ -25,7 +31,8 @@ bash scripts/install-git-hooks.sh
 需设置站点根 URL（无尾斜杠）。**部署前**用真实域名生成并提交 `sitemap.xml`：
 
 ```bash
-SITE_BASE=https://你的域名或GitHub Pages路径 make sitemap
+# 示例：当前默认 GitHub Pages 基址（无尾斜杠）
+SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 ```
 
 未设置 `SITE_BASE` 时 `make sitemap` 会报错退出，避免误写占位域名。
