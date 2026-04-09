@@ -6,7 +6,7 @@
 - **GitHub Pages**（开启后）：https://smartseanchain.github.io/ai-base-arch-evolution/ — 在仓库 **Settings → Pages** 中选择 **Deploy from a branch**，分支 **main**，文件夹 **/ (root)**，保存后约 1～2 分钟可访问。  
 - 本地预览：直接打开 `index.html`，或用任意静态服务器（`evolution.js` 等需 **http(s)** 才能 `fetch` JSON）。
 
-概念总览见站内 [可进化架构](evolvable-architecture.html)。
+概念总览见站内 [可进化架构](evolvable-architecture.html)。**双周反哺节奏**（可打印照做）：[docs/EVOLUTION_RUNBOOK.md](docs/EVOLUTION_RUNBOOK.md)。
 
 ## 本地校验与流水线
 
@@ -43,7 +43,7 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 
 ## 持续集成
 
-- `ci.yml`：PR/推送时校验 JSON、`compileall`、`analysis_engine --check`
+- `ci.yml`：PR/推送时校验 JSON、**manifest/候选对账**（页面与 `lab.js`）、`compileall`、`analysis_engine --check`
 - `update-pipeline.yml`：定时/手动分析 artifact
 - `ingest-pipeline.yml`：手动抓取候选 artifact
 

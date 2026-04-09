@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-09T00:23:04Z",
+  "generated_at": "2026-04-09T00:37:04Z",
   "source": "data/evolution.db (SQLite)",
   "summary": {
     "entry_count": 2,
@@ -10,20 +10,6 @@
     }
   },
   "factor_persistence": [
-    {
-      "factor": "attention_minors",
-      "days_in_top": 2,
-      "coverage": 1.0,
-      "first_seen": "2026-04-08",
-      "last_seen": "2026-04-09"
-    },
-    {
-      "factor": "esg_compute_carbon",
-      "days_in_top": 2,
-      "coverage": 1.0,
-      "first_seen": "2026-04-08",
-      "last_seen": "2026-04-09"
-    },
     {
       "factor": "reg",
       "days_in_top": 2,
@@ -44,25 +30,39 @@
       "coverage": 1.0,
       "first_seen": "2026-04-08",
       "last_seen": "2026-04-09"
+    },
+    {
+      "factor": "ai",
+      "days_in_top": 1,
+      "coverage": 0.5,
+      "first_seen": "2026-04-09",
+      "last_seen": "2026-04-09"
+    },
+    {
+      "factor": "attention_minors",
+      "days_in_top": 1,
+      "coverage": 0.5,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-08"
+    },
+    {
+      "factor": "esg_compute_carbon",
+      "days_in_top": 1,
+      "coverage": 0.5,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-08"
+    },
+    {
+      "factor": "gig_multiemployer",
+      "days_in_top": 1,
+      "coverage": 0.5,
+      "first_seen": "2026-04-09",
+      "last_seen": "2026-04-09"
     }
   ],
   "page_persistence": [
     {
-      "page": "decade-scenes.html",
-      "days_in_top": 2,
-      "coverage": 1.0,
-      "first_seen": "2026-04-08",
-      "last_seen": "2026-04-09"
-    },
-    {
       "page": "decade.html",
-      "days_in_top": 2,
-      "coverage": 1.0,
-      "first_seen": "2026-04-08",
-      "last_seen": "2026-04-09"
-    },
-    {
-      "page": "national-strategy-opinion.html",
       "days_in_top": 2,
       "coverage": 1.0,
       "first_seen": "2026-04-08",
@@ -76,11 +76,46 @@
       "last_seen": "2026-04-09"
     },
     {
-      "page": "work-infra-energy.html",
-      "days_in_top": 2,
-      "coverage": 1.0,
+      "page": "decade-scenes.html",
+      "days_in_top": 1,
+      "coverage": 0.5,
       "first_seen": "2026-04-08",
+      "last_seen": "2026-04-08"
+    },
+    {
+      "page": "edu-nexus.html",
+      "days_in_top": 1,
+      "coverage": 0.5,
+      "first_seen": "2026-04-09",
       "last_seen": "2026-04-09"
+    },
+    {
+      "page": "evolution-triad.html",
+      "days_in_top": 1,
+      "coverage": 0.5,
+      "first_seen": "2026-04-09",
+      "last_seen": "2026-04-09"
+    },
+    {
+      "page": "national-strategy-opinion.html",
+      "days_in_top": 1,
+      "coverage": 0.5,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-08"
+    },
+    {
+      "page": "net-biz-capital.html",
+      "days_in_top": 1,
+      "coverage": 0.5,
+      "first_seen": "2026-04-09",
+      "last_seen": "2026-04-09"
+    },
+    {
+      "page": "work-infra-energy.html",
+      "days_in_top": 1,
+      "coverage": 0.5,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-08"
     }
   ],
   "longterm_hints": [

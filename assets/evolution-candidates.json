@@ -1,9 +1,1011 @@
 {
   "schema_version": 1,
   "updated": "2026-04-09",
-  "fetched_at": "2026-04-09T00:22:59Z",
+  "fetched_at": "2026-04-09T00:36:21Z",
   "notes": "由 scripts/ingest_opinion_law.py 生成；merge 前请人工筛选。",
   "signals": [
+    {
+      "id": "ing_06c4cdc6c1cd",
+      "kind": "tech",
+      "title": "GitHub Universe is back: We want you to take the stage",
+      "summary": "<p>Get inspired by five of the most memorable, magical, and quirky Universe sessions to date.</p>\n<p>The post <a href=\"https://github.blog/news-insights/company-news/github-universe-is-back-we-want-you-to-take-the-stage/\">GitHub Universe is back: We want you to take the stage</a> appeared first on <a href=\"https://github.blog\">The GitHub Blog</a>.</p>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "github-blog",
+        "url": "https://github.blog/feed/",
+        "item_link": "https://github.blog/news-insights/company-news/github-universe-is-back-we-want-you-to-take-the-stage/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_0a58aee2b44c",
+      "kind": "tech",
+      "title": "What’s coming to our GitHub Actions 2026 security roadmap",
+      "summary": "<p>A look at GitHub Actions’ 2026 roadmap, outlining how secure defaults, policy controls, and CI/CD observability harden the software supply chain end to end.</p>\n<p>The post <a href=\"https://github.blog/news-insights/product-news/whats-coming-to-our-github-actions-2026-security-roadmap/\">What&#8217;s coming to our GitHub Actions 2026 security roadmap</a> appeared first on <a href=\"https://github.blog\">The GitHub Blog</a>.</p>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "github-blog",
+        "url": "https://github.blog/feed/",
+        "item_link": "https://github.blog/news-insights/product-news/whats-coming-to-our-github-actions-2026-security-roadmap/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_0d2354ac471a",
+      "kind": "opinion",
+      "title": "规模扩张并未带来盈利改善——新能源车险赔付压力待化解",
+      "summary": "近日，中国精算师协会、中国银行保险信息技术管理有限公司发布我国新能源车险2025年有关赔付信息。数据显示，一方面，新能源汽车保有量快速增长，带动车险规模持续扩张；另一方面，高赔付压力仍未根本缓解，行业仍处在“规模做大”与“盈利承压”并行的阶段。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/cj/2026/04-09/10600697.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "decade.html",
+          "edu-nexus.html",
+          "nexus.html"
+        ],
+        "lab_factors": [
+          "reg"
+        ]
+      }
+    },
+    {
+      "id": "ing_11b433cce128",
+      "kind": "opinion",
+      "title": "伊朗称“十点计划”中的三项被违反 “谈判基础”已被破坏",
+      "summary": "当地时间8日，伊朗伊斯兰议会议长卡利巴夫在其个人社交媒体上发表声明，指出在伊朗与美国开始谈判前，伊方10项停战条款里的三项关键条款已遭违反。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600677.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_1228f63cd75a",
+      "kind": "opinion",
+      "title": "朝鲜进行一系列重要武器系统试验",
+      "summary": "朝鲜国防科学院和导弹总局于4月6日、7日和8日进行了一系列重要武器系统试验。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600675.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_14fa5180c70c",
+      "kind": "opinion",
+      "title": "把蓝莓当消炎药吃，靠谱吗？",
+      "summary": "把蓝莓当消炎药吃，靠谱吗",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/life/2026/04-09/10600688.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_19a6ac7dc399",
+      "kind": "tech",
+      "title": "The uphill climb of making diff lines performant",
+      "summary": "<p>The path to better performance is often found in simplicity.</p>\n<p>The post <a href=\"https://github.blog/engineering/architecture-optimization/the-uphill-climb-of-making-diff-lines-performant/\">The uphill climb of making diff lines performant</a> appeared first on <a href=\"https://github.blog\">The GitHub Blog</a>.</p>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "github-blog",
+        "url": "https://github.blog/feed/",
+        "item_link": "https://github.blog/engineering/architecture-optimization/the-uphill-climb-of-making-diff-lines-performant/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_22ccdbe66a56",
+      "kind": "opinion",
+      "title": "德国2月工业新订单环比小幅增长",
+      "summary": "中新社柏林4月8日电(记者 马秀秀)德国联邦统计局8日公布的数据显示，经季节和工作日调整后，德国2月工业新订单环比增长0.9%，低于此前专家预期的2%。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600683.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "decade.html",
+          "edu-nexus.html",
+          "nexus.html"
+        ],
+        "lab_factors": [
+          "reg"
+        ]
+      }
+    },
+    {
+      "id": "ing_28961586561e",
+      "kind": "tech",
+      "title": "The W3C TAG Meeting in London, March 2026",
+      "summary": "Earlier this month, the W3C Technical Architecture Group (TAG) gathered in London for a multi-day face-to-face meeting. While the TAG meets regularly online, these in-person sessions remain an important part of how the group builds shared understanding, tackles complex architectural questions, and welcomes new members into the work.",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "w3c-blog",
+        "url": "https://www.w3.org/blog/feed/",
+        "item_link": "https://www.w3.org/blog/2026/the-w3c-tag-meeting-in-london-march-2026/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_2a2e99a0ab03",
+      "kind": "opinion",
+      "title": "伊朗公布霍尔木兹海峡安全航路图",
+      "summary": "新华社德黑兰4月8日电 伊朗港口和海事组织8日公布霍尔木兹海峡水域安全航路图，告知往来船只遵守航运安全原则，避免触雷。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600694.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_2f12bf7c787c",
+      "kind": "tech",
+      "title": "Strengthening Community Engagement at TPAC 2025: looking back at the IE & inclusion Funds",
+      "summary": "Sylvia Cadena, W3C Chief Development Officer, reports on coordinating the TPAC 2025 inclusion fund and W3C Invited Expert fund, aimed to reduce barriers for participants who are contributing to W3C’s work, and that are part of W3C's effort to strengthen our Community Engagement program.",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "w3c-blog",
+        "url": "https://www.w3.org/blog/feed/",
+        "item_link": "https://www.w3.org/blog/2026/strengthening-community-engagement-at-tpac-2025-looking-back-at-the-ie-inclusion-funds/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_35d7615b554e",
+      "kind": "opinion",
+      "title": "美股三大指数均涨超2%，道指大涨逾1300点！国际油价两位数下跌",
+      "summary": "中新经纬4月9日电 美东时间周三，美股三大指数高开高走。截至收盘，道指涨2.85%报47909.92点，纳指涨2.8%报22635点，标普500指数涨2.51%报6782.81点。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/cj/2026/04-09/10600691.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_374d0ff3372e",
+      "kind": "opinion",
+      "title": "深圳市卫健委通报“深圳健安医院院前急救事件”",
+      "summary": "中新网4月9日电 据深圳卫健委官方微博消息，近日，深圳健安医院院前急救事件受到社会广泛关注。对于事件的发生，深圳卫健委深感痛心，并向家属表达深切的慰问。深圳卫健委、龙华区卫生健康部门已第一时间开展全面核查，有关情况说明如下：",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/sh/2026/04-09/10600698.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_389cfda84b5a",
+      "kind": "opinion",
+      "title": "内塔尼亚胡：以色列“随时准备重返战场”，停火不适用于黎真主党",
+      "summary": "中新网4月9日电 据《以色列时报》报道，当地时间4月8日，以色列总理内塔尼亚胡发表视频声明。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600676.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_43d55d9ae719",
+      "kind": "tech",
+      "title": "W3C seeking community input for TAG appointments",
+      "summary": "W3C is seeking community input by January 5 for appointments to the W3C Technical Architecture Group (TAG), to complement the TAG election by actively seeking candidate appointees in order to support a diverse and well-balanced TAG, including diversity of technical background, knowledge, and skill sets.",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "w3c-blog",
+        "url": "https://www.w3.org/blog/feed/",
+        "item_link": "https://www.w3.org/blog/2025/w3c-seeking-community-input-for-tag-appointments/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_4cef67e3ec68",
+      "kind": "opinion",
+      "title": "以色列空袭一天内致上千人死伤 黎巴嫩宣布全国哀悼",
+      "summary": "新华社贝鲁特4月8日电(记者申峰 曹昌浩)伊朗与美国停火后，以色列8日大规模空袭黎巴嫩，造成上千人死伤。黎巴嫩总理纳瓦夫·萨拉姆宣布，4月9日为全国哀悼日，悼念在以色列空袭中遇难的无辜平民。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/sh/2026/04-09/10600695.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_4f1c665d650d",
+      "kind": "opinion",
+      "title": "伊朗：霍尔木兹海峡航运已陷入停滞，美伊停火后曾恢复",
+      "summary": "中新网4月9日电 据美国有线电视新闻网(CNN)报道，当地时间8日，伊朗伊斯兰革命卫队发布声明称，在“以色列违反停火协议”后，霍尔木兹海峡的航运量急剧下降，随后陷入停滞。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600680.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_501343c527fc",
+      "kind": "opinion",
+      "title": "现货黄金跌破4700美元关口",
+      "summary": "9日，现货黄金震荡下挫，盘中跌破4700美元关口，跌超0.4%。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/cj/2026/04-09/10600705.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_54cf2e010907",
+      "kind": "tech",
+      "title": "EPUB and HTML - Survey results and next steps",
+      "summary": "Mid-2025, the Publishing Maintenance Working Group (PMWG) ran a survey in the publishing community to ask: should we allow HTML in EPUB? The survey results and their discussions were invaluable in helping decide to not add HTML to EPUB 3.4, and to take a new approach on HTML and digital publications.",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "w3c-blog",
+        "url": "https://www.w3.org/blog/feed/",
+        "item_link": "https://www.w3.org/blog/2026/epub-and-html-survey-results-and-next-steps/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_56d517a767af",
+      "kind": "opinion",
+      "title": "第十三届国际花卉与园艺展在阿斯塔纳开幕",
+      "summary": "来源 RSS：chinanews-scroll",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "http://www.chinanews.com.cn/tp/hd2011/2026/04-09/1187583.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_56f3461f02db",
+      "kind": "opinion",
+      "title": "4月9日新闻早报",
+      "summary": "来源 RSS：chinanews-scroll",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/iframe/2026/04-09/10600678.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_5c6947ad1429",
+      "kind": "tech",
+      "title": "Advisory Board publishes Position Statement on AI in Standards Work",
+      "summary": "Read more about the AB's current thinking on using Large Language Models (LLMs) in the standards process.",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "w3c-blog",
+        "url": "https://www.w3.org/blog/feed/",
+        "item_link": "https://www.w3.org/blog/2026/advisory-board-publishes-position-statement-on-ai-in-standards-work/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_5f4ca934ed79",
+      "kind": "tech",
+      "title": "GitHub for Beginners: Getting started with GitHub security",
+      "summary": "<p>Learn how to secure your projects and keep them safe with GitHub Advanced Security.</p>\n<p>The post <a href=\"https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-github-security/\">GitHub for Beginners: Getting started with GitHub security</a> appeared first on <a href=\"https://github.blog\">The GitHub Blog</a>.</p>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "github-blog",
+        "url": "https://github.blog/feed/",
+        "item_link": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-github-security/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_6872ae7ef35f",
+      "kind": "opinion",
+      "title": "美伊宣布停火数小时内，卡塔尔等多个海湾国家报告遭伊朗空袭",
+      "summary": "中新网4月9日电 据卡塔尔半岛电视台报道，卡塔尔国防部发布声明称，卡塔尔当地时间8日遭到来自伊朗的七枚弹道导弹和多架无人机袭击。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600679.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_6bc269d9f742",
+      "kind": "tech",
+      "title": "Past, present and future: An update on W3C’s Strategic Objectives on the 37th anniversary of the Web proposal",
+      "summary": "In this blog post, W3C CEO Seth Dobbs celebrates the importance of the web and calls out key initiatives from W3C’s strategic objectives.",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "w3c-blog",
+        "url": "https://www.w3.org/blog/feed/",
+        "item_link": "https://www.w3.org/blog/2026/past-present-and-future-an-update-on-w3cs-strategic-objectives-on-the-37th-anniversary-of-the-web-proposal/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_734f3b818dbb",
+      "kind": "tech",
+      "title": "Agent-driven development in Copilot Applied Science",
+      "summary": "<p>I used coding agents to build agents that automated part of my job. Here's what I learned about working better with coding agents.</p>\n<p>The post <a href=\"https://github.blog/ai-and-ml/github-copilot/agent-driven-development-in-copilot-applied-science/\">Agent-driven development in Copilot Applied Science</a> appeared first on <a href=\"https://github.blog\">The GitHub Blog</a>.</p>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "github-blog",
+        "url": "https://github.blog/feed/",
+        "item_link": "https://github.blog/ai-and-ml/github-copilot/agent-driven-development-in-copilot-applied-science/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_77f6a951f86d",
+      "kind": "opinion",
+      "title": "三种有效的“降压运动”，一次几分钟就管用！",
+      "summary": "对于高血压患者来说，运动作为一种非药物辅助降压手段，在医学上已被广泛认可。除了常见的走路、跑步、撸铁、游泳、打球外，还有三种有效的“降压运动”：平板支撑、扎马步、靠墙静蹲。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/jk/2026/04-09/10600681.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_78d6ded2917b",
+      "kind": "opinion",
+      "title": "朝鲜国防科学院和导弹总局称进行重要武器系统试验",
+      "summary": "总台记者9日获悉，朝鲜国防科学院和导弹总局于4月6日、7日和8日进行了电磁武器系统试验、碳纤维模拟子弹抛撒试验、机动型近程防空导弹系统的作战可靠性验证试验、战术弹道导弹集束弹头作战运用及威力评估试验。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600690.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "decade-scenes.html",
+          "work-infra-energy.html"
+        ],
+        "lab_factors": [
+          "esg_compute_carbon",
+          "water_cooling"
+        ]
+      }
+    },
+    {
+      "id": "ing_78e7a09d3389",
+      "kind": "tech",
+      "title": "November 2025 Kobe DevMeetup",
+      "summary": "Summary of the developer meetup held on November 9, 2025, in Kobe, Japan, and co-organized by W3C and NTT Docomo Business, along the annual TPAC 2025 event where the global web community met to coordinate the development of Web standards.",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "w3c-blog",
+        "url": "https://www.w3.org/blog/feed/",
+        "item_link": "https://www.w3.org/blog/2025/november-2025-kobe-devmeetup/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_7b2a3d272820",
+      "kind": "opinion",
+      "title": "会议纪要显示美联储官员认为伊朗战争给经济带来双向风险",
+      "summary": "中新社华盛顿4月8日电 (记者 沙晗汀)美国联邦储备委员会当地时间8日公布的3月货币政策会议纪要显示，美联储官员认为伊朗战争可能给美国经济带来双向风险。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600685.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_7eb14397b151",
+      "kind": "opinion",
+      "title": "“中巴文化年”专场音乐会绽放巴西利亚",
+      "summary": "来源 RSS：chinanews-scroll",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "http://www.chinanews.com.cn/tp/hd2011/2026/04-09/1187579.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_7f8b0c1fe854",
+      "kind": "tech",
+      "title": "W3C Standard ODRL Policy gaining industry adoption",
+      "summary": "The ODRL Policy Recommendation, finalised in 2018, is gaining global adoption across industries. Adopted by JPEG Trust, IDSA, DSSC, Gaia-X, and EUIPO, ODRL enables machine-readable rights, usage, and governance policies. Its flexibility and broad applicability highlight industry needs, with future standardisation now under community consideration.",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "w3c-blog",
+        "url": "https://www.w3.org/blog/feed/",
+        "item_link": "https://www.w3.org/blog/2025/w3c-standard-odrl-policy-gaining-industry-adoption/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_814a077535fd",
+      "kind": "tech",
+      "title": "A year of open source vulnerability trends: CVEs, advisories, and malware",
+      "summary": "<p>Reviewed advisories hit a four-year low, malware advisories surged, and CNA publishing grew—here’s what changed and what it means for your triage and response. </p>\n<p>The post <a href=\"https://github.blog/security/supply-chain-security/a-year-of-open-source-vulnerability-trends-cves-advisories-and-malware/\">A year of open source vulnerability trends: CVEs, advisories, and malware</a> appeared first on <a href=\"https://github.blog\">The GitHub Blog</a>.</p>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "github-blog",
+        "url": "https://github.blog/feed/",
+        "item_link": "https://github.blog/security/supply-chain-security/a-year-of-open-source-vulnerability-trends-cves-advisories-and-malware/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_8640284aff47",
+      "kind": "opinion",
+      "title": "我国成功发射卫星互联网低轨21组卫星",
+      "summary": "来源 RSS：chinanews-scroll",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "http://www.chinanews.com.cn/tp/hd2011/2026/04-09/1187572.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_914af5888fe3",
+      "kind": "tech",
+      "title": "TPAC 2025 Breakouts recap",
+      "summary": "This post gives highlights about the kind of breakout sessions held at TPAC 2025 and the improvements made this time.",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "w3c-blog",
+        "url": "https://www.w3.org/blog/feed/",
+        "item_link": "https://www.w3.org/blog/2025/tpac-2025-breakouts-recap/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_9f84c157d173",
+      "kind": "tech",
+      "title": "AI at TPAC 2025",
+      "summary": "This post compiles summaries of all the AI related group meetings and breakout sessions that took place during W3C's annual event TPAC 2025.",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "w3c-blog",
+        "url": "https://www.w3.org/blog/feed/",
+        "item_link": "https://www.w3.org/blog/2025/ai-at-tpac-2025/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_a1b5ab729d72",
+      "kind": "tech",
+      "title": "Securing the open source supply chain across GitHub",
+      "summary": "<p>Recent attacks on open source focus on exfiltrating secrets; here are the prevention steps you can take today, plus a look at the security capabilities GitHub is working on.</p>\n<p>The post <a href=\"https://github.blog/security/supply-chain-security/securing-the-open-source-supply-chain-across-github/\">Securing the open source supply chain across GitHub</a> appeared first on <a href=\"https://github.blog\">The GitHub Blog</a>.</p>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "github-blog",
+        "url": "https://github.blog/feed/",
+        "item_link": "https://github.blog/security/supply-chain-security/securing-the-open-source-supply-chain-across-github/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_b56ca8be9cc6",
+      "kind": "opinion",
+      "title": "江淮南部江南北部等地将有较强降水和强对流天气",
+      "summary": "中新网4月9日电 据中央气象台网站消息，昨日，湖北、安徽等地的部分地区出现暴雨或大暴雨，局地并伴有雷暴大风等强对流天气，北方和西南地区阵风较大。预计未来三天，江淮南部、江南北部等地将有较强降雨和强对流天气，近海海域有大雾，关注强降雨、强对流和低能见度天气对交通、旅游、农业生产等影响，防范局地强降雨引发的次生灾害。北方及西南地区仍多大风，做好森林草原和城乡防火工作。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/sh/2026/04-09/10600692.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_ba8605d77f8e",
+      "kind": "tech",
+      "title": "What happens when you put developers, standards, and sushi in one room",
+      "summary": "This post gives a summary of the successful TPAC 2025 Hackathon.",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "w3c-blog",
+        "url": "https://www.w3.org/blog/feed/",
+        "item_link": "https://www.w3.org/blog/2025/what-happens-when-you-put-developers-standards-and-sushi-in-one-room/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_bed387592e01",
+      "kind": "opinion",
+      "title": "北京今天有分散性小雨体感湿凉 明后天晴暖上线昼夜温差大",
+      "summary": "中国天气网讯 今天(4月9日)，北京春雨淅沥，有分散性小雨出没，最高气温仅14℃，体感有些湿凉，公众请注意防雨、保暖。明后天，北京晴暖上线，最高气温可达25℃，但昼夜温差较大，大家请适时调整着装。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/sh/2026/04-09/10600686.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_c07f8795cb67",
+      "kind": "tech",
+      "title": "Updates to GitHub Copilot interaction data usage policy",
+      "summary": "<p>From April 24 onward, interaction data—specifically inputs, outputs, code snippets, and associated context—from Copilot Free, Pro, and Pro+ users will be used to train and improve our AI models unless they opt out.</p>\n<p>The post <a href=\"https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/\">Updates to GitHub Copilot interaction data usage policy</a> appeared first on <a href=\"https://github.blog\">The GitHub Blog</a>.</p>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "github-blog",
+        "url": "https://github.blog/feed/",
+        "item_link": "https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_c1832f701ff4",
+      "kind": "opinion",
+      "title": "别再把喷嚏甩锅给桃花了！春天真正的“花粉刺客”是它……",
+      "summary": "“啊嚏！啊嚏！啊嚏——”",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/life/2026/04-09/10600693.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_cabd9b9fde8c",
+      "kind": "opinion",
+      "title": "霍尔木兹海峡航运已陷入停滞",
+      "summary": "来源 RSS：chinanews-scroll",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "http://www.chinanews.com.cn/tp/hd2011/2026/04-09/1187575.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_ccc1b6babfbf",
+      "kind": "opinion",
+      "title": "从胃炎到胃癌，只有4步！出现这些症状，别不当回事儿",
+      "summary": "胃，是人体重要的消化器官",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/jk/2026/04-09/10600704.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_d31de28ad82f",
+      "kind": "opinion",
+      "title": "“AI生成”是免责事由吗？",
+      "summary": "“AI生成”是免责事由吗(金台锐评)",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/fz/2026/04-09/10600682.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
     {
       "id": "ing_demo_structure",
       "kind": "law",
@@ -23,6 +1025,120 @@
         ],
         "lab_factors": [
           "reg"
+        ]
+      }
+    },
+    {
+      "id": "ing_e6fffb3b89a6",
+      "kind": "opinion",
+      "title": "首批3.79万剂艾滋病预防药物运抵南非",
+      "summary": "中新社约翰内斯堡4月8日电 南非政府新闻网8日发布消息称，首批艾滋病预防药物来那卡帕韦(Lenacapavir)已运抵南非，共约37920剂。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600684.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_e725d91ed151",
+      "kind": "tech",
+      "title": "2025 World Wide Web Consortium Membership Survey",
+      "summary": "This post gives a summary of the results of the 2025 World Wide Web Consortium (W3C) Membership Survey.",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "w3c-blog",
+        "url": "https://www.w3.org/blog/feed/",
+        "item_link": "https://www.w3.org/blog/2026/2025-w3c-membership-survey/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_ed0607e085d4",
+      "kind": "opinion",
+      "title": "美媒：特朗普或与北约秘书长谈“退出北约”，称联盟“没通过考验”",
+      "summary": "中新网4月9日电 据《华盛顿邮报》和《华尔街日报》等外媒报道，当地时间8日，美国总统特朗普与北约秘书长吕特进行会谈。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600689.shtml",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_f162e3db802e",
+      "kind": "tech",
+      "title": "GitHub Copilot CLI combines model families for a second opinion",
+      "summary": "<p>Discover how Rubber Duck provides a different perspective to GitHub Copilot CLI. </p>\n<p>The post <a href=\"https://github.blog/ai-and-ml/github-copilot/github-copilot-cli-combines-model-families-for-a-second-opinion/\">GitHub Copilot CLI combines model families for a second opinion</a> appeared first on <a href=\"https://github.blog\">The GitHub Blog</a>.</p>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "github-blog",
+        "url": "https://github.blog/feed/",
+        "item_link": "https://github.blog/ai-and-ml/github-copilot/github-copilot-cli-combines-model-families-for-a-second-opinion/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_f84cf0b6dfd1",
+      "kind": "tech",
+      "title": "Run multiple agents at once with /fleet in Copilot CLI",
+      "summary": "<p>/fleet lets Copilot CLI dispatch multiple agents in parallel. Learn how to write prompts that split work across files, declare dependencies, and avoid common pitfalls.</p>\n<p>The post <a href=\"https://github.blog/ai-and-ml/github-copilot/run-multiple-agents-at-once-with-fleet-in-copilot-cli/\">Run multiple agents at once with /fleet in Copilot CLI</a> appeared first on <a href=\"https://github.blog\">The GitHub Blog</a>.</p>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "github-blog",
+        "url": "https://github.blog/feed/",
+        "item_link": "https://github.blog/ai-and-ml/github-copilot/run-multiple-agents-at-once-with-fleet-in-copilot-cli/",
+        "fetched_at": "2026-04-09T00:36:21Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-triad.html",
+          "net-biz-capital.html"
+        ],
+        "lab_factors": [
+          "ai",
+          "gig_multiemployer",
+          "talent"
         ]
       }
     }

@@ -2,7 +2,7 @@
 .PHONY: validate ingest analyze pipeline check-analysis help hooks sitemap
 
 help:
-	@echo "make validate   - 校验 manifest/候选 + analysis_engine --check（与 pre-commit 一致）"
+	@echo "make validate   - 校验 manifest/候选 + 对账 + analysis_engine --check（与 pre-commit 一致）"
 	@echo "make check-analysis - 分析引擎 --check（不写 snapshot，CI 同款）"
 	@echo "make ingest     - 仅抓取候选（需外网）"
 	@echo "make analyze    - 校验 + 分析引擎 + 沉淀 + 趋势（无抓取）"
@@ -13,6 +13,7 @@ help:
 validate:
 	python3 scripts/validate-evolution-manifest.py
 	python3 scripts/validate-evolution-candidates.py
+	python3 scripts/check_manifest_drift.py
 	python3 scripts/analysis_engine.py --check
 
 check-analysis:

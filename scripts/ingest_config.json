@@ -1,7 +1,26 @@
 {
   "schema_version": 1,
-  "notes": "在此配置 RSS 与法规/政策页面 URL；抓取结果写入 assets/evolution-candidates.json。请遵守各站点 robots.txt 与版权；生产环境建议换为国内权威源。",
-  "rss_feeds": [],
+  "notes": "在此配置 RSS 与法规/政策页面 URL；抓取结果写入 assets/evolution-candidates.json。请遵守各站点 robots.txt 与版权；下列源为可公开访问的演示用组合，可按需增删或换为国内权威源。",
+  "rss_feeds": [
+    {
+      "id": "chinanews-scroll",
+      "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+      "default_kind": "opinion",
+      "max_items": 28
+    },
+    {
+      "id": "w3c-blog",
+      "url": "https://www.w3.org/blog/feed/",
+      "default_kind": "tech",
+      "max_items": 12
+    },
+    {
+      "id": "github-blog",
+      "url": "https://github.blog/feed/",
+      "default_kind": "tech",
+      "max_items": 12
+    }
+  ],
   "law_html_pages": [],
   "routes": [
     {

@@ -12,6 +12,9 @@ python3 scripts/validate-evolution-manifest.py
 echo "== [2/4] validate evolution-candidates"
 python3 scripts/validate-evolution-candidates.py
 
+echo "== [2b/4] check manifest / candidates vs pages + lab.js"
+python3 scripts/check_manifest_drift.py
+
 echo "== [3/4] analysis_engine --sediment"
 python3 scripts/analysis_engine.py --sediment
 

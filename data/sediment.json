@@ -24,20 +24,20 @@
     {
       "date": "2026-04-09",
       "manifest_n": 3,
-      "candidate_n": 1,
+      "candidate_n": 51,
       "top_factors": [
+        "talent",
+        "gig_multiemployer",
+        "ai",
         "reg",
-        "water_cooling",
-        "esg_compute_carbon",
-        "attention_minors",
-        "talent"
+        "water_cooling"
       ],
       "top_pages": [
-        "work-infra-energy.html",
-        "decade-scenes.html",
-        "national-strategy-opinion.html",
+        "evolution-triad.html",
+        "net-biz-capital.html",
         "decade.html",
-        "nexus.html"
+        "nexus.html",
+        "edu-nexus.html"
       ]
     }
   ]

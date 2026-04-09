@@ -9,4 +9,5 @@ if ! command -v python3 >/dev/null 2>&1; then
 fi
 python3 scripts/validate-evolution-manifest.py
 python3 scripts/validate-evolution-candidates.py
+python3 scripts/check_manifest_drift.py
 python3 scripts/analysis_engine.py --check

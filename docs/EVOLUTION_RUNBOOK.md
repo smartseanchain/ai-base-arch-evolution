@@ -1,0 +1,34 @@
+# 可进化闭环 · 双周反哺节奏（运行手册）
+
+目标：让「观测 → 入库 → 分析 → 改站内核/沙盘」**按固定节奏发生**，避免只堆 JSON 不反哺正文。
+
+## 建议周期
+
+每 **2 周** 一次，单次耗时约 **30～45 分钟**（不含深度改文）。
+
+## Checklist
+
+| 步骤 | 动作 | 产出/记录 |
+|------|------|-----------|
+| 1 | `make ingest`（或 CI 下载 ingest artifact） | 刷新 `evolution-candidates.json` |
+| 2 | 浏览候选：删噪、合并重复、**不**自动 merge | 本地或 PR 中更新候选文件 |
+| 3 | 对值得入库的 id：`python3 scripts/merge_candidates_to_manifest.py …` | 更新 `evolution-manifest.json` |
+| 4 | `make validate` | 通过校验 + `analysis_engine --check` + **对账脚本** |
+| 5 | `make analyze` | 更新 `analysis-snapshot.json`、沉淀、trends |
+| 6 | 打开 `analysis-hub.html`（或读 `analysis-snapshot.json`） | 看热力与共现 |
+| 7 | 处理 **≥1 条** `evolution_hints`：**落实**（改 §6/§7/§11/相关页一句）或 **显式否决**（在私有笔记或 PR 写一句理由） | 闭环有决策痕迹 |
+| 8 | 打开 `lab.html`：按热力勾选因子做一轮沙盘 | 与 manifest 映射一致性感性校验 |
+| 9 | `git commit` & `push` | 站点与仓库同步 |
+
+## 与人审闸门一致
+
+- 未经审阅 **不** merge 进 manifest。  
+- 改 HTML 大段与改 manifest **可同 PR**，但须在描述里写清「对应哪条信号 / 哪条 hint」。
+
+## 相关命令
+
+见仓库根 [README.md](../README.md) 与 [scripts/README.md](../scripts/README.md)。
+
+## 对账脚本
+
+`python3 scripts/check_manifest_drift.py`：检查 `maps_to.pages` 文件是否存在、`lab_factors` 是否在 `lab.js` 定义。已并入 `make validate` 与 CI。
