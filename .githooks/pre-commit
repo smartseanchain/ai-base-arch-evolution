@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# 提交前校验 evolution JSON（可选启用：bash scripts/install-git-hooks.sh）
+set -e
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "pre-commit: 跳过（未找到 python3）"
+  exit 0
+fi
+python3 scripts/validate-evolution-manifest.py
+python3 scripts/validate-evolution-candidates.py
+python3 scripts/analysis_engine.py --check

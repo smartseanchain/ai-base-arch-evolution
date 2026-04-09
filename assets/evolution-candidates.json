@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "updated": "2026-04-09",
+  "fetched_at": "2026-04-09T00:22:59Z",
+  "notes": "由 scripts/ingest_opinion_law.py 生成；merge 前请人工筛选。",
+  "signals": [
+    {
+      "id": "ing_demo_structure",
+      "kind": "law",
+      "title": "（示例）候选信号在页面上的显示形态",
+      "summary": "真实数据由抓取脚本写入。合并进 manifest 请运行 merge_candidates_to_manifest.py；删除本示例可编辑本文件。",
+      "weight": "low",
+      "since": "2026-04-08",
+      "status": "candidate",
+      "source": {
+        "type": "demo",
+        "url": "",
+        "fetched_at": "2026-04-08T12:00:00Z"
+      },
+      "maps_to": {
+        "pages": [
+          "evolution-loop.html"
+        ],
+        "lab_factors": [
+          "reg"
+        ]
+      }
+    }
+  ]
+}

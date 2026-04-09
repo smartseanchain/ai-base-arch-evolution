@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="description" content="智能进化：在规则管道上叠加模型与检索；能力分层、数据治理、路线图与闸门；对接进化闭环、分析引擎与综合推演 §11 插槽⑨。" />
+  <meta name="theme-color" content="#0c1118" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="基础架构演变推演" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="智能进化 · 能力梳理 · 基础架构演变推演" />
+  <meta property="og:description" content="智能进化：在规则管道上叠加模型与检索；能力分层、数据治理、路线图与闸门。" />
+  <meta name="twitter:card" content="summary" />
+  <title>智能进化 · 能力梳理 · 基础架构演变推演</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <a class="skip-link" href="#main">跳到正文</a>
+      <a class="skip-link" href="index.html#three-questions">三问导读</a>
+    </div>
+    <header class="site-nav">
+      <div class="site-nav-start">
+        <a class="brand" href="index.html">基础架构演变推演</a>
+        <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+      </div>
+      <nav class="site-links" aria-label="站内分页">
+        <a href="index.html">总览</a>
+        <a href="nexus.html">立体联结</a>
+        <a href="edu-nexus.html">教育纵轴</a>
+        <a href="evolution-triad.html">人与AI演进</a>
+        <a href="work-infra-energy.html">职业·基建·能源</a>
+        <a href="model.html">分层模型</a>
+        <a href="architecture.html">架构拓扑</a>
+        <a href="timeline.html">历史演进</a>
+        <a href="past-future.html">廿年视角</a>
+        <a href="decade.html">十年展望</a>
+        <a href="decade-scenes.html">十年场景</a>
+        <a href="decade-us.html">十年之问</a>
+        <a href="modules-map.html">模块图谱</a>
+        <a href="synthesis.html">综合推演</a>
+        <a href="risk-geo.html">地缘与商业</a>
+        <a href="net-biz-capital.html">网·商·资·工</a>
+        <a href="national-strategy-opinion.html">战略·舆情</a>
+        <a href="social-responsibility-evolution.html">社会责任</a>
+        <a href="evolution-loop.html">进化闭环</a>
+        <a href="analysis-hub.html">分析引擎</a>
+        <a href="intelligent-evolution.html" class="current">智能进化</a>
+        <a href="smart-overhaul.html">整体改造</a>
+        <a href="evolvable-architecture.html">可进化架构</a>
+        <a href="lab.html">沙盘工坊</a>
+      </nav>
+    </header>
+
+    <div id="main" class="page-head" tabindex="-1">
+      <h1>智能进化：扩展梳理</h1>
+      <p class="lead">
+        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本站已有<strong>规则化闭环</strong>：<a href="evolution-loop.html">进化闭环</a>（ingest → 候选 → 人审 manifest）与 <a href="analysis-hub.html">分析引擎</a>（热力 · 共现 · 沉淀）。本页把「<strong>智能进化</strong>」定义为：在<strong>不替代人审闸门</strong>的前提下，用<strong>模型、检索与评测</strong>减轻重复劳动、提高映射与摘要质量，并把决策<strong>日志化</strong>以便迭代。全文是<strong>架构与路线说明</strong>，不是现成产品规格。
+      </p>
+    </div>
+
+    <div class="nexus-legend">
+      <span class="nexus-tag evidence">边界 — 辅助 ≠ 自动改站</span>
+      <span class="nexus-tag extend">分层 — 规则 → LLM → RAG → 微调</span>
+      <span class="nexus-tag imagine">衔接 — §11 插槽⑨ · 候选侧车</span>
+    </div>
+
+    <nav class="toc" aria-label="本页目录">
+      <a href="#boundary">概念与边界</a>
+      <a href="#layers">能力分层</a>
+      <a href="#pipeline">与现有管道对照</a>
+      <a href="#data">数据与治理</a>
+      <a href="#engineering">工程与运维</a>
+      <a href="#roadmap">路线图</a>
+      <a href="#gates">风险与闸门</a>
+      <a href="#s11">与 §11 衔接</a>
+    </nav>
+
+    <section id="boundary">
+      <h2>1. 概念与边界</h2>
+      <p class="muted" style="margin-top:-0.35rem">「智能」若只等于「自动」，容易与本站<strong>定性脚手架、可审计</strong>的定位冲突。建议采用三条纪律：</p>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+          <li><strong>智能层输出默认进「候选」或 sidecar</strong>（例如扩展字段、单独 JSON），经校验与人工确认后再影响 <code>evolution-manifest.json</code> 或 HTML 正文。</li>
+          <li><strong>可解释：</strong>映射到站内页、因子、配方时，应能给出「依据片段」或引用（RAG 尤其适合）。</li>
+          <li><strong>可评测：</strong>离线基准集 + 线上抽样复核，避免「感觉更聪明」却无法验收。</li>
+        </ul>
+      </div>
+      <div class="callout extend" style="margin-top:1rem">
+        <strong>与「自我进化」的关系：</strong><a href="evolution-loop.html">进化闭环</a> 解决<strong>信号从哪来、怎么入库</strong>；<a href="analysis-hub.html">分析引擎</a> 解决<strong>结构是否漂移</strong>；智能进化解决<strong>如何把人的时间从重复贴标签中省出来</strong>，并<strong>不</strong>自动宣布「站内核」已变。
+      </div>
+    </section>
+
+    <section id="layers">
+      <h2>2. 能力分层（由浅入深）</h2>
+      <p class="muted" style="margin-top:-0.35rem">下列层次可叠用；越往下投入越大，越需要标注与评测闭环。</p>
+      <div class="card" style="overflow-x:auto;padding:0">
+        <table>
+          <thead>
+            <tr><th>层级</th><th>典型能力</th><th>依赖</th><th>本站落点（示意）</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>L0 规则与词典</strong></td>
+              <td>关键词路由、正则、黑白名单、去重（SimHash 等）</td>
+              <td><code>ingest_config.json</code>、维护者时间</td>
+              <td>现有 <a href="evolution-loop.html#ingest">ingest</a> 管道</td>
+            </tr>
+            <tr>
+              <td><strong>L1 传统 NLP</strong></td>
+              <td>实体/主题粗分、聚类、语言检测</td>
+              <td>小模型或库，CPU 可跑</td>
+              <td>候选预处理、噪声过滤</td>
+            </tr>
+            <tr>
+              <td><strong>L2 通用大模型（API）</strong></td>
+              <td>摘要、多标签分类、JSON 结构化输出</td>
+              <td>API Key、提示词模板、输出 schema 校验</td>
+              <td>建议 <code>maps_to.pages</code> / <code>lab_factors</code> 的<strong>候选</strong></td>
+            </tr>
+            <tr>
+              <td><strong>L3 检索增强（RAG）</strong></td>
+              <td>站内段落检索 + 外源摘要；带引用生成「建议修改点」</td>
+              <td>语料切块、向量库、embedding 流水线</td>
+              <td>反哺 <a href="synthesis.html#perpetual">§6/§7/§11</a> 的<strong>草稿级建议</strong></td>
+            </tr>
+            <tr>
+              <td><strong>L4 排序 / 小模型微调</strong></td>
+              <td>「是否升格 manifest」、候选排序、个性化权重</td>
+              <td>持续<strong>人审日志</strong>作训练信号</td>
+              <td>仅在数据够厚后考虑</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="pipeline">
+      <h2>3. 与现有管道对照</h2>
+      <p class="muted" style="margin-top:-0.35rem">智能层插入点：在「原始抓取」与「写入 candidates」之间、在「merge 前审阅」、在「analysis 之后生成建议」三处最自然。</p>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+          <li><strong>ingest 之后：</strong>去重、摘要、自动打标签 → 仍写入 <code>evolution-candidates.json</code>（或并行 <code>*.suggestions.json</code>），字段可含 <code>model</code>、<code>confidence</code>、<code>rationale</code>，由校验器约束类型。</li>
+          <li><strong>merge 之前：</strong>人工界面或 PR 评论里展示模型建议，与规则路由对照；通过后才 <code>merge_candidates_to_manifest.py</code>。</li>
+          <li><strong>analysis 之后：</strong>在 <code>analysis-snapshot</code> 之上增加「规则 + LLM」生成的<strong>行动提示单</strong>（例如：某因子连续 30 日 Top → 建议审阅 §7 某行），仅作工单，不直接改站。</li>
+        </ul>
+      </div>
+      <div class="callout imagine" style="margin-top:1rem">
+        <strong>沙盘侧：</strong>智能可建议<strong>默认勾选或高亮组合</strong>，读者仍可一键清除——与 <a href="lab.html">沙盘工坊</a> 的交互哲学一致。
+      </div>
+    </section>
+
+    <section id="data">
+      <h2>4. 数据与治理</h2>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+          <li><strong>统一信号 schema：</strong>在现有 manifest/candidates 上扩展可选字段即可，避免另起炉灶；大改时递增 <code>schema_version</code>。</li>
+          <li><strong>站内语料索引：</strong>若要做「建议改哪一段」，需要 HTML/§11 正文的切块与检索（向量或全文）；引用必须可回溯段落。</li>
+          <li><strong>决策日志：</strong>候选 id、模型版本、人审通过/驳回、合并者——是后续排序模型与复盘的基础。</li>
+          <li><strong>负例与拒识：</strong>标题党、重复、违规来源的丢弃记录，防止模型学偏。</li>
+          <li><strong>隐私与合规：</strong>外调 API 时原文是否脱敏、是否允许出境，需在配置层显式策略。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="engineering">
+      <h2>5. 工程与运维</h2>
+      <div class="card" style="overflow-x:auto;padding:0">
+        <table>
+          <thead>
+            <tr><th>主题</th><th>说明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>异步与队列</td><td>embedding、批推理、长摘要不宜阻塞 ingest 或站点构建。</td></tr>
+            <tr><td>版本与开关</td><td>按环境切换「仅规则 / 规则+模型」；模型名与 prompt 版本写入产出 JSON 元数据。</td></tr>
+            <tr><td>成本</td><td>Token、向量库存储、CI 是否跑轻量校验 —— 分档配置。</td></tr>
+            <tr><td>运行环境</td><td>前端 <code>fetch</code> JSON 仍需 HTTP；与 <a href="evolution-loop.html">进化闭环</a> 一致。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <h2>6. 路线图（务实四阶）</h2>
+      <div class="card">
+        <ol class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+          <li><strong>日志优先：</strong>人审结果结构化记录（即便尚无量产模型）。</li>
+          <li><strong>L2 试水：</strong>摘要 + 多标签 + 映射候选，强 schema 校验，全部进候选池。</li>
+          <li><strong>L3：</strong>站内 RAG，产出「带引用的修改建议」供 §11 工单。</li>
+          <li><strong>L4：</strong>有足够标注后再上排序/小模型，服务 merge 与工单优先级。</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="gates">
+      <h2>7. 风险与闸门</h2>
+      <div class="callout extend">
+        <strong>幻觉与议程：</strong>模型可能夸大某条信号与站内模块的相关性——<strong>引用与置信度展示</strong> + <strong>人审</strong> 双闸门。
+      </div>
+      <p class="muted" style="margin-top:1rem;font-size:0.88rem">与 <a href="evolution-loop.html#automation">进化闭环 · 自动化边界</a> 一致：机器可做抓取与建议；<strong>法理判断、叙事升格、配方正文变更</strong>仍默认由人触发并通过版本控制留痕。</p>
+    </section>
+
+    <section id="s11">
+      <h2>8. 与综合推演 §11 的衔接</h2>
+      <p class="muted" style="margin-top:-0.35rem">在 <a href="synthesis.html#perpetual">§11 持续迭代</a> 中，扩展插槽 <strong>⑦⑧</strong> 已覆盖 manifest 管道与 <a href="analysis-hub.html">分析引擎</a>。本页对应<strong>扩展插槽 ⑨</strong>：在 ⑦⑧ 之上引入<strong>可学习建议层</strong>（模型与检索），且默认写入候选/工单而非直接改站。</p>
+      <div class="card">
+        <p class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">实施时建议：任何自动生成的「配方/表行」草稿须带 <strong>schema 校验 + PR 审阅 + 与 §2 判据的对照句</strong>，再并入正文。</p>
+      </div>
+    </section>
+
+    <footer>
+      <a href="analysis-hub.html">← 分析引擎</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="synthesis.html#perpetual">综合推演 §11</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
+    </footer>
+  </div>
+  <script src="assets/motion.js"></script>
+</body>
+</html>

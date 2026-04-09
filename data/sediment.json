@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "notes": "由 scripts/analysis_engine.py --sediment 写入每日摘要；可对接 BI 或自行备份。",
+  "entries": [
+    {
+      "date": "2026-04-08",
+      "manifest_n": 3,
+      "candidate_n": 1,
+      "top_factors": [
+        "reg",
+        "water_cooling",
+        "esg_compute_carbon",
+        "attention_minors",
+        "talent"
+      ],
+      "top_pages": [
+        "work-infra-energy.html",
+        "decade-scenes.html",
+        "national-strategy-opinion.html",
+        "decade.html",
+        "nexus.html"
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "manifest_n": 3,
+      "candidate_n": 1,
+      "top_factors": [
+        "reg",
+        "water_cooling",
+        "esg_compute_carbon",
+        "attention_minors",
+        "talent"
+      ],
+      "top_pages": [
+        "work-infra-energy.html",
+        "decade-scenes.html",
+        "national-strategy-opinion.html",
+        "decade.html",
+        "nexus.html"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# SQLite 库文件（JSON 仍为可提交主副本；需共享库时可删除下行）
+data/evolution.db
+data/evolution.db-journal
+data/evolution.db-wal
+data/evolution.db-shm
+
+.DS_Store

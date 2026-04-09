@@ -1,0 +1,1708 @@
+/*
+ * 人与 AI 演进页（body.page-triad-future）专用样式。
+ * 依赖 assets/site.css 中的设计令牌与全局 .triad-rail / .fai-hub / .triad-merge 基线。
+ * 加载顺序：先 site.css，再本文件（仅 evolution-triad.html）。
+ *
+ * 与 motion.js（motion-corridor）、journey-stepper.js 的约定见 assets/MOTION-ARCHITECTURE.md
+ */
+
+/* 演进页加层：在全局 triad-rail / fai / merge 基线之上再抬一档 */
+body.page-triad-future .triad-rail {
+  border: 1px solid color-mix(in srgb, var(--scene-key) 16%, transparent);
+  background: linear-gradient(
+    168deg,
+    color-mix(in srgb, var(--scene-elevated) 98%, transparent) 0%,
+    color-mix(in srgb, var(--scene-panel) 94%, transparent) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    inset 0 -12px 28px rgba(0, 0, 0, 0.14),
+    0 14px 36px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+body.page-triad-future .fai-hub {
+  border-color: color-mix(in srgb, var(--scene-accent-2) 22%, transparent);
+  background: linear-gradient(
+    172deg,
+    color-mix(in srgb, var(--scene-panel-2) 96%, transparent) 0%,
+    color-mix(in srgb, var(--scene-void-mid) 92%, transparent) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 16px 42px rgba(0, 0, 0, 0.32),
+    0 5px 14px rgba(0, 0, 0, 0.2);
+}
+
+body.page-triad-future .triad-merge .cell {
+  border-color: color-mix(in srgb, var(--scene-key) 16%, transparent);
+  background: linear-gradient(
+    185deg,
+    color-mix(in srgb, var(--scene-elevated) 96%, transparent) 0%,
+    color-mix(in srgb, var(--scene-panel) 90%, transparent) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 10px 26px rgba(0, 0, 0, 0.24),
+    0 3px 8px rgba(0, 0, 0, 0.14);
+}
+
+body.page-triad-future .read-hint {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--scene-elevated) 95%, transparent),
+    color-mix(in srgb, var(--scene-panel) 90%, transparent)
+  );
+  border-color: color-mix(in srgb, var(--scene-key) 22%, transparent);
+  box-shadow:
+    var(--depth-inset-lit-strong),
+    var(--depth-inset-well),
+    var(--shadow-layer-2);
+}
+
+/* —— 人与 AI 演进页：历史长廊 → 未来通道 —— */
+@keyframes triad-ambient-drift {
+  0% {
+    opacity: 0.46;
+    transform: translate3d(-1.8%, -2.2%, 0) scale(1.03);
+  }
+
+  33% {
+    opacity: 0.58;
+    transform: translate3d(2.2%, 0.6%, 0) scale(1.06);
+  }
+
+  66% {
+    opacity: 0.52;
+    transform: translate3d(0.4%, 2.4%, 0) scale(1.02);
+  }
+
+  100% {
+    opacity: 0.48;
+    transform: translate3d(-1.2%, -0.8%, 0) scale(1.04);
+  }
+}
+
+@keyframes corridor-step-in {
+  from {
+    opacity: 0;
+    transform: perspective(var(--motion-persp)) translate3d(-28px, 14px, -20px) rotateX(3deg) skewX(-2deg);
+    filter: blur(1.5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: perspective(var(--motion-persp)) translate3d(0, 0, 0) rotateX(0deg) skewX(0deg);
+    filter: blur(0);
+  }
+}
+
+@keyframes journey-current-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 14px rgba(61, 156, 245, 0.22);
+  }
+
+  50% {
+    box-shadow: 0 0 28px rgba(61, 156, 245, 0.42);
+  }
+}
+
+@keyframes triad-gate-piece-in {
+  from {
+    opacity: 0;
+    transform: perspective(var(--motion-persp-tight)) translate3d(-18px, 16px, -12px) rotateX(3deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: perspective(var(--motion-persp-tight)) translate3d(0, 0, 0) rotateX(0deg);
+  }
+}
+
+@keyframes triad-h2-badge-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.78);
+  }
+
+  65% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes corridor-spine-glint {
+  0% {
+    opacity: 0.22;
+    transform: translateY(-125%);
+  }
+
+  100% {
+    opacity: 0.8;
+    transform: translateY(235%);
+  }
+}
+
+@keyframes journey-stepper-wrap-glow {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.07),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.22),
+      0 16px 48px rgba(0, 0, 0, 0.42),
+      0 6px 18px rgba(0, 0, 0, 0.28);
+    border-color: rgba(61, 156, 245, 0.2);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.09),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+      0 22px 58px rgba(0, 0, 0, 0.48),
+      0 0 0 1px rgba(167, 139, 250, 0.14),
+      0 0 44px rgba(61, 156, 245, 0.18);
+    border-color: rgba(167, 139, 250, 0.36);
+  }
+}
+
+body.page-triad-future {
+  position: relative;
+}
+
+body.page-triad-future::before {
+  content: "";
+  position: fixed;
+  inset: -25%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 130% 85% at 50% 108%, rgba(0, 0, 0, 0.52) 0%, transparent 52%),
+    radial-gradient(ellipse 80% 55% at 8% 88%, rgba(180, 130, 80, 0.22), transparent 55%),
+    radial-gradient(ellipse 70% 48% at 18% 22%, rgba(120, 88, 55, 0.14), transparent 50%),
+    radial-gradient(
+      ellipse 72% 52% at 88% 12%,
+      color-mix(in srgb, var(--scene-key) 20%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 65% 50% at 92% 82%,
+      color-mix(in srgb, var(--scene-accent-2) 14%, transparent),
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse 58% 45% at 52% 105%,
+      color-mix(in srgb, var(--ok) 9%, transparent),
+      transparent 48%
+    ),
+    radial-gradient(ellipse 55% 40% at 72% 38%, rgba(255, 255, 255, 0.03), transparent 50%);
+}
+
+body.page-triad-future::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--warn) 35%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--scene-key) 45%, transparent) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 42%, rgba(0, 0, 0, 0.45) 100%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 42%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+/* 底部「地面」渐影：正文浮在稍前的层（伪元素 z-index:-1 避免压住 sticky） */
+body.page-triad-future .wrap.triad-journey::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: min(52vh, 560px);
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    188deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(0, 0, 0, 0.18) 72%,
+    rgba(0, 0, 0, 0.38) 100%
+  );
+}
+
+/* 入场：双扉滑开 + 纵向扫描 + 色散闪光（与旧版「整门放大淡出」不同） */
+@keyframes corridor-gate-chromatic {
+  0% {
+    opacity: 0;
+    transform: scale(0.88);
+    filter: blur(2px) saturate(1.4);
+  }
+
+  40% {
+    opacity: 0.62;
+    transform: scale(1.02);
+    filter: blur(0) saturate(1.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.12);
+    filter: blur(1px) saturate(1);
+  }
+}
+
+@keyframes corridor-gate-scan-sweep {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -120%, 0) scaleY(0.6);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  88% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 220%, 0) scaleY(1.15);
+  }
+}
+
+@keyframes corridor-gate-split-left {
+  0% {
+    transform: translate3d(0, 0, 0) rotateY(0deg);
+    opacity: 1;
+    filter: brightness(1) drop-shadow(0 0 12px rgba(61, 156, 245, 0.2));
+  }
+
+  45% {
+    filter: brightness(1.18) drop-shadow(-12px 4px 36px rgba(61, 156, 245, 0.42));
+  }
+
+  100% {
+    transform: translate3d(-118%, 0, 92px) rotateY(-30deg);
+    opacity: 0;
+    filter: brightness(1.35) drop-shadow(-28px 8px 14px rgba(167, 139, 250, 0.2));
+  }
+}
+
+@keyframes corridor-gate-split-right {
+  0% {
+    transform: translate3d(0, 0, 0) rotateY(0deg);
+    opacity: 1;
+    filter: brightness(1) drop-shadow(0 0 12px rgba(61, 156, 245, 0.2));
+  }
+
+  45% {
+    filter: brightness(1.15) drop-shadow(12px 4px 36px rgba(167, 139, 250, 0.36));
+  }
+
+  100% {
+    transform: translate3d(118%, 0, 92px) rotateY(30deg);
+    opacity: 0;
+    filter: brightness(1.3) drop-shadow(28px 8px 14px rgba(61, 156, 245, 0.16));
+  }
+}
+
+@keyframes corridor-gate-layer-fade {
+  0% {
+    opacity: 1;
+  }
+
+  58% {
+    opacity: 0.88;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.corridor-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+}
+
+.corridor-gate-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 42% 36% at 50% 44%, rgba(61, 156, 245, 0.06) 0%, transparent 62%),
+    radial-gradient(
+      ellipse 48% 42% at 50% 45%,
+      rgba(12, 17, 24, 0) 0%,
+      rgba(12, 17, 24, 0.22) 38%,
+      rgba(12, 17, 24, 0.98) 82%
+    );
+}
+
+.corridor-gate-door {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(68vmin, 400px);
+  height: min(44vmin, 268px);
+  perspective: 820px;
+  transform-style: preserve-3d;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.55));
+}
+
+.corridor-gate-door-half {
+  flex: 1;
+  height: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(
+    148deg,
+    rgba(34, 46, 64, 0.98) 0%,
+    rgba(20, 28, 40, 0.94) 38%,
+    rgba(12, 17, 26, 0.96) 72%,
+    rgba(22, 32, 48, 0.92) 100%
+  );
+  backface-visibility: hidden;
+}
+
+.corridor-gate-door-half--left {
+  border-radius: 10px 0 0 10px;
+  border: 2px solid rgba(61, 156, 245, 0.55);
+  border-right: 1px solid rgba(167, 139, 250, 0.32);
+  box-shadow:
+    inset 4px 4px 14px rgba(255, 255, 255, 0.05),
+    inset -10px -14px 28px rgba(0, 0, 0, 0.5),
+    inset 0 0 36px rgba(61, 156, 245, 0.07),
+    -6px 0 40px rgba(0, 0, 0, 0.45);
+  transform-origin: left center;
+}
+
+.corridor-gate-door-half--right {
+  border-radius: 0 10px 10px 0;
+  border: 2px solid rgba(61, 156, 245, 0.55);
+  border-left: 1px solid rgba(167, 139, 250, 0.32);
+  box-shadow:
+    inset -4px 4px 14px rgba(255, 255, 255, 0.04),
+    inset 10px -14px 28px rgba(0, 0, 0, 0.5),
+    inset 0 0 36px rgba(167, 139, 250, 0.06),
+    6px 0 40px rgba(0, 0, 0, 0.45);
+  transform-origin: right center;
+}
+
+.corridor-gate-scan {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 0;
+  height: 26%;
+  margin-top: -8%;
+  border-radius: 40%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(186, 230, 253, 0.55) 42%,
+    rgba(167, 139, 250, 0.35) 58%,
+    transparent 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(10px);
+  z-index: 4;
+  mix-blend-mode: screen;
+}
+
+.corridor-gate-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background:
+    radial-gradient(circle at 48% 44%, rgba(255, 255, 255, 0.38) 0%, transparent 42%),
+    radial-gradient(circle at 56% 52%, rgba(167, 139, 250, 0.22) 0%, transparent 38%),
+    radial-gradient(circle at 44% 56%, rgba(61, 156, 245, 0.18) 0%, transparent 40%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .corridor-gate--opening .corridor-gate-flash {
+    animation: corridor-gate-chromatic 0.48s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .corridor-gate--opening .corridor-gate-scan {
+    animation: corridor-gate-scan-sweep 1.14s cubic-bezier(0.25, 0.9, 0.32, 1) 0.05s forwards;
+  }
+
+  .corridor-gate--opening .corridor-gate-door-half--left {
+    animation: corridor-gate-split-left 1.36s var(--ease-out-expo) 0.08s forwards;
+  }
+
+  .corridor-gate--opening .corridor-gate-door-half--right {
+    animation: corridor-gate-split-right 1.36s var(--ease-out-expo) 0.1s forwards;
+  }
+
+  .corridor-gate--opening {
+    animation: corridor-gate-layer-fade 1.42s var(--ease-out-expo) forwards;
+  }
+}
+
+.corridor-gate--skip {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  animation: none !important;
+}
+
+.corridor-gate--skip .corridor-gate-door,
+.corridor-gate--skip .corridor-gate-door-half,
+.corridor-gate--skip .corridor-gate-scan,
+.corridor-gate--skip .corridor-gate-flash,
+.corridor-gate--skip .corridor-gate-vignette {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .corridor-gate:not(.corridor-gate--opening) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+}
+
+@media print {
+  .corridor-gate,
+  .corridor-epoch-glow,
+  .corridor-epoch-chip,
+  .corridor-spine,
+  .journey-stepper-wrap {
+    display: none !important;
+  }
+
+  body.page-triad-future::before,
+  body.page-triad-future::after {
+    display: none !important;
+  }
+
+  body.page-triad-future .wrap.triad-journey::after {
+    display: none !important;
+  }
+
+  body:not(.page-triad-future)::before,
+  body:not(.page-triad-future)::after {
+    display: none !important;
+  }
+
+  body:not(.page-triad-future) .wrap:not(.triad-journey)::after {
+    display: none !important;
+  }
+
+  body:not(.page-triad-future)::before,
+  body:not(.page-triad-future)::after {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+.corridor-epoch-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
+  background:
+    radial-gradient(ellipse 72% 62% at 14% 82%, rgba(140, 100, 65, 0.14), transparent 56%),
+    radial-gradient(ellipse 90% 70% at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.12) 100%);
+  transition:
+    background 0.85s var(--ease-out-soft),
+    opacity 0.85s ease;
+}
+
+body.page-triad-future.epoch-corridor .corridor-epoch-glow {
+  background:
+    radial-gradient(ellipse 75% 65% at 12% 88%, rgba(190, 140, 90, 0.26), transparent 58%),
+    radial-gradient(ellipse 88% 68% at 50% 50%, transparent 38%, rgba(0, 0, 0, 0.14) 100%);
+}
+
+body.page-triad-future.epoch-now .corridor-epoch-glow {
+  background:
+    radial-gradient(ellipse 60% 55% at 48% 48%, rgba(129, 110, 230, 0.22), transparent 55%),
+    radial-gradient(ellipse 88% 68% at 50% 50%, transparent 38%, rgba(0, 0, 0, 0.12) 100%);
+}
+
+body.page-triad-future.epoch-future .corridor-epoch-glow {
+  background:
+    radial-gradient(ellipse 70% 60% at 88% 18%, rgba(61, 156, 245, 0.26), transparent 52%),
+    radial-gradient(ellipse 88% 68% at 50% 50%, transparent 38%, rgba(0, 0, 0, 0.14) 100%);
+}
+
+.corridor-epoch-chip {
+  position: fixed;
+  left: clamp(48px, 8vw, 92px);
+  top: 36vh;
+  z-index: 85;
+  margin: 0;
+  max-width: min(7.25rem, 34vw);
+  font-size: 0.58rem;
+  line-height: 1.45;
+  letter-spacing: 0.06em;
+  font-family: var(--mono);
+  font-weight: 600;
+  color: #c9a882;
+  pointer-events: none;
+  transition: color 0.65s var(--ease-out-soft);
+  white-space: normal;
+  word-break: keep-all;
+  text-align: center;
+  text-wrap: balance;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.85),
+    0 0 18px rgba(0, 0, 0, 0.55);
+}
+
+body.page-triad-future.epoch-now .corridor-epoch-chip {
+  color: #c4b5fd;
+}
+
+body.page-triad-future.epoch-future .corridor-epoch-chip {
+  color: var(--accent);
+}
+
+@media (max-width: 400px) {
+  .corridor-epoch-chip {
+    left: 10px;
+    top: 28vh;
+    max-width: min(6.5rem, 42vw);
+    font-size: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+.corridor-spine {
+  --corridor-fill: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: clamp(4px, 2vw, 16px);
+  width: 8px;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(3px 0 10px rgba(0, 0, 0, 0.4));
+}
+
+.corridor-spine-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 0 7px 7px 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(99, 102, 241, 0.18) 38%,
+      rgba(255, 255, 255, 0.12) 52%,
+      rgba(61, 156, 245, 0.2) 68%,
+      rgba(0, 0, 0, 0.35) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(160, 118, 72, 0.55) 0%,
+      rgba(99, 102, 241, 0.12) 48%,
+      rgba(61, 156, 245, 0.4) 100%
+    );
+  opacity: 0.42;
+  box-shadow:
+    inset 2px 0 3px rgba(0, 0, 0, 0.35),
+    inset -1px 0 2px rgba(255, 255, 255, 0.06);
+}
+
+.corridor-spine-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--corridor-fill) * 1%);
+  max-height: 100%;
+  border-radius: 0 7px 7px 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(60, 42, 28, 0.9) 0%,
+      rgba(200, 160, 110, 0.95) 35%,
+      rgba(255, 220, 180, 0.35) 50%,
+      rgba(99, 102, 241, 0.85) 58%,
+      rgba(61, 156, 245, 0.92) 78%,
+      rgba(120, 200, 255, 0.88) 100%
+    ),
+    linear-gradient(180deg, #8b6238 0%, #c9a06e 14%, #6366f1 50%, #3d9cf5 86%, #6bc4fa 100%);
+  opacity: 0.94;
+  overflow: hidden;
+  box-shadow:
+    inset 2px 0 4px rgba(255, 255, 255, 0.08),
+    inset -3px 0 8px rgba(0, 0, 0, 0.35),
+    0 0 28px rgba(61, 156, 245, 0.4),
+    4px 0 22px rgba(180, 130, 80, 0.2);
+  transition: height 0.12s ease-out;
+}
+
+.corridor-spine-fill::after {
+  content: "";
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  height: 42%;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .corridor-spine-fill::after {
+    animation: corridor-spine-glint 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .corridor-spine-fill {
+    transition: none;
+  }
+
+  .corridor-spine-fill::after {
+    display: none;
+  }
+}
+
+/* 五站在视口中的纵向投影：固定脊上的「深度信标」（位置由 journey-stepper.js 写入 top%） */
+.corridor-spine-marks {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.corridor-spine-mark {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  background: radial-gradient(circle at 35% 30%, #f0f4fc, var(--text-secondary) 58%, #4a5a70 100%);
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--scene-key) 38%, transparent),
+    0 0 16px color-mix(in srgb, var(--scene-key) 42%, transparent),
+    0 2px 6px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  opacity: 0.62;
+  transition:
+    opacity 0.22s ease,
+    transform 0.28s var(--ease-out-soft),
+    box-shadow 0.35s ease,
+    top 0.14s ease-out;
+}
+
+.corridor-spine-mark.is-active {
+  opacity: 1;
+  transform: translate3d(-50%, -50%, 0) scale(1.45);
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--scene-key) 55%, transparent),
+    0 0 22px color-mix(in srgb, var(--scene-key) 58%, transparent),
+    0 0 36px color-mix(in srgb, var(--scene-accent-2) 22%, transparent),
+    0 3px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.corridor-spine-mark.is-offscreen {
+  opacity: 0.18;
+  transform: translate3d(-50%, -50%, 0) scale(0.88);
+  filter: saturate(0.75);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .corridor-spine-mark {
+    transition: opacity 0.15s ease;
+  }
+}
+
+@media (max-width: 400px) {
+  .corridor-spine {
+    display: none;
+  }
+}
+
+.triad-journey .nexus-legend {
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  background: linear-gradient(165deg, rgba(28, 36, 50, 0.72), rgba(14, 19, 28, 0.58));
+  border: 1px solid rgba(61, 156, 245, 0.18);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 12px 36px rgba(0, 0, 0, 0.32),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.human-journey-hero {
+  position: relative;
+  margin: 0 0 1.1rem;
+  padding: 1rem 1.15rem 1.05rem;
+  border-radius: 12px;
+  border: 1px solid rgba(61, 156, 245, 0.28);
+  background: linear-gradient(152deg, rgba(26, 34, 48, 0.97) 0%, rgba(16, 22, 32, 0.9) 55%, rgba(20, 28, 40, 0.93) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -12px 28px rgba(0, 0, 0, 0.18),
+    0 0 0 1px rgba(0, 0, 0, 0.2),
+    0 18px 52px rgba(0, 0, 0, 0.38),
+    0 8px 20px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(14px);
+  transform-style: preserve-3d;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.page-triad-future .human-journey-hero {
+    transform: perspective(var(--motion-persp-tight)) rotateX(1.2deg);
+  }
+
+  body.page-triad-future .human-journey-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(
+      185deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 22%,
+      transparent 62%,
+      color-mix(in srgb, var(--scene-key) 8%, transparent) 100%
+    );
+    box-shadow: inset 0 14px 28px rgba(0, 0, 0, 0.12);
+  }
+
+  body.page-triad-future .human-journey-hero > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.human-journey-kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  font-family: var(--mono);
+}
+
+.human-journey-axis {
+  margin: 0 0 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #d4b896;
+  font-family: var(--mono);
+}
+
+.human-journey-axis .human-journey-arrow {
+  margin: 0 0.35rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.human-journey-tagline {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.62;
+  color: var(--muted);
+  max-width: 64ch;
+}
+
+.human-journey-tagline strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.journey-stepper-wrap {
+  position: sticky;
+  top: 3.65rem;
+  z-index: 90;
+  margin: 0 0 1.35rem;
+  padding: 0.5rem 0.45rem;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(22, 30, 42, 0.92) 0%, rgba(10, 14, 20, 0.88) 100%);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(61, 156, 245, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+    0 14px 46px rgba(0, 0, 0, 0.4),
+    0 5px 16px rgba(0, 0, 0, 0.26);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.page-triad-future .journey-stepper-wrap {
+    animation: journey-stepper-wrap-glow 5s ease-in-out infinite;
+  }
+}
+
+.corridor-axis-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0 0 0.45rem;
+  padding: 0 0.2rem;
+  font-size: 0.62rem;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+
+.corridor-axis-past {
+  color: #c9a882;
+  font-weight: 600;
+}
+
+.corridor-axis-future {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.corridor-axis-mid {
+  flex: 1;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+@media (max-width: 560px) {
+  .corridor-axis-mid {
+    display: none;
+  }
+}
+
+.journey-stepper {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.journey-stepper li {
+  flex: 1 1 0;
+  min-width: 5.75rem;
+  border-right: 1px solid var(--panel-edge-soft);
+  position: relative;
+}
+
+.journey-stepper li:last-child {
+  border-right: none;
+}
+
+.journey-stepper a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28rem;
+  min-height: 100%;
+  padding: 0.48rem 0.35rem;
+  text-decoration: none;
+  color: var(--muted);
+  border-radius: 8px;
+  transition:
+    color 0.22s ease,
+    background 0.22s ease,
+    transform 0.32s var(--ease-out-expo),
+    opacity 0.28s ease;
+}
+
+.journey-stepper a:hover {
+  color: var(--text);
+  background: rgba(61, 156, 245, 0.06);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.page-triad-future .journey-stepper {
+    perspective: 900px;
+    transform-style: preserve-3d;
+  }
+
+  body.page-triad-future .journey-stepper a {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  body.page-triad-future .journey-stepper li.is-current a {
+    transform: translate3d(0, -4px, 20px) rotateX(5.5deg) scale(1.03);
+  }
+
+  body.page-triad-future .journey-stepper li.is-passed a {
+    opacity: 0.82;
+    transform: translate3d(0, 2px, -6px) rotateX(2deg) scale(0.988);
+  }
+
+  body.page-triad-future .journey-stepper li:not(.is-current):not(.is-passed) a {
+    transform: translate3d(0, 0, -3px) rotateX(3deg) scale(0.994);
+  }
+
+  body.page-triad-future .journey-stepper a:hover {
+    transform: translate3d(0, -3px, 14px) rotateX(4.5deg) scale(1.025);
+  }
+
+  body.page-triad-future .journey-stepper li.is-current a:hover {
+    transform: translate3d(0, -5px, 24px) rotateX(6deg) scale(1.04);
+  }
+}
+
+.journey-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.28rem 0.42rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  transition:
+    border-color 0.22s ease,
+    background 0.22s ease,
+    color 0.22s ease,
+    box-shadow 0.28s var(--ease-out-soft);
+}
+
+.journey-label {
+  font-size: 0.64rem;
+  line-height: 1.2;
+  text-align: center;
+  max-width: 6.5rem;
+}
+
+.journey-phase {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  text-align: center;
+  max-width: 6.5rem;
+  opacity: 0.88;
+  color: var(--text-tertiary);
+}
+
+.journey-stepper li[data-journey-phase="past"] .journey-phase {
+  color: color-mix(in srgb, var(--warn) 58%, var(--text-tertiary));
+}
+
+.journey-stepper li[data-journey-phase="present"] .journey-phase {
+  color: color-mix(in srgb, var(--ok) 50%, var(--text-tertiary));
+}
+
+.journey-stepper li[data-journey-phase="future"] .journey-phase {
+  color: color-mix(in srgb, var(--scene-accent-2) 55%, var(--text-tertiary));
+}
+
+.journey-stepper li.is-current .journey-phase {
+  opacity: 0.95;
+  color: var(--text-secondary);
+}
+
+.journey-stepper li.is-passed .journey-phase {
+  opacity: 0.62;
+}
+
+.journey-stepper li.is-passed .journey-num {
+  border-color: rgba(78, 207, 142, 0.4);
+  color: var(--ok);
+  background: rgba(78, 207, 142, 0.07);
+}
+
+.journey-stepper li.is-current a {
+  color: var(--text);
+}
+
+.journey-stepper li.is-current .journey-num {
+  border-color: rgba(61, 156, 245, 0.55);
+  color: var(--accent);
+  background: rgba(61, 156, 245, 0.14);
+}
+
+.triad-journey {
+  counter-reset: triad-human-step;
+}
+
+.triad-journey section[id] {
+  position: relative;
+  z-index: 1;
+  padding-left: 0.65rem;
+  scroll-margin-top: 8.5rem;
+}
+
+@media (max-width: 720px) {
+  .triad-journey section[id] {
+    scroll-margin-top: 9.35rem;
+  }
+}
+
+/* —— 五站长廊：每节一座站台，滚动同步「驻足」状态（见 journey-stepper.js） —— */
+.triad-journey section.triad-station {
+  margin-bottom: var(--space-10);
+  padding: var(--space-5) var(--space-4) var(--space-8) 0.85rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--panel-edge-mute);
+  background: linear-gradient(
+    168deg,
+    color-mix(in srgb, var(--scene-panel-2) 38%, transparent) 0%,
+    transparent 55%
+  );
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  transition:
+    border-color 0.45s var(--ease-out-soft),
+    box-shadow 0.45s var(--ease-out-soft),
+    background 0.5s ease,
+    opacity 0.35s ease;
+}
+
+.triad-journey section.triad-station.is-station-past {
+  opacity: 0.98;
+}
+
+.triad-journey section.triad-station.is-station-current {
+  border-color: color-mix(in srgb, var(--scene-key) 32%, transparent);
+  opacity: 1;
+  background: linear-gradient(
+    168deg,
+    color-mix(in srgb, var(--scene-elevated) 52%, transparent) 0%,
+    transparent 50%
+  );
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.28),
+    0 0 0 1px color-mix(in srgb, var(--scene-key) 14%, transparent),
+    0 22px 56px color-mix(in srgb, var(--scene-key) 10%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.065);
+}
+
+.triad-journey section.triad-station.is-station-current > h2,
+.triad-journey section.triad-station.is-station-current > .triad-station__deck {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .triad-journey section.triad-station.is-station-current::after {
+    content: "";
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    bottom: -0.4rem;
+    height: min(36%, 200px);
+    max-height: 220px;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 999px;
+    background: radial-gradient(
+      ellipse 78% 55% at 50% 100%,
+      color-mix(in srgb, var(--scene-key) 22%, transparent) 0%,
+      color-mix(in srgb, var(--scene-accent-2) 10%, transparent) 42%,
+      transparent 70%
+    );
+    opacity: 0.88;
+  }
+
+  .triad-journey section.triad-station.is-station-current .triad-gate-strip {
+    transform: perspective(760px) translate3d(0, -1px, 10px);
+    transition: transform 0.45s var(--ease-out-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .triad-journey section.triad-station {
+    transition: none;
+  }
+
+  .triad-journey section.triad-station.is-station-current::after {
+    display: none;
+  }
+
+  .triad-journey section.triad-station.is-station-current .triad-gate-strip {
+    transform: none !important;
+  }
+}
+
+.triad-station-plaque {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  max-width: var(--prose-width);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--panel-edge-soft);
+  background: var(--surface-well);
+  box-shadow:
+    var(--depth-inset-lit),
+    var(--shadow-layer-1);
+}
+
+.triad-station-plaque[data-phase="past"] {
+  border-left: 3px solid color-mix(in srgb, var(--warn) 70%, transparent);
+}
+
+.triad-station-plaque[data-phase="present"] {
+  border-left: 3px solid color-mix(in srgb, var(--ok) 75%, transparent);
+}
+
+.triad-station-plaque[data-phase="future"] {
+  border-left: 3px solid color-mix(in srgb, var(--scene-accent-2) 80%, transparent);
+}
+
+.triad-station-plaque__kicker {
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-tertiary);
+  text-transform: none;
+}
+
+.triad-station-plaque__phase {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-display);
+}
+
+.triad-station-plaque[data-phase="past"] .triad-station-plaque__phase {
+  color: color-mix(in srgb, var(--warn) 88%, var(--text-display));
+}
+
+.triad-station-plaque[data-phase="present"] .triad-station-plaque__phase {
+  color: color-mix(in srgb, var(--ok) 82%, var(--text-display));
+}
+
+.triad-station-plaque[data-phase="future"] .triad-station-plaque__phase {
+  color: color-mix(in srgb, var(--scene-accent-2) 90%, var(--text-display));
+}
+
+.triad-station-plaque__pause {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.triad-station-plaque__pause strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.triad-journey section.triad-station.is-station-current .triad-station-plaque {
+  border-color: color-mix(in srgb, var(--scene-key) 22%, transparent);
+  background: linear-gradient(
+    188deg,
+    color-mix(in srgb, var(--scene-panel) 88%, transparent) 0%,
+    color-mix(in srgb, var(--scene-void-mid) 75%, transparent) 100%
+  );
+}
+
+/* 展台内层：Z 与微缩放叠在 section 的廊道 transform 之上，表示「驻足前/后」景深 */
+.triad-station__deck {
+  transform-style: preserve-3d;
+  transform-origin: 50% 0%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.motion-scroll .triad-station__deck {
+    transition:
+      transform 0.55s var(--ease-out-soft),
+      filter 0.45s ease;
+  }
+
+  html.motion-scroll .triad-journey section.triad-station.is-station-current .triad-station__deck {
+    transform: translate3d(0, -2px, 14px) scale(1.004);
+    filter: brightness(1.02);
+  }
+
+  html.motion-scroll .triad-journey section.triad-station.is-station-past .triad-station__deck {
+    transform: translate3d(0, 1px, -4px) scale(0.996);
+    filter: saturate(0.98) brightness(0.995);
+  }
+
+  /* 尚未驻足的站：保持可读为主，只做极轻的后景提示 */
+  html.motion-scroll
+    .triad-journey
+    section.triad-station:not(.is-station-current):not(.is-station-past)
+    .triad-station__deck {
+    transform: translate3d(0, 0, -2px) scale(0.999);
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .triad-station__deck {
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
+.triad-journey section[id] > h2 {
+  counter-increment: triad-human-step;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.55rem 0.85rem;
+}
+
+.triad-journey section[id] > h2::before {
+  content: counter(triad-human-step, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.28rem 0.48rem;
+  border-radius: 6px;
+  background: linear-gradient(155deg, rgba(72, 130, 200, 0.22) 0%, rgba(61, 156, 245, 0.12) 45%, rgba(167, 139, 250, 0.1) 100%);
+  border: 1px solid rgba(61, 156, 245, 0.38);
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 4px 14px rgba(0, 0, 0, 0.28),
+    0 0 22px rgba(61, 156, 245, 0.14);
+}
+
+/* 层层推进：每节「时代之门 × 行业之门」门牌 */
+.triad-gate-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5rem 0.65rem;
+  margin: -0.25rem 0 1rem;
+  padding: 0.55rem 0.65rem 0.6rem;
+  border-radius: 10px;
+  border: 1px solid rgba(52, 64, 82, 0.95);
+  background: linear-gradient(158deg, rgba(28, 36, 50, 0.88) 0%, rgba(16, 22, 32, 0.72) 52%, rgba(12, 17, 26, 0.78) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -8px 20px rgba(0, 0, 0, 0.12),
+    0 14px 38px rgba(0, 0, 0, 0.32),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.triad-gate-layer {
+  flex: 0 0 auto;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--warn);
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid rgba(232, 168, 56, 0.35);
+  background: rgba(232, 168, 56, 0.08);
+  align-self: center;
+}
+
+.triad-gate-pill {
+  flex: 1 1 220px;
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.55;
+  color: var(--muted);
+  padding: 0.4rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: rgba(12, 17, 24, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.triad-gate-pill-k {
+  display: inline-block;
+  margin-right: 0.35rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+
+.triad-gate-pill--era {
+  border-color: rgba(200, 160, 110, 0.4);
+  border-left: 3px solid rgba(200, 160, 110, 0.75);
+}
+
+.triad-gate-pill--era .triad-gate-pill-k {
+  color: #d4b896;
+}
+
+.triad-gate-pill--field {
+  border-color: rgba(61, 156, 245, 0.32);
+  border-left: 3px solid rgba(61, 156, 245, 0.65);
+}
+
+.triad-gate-pill--field .triad-gate-pill-k {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .triad-gate-layer {
+    transition:
+      transform 0.3s var(--ease-out-soft),
+      box-shadow 0.35s ease;
+  }
+
+  .triad-gate-pill {
+    transition:
+      transform 0.3s var(--ease-out-soft),
+      border-color 0.28s ease,
+      box-shadow 0.35s var(--ease-out-soft);
+  }
+
+  .triad-gate-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+  }
+}
+
+@media (max-width: 560px) {
+  .triad-gate-strip {
+    flex-direction: column;
+  }
+
+  .triad-gate-layer {
+    align-self: flex-start;
+  }
+
+  .triad-gate-pill {
+    flex: 1 1 auto;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.page-triad-future::before {
+    animation: triad-ambient-drift 26s ease-in-out infinite alternate;
+  }
+
+  .journey-stepper li.is-current .journey-num {
+    animation: journey-current-pulse 2.8s ease-in-out infinite;
+  }
+
+  html.motion-scroll .triad-journey section.motion-scroll-target.is-revealed::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.35rem;
+    bottom: 0.35rem;
+    width: 3px;
+    z-index: 2;
+    border-radius: 3px;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--warn) 75%, #fff) 0%,
+      var(--accent) 32%,
+      var(--scene-accent-2) 62%,
+      color-mix(in srgb, var(--ok) 85%, transparent) 100%
+    );
+    opacity: 0.92;
+    pointer-events: none;
+    box-shadow: 0 0 16px color-mix(in srgb, var(--scene-key) 38%, transparent);
+  }
+}
+
+@media (max-width: 720px) {
+  .journey-stepper-wrap {
+    top: 3.35rem;
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+  }
+
+  .journey-label {
+    white-space: normal;
+    max-width: 5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.page-triad-future::before {
+    animation: none !important;
+  }
+
+  .journey-stepper li.is-current .journey-num {
+    animation: none !important;
+  }
+
+  /* 无滚动脚本时仍保留「步步」视觉锚点 */
+  .triad-journey section[id]::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.35rem;
+    bottom: 0.35rem;
+    width: 3px;
+    z-index: 2;
+    border-radius: 3px;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--warn) 90%, transparent),
+      var(--accent) 45%,
+      var(--scene-accent-2)
+    );
+    opacity: 0.82;
+    pointer-events: none;
+  }
+}
+
+
+/* —— 滚动揭示 · 廊道与 triad-journey 叠加（phase-bar / triad-block-in 基线在 site.css） —— */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 人与 AI 页 · 长廊：斜向 + 俯仰，强化「从廊道走入前景」 */
+  html.motion-corridor.motion-scroll .motion-scroll-target:not(.is-revealed) {
+    opacity: 0;
+    transform: perspective(var(--motion-persp)) translate3d(-38px, 32px, -24px) rotateX(4deg) rotateZ(-0.35deg) scale(0.978);
+    transform-origin: 20% 0%;
+  }
+
+  html.motion-corridor.motion-scroll .motion-scroll-target.is-revealed {
+    opacity: 1;
+    transform: perspective(var(--motion-persp)) translate3d(0, 0, 0) rotateX(0deg) rotateZ(0deg) scale(1);
+    transform-origin: 20% 0%;
+    transition:
+      opacity var(--motion-reveal-duration) var(--ease-out-expo),
+      transform var(--motion-reveal-duration) var(--ease-out-expo);
+    transition-delay: var(--motion-reveal-delay, 0ms);
+  }
+
+  html.motion-corridor.motion-scroll .motion-scroll-target.is-revealed .triad-rail {
+    animation-name: corridor-step-in;
+    animation-duration: 0.56s;
+    animation-timing-function: var(--ease-out-expo);
+  }
+
+  html.motion-corridor.motion-scroll .motion-scroll-target.is-revealed .fai-hub {
+    animation-name: corridor-step-in;
+    animation-duration: 0.58s;
+    animation-timing-function: var(--ease-out-expo);
+  }
+
+  html.motion-corridor.motion-scroll .motion-scroll-target.is-revealed .triad-merge .cell:nth-child(1),
+  html.motion-corridor.motion-scroll .motion-scroll-target.is-revealed .triad-merge .cell:nth-child(2),
+  html.motion-corridor.motion-scroll .motion-scroll-target.is-revealed .triad-merge .cell:nth-child(3) {
+    animation-name: corridor-step-in;
+    animation-duration: 0.5s;
+    animation-timing-function: var(--ease-out-expo);
+  }
+
+  /* 人与 AI 页：标题序号徽标弹出 + 门牌条分层入场 */
+  html.motion-scroll .triad-journey section.motion-scroll-target.is-revealed > h2::before {
+    animation: triad-h2-badge-pop 0.58s var(--ease-out-expo) both;
+    animation-delay: calc(var(--motion-reveal-delay, 0ms) + 0.05s);
+  }
+
+  html.motion-scroll .triad-journey section.motion-scroll-target.is-revealed .triad-gate-layer {
+    animation: triad-gate-piece-in 0.52s var(--ease-out-expo) both;
+    animation-delay: calc(var(--motion-reveal-delay, 0ms) + 0.12s);
+  }
+
+  html.motion-scroll .triad-journey section.motion-scroll-target.is-revealed .triad-gate-pill--era {
+    animation: triad-gate-piece-in 0.52s var(--ease-out-expo) both;
+    animation-delay: calc(var(--motion-reveal-delay, 0ms) + 0.22s);
+  }
+
+  html.motion-scroll .triad-journey section.motion-scroll-target.is-revealed .triad-gate-pill--field {
+    animation: triad-gate-piece-in 0.52s var(--ease-out-expo) both;
+    animation-delay: calc(var(--motion-reveal-delay, 0ms) + 0.34s);
+  }
+
+
+  /* 当前展台内：时间轴/三角图在内层做轻 rotateY，不与父块入场 animation 抢同一层 transform */
+  html.motion-scroll
+    .triad-journey
+    section.triad-station.is-station-current.is-revealed
+    .triad-rail
+    .triad-rail__svg-scroll {
+    transform: perspective(880px) rotateY(-1.35deg) translateZ(6px);
+    transform-origin: 50% 50%;
+    transition: transform 0.5s var(--ease-out-soft);
+  }
+
+  html.motion-scroll
+    .triad-journey
+    section.triad-station.is-station-current.is-revealed
+    .fai-hub
+    .fai-hub__svg-scroll {
+    transform: perspective(880px) rotateY(1.15deg) translateZ(8px);
+    transform-origin: 50% 45%;
+    transition: transform 0.5s var(--ease-out-soft);
+  }
+
+  html.motion-scroll
+    .triad-journey
+    section.triad-station.is-station-current.is-revealed
+    .triad-merge {
+    filter: saturate(1.04) brightness(1.02);
+    transition: filter 0.45s ease;
+  }
+
+  html.motion-scroll
+    .triad-journey
+    section.triad-station.is-station-current.is-revealed
+    .triad-merge
+    .cell {
+    box-shadow:
+      var(--depth-inset-lit),
+      var(--shadow-layer-2),
+      0 0 0 1px color-mix(in srgb, var(--scene-key) 10%, transparent);
+    transition:
+      transform 0.45s var(--ease-out-soft),
+      box-shadow 0.45s var(--ease-out-soft);
+  }
+
+  html.motion-scroll
+    .triad-journey
+    section.triad-station.is-station-current.is-revealed
+    .triad-merge
+    .cell:nth-child(1) {
+    transform: translate3d(-2px, 0, 4px);
+  }
+
+  html.motion-scroll
+    .triad-journey
+    section.triad-station.is-station-current.is-revealed
+    .triad-merge
+    .cell:nth-child(2) {
+    transform: translate3d(0, -1px, 6px);
+  }
+
+  html.motion-scroll
+    .triad-journey
+    section.triad-station.is-station-current.is-revealed
+    .triad-merge
+    .cell:nth-child(3) {
+    transform: translate3d(2px, 0, 4px);
+  }
+
+  body.page-triad-future
+    .triad-journey
+    section.is-station-current
+    .triad-rail:hover
+    .triad-rail__svg-scroll {
+    transform: perspective(880px) rotateY(-1.35deg) translateZ(10px) scale(1.008);
+  }
+
+  body.page-triad-future
+    .triad-journey
+    section.is-station-current
+    .fai-hub:hover
+    .fai-hub__svg-scroll {
+    transform: perspective(880px) rotateY(1.15deg) translateZ(12px) scale(1.006);
+  }
+
+  body.page-triad-future .triad-journey .nexus-legend {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.065),
+      0 16px 44px rgba(0, 0, 0, 0.36),
+      0 5px 16px rgba(0, 0, 0, 0.22),
+      0 0 0 1px color-mix(in srgb, var(--scene-key) 12%, transparent);
+    transition: box-shadow 0.4s var(--ease-out-soft);
+  }
+
+  body.page-triad-future .triad-journey .read-hint {
+    transform: perspective(960px) rotateX(0.55deg);
+    transform-origin: 50% 0;
+    transition: transform 0.4s var(--ease-out-soft);
+  }
+
+  body.page-triad-future .triad-journey .edu-toc {
+    transform: perspective(960px) rotateX(0.45deg);
+    transform-origin: 50% 0;
+    transition: transform 0.4s var(--ease-out-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.motion-scroll .triad-journey section.motion-scroll-target.is-revealed > h2::before,
+  html.motion-scroll .triad-journey section.motion-scroll-target.is-revealed .triad-gate-layer,
+  html.motion-scroll .triad-journey section.motion-scroll-target.is-revealed .triad-gate-pill--era,
+  html.motion-scroll .triad-journey section.motion-scroll-target.is-revealed .triad-gate-pill--field {
+    animation: none !important;
+  }
+
+  body.page-triad-future .journey-stepper-wrap {
+    animation: none !important;
+  }
+
+  .journey-stepper li.is-current a,
+  .journey-stepper li.is-passed a {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  body.page-triad-future .triad-journey .read-hint,
+  body.page-triad-future .triad-journey .edu-toc {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  body.page-triad-future .triad-journey .nexus-legend {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 12px 36px rgba(0, 0, 0, 0.32),
+      0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  html.motion-scroll .triad-journey .triad-rail .triad-rail__svg-scroll,
+  html.motion-scroll .triad-journey .fai-hub .fai-hub__svg-scroll {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  html.motion-scroll .triad-journey .triad-merge {
+    filter: none !important;
+    transition: none !important;
+  }
+
+  html.motion-scroll .triad-journey .triad-merge .cell {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .triad-gate-pill:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

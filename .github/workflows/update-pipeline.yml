@@ -1,0 +1,29 @@
+# 定时或手动跑分析流水线，产出 JSON 以 artifact 下载（默认不回写仓库）。
+# 本地同等命令：bash scripts/run_update_pipeline.sh
+name: Update pipeline
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 每周一 16:00 UTC（约北京时间周一夜间）；可按需改 crontab.guru
+    - cron: "0 16 * * 1"
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run update pipeline
+        run: bash scripts/run_update_pipeline.sh
+      - name: Upload analysis outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: analysis-outputs-${{ github.run_id }}
+          path: |
+            assets/analysis-snapshot.json
+            assets/sediment-trends.json
+            data/sediment.json
+          if-no-files-found: warn

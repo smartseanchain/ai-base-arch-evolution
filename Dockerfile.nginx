@@ -1,0 +1,6 @@
+# 可选：当 Docker Hub / 镜像源可正常拉取 nginx:alpine 时使用（标准 MIME、易加 header/rewrite）。
+# 构建：docker build -f Dockerfile.nginx -t ai-arch-evolution:nginx .
+# 运行：docker run --rm -p 8765:80 ai-arch-evolution:nginx
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+EXPOSE 80

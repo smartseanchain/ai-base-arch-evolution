@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="description" content="综合推演：模块组合判据、传导图、配方 A—H 与叠乘 I—V、三簇图景、五域复合表；§11 迭代、§12 跨学科办法、§13 深读透镜。" />
+  <meta name="theme-color" content="#0c1118" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="基础架构演变推演" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="综合推演：模块组合与未来形态 · 基础架构演变推演" />
+  <meta property="og:description" content="综合推演：模块组合判据、传导图、配方 A—H 与叠乘 I—V、三簇图景、五域复合表；§11 迭代、§12 跨学科办法、§13 深读透镜。" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="综合推演：模块组合与未来形态 · 基础架构演变推演" />
+  <meta name="twitter:description" content="综合推演：模块组合判据、传导图、配方 A—H 与叠乘 I—V、三簇图景、五域复合表；§11 迭代、§12 跨学科办法、§13 深读透镜。" />
+  <title>综合推演：模块组合与未来形态 · 基础架构演变推演</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <a class="skip-link" href="#main">跳到正文</a>
+      <a class="skip-link" href="index.html#three-questions">三问导读</a>
+    </div>
+    <header class="site-nav">
+      <div class="site-nav-start">
+        <a class="brand" href="index.html">基础架构演变推演</a>
+        <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+      </div>
+      <nav class="site-links" aria-label="站内分页">
+        <a href="index.html">总览</a>
+        <a href="nexus.html">立体联结</a>
+        <a href="edu-nexus.html">教育纵轴</a>
+        <a href="evolution-triad.html">人与AI演进</a>
+        <a href="work-infra-energy.html">职业·基建·能源</a>
+        <a href="model.html">分层模型</a>
+        <a href="architecture.html">架构拓扑</a>
+        <a href="timeline.html">历史演进</a>
+        <a href="past-future.html">廿年视角</a>
+        <a href="decade.html">十年展望</a>
+        <a href="decade-scenes.html">十年场景</a>
+        <a href="decade-us.html">十年之问</a>
+        <a href="modules-map.html">模块图谱</a>
+        <a href="synthesis.html" class="current">综合推演</a>
+        <a href="risk-geo.html">地缘与商业</a>
+        <a href="net-biz-capital.html">网·商·资·工</a>
+        <a href="national-strategy-opinion.html">战略·舆情</a>
+        <a href="social-responsibility-evolution.html">社会责任</a>
+        <a href="evolution-loop.html">进化闭环</a>
+        <a href="analysis-hub.html">分析引擎</a>
+        <a href="intelligent-evolution.html">智能进化</a>
+        <a href="smart-overhaul.html">整体改造</a>
+        <a href="evolvable-architecture.html">可进化架构</a>
+        <a href="lab.html">沙盘工坊</a>
+      </nav>
+    </header>
+
+    <div id="main" class="page-head" tabindex="-1">
+      <h1>综合推演：模块组合的合理性、扩展关联与可能形态</h1>
+      <p class="lead">
+        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。用户提出的关键词仅作<strong>启发</strong>；本页在<strong>全站已有模块</strong>上做一次「元梳理」：先说明每个模块<strong>携带哪些变量、回答什么问题</strong>，再用<strong>可检验的判据</strong>解释「为何 A×B 值得一起读」，继而写出<strong>传导链与分叉</strong>，最后用<strong>多枝形态</strong>（非单一终局）展现「未来可能长什么样」。在此基础上可继续<strong>叠加房地产、养老、区块链、AI、机器人</strong>五域（<strong>§6</strong> 变量与配方 <strong>I—V</strong>；<strong>§7</strong> 复合表增行）——它们压在同一套尺度/时间/硬栈上，形成新的传导与形态分叉。<strong>梳理 → 扩展 → 推演</strong>应<strong>循环进行</strong>，而不是读一遍即止；如何在本页上持续加料，见 <a href="#perpetual">§11</a>。若希望<strong>按研究领域习惯</strong>选用不同推演套路（情景规划、系统动力学、因果图、可靠性分析等），见 <a href="#methods">§12</a>。若要把同一议题<strong>加深</strong>并刻意从<strong>多角度、多维度、多场景</strong>互射，见 <a href="#deep-lens">§13 深读透镜</a>。全文仍是<strong>定性推演脚手架</strong>，不是预测或处方。
+      </p>
+    </div>
+
+    <div class="nexus-legend">
+      <span class="nexus-tag evidence">依据 — 站内各页已写明的结构与可观察现象</span>
+      <span class="nexus-tag extend">扩展 — 变量如何在模块间传导、放大或抵消</span>
+      <span class="nexus-tag imagine">想象 — 多种可能形态与可见征候（可证伪的叙述）</span>
+    </div>
+
+    <nav aria-label="本页章节">
+      <ul class="edu-toc">
+        <li><a href="#inventory">模块·五系七层</a></li>
+        <li><a href="#criteria">组合合理性</a></li>
+        <li><a href="#graph">关联与毗邻</a></li>
+        <li><a href="#axes">三条合成轴</a></li>
+        <li><a href="#recipes">推演配方与分叉形态</a></li>
+        <li><a href="#stack-domains">叠加五域</a></li>
+        <li><a href="#matrix">复合焦点总表</a></li>
+        <li><a href="#forks">三簇未来图景</a></li>
+        <li><a href="#dimensions">五维形态展现</a></li>
+        <li><a href="#workflow">工作台</a></li>
+        <li><a href="#perpetual">持续迭代</a></li>
+        <li><a href="#methods">跨学科推演办法</a></li>
+        <li><a href="#deep-lens">深读透镜</a></li>
+        <li><a href="evolution-loop.html">进化闭环</a></li>
+        <li><a href="analysis-hub.html">分析引擎</a></li>
+        <li><a href="intelligent-evolution.html">智能进化</a></li>
+        <li><a href="evolvable-architecture.html">可进化架构</a></li>
+        <li><a href="social-responsibility-evolution.html">社会责任</a></li>
+        <li><a href="net-biz-capital.html">网·商·资·工链</a></li>
+      </ul>
+    </nav>
+
+    <section id="inventory">
+      <h2>1. 全站模块：五系归档 · 七层堆叠 · 变量与问句</h2>
+      <p class="muted" style="margin-top:-0.35rem"><strong>五系</strong>便于找同窗互证；<strong>堆叠位</strong>（L0—L6 与 T·时间轴）提醒「下层约束上层」。组合时先对表，避免把<strong>不同量纲</strong>硬扭在一起。剖面图与扩展三向见 <a href="modules-map.html#taxonomy">模块图谱 · 五系</a>、<a href="modules-map.html#layer-stack">七层</a>、<a href="modules-map.html#extension">扩展</a>。</p>
+      <div class="synth-mod-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>系</th>
+              <th>堆叠位</th>
+              <th>模块（页）</th>
+              <th>主要变量 / 信息类型</th>
+              <th>典型问句（推演时用来对齐）</th>
+              <th>自然延伸（易联模块）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="synth-cat-row"><td colspan="6">Ⅰ 枢轴与元工具</td></tr>
+            <tr>
+              <td>Ⅰ</td>
+              <td>纵切·全层</td>
+              <td><a href="nexus.html">立体联结</a></td>
+              <td>尺度嵌套、责任归属、家庭—国家张力、依据/扩展/想象三分法</td>
+              <td>同一政策在客厅与机房是否被<strong>同一话语</strong>理解？摩擦会先在谁之间爆发？</td>
+              <td>人与AI演进、十年展望（治理）、教育纵轴、十年场景（家庭）</td>
+            </tr>
+            <tr>
+              <td>Ⅰ</td>
+              <td>L6</td>
+              <td><a href="synthesis.html">综合推演</a>（本页）</td>
+              <td>判据、配方 A—H / I—V、复合表、§12—§13</td>
+              <td>两模块之间是否存在可对账的共享变量与传导顺序？</td>
+              <td>全站；§11 迭代；沙盘加压</td>
+            </tr>
+            <tr>
+              <td>Ⅰ</td>
+              <td>L6</td>
+              <td><a href="modules-map.html">模块图谱</a></td>
+              <td>五系、七层剖面、星丛/场景轮、路径与八镜头演示</td>
+              <td>从哪系进门？缺哪一层会空转？</td>
+              <td>本页 §1—§13、十年场景</td>
+            </tr>
+            <tr>
+              <td>Ⅰ</td>
+              <td>L6</td>
+              <td><a href="lab.html">沙盘工坊</a></td>
+              <td>多因子合成、七步向导、依赖流</td>
+              <td>在强监管/算力爆发/人才稀缺等组合下，<strong>哪条传导链先绷紧</strong>？</td>
+              <td>分层模型、十年六维、全部模块（作假设旋钮）</td>
+            </tr>
+            <tr>
+              <td>Ⅰ</td>
+              <td>L6</td>
+              <td><a href="evolution-loop.html">进化闭环</a></td>
+              <td><code>evolution-manifest.json</code> 观测信号、OODA、反哺 §11 / 沙盘高亮</td>
+              <td>新信号能否映射到模块页与 <code>lab_factors</code>，并经 §2 判据<strong>升格</strong>为配方或表行？</td>
+              <td>战略·舆情、§11 插槽⑦、<a href="national-strategy-opinion.html#evolution-feed-section">战略·舆情 · 信号栏</a></td>
+            </tr>
+            <tr>
+              <td>Ⅰ</td>
+              <td>L6</td>
+              <td><a href="analysis-hub.html">分析引擎</a></td>
+              <td><code>analysis-snapshot.json</code> 热力/共现/规则提示；<code>data/sediment.json</code> 日摘要沉淀</td>
+              <td>模块与因子是否<strong>长期偏斜</strong>？是否该补 §7 行或删陈旧叙事？</td>
+              <td>进化闭环、§11 插槽⑧、<a href="lab.html">沙盘</a> 对照</td>
+            </tr>
+            <tr>
+              <td>Ⅰ</td>
+              <td>L6</td>
+              <td><a href="intelligent-evolution.html">智能进化</a></td>
+              <td>规则之上的摘要/映射/RAG 分层；候选与工单闸门；评测与日志</td>
+              <td>如何把人的时间从重复贴标签中省出，又<strong>不自动改站</strong>？</td>
+              <td>进化闭环、分析引擎、§11 插槽⑨</td>
+            </tr>
+            <tr class="synth-cat-row"><td colspan="6">Ⅱ 时间谱与六维骨架</td></tr>
+            <tr>
+              <td>Ⅱ</td>
+              <td>T·记忆</td>
+              <td><a href="timeline.html">历史演进</a></td>
+              <td>代际基础设施词汇、技术采纳节奏、组织记忆</td>
+              <td>当前默认栈是<strong>哪几波投资叠床架屋</strong>的结果？哪些词已变成「不可讨论」？</td>
+              <td>廿年视角、十年展望、架构拓扑、沙盘·惯性因子</td>
+            </tr>
+            <tr>
+              <td>Ⅱ</td>
+              <td>T·双窗</td>
+              <td><a href="past-future.html">廿年视角</a></td>
+              <td>双轨十年、国家/地域迁移、情景与雷达位移</td>
+              <td>若把窗口拉到廿年，<strong>制度与地缘</strong>会不会压倒技术乐观？</td>
+              <td>历史演进、十年展望、地缘、立体联结</td>
+            </tr>
+            <tr>
+              <td>Ⅱ</td>
+              <td>L4</td>
+              <td><a href="decade.html">十年展望</a></td>
+              <td>六维张力（架构/产业/职业/安全/治理/地域）、三阶段条</td>
+              <td>同一十年里，哪两维最可能<strong>互相卡死</strong>（例如安全可见性 vs 加密默认）？</td>
+              <td>十年场景、沙盘、分层/架构、职基能、风险地缘</td>
+            </tr>
+            <tr class="synth-cat-row"><td colspan="6">Ⅲ 物理—系统—分工栈</td></tr>
+            <tr>
+              <td>Ⅲ</td>
+              <td>L1—L3</td>
+              <td><a href="work-infra-energy.html">职业·基建·能源</a></td>
+              <td>社会分工形态、基建堆叠、能源—算力链、三者耦合</td>
+              <td>「数字职业」是否落在<strong>可供电、可联网、可审计</strong>的真实堆叠上？</td>
+              <td>架构拓扑、分层模型、十年场景·算力能源、地缘·供应链</td>
+            </tr>
+            <tr>
+              <td>Ⅲ</td>
+              <td>L2</td>
+              <td><a href="model.html">分层模型</a></td>
+              <td>抽象层级 L1—L6、三平面、十层栈、职责边界</td>
+              <td>故障与合规责任在<strong>哪一层</strong>可被命名、被自动化、被外包？</td>
+              <td>架构拓扑、沙盘工坊、十年展望·架构维、职基能</td>
+            </tr>
+            <tr>
+              <td>Ⅲ</td>
+              <td>L2</td>
+              <td><a href="architecture.html">架构拓扑</a></td>
+              <td>参考拓扑、Cell、部署形态、数据重力</td>
+              <td>负载与数据实际<strong>落在哪一坨边界内</strong>？跨境/跨 Cell 契约写不写得动？</td>
+              <td>分层模型、职基能、地缘、十年场景·企业与跨境</td>
+            </tr>
+            <tr class="synth-cat-row"><td colspan="6">Ⅳ 人与学制接口</td></tr>
+            <tr>
+              <td>Ⅳ</td>
+              <td>L4</td>
+              <td><a href="edu-nexus.html">教育纵轴</a></td>
+              <td>家校政接口、学制段、风险谱、生命周期、AI 触点链</td>
+              <td>数据与评价权在<strong>校/家/政/平台</strong>之间如何迁移？合规附录谁先长厚？</td>
+              <td>人与AI演进、十年场景·教育、立体联结、廿年视角</td>
+            </tr>
+            <tr>
+              <td>Ⅳ</td>
+              <td>L3—L4</td>
+              <td><a href="evolution-triad.html">人与AI演进</a></td>
+              <td>教育/职业时间轴、家庭—个人—AI 三角、三条走向（收敛/分叉/补丁）</td>
+              <td>个体技能与契约变化，能否与<strong>组织用工与国家叙事</strong>同节拍？</td>
+              <td>教育纵轴、职基能·职业、十年展望·职业维、立体联结</td>
+            </tr>
+            <tr class="synth-cat-row"><td colspan="6">Ⅴ 场景与四问</td></tr>
+            <tr>
+              <td>Ⅴ</td>
+              <td>L5</td>
+              <td><a href="decade-scenes.html">十年场景</a></td>
+              <td>八类日常/产业场景 × 三阶段形态</td>
+              <td>抽象张力在<strong>可感知行为</strong>上如何显现（办公、教育、账单、办事）？</td>
+              <td>十年展望、教育纵轴、人与AI、地缘、职基能</td>
+            </tr>
+            <tr>
+              <td>Ⅴ</td>
+              <td>L5</td>
+              <td><a href="decade-us.html">十年之问</a></td>
+              <td>我们/孩子/家庭/国家四问；要做·不要·活得较好</td>
+              <td>四象是否<strong>不同步</strong>？家规与底线是否可对账？</td>
+              <td>立体联结、十年场景、综合推演·配方 A/R、<a href="modules-map.html">模块图谱</a>·路径 A</td>
+            </tr>
+            <tr class="synth-cat-row"><td colspan="6">Ⅵ 外部性与风险</td></tr>
+            <tr>
+              <td>Ⅵ</td>
+              <td>L0</td>
+              <td><a href="risk-geo.html">地缘与商业</a></td>
+              <td>冲击通道、热力条、SME/大型差异、价值漏斗</td>
+              <td>制裁/断供/支付收窄时，<strong>哪条链路备用路径最少</strong>？成本谁吞？</td>
+              <td>架构·Cell、十年场景·跨境、职基能·供应链、廿年视角</td>
+            </tr>
+            <tr>
+              <td>Ⅵ</td>
+              <td>L4—L6</td>
+              <td><a href="national-strategy-opinion.html">战略·舆情</a></td>
+              <td>中长期规划与制度输出 / 舆论议程<strong>双轨</strong>；跟踪清单与错位征候</td>
+              <td>同一主题：文件热词是否进入<strong>预算—招标—考核</strong>？舆情是否倒逼采购或整顿？</td>
+              <td>十年展望·治理、教育纵轴、职基能、立体联结、§11 插槽⑥、<a href="modules-map.html#path-presets">模块图谱·路径 E</a></td>
+            </tr>
+            <tr>
+              <td>Ⅵ</td>
+              <td>L5—L6</td>
+              <td><a href="net-biz-capital.html">网·商·资·工</a></td>
+              <td>平台/API/注意力、商业履约与订阅、资本叙事与 CAPEX、劳动颗粒度与合规回路</td>
+              <td>沿主链从左扫到右：<strong>谁默认可达、谁买单、谁估值、谁担责</strong>是否仍闭合？反馈回路改写了哪一环？</td>
+              <td>综合推演·配方、地缘、职基能、十年场景、人与AI</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="criteria">
+      <h2>2. 模块组合的合理性：五条可操作的判据</h2>
+      <p class="muted" style="margin-top:-0.35rem">「合理」不是口味，而是<strong>推演是否站得住</strong>：能否指出共享变量、因果顺序或可对照的尺度。以下五条可用来<strong>拒绝随意拼盘</strong>，也可用来<strong>发现遗漏的第三模块</strong>（往往需要补上一环才闭合）。</p>
+      <ol class="synth-criteria">
+        <li><strong>变量共享或可对账：</strong>两模块至少共享一类可对账的量（电、数据分级、技能标签、法域、时延预算、人民币/美元成本等），或存在明确的<strong>换算中介</strong>（如 SLA→电费→选址）。否则组合只能是比喻，不是推演。</li>
+        <li><strong>因果邻接或延迟传导：</strong>存在「A 的输出形态 ≈ B 的输入条件」的链条（政策文本→采购→拓扑→用户体验）。允许时间延迟；延迟越长，越应引入<strong>时间轴模块</strong>（历史/廿年/十年/场景）标定。</li>
+        <li><strong>尺度嵌套不自相矛盾：</strong>同一命题在国家叙事成立，在<strong>家庭或班组</strong>是否荒谬？若荒谬，说明缺了「翻译层」模块（常见于教育纵轴、人与AI、立体联结）。</li>
+        <li><strong>短中长周期对齐或显式打架：</strong>工具采纳（短）、组织与合规（中）、基建与能源锁仓（长）是否指向同一方向？若打架，分叉才是诚实结论，而非强行汇入单形态。</li>
+        <li><strong>物理—逻辑—经济约束三角：</strong>同时经得起瓦特/光缆（物理）、规则举证（逻辑）、谁付费能否持续（经济）三问。<a href="work-infra-energy.html">职基能</a>+<a href="risk-geo.html">地缘</a>+<a href="decade.html">治理维</a>常一起充当这三角的锚。</li>
+      </ol>
+    </section>
+
+    <section id="graph">
+      <h2>3. 关联扩展：毗邻图 + 高权重组合边</h2>
+      <p class="muted" style="margin-top:-0.35rem">下图保留「三簇围心」的直觉；文字再补<strong>高权重无向边</strong>（任取一端即可滑向另一端）——便于你从任意一页跳入组合推演。</p>
+      <div class="synth-hub-wrap">
+        <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" aria-label="模块毗邻关系">
+          <defs>
+            <marker id="synm1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0 0,6 3,0 6" fill="#5c6b7e"/></marker>
+            <marker id="synm2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0 0,6 3,0 6" fill="#3d9cf5" fill-opacity="0.5"/></marker>
+          </defs>
+          <circle cx="260" cy="200" r="44" fill="#1a2332" stroke="#4ecf8e" stroke-width="2"/>
+          <text x="260" y="195" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">综合</text>
+          <text x="260" y="210" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">推演</text>
+          <ellipse cx="260" cy="72" rx="118" ry="28" fill="none" stroke="#2a3544" stroke-dasharray="4 3"/>
+          <text x="260" y="54" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">尺度与社会</text>
+          <rect x="72" y="62" width="72" height="22" rx="4" fill="#141b26" stroke="#f97316"/><text x="108" y="77" text-anchor="middle" fill="#e8edf4" font-size="7" font-family="Noto Sans SC,sans-serif">立体联结</text>
+          <rect x="158" y="62" width="72" height="22" rx="4" fill="#141b26" stroke="#38bdf8"/><text x="194" y="77" text-anchor="middle" fill="#e8edf4" font-size="7" font-family="Noto Sans SC,sans-serif">教育纵轴</text>
+          <rect x="244" y="62" width="72" height="22" rx="4" fill="#141b26" stroke="#a78bfa"/><text x="280" y="77" text-anchor="middle" fill="#e8edf4" font-size="7" font-family="Noto Sans SC,sans-serif">人与AI</text>
+          <rect x="330" y="62" width="72" height="22" rx="4" fill="#141b26" stroke="#e8a838"/><text x="366" y="77" text-anchor="middle" fill="#e8edf4" font-size="7" font-family="Noto Sans SC,sans-serif">职·基·能</text>
+          <ellipse cx="120" cy="200" rx="88" ry="100" fill="none" stroke="#2a3544" stroke-dasharray="4 3"/>
+          <text x="120" y="102" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">时间纵深</text>
+          <rect x="50" y="118" width="64" height="20" rx="4" fill="#141b26" stroke="#8b9cb3"/><text x="82" y="131" text-anchor="middle" fill="#e8edf4" font-size="7" font-family="Noto Sans SC,sans-serif">历史演进</text>
+          <rect x="50" y="148" width="64" height="20" rx="4" fill="#141b26" stroke="#8b9cb3"/><text x="82" y="161" text-anchor="middle" fill="#e8edf4" font-size="7" font-family="Noto Sans SC,sans-serif">廿年视角</text>
+          <rect x="50" y="178" width="64" height="20" rx="4" fill="#141b26" stroke="#3d9cf5"/><text x="82" y="191" text-anchor="middle" fill="#e8edf4" font-size="7" font-family="Noto Sans SC,sans-serif">十年展望</text>
+          <rect x="50" y="208" width="64" height="20" rx="4" fill="#141b26" stroke="#4ecf8e"/><text x="82" y="221" text-anchor="middle" fill="#e8edf4" font-size="7" font-family="Noto Sans SC,sans-serif">十年场景</text>
+          <ellipse cx="400" cy="200" rx="88" ry="100" fill="none" stroke="#2a3544" stroke-dasharray="4 3"/>
+          <text x="400" y="102" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">技术与压力</text>
+          <rect x="368" y="118" width="64" height="20" rx="4" fill="#141b26" stroke="#3d9cf5"/><text x="400" y="131" text-anchor="middle" fill="#e8edf4" font-size="7" font-family="Noto Sans SC,sans-serif">分层模型</text>
+          <rect x="368" y="148" width="64" height="20" rx="4" fill="#141b26" stroke="#3d9cf5"/><text x="400" y="161" text-anchor="middle" fill="#e8edf4" font-size="7" font-family="Noto Sans SC,sans-serif">架构拓扑</text>
+          <rect x="368" y="178" width="64" height="20" rx="4" fill="#141b26" stroke="#f07178"/><text x="400" y="191" text-anchor="middle" fill="#e8edf4" font-size="7" font-family="Noto Sans SC,sans-serif">地缘商业</text>
+          <rect x="368" y="208" width="64" height="20" rx="4" fill="#141b26" stroke="#4ecf8e"/><text x="400" y="221" text-anchor="middle" fill="#e8edf4" font-size="7" font-family="Noto Sans SC,sans-serif">沙盘工坊</text>
+          <line x1="260" y1="104" x2="260" y2="156" stroke="#5c6b7e" stroke-width="1.2" marker-end="url(#synm1)"/>
+          <line x1="200" y1="200" x2="216" y2="200" stroke="#5c6b7e" stroke-width="1.2" marker-end="url(#synm1)"/>
+          <line x1="304" y1="200" x2="320" y2="200" stroke="#5c6b7e" stroke-width="1.2" marker-end="url(#synm1)"/>
+          <line x1="108" y1="200" x2="216" y2="200" stroke="#3d9cf5" stroke-opacity="0.4" stroke-dasharray="3 2"/>
+          <line x1="400" y1="200" x2="304" y2="200" stroke="#3d9cf5" stroke-opacity="0.4" stroke-dasharray="3 2"/>
+          <rect x="188" y="318" width="144" height="36" rx="6" fill="#141b26" stroke="#6366f1" stroke-dasharray="3 2"/>
+          <text x="260" y="334" text-anchor="middle" fill="#e8edf4" font-size="9" font-family="Noto Sans SC,sans-serif">先对表 §1 → 用 §2 验组合</text>
+          <text x="260" y="348" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">再选 §5 配方，沙盘压因子</text>
+          <line x1="260" y1="244" x2="260" y2="318" stroke="#6366f1" stroke-dasharray="3 2" marker-end="url(#synm2)"/>
+        </svg>
+      </div>
+      <div class="card" style="margin-top:1rem">
+        <p class="muted" style="margin:0;font-size:0.82rem;line-height:1.65"><strong>高权重组合边（扩展关联，示意）：</strong>「十年展望 ↔ 十年场景」（抽象↔具象）；「职基能 ↔ 架构拓扑」（瓦特落点）；「教育纵轴 ↔ 人与AI ↔ 立体联结」（评价权与家庭政治）；「历史演进 ↔ 分层/架构」（词汇锁定与路径依赖）；「地缘 ↔ 场景·跨境 ↔ 架构·Cell」（备用路径）；「沙盘 ↔ 任一页」（把假设压成可比较叙事）。任一边单独读都偏瘦，双边同时读才容易看见<strong>张力与分叉</strong>。</p>
+      </div>
+    </section>
+
+    <section id="axes">
+      <h2>4. 三条合成轴（扩展）：对齐方式与易联模块</h2>
+      <p class="muted" style="margin-top:-0.35rem">轴的作用是把异质切片<strong>投影到同一坐标</strong>；下列每条轴下补充「常一起动」的模块，便于扩展而非局限在最初关键词。</p>
+      <div class="synth-axis-grid">
+        <div class="synth-axis-card">
+          <span class="ax-tag">SCALE</span>
+          <h3>尺度轴</h3>
+          <p style="margin:0 0 0.5rem">个人终端与家庭协商 → 学校/班组与用工组织 → 行业与国家基础设施叙事。问：同一改动在哪一层<strong>最先可感知</strong>、在哪一层<strong>最后才立法</strong>？</p>
+          <p class="muted" style="margin:0;font-size:0.76rem">强联：<a href="nexus.html">立体联结</a>、<a href="evolution-triad.html">人与AI</a>、<a href="edu-nexus.html">教育纵轴</a>、<a href="work-infra-energy.html">职基能</a>、<a href="decade-scenes.html">场景·家庭/办公</a>。</p>
+        </div>
+        <div class="synth-axis-card">
+          <span class="ax-tag">TIME</span>
+          <h3>时间轴</h3>
+          <p style="margin:0 0 0.5rem">工具采纳（短）— 组织/合规（中）— 基建与能源锁仓（长）。问：你的命题落在哪一段？若声称「十年内默认」，长周期模块是否<strong> silent veto</strong>？</p>
+          <p class="muted" style="margin:0;font-size:0.76rem">强联：<a href="timeline.html">历史演进</a>、<a href="past-future.html">廿年视角</a>、<a href="decade.html">十年展望</a>、<a href="decade-scenes.html">十年场景</a>。</p>
+        </div>
+        <div class="synth-axis-card">
+          <span class="ax-tag">STACK</span>
+          <h3>硬栈轴</h3>
+          <p style="margin:0 0 0.5rem">瓦特/光缆/机房 → 分层与拓扑边界 → 策略/身份/审计 → 地缘采购与制裁清单。问：策略与拓扑是否<strong>配得上</strong>电力曲线与设备可获性？</p>
+          <p class="muted" style="margin:0;font-size:0.76rem">强联：<a href="work-infra-energy.html">职基能</a>、<a href="model.html">分层</a>、<a href="architecture.html">架构</a>、<a href="risk-geo.html">地缘</a>、<a href="lab.html">沙盘</a>。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="recipes">
+      <h2>5. 推演配方：合理性 → 传导链 → 三种可能形态</h2>
+      <p class="muted" style="margin-top:-0.35rem">每卡结构统一：<strong>组合合理性</strong>（对应 §2 哪几条）→ <strong>传导链</strong>（若…则…）→ <strong>甲/乙/丙</strong> 三种可区分的未来片段（含可见征候）。新增 G、H 两条，覆盖「历史锁定×地缘」与「教育×治理×公共服务」。</p>
+
+      <div class="synth-recipe-grid">
+        <div class="synth-recipe">
+          <h3>配方 A · 国家叙事 ↔ 客厅体验</h3>
+          <p class="mods"><a href="nexus.html">立体联结</a> × <a href="decade.html">十年展望</a>（治理/安全/地域）</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>尺度嵌套（判据 3）+ 因果延迟（判据 2）——政策先在公文与供应链响，再在消费界面变形。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若治理话语强调主权与关基 → 采购与云区隔先行 → 消费级产品被迫携带「区隔/认证」元数据 → 家庭内出现<strong>账号、支付、内容</strong>三类摩擦的不同步。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>形态甲 · 合规下沉均匀</h4>家长与孩子默认接受分区账号；中小企业跟模板打包。<ul class="sig"><li>征候：消费 App 首屏出现法域/数据驻留说明成常态</li></ul></div>
+            <div class="morph-fork-card"><h4>形态乙 · 灰度与补丁</h4>正式规则与日常 workaround 并存；合规成本区域分化。<ul class="sig"><li>征候：同一产品不同城市功能差显著、「影子链路」讨论增多</li></ul></div>
+            <div class="morph-fork-card"><h4>形态丙 · 显性代际冲突</h4>代际数字政治化；家庭协商成本上升。<ul class="sig"><li>征候：家校通知与家庭路由器策略联动；舆论场「关孩子模型」议题周期化</li></ul></div>
+          </div>
+        </div>
+
+        <div class="synth-recipe" style="border-left-color:#a78bfa">
+          <h3>配方 B · 评价权再分配</h3>
+          <p class="mods"><a href="edu-nexus.html">教育纵轴</a> × <a href="evolution-triad.html">人与AI演进</a> × <a href="decade-scenes.html">十年场景</a>·教育</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>变量共享（成绩/作业数据/模型输出）（判据 1）+ 尺度嵌套（校—家—政）（判据 3）。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若生成式工具进入作业流 → 教师时间结构变化 → 平台与校本数据接口变厚 → 「公平/可申诉」责任在政校家之间<strong>重新划线</strong>。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>形态甲 · 双轨评价稳定</h4>考试主线仍在，作品集/项目档并行扩容。<ul class="sig"><li>征候：区本平台上出现「AI 使用声明」字段；仲裁流程校内先行</li></ul></div>
+            <div class="morph-fork-card"><h4>形态乙 · 外包给平台</h4>头部平台提供「合规包」；校成渠道。<ul class="sig"><li>征候：校采合同里模型供应商与教育局三方条款变长</li></ul></div>
+            <div class="morph-fork-card"><h4>形态丙 · 地方试验分裂</h4>一城一策；教师流动时「带走」与「留下」规则不清。<ul class="sig"><li>征候：跨市转学数据互认摩擦；教师培训学分与 AI 挂钩碎片化</li></ul></div>
+          </div>
+        </div>
+
+        <div class="synth-recipe" style="border-left-color:#e8a838">
+          <h3>配方 C · 瓦特落点与拓扑</h3>
+          <p class="mods"><a href="work-infra-energy.html">职基能</a> × <a href="architecture.html">架构拓扑</a> × <a href="model.html">分层模型</a></p>
+          <p class="recipe-rationale"><strong>合理性：</strong>变量对账（kW、PUE、SLA）（判据 1）+ 物理—经济三角（判据 5）。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若训练/推理曲线上升 → 电网与绿证进入采购 → Cell/区域选址约束变硬 → 分层上「谁背算力可用性」被<strong>合同化</strong>到具体层（常落在平台或行业云）。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>形态甲 · 能源—拓扑联合设计</h4>架构评审必带电力与冷却一页。<ul class="sig"><li>征候：SLA 出现「绿电比例」；批推理错峰成默认选项</li></ul></div>
+            <div class="morph-fork-card"><h4>形态乙 · 算力本地化浪潮</h4>敏感负载内收；公有云只做外围。<ul class="sig"><li>征候：城市级算力券、园区电价谈判权上升</li></ul></div>
+            <div class="morph-fork-card"><h4>形态丙 · 价格挤出创新</h4>中小团队用不起长上下文；技术分层固化。<ul class="sig"><li>征候：开源与小模型回潮与「够用主义」话语并行</li></ul></div>
+          </div>
+        </div>
+
+        <div class="synth-recipe" style="border-left-color:#f07178">
+          <h3>配方 D · 链路韧性</h3>
+          <p class="mods"><a href="decade-scenes.html">十年场景</a> × <a href="risk-geo.html">地缘与商业</a> × <a href="architecture.html">架构</a>·Cell</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>因果邻接（制裁→采购→拓扑→日常）（判据 2）+ 变量共享（路径冗余、支付）（判据 1）。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若地缘冲击抬高 → 多路径网络与友岸双活进入预算主线 → 产品功能按法域裁剪 → 办公/跨境/政务场景中<strong>最薄环节</strong>先暴露（常在支付、身份、模型 API）。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>形态甲 · Cell 化日常</h4>员工默认多账号、多终端策略。<ul class="sig"><li>征候：入职包内含「冲突法域工作流」说明</li></ul></div>
+            <div class="morph-fork-card"><h4>形态乙 · 合规即特性</h4>发布列车带法域开关矩阵。<ul class="sig"><li>征候：PM 与法务同席排期；feature flag 与合规绑定</li></ul></div>
+            <div class="morph-fork-card"><h4>形态丙 · 区域脱钩叙事过热</h4>过度设计导致成本吞噬利润。<ul class="sig"><li>征候：中型企业放弃部分跨境市场；「只做内销」成理性选择</li></ul></div>
+          </div>
+        </div>
+
+        <div class="synth-recipe" style="border-left-color:#8b9cb3">
+          <h3>配方 E · 路径依赖与解锁</h3>
+          <p class="mods"><a href="timeline.html">历史演进</a> × <a href="past-future.html">廿年视角</a> × <a href="model.html">分层</a></p>
+          <p class="recipe-rationale"><strong>合理性：</strong>时间对齐（判据 4）+ 因果邻接（技术词汇锁定组织行为）（判据 2）。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若过去十年「云原生=正确」深嵌 KPI → 分区化要求与旧栈冲突 → 迁移不是换工具而是<strong>换组织记忆</strong> → 双轨期拉长。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>形态甲 · 渐进双轨</h4>新旧栈长期并行；接口层巨厚。<ul class="sig"><li>征候：集成成本>新功能成本；「胶水层」团队膨胀</li></ul></div>
+            <div class="morph-fork-card"><h4>形态乙 · 文档与契约优先</h4>架构产出以策略/数据契约为核心交付物。<ul class="sig"><li>征候：架构评审会大量时间花在举证与回滚</li></ul></div>
+            <div class="morph-fork-card"><h4>形态丙 · 激进切换阵痛</h4>政治周期驱动「一刀切」；技术债爆发。<ul class="sig"><li>征候：重大事故后舆论要求「物理隔离」类口号政策</li></ul></div>
+          </div>
+        </div>
+
+        <div class="synth-recipe" style="border-left-color:#4ecf8e">
+          <h3>配方 F · 分层压测</h3>
+          <p class="mods"><a href="model.html">分层模型</a> × <a href="lab.html">沙盘工坊</a> × <a href="decade.html">十年展望</a>·架构/安全</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>变量共享（责任边界、自动化深度）（判据 1）+ 约束三角（合规可见 vs 加密）（判据 5）。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若强监管与 AI 自动化同时成立 → 中间层（平台工程、安全运营）被上下挤压 → 「策略即代码」与审计日志成为<strong>实际分层</strong>，纸面 L 层可能空转。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>形态甲 · 策略资产化</h4>策略仓库与流水线同权。<ul class="sig"><li>征候：变更单与审计报告自动生成关联</li></ul></div>
+            <div class="morph-fork-card"><h4>形态乙 · 人机边界诉讼化</h4>自动化出错责任难定。<ul class="sig"><li>征候：劳动合同与供应商合同增加「模型责任」附件</li></ul></div>
+            <div class="morph-fork-card"><h4>形态丙 · 外包空心化</h4>核心层保留，外围全外包；隐性依赖上升。<ul class="sig"><li>征候：故障时多方扯皮；RTO 纸面达标实际不达标</li></ul></div>
+          </div>
+        </div>
+
+        <div class="synth-recipe" style="border-left-color:#38bdf8">
+          <h3>配方 G · 选型锁定 × 断供</h3>
+          <p class="mods"><a href="timeline.html">历史演进</a> × <a href="architecture.html">架构拓扑</a> × <a href="risk-geo.html">地缘</a></p>
+          <p class="recipe-rationale"><strong>合理性：</strong>因果邻接（历史选型→供应商→制裁）（判据 2）+ 物理/经济（替换成本）（判据 5）。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若关键组件历史绑定单一来源 → 制裁或许可证变动 → 拓扑上表现为<strong>区域 Cell 被迫重组</strong>或功能降级 → 用户侧感知为延迟、功能裁剪或停服窗口。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>形态甲 · 多源成标配</h4>架构文档含「可替换矩阵」。<ul class="sig"><li>征候：招标书强制第二来源 PoC</li></ul></div>
+            <div class="morph-fork-card"><h4>形态乙 · 功能降级接受</h4>先保连续性与合规。<ul class="sig"><li>征候：官方声明「暂时关闭某 AI 功能」周期化</li></ul></div>
+            <div class="morph-fork-card"><h4>形态丙 · 友岸联盟标准化</h4>小圈互认、圈外高摩擦。<ul class="sig"><li>征候：行业联盟发布互通 profile，圈外需额外集成费</li></ul></div>
+          </div>
+        </div>
+
+        <div class="synth-recipe" style="border-left-color:#f472b6">
+          <h3>配方 H · 公共服务数字化</h3>
+          <p class="mods"><a href="edu-nexus.html">教育纵轴</a> × <a href="decade.html">十年展望</a>·治理 × <a href="decade-scenes.html">场景</a>·政务</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>尺度嵌套（公民—经办—国家）（判据 3）+ 变量共享（身份、证照、模型输出）（判据 1）。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若政务 AI 扩大覆盖面 → 经办窗口与算法决策边界模糊 → 申诉与可解释需求上升 → 教育场景里「官方模板」与「校自主创新」<strong>互相引用同一套合规语言</strong>。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>形态甲 · 一体化办事认知</h4>用户默认「一网通办+助手」连续。<ul class="sig"><li>征候：线下窗口培训内容与线上一致化脚本</li></ul></div>
+            <div class="morph-fork-card"><h4>形态乙 · 可验证审计刚需</h4>每个自动结论带追溯键。<ul class="sig"><li>征候：行政复议案件技术鉴定常规化</li></ul></div>
+            <div class="morph-fork-card"><h4>形态丙 · 地方试验竞速</h4>城市品牌竞争「数字友好度」。<ul class="sig"><li>征候：人才落户与算力券/数据券打包营销</li></ul></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack-domains">
+      <h2>6. 叠加五域：房地产、养老、区块链、AI、机器人</h2>
+      <p class="muted" style="margin-top:-0.35rem">五域不是并列「热词」，而是<strong>额外压在既有切片上的约束层</strong>：<strong>房地产</strong>给空间与土地—资本循环的刚性；<strong>养老</strong>拉长代际责任与护理劳动力曲线；<strong>区块链</strong>常作为「信任技术化/审计话语/支付与新资产叙事」的载体；<strong>AI</strong>（本站已多处展开）在此强调与<strong>合约、空间、责任</strong>的接口；<strong>机器人</strong>把智能<strong>具身化</strong>，牵动安全标准、维保链与岗位颗粒度。叠乘时仍用 §2 五条判据检验是否<strong>变量可对账</strong>，避免「链/房/模型」口号式拼盘。</p>
+
+      <h3 style="margin-top:1.5rem;font-size:1.05rem">6.1 五域压入的变量与站内嫁接</h3>
+      <div class="synth-mod-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>领域</th>
+              <th>主要压入变量</th>
+              <th>与站内模块的自然嫁接</th>
+              <th>与 AI / 机器人 的接口</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>房地产</td>
+              <td>土地区位、容积与 m² 成本、租售与现金流、产城融合、资产证券化与 RWA 叙事、物业与能耗账单</td>
+              <td><a href="work-infra-energy.html">职基能</a>（电网/冷却/土地）、<a href="decade-scenes.html">城市场景</a>、<a href="decade.html">产业/治理维</a>、<a href="risk-geo.html">地缘</a>·城市竞争</td>
+              <td>算力入园、机房与楼宇一体化、余热利用；智慧楼宇与边缘节点「占房」</td>
+            </tr>
+            <tr>
+              <td>养老</td>
+              <td>抚养比、护理工时与人力缺口、医保/长护/商保支付、监护与尊严、跌倒与事故责任、居住适老化</td>
+              <td><a href="nexus.html">立体联结</a>·代际、<a href="decade-scenes.html">家庭场景</a>、<a href="evolution-triad.html">人与AI</a>、政务与医疗接口（可对照教育纵轴的「接口变厚」逻辑）</td>
+              <td>语音/视觉监护、认知辅助；移动、送药、康复类机器人；「子女远程看板」与隐私张力</td>
+            </tr>
+            <tr>
+              <td>区块链</td>
+              <td>账本不可篡改叙事 vs 性能、节点治理、稳定币/支付试验、能耗声誉（历史 PoW 包袱）、与链外数据对齐（oracle）</td>
+              <td><a href="decade.html">安全/治理维</a>、<a href="architecture.html">架构</a>·信任边界、<a href="risk-geo.html">支付与制裁</a>、<a href="#criteria">判据 1·可对账</a></td>
+              <td>链上凭证与 AI 生成内容确权纠缠；「可验证日志」与联盟链/许可链并行叙述</td>
+            </tr>
+            <tr>
+              <td>AI</td>
+              <td>模型责任、数据与提示词、算力成本、幻觉与行业适配、组织内影子 AI</td>
+              <td>全站模块；叠乘时重点对齐<strong>电费、合同、岗位描述、界面降级</strong></td>
+              <td>与机器人：云端「大脑」+ 端侧「小脑」分层；与链：存证/激励设计常被过度承诺</td>
+            </tr>
+            <tr>
+              <td>机器人</td>
+              <td>本体安全（人机共存）、维保与备件链、标准与认证、电力与充电网络、劳动力替代/增强的政治话语</td>
+              <td><a href="decade-scenes.html">企业生产</a>、<a href="decade.html">职业维</a>、<a href="work-infra-energy.html">能源·配用电</a>、<a href="model.html">分层</a>·端侧</td>
+              <td>与 AI：感知—规划—执行闭环；与人：班组重组、「机器人运维师」类岗位</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:1.5rem;font-size:1.05rem">6.2 叠乘配方 I—V（传导链 + 甲/乙/丙形态）</h3>
+      <div class="synth-recipe-grid">
+        <div class="synth-recipe" style="border-left-color:#f97316">
+          <h3>配方 I · 空间 × 瓦特 × 城市</h3>
+          <p class="mods">房地产 × <a href="work-infra-energy.html">职基能</a> × <a href="decade-scenes.html">场景·城市</a> × <a href="architecture.html">拓扑</a>（边缘/园区）</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>变量可对账（m²、kW、PUE、土地出让/电价）（判据 1）+ 物理约束（判据 5）。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若城市将算力/绿电作为招商抓手 → 园区规划<strong>捆绑机房与变电站改造</strong> → 房地产叙事从「卖楼」扩展到「卖机柜与余热」→ 居民侧感知为<strong>局部电价/道路与管网改造</strong>与产业外溢岗位。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 算力地产套餐化</h4>标准厂房+电力容量预售；REITs 或园区运营方吃稳定现金流。<ul class="sig"><li>征候：土地出让附件含 kW 上限与绿电比例承诺</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 园网电拉扯</h4>规划超前于电网；项目搁置或改用途。<ul class="sig"><li>征候：「纸上 PUE」与实测差距引发纠纷</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 余热市政化</h4>机房余热进区域供热/农业；跨主体计量与定价复杂。<ul class="sig"><li>征候：物业合同出现「热力回购」条款</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#38bdf8">
+          <h3>配方 J · 银发 × 智能 × 具身</h3>
+          <p class="mods">养老 × <a href="evolution-triad.html">人与AI</a> × <a href="nexus.html">立体联结</a> × <a href="decade-scenes.html">家庭场景</a> · 机器人（具身）</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>尺度嵌套（老人—家庭—机构—医保）（判据 3）+ 责任变量可对账（事故、数据授权）（判据 1）。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若护理人力缺口持续 → 家庭先采纳<strong>低价 AI 监护与对话</strong> → 再进入<strong>移动/操作类机器人</strong>（门槛高）→ 责任在「家属—厂商—机构—保险」间<strong>重新划线</strong>，与儿童场景不同在于<strong>行为能力认定与医疗边界</strong>。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 家庭订阅捆绑</h4>「宽带+摄像头+模型+简单机械臂」打包；子女远程付费。<ul class="sig"><li>征候：家庭路由器策略与养老院 SaaS 账号互通争议</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 机构先行标准化</h4>院舍场景 B 端采购主导；家庭市场碎片化。<ul class="sig"><li>征候：地方长护险目录出现「辅助器具/机器人服务」编码试点</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 事故驱动收紧</h4>个案引发对「自动辅助」限位；创新放缓。<ul class="sig"><li>征候：保险合同排除「未认证机型」责任</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#a78bfa">
+          <h3>配方 K · 链 × 治理 × 不动产叙事</h3>
+          <p class="mods">区块链 × <a href="decade.html">治理/安全维</a> × 房地产（RWA/登记）× <a href="risk-geo.html">地缘</a>·支付</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>因果邻接（合规试点→产品形态）（判据 2）；须警惕<strong>链外确权</strong>与<strong>链上符号</strong>脱节（判据 1 失败则整套叙事不成立）。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若监管允许<strong>有限场景链上凭证</strong>（供应链、票据、部分登记试点）→ 房地产侧出现「份额化/收益权」技术包装 → 与 AI 结合时常变成<strong>自动生成合约与披露文本</strong> → 暴雷或纠纷时回溯到<strong>oracle 与法域承认度</strong>。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 许可链 + 强审计</h4>金融/登记主导；链为后台。<ul class="sig"><li>征候：官方接口优先于公链叙事</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 跨境支付多轨</h4>稳定币试验与制裁工具博弈。<ul class="sig"><li>征候：企业财务多账户、多币种清算栈与 Cell 架构同构</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 叙事退潮后的工具化</h4>「区块链」一词让位给可验证凭证/时间戳服务。<ul class="sig"><li>征候：采购标书不再写链而写「审计接口标准」</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#4ecf8e">
+          <h3>配方 L · 具身智能 × 岗位 × 分层</h3>
+          <p class="mods">机器人 × AI × <a href="decade.html">职业维</a> × <a href="model.html">分层</a> × <a href="decade-scenes.html">企业生产</a></p>
+          <p class="recipe-rationale"><strong>合理性：</strong>变量共享（时延、安全区、维保 SLA）（判据 1）+ 时间轴（自动化周期长于软件）（判据 4）。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若 AI 提升感知与任务规划 → 机器人<strong>可部署场景拓宽</strong> → 工厂/仓配先规模化 → 岗位拆成「工艺+机器人运维+安全合规」→ <a href="work-infra-energy.html">配用电与充电网络</a>成为产能约束。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 人机班组标配</h4>人机协作区划与停权按钮标准化。<ul class="sig"><li>征候：招工简章出现「协作机器人持证」</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 维保社会化</h4>第三方机器人运维市场；品牌锁定。<ul class="sig"><li>征候：备件与固件更新受出口管制影响（接配方 G）</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 仅头部能玩</h4>固定投资与认证成本挤出中小产线。<ul class="sig"><li>征候：「黑灯工厂」叙事与中小代工现实差距拉大</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#e8a838">
+          <h3>配方 M · 康养同园 × 算力招商</h3>
+          <p class="mods">房地产（康养/适老住区）× <a href="work-infra-energy.html">职基能</a> × <a href="decade-scenes.html">城市/政务场景</a> × 养老支付叙事 × <a href="decade.html">治理/产业维</a></p>
+          <p class="recipe-rationale"><strong>合理性：</strong>判据 1（床位、m²、kW、医保/长护结算接口可对账）+ 判据 3（老人—社区—园区管委会—电网调度尺度嵌套）。是配方 I 与 J 的<strong>交叉</strong>：同一地块上卖「居住+护理接口」与卖「机柜/余热」并存。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若地方将<strong>康养地产</strong>与<strong>算力产业园</strong>捆绑招商 → 规划上共享管廊、变电站与冷却水 → 居民/家属对噪声、道路与电价敏感度上升 → 政务侧需统一<strong>环保—能源—医疗数据</strong>话术，否则易引发「近邻回避」与舆情。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 能源—康养协同叙事</h4>余热进康养配套；算力成本部分转嫁给产业租户。<ul class="sig"><li>征候：土地出让「康养+数据中心」联合指标；长护数据与园区能耗监测分库不分责</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 同园不同权</h4>住区与机房物理邻近、治理主体切割；投诉通道分叉。<ul class="sig"><li>征候：物业与园区运营两套 App；停电机房不停楼或反之引发责任推诿</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 概念先行空置</h4>招商不及预期；康养端入住率低拖累现金流。<ul class="sig"><li>征候：「智慧康养」样板空转；算力指标改用途</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#6366f1">
+          <h3>配方 N · 生成式 × 链上凭证</h3>
+          <p class="mods">AI（AIGC/训练数据）× 区块链（时间戳/许可链）× <a href="decade.html">安全/治理维</a> × <a href="architecture.html">架构</a>·审计日志</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>判据 2（监管要举证 → 技术栈选可验证组件）+ 判据 1（须分清「链上哈希」与「内容真实性」哪一层背书，否则不可对账）。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若 AIGC 规模化 → 版权与训练数据争议上升 → 平台叠<strong>时间戳/存证链</strong>与<strong>模型血缘声明</strong> → 司法与监管仍常回到<strong>链外鉴定与平台日志</strong> → 「链」可能退居为审计接口之一，或与<strong>机密计算/TEE 举证</strong>并行叙事。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 许可链成合规标配</h4>内容发布流水线绑定哈希与许可元数据。<ul class="sig"><li>征候：CMS 与链/时间戳 API 同学步上线；下架=链上状态变更+日志</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 链证与幻觉责任脱节</h4>「上过链」不等于内容可信赖；诉讼焦点仍是模型与人工审核。<ul class="sig"><li>征候：判决书引用链证据少、引用平台日志多</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 跨国法域分裂</h4>一国认链上凭证，另一国要求本地化存证。<ul class="sig"><li>征候：同一条内容多哈希、多 Cell 存储；与配方 D/K 同构</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#8b9cb3">
+          <h3>配方 O · 物业 FM × 具身服务 × 长尾成本</h3>
+          <p class="mods">房地产·物业/FM × 机器人（清洁/递送/巡检）× <a href="risk-geo.html">地缘</a>·SME × <a href="decade-scenes.html">城市/办公场景</a></p>
+          <p class="recipe-rationale"><strong>合理性：</strong>判据 1（合同、保险、事故责任、电费/服务费可对账）+ 判据 5（外包维保链是否经得起断供与涨价）。把「机器人」从工厂<strong>外溢到公区与写字楼</strong>，物业成为默认甲方。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若公区机器人渗透 → 物业采购从「设备」变成「服务订阅+维保」→ 品牌锁定与备件链与配方 L/G 同构 → SME 楼与住宅盘<strong>单价敏感</strong>，易出现「只买最便宜机型、维保外包给无资质方」的隐患 → 事故后监管收紧或保险拒赔。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · FM 一体化招标</h4>机器人+平台+保险打包；责任边界写进总包。<ul class="sig"><li>征候：物业合同出现「固件 OTA 窗口」与停权流程</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 住宅公区与隐私拉扯</h4>摄像头/移动机器人在电梯与楼道触发邻里争议。<ul class="sig"><li>征候：业委会投票议题技术化；与立体联结·家庭政治同构</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 低价内卷</h4>维保缺位；「坏了就停」成常态。<ul class="sig"><li>征候：垃圾堆积点与地下车库成为机器人禁区</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#f97316">
+          <h3>配方 P · 气候韧性 × 电网 × 算力让渡</h3>
+          <p class="mods"><a href="work-infra-energy.html">职基能</a>·电网 × <a href="decade-scenes.html">城市/算力场景</a> × <a href="decade.html">产业/治理维</a> × 极端天气叙事</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>判据 5（物理约束优先）+ 判据 4（极端事件是短冲击、电网改造是长周期）。气候变量与「瓦特」直接对账，避免空谈韧性。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若热浪/干旱/风暴频发 → 居民与工商业争峰 → 调度部门对<strong>数据中心/充电网</strong>下达让电或错峰 → SLA 里「可用算力」与「可用出行」冲突显性化 → 城市叙事从「算力招商」补写<strong>危机预案与优先级表</strong>。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 优先级法治化</h4>关基与白名单负载明确优先序。<ul class="sig"><li>征候：合同附件引用电网红头；推理任务自动降级</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 边缘与柴油争议回潮</h4>备案外备用电源与排放拉锯。<ul class="sig"><li>征候：园区邻居抗议柴油机；与配方 M 邻避叠加</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 区域不公平感</h4>一线让电、消费端体感分化。<ul class="sig"><li>征候：舆论「算力与民生抢电」；治理话语技术化</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#22d3ee">
+          <h3>配方 Q · 开源栈 × 出口清单 × 双轨合规</h3>
+          <p class="mods"><a href="evolution-triad.html">人与AI演进</a> × <a href="risk-geo.html">地缘与商业</a> × <a href="decade.html">十年展望</a>·安全/治理 × <a href="model.html">分层模型</a>·供应链</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>判据 2（管制清单→可得组件→组织行为）+ 判据 1（权重/芯片/许可版本须能点名，否则「开源」只是修辞）+ 判据 4（合规栈切换周期长于单次模型发布）。与配方 <strong>G</strong> 同族，但更强调<strong>软件与模型制品</strong>而非仅硬件断供。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若前沿模型与工具链默认全球同步分发 → 出口管制、行业备案与云区策略<strong>收窄可得权重与 API 路由</strong> → 研发组织分裂为<strong>合规区栈 / 研究或影子栈</strong> → HR 与采购出现「能碰哪类镜像、能否离境笔记本」的日常摩擦；中小团队或被迫<strong>挂靠大厂托管合规包</strong>。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 镜像与许可清单入职化</h4>内网制品库+审批拉取；对开源贡献流程书面化。<ul class="sig"><li>征候：岗位 JD 出现「可训练区/仅推理区」硬标签</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 双轨张力外溢</h4>纸面合规区功能滞后，影子权重在体外流转。<ul class="sig"><li>征候：审计发现训练日志与声明模型族不一致；尽调清单加长</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 算力枢纽再地理化</h4>少数城市/园区吃「合规+电力+人才」三角；远程调算力仍受法域切割。<ul class="sig"><li>征候：算力券与人才落户打包营销接配方 I/M 叙事</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#fb7185">
+          <h3>配方 R · 注意力市场 × 家校屏幕 × 代际协商</h3>
+          <p class="mods"><a href="edu-nexus.html">教育纵轴</a> × <a href="decade-scenes.html">十年场景</a>·教育/家庭 × <a href="decade-us.html">十年之问</a> × <a href="evolution-triad.html">人与AI演进</a></p>
+          <p class="recipe-rationale"><strong>合理性：</strong>判据 3（平台—校—家—未成年人尺度嵌套）+ 判据 1（时长、广告加载、拦截策略、校采账号须可对账）+ 判据 2（商业留存工程→校内外时间结构）。与配方 <strong>B</strong> 同族，但更强调<strong>非教学类 Feed</strong>与<strong>系统级屏幕治理</strong>对同一注意力的竞价。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若短视频、游戏化留存与「免费学习 App」共用一套增长技艺 → 学生在校外<strong>认知余量</strong>被挤占 → 家校被迫引入<strong>时长计量、系统拦截、积分兑换</strong>等同一话语 → 政侧可能对未成年人时段、广告与充值再收紧 → 平台商业模型与<strong>公共教育目标</strong>的摩擦周期化（与立体联结·家庭政治同屏）。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 家校 OS 级联动</h4>校采平台与家长手机系统策略、路由器策略写进同一规范。<ul class="sig"><li>征候：家长会材料含「屏幕白名单」操作录屏；与配方 A 法域账号摩擦叠加</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 纯净栈分层订阅</h4>富裕家庭购买无广告/无推荐学习栈；数字公平议题上升。<ul class="sig"><li>征候：舆情「两层童年」；公益项目捐「账号而非设备」</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 网关化监管争议</h4>统一未成年流量入口的设想与隐私、创业生态冲突。<ul class="sig"><li>征候：立法讨论与技术可行性的时间差拉大；地方试点互不认</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#0ea5e9">
+          <h3>配方 S · 冷却水 × 河川水平衡 × 邻避 2.0</h3>
+          <p class="mods"><a href="work-infra-energy.html">职基能</a>·能源/冷却 × <a href="decade-scenes.html">城市场景</a> × <a href="nexus.html">立体联结</a>·尺度 × 房地产/园区（配方 <strong>I/M</strong> 旁路）</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>判据 5（水与温升是物理硬顶，与电并列）+ 判据 3（灌区—城镇—园区—居民尺度嵌套）+ 判据 4（管网与再生水设施周期长于单机柜扩容）。与 <strong>P</strong>（让电）互补：<strong>让水/限取</strong>同样可进入调度叙事。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若干旱—热浪拉长或再生水成本上升 → 大型冷却负荷（含数据中心、绿氢、部分制造）被<strong>纳入区域水平衡账本</strong> → 环评与土地出让附件出现<strong>取水/中水回用/蒸发量</strong>硬指标 → 居民与农业舆论将「机房与菜篮子」同屏；园区招商从「有电」补写「有水」，与 <strong>M</strong> 邻避叠加时争议更尖锐。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 水账合同化</h4>SLA 与园区协议写明取水许可 tier、中水比例与限流预案。<ul class="sig"><li>征候：算力招商 PPT 与水务局数据同源；枯水季推理队列自动降级</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 技术替代路径</h4>干冷、浸没式、异地推理分流；成本转嫁给网络时延与 Cell 策略。<ul class="sig"><li>征候：「近水建厂」让位给「近网/近合规区」；与架构·数据重力联动</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 水—算力舆情事件</h4>短视频放大「抢灌溉水」叙事；项目搁浅或改用途。<ul class="sig"><li>征候：与 P 的「抢电」并列为地方两会固定问句</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#c084fc">
+          <h3>配方 T · 平台撮合 × 多边契约 × 社保属地</h3>
+          <p class="mods"><a href="evolution-triad.html">人与AI演进</a> × <a href="decade.html">十年展望</a>·职业 × <a href="risk-geo.html">地缘与商业</a> × <a href="decade-scenes.html">场景</a>·办公/跨境</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>判据 1（合同主体、发薪地、社保缴纳地、纳税识别须可对账）+ 判据 3（个人—平台—用工方—国家）+ 判据 2（制裁/签证/数据驻留改变远程合法半径）。与 <strong>B</strong> 不同：焦点在<strong>劳动与保障链</strong>而非评价权。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若 AI 强化任务撮合与绩效计量 → 同一劳动者身上出现<strong>多雇主、多平台、多司法包</strong> → 工伤与医保锚定争议上升 → 国家侧推动<strong>默认承保方、最小保障包或行业白名单</strong>；跨境远程则与 <strong>D</strong> 的 Cell、支付制裁同屏，中型企业倾向购买<strong>雇佣合规 SaaS</strong> 而非自研规则。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 保障包模板化</h4>平台—用工方—保险三方条款缩短；岗位描述写清「谁背锅」。<ul class="sig"><li>征候：劳务招标出现「AI 派单与人工仲裁」责任切分附件</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 法域套利与收缩</h4>远程雇佣先扩后收；签证与数据出境收紧时团队断裂。<ul class="sig"><li>征候：HR 与架构同开「 payroll Cell 图」；与 Q 双栈同构</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 正式化反弹</h4>舆论与立法要求「看起来像雇员就得保」；平台固定成本陡增。<ul class="sig"><li>征候：中小平台退出部分城市；零工保费转嫁给消费者端可见</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#34d399">
+          <h3>配方 U · ESG 披露 × 算力碳足迹 × 绿证与调度对账</h3>
+          <p class="mods"><a href="work-infra-energy.html">职基能</a>·能源 × <a href="decade.html">十年展望</a>·治理/产业 × <a href="risk-geo.html">地缘与商业</a>·投融资 × <a href="decade-scenes.html">场景</a>·算力/企业</p>
+          <p class="recipe-rationale"><strong>合理性：</strong>判据 1（kWh、绿证、调度曲线、范围 2/3 口径须可对账，否则披露不可核验）+ 判据 5（电网实时 dispatch 与纸面 REC 可能脱节）+ 判据 2（监管/投资者追问 → 采购与选址行为）。与配方 <strong>C/I/P</strong> 同族，但更强调<strong>资本市场与诉讼</strong>对叙事的压力。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若机构投资者与交易所指引把<strong>AI 推理与训练电耗</strong>纳入气候披露 → 企业被迫部署<strong>机柜级计量与归因</strong> → 绿证/PPA 与「实际并网碳强度」对不上时产生<strong>漂绿</strong>争议 → 律所与鉴证机构介入；中小企业倾向购买<strong>ESG 模板+托管披露</strong>，与固定成本叙事（§7「中小企业固定成本」行）叠加。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 披露与调度同源</h4>披露数据直接来自电网/园区 EMS 接口，时间粒度对齐推理队列。<ul class="sig"><li>征候：年报附件出现「限电时段推理占比」；与 P、S 联动</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 范围三外包争议</h4>云厂商与客户对「谁算谁的碳」拉锯；合同增加碳条款。<ul class="sig"><li>征候：RFP 要求云侧可验证分配因子；与架构·租户隔离同构</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 诉讼与停牌风险</h4>夸大绿电比例遭集体诉讼或监管问询；头部和解形成判例。<ul class="sig"><li>征候：IR 路演「碳」页厚于「业务」页；尽调清单复制气候诉点</li></ul></div>
+          </div>
+        </div>
+        <div class="synth-recipe" style="border-left-color:#f43f5e">
+          <h3>配方 V · 双重用途 × 科研数据 × 出境与伙伴审查</h3>
+          <p class="mods"><a href="edu-nexus.html">教育纵轴</a>·科研/高教 × <a href="decade.html">十年展望</a>·安全/治理 × <a href="risk-geo.html">地缘</a> × <a href="evolution-triad.html">人与AI演进</a></p>
+          <p class="recipe-rationale"><strong>合理性：</strong>判据 2（清单与许可变动→合作可继续性）+ 判据 3（学者—大学—基金—国家—跨国合作方）+ 判据 1（数据集字段、合作方国籍、算力位置须可点名）。与 <strong>Q</strong> 同族：从产业制品延伸到<strong>论文、数据集与联合实验室</strong>。</p>
+          <p class="recipe-chain"><strong>传导链：</strong>若双重用途管制与数据出境安全评估<strong>同时收紧</strong> → 跨国联合训练与共享基准数据集成本上升 → 高校出现<strong>分区科研栈</strong>（可对外合作区 / 内需区）→ 青年学者职业路径分化；产业侧则更多依赖<strong>合成数据与区域联盟内互认</strong>，全球论文合作网络局部稀疏化。</p>
+          <div class="morph-fork-grid">
+            <div class="morph-fork-card"><h4>甲 · 合规合作走廊</h4>官方白名单国别+课题；合同模板与伦理审查前置。<ul class="sig"><li>征候：研究生院开设「数据出境与出口分类」必修课</li></ul></div>
+            <div class="morph-fork-card"><h4>乙 · 影子协作回潮</h4>正式渠道受阻，非正式数据与算力共享风险上升。<ul class="sig"><li>征候：审计发现合作方与作者列表不一致；与 Q 乙形态共振</li></ul></div>
+            <div class="morph-fork-card"><h4>丙 · 区域小循环硬化</h4>区域内互认数据集与算力券，区外高摩擦。<ul class="sig"><li>征候：顶会论文机构地址「区域化」；与 K 友岸叙事同构</li></ul></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout extend" style="margin-top:1.25rem">
+        <strong>与 §5 的关系：</strong>配方 A—H 不作废；<strong>I—V</strong> 在同一判据系下把「房、老、链、智、机」及交叉场景拉进传导链，并补上 <strong>O—T</strong> 各条及 <strong>ESG—算力碳账（U）</strong>、<strong>双重用途科研链（V）</strong>。沙盘加压：上市公司/IR 与供应链试压 <strong>U</strong>；高校课题、联合实验室与数据集试压 <strong>V</strong>（常与 <strong>Q</strong> 叠读）。
+      </div>
+    </section>
+
+    <section id="matrix">
+      <h2>7. 复合焦点总表（扩展）</h2>
+      <p class="muted" style="margin-top:-0.35rem">在原有八行上再增五域、M/N 交叉、<strong>O/P</strong> 及延伸 <strong>Q—V</strong> 等行，便于与 §6 对照；表可随 <a href="#perpetual">§11</a> 继续加行。</p>
+      <div class="coupling-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>复合焦点</th>
+              <th>模块组合（示例）</th>
+              <th>趋势向量</th>
+              <th>可能形态词</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>可信与可见</td>
+              <td>十年·安全/治理 × 架构·身份 × 沙盘</td>
+              <td>举证↑；加密默认 vs 监管可见拉锯</td>
+              <td>最小披露、可验证、分区化</td>
+            </tr>
+            <tr>
+              <td>耗电与算力</td>
+              <td>职基能 × 十年·产业 × 场景·算力</td>
+              <td>绿电/PUE/水进入 SLA；错峰推理</td>
+              <td>本地化算力、电价敏感调度</td>
+            </tr>
+            <tr>
+              <td>人与组织</td>
+              <td>人与AI × 职基能·职业 × 教育纵轴</td>
+              <td>技能半衰期↑；保障外溢；工种颗粒化</td>
+              <td>多雇主履历、微证书、岗位仲裁</td>
+            </tr>
+            <tr>
+              <td>走出去与回岸</td>
+              <td>地缘 × 场景·跨境 × 架构·Cell</td>
+              <td>多栈默认；友岸双活；功能裁剪</td>
+              <td>合规即特性、连续性演练</td>
+            </tr>
+            <tr>
+              <td>日常政治化</td>
+              <td>立体联结 × 场景·家庭/办公 × 人与AI</td>
+              <td>模型与屏幕议题家庭化；影子 AI</td>
+              <td>多模型日常、代际协商</td>
+            </tr>
+            <tr>
+              <td>数据重力</td>
+              <td>架构拓扑 × 职基能·网络 × 十年·架构</td>
+              <td>数据驻留硬约束推高「就近算」；联邦/缓存策略复杂化</td>
+              <td>边缘聚合、缓存法学、Cell 内 RAG</td>
+            </tr>
+            <tr>
+              <td>组织记忆</td>
+              <td>历史演进 × 廿年视角 × 分层</td>
+              <td>词汇与 KPI 锁定迁移；双轨期拉长</td>
+              <td>胶水层膨胀、契约优先、渐进切换</td>
+            </tr>
+            <tr>
+              <td>中小企业固定成本</td>
+              <td>地缘 × 十年·治理 × 风险热力</td>
+              <td>合规包 SaaS 化；头部吃规模、尾部吃摩擦</td>
+              <td>托管合规、行业模板、退出市场</td>
+            </tr>
+            <tr>
+              <td>算力—空间捆绑</td>
+              <td>房地产 × 职基能 × 场景·城市 × 配方 I</td>
+              <td>土地出让/园区与 kW、绿电挂钩；边缘节点占物理空间</td>
+              <td>算力地产、园网电一体、余热市政</td>
+            </tr>
+            <tr>
+              <td>银发责任链</td>
+              <td>养老 × 人与AI × 家庭场景 × 配方 J</td>
+              <td>监护数据与护理工时替代并行；事故责任倒逼认证与保险条款</td>
+              <td>家庭订阅捆绑、院舍标准先行、认证险种</td>
+            </tr>
+            <tr>
+              <td>链上信任与法域</td>
+              <td>区块链 × 治理/安全 × 风险·支付 × 配方 K</td>
+              <td>许可链/凭证试点与公链叙事分化；oracle 与承认度决定上限</td>
+              <td>可验证凭证、多轨支付、工具化去链化</td>
+            </tr>
+            <tr>
+              <td>具身劳动力再切</td>
+              <td>机器人 × AI × 职业 × 企业生产 × 配方 L</td>
+              <td>维保链与固件更新卷入地缘；人机班组标准化</td>
+              <td>运维师岗位、备件制裁敏感、头部产线集中</td>
+            </tr>
+            <tr>
+              <td>双栖智能（云—端—身）</td>
+              <td>AI × 机器人 × 分层 × 职基能·电</td>
+              <td>「大脑在云、小脑在边、身体在场」责任切分合同化</td>
+              <td>端侧推理、充电网络约束产能、SLA 分拆</td>
+            </tr>
+            <tr>
+              <td>康养—算力同园张力</td>
+              <td>房地产×养老×职基能×城市治理 × 配方 M</td>
+              <td>邻避、双物业主体、电价与余热叙事并进；医保/民政与园区 KPI 可能打架</td>
+              <td>联合出让指标、分库不分责、投诉双通道</td>
+            </tr>
+            <tr>
+              <td>生成式举证栈</td>
+              <td>AI×区块链×安全/治理×架构审计 × 配方 N</td>
+              <td>时间戳/哈希≠真实；链外鉴定与平台日志仍中枢；跨国多存证点</td>
+              <td>许可链流水线、司法仍偏日志、多 Cell 多哈希</td>
+            </tr>
+            <tr>
+              <td>公区具身服务链</td>
+              <td>物业/FM × 机器人 × SME/住宅场景 × 配方 O</td>
+              <td>订阅+维保外包；品牌锁定与备件制裁；事故—保险—监管螺旋</td>
+              <td>FM 总包、邻里隐私争议、低价维保陷阱</td>
+            </tr>
+            <tr>
+              <td>气候—算力—民生三角</td>
+              <td>职基能·电网 × 城市场景 × 产业/治理 × 配方 P</td>
+              <td>让电/错峰常态化；SLA 与出行/生活争峰；边缘与备用电源伦理回归</td>
+              <td>优先级法治化、柴油争议、区域不公平感</td>
+            </tr>
+            <tr>
+              <td>开源制品—管制—双栈</td>
+              <td>人与AI × 地缘 × 十年·安全/治理 × 分层供应链 × 配方 Q</td>
+              <td>权重/API/镜像可得性随清单摆动；合规区与研究区（或影子栈）并存；尽调与审计拉长</td>
+              <td>镜像入职培训、双轨日志风险、算力地理再枢纽化</td>
+            </tr>
+            <tr>
+              <td>注意力—屏幕—家校</td>
+              <td>教育纵轴 × 场景·教育/家庭 × 十年之问 × 配方 R</td>
+              <td>Feed 留存与课业争峰；家校系统与 OS 级治理话语趋同；未成年时段/广告政策周期收紧</td>
+              <td>校家路由器联动、纯净栈阶层化、网关化监管争议</td>
+            </tr>
+            <tr>
+              <td>水—冷却—算力账本</td>
+              <td>职基能·能源/冷却 × 城市场景 × 立体联结 × 配方 S</td>
+              <td>区域水平衡将大型冷却负荷入账；取水/中水/蒸发进环评与 SLA；与让电（P）并列的「让水」叙事可能出现</td>
+              <td>水账合同化、干冷与异地分流、水算力舆情</td>
+            </tr>
+            <tr>
+              <td>平台用工—保障锚定</td>
+              <td>人与AI × 十年·职业 × 地缘 × 场景·办公/跨境 × 配方 T</td>
+              <td>多雇主/多平台/多司法包；工伤与社保锚定争议；远程与制裁下同构 payroll Cell</td>
+              <td>保障包模板、法域套利收缩、正式化反弹与平台退出</td>
+            </tr>
+            <tr>
+              <td>ESG—算力碳账</td>
+              <td>职基能·能源 × 十年·治理/产业 × 地缘·资本 × 配方 U</td>
+              <td>披露要求推高机柜级计量；绿证/PPA 与实时 dispatch 对账；漂绿诉讼与鉴证介入</td>
+              <td>披露调度同源、范围三拉锯、诉讼倒逼口径硬化</td>
+            </tr>
+            <tr>
+              <td>双重用途—科研链</td>
+              <td>教育纵轴·科研 × 十年·安全/治理 × 地缘 × 配方 V</td>
+              <td>数据集与联合训练出境审查；分区科研栈；合成数据与小区域互认</td>
+              <td>合规合作走廊、影子协作风险、区域小循环硬化</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="forks">
+      <h2>8. 三簇未来图景：分叉而非单点汇入</h2>
+      <p class="muted" style="margin-top:-0.35rem">拒绝「所有线都汇入同一生存包」的过度简化；下列三簇在站内都有模块支撑，可并行存在于<strong>不同法域、不同阶层、不同代际</strong>——与 <a href="evolution-triad.html">人与AI演进</a> 中「分叉型走向」一致。</p>
+      <div class="synth-merge-wrap">
+        <svg viewBox="0 0 600 210" xmlns="http://www.w3.org/2000/svg" aria-label="三簇分叉示意">
+          <defs>
+            <marker id="synf1" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#8b9cb3"/></marker>
+          </defs>
+          <rect x="40" y="50" width="110" height="50" rx="8" fill="#1a2332" stroke="#f97316"/>
+          <text x="95" y="72" text-anchor="middle" fill="#e8edf4" font-size="9" font-family="Noto Sans SC,sans-serif">尺度·时间</text>
+          <text x="95" y="86" text-anchor="middle" fill="#8b9cb3" font-size="7" font-family="Noto Sans SC,sans-serif">硬栈压力</text>
+          <line x1="150" y1="75" x2="198" y2="58" stroke="#5c6b7e" marker-end="url(#synf1)"/>
+          <line x1="150" y1="75" x2="198" y2="95" stroke="#5c6b7e" marker-end="url(#synf1)"/>
+          <line x1="150" y1="75" x2="198" y2="132" stroke="#5c6b7e" marker-end="url(#synf1)"/>
+          <rect x="200" y="38" width="180" height="44" rx="8" fill="#141b26" stroke="#3d9cf5"/>
+          <text x="290" y="58" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">簇 α · 收敛国别栈</text>
+          <text x="290" y="72" text-anchor="middle" fill="#8b9cb3" font-size="7" font-family="Noto Sans SC,sans-serif">强治理叙事 + 基建配套跟上</text>
+          <rect x="200" y="92" width="180" height="44" rx="8" fill="#141b26" stroke="#a78bfa"/>
+          <text x="290" y="112" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">簇 β · 多栈日常</text>
+          <text x="290" y="126" text-anchor="middle" fill="#8b9cb3" font-size="7" font-family="Noto Sans SC,sans-serif">摩擦成本内化 · Cell 与影子并存</text>
+          <rect x="200" y="146" width="180" height="44" rx="8" fill="#141b26" stroke="#4ecf8e"/>
+          <text x="290" y="166" text-anchor="middle" fill="#e8edf4" font-size="9" font-weight="600" font-family="Noto Sans SC,sans-serif">簇 γ · 补丁双轨</text>
+          <text x="290" y="180" text-anchor="middle" fill="#8b9cb3" font-size="7" font-family="Noto Sans SC,sans-serif">立法追赶 · 头部试点尾部拼凑</text>
+          <text x="400" y="105" fill="#5c6b7e" font-size="8" font-family="Noto Sans SC,sans-serif">三簇可并存</text>
+        </svg>
+      </div>
+      <div class="morph-fork-grid" style="margin-top:1rem">
+        <div class="morph-fork-card"><h4>簇 α</h4><p style="margin:0">驱动力：主权云、关基、行业模型备案等与<strong>能源/算力布局</strong>同步推进。<strong>可见征候：</strong>标准套餐化、灰色空间收窄、跨域流动成本显性定价。</p></div>
+        <div class="morph-fork-card"><h4>簇 β</h4><p style="margin:0">驱动力：全球化业务与强合规同时存在。<strong>可见征候：</strong>多账号日常、产品功能矩阵化、业务连续性演练与「合规 PM」角色。</p></div>
+        <div class="morph-fork-card"><h4>簇 γ</h4><p style="margin:0">驱动力：政策周期与技术周期不同步。<strong>可见征候：</strong>示范城市/头部企业先行、长尾用模板硬套、事故驱动型补丁立法。</p></div>
+      </div>
+    </section>
+
+    <section id="dimensions">
+      <h2>9. 五维形态展现：「未来长什么样」的可观察切片</h2>
+      <p class="muted" style="margin-top:-0.35rem">不从抽象口号回答形态，而从五个日常维度给<strong>可观察切片</strong>——便于对照自身环境是否接近某一簇（§8）。</p>
+      <div class="dim-morph-grid">
+        <div class="dim-morph-cell">
+          <h4>组织</h4>
+          岗位边界：平台工程、合规翻译、AI 运维、数据仲裁角色是否固定编制；外包比例与「核心保留」声明是否一致。
+        </div>
+        <div class="dim-morph-cell">
+          <h4>空间</h4>
+          工位 vs 任务节点；机房与办公楼的地理关系（同城双活、园区电价）；「边缘」是修辞还是真有节点。
+        </div>
+        <div class="dim-morph-cell">
+          <h4>界面</h4>
+          用户可见的法域切换、模型来源标签、失败时的降级路径；政务与教育界面是否共享同一套「可申诉」隐喻。
+        </div>
+        <div class="dim-morph-cell">
+          <h4>账单</h4>
+          电费/算力/合规是否分项入账；谁承担绿证溢价；SME 是否被迫买「合规包」而非自建能力。
+        </div>
+        <div class="dim-morph-cell">
+          <h4>话语</h4>
+          公共讨论用「主权/安全/创新」哪一词作默认正当性；技术社区与政策文本的词汇是否<strong>互译</strong>还是各说各话。
+        </div>
+      </div>
+      <h3 style="margin-top:1.75rem;font-size:1.05rem">9.1 叠加五域的可观察切片（补充）</h3>
+      <div class="dim-morph-grid">
+        <div class="dim-morph-cell">
+          <h4>居所与 m²</h4>
+          房产证/租赁合同附件是否出现「算力/带宽/机房噪声」类条款；物业费是否单列<strong>边缘机房或冷却分摊</strong>。
+        </div>
+        <div class="dim-morph-cell">
+          <h4>银发界面</h4>
+          家庭屏、穿戴与机器人<strong>紧急停权</strong>是否一键可达；远程子女授权与老人自主的默认顺序。
+        </div>
+        <div class="dim-morph-cell">
+          <h4>链与支付</h4>
+          企业是否维护「链上/链下双账」；制裁或合规下<strong>哪条支付轨</strong>先被关掉。
+        </div>
+        <div class="dim-morph-cell">
+          <h4>具身现场</h4>
+          车间/仓配的人机隔离区标识、维保工单与<strong>固件版本</strong>是否纳入安全审计。
+        </div>
+        <div class="dim-morph-cell">
+          <h4>叙事互译</h4>
+          「RWA / 数字孪生 / 工业互联网 / 大模型」是否在招投标里被<strong>同一采购框</strong>误装或刻意混装。
+        </div>
+      </div>
+      <h3 style="margin-top:1.75rem;font-size:1.05rem">9.2 配方 M / N 的可见切片</h3>
+      <div class="dim-morph-grid" style="grid-template-columns:repeat(2,1fr);max-width:720px">
+        <div class="dim-morph-cell">
+          <h4>康养同园（M）</h4>
+          售楼处与园区手册是否对<strong>变电站/冷却塔/应急停电</strong>给出一致说辞；长者活动区与货运廊道<strong>动线是否物理隔离</strong>；民政投诉与园区环保投诉是否进同一平台。
+        </div>
+        <div class="dim-morph-cell">
+          <h4>生成式存证（N）</h4>
+          产品是否区分「链上指纹」与「内容审核记录」；下架内容是否<strong>同时</strong>动哈希状态与后台日志；法务是否培训「存证不免责」话术。
+        </div>
+      </div>
+      <h3 style="margin-top:1.75rem;font-size:1.05rem">9.3 配方 O / P 的可见切片</h3>
+      <div class="dim-morph-grid" style="grid-template-columns:repeat(2,1fr);max-width:720px">
+        <div class="dim-morph-cell">
+          <h4>物业具身（O）</h4>
+          公区机器人<strong>停权与急停</strong>是否物业一线可控；维保工单是否绑定<strong>固件版本与保险单号</strong>；业委会是否讨论「摄像头+移动机器人」叠加的隐私红线。
+        </div>
+        <div class="dim-morph-cell">
+          <h4>限电与 SLA（P）</h4>
+          云服务合同是否写明<strong>电网调度例外</strong>；城市是否发布算力/充电优先级表；邻居是否闻得到/投诉<strong>柴油备用电源</strong>（与 M 邻避叠加）。
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow">
+      <h2>10. 工作台：推荐阅读循环</h2>
+      <div class="card">
+        <ol class="muted" style="margin:0;font-size:0.88rem;line-height:1.85">
+          <li>在 §1 表中圈出与你问题最相关的<strong>2—3 个模块</strong>（优先<strong>同系</strong>，跨系须写明中介变量），写下各自变量与堆叠位。</li>
+          <li>用 §2 五条判据检验：缺哪条就<strong>补读第三模块</strong>（常见补块：时间轴或职基能）。</li>
+          <li>若问题含<strong>房/老/链/机</strong>、<strong>康养同园 / AIGC 存证</strong>、<strong>物业机器人 / 极端天气限电</strong>、<strong>取水与冷却水平衡</strong>、<strong>开源权重与出口清单</strong>、<strong>未成年人屏幕与家校协同</strong>、<strong>平台用工与社保属地</strong>、<strong>ESG 与算力碳披露</strong>或<strong>科研数据出境与双重用途</strong>，先读 <strong>§6</strong>，再选 §5（A—H）或 §6.2（<strong>I—V</strong>）中最贴近的一条配方。</li>
+          <li>抄下传导链，改一个前提（地缘恶化、绿电涨价、抚养比跳变、支付制裁、热浪限电、维保断供等），对照 <strong>§7</strong> 是否已有对应行；若无，按 <a href="#perpetual">§11</a> 自增一行。</li>
+          <li>对照 <strong>§8</strong> 三簇，判断更接近 α/β/γ 哪一簇，并用 <strong>§9</strong>（含 9.1—9.3）各写一句<strong>可见征候</strong>。</li>
+          <li>进 <a href="lab.html">沙盘工坊</a> 压因子，看绷紧顺序是否推翻你的簇判断；若推翻，回到 <strong>§7</strong> 表找新行或回到 §6 换配方。</li>
+          <li>刻意再走一圈 <a href="#perpetual">§11</a> 的<strong>梳理→扩展→推演</strong>：本轮遗漏了哪条判据？下一轮要补哪条配方或表行？</li>
+          <li>若叙事仍「飘」，到 <a href="#methods">§12</a> 选<strong>一到两种</strong>与研究训练相近的手法（如情景树、反馈环草图、事前验尸）给同一问题换一层面具，再对照 §2 判据收紧。</li>
+          <li>若已收紧仍觉「单薄」，走 <a href="#deep-lens">§13 深读透镜</a>：<strong>四穿透 + 六凝视者 + 场景换镜头</strong>各一轮，再回 §7/§6。</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="perpetual">
+      <h2>11. 持续梳理、扩展与推演：本页如何「不断生长」</h2>
+      <p class="muted" style="margin-top:-0.35rem"><strong>梳理</strong>不是一次性读完 §1，而是每次把新现象<strong>对回变量表与判据</strong>；<strong>扩展</strong>是在不破坏可对账性的前提下加模块、加域、加配方、加表行；<strong>推演</strong>是强制产出传导链与<strong>至少一枝分叉</strong>（甲/乙/丙或 §8 簇），避免只有形容词。</p>
+
+      <div class="perpetual-cycle-wrap">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" aria-label="梳理扩展推演循环">
+          <defs>
+            <marker id="synperp1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#4ecf8e"/></marker>
+          </defs>
+          <line x1="200" y1="72" x2="288" y2="138" stroke="#5c6b7e" stroke-width="2" marker-end="url(#synperp1)"/>
+          <line x1="248" y1="158" x2="152" y2="158" stroke="#5c6b7e" stroke-width="2" marker-end="url(#synperp1)"/>
+          <line x1="112" y1="138" x2="200" y2="72" stroke="#5c6b7e" stroke-width="2" marker-end="url(#synperp1)"/>
+          <rect x="155" y="28" width="90" height="44" rx="8" fill="#1a2332" stroke="#3d9cf5"/>
+          <text x="200" y="48" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">梳理</text>
+          <text x="200" y="64" text-anchor="middle" fill="#8b9cb3" font-size="7" font-family="Noto Sans SC,sans-serif">§1 对表 · §2 判据</text>
+          <rect x="248" y="118" width="90" height="44" rx="8" fill="#1a2332" stroke="#a78bfa"/>
+          <text x="293" y="138" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">扩展</text>
+          <text x="293" y="154" text-anchor="middle" fill="#8b9cb3" font-size="7" font-family="Noto Sans SC,sans-serif">配方·域·表行</text>
+          <rect x="62" y="118" width="90" height="44" rx="8" fill="#1a2332" stroke="#f97316"/>
+          <text x="107" y="138" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">推演</text>
+          <text x="107" y="154" text-anchor="middle" fill="#8b9cb3" font-size="7" font-family="Noto Sans SC,sans-serif">链·分叉·切片</text>
+          <text x="200" y="192" text-anchor="middle" fill="#5c6b7e" font-size="8" font-family="Noto Sans SC,sans-serif">顺时针循环；沙盘加压后回到梳理修正边界</text>
+        </svg>
+        <ul class="perpetual-slots">
+          <li><strong>扩展插槽 ①：</strong>新行业或新城市场景 → 在 §1 为对应页补「变量注」并标注<strong>所属系与堆叠位</strong>，同步 <a href="modules-map.html#matrix-table">模块图谱 · 分系总表</a>；再试能否落入 §2 某条判据。</li>
+          <li><strong>扩展插槽 ②：</strong>新传导命题 → 在 §6.2 按现有卡片结构<strong>增配方一条</strong>（模块链接 + 合理性 + 链 + 甲/乙/丙）。</li>
+          <li><strong>扩展插槽 ③：</strong>新复合矛盾 → 在 §7 表<strong>增一行</strong>（焦点 + 模块组合 + 趋势向量 + 形态词）。</li>
+          <li><strong>扩展插槽 ④：</strong>新可见征候 → 在 §9 增一小格，与五维或 9.x 系列并列，保持「可观察」而非口号。</li>
+          <li><strong>扩展插槽 ⑤：</strong>叠乘域再延伸—§6.2 已至 <strong>I—V</strong>（含 <strong>Q—V</strong>）与 §7 对应表行；下一轮若仍落不进现有字母，自增配方须含<strong>合理性+传导链+甲/乙/丙</strong>并指回 <a href="#criteria">§2</a>，必要时用 <a href="#methods">§12</a> 固定方法外衣以免散文化。</li>
+          <li><strong>扩展插槽 ⑥：</strong>国家层面规划/试点节奏与舆论场<strong>不同步</strong>时 → 用 <a href="national-strategy-opinion.html">战略·舆情</a> 把「文件—预算—招标」与「议程—问责」拆成两轨，再指回 <a href="decade.html">十年展望</a>·国家治理与 <a href="nexus.html">立体联结</a> 的尺度嵌套，避免单轨叙事。</li>
+          <li><strong>扩展插槽 ⑦：</strong>外部信号（舆情、政策、法规标题、市场）持续涌现 → 先由 <code>scripts/ingest_opinion_law.py</code> 汇总为 <code>assets/evolution-candidates.json</code>，人审后再 <code>merge_candidates_to_manifest.py</code> 并入正式库；<code>evolution.js</code> 同时渲染<strong>已入库 + 候选</strong>并合并沙盘高亮；跑通一轮沙盘与 §7 对表后，再决定是否升格为 §6 配方 / §7 表行（忌自动 merge 无人审）。</li>
+          <li><strong>扩展插槽 ⑧：</strong>数据积累后运行 <code>scripts/analysis_engine.py</code>（可加 <code>--sediment</code>）→ 阅读 <a href="analysis-hub.html">分析引擎</a> 热力/共现与规则提示；若某模块页或因子长期占优，回到 §6/§7 做<strong>结构性补行</strong>或删陈旧叙事，形成「沉淀—分析—反哺」闭环。</li>
+          <li><strong>扩展插槽 ⑨：</strong>在 ⑦⑧ 之上引入<strong>模型与检索辅助</strong>（摘要、映射候选、RAG 带引用建议等）时 → 遵循 <a href="intelligent-evolution.html">智能进化</a> 的分层与闸门：产出默认进<strong>候选/工单</strong>，经 schema 校验与人审后再影响 manifest 或正文；忌未评测的「自动改站」。</li>
+          <li><strong>纪律：</strong>扩展若<strong>指不回 §2 任一条判据</strong>，降级为随笔，不进入表与配方；推演若无分叉，只能算摘要，不算完成一轮。</li>
+        </ul>
+      </div>
+
+      <div class="callout imagine" style="margin-top:1rem">
+        <strong>自我追问（每轮结尾用）：</strong>本轮是否把「电/钱/责任/时间」至少一个量纲说清？若只增加了形容词，回到梳理；若增加了新模块却无法对账，删掉或合并。
+      </div>
+    </section>
+
+    <section id="methods">
+      <h2>12. 跨学科推演办法：各研究领域的套路如何嵌进本站</h2>
+      <p class="muted" style="margin-top:-0.35rem">下列不是「正确方法论」排名，而是<strong>可借用的思维外衣</strong>：把你在某一学科里习惯的推理步骤，显式对齐到 §1—§9 与 <a href="lab.html">沙盘</a>，避免只有术语没有可对账的链。一轮推演建议<strong>只主动选用一到两种</strong>，防止清单化表演。</p>
+
+      <div class="synth-mod-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:22%">领域或传统</th>
+              <th style="width:28%">常见手法（极简）</th>
+              <th>在本站中的落点</th>
+              <th style="width:18%">用时注意</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>战略与情景规划</td>
+              <td>关键不确定性 → 多情景树；反推里程碑与信号指标</td>
+              <td><a href="#forks">§8 三簇</a>、<a href="#recipes">§5</a> 每配方的甲/乙/丙、<a href="decade-scenes.html">十年场景</a> 三阶段色条</td>
+              <td>情景是<strong>叙事容器</strong>，仍需 §2「变量共享」才成立</td>
+            </tr>
+            <tr>
+              <td>技术预见 / 德尔菲类</td>
+              <td>结构化问卷、多轮意见聚合、分歧显式保留</td>
+              <td>适合<strong>团队年更</strong>时自建流程；本站不内置工具，产出应对回 <a href="#inventory">§1</a> 变量表</td>
+              <td>匿名轮次不能替代<strong>电/法域/合同</strong>等对账</td>
+            </tr>
+            <tr>
+              <td>系统动力学 / 控制论</td>
+              <td>反馈环、延迟、存量—流量；杠杆点辨析</td>
+              <td><a href="#graph">§3</a> 毗邻关系、各配方<strong>传导链</strong>里「谁放大/抵消谁」</td>
+              <td>定性环即可，不必强行上仿真软件</td>
+            </tr>
+            <tr>
+              <td>复杂适应系统（思想）</td>
+              <td>异质主体、局部规则、涌现形态</td>
+              <td><a href="nexus.html">立体联结</a> 尺度嵌套、家校政平台多方、<a href="#stack-domains">§6</a> 叠加域</td>
+              <td>涌现不是借口——仍要落到<strong>可见切片</strong></td>
+            </tr>
+            <tr>
+              <td>因果推断（DAG、反事实）</td>
+              <td>混杂路径、识别策略、反事实对照</td>
+              <td>改配方<strong>一个前提</strong>看传导是否断链；拒绝把相关当因果——对齐 <a href="#criteria">§2</a></td>
+              <td>本站不做估计量；只做<strong>逻辑可证伪</strong>叙述</td>
+            </tr>
+            <tr>
+              <td>历史与制度分析</td>
+              <td>路径依赖、临界事件、制度层叠</td>
+              <td><a href="timeline.html">历史演进</a>、<a href="past-future.html">廿年视角</a>、时间维上的词汇与投资惯性</td>
+              <td>历史类比要写明<strong>机制对应哪一段链</strong></td>
+            </tr>
+            <tr>
+              <td>工程可靠性（FTA / FMEA）</td>
+              <td>顶事件分解、严重度×发生度、单点失效</td>
+              <td><a href="lab.html">沙盘工坊</a> 依赖流 SVG；§7 复合表中「谁先绷紧」</td>
+              <td>与治理/合同并读，避免纯技术树</td>
+            </tr>
+            <tr>
+              <td>运筹与敏感性分析</td>
+              <td>主因子、边界情景、龙卷风式排序</td>
+              <td>沙盘多因子勾选；对照 §7 行向量何者最先矛盾</td>
+              <td>排序依赖<strong>你已承认的前提</strong>，前提变则序变</td>
+            </tr>
+            <tr>
+              <td>政策过程 / 倡议联盟</td>
+              <td>联盟重组、叙事竟逐、政策窗口</td>
+              <td><a href="decade.html">十年展望</a>·治理维、<a href="evolution-triad.html">人与AI演进</a> 分叉、地缘叙事</td>
+              <td>写明<strong>谁从现状获益</strong>，否则易空转</td>
+            </tr>
+            <tr>
+              <td>微观行为与离散选择（思想）</td>
+              <td>约束下选择、异质性偏好</td>
+              <td><a href="decade-us.html">十年之问</a> 四问不同步、家庭「数字政治」</td>
+              <td>不拟合系数；只检查<strong>约束是否写漏</strong></td>
+            </tr>
+            <tr>
+              <td>质性研究 / 民族志</td>
+              <td>厚描、可观察行为、情境合法性</td>
+              <td><a href="#dimensions">§9</a> 五维形态与各「可见切片」、配方卡片中的征候句</td>
+              <td>切片要能被别人<strong>在原则上复核</strong></td>
+            </tr>
+            <tr>
+              <td>危机管理与红队</td>
+              <td>桌面推演、事前验尸、故意攻击叙事弱点</td>
+              <td>沙盘加压；§11 自我追问；与 <a href="risk-geo.html">地缘与商业</a> 最坏情景并读</td>
+              <td>红队结论应<strong>增一行 §7 或一条配方分叉</strong>，不单是情绪</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:1.5rem;font-size:1.05rem">12.1 按「问题类型」选用（示意）</h3>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.88rem;line-height:1.85">
+          <li><strong>谁先坏、何处单点：</strong>优先 FTA/FMEA 式分解 + <a href="lab.html">依赖流</a>，再接到 §5/§6 传导链。</li>
+          <li><strong>为何同一国里体验分裂：</strong>复杂系统多方 + 制度层叠 + <a href="decade-us.html#sync">四问不同步</a>，用 §8 簇或 §5 分叉收束。</li>
+          <li><strong>是否漏了第三变量：</strong>因果图式追问 + §2 判据；必要时强制加读 <a href="work-infra-energy.html">职基能</a> 或 <a href="architecture.html">拓扑</a> 之一。</li>
+          <li><strong>叙事太乐观/太悲观：</strong>情景规划式写<strong>对立情景</strong>各一条可见征候；红队只攻击<strong>最脆的一环前提</strong>。</li>
+        </ul>
+      </div>
+
+      <div class="callout evidence" style="margin-top:1rem">
+        <strong>依据：</strong>上表各手法在各自学科中有更严格的操作定义；此处只取<strong>与定性传导链兼容</strong>的那一层，避免把本站冒充为计量模型或仿真平台。
+      </div>
+      <div class="callout extend">
+        <strong>扩展：</strong>若你所在领域还有可对接习惯（例如生态学的<strong>营养级联</strong>、法学的<strong>要件—效果链</strong>、医学伦理的<strong>利益冲突披露</strong>），可按 §11 扩展插槽 ① 自写一句「变量注」，仍须指回 <a href="#criteria">§2</a> 某条判据。
+      </div>
+      <div class="callout imagine">
+        <strong>想象：</strong>同一议题连续三轮分别只用「情景树 / 反馈环 / 事前验尸」做主架——三轮结论若<strong>稳定重叠</strong>，可升格写入 §7；若三轮各说各话，说明 §1 变量表尚未对齐或前提冲突未写出。
+      </div>
+    </section>
+
+    <section id="deep-lens">
+      <h2>13. 深读透镜：加深 · 多角度 · 多维度 · 多场景</h2>
+      <p class="muted" style="margin-top:-0.35rem">本节不是新预测，而是<strong>阅读纪律</strong>：如何把已有页面当作<strong>可旋转的棱镜</strong>，让同一命题在技术、制度、市场与客厅之间<strong>多次显影</strong>，减少「单页读后过度自信」。</p>
+
+      <h3 style="margin-top:1.35rem;font-size:1.05rem">13.1 加深：四穿透（每层至少补一条可对账变量）</h3>
+      <div class="synth-mod-table-wrap">
+        <table>
+          <thead>
+            <tr><th style="width:7rem">穿透层</th><th>你在读什么</th><th>典型入口</th><th>加深检查句</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>① 实现与栈</strong></td>
+              <td>哪一层命名、哪条链路承载 AI/数据/密钥；延迟与故障模式</td>
+              <td><a href="model.html">分层模型</a>、<a href="architecture.html">架构拓扑</a>、<a href="lab.html">沙盘</a> 依赖流</td>
+              <td>能否指出<strong>具体层/Cell</strong>与计量单位（ms、kW、QPS）？</td>
+            </tr>
+            <tr>
+              <td><strong>② 组织与契约</strong></td>
+              <td>谁签字、谁运维、外包边界、岗位与技能包如何重写</td>
+              <td><a href="evolution-triad.html">人与AI演进</a>、<a href="work-infra-energy.html">职基能</a>·职业、配方 <strong>F/T</strong></td>
+              <td>合同里<strong>默认承保方与 RTO</strong>是否与人事叙述一致？</td>
+            </tr>
+            <tr>
+              <td><strong>③ 制度与叙事</strong></td>
+              <td>细则、执法口径、产业与地缘话语如何改写采购与路线图</td>
+              <td><a href="decade.html">十年展望</a>·治理/地域、<a href="risk-geo.html">地缘与商业</a>、配方 <strong>A/H/Q/V</strong></td>
+              <td>公文热搜词与<strong>一线可执行动作</strong>能否互译？</td>
+            </tr>
+            <tr>
+              <td><strong>④ 客厅与身体</strong></td>
+              <td>尊严、怕、时间与照护预算；代际与屏幕政治</td>
+              <td><a href="nexus.html">立体联结</a>、<a href="decade-us.html">十年之问</a>、配方 <strong>R/J</strong></td>
+              <td>若政策落地，<strong>谁先失眠、谁先道歉</strong>能说清吗？</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top:0.75rem;font-size:0.85rem">四穿透不必一次读完；但<strong>停在单层</strong>时，应在 §7 或笔记里标注「未穿透层」，以免把技术乐观当成社会结论。</p>
+
+      <h3 style="margin-top:1.5rem;font-size:1.05rem">13.2 多角度：六种凝视者（同一命题的六种合法问法）</h3>
+      <p class="muted" style="margin-top:-0.25rem">下列不是角色扮演游戏，而是<strong>遗漏检查</strong>：若某凝视者完全插不进话，往往说明变量表缺一条中介（常见缺：电、支付、护理工时、保险）。</p>
+      <div class="coupling-table-wrap">
+        <table>
+          <thead>
+            <tr><th style="width:8rem">凝视者</th><th>优先追问</th><th>站内落点</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>监管 / 执法</td><td>可举证吗、最小必要、跨境与关基谁背锅</td><td><a href="decade.html">十年</a>·安全/治理、<a href="#recipes">配方 H/N</a>、<a href="#dimensions">§9</a> 切片</td></tr>
+            <tr><td>资本 / 董事会</td><td>CAPEX、范围 2/3、尾部风险与退出成本</td><td><a href="risk-geo.html">地缘</a>·SME、配方 <strong>U/C/I</strong>、§7「固定成本」行</td></tr>
+            <tr><td>产品与技术</td><td>默认栈、feature flag、可替换性与 SLO</td><td><a href="model.html">分层</a>、配方 <strong>C/F/L</strong>、<a href="#stack-domains">§6</a></td></tr>
+            <tr><td>一线用户 / 公民</td><td>办事摩擦、账号、支付失败、验证码与老人机</td><td><a href="decade-scenes.html#scene-gov">场景·政务</a>、<a href="decade-scenes.html#scene-city">城市</a>、配方 <strong>D</strong></td></tr>
+            <tr><td>家庭与照护者</td><td>屏幕、授权、怕与耻、时间从哪挤</td><td><a href="decade-us.html">十年之问</a>、<a href="edu-nexus.html">教育纵轴</a>、配方 <strong>B/R/J</strong></td></tr>
+            <tr><td>对手方 / 压力源</td><td>制裁、诉讼原告、勒索、舆论极化如何利用单点</td><td><a href="risk-geo.html">地缘</a>、配方 <strong>D/G/Q</strong>、<a href="lab.html">沙盘</a> 加压</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:1.5rem;font-size:1.05rem">13.3 多维度：四套「坐标」如何叠放（不混量纲）</h3>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.88rem;line-height:1.85">
+          <li><strong>五系与七层：</strong><a href="modules-map.html#taxonomy">模块图谱 · 五系</a> 定同窗互证范围；<a href="modules-map.html#layer-stack">七层堆叠</a> 检查是否缺 L1/L0 却在谈 L5—L6。</li>
+          <li><strong>时间维：</strong><a href="timeline.html">历史演进</a> → <a href="past-future.html">廿年视角</a> → <a href="decade.html">十年</a> 六维阶段条 → <a href="decade-scenes.html">十年场景</a> 三色条。问：同一技术在四张图里<strong>节拍是否一致</strong>。</li>
+          <li><strong>十年六维：</strong>架构 / 产业 / 职业 / 安全 / 治理 / 地域——先标出与你议题最相关的<strong>两维主矛盾</strong>，其余维当约束，避免六格同时喊最大声。</li>
+          <li><strong>合成三轴（本站 §4）：</strong><a href="#axes">尺度 · 时间 · 硬栈</a>——检查叙事是否落在「客厅最先痛」还是「机房最先痛」，以及硬栈是否 silent veto。</li>
+          <li><strong>形态五维 + 切片（§9）：</strong>把抽象簇落到<strong>可见征候</strong>；与 <a href="#forks">§8 三簇</a> 对照，看同一家庭是否可能 β 而同一园区 α。</li>
+        </ul>
+      </div>
+
+      <h3 style="margin-top:1.5rem;font-size:1.05rem">13.4 多场景：八条日常—产业镜头与主维、配方挂钩</h3>
+      <p class="muted" style="margin-top:-0.25rem">下表帮助「从场景跳入多维」：先定<strong>镜头</strong>，再回 <a href="decade.html">六维表</a> 圈两行，最后选 §5—§6 配方加压。</p>
+      <div class="synth-mod-table-wrap">
+        <table>
+          <thead>
+            <tr><th>场景镜头</th><th>建议优先扫的六维（2—3 个）</th><th>易叠乘配方（示例）</th><th>与四问/沙盘</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="decade-scenes.html#scene-office">办公协作</a></td>
+              <td>架构、地域、职业</td>
+              <td>D、F、T、影子 AI</td>
+              <td><a href="decade-us.html#we">十年之问·我们</a>；<a href="lab.html">沙盘</a>·企业因子</td>
+            </tr>
+            <tr>
+              <td><a href="decade-scenes.html#scene-edu">教育学习</a></td>
+              <td>治理、安全、职业</td>
+              <td>B、R、V（科研数据）</td>
+              <td><a href="decade-us.html#kids">孩子</a>；家校政接口</td>
+            </tr>
+            <tr>
+              <td><a href="decade-scenes.html#scene-home">家庭日常</a></td>
+              <td>治理、职业、安全</td>
+              <td>A、R、J、O（物业具身）</td>
+              <td><a href="decade-us.html#home">家庭</a>；屏幕与授权</td>
+            </tr>
+            <tr>
+              <td><a href="decade-scenes.html#scene-enterprise">企业生产</a></td>
+              <td>产业、安全、架构</td>
+              <td>C、L、U、供应链 G</td>
+              <td>§7「耗电与算力」「具身劳动力」行</td>
+            </tr>
+            <tr>
+              <td><a href="decade-scenes.html#scene-city">城市出行</a></td>
+              <td>产业、地域、治理</td>
+              <td>I、O、P、充电网</td>
+              <td>限电限水叙事与 <strong>S</strong></td>
+            </tr>
+            <tr>
+              <td><a href="decade-scenes.html#scene-compute">算力能源</a></td>
+              <td>产业、架构、地域</td>
+              <td>C、I、P、S、U</td>
+              <td>瓦特、水、碳披露同屏</td>
+            </tr>
+            <tr>
+              <td><a href="decade-scenes.html#scene-gov">政务合规</a></td>
+              <td>治理、安全</td>
+              <td>H、N、可验证审计</td>
+              <td><a href="decade-us.html#nation">十年之问·国家</a></td>
+            </tr>
+            <tr>
+              <td><a href="decade-scenes.html#scene-cross">跨境出海</a></td>
+              <td>地域、架构、治理</td>
+              <td>D、K、Q、T、支付</td>
+              <td>Cell、多栈、payroll</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:1.5rem;font-size:1.05rem">13.5 一趟「加深版」走法（可重复）</h3>
+      <div class="card">
+        <ol class="muted" style="margin:0;font-size:0.88rem;line-height:1.9">
+          <li>若需先建立全站鸟瞰，打开 <a href="modules-map.html">模块图谱</a> 的星丛/场景轮；再在 <a href="decade-scenes.html">十年场景</a> 选<strong>一个镜头</strong>，用 13.4 表圈定六维主读项。</li>
+          <li>走 <strong>13.1</strong> 四穿透各写一句：每层至少一个<strong>可对账名词</strong>（层、合同条款、kW、分钟、保单号等）。</li>
+          <li>用 <strong>13.2</strong> 六凝视者快速扫一遍：谁完全失声？→ 回 <a href="#inventory">§1</a> 补模块或 <a href="#criteria">§2</a> 判据。</li>
+          <li>把结论压进 <a href="#matrix">§7</a> 某行或 <a href="#stack-domains">§6</a> 某配方分叉，并用 <a href="#forks">§8</a> 标簇（允许与家庭不同簇）。</li>
+          <li>进 <a href="lab.html">沙盘</a> 勾选与镜头相关的因子组合，对照 <a href="#methods">§12</a> 任选一种方法外衣做第二轮。</li>
+          <li>收尾只保留<strong>三条可见征候</strong> + <strong>一条未决前提</strong>，写入 <a href="#perpetual">§11</a> 下一轮迭代。</li>
+        </ol>
+      </div>
+
+      <div class="callout imagine" style="margin-top:1rem">
+        <strong>想象：</strong>同一周用三个不同镜头（如「算力能源」「家庭日常」「政务合规」）各跑一遍 13.5——若三条结论在<strong>电/钱/责任</strong>上指向同一绷紧顺序，该顺序可升格为个人或团队的<strong>主风险登记</strong>；若互相矛盾，优先修 <strong>13.1 未穿透层</strong>而非争论形容词。
+      </div>
+    </section>
+
+    <footer>
+      <a href="decade-scenes.html">← 十年场景</a> · <a href="modules-map.html">模块图谱</a> · <a href="evolvable-architecture.html">可进化架构</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="smart-overhaul.html">整体改造</a> · <a href="lab.html">沙盘工坊</a> · <a href="#perpetual">持续迭代</a> · <a href="#methods">跨学科办法</a> · <a href="#deep-lens">深读透镜</a> · <a href="evolution-triad.html">人与AI演进</a> · <a href="index.html">总览</a> · <a href="index.html#three-questions">三问</a>
+    </footer>
+  </div>
+  <script src="assets/motion.js"></script>
+</body>
+</html>

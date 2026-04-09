@@ -1,0 +1,10 @@
+.git
+.gitignore
+*.md
+.DS_Store
+__pycache__
+*.pyc
+.cursor
+Dockerfile
+docker-compose.yml
+.dockerignore

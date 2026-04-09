@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "notes": "复制为 ingest_config.json 后按需填写。可增加 rss_feeds（国内权威媒体/部委 RSS、政府公报类源）；law_html_pages 填法规库或「征求意见」列表页，脚本仅抓页面标题作候选线索。",
+  "rss_feeds": [
+    {
+      "id": "example-feed",
+      "url": "https://example.com/rss.xml",
+      "default_kind": "opinion",
+      "max_items": 20
+    }
+  ],
+  "law_html_pages": [
+    {
+      "id": "example-law-index",
+      "url": "https://example.com/law/list",
+      "default_kind": "law"
+    }
+  ],
+  "routes": []
+}

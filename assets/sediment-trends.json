@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-04-09T00:23:04Z",
+  "source": "data/evolution.db (SQLite)",
+  "summary": {
+    "entry_count": 2,
+    "date_range": {
+      "first": "2026-04-08",
+      "last": "2026-04-09"
+    }
+  },
+  "factor_persistence": [
+    {
+      "factor": "attention_minors",
+      "days_in_top": 2,
+      "coverage": 1.0,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-09"
+    },
+    {
+      "factor": "esg_compute_carbon",
+      "days_in_top": 2,
+      "coverage": 1.0,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-09"
+    },
+    {
+      "factor": "reg",
+      "days_in_top": 2,
+      "coverage": 1.0,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-09"
+    },
+    {
+      "factor": "talent",
+      "days_in_top": 2,
+      "coverage": 1.0,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-09"
+    },
+    {
+      "factor": "water_cooling",
+      "days_in_top": 2,
+      "coverage": 1.0,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-09"
+    }
+  ],
+  "page_persistence": [
+    {
+      "page": "decade-scenes.html",
+      "days_in_top": 2,
+      "coverage": 1.0,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-09"
+    },
+    {
+      "page": "decade.html",
+      "days_in_top": 2,
+      "coverage": 1.0,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-09"
+    },
+    {
+      "page": "national-strategy-opinion.html",
+      "days_in_top": 2,
+      "coverage": 1.0,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-09"
+    },
+    {
+      "page": "nexus.html",
+      "days_in_top": 2,
+      "coverage": 1.0,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-09"
+    },
+    {
+      "page": "work-infra-energy.html",
+      "days_in_top": 2,
+      "coverage": 1.0,
+      "first_seen": "2026-04-08",
+      "last_seen": "2026-04-09"
+    }
+  ],
+  "longterm_hints": [
+    "沉淀条目仍较少：坚持每日 --sediment，或合并历史备份后再跑本脚本以观察趋势。"
+  ]
+}

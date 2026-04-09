@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="description" content="沙盘工坊：业务连续性依赖流、七步向导与多因子勾选合成；压测旋钮对齐综合推演配方与 §11 迭代。" />
+  <meta name="theme-color" content="#0c1118" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="基础架构演变推演" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="沙盘工坊 · 基础架构演变推演" />
+  <meta property="og:description" content="沙盘工坊：业务连续性依赖流、七步向导与多因子勾选合成；压测旋钮对齐综合推演配方与 §11 迭代。" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="沙盘工坊 · 基础架构演变推演" />
+  <meta name="twitter:description" content="沙盘工坊：业务连续性依赖流、七步向导与多因子勾选合成；压测旋钮对齐综合推演配方与 §11 迭代。" />
+  <title>沙盘工坊 · 基础架构演变推演</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <a class="skip-link" href="#main">跳到正文</a>
+      <a class="skip-link" href="index.html#three-questions">三问导读</a>
+    </div>
+    <header class="site-nav">
+      <div class="site-nav-start">
+        <a class="brand" href="index.html">基础架构演变推演</a>
+        <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+      </div>
+      <nav class="site-links" aria-label="站内分页">
+        <a href="index.html">总览</a>
+        <a href="nexus.html">立体联结</a>
+        <a href="edu-nexus.html">教育纵轴</a>
+        <a href="evolution-triad.html">人与AI演进</a>
+        <a href="work-infra-energy.html">职业·基建·能源</a>
+        <a href="model.html">分层模型</a>
+        <a href="architecture.html">架构拓扑</a>
+        <a href="timeline.html">历史演进</a>
+        <a href="past-future.html">廿年视角</a>
+        <a href="decade.html">十年展望</a>
+        <a href="decade-scenes.html">十年场景</a>
+        <a href="decade-us.html">十年之问</a>
+        <a href="modules-map.html">模块图谱</a>
+        <a href="synthesis.html">综合推演</a>
+        <a href="risk-geo.html">地缘与商业</a>
+        <a href="net-biz-capital.html">网·商·资·工</a>
+        <a href="national-strategy-opinion.html">战略·舆情</a>
+        <a href="social-responsibility-evolution.html">社会责任</a>
+        <a href="evolution-loop.html">进化闭环</a>
+        <a href="analysis-hub.html">分析引擎</a>
+        <a href="intelligent-evolution.html">智能进化</a>
+        <a href="smart-overhaul.html">整体改造</a>
+        <a href="evolvable-architecture.html">可进化架构</a>
+        <a href="lab.html" class="current">沙盘工坊</a>
+      </nav>
+    </header>
+
+    <div id="main" class="page-head" tabindex="-1">
+      <h1>沙盘工坊</h1>
+      <p class="lead">整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。依赖流<strong>自上而下穿透</strong>；下方为可交互的<strong>七步向导</strong>与<strong>多因子合成</strong>。把勾选结果与 <a href="synthesis.html">综合推演</a> 中的配方 F、<a href="synthesis.html#stack-domains">叠加五域 I—V</a>（含 Q—V）、§7 复合表及 <a href="synthesis.html#perpetual">§11 迭代环</a>对照，可检查叙事是否经得起多轮压测。<a href="evolution-loop.html">进化闭环</a> 中的 <code>evolution-manifest.json</code> 会<strong>高亮</strong>与当前观测信号相关的因子（需本地 HTTP 打开以加载 JSON）。若习惯用<strong>某一研究领域的推演套路</strong>（可靠性树、敏感性分析、情景规划等），见 <a href="synthesis.html#methods">综合推演 · §12</a> 的对照表。</p>
+    </div>
+
+    <section>
+      <h2>业务连续性依赖流（SVG）</h2>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="af" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#8b9cb3"/></marker>
+          </defs>
+          <rect x="60" y="12" width="280" height="44" rx="8" fill="#1a2332" stroke="#3d9cf5" />
+          <text x="200" y="30" text-anchor="middle" fill="#e8edf4" font-size="11" font-weight="600" font-family="Noto Sans SC,sans-serif">业务与连续性</text>
+          <text x="200" y="46" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">RTO/RPO · 关键清单</text>
+          <line x1="200" y1="56" x2="200" y2="72" stroke="#8b9cb3" marker-end="url(#af)"/>
+          <rect x="60" y="72" width="280" height="44" rx="8" fill="#141b26" stroke="#e8a838" />
+          <text x="200" y="90" text-anchor="middle" fill="#e8edf4" font-size="11" font-weight="600" font-family="Noto Sans SC,sans-serif">合规与主权</text>
+          <text x="200" y="106" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">驻留 · 出境 · 管辖</text>
+          <line x1="200" y1="116" x2="200" y2="132" stroke="#8b9cb3" marker-end="url(#af)"/>
+          <rect x="60" y="132" width="280" height="44" rx="8" fill="#141b26" stroke="#f97316" />
+          <text x="200" y="150" text-anchor="middle" fill="#e8edf4" font-size="11" font-weight="600" font-family="Noto Sans SC,sans-serif">地缘与冲突</text>
+          <text x="200" y="166" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">连通 · 制裁 · 支付</text>
+          <line x1="200" y1="176" x2="200" y2="192" stroke="#8b9cb3" marker-end="url(#af)"/>
+          <rect x="60" y="192" width="280" height="44" rx="8" fill="#141b26" stroke="#4ecf8e" />
+          <text x="200" y="210" text-anchor="middle" fill="#e8edf4" font-size="11" font-weight="600" font-family="Noto Sans SC,sans-serif">技术与安全</text>
+          <text x="200" y="226" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">身份 · 密钥 · 备份演练</text>
+          <line x1="200" y1="236" x2="200" y2="252" stroke="#4ecf8e" stroke-width="2" marker-end="url(#af)"/>
+          <text x="200" y="270" text-anchor="middle" fill="#4ecf8e" font-size="10" font-family="Noto Sans SC,sans-serif">↻ 降级与恢复闭环</text>
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <h2>分步推演向导</h2>
+      <div class="stepper" id="stepperRoot">
+        <div class="stepper-head">
+          <div class="stepper-dots" id="stepperDots" aria-hidden="true"></div>
+        </div>
+        <div class="stepper-body" id="stepperBody"></div>
+        <div class="stepper-foot">
+          <button type="button" class="btn" id="stepPrev">上一步</button>
+          <span class="stepper-progress" id="stepProgress"></span>
+          <button type="button" class="btn btn-primary" id="stepNext">下一步</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>情景推演沙盘</h2>
+      <div class="card">
+        <div class="btn-row">
+          <button type="button" class="btn" id="simClear">清空</button>
+          <button type="button" class="btn btn-primary" id="simRandom">随机情景</button>
+        </div>
+        <div class="sim-grid" id="simOptions"></div>
+        <div class="sim-output" id="simOutput" aria-live="polite">
+          <h4>合成启示</h4>
+          <p class="muted" style="margin:0">请至少选择一个因子。</p>
+        </div>
+      </div>
+    </section>
+
+    <footer><a href="risk-geo.html">← 地缘与商业</a> · <a href="index.html">回总览</a> · <a href="index.html#three-questions">三问</a></footer>
+  </div>
+  <script src="assets/motion.js"></script>
+  <script src="assets/lab.js"></script>
+  <script src="assets/evolution.js"></script>
+</body>
+</html>

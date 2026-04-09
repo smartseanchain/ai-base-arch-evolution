@@ -1,0 +1,23 @@
+# 仅抓取候选（需外网）；与「分析流水线」解耦。产出 candidates 以 artifact 下载，默认不回写仓库。
+# 本地同等命令：bash scripts/run_ingest_only.sh  或  make ingest
+name: Ingest candidates
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Ingest and validate candidates
+        run: bash scripts/run_ingest_only.sh
+      - name: Upload candidates
+        uses: actions/upload-artifact@v4
+        with:
+          name: evolution-candidates-${{ github.run_id }}
+          path: assets/evolution-candidates.json
+          if-no-files-found: warn

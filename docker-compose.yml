@@ -1,0 +1,9 @@
+# 生产/默认：镜像内 COPY 站点；改文件后需 rebuild。
+# 热重载开发见 docker-compose.dev.yml
+services:
+  web:
+    build: .
+    image: ai-arch-evolution:local
+    ports:
+      - "8765:80"
+    restart: unless-stopped

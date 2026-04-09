@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "updated": "2026-04-08",
+  "notes": "维护者更新本文件后，全站带 evolution.js 的页面会展示信号列表；沙盘会高亮 maps_to.lab_factors。可接 CI 定时拉取舆情摘要后由脚本合并入库。",
+  "signals": [
+    {
+      "id": "ex_001",
+      "kind": "opinion",
+      "title": "算力—电力—水资源邻避叙事",
+      "summary": "舆论场反复出现「耗电/抢水/冷却塔」议题时，与数据中心选址、地方招商话术对账；易先于正式电价/配额条款发酵。",
+      "weight": "high",
+      "since": "2026-Q1",
+      "maps_to": {
+        "pages": ["work-infra-energy.html", "decade-scenes.html", "national-strategy-opinion.html"],
+        "lab_factors": ["water_cooling", "esg_compute_carbon"]
+      }
+    },
+    {
+      "id": "ex_002",
+      "kind": "policy",
+      "title": "数据与 AI 监管细化",
+      "summary": "正式轨上标准征求意见、关基/行业细则与采购条款增加时，与「强监管」沙盘因子与架构 Cell 叙事同步收紧。",
+      "weight": "medium",
+      "since": "2026-Q1",
+      "maps_to": {
+        "pages": ["decade.html", "nexus.html", "edu-nexus.html"],
+        "lab_factors": ["reg", "attention_minors"]
+      }
+    },
+    {
+      "id": "ex_003",
+      "kind": "opinion",
+      "title": "就业与「机器换人」焦虑外溢",
+      "summary": "社交平台与垂直社群对岗位替代的焦虑上升时，接教育纵轴、人与AI、平台用工因子，避免只谈技术不谈合同与社保锚。",
+      "weight": "medium",
+      "since": "2026-Q1",
+      "maps_to": {
+        "pages": ["evolution-triad.html", "net-biz-capital.html"],
+        "lab_factors": ["talent", "gig_multiemployer", "ai"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-04-09T00:23:04Z",
+  "sources": {
+    "manifest_signals": 3,
+    "candidate_signals": 1,
+    "combined_for_analysis": 4
+  },
+  "module_heat": [
+    {
+      "page": "work-infra-energy.html",
+      "count": 1
+    },
+    {
+      "page": "decade-scenes.html",
+      "count": 1
+    },
+    {
+      "page": "national-strategy-opinion.html",
+      "count": 1
+    },
+    {
+      "page": "decade.html",
+      "count": 1
+    },
+    {
+      "page": "nexus.html",
+      "count": 1
+    },
+    {
+      "page": "edu-nexus.html",
+      "count": 1
+    },
+    {
+      "page": "evolution-triad.html",
+      "count": 1
+    },
+    {
+      "page": "net-biz-capital.html",
+      "count": 1
+    },
+    {
+      "page": "evolution-loop.html",
+      "count": 1
+    }
+  ],
+  "factor_heat": [
+    {
+      "factor": "reg",
+      "count": 2
+    },
+    {
+      "factor": "water_cooling",
+      "count": 1
+    },
+    {
+      "factor": "esg_compute_carbon",
+      "count": 1
+    },
+    {
+      "factor": "attention_minors",
+      "count": 1
+    },
+    {
+      "factor": "talent",
+      "count": 1
+    },
+    {
+      "factor": "gig_multiemployer",
+      "count": 1
+    },
+    {
+      "factor": "ai",
+      "count": 1
+    }
+  ],
+  "kind_distribution": {
+    "opinion": 2,
+    "policy": 1,
+    "law": 1
+  },
+  "cooccurrence": [
+    {
+      "pair": [
+        "esg_compute_carbon",
+        "water_cooling"
+      ],
+      "count": 1
+    },
+    {
+      "pair": [
+        "attention_minors",
+        "reg"
+      ],
+      "count": 1
+    },
+    {
+      "pair": [
+        "gig_multiemployer",
+        "talent"
+      ],
+      "count": 1
+    },
+    {
+      "pair": [
+        "ai",
+        "talent"
+      ],
+      "count": 1
+    },
+    {
+      "pair": [
+        "ai",
+        "gig_multiemployer"
+      ],
+      "count": 1
+    }
+  ],
+  "evolution_hints": [
+    "多条信号同时指向「监管(reg)」与「AI」——建议在综合推演 §6 检查是否已有监管×AI 配方，若无则按 §11 扩展插槽补一条传导链。",
+    "算力—水—碳因子共现：与十年场景·算力能源、职基能同读，关注地方邻避叙事。",
+    "当前热力靠前的沙盘因子：reg、water_cooling、esg_compute_carbon——打开沙盘工坊勾选对应项做一轮压测。"
+  ]
+}

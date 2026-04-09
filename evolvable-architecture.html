@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="description" content="可进化架构总览：观测—编码—存储—分析—反哺闭环；人机闸门、§11 插槽与全站页面对照。" />
+  <meta name="theme-color" content="#0c1118" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="基础架构演变推演" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="可进化架构 · 总览 · 基础架构演变推演" />
+  <meta property="og:description" content="观测—编码—存储—分析—反哺；人机闸门与全站对照。" />
+  <meta name="twitter:card" content="summary" />
+  <title>可进化架构 · 总览 · 基础架构演变推演</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <a class="skip-link" href="#main">跳到正文</a>
+      <a class="skip-link" href="index.html#three-questions">三问导读</a>
+    </div>
+    <header class="site-nav">
+      <div class="site-nav-start">
+        <a class="brand" href="index.html">基础架构演变推演</a>
+        <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+      </div>
+      <nav class="site-links" aria-label="站内分页">
+        <a href="index.html">总览</a>
+        <a href="nexus.html">立体联结</a>
+        <a href="edu-nexus.html">教育纵轴</a>
+        <a href="evolution-triad.html">人与AI演进</a>
+        <a href="work-infra-energy.html">职业·基建·能源</a>
+        <a href="model.html">分层模型</a>
+        <a href="architecture.html">架构拓扑</a>
+        <a href="timeline.html">历史演进</a>
+        <a href="past-future.html">廿年视角</a>
+        <a href="decade.html">十年展望</a>
+        <a href="decade-scenes.html">十年场景</a>
+        <a href="decade-us.html">十年之问</a>
+        <a href="modules-map.html">模块图谱</a>
+        <a href="synthesis.html">综合推演</a>
+        <a href="risk-geo.html">地缘与商业</a>
+        <a href="net-biz-capital.html">网·商·资·工</a>
+        <a href="national-strategy-opinion.html">战略·舆情</a>
+        <a href="social-responsibility-evolution.html">社会责任</a>
+        <a href="evolution-loop.html">进化闭环</a>
+        <a href="analysis-hub.html">分析引擎</a>
+        <a href="intelligent-evolution.html">智能进化</a>
+        <a href="smart-overhaul.html">整体改造</a>
+        <a href="evolvable-architecture.html" class="current">可进化架构</a>
+        <a href="lab.html">沙盘工坊</a>
+      </nav>
+    </header>
+
+    <div id="main" class="page-head" tabindex="-1">
+      <h1>可进化架构 · 总览</h1>
+      <p class="lead">
+        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本站「<strong>可进化</strong>」指：<strong>外部可观测线索</strong>能经<strong>可重复管道</strong>进入站内核（manifest、配方与沙盘），并由<strong>分析与沉淀</strong>反馈是否漂移——全程保留<strong>人审闸门</strong>，不是自动预言机。本页把各模块<strong>收束为一张架构图</strong>；工程分期与 WBS 见 <a href="smart-overhaul.html">整体改造</a>，模型分层见 <a href="intelligent-evolution.html">智能进化</a>。
+      </p>
+    </div>
+
+    <div class="nexus-legend">
+      <span class="nexus-tag evidence">观测 — 双轨与抓取</span>
+      <span class="nexus-tag extend">编码 — manifest 与沙盘</span>
+      <span class="nexus-tag imagine">反哺 — §11 · 沉淀 · 可选智能</span>
+    </div>
+
+    <nav class="toc" aria-label="本页目录">
+      <a href="#definition">定义与边界</a>
+      <a href="#layers">七层闭环</a>
+      <a href="#diagram">结构示意</a>
+      <a href="#map">机制与产物对照</a>
+      <a href="#slots">§11 插槽映射</a>
+      <a href="#reading">推荐阅读顺序</a>
+    </nav>
+
+    <section id="definition">
+      <h2>1. 定义与边界</h2>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+          <li><strong>可进化</strong>：信号从进入<strong>候选</strong>到升格为<strong>正式库</strong>，再驱动<strong>热力/沉淀/趋势</strong>，最后回到 <a href="synthesis.html#perpetual">综合推演 §11</a> 与 <a href="lab.html">沙盘</a>——形成<strong>可审计闭环</strong>。</li>
+          <li><strong>不可自动化</strong>：未经审阅的 merge、直接改 HTML 正文、把热搜等同「国家意志」。</li>
+          <li><strong>与「架构拓扑」页区别：</strong><a href="architecture.html">架构拓扑</a>偏<strong>技术栈图示</strong>；本页偏<strong>站点如何随观测迭代</strong>。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="layers">
+      <h2>2. 七层闭环（逻辑顺序）</h2>
+      <div class="card">
+        <ol class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+          <li><strong>语境与双轨：</strong><a href="national-strategy-opinion.html">战略·舆情</a> 把国家叙事与舆论场对齐十年窗。</li>
+          <li><strong>观测与抓取：</strong><a href="evolution-loop.html#ingest">ingest</a> → <code>evolution-candidates.json</code>（待审）；命令见 <a href="scripts/README.md">scripts/README.md</a>（<code>make ingest</code> 与 <code>make analyze</code> 已拆分）。</li>
+          <li><strong>编码与入库：</strong>人审后 <code>merge</code> → <code>evolution-manifest.json</code>；映射 <code>pages</code> / <code>lab_factors</code>。</li>
+          <li><strong>读者侧同步：</strong><code>evolution.js</code> 渲染信号栏；<a href="lab.html">沙盘</a> 高亮因子。</li>
+          <li><strong>分析引擎：</strong><code>analysis_engine.py</code> → <code>analysis-snapshot.json</code>（热力、共现、规则提示）。</li>
+          <li><strong>记忆与趋势：</strong><code>--sediment</code> → JSON + <code>data/evolution.db</code>；<code>sediment_trends.py</code> → 跨日持久度。</li>
+          <li><strong>反哺与迭代：</strong>按提示修订 §6/§7/<a href="synthesis.html#perpetual">§11</a>；可选 <a href="intelligent-evolution.html">智能层</a> 仅产出候选/工单。</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="diagram">
+      <h2>3. 结构示意</h2>
+      <pre class="muted" style="margin:0;font-size:0.76rem;line-height:1.6;overflow-x:auto;padding:1rem;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border)">                    ┌─────────────────────────────────────┐
+                    │  战略·舆情（双轨语境）               │
+                    └──────────────────┬──────────────────┘
+                                       ▼
+  RSS / 法规标题 ──► ingest ──► candidates ──►【人审】──► manifest
+                                       │                      │
+                                       │ 可选 智能层建议       │ evolution.js
+                                       ▼                      ▼
+                              suggestions（侧车）      信号栏 + 沙盘 lab_factors
+                                                         │
+                                                         ▼
+                                    analysis_engine ──► snapshot
+                                                         │
+                                         --sediment ──► JSON + SQLite
+                                                         │
+                                                         ▼
+                                    sediment_trends ──► 长期 Top 覆盖率
+                                                         │
+                                                         ▼
+                                    §11 配方/表行 · 沙盘压测 · 下一圈观测
+</pre>
+    </section>
+
+    <section id="map">
+      <h2>4. 机制与产物对照</h2>
+      <div class="card" style="overflow-x:auto;padding:0">
+        <table>
+          <thead>
+            <tr><th>环节</th><th>机制</th><th>主要产物</th><th>深入阅读</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>语境</td><td>双轨时间轴、传导链</td><td>叙事与议程对账</td><td><a href="national-strategy-opinion.html">战略·舆情</a> · <a href="social-responsibility-evolution.html">社会责任</a></td></tr>
+            <tr><td>观测</td><td>RSS、法规标题路由</td><td><code>evolution-candidates.json</code></td><td><a href="evolution-loop.html#ingest">进化闭环 · 抓取</a></td></tr>
+            <tr><td>编码</td><td>merge、schema 校验</td><td><code>evolution-manifest.json</code></td><td><a href="evolution-loop.html#manifest">进化闭环 · 清单</a></td></tr>
+            <tr><td>呈现</td><td>fetch JSON</td><td>信号栏、因子高亮</td><td><a href="lab.html">沙盘工坊</a></td></tr>
+            <tr><td>分析</td><td>聚合计数、规则提示</td><td><code>analysis-snapshot.json</code></td><td><a href="analysis-hub.html">分析引擎</a></td></tr>
+            <tr><td>记忆</td><td>日摘要双写</td><td><code>sediment.json</code>、<code>evolution.db</code></td><td><a href="analysis-hub.html#sqlite">分析引擎 · SQLite</a></td></tr>
+            <tr><td>趋势</td><td>跨日 Top 覆盖</td><td><code>sediment-trends.json</code></td><td><a href="analysis-hub.html#longterm">长期趋势</a></td></tr>
+            <tr><td>运维</td><td>一键流水线、CI artifact</td><td>脚本与工作流</td><td><a href="analysis-hub.html#continuous">持续更新</a> · <a href="smart-overhaul.html">整体改造</a></td></tr>
+            <tr><td>可选智能</td><td>LLM/RAG/评测</td><td>候选侧车、工单草案</td><td><a href="intelligent-evolution.html">智能进化</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="slots">
+      <h2>5. 与综合推演 §11 插槽映射</h2>
+      <p class="muted" style="margin-top:-0.35rem">扩展插槽与闭环<strong>一一对应</strong>，避免「做了脚本却忘了改站」。</p>
+      <div class="card" style="overflow-x:auto;padding:0">
+        <table>
+          <thead>
+            <tr><th>插槽</th><th>含义（简）</th><th>架构落点</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>⑦</td><td>外部信号 → 候选 → manifest</td><td>ingest、merge、<code>evolution.js</code></td></tr>
+            <tr><td>⑧</td><td>热力/沉淀 → 反哺 §6/§7</td><td><code>analysis_engine</code>、<code>sediment_trends</code></td></tr>
+            <tr><td>⑨</td><td>模型/RAG 辅助，候选/工单闸门</td><td><a href="intelligent-evolution.html">智能进化</a></td></tr>
+            <tr><td>⑩</td><td>跨页工程化改造</td><td><a href="smart-overhaul.html">整体改造</a>、WBS</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top:1rem;font-size:0.88rem">全文插槽列表仍以 <a href="synthesis.html#perpetual">综合推演 §11</a> 为准。</p>
+    </section>
+
+    <section id="reading">
+      <h2>6. 推荐阅读顺序</h2>
+      <div class="callout imagine">
+        <strong>第一次：</strong><a href="national-strategy-opinion.html">战略·舆情</a> → <a href="social-responsibility-evolution.html">社会责任</a> → <a href="evolution-loop.html">进化闭环</a> → <a href="analysis-hub.html">分析引擎</a> → <a href="lab.html">沙盘</a>。<br />
+        <strong>要落地工程：</strong><a href="smart-overhaul.html">整体改造</a>。<br />
+        <strong>要上模型：</strong><a href="intelligent-evolution.html">智能进化</a>。<br />
+        <strong>要模块索引：</strong><a href="modules-map.html">模块图谱</a>、<a href="synthesis.html">综合推演</a>。<br />
+        <strong>读者侧长廊（驻足与动效）：</strong><a href="evolution-triad.html">人与 AI 演进</a>；脚本与类名约定见 <a href="assets/MOTION-ARCHITECTURE.md">MOTION-ARCHITECTURE.md</a>。
+      </div>
+    </section>
+
+    <footer>
+      <a href="index.html">← 总览</a> · <a href="social-responsibility-evolution.html">社会责任</a> · <a href="smart-overhaul.html">整体改造</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="synthesis.html#perpetual">综合推演 §11</a> · <a href="index.html#three-questions">三问</a>
+    </footer>
+  </div>
+  <script src="assets/motion.js"></script>
+</body>
+</html>

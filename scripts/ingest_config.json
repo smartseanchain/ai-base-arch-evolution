@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "notes": "在此配置 RSS 与法规/政策页面 URL；抓取结果写入 assets/evolution-candidates.json。请遵守各站点 robots.txt 与版权；生产环境建议换为国内权威源。",
+  "rss_feeds": [],
+  "law_html_pages": [],
+  "routes": [
+    {
+      "match": "算力|数据中心|电力|冷却|取水|碳|PUE|绿电",
+      "lab_factors": ["water_cooling", "esg_compute_carbon"],
+      "pages": ["work-infra-energy.html", "decade-scenes.html"]
+    },
+    {
+      "match": "数据|隐私|个人信息|关基|网络安全|监管|立法|条例|法律|草案|征求意见",
+      "lab_factors": ["reg"],
+      "pages": ["nexus.html", "decade.html", "edu-nexus.html"]
+    },
+    {
+      "match": "制裁|出口|芯片|供应链|地缘",
+      "lab_factors": ["geo", "sanction"],
+      "pages": ["risk-geo.html", "model.html"]
+    },
+    {
+      "match": "就业|社保|平台|劳动|合同|AI|人工智能",
+      "lab_factors": ["talent", "gig_multiemployer", "ai"],
+      "pages": ["evolution-triad.html", "net-biz-capital.html"]
+    },
+    {
+      "match": "未成年|家校|教育|屏幕",
+      "lab_factors": ["attention_minors"],
+      "pages": ["edu-nexus.html", "decade-scenes.html"]
+    },
+    {
+      "match": "国家战略|五年规划|纲要|乡村振兴|共同富裕|双碳|东数西算|新质生产力|现代化产业体系",
+      "lab_factors": ["esg_compute_carbon", "reg"],
+      "pages": ["national-strategy-opinion.html", "decade.html", "work-infra-energy.html"]
+    },
+    {
+      "match": "ESG|社会责任|反垄断|消费者|劳动者|公益|品牌危机|供应链",
+      "lab_factors": ["gig_multiemployer", "talent"],
+      "pages": ["net-biz-capital.html", "decade-us.html", "national-strategy-opinion.html", "risk-geo.html"]
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="description" content="进化闭环：观测信号 manifest、OODA 反哺综合推演与沙盘；社会舆情与政策如何驱动站点迭代；定性脚手架。" />
+  <meta name="theme-color" content="#0c1118" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="基础架构演变推演" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="进化闭环 · 观测信号与反哺 · 基础架构演变推演" />
+  <meta property="og:description" content="进化闭环：观测信号 manifest、OODA 反哺综合推演与沙盘；社会舆情与政策如何驱动站点迭代。" />
+  <meta name="twitter:card" content="summary" />
+  <title>进化闭环 · 观测信号与反哺 · 基础架构演变推演</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <a class="skip-link" href="#main">跳到正文</a>
+      <a class="skip-link" href="index.html#three-questions">三问导读</a>
+    </div>
+    <header class="site-nav">
+      <div class="site-nav-start">
+        <a class="brand" href="index.html">基础架构演变推演</a>
+        <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+      </div>
+      <nav class="site-links" aria-label="站内分页">
+        <a href="index.html">总览</a>
+        <a href="nexus.html">立体联结</a>
+        <a href="edu-nexus.html">教育纵轴</a>
+        <a href="evolution-triad.html">人与AI演进</a>
+        <a href="work-infra-energy.html">职业·基建·能源</a>
+        <a href="model.html">分层模型</a>
+        <a href="architecture.html">架构拓扑</a>
+        <a href="timeline.html">历史演进</a>
+        <a href="past-future.html">廿年视角</a>
+        <a href="decade.html">十年展望</a>
+        <a href="decade-scenes.html">十年场景</a>
+        <a href="decade-us.html">十年之问</a>
+        <a href="modules-map.html">模块图谱</a>
+        <a href="synthesis.html">综合推演</a>
+        <a href="risk-geo.html">地缘与商业</a>
+        <a href="net-biz-capital.html">网·商·资·工</a>
+        <a href="national-strategy-opinion.html">战略·舆情</a>
+        <a href="social-responsibility-evolution.html">社会责任</a>
+        <a href="evolution-loop.html" class="current">进化闭环</a>
+        <a href="analysis-hub.html">分析引擎</a>
+        <a href="intelligent-evolution.html">智能进化</a>
+        <a href="smart-overhaul.html">整体改造</a>
+        <a href="evolvable-architecture.html">可进化架构</a>
+        <a href="lab.html">沙盘工坊</a>
+      </nav>
+    </header>
+
+    <div id="main" class="page-head" tabindex="-1">
+      <h1>进化闭环：让推演随观测「长出来」</h1>
+      <p class="lead">
+        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页定义<strong>自动进化</strong>在本站中的含义：<strong>不是</strong>替代人类判断的预测机，而是<strong>可重复的观测—编码—反哺</strong>管道——脚本从 RSS、法规/政策索引页等拉取线索，汇总为 <code>assets/evolution-candidates.json</code>（待审），人审后再并入 <code>assets/evolution-manifest.json</code>；前端 <code>evolution.js</code> 同时展示<strong>已入库</strong>与<strong>候选</strong>，并合并 <code>lab_factors</code> 驱动沙盘高亮。人机分工：机器可做抓取、去重、关键词路由；<strong>法理判断与是否升格为站内核</strong>仍须人审。面向<strong>社会责任取向</strong>的多源信号（舆情/战略/商业等）与推演输出见 <a href="social-responsibility-evolution.html">社会责任 · 可进化推演</a>。
+      </p>
+    </div>
+
+    <div class="nexus-legend">
+      <span class="nexus-tag evidence">观测 — 信号入库（含来源类型与权重）</span>
+      <span class="nexus-tag extend">编码 — 映射到页、配方、lab_factors</span>
+      <span class="nexus-tag imagine">反哺 — 触发 §11 扩展或新配方/表行</span>
+    </div>
+
+    <nav class="toc" aria-label="本页目录">
+      <a href="#ooda">OODA 闭环</a>
+      <a href="#manifest">清单格式</a>
+      <a href="#ingest">抓取管道</a>
+      <a href="#automation">自动化边界</a>
+      <a href="#human">人必须做什么</a>
+      <a href="#feed">当前信号</a>
+    </nav>
+
+    <section id="ooda">
+      <h2>1. OODA 与全站对齐</h2>
+      <p class="muted" style="margin-top:-0.35rem">借用观察—判断—决策—行动的节奏，但本站<strong>决策</strong>落点是「是否改站、改哪一页、是否增配方」而非企业 OKR。</p>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+          <li><strong>Observe：</strong>从 <a href="national-strategy-opinion.html">战略·舆情</a> 双轨、媒体/平台议程、部委征求意见、招标条款、事故链等收集<strong>可复述事实</strong>（忌只存标题党）。</li>
+          <li><strong>Orient：</strong>用 <a href="synthesis.html#criteria">§2 判据</a> 与 <a href="modules-map.html">五系七层</a> 给信号找「邻居模块」——避免孤立热词。</li>
+          <li><strong>Decide：</strong>信号是<strong>一次性注释</strong>还是值得进 §6 配方 / §7 表行 / <a href="assets/lab.js">沙盘因子</a> 提示。</li>
+          <li><strong>Act：</strong>更新 manifest 或候选文件；必要时改 HTML 正文；版本控制留下 diff；读者在 <a href="lab.html">沙盘</a> 与 <a href="national-strategy-opinion.html#evolution-feed-section">战略·舆情 · 信号栏</a> 看到结果。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="manifest">
+      <h2>2. 清单文件：<code>evolution-manifest.json</code></h2>
+      <p class="muted" style="margin-top:-0.35rem">单文件、可版本化；字段经 <code>scripts/validate-evolution-manifest.py</code> 校验。</p>
+      <div class="card" style="overflow-x:auto;padding:0">
+        <table>
+          <thead>
+            <tr><th>字段</th><th>含义</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>schema_version</code></td><td>当前为 <strong>1</strong>；大改结构时递增</td></tr>
+            <tr><td><code>updated</code></td><td>ISO 日期，便于与十年窗对时</td></tr>
+            <tr><td><code>signals[]</code></td><td>多条观测信号</td></tr>
+            <tr><td><code>id</code></td><td>全站唯一</td></tr>
+            <tr><td><code>kind</code></td><td><code>opinion</code>（舆情） / <code>policy</code> / <code>law</code>（法律或条文线索） / <code>market</code> / <code>tech</code></td></tr>
+            <tr><td><code>weight</code></td><td><code>high</code> | <code>medium</code> | <code>low</code> — 影响沙盘高亮优先级</td></tr>
+            <tr><td><code>maps_to.pages</code></td><td>建议先读的站内页（相对路径）</td></tr>
+            <tr><td><code>maps_to.lab_factors</code></td><td>与 <code>lab.js</code> 中因子 <code>id</code> 一致时，沙盘勾选区<strong>高亮</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top:1rem;font-size:0.88rem">扩展：可在 <code>maps_to</code> 中自增 <code>synthesis_recipe</code> 等键，但须同步改 <code>assets/evolution.js</code> 才会在页面上显式展示。</p>
+    </section>
+
+    <section id="ingest">
+      <h2>3. 抓取管道：舆情 RSS、法规页标题与候选汇总</h2>
+      <p class="muted" style="margin-top:-0.35rem">配置 <code>scripts/ingest_config.json</code>：列出 <strong>rss_feeds</strong>（标题/摘要/链接）与可选 <strong>law_html_pages</strong>（仅抓页面 <code>&lt;title&gt;</code> / og:title 作<strong>线索</strong>，非全文法条）。脚本按 <strong>routes</strong> 正则把文本路由到站内页与 <code>lab_factors</code>，去重后写入 <code>assets/evolution-candidates.json</code>。</p>
+      <div class="card">
+        <p class="muted" style="margin:0 0 0.75rem;font-size:0.9rem"><strong>在项目根目录执行：</strong>（等价：<code>bash scripts/run_ingest_only.sh</code> 或 <code>make ingest</code>；脚本一览见 <a href="scripts/README.md">scripts/README.md</a>）</p>
+        <pre style="margin:0;font-size:0.82rem;line-height:1.65;overflow-x:auto">python3 scripts/ingest_opinion_law.py
+python3 scripts/validate-evolution-candidates.py</pre>
+        <p class="muted" style="margin:1rem 0 0;font-size:0.88rem">审阅候选后，将指定 id 合并进正式库：</p>
+        <pre style="margin:0.75rem 0 0;font-size:0.82rem;line-height:1.65;overflow-x:auto">python3 scripts/merge_candidates_to_manifest.py ing_xxxxxxxxxxxx
+python3 scripts/validate-evolution-manifest.py
+python3 scripts/analysis_engine.py --sediment</pre>
+        <p class="muted" style="margin:1rem 0 0;font-size:0.88rem">定时进化：在 CI 或 cron 中跑抓取（<code>make ingest</code>），对 <code>evolution-candidates.json</code> 开 PR，<strong>勿</strong>自动 merge 进 manifest。GitHub Actions 可手动 <strong>Run workflow</strong>：<code>ingest-pipeline.yml</code>（artifact 下载候选）。分析侧与抓取解耦：<code>bash scripts/run_update_pipeline.sh</code>（<code>make analyze</code>），见 <a href="analysis-hub.html">分析引擎</a>。<strong>持续更新</strong>详见 <a href="analysis-hub.html#continuous">分析引擎 · §6</a>。</p>
+      </div>
+      <div class="callout extend" style="margin-top:1rem">
+        <strong>合规：</strong>遵守各站点 robots.txt 与版权；法规正文以<strong>权威发布机关</strong>页面为准，本管道仅作<strong>线索聚合</strong>，不构成法律意见。
+      </div>
+    </section>
+
+    <section id="automation">
+      <h2>4. 自动化能做什么（边界）</h2>
+      <p class="muted" style="margin-top:-0.35rem">若计划引入大模型或检索增强，见 <a href="intelligent-evolution.html">智能进化</a> 的<strong>分层、数据治理与路线图</strong>（§11 插槽⑨），与下表互补。</p>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+          <li><strong>可脚本化：</strong>定时拉取 RSS/开放 API、关键词聚类、去重、生成候选 JSON 片段；CI 跑校验脚本后<strong>开 PR</strong> 而非静默上线。</li>
+          <li><strong>可做前端：</strong><code>evolution.js</code> 读取 manifest，渲染<strong>信号栏</strong>、沙盘<strong>因子高亮</strong>（需通过 http(s) 访问站点，<code>file://</code> 下 fetch 可能失败）。</li>
+          <li><strong>不宜自动化：</strong>把「热搜」直接写成「国家意志」；省略 §2 判据；未经人工审核就改配方正文。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="human">
+      <h2>5. 人必须做什么（站内核纪律）</h2>
+      <p class="muted" style="margin-top:-0.35rem">与 <a href="synthesis.html#perpetual">综合推演 §11</a> 纪律一致：每条入库信号应能回答——若不能，留在私有笔记，不进 manifest。</p>
+      <div class="callout imagine">
+        <strong>三问（入库前）：</strong>能否指回 §2 判据之一？能否映射到至少一个模块页或沙盘因子？若发酵消失，是否仍值得保留为「历史切片」？
+      </div>
+      <p class="muted" style="margin-top:1rem;font-size:0.88rem"><strong>扩展插槽 ⑦（§11）：</strong>manifest 新增信号 → 沙盘高亮 → 推演一轮 → 决定是否升格为 §6 配方 / §7 表行 / 教育页案例句；见 <a href="synthesis.html#perpetual">§11 列表</a>。</p>
+    </section>
+
+    <section id="feed">
+      <h2>6. 当前观测信号（manifest + 候选）</h2>
+      <p class="muted" style="margin-top:-0.35rem">以下为实时读取 <code>assets/evolution-manifest.json</code> 与 <code>assets/evolution-candidates.json</code> 的渲染结果；与 <a href="national-strategy-opinion.html#evolution-feed-section">战略·舆情页 · 第 6 节</a> 同源。</p>
+      <div id="evolution-feed" class="evolution-feed" aria-live="polite"></div>
+    </section>
+
+    <footer>
+      <a href="national-strategy-opinion.html">← 战略·舆情</a> · <a href="social-responsibility-evolution.html">社会责任</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="synthesis.html#perpetual">综合推演 §11</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
+    </footer>
+  </div>
+  <script src="assets/motion.js"></script>
+  <script src="assets/evolution.js"></script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="description" content="整体智能化改造：六域视图、现状基线、三期里程碑与工作包；串联战略·舆情、进化闭环、分析引擎与智能进化。" />
+  <meta name="theme-color" content="#0c1118" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="基础架构演变推演" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="整体智能化改造 · 基础架构演变推演" />
+  <meta property="og:description" content="六域视图、现状基线、三期里程碑与工作包；与 §11 扩展插槽⑩ 对齐。" />
+  <meta name="twitter:card" content="summary" />
+  <title>整体智能化改造 · 基础架构演变推演</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <a class="skip-link" href="#main">跳到正文</a>
+      <a class="skip-link" href="index.html#three-questions">三问导读</a>
+    </div>
+    <header class="site-nav">
+      <div class="site-nav-start">
+        <a class="brand" href="index.html">基础架构演变推演</a>
+        <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+      </div>
+      <nav class="site-links" aria-label="站内分页">
+        <a href="index.html">总览</a>
+        <a href="nexus.html">立体联结</a>
+        <a href="edu-nexus.html">教育纵轴</a>
+        <a href="evolution-triad.html">人与AI演进</a>
+        <a href="work-infra-energy.html">职业·基建·能源</a>
+        <a href="model.html">分层模型</a>
+        <a href="architecture.html">架构拓扑</a>
+        <a href="timeline.html">历史演进</a>
+        <a href="past-future.html">廿年视角</a>
+        <a href="decade.html">十年展望</a>
+        <a href="decade-scenes.html">十年场景</a>
+        <a href="decade-us.html">十年之问</a>
+        <a href="modules-map.html">模块图谱</a>
+        <a href="synthesis.html">综合推演</a>
+        <a href="risk-geo.html">地缘与商业</a>
+        <a href="net-biz-capital.html">网·商·资·工</a>
+        <a href="national-strategy-opinion.html">战略·舆情</a>
+        <a href="social-responsibility-evolution.html">社会责任</a>
+        <a href="evolution-loop.html">进化闭环</a>
+        <a href="analysis-hub.html">分析引擎</a>
+        <a href="intelligent-evolution.html">智能进化</a>
+        <a href="smart-overhaul.html" class="current">整体改造</a>
+        <a href="evolvable-architecture.html">可进化架构</a>
+        <a href="lab.html">沙盘工坊</a>
+      </nav>
+    </header>
+
+    <div id="main" class="page-head" tabindex="-1">
+      <h1>整体智能化改造</h1>
+      <p class="lead">
+        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页是<strong>站级蓝图</strong>：把「智能化」从单点脚本扩展为<strong>六域协同</strong>（数据、管道、分析、前端、运维、治理），并与 <a href="intelligent-evolution.html">智能进化</a>（模型/RAG 分层、§11 插槽⑨）<strong>对齐</strong>。闭环与插槽的<strong>概念总览</strong>见 <a href="evolvable-architecture.html">可进化架构</a>。目标不是一次性大重构，而是<strong>可验收、可分期的改造清单</strong>；定性脚手架与人工闸门不变。
+      </p>
+    </div>
+
+    <div class="nexus-legend">
+      <span class="nexus-tag evidence">基线 — 管道 + JSON + SQLite 沉淀</span>
+      <span class="nexus-tag extend">六域 — 分工与接口</span>
+      <span class="nexus-tag imagine">里程碑 — P0→P2</span>
+    </div>
+
+    <nav class="toc" aria-label="本页目录">
+      <a href="#principles">目标与原则</a>
+      <a href="#baseline">现状基线</a>
+      <a href="#six-domains">六域改造视图</a>
+      <a href="#flow">端到端数据流</a>
+      <a href="#milestones">三期里程碑</a>
+      <a href="#wbs">工作包 WBS</a>
+      <a href="#slots">与 §11 插槽</a>
+      <a href="#metrics">度量与验收</a>
+    </nav>
+
+    <section id="principles">
+      <h2>1. 目标与原则</h2>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+          <li><strong>目标：</strong>在保持<strong>可审计、可离线归档</strong>的前提下，提升「观测 → 编码 → 分析 → 反哺」的<strong>吞吐与一致性</strong>，并为模型/RAG 预留<strong>标准接口</strong>。</li>
+          <li><strong>非目标：</strong>全自动改 HTML、无人审 merge、对读者隐藏不确定性。</li>
+          <li><strong>接口纪律：</strong>站内核仍以 <code>evolution-manifest.json</code>、<code>analysis-snapshot.json</code> 等为契约；智能层产出走<strong>候选/sidecar/工单</strong>，见 <a href="intelligent-evolution.html#boundary">智能进化 · 边界</a>。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="baseline">
+      <h2>2. 现状基线（对照）</h2>
+      <p class="muted" style="margin-top:-0.35rem">下列为仓库内<strong>已具备</strong>能力；缺口在「六域」中展开。</p>
+      <div class="callout extend" style="margin-bottom:1rem">
+        <strong>近期已落地：</strong><code>--sediment</code> 双写 <code>sediment.json</code> + <code>data/evolution.db</code>；<code>sediment_trends.py</code> 跨日汇总；<code>run_update_pipeline.sh</code> 与 <code>update-pipeline.yml</code> 持续更新。详见 <a href="analysis-hub.html">分析引擎</a>、<a href="analysis-hub.html#continuous">§6 持续更新</a>、<a href="analysis-hub.html#sqlite">SQLite</a>。
+      </div>
+      <div class="card" style="overflow-x:auto;padding:0">
+        <table>
+          <thead>
+            <tr><th>域</th><th>已有</th><th>典型缺口</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>数据</td><td>manifest / candidates；沉淀 JSON + SQLite（<code>sediment_entry</code>）；snapshot / trends JSON</td><td>统一<strong>人审决策</strong>日志表、语料切块索引、负例库</td></tr>
+            <tr><td>管道</td><td><code>ingest_opinion_law.py</code>、merge、validate</td><td>异步队列、LLM 步骤、sidecar schema</td></tr>
+            <tr><td>分析</td><td><code>analysis_engine.py</code>、热力/共现、<code>sediment_trends.py</code></td><td><code>analysis_engine --dry-run</code>（待加）、建议工单 JSON、与沉淀自动对账报表</td></tr>
+            <tr><td>前端</td><td><code>evolution.js</code>、<code>analysis.js</code>、各页导航</td><td>建议面板 UI、加载态/错误态统一</td></tr>
+            <tr><td>运维</td><td>Docker、<code>docker-compose.dev.yml</code>、CI 校验 JSON、<code>update-pipeline</code> artifact</td><td>密钥管理、ingest 与 analysis <strong>分轨</strong>定时、分环境配置</td></tr>
+            <tr><td>治理</td><td>§2 判据、人审 merge、§11 插槽</td><td>抽样复核比例、模型版本元数据策略</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="six-domains">
+      <h2>3. 六域改造视图</h2>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+          <li><strong>数据域：</strong>信号、沉淀（<code>sediment.json</code> + <code>data/evolution.db</code> 双写）、<strong>人审决策</strong>、站内语料指针；所有自动化写入须可回滚。</li>
+          <li><strong>管道域：</strong>ingest →（可选智能预处理）→ candidates → 人审 → manifest；与 <a href="evolution-loop.html#ingest">进化闭环 · 抓取</a> 同构扩展。</li>
+          <li><strong>分析域：</strong>快照 + 规则提示 +（可选）LLM 工单草案；<a href="analysis-hub.html">分析引擎</a> 为统一读出口。</li>
+          <li><strong>前端域：</strong>沙盘、信号栏、分析仪表盘、未来「工单/候选」面板共用设计 token（<code>assets/site.css</code>）。</li>
+          <li><strong>运维域：</strong>静态托管不变；增加 secrets、定时、观测（日志/告警）即可支撑生产级智能步骤。</li>
+          <li><strong>治理域：</strong>与 <a href="national-strategy-opinion.html">战略·舆情</a>、<a href="synthesis.html#criteria">§2 判据</a> 对齐；重大改版走 PR + 人工阅读 diff。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="flow">
+      <h2>4. 端到端数据流（逻辑）</h2>
+      <pre class="muted" style="margin:0;font-size:0.78rem;line-height:1.65;overflow-x:auto;padding:1rem;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border)">外源 RSS / 法规标题 / 配置路由
+        │
+        ▼
+┌───────────────┐     ┌────────────────┐     ┌─────────────┐
+│ ingest（规则） │ ──► │ 候选 JSON       │ ──► │ 人审 merge   │
+└───────────────┘     │ (+ 可选智能侧车) │     └──────┬──────┘
+        │              └────────────────┘            │
+        │ 可选 LLM/嵌入 摘要·标签·映射建议            ▼
+        └──────────────────────────────────► manifest（正式库）
+                                                    │
+        ┌───────────────────────────────────────────┘
+        ▼
+ analysis_engine --sediment → snapshot + sediment.json + evolution.db
+        │
+        ▼
+ sediment_trends → sediment-trends.json
+        │
+        ▼
+  分析页 / 沙盘高亮 / §11 工单提示（人工改配方·表行）
+</pre>
+      <p class="muted" style="margin-top:1rem;font-size:0.88rem">智能层只增加<strong>并行支路</strong>与<strong>元数据</strong>，不改变「manifest 须人审」的主轴。</p>
+    </section>
+
+    <section id="milestones">
+      <h2>5. 三期里程碑</h2>
+      <div class="card" style="overflow-x:auto;padding:0">
+        <table>
+          <thead>
+            <tr><th>阶段</th><th>焦点</th><th>交付物（示例）</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>P0 夯实</strong></td>
+              <td>可重复、可观测</td>
+              <td>沉淀双写 + 趋势脚本 + 一键流水线（<strong>已部分落地</strong>）；决策日志 schema；<code>analysis_engine --dry-run</code>（待加）；前端错误态统一</td>
+            </tr>
+            <tr>
+              <td><strong>P1 智能层</strong></td>
+              <td>候选侧车 + 轻量模型</td>
+              <td><code>*.suggestions.json</code> 或 manifest 扩展字段；摘要/映射 API；校验器与 PR 模板</td>
+            </tr>
+            <tr>
+              <td><strong>P2 闭环学习</strong></td>
+              <td>RAG + 评测</td>
+              <td>站内语料索引；离线基准集；采纳率/幻觉率看板（可外置仪表盘）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="wbs">
+      <h2>6. 工作包 WBS（编号便于跟踪）</h2>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.88rem;line-height:1.8">
+          <li><strong>W1</strong> 决策日志：候选 id、操作者、通过/驳回、备注 → 单文件或 SQLite 新表（与现有 <code>sediment_entry</code> 并列）。</li>
+          <li><strong>W2</strong> 语料切块：对关键 HTML/§11 导出块，生成 <code>chunk_id → 路径#锚点</code> 表。</li>
+          <li><strong>W3</strong> ingest 插件点：在写入 candidates 前调用「清洗器」接口（规则或 HTTP 内网服务）。</li>
+          <li><strong>W4</strong> analysis：dry-run、工单 JSON（仅建议）与 snapshot 分离。</li>
+          <li><strong>W5</strong> 前端：<code>evolution.js</code> / <code>analysis.js</code> 共用 fetch 封装与错误提示。</li>
+          <li><strong>W6</strong> 配置：<code>.env.example</code> 文档化 API Key 与「仅 P1 启用」开关。</li>
+          <li><strong>W7</strong> 定时：<code>bash scripts/run_update_pipeline.sh</code>；GitHub Actions 见 <code>.github/workflows/update-pipeline.yml</code>（artifact）；ingest 单独排期。</li>
+          <li><strong>W8</strong> 安全：密钥不进仓库；外调模型日志脱敏策略。</li>
+          <li><strong>W9</strong> 评测：固定信号集 + 期望标签（JSON），CI 或本地一键跑。</li>
+          <li><strong>W10</strong> RAG（P2）：向量库选型与最小流水线。</li>
+          <li><strong>W11</strong> 文档：本页与 <a href="intelligent-evolution.html">智能进化</a> 交叉维护「路线图」段落。</li>
+          <li><strong>W12</strong> 沙盘：智能仅建议默认勾选，持久化读者选择为可选 localStorage。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="slots">
+      <h2>7. 与综合推演 §11 插槽</h2>
+      <p class="muted" style="margin-top:-0.35rem"><a href="synthesis.html#perpetual">§11</a> 中 ⑦⑧⑨ 已覆盖 manifest 管道、分析引擎与智能分层；本页对应<strong>扩展插槽 ⑩</strong>：把智能化当成<strong>跨页工程</strong>，按上表 WBS 与 P0—P2 推进，避免只在单脚本打补丁。</p>
+      <div class="callout imagine">
+        <strong>读法：</strong>落地时以<strong>工作包</strong>拆任务；每期结束检查「是否增加可观测性」与「是否收紧闸门」，再进入下一模型层级。
+      </div>
+    </section>
+
+    <section id="metrics">
+      <h2>8. 度量与验收</h2>
+      <div class="card">
+        <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+          <li><strong>工程：</strong>CI 绿、校验脚本覆盖 manifest/candidates/sidecar。</li>
+          <li><strong>质量：</strong>候选→正式库<strong>采纳率</strong>、工单<strong>人工修改比例</strong>（模型输出被改多少）。</li>
+          <li><strong>读者：</strong>沙盘/分析页在 HTTP 下<strong>首屏可用</strong>（无白屏无静默失败）。</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <a href="evolvable-architecture.html">← 可进化架构</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="synthesis.html#perpetual">综合推演 §11</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
+    </footer>
+  </div>
+  <script src="assets/motion.js"></script>
+</body>
+</html>

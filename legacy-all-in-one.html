@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="description" content="单页归档：叠加栈与情景沙盘。分页阅读见 index.html，三问导读见 index.html#three-questions。" />
+  <meta name="theme-color" content="#0c1118" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="基础架构演变推演" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="基础架构演变推演 · 叠加栈与情景沙盘" />
+  <meta property="og:description" content="单页归档：叠加栈与情景沙盘。分页阅读见 index.html，三问导读见 index.html#three-questions。" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="基础架构演变推演 · 叠加栈与情景沙盘" />
+  <meta name="twitter:description" content="单页归档：叠加栈与情景沙盘。分页阅读见 index.html，三问导读见 index.html#three-questions。" />
+  <title>基础架构演变推演 · 叠加栈与情景沙盘</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0c1118;
+      --surface: #141b26;
+      --elevated: #1a2332;
+      --border: #2a3544;
+      --text: #e8edf4;
+      --muted: #8b9cb3;
+      --accent: #3d9cf5;
+      --accent-dim: rgba(61, 156, 245, 0.15);
+      --warn: #e8a838;
+      --ok: #4ecf8e;
+      --danger: #f07178;
+      --radius: 10px;
+      --font: "Noto Sans SC", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    header.hero {
+      padding: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+
+    header.hero h1 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    header.hero p.lead {
+      color: var(--muted);
+      margin: 0;
+      max-width: 52ch;
+    }
+
+    nav.toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+
+    nav.toc a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.875rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      background: var(--accent-dim);
+      border: 1px solid transparent;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    nav.toc a:hover {
+      border-color: var(--accent);
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: var(--text);
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--elevated);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Stack */
+    .stack {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 0.35rem;
+    }
+
+    .stack-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--elevated);
+      overflow: hidden;
+    }
+
+    .stack-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.85rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .stack-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .stack-item summary::before {
+      content: "▸";
+      color: var(--accent);
+      font-size: 0.75rem;
+      transition: transform 0.2s;
+    }
+
+    .stack-item[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .stack-num {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      min-width: 1.5rem;
+    }
+
+    .stack-body {
+      padding: 0 1rem 1rem 2.35rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .stack-body ul {
+      margin: 0.5rem 0 0;
+      padding-left: 1.1rem;
+    }
+
+    .stack-body li {
+      margin-bottom: 0.35rem;
+    }
+
+    /* Simulator */
+    .sim-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.65rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .sim-option {
+      position: relative;
+    }
+
+    .sim-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .sim-option label {
+      display: block;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .sim-option input:checked + label {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .sim-output {
+      font-family: var(--font);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+      min-height: 8rem;
+    }
+
+    .sim-output h4 {
+      margin: 0 0 0.65rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--warn);
+    }
+
+    .sim-output ul {
+      margin: 0;
+      padding-left: 1.15rem;
+    }
+
+    .sim-output li {
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    button.btn {
+      font-family: var(--font);
+      background: var(--elevated);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    button.btn:hover {
+      border-color: var(--accent);
+    }
+
+    button.btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #061018;
+      font-weight: 600;
+    }
+
+    button.btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    button.btn-primary:disabled {
+      opacity: 0.55;
+    }
+
+    .flow-note {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      white-space: pre-wrap;
+      line-height: 1.5;
+      background: var(--bg);
+      padding: 1rem;
+      border-radius: var(--radius);
+      border: 1px dashed var(--border);
+      overflow-x: auto;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      margin-right: 0.35rem;
+      margin-bottom: 0.35rem;
+    }
+
+    /* Three planes model */
+    .three-planes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .plane-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      background: var(--elevated);
+      border-top: 3px solid var(--accent);
+    }
+
+    .plane-card.control {
+      border-top-color: var(--warn);
+    }
+
+    .plane-card.security {
+      border-top-color: var(--ok);
+    }
+
+    .plane-card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+    }
+
+    .plane-card ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    /* Visual layer bars */
+    .viz-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 1rem 0;
+    }
+
+    .viz-bar {
+      height: 38px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .viz-bar:hover {
+      transform: translateX(4px);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .viz-bar.l6 {
+      width: 100%;
+      background: linear-gradient(90deg, #2d3a4d, #1e2836);
+    }
+
+    .viz-bar.l5 {
+      width: 94%;
+      background: linear-gradient(90deg, #2a3750, #1a2332);
+    }
+
+    .viz-bar.l4 {
+      width: 88%;
+      background: linear-gradient(90deg, #263652, #161d2a);
+    }
+
+    .viz-bar.l3 {
+      width: 82%;
+      background: linear-gradient(90deg, #223858, #141b26);
+    }
+
+    .viz-bar.l2 {
+      width: 76%;
+      background: linear-gradient(90deg, #1e3a5c, #121820);
+    }
+
+    .viz-bar.l1 {
+      width: 70%;
+      background: linear-gradient(90deg, #1a3c60, #0c1118);
+    }
+
+    .viz-legend {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+    }
+
+    /* SVG architecture */
+    .svg-wrap {
+      width: 100%;
+      overflow-x: auto;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+
+    .svg-wrap svg {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .svg-wrap .svg-label {
+      fill: var(--muted);
+      font-size: 11px;
+      font-family: var(--font);
+    }
+
+    .svg-wrap .svg-title {
+      fill: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font);
+    }
+
+    /* Evolution timeline */
+    .evo-track {
+      position: relative;
+      margin: 1.5rem 0;
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--border);
+    }
+
+    .evo-node {
+      position: relative;
+      padding-bottom: 1.5rem;
+      padding-left: 0.5rem;
+    }
+
+    .evo-node::before {
+      content: "";
+      position: absolute;
+      left: -1.37rem;
+      top: 0.35rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+
+    .evo-node h4 {
+      margin: 0 0 0.35rem;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .evo-node .era {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--warn);
+      margin-bottom: 0.35rem;
+    }
+
+    .evo-node p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    /* Morphology cards */
+    .morph-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .morph-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      background: var(--surface);
+    }
+
+    .morph-card h4 {
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .morph-card .tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 0.12rem 0.4rem;
+      border-radius: 4px;
+      background: var(--elevated);
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .morph-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* Stepper */
+    .stepper {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    .stepper-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1rem;
+      background: var(--elevated);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stepper-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      flex: 1;
+    }
+
+    .stepper-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+    }
+
+    .stepper-dot:hover {
+      transform: scale(1.2);
+    }
+
+    .stepper-dot.active {
+      background: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-dim);
+    }
+
+    .stepper-dot.done {
+      background: var(--ok);
+    }
+
+    .stepper-body {
+      padding: 1.25rem 1.35rem;
+      min-height: 200px;
+    }
+
+    .stepper-body h4 {
+      margin: 0 0 0.65rem;
+      font-size: 1.05rem;
+    }
+
+    .stepper-body ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .stepper-body li {
+      margin-bottom: 0.4rem;
+    }
+
+    .stepper-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .stepper-progress {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .decade-banner {
+      font-size: 0.8rem;
+      color: var(--warn);
+      font-family: var(--mono);
+      margin-bottom: 0.75rem;
+    }
+
+    .decade-dims {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .decade-dim {
+      border-left: 3px solid var(--border);
+      padding-left: 1rem;
+    }
+
+    .decade-dim h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .decade-dim p {
+      margin: 0 0 0.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .decade-dim ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    .decade-dim.arch {
+      border-left-color: var(--accent);
+    }
+
+    .decade-dim.industry {
+      border-left-color: #a78bfa;
+    }
+
+    .decade-dim.career {
+      border-left-color: #f472b6;
+    }
+
+    .decade-dim.security {
+      border-left-color: var(--ok);
+    }
+
+    .decade-dim.state {
+      border-left-color: #f97316;
+    }
+
+    .decade-dim.geo {
+      border-left-color: #38bdf8;
+    }
+
+    .dim-expand {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .dim-expand summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1rem 1.15rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--elevated);
+      border-bottom: 1px solid transparent;
+    }
+
+    .dim-expand[open] summary {
+      border-bottom-color: var(--border);
+    }
+
+    .dim-expand summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .dim-expand summary::before {
+      content: "▸";
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+
+    .dim-expand[open] summary::before {
+      transform: rotate(90deg);
+      display: inline-block;
+    }
+
+    .dim-expand .dim-inner {
+      padding: 1.15rem 1.25rem 1.35rem;
+    }
+
+    .dim-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 820px) {
+      .dim-two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .angle-block,
+    .cause-block {
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    .angle-block {
+      background: rgba(61, 156, 245, 0.08);
+      border: 1px solid rgba(61, 156, 245, 0.25);
+    }
+
+    .cause-block {
+      background: rgba(232, 168, 56, 0.08);
+      border: 1px solid rgba(232, 168, 56, 0.25);
+    }
+
+    .angle-block h4,
+    .cause-block h4 {
+      margin: 0 0 0.5rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text);
+    }
+
+    .angle-block ul,
+    .cause-block ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+    }
+
+    .angle-block li,
+    .cause-block li {
+      margin-bottom: 0.35rem;
+    }
+
+    .evo-block h4 {
+      margin: 0 0 0.65rem;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .evo-block .svg-wrap {
+      margin: 0;
+    }
+
+    .evo-caption {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin: 0.5rem 0 0;
+    }
+
+    .subtheme {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.65rem;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .subtheme summary {
+      padding: 0.65rem 0.85rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      list-style: none;
+      background: var(--elevated);
+    }
+
+    .subtheme summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .subtheme[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .subtheme .sub-inner {
+      padding: 0.85rem 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .sub-inner .lbl {
+      color: var(--warn);
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-top: 0.65rem;
+      margin-bottom: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .sub-inner .lbl:first-child {
+      margin-top: 0;
+    }
+
+    .sub-inner p {
+      margin: 0 0 0.4rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="legacy-pagination-hint" style="margin:0 0 0.85rem;font-size:0.78rem;line-height:1.55;color:var(--muted)">当前为<strong>单文件归档</strong>。<a href="index.html" style="color:var(--accent);font-weight:600">分页阅读</a>（推荐）· <a href="index.html#three-questions" style="color:var(--accent);font-weight:600">三问导读</a> · 与全站对齐的推进链：<a href="national-strategy-opinion.html" style="color:var(--accent);font-weight:600">战略·舆情</a> → <a href="social-responsibility-evolution.html" style="color:var(--accent);font-weight:600">社会责任</a> → <a href="evolution-loop.html" style="color:var(--accent);font-weight:600">进化闭环</a> → <a href="analysis-hub.html" style="color:var(--accent);font-weight:600">分析引擎</a> · <a href="intelligent-evolution.html" style="color:var(--accent);font-weight:600">智能进化</a> · <a href="evolvable-architecture.html" style="color:var(--accent);font-weight:600">可进化架构</a> · <a href="smart-overhaul.html" style="color:var(--accent);font-weight:600">整体改造</a> → <a href="lab.html" style="color:var(--accent);font-weight:600">沙盘工坊</a> · <a href="synthesis.html#perpetual" style="color:var(--accent);font-weight:600">综合推演 §11</a> · <a href="modules-map.html" style="color:var(--accent);font-weight:600">模块图谱</a></p>
+    <header class="hero">
+      <h1>基础架构演变推演</h1>
+      <p class="lead">
+        将技术、合规、地缘、国家安全、资本与组织、个人发展等维度梳理为可浏览的叠加栈，并通过多因子情景沙盘合成「架构启示」。仅供战略规划与研讨，不构成法律或投资建议。
+      </p>
+      <nav class="toc" aria-label="页面导航">
+        <a href="#overview">全景总览</a>
+        <a href="#decade">十年周期展望</a>
+        <a href="#decade-detail">十年·深度展开</a>
+        <a href="#three-planes">三平面模型</a>
+        <a href="#layer-visual">技术分层带</a>
+        <a href="#ref-arch">参考架构图</a>
+        <a href="#evolution">演进时间线</a>
+        <a href="#morphologies">部署形态</a>
+        <a href="#stack">十层叠加栈</a>
+        <a href="#matrix">维度矩阵</a>
+        <a href="#geo">地缘与安全</a>
+        <a href="#biz">商业与组织</a>
+        <a href="#step-walk">分步推演</a>
+        <a href="#sim">情景沙盘</a>
+        <a href="#flow">依赖流示意</a>
+      </nav>
+    </header>
+
+    <section id="overview">
+      <h2>全景总览</h2>
+      <div class="card">
+        <p style="margin: 0 0 0.75rem">
+          未来基础架构更接近<strong>社会技术系统</strong>：在合规与主权划定的边界内，用身份、数据目录、策略与可观测连接分散算力与数据；平台工程降低门槛；FinOps 与韧性设计假设「一定会出事」。
+        </p>
+        <p class="muted" style="margin: 0">
+          <span class="pill">IDC / 边缘</span>
+          <span class="pill">多云 / 混合云</span>
+          <span class="pill">零信任 / SASE</span>
+          <span class="pill">数据主权</span>
+          <span class="pill">AI 基础设施</span>
+          <span class="pill">地缘 / 关基</span>
+          <span class="pill">创业 / 资本</span>
+          <span class="pill">个人声誉</span>
+        </p>
+      </div>
+    </section>
+
+    <section id="decade">
+      <h2>十年周期展望（2026—2036）</h2>
+      <p class="muted" style="margin-top: -0.5rem">
+        以约<strong>十年</strong>为尺度，从架构、产业、职业、安全、国家治理与地域地缘等维度做<strong>情景化扩展</strong>：非预测具体事件，而是梳理<strong>结构张力与可布局方向</strong>，供战略与人才规划对照。时间锚点以当前产业阶段为起点向前展望。
+      </p>
+      <div class="decade-banner">周期假设：算力需求持续增长 · 监管细化 · 地缘不确定性高于过去二十年 · AI 深度嵌入生产系统</div>
+
+      <div class="card" style="overflow-x: auto; padding: 0; margin-bottom: 1rem">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 7rem">维度</th>
+              <th>十年间可能的主旋律</th>
+              <th>主要风险或张力</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>架构</strong></td>
+              <td>Cell 化分区与策略即代码普及；控制面/数据面/安全面「同源治理」；推理与训练基础设施分层；机密计算在敏感场景从试点走向标配选项。</td>
+              <td>技术栈碎片化、观测与合规成本指数上升；「全球一套架构」与「法域隔离」冲突；legacy 与 AI 原生系统长期双轨。</td>
+            </tr>
+            <tr>
+              <td><strong>产业</strong></td>
+              <td>云与 IDC 进一步「电力+冷却+区位」导向；区域与行业云、主权云产品成熟；集成商与合规科技（RegTech）价值链拉长；开源与国产/友岸供应链并行生态。</td>
+              <td>价格战与集中度上升挤压中小云服务商；标准分裂导致互操作性成本；资本周期与重资产投入错配。</td>
+            </tr>
+            <tr>
+              <td><strong>职业</strong></td>
+              <td>「能翻译合规/风险的工程师」溢价上升；平台工程、AI 基础设施、数据治理岗位需求稳定；安全与 SRE 边界模糊化；跨国团队管理复杂度增加。</td>
+              <td>技能半衰期缩短；部分编码工作被工具与模型替代；敏感行业对背景与地域审查趋严，人才流动摩擦加大。</td>
+            </tr>
+            <tr>
+              <td><strong>安全</strong></td>
+              <td>身份优先、API 优先的持续深化；针对模型与 RAG 的攻击面纳入主流威胁模型；供应链（含模型权重）与日志完整性成为审计重点；国家级能力外溢到黑产与勒索常态化。</td>
+              <td>加密普及 vs 监管可观测性冲突；自动化攻击与防御军备竞赛；保险与合规「勾选」无法覆盖尾部风险。</td>
+            </tr>
+            <tr>
+              <td><strong>国家与治理</strong></td>
+              <td>数据出境、重要数据、AI 治理、关基保护等规则在多国进一步细则化；跨境执法与长臂管辖争议持续；部分领域出现「合规护照」式国际互认尝试与挫折并存。</td>
+              <td>规则域外冲突迫使企业多实体、多栈；中小企业合规固定成本上升；政治周期导致政策摆动。</td>
+            </tr>
+            <tr>
+              <td><strong>地域与地缘</strong></td>
+              <td>「区域化集群」替代理想化全球扁平网络；海缆、路由与能源成为地缘敏感词；友岸外包与多源采购从口号变为架构约束；新兴市场数字化与监管同步追赶。</td>
+              <td>冲突或制裁导致服务突然不可用；单一区域产能集中引发连锁风险；本地内容/数据政策分化增加产品形态维护成本。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="decade-dims">
+        <div class="decade-dim arch">
+          <h3>架构</h3>
+          <p><strong>从「上云」到「分区运营」：</strong>十年内多数大型组织会明确多 Cell（法域/行业/数据敏感度）拓扑，而非无限追求逻辑单集群。AI 工作负载推动「近数据计算」与「推理边缘化」，网络架构从「连得上」转向「可策略、可计费、可举证」。</p>
+          <ul>
+            <li><strong>0—3 年：</strong>零信任与数据目录成为立项标配；GPU 资源池与队列治理上轨道。</li>
+            <li><strong>3—7 年：</strong>跨 Cell 数据契约与联邦/聚合方案在强监管行业规模化；机密计算成本曲线下降。</li>
+            <li><strong>7—10 年：</strong>「默认分区」思维成熟，全球单栈仅保留于非敏感域；架构资产＝策略+数据地图+依赖图的可程序化解。</li>
+          </ul>
+        </div>
+
+        <div class="decade-dim industry">
+          <h3>产业</h3>
+          <p><strong>算力即国力、电力即瓶颈：</strong>IDC 与超算布局与能源政策、芯片与设备可获性深度绑定。云厂商竞争从 API 同质化走向<strong>区域供给+合规打包+行业方案</strong>。第三方审计、渗透、红队、数据治理咨询成为经常性支出而非一次性项目。</p>
+          <ul>
+            <li>硬件与基础软件「多源化」采购成为甲方法务与架构联合流程。</li>
+            <li>中小客户更多通过<strong>托管合规栈、行业模板</strong>消化固定成本。</li>
+            <li>并购活跃：安全、可观测、AI 工具链整合；监管可能收紧大型垂直整合。</li>
+          </ul>
+        </div>
+
+        <div class="decade-dim career">
+          <h3>职业</h3>
+          <p><strong>深度与翻译能力并举：</strong>纯「堆组件」岗位价值下降；能在<strong>业务—法务—工程</strong>之间建立一致叙事的人更稀缺。远程与跨境协作仍在，但敏感项目对<strong>数据驻留、办公地点、供应商国籍</strong>的约束会局部收紧。</p>
+          <ul>
+            <li>高需求：平台工程、SRE+韧性、数据架构与治理、AI 基础设施、应用安全与威胁建模。</li>
+            <li>承压：重复性运维与无治理的「脚本侠」；忽视合规语言的纯技术专家在政企与金融侧议价变难。</li>
+            <li>建议：押注<strong>可迁移元能力</strong>（分区设计、身份、数据分级、成本与韧性权衡），而非单一厂商认证堆砌。</li>
+          </ul>
+        </div>
+
+        <div class="decade-dim security">
+          <h3>安全</h3>
+          <p><strong>软件+数据+模型+人</strong>四位一体；勒索与供应链仍是企业层主威胁，国家级能力影响关键基础设施与全球服务可用性叙事。防御重心从边界转向<strong>持续验证、最小权限、快速隔离与可恢复备份</strong>。</p>
+          <ul>
+            <li>AI 系统：提示注入、数据投毒、越权检索、模型与日志泄露进入主流攻防演练。</li>
+            <li>合规驱动「可证明」控制：审计日志防篡改、密钥操作留痕、第三方子处理者可追溯。</li>
+            <li>人才与流程：安全左移与「架构右移」（运行时策略）并行，红队与紫队常态化。</li>
+          </ul>
+        </div>
+
+        <div class="decade-dim state">
+          <h3>国家与治理</h3>
+          <p>各国在<strong>数据、AI、关基、反垄断、出口管制</strong>上持续立法与修例；企业需适应「规则多极化」——同一产品在多法域的<strong>默认配置不同</strong>。国家安全的讨论会更频繁进入董事会与招投标，而不仅是政府事务部门。</p>
+          <ul>
+            <li>数据：本地化、出境评估、重要/核心数据目录化管理趋于细致；个人信息与行业数据规则分化。</li>
+            <li>AI：训练数据合法性、生成内容责任、高风险场景备案或评估机制逐步落地。</li>
+            <li>企业响应：多法律实体、合同网络与<strong>技术控制同构</strong>（不能说一套做一套）。</li>
+          </ul>
+        </div>
+
+        <div class="decade-dim geo">
+          <h3>地域与地缘</h3>
+          <p>「全球化 3.0」更可能是<strong>区域深度整合 + 区域间有限互联</strong>，而非单一半球秩序。基础设施规划必须显式包含<strong>断供、断网、断付</strong>情景；选址从成本优先转为<strong>风险加权成本</strong>。</p>
+          <ul>
+            <li>网络与能源：多路径、多供应商、关键解析与证书韧性；对单一海缆/陆缆路径依赖需有业务层认知。</li>
+            <li>市场：出海从「复制中国/美国模式」转为「每区一策」的 Cell 产品与合规组合。</li>
+            <li>人才与运维：属地化运维能力与文档体系成为 SLA 的一部分，而非附加项。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1rem">
+        <h3 style="margin-top: 0">十年周期的合成结论（用于对齐讨论）</h3>
+        <ul class="muted" style="margin: 0">
+          <li><strong>技术：</strong>分区化、身份化、可观测化、AI 基础设施化四线并进，且彼此纠缠。</li>
+          <li><strong>商业与职业：</strong>固定合规与韧性成本上升，「能过审、能恢复、能解释」成为核心竞争力的一部分。</li>
+          <li><strong>安全与国家/地域：</strong>威胁与规则均呈「多极叠加」，架构目标应从「最优单点设计」转向「在约束下的可演进韧性」。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="three-planes">
+      <h2>三平面分层模型</h2>
+      <p class="muted" style="margin-top: -0.5rem">
+        将「管什么」从单一层级拆开：<strong>控制面</strong>定策略与生命周期，<strong>数据面</strong>承载业务状态与流动，<strong>安全面</strong>横切验证与审计。架构评审时三平面需<strong>同版本对齐</strong>，避免「数据已出境、控制面还以为在区内」。
+      </p>
+      <div class="three-planes">
+        <div class="plane-card control">
+          <h3>控制面</h3>
+          <ul>
+            <li>身份与访问（IAM、策略引擎、CIAM）</li>
+            <li>编排与发布（GitOps、服务注册、配额）</li>
+            <li>网络策略与路由意图（IaC、网格策略）</li>
+            <li>密钥与证书生命周期（KMS、PKI）</li>
+          </ul>
+        </div>
+        <div class="plane-card">
+          <h3>数据面</h3>
+          <ul>
+            <li>事务与对象存储、消息与流、湖仓与索引</li>
+            <li>同步路径（API、CDC）与异步路径（队列）</li>
+            <li>数据分级驻留、副本与备份拓扑</li>
+            <li>AI：特征、向量库、RAG 语料与推理流量</li>
+          </ul>
+        </div>
+        <div class="plane-card security">
+          <h3>安全面（横切）</h3>
+          <ul>
+            <li>零信任验证、mTLS、微分段与 CWPP</li>
+            <li>日志与追踪、不可变审计、SIEM/SOAR</li>
+            <li>数据防泄漏、加密与令牌化</li>
+            <li>供应链：镜像签名、SBOM、模型制品溯源</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="layer-visual">
+      <h2>技术栈分层带（由下到上收窄示意）</h2>
+      <p class="muted" style="margin-top: -0.5rem">
+        抽象六层：越往上越贴近业务变更频率。宽度仅作<strong>视觉隐喻</strong>（底层通用面宽、上层领域收窄），非严格比例。
+      </p>
+      <div class="card">
+        <div class="viz-stack" aria-label="技术分层示意图">
+          <div class="viz-bar l6">L6 业务应用与体验层（BFF、SaaS、行业应用）</div>
+          <div class="viz-bar l5">L5 平台与服务网格（K8s、API 网关、服务目录）</div>
+          <div class="viz-bar l4">L4 数据与智能层（OLTP/OLAP、湖仓、向量与模型服务）</div>
+          <div class="viz-bar l3">L3 网络与安全服务层（零信任、SASE、mTLS、DDoS）</div>
+          <div class="viz-bar l2">L2 算力与虚拟化（裸金属、VM、容器运行时、GPU 池）</div>
+          <div class="viz-bar l1">L1 物理与机房设施（电力、制冷、机柜、区域与可用区）</div>
+        </div>
+        <p class="viz-legend">与下文「十层叠加栈」对照：L1–L2 偏物理与算力网络，L3–L4 叠合规与数据主权策略，L5–L6 叠组织与商业化约束。</p>
+      </div>
+    </section>
+
+    <section id="ref-arch">
+      <h2>参考架构图（逻辑拓扑）</h2>
+      <p class="muted" style="margin-top: -0.5rem">
+        单区域逻辑视图：用户经零信任边缘接入，流量经 API 层进入工作负载，数据面分层；右侧为横切平台服务。实际部署应按 <strong>Cell / 可用区</strong> 复制并加区域间网关。
+      </p>
+      <div class="svg-wrap" role="img" aria-label="参考架构逻辑图">
+        <svg viewBox="0 0 920 420" xmlns="http://www.w3.org/2000/svg" width="920" height="420">
+          <defs>
+            <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#1a2332" />
+              <stop offset="100%" style="stop-color:#141b26" />
+            </linearGradient>
+            <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+              <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.35" />
+            </filter>
+            <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+              <polygon points="0 0, 8 4, 0 8" fill="#3d9cf5" />
+            </marker>
+          </defs>
+          <text x="460" y="28" text-anchor="middle" class="svg-title" fill="#e8edf4" font-size="14" font-weight="600">参考架构 · 单区域逻辑视图</text>
+
+          <!-- Users -->
+          <rect x="40" y="55" width="100" height="50" rx="6" fill="#2a3544" stroke="#3d9cf5" stroke-width="1" />
+          <text x="90" y="85" text-anchor="middle" fill="#e8edf4" font-size="11" font-family="Noto Sans SC,sans-serif">用户 / 分支</text>
+
+          <!-- SASE -->
+          <rect x="180" y="50" width="120" height="60" rx="6" fill="url(#g1)" stroke="#e8a838" stroke-width="1.5" />
+          <text x="240" y="78" text-anchor="middle" fill="#e8edf4" font-size="11" font-family="Noto Sans SC,sans-serif">SASE / 零信任</text>
+          <text x="240" y="95" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">SDP · SWG · ZTNA</text>
+
+          <line x1="140" y1="80" x2="180" y2="80" stroke="#3d9cf5" stroke-width="1.5" marker-end="url(#arr)" />
+
+          <!-- API GW -->
+          <rect x="340" y="55" width="130" height="50" rx="6" fill="#1a2332" stroke="#3d9cf5" />
+          <text x="405" y="85" text-anchor="middle" fill="#e8edf4" font-size="11" font-family="Noto Sans SC,sans-serif">API 网关 / Ingress</text>
+          <line x1="300" y1="80" x2="340" y2="80" stroke="#3d9cf5" stroke-width="1.5" />
+
+          <!-- Workloads -->
+          <rect x="340" y="130" width="280" height="100" rx="8" fill="#0c1118" stroke="#2a3544" stroke-width="1" />
+          <text x="480" y="152" text-anchor="middle" fill="#8b9cb3" font-size="10" font-family="Noto Sans SC,sans-serif">计算平面（K8s / VM / 函数）</text>
+          <rect x="360" y="165" width="115" height="50" rx="4" fill="#1a2332" stroke="#2a3544" />
+          <text x="417" y="195" text-anchor="middle" fill="#e8edf4" font-size="10" font-family="Noto Sans SC,sans-serif">工作负载 A</text>
+          <rect x="485" y="165" width="115" height="50" rx="4" fill="#1a2332" stroke="#2a3544" />
+          <text x="542" y="195" text-anchor="middle" fill="#e8edf4" font-size="10" font-family="Noto Sans SC,sans-serif">工作负载 B</text>
+          <line x1="405" y1="105" x2="405" y2="130" stroke="#3d9cf5" stroke-width="1.5" />
+
+          <!-- Data plane -->
+          <rect x="340" y="255" width="280" height="95" rx="8" fill="#0c1118" stroke="#4ecf8e" stroke-width="1" stroke-dasharray="4 2" />
+          <text x="480" y="278" text-anchor="middle" fill="#8b9cb3" font-size="10" font-family="Noto Sans SC,sans-serif">数据面</text>
+          <rect x="355" y="288" width="80" height="48" rx="4" fill="#141b26" stroke="#2a3544" />
+          <text x="395" y="312" text-anchor="middle" fill="#e8edf4" font-size="9" font-family="Noto Sans SC,sans-serif">OLTP</text>
+          <rect x="445" y="288" width="80" height="48" rx="4" fill="#141b26" stroke="#2a3544" />
+          <text x="485" y="312" text-anchor="middle" fill="#e8edf4" font-size="9" font-family="Noto Sans SC,sans-serif">对象</text>
+          <rect x="535" y="288" width="70" height="48" rx="4" fill="#141b26" stroke="#2a3544" />
+          <text x="570" y="312" text-anchor="middle" fill="#e8edf4" font-size="9" font-family="Noto Sans SC,sans-serif">流/湖</text>
+          <line x1="480" y1="230" x2="480" y2="255" stroke="#8b9cb3" stroke-width="1" stroke-dasharray="3 2" />
+
+          <!-- Platform services column -->
+          <rect x="660" y="55" width="220" height="295" rx="8" fill="#141b26" stroke="#2a3544" />
+          <text x="770" y="80" text-anchor="middle" fill="#e8edf4" font-size="11" font-family="Noto Sans SC,sans-serif">横切平台服务</text>
+          <rect x="675" y="95" width="190" height="38" rx="4" fill="#1a2332" stroke="#2a3544" />
+          <text x="770" y="118" text-anchor="middle" fill="#e8edf4" font-size="10" font-family="Noto Sans SC,sans-serif">IAM / CIAM</text>
+          <rect x="675" y="142" width="190" height="38" rx="4" fill="#1a2332" stroke="#2a3544" />
+          <text x="770" y="165" text-anchor="middle" fill="#e8edf4" font-size="10" font-family="Noto Sans SC,sans-serif">KMS / PKI</text>
+          <rect x="675" y="189" width="190" height="38" rx="4" fill="#1a2332" stroke="#2a3544" />
+          <text x="770" y="212" text-anchor="middle" fill="#e8edf4" font-size="10" font-family="Noto Sans SC,sans-serif">可观测性</text>
+          <rect x="675" y="236" width="190" height="38" rx="4" fill="#1a2332" stroke="#2a3544" />
+          <text x="770" y="259" text-anchor="middle" fill="#e8edf4" font-size="10" font-family="Noto Sans SC,sans-serif">策略与配额</text>
+          <rect x="675" y="283" width="190" height="52" rx="4" fill="#1a2332" stroke="#2a3544" />
+          <text x="770" y="305" text-anchor="middle" fill="#e8edf4" font-size="10" font-family="Noto Sans SC,sans-serif">机密计算 / TEE（可选）</text>
+          <text x="770" y="322" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">敏感推理与密钥使用</text>
+
+          <line x1="620" y1="180" x2="660" y2="120" stroke="#2a3544" stroke-width="1" />
+          <line x1="620" y1="200" x2="660" y2="180" stroke="#2a3544" stroke-width="1" />
+
+          <!-- Edge / DC note -->
+          <text x="40" y="385" fill="#8b9cb3" font-size="10" font-family="Noto Sans SC,sans-serif">IDC 托管 / 专有区域 / 公有 AZ：同一逻辑可映射为多个 Cell，单元间经「策略网关」互联。</text>
+        </svg>
+      </div>
+    </section>
+
+    <section id="evolution">
+      <h2>基础设施形态演进（时间线）</h2>
+      <p class="muted" style="margin-top: -0.5rem">
+        从「资源池化」到「云原生」再到「主权 Cell + AI 算力网」，每一步都在<strong>叠加</strong>新约束而非完全替代旧形态；legacy 与 modern 长期共存。
+      </p>
+      <div class="card">
+        <div class="evo-track">
+          <div class="evo-node">
+            <div class="era">≈ 1998–2008</div>
+            <h4>烟囱式与物理机时代</h4>
+            <p>按系统独占机器；扩展靠加柜；标准化弱。遗留：大量裸机 Oracle/小型机思维，迁移成本至今仍在。</p>
+          </div>
+          <div class="evo-node">
+            <div class="era">≈ 2008–2015</div>
+            <h4>虚拟化与统一资源池</h4>
+            <p>VMware / KVM 等提高利用率；开始谈「私有云」概念。网络仍以 VLAN/边界防火墙为主。</p>
+          </div>
+          <div class="evo-node">
+            <div class="era">≈ 2012–2018</div>
+            <h4>公有云 IaaS 与托管服务</h4>
+            <p>弹性与托管数据库降低运维门槛；混合云初现。新问题：厂商锁定、出口成本、合规边界模糊。</p>
+          </div>
+          <div class="evo-node">
+            <div class="era">≈ 2016–2022</div>
+            <h4>云原生、K8s 与 DevOps 工程化</h4>
+            <p>声明式基础设施、GitOps、微服务拆分。东西向流量暴涨，催生服务网格与零信任叙事。</p>
+          </div>
+          <div class="evo-node">
+            <div class="era">2020 年起（当前主战场）</div>
+            <h4>混合多云 · 零信任 · 数据主权 · AI 基础设施</h4>
+            <p>Cell 化分区、SASE、mTLS、数据目录与跨境治理；GPU 推理与训练经济；地缘与关基进入架构评审主表。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="morphologies">
+      <h2>部署形态谱系（可并存）</h2>
+      <p class="muted" style="margin-top: -0.5rem">
+        按「控制与数据的驻留、弹性来源、锁定程度」划分常见形态；同一企业不同系统可处于谱系不同位置。
+      </p>
+      <div class="morph-grid">
+        <div class="morph-card">
+          <span class="tag">自管度高</span>
+          <h4>本地 IDC 全栈自管</h4>
+          <p>机柜与网络自管或托管；适合强驻留、低延迟、已有资本开支路径。弱点是弹性慢、人才密度要求高。</p>
+        </div>
+        <div class="morph-card">
+          <span class="tag">云运营模式</span>
+          <h4>专有云 / 专属云（Dedicated）</h4>
+          <p>云厂商运营边界内「逻辑或物理独占」；平衡体验与隔离。需厘清运维管辖与密钥主权条款。</p>
+        </div>
+        <div class="morph-card">
+          <span class="tag">最常见混合</span>
+          <h4>标准混合云</h4>
+          <p>核心稳态在私有/专有云，峰谷与实验在公有；专线/VPN + 统一身份。关键是数据同步与策略一致。</p>
+        </div>
+        <div class="morph-card">
+          <span class="tag">可移植性</span>
+          <h4>主动多云（Workload Portable）</h4>
+          <p>应用与数据契约抽象到 K8s/OCI 层；多活或冷备在另一朵云。成本高，适合制裁/断供敏感型组织。</p>
+        </div>
+        <div class="morph-card">
+          <span class="tag">合规驱动</span>
+          <h4>Cell 化主权分区</h4>
+          <p>按法域或数据敏感度切 Cell；单元间仅经网关与白名单 API。适合全球化与强监管并存。</p>
+        </div>
+        <div class="morph-card">
+          <span class="tag">延迟敏感</span>
+          <h4>边缘 + 中心云协同</h4>
+          <p>MEC、工厂、门店节点做推理与缓存；中心做训练与治理。需统一遥测与配置漂移治理。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack">
+      <h2>十层叠加栈（自下而上）</h2>
+      <p class="muted" style="margin-top: -0.5rem">点击条目展开要点；上层压力会向下传导，下层能力支撑上层叙事。</p>
+      <div class="stack">
+        <details class="stack-item" open>
+          <summary><span class="stack-num">1</span>物理与能源</summary>
+          <div class="stack-body">
+            <ul>
+              <li>PUE、绿电、液冷、选址；电力与可持续性进入采购 KPI。</li>
+              <li>地缘下机房与能源风险上升，容灾需考虑区域级失效。</li>
+            </ul>
+          </div>
+        </details>
+        <details class="stack-item">
+          <summary><span class="stack-num">2</span>算力与网络</summary>
+          <div class="stack-body">
+            <ul>
+              <li>异构（CPU/GPU/NPU）、弹性队列、机密计算；东西向流量与微分段。</li>
+              <li>多云互联、SASE、mTLS；IPv6 与加密普及改变观测方式（遥测 / eBPF）。</li>
+            </ul>
+          </div>
+        </details>
+        <details class="stack-item">
+          <summary><span class="stack-num">3</span>数据与身份</summary>
+          <div class="stack-body">
+            <ul>
+              <li>分类分级、目录与血缘、密钥管辖（BYOK/HYOK）、删除与分布式遗忘。</li>
+              <li>IAM / CIAM、工作负载身份（SPIFFE）、权限生命周期。</li>
+            </ul>
+          </div>
+        </details>
+        <details class="stack-item">
+          <summary><span class="stack-num">4</span>应用、API 与 AI</summary>
+          <div class="stack-body">
+            <ul>
+              <li>API 为事实北向边界：网关、Schema、限流与细粒度认证。</li>
+              <li>训练/推理分化、RAG 权限、模型制品与供应链、提示注入与审计。</li>
+            </ul>
+          </div>
+        </details>
+        <details class="stack-item">
+          <summary><span class="stack-num">5</span>合规与主权</summary>
+          <div class="stack-body">
+            <ul>
+              <li>设计即合规、数据地图、跨境机制、行业特规、监管接口预留。</li>
+              <li>数据驻留 vs 运维驻留、子处理者链条与合同对齐。</li>
+            </ul>
+          </div>
+        </details>
+        <details class="stack-item">
+          <summary><span class="stack-num">6</span>地缘与国家安全</summary>
+          <div class="stack-body">
+            <ul>
+              <li>制裁、出口管制、关基认定、供应链可信；法律「可切断」依赖需 exit 路径。</li>
+              <li>冲突情景：海缆/路由、支付与续费、运维差旅；技术 RTO 与持续运营能力分开评估。</li>
+            </ul>
+          </div>
+        </details>
+        <details class="stack-item">
+          <summary><span class="stack-num">7</span>资本与治理</summary>
+          <div class="stack-body">
+            <ul>
+              <li>融资阶段与合规债；董事会材料中的安全与地缘章节；M&amp;A 数据与开源尽调。</li>
+              <li>主体、收款、税务与数据实际落点一致。</li>
+            </ul>
+          </div>
+        </details>
+        <details class="stack-item">
+          <summary><span class="stack-num">8</span>商业化与生态</summary>
+          <div class="stack-body">
+            <ul>
+              <li>价值主张：效率 / 风险（合规、韧性）/ 战略（准入）；定价显式包含合规包、驻场包。</li>
+              <li>认证与标杆案例；云厂、集成商、律所共担责任边界。</li>
+            </ul>
+          </div>
+        </details>
+        <details class="stack-item">
+          <summary><span class="stack-num">9</span>组织与运营</summary>
+          <div class="stack-body">
+            <ul>
+              <li>平台、SRE、安全、合规在架构评审中的角色；非技术依赖图（合同、人、钱、牌照）。</li>
+              <li>远程办公的数据跨境与终端安全；演练常态化。</li>
+            </ul>
+          </div>
+        </details>
+        <details class="stack-item">
+          <summary><span class="stack-num">10</span>个人与声誉</summary>
+          <div class="stack-body">
+            <ul>
+              <li>T 型能力：一纵打穿 + 一横翻译合规与风险；「能落地且能过审」溢价。</li>
+              <li>架构仲裁者 / 边界探险者 / 产品化顾问；客户与公开立场构成职业风险敞口。</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="matrix">
+      <h2>架构平面 × 典型议题</h2>
+      <div class="card" style="overflow-x: auto; padding: 0">
+        <table>
+          <thead>
+            <tr>
+              <th>平面</th>
+              <th>典型议题</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>物理/能源</td><td>绿电、液冷、选址、机柜功率密度</td></tr>
+            <tr><td>算力</td><td>异构、弹性、队列、配额、机密计算</td></tr>
+            <tr><td>网络</td><td>多云互联、SASE、微分段、mTLS</td></tr>
+            <tr><td>数据</td><td>分级分类、目录血缘、驻留、删除、备份</td></tr>
+            <tr><td>应用</td><td>API 安全、身份、BFF、多租户隔离</td></tr>
+            <tr><td>AI</td><td>RAG 权限、模型制品、推理观测、成本</td></tr>
+            <tr><td>合规</td><td>跨境、审计、监管接口、合同与技术对齐</td></tr>
+            <tr><td>运营</td><td>FinOps、可观测、韧性、演练、人才模型</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="geo">
+      <h2>地缘冲突 → 基础设施冲击通道</h2>
+      <div class="card" style="overflow-x: auto; padding: 0">
+        <table>
+          <thead>
+            <tr>
+              <th>通道</th>
+              <th>可能现象</th>
+              <th>架构含义</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>物理连通</td><td>海缆/陆缆、路由变更、延迟上升</td><td>多路径、多 POP；关键业务不依赖单一路由</td></tr>
+            <tr><td>电力与站点</td><td>局部能源紧张、机房风险</td><td>跨区容灾、可迁移工作负载、非冲突区冷备</td></tr>
+            <tr><td>云与 SaaS</td><td>条款、支付、支持中断</td><td>Exit：数据导出、IaC、镜像与替代 API</td></tr>
+            <tr><td>人才与运维</td><td>差旅、驻场、外包受限</td><td>属地 runbook、本地二级支持</td></tr>
+            <tr><td>品牌与采购</td><td>供应商国籍敏感度</td><td>多供应商、可替换栈、RFP 条款对齐</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>中小企业 vs 大型组织</h3>
+      <div class="card" style="overflow-x: auto; padding: 0">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>中小企业</th>
+              <th>大型组织</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>优势</td><td>船小好掉头，合规面相对小</td><td>预算、牌照、议价力强</td></tr>
+            <tr><td>风险</td><td>单点英雄主义</td><td>流程重；全球一致性与本地合规冲突</td></tr>
+            <tr><td>策略</td><td>买能力：托管、模板、认证产品</td><td>建平台：统一身份、数据目录、区域 cell</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="biz">
+      <h2>创业 · 商业化 · 运营（要点）</h2>
+      <div class="card">
+        <h3 style="margin-top: 0">创业</h3>
+        <ul class="muted" style="margin: 0">
+          <li>早期定数据模型与分区，避免后期拆分成本碾压。</li>
+          <li>多租户 + 区域 cell，合同与部署同步设计。</li>
+          <li>对收款、币种、云依赖做地缘情景下的 runway 压力测试。</li>
+        </ul>
+        <h3>商业化</h3>
+        <ul class="muted" style="margin: 0 0 1rem">
+          <li>三层价值：效率 → 风险（合规/韧性）→ 战略（准入）。</li>
+          <li>托管 / 软件 / 本地化交付光谱与定价显式对齐。</li>
+        </ul>
+        <h3>运营</h3>
+        <ul class="muted" style="margin: 0">
+          <li>技术依赖图与非技术依赖图（合同、关键人、支付、牌照）定期对表。</li>
+          <li>法务台账与技术台账（子处理者、数据位置、日志）同源更新。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="step-walk">
+      <h2>分步推演向导（七步）</h2>
+      <p class="muted" style="margin-top: -0.5rem">
+        按顺序展开架构决策链：每步可单独评审，亦可作为 workshop 议程骨架。圆点可点击跳转。
+      </p>
+      <div class="stepper" id="stepperRoot">
+        <div class="stepper-head">
+          <div class="stepper-dots" id="stepperDots" aria-hidden="true"></div>
+        </div>
+        <div class="stepper-body" id="stepperBody"></div>
+        <div class="stepper-foot">
+          <button type="button" class="btn" id="stepPrev">上一步</button>
+          <span class="stepper-progress" id="stepProgress"></span>
+          <button type="button" class="btn btn-primary" id="stepNext">下一步</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="sim">
+      <h2>情景推演沙盘</h2>
+      <p class="muted" style="margin-top: -0.5rem">
+        勾选当前或假设的外部因子，下方将<strong>合成</strong>对架构、组织与商业的启示（规则为研讨用启发式，可按组织自定义）。
+      </p>
+      <div class="card">
+        <div class="btn-row">
+          <button type="button" class="btn" id="simClear">清空选择</button>
+          <button type="button" class="btn btn-primary" id="simRandom">随机一组情景</button>
+        </div>
+        <div class="sim-grid" id="simOptions"></div>
+        <div class="sim-output" id="simOutput" aria-live="polite">
+          <h4>合成启示</h4>
+          <p class="muted" style="margin: 0">请至少选择一个因子。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow">
+      <h2>业务连续性穿过各框（依赖流示意）</h2>
+      <p class="muted" style="margin-top: -0.5rem">自上而下：业务与连续性 → 合规与主权 → 地缘与冲突 → 技术与安全 → 回到业务闭环。</p>
+      <div class="flow-note">业务与连续性 (RTO/RPO 分域、关键业务清单)
+        ↓
+合规与主权 (驻留、出境、关基、合同管辖)
+        ↓
+地缘与冲突 (连通、制裁、供应商与支付)
+        ↓
+技术与安全 (身份、加密与密钥、不可变备份与演练)
+        ↓
+→ 业务降级与恢复闭环</div>
+    </section>
+
+    <footer>
+      本地单页：可直接用浏览器打开本文件。若要团队共创，可将本目录置于任意静态服务器或内网 Wiki 中引用。分页版总览见 <a href="index.html">index.html</a>；全站三问骨架见 <a href="index.html#three-questions">index.html#three-questions</a>。若从分页站打开 <a href="evolution-loop.html">进化闭环</a> / <a href="analysis-hub.html">分析引擎</a> 等需 <code>fetch</code> JSON 的页面，请用 HTTP（如本目录 <code>docker compose</code> 或 <code>python -m http.server</code>），勿依赖 <code>file://</code>。
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var factors = [
+        {
+          id: "reg",
+          label: "强监管 / 关基",
+          hints: [
+            "优先：数据分级分类、审计日志标准、运维与密钥管辖条款书面化。",
+            "架构：区域 cell + 明确网关；监管报送或审计导出接口插件化。",
+            "组织：安全/合规在变更门禁中有签字权或带条件通过机制。"
+          ]
+        },
+        {
+          id: "geo",
+          label: "地缘紧张 / 冲突风险",
+          hints: [
+            "网络：多路径、多 POP；关键解析与证书的韧性设计。",
+            "供应商：识别「法律上可单方面切断」的依赖，准备数据导出与 IaC exit。",
+            "运营：runbook 属地化，减少对单一跨境差旅链路的依赖。"
+          ]
+        },
+        {
+          id: "sanction",
+          label: "制裁 / 长臂管辖敞口",
+          hints: [
+            "合同：多司法辖区主体与支付路径情景分析；技术支持与更新条款复审。",
+            "技术：替代云/API 冷备、密钥与镜像可迁移；避免隐性单一外方锁定。",
+            "合规：客户与供应链筛查流程与架构选型同步记录。"
+          ]
+        },
+        {
+          id: "ai",
+          label: "AI / 大模型爆发采用",
+          hints: [
+            "数据：训练/推理数据管线与 RAG 知识库的权限与同源审计。",
+            "安全：提示注入、模型制品与权重纳入供应链与权限模型。",
+            "成本：推理与 FinOps 挂钩，队列与配额与业务分级一致。"
+          ]
+        },
+        {
+          id: "capital",
+          label: "资本紧缩 / 估值承压",
+          hints: [
+            "产品：单位经济与现金流优先；合规包可模块化售卖而非无限定制。",
+            "技术：减少「为叙事而全栈自研」，优先可替换托管与开源基线。",
+            "治理：董事会材料中显式披露安全与地缘依赖，避免尽调惊喜。"
+          ]
+        },
+        {
+          id: "enterprise",
+          label: "大客户 / 准入驱动",
+          hints: [
+            "交付：SOC2/等保/行业认证路线图与数据流图对外一致。",
+            "架构：租户隔离、日志驻留与客户自带密钥选项。",
+            "商业：定价中单列驻场、审计与韧性，避免吞噬毛利。"
+          ]
+        },
+        {
+          id: "global",
+          label: "激进全球化 / 多区域扩张",
+          hints: [
+            "策略：先进法律清晰、支付顺畅的样板市场，再攻硬法域。",
+            "架构：策略模板 + 本地参数，避免一国一套黑盒。",
+            "运营：总部—区域责任边界与数据地图同源维护。"
+          ]
+        },
+        {
+          id: "talent",
+          label: "关键人才稀缺 / 英雄主义",
+          hints: [
+            "组织：文档化、二级支持、禁止单人独占核心密钥与发布。",
+            "个人：T 型能力 + 合规翻译能力；声誉与客户类型纳入职业风险。",
+            "平台：自助服务降低对少数专家的调用频率。"
+          ]
+        }
+      ];
+
+      var grid = document.getElementById("simOptions");
+      var out = document.getElementById("simOutput");
+
+      factors.forEach(function (f, i) {
+        var wrap = document.createElement("div");
+        wrap.className = "sim-option";
+        var inp = document.createElement("input");
+        inp.type = "checkbox";
+        inp.id = "f_" + f.id;
+        inp.value = f.id;
+        inp.dataset.idx = String(i);
+        var lab = document.createElement("label");
+        lab.htmlFor = "f_" + f.id;
+        lab.textContent = f.label;
+        inp.addEventListener("change", render);
+        wrap.appendChild(inp);
+        wrap.appendChild(lab);
+        grid.appendChild(wrap);
+      });
+
+      function selectedFactors() {
+        return factors.filter(function (_, i) {
+          var el = document.getElementById("f_" + factors[i].id);
+          return el && el.checked;
+        });
+      }
+
+      function render() {
+        var sel = [];
+        factors.forEach(function (f) {
+          var el = document.getElementById("f_" + f.id);
+          if (el && el.checked) sel.push(f);
+        });
+
+        if (sel.length === 0) {
+          out.innerHTML =
+            '<h4>合成启示</h4><p class="muted" style="margin:0">请至少选择一个因子。</p>';
+          return;
+        }
+
+        var merged = [];
+        sel.forEach(function (f) {
+          f.hints.forEach(function (h) {
+            merged.push(h);
+          });
+        });
+
+        if (sel.length >= 3) {
+          merged.push(
+            "【叠加】多因子同时成立时，单独可承受的风险可能合并为不可承受——更新风险登记册并做一次跨部门桌面推演。"
+          );
+        }
+
+        if (sel.some(function (f) { return f.id === "geo" || f.id === "sanction"; }) &&
+            sel.some(function (f) { return f.id === "global"; })) {
+          merged.push(
+            "【地缘 × 全球化】扩张节奏与数据驻留策略绑定：每新区域先完成数据流 + 子处理者 + 支付路径三联表。"
+          );
+        }
+
+        if (sel.some(function (f) { return f.id === "reg"; }) &&
+            sel.some(function (f) { return f.id === "ai"; })) {
+          merged.push(
+            "【监管 × AI】将模型与提示审计纳入个人信息与重要数据处理记录；RAG 检索前授权过滤必做。"
+          );
+        }
+
+        var ul = document.createElement("ul");
+        merged.forEach(function (line) {
+          var li = document.createElement("li");
+          li.textContent = line;
+          ul.appendChild(li);
+        });
+        out.innerHTML = "";
+        var h4 = document.createElement("h4");
+        h4.textContent = "合成启示（已选 " + sel.length + " 项）";
+        out.appendChild(h4);
+        out.appendChild(ul);
+      }
+
+      document.getElementById("simClear").addEventListener("click", function () {
+        factors.forEach(function (f) {
+          var el = document.getElementById("f_" + f.id);
+          if (el) el.checked = false;
+        });
+        render();
+      });
+
+      document.getElementById("simRandom").addEventListener("click", function () {
+        factors.forEach(function (f) {
+          var el = document.getElementById("f_" + f.id);
+          if (el) el.checked = Math.random() > 0.55;
+        });
+        if (selectedFactors().length === 0) {
+          var pick = factors[Math.floor(Math.random() * factors.length)];
+          document.getElementById("f_" + pick.id).checked = true;
+        }
+        render();
+      });
+    })();
+
+    (function () {
+      var steps = [
+        {
+          title: "第 1 步：业务与连续性目标",
+          items: [
+            "梳理关键业务清单与可接受降级级别（非所有系统都要同城双活）。",
+            "为每类业务定义 RTO/RPO，并区分「技术恢复」与「持续运营」（含支付、合同、人力）。",
+            "识别不可中断链路：身份、DNS、证书、密钥托管。"
+          ]
+        },
+        {
+          title: "第 2 步：数据分级与驻留",
+          items: [
+            "完成数据分类分级与个人/重要/核心数据识别（或等同框架）。",
+            "画数据流图：产生、处理、存储、出境、第三方子处理者。",
+            "决定 Cell 边界：按法域、按业务线或按数据敏感度切分。"
+          ]
+        },
+        {
+          title: "第 3 步：网络与身份基线",
+          items: [
+            "零信任假设：默认拒绝，按身份与设备姿态授权；南北向与东西向策略分工。",
+            "用户与机器身份分轨：CIAM + 工作负载身份（如 SPIFFE/mTLS）。",
+            "SASE/SDP 与内网微分段路线图，与远程办公场景对齐。"
+          ]
+        },
+        {
+          title: "第 4 步：算力与平台形态",
+          items: [
+            "在部署形态谱系中选定主形态（专有云、混合、多云、边缘协同等），允许子系统不同。",
+            "平台工程：自助服务、配额、模板、黄金路径；避免「只有专家能发布」。",
+            "异构算力：通用 CPU 与 GPU/推理池分层，队列与 FinOps 挂钩。"
+          ]
+        },
+        {
+          title: "第 5 步：合规与可审计性",
+          items: [
+            "审计日志：字段标准、留存周期、不可变存储与导出接口。",
+            "密钥与运维管辖：BYOK/HYOK、谁能在何种审批下接触明文。",
+            "监管与合同：技术控制与法律路径（跨境机制）一致，避免对外口径冲突。"
+          ]
+        },
+        {
+          title: "第 6 步：地缘、供应链与 Exit",
+          items: [
+            "列出「法律上可单方面切断」的依赖：云、SaaS、支付、技术支持。",
+            "Exit：数据导出、IaC、镜像与替代 API 的冷备演练频率。",
+            "品牌与采购敏感场景下的多源策略与 RFP 条款。"
+          ]
+        },
+        {
+          title: "第 7 步：运营、演练与治理闭环",
+          items: [
+            "技术依赖图与非技术依赖图（合同、关键人、牌照）季度对表。",
+            "混沌与恢复演练：含备份篡改/勒索情景与跨部门桌面推演。",
+            "董事会或管委会材料：安全、地缘、合规 KPI 与重大依赖披露。"
+          ]
+        }
+      ];
+
+      var idx = 0;
+      var dotsEl = document.getElementById("stepperDots");
+      var bodyEl = document.getElementById("stepperBody");
+      var progEl = document.getElementById("stepProgress");
+      var btnPrev = document.getElementById("stepPrev");
+      var btnNext = document.getElementById("stepNext");
+
+      function renderDots() {
+        dotsEl.innerHTML = "";
+        steps.forEach(function (_, i) {
+          var d = document.createElement("span");
+          d.className = "stepper-dot" + (i === idx ? " active" : i < idx ? " done" : "");
+          d.title = "第 " + (i + 1) + " 步";
+          d.addEventListener("click", function () {
+            idx = i;
+            renderStep();
+          });
+          dotsEl.appendChild(d);
+        });
+      }
+
+      function renderStep() {
+        var s = steps[idx];
+        bodyEl.innerHTML = "";
+        var h = document.createElement("h4");
+        h.textContent = s.title;
+        bodyEl.appendChild(h);
+        var ul = document.createElement("ul");
+        s.items.forEach(function (line) {
+          var li = document.createElement("li");
+          li.textContent = line;
+          ul.appendChild(li);
+        });
+        bodyEl.appendChild(ul);
+        progEl.textContent = "步骤 " + (idx + 1) + " / " + steps.length;
+        btnPrev.disabled = idx === 0;
+        btnNext.textContent = idx === steps.length - 1 ? "回到第 1 步" : "下一步";
+        renderDots();
+      }
+
+      btnPrev.addEventListener("click", function () {
+        if (idx > 0) {
+          idx--;
+          renderStep();
+        }
+      });
+
+      btnNext.addEventListener("click", function () {
+        if (idx === steps.length - 1) idx = 0;
+        else idx++;
+        renderStep();
+      });
+
+      renderStep();
+    })();
+  </script>
+  <script src="assets/motion.js"></script>
+</body>
+</html>

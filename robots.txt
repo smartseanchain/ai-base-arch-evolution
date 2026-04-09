@@ -1,0 +1,7 @@
+# 基础架构演变推演 — 静态分页
+User-agent: *
+Allow: /
+
+# 生成 sitemap：SITE_BASE=https://你的域名 python3 scripts/gen-sitemap.py
+# 将下一行与 sitemap.xml 中的 https://example.com 一并替换为你的真实源站
+Sitemap: https://example.com/sitemap.xml
