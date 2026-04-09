@@ -10,6 +10,8 @@
 
 **环境**：首次或更新依赖后执行 `python3 -m pip install -r requirements.txt`（`make validate` / CI 需 **jsonschema** 校验 `analysis-snapshot` 与 `docs/schemas/`）。
 
+**推演纪律**：结构化思考前先扫 [DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md)（三色分层、单轮七步、偏误表）；与 [综合推演](../synthesis.html) §2 / §12 / §13 及 [总览 · 三问](../index.html#three-questions) 对齐。
+
 | 步骤 | 动作 | 产出/记录 |
 |------|------|-----------|
 | 1 | `make ingest`（或 **Actions → Ingest candidates** 定时/手动跑并下载 artifact） | 刷新 `evolution-candidates.json`；`require_route_match=true` 时仅保留命中 `routes` 的线索；`maps_to` 另合并 `scripts/maps_to_hints.json`（host/关键词）。CI 可在 Run 摘要里查看各源是否抓取成功 |
