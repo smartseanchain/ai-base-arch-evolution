@@ -23,6 +23,7 @@ jobs:
         run: |
           python3 scripts/validate-evolution-manifest.py
           python3 scripts/validate-evolution-candidates.py
+          python3 scripts/validate_evolution_hint_decisions.py
       - name: Manifest vs pages / lab factors drift check
         run: python3 scripts/check_manifest_drift.py
       - name: Site nav vs partial

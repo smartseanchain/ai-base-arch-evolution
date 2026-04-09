@@ -6,6 +6,9 @@
 
   var URL_SNAP = "assets/analysis-snapshot.json";
   var URL_TRENDS = "assets/sediment-trends.json";
+  var URL_HINT_DECISIONS = "assets/evolution-hint-decisions.json";
+
+  var ACTION_LABEL = { done: "已落实", rejected: "已否决", deferred: "延期" };
 
   function esc(s) {
     var d = document.createElement("div");
@@ -101,6 +104,83 @@
       hc.appendChild(ul);
       container.appendChild(hc);
     }
+
+    renderHeatAndRest(container, data);
+  }
+
+  function renderDecisions(container, decDoc) {
+    if (!container || !decDoc) return;
+    var list = decDoc.decisions;
+    if (!Array.isArray(list) || !list.length) return;
+    var recent = list
+      .filter(function (d) {
+        return d && typeof d === "object";
+      })
+      .slice()
+      .sort(function (a, b) {
+        return String(b.recorded_at || "").localeCompare(
+          String(a.recorded_at || "")
+        );
+      })
+      .slice(0, 10);
+    if (!recent.length) return;
+
+    var wrap = document.createElement("div");
+    wrap.className = "card analysis-hint-decisions";
+    wrap.style.marginTop = "1rem";
+    var h4 = document.createElement("h4");
+    h4.style.marginTop = "0";
+    h4.textContent = "提示项处理记录（evolution-hint-decisions）";
+    wrap.appendChild(h4);
+    var p0 = document.createElement("p");
+    p0.className = "muted";
+    p0.style.fontSize = "0.82rem";
+    p0.style.marginTop = "0.25rem";
+    p0.textContent =
+      "双周闭环中落实或否决规则提示时，请在仓库内追加 JSON 记录（make validate 会校验）。";
+    wrap.appendChild(p0);
+    var ul = document.createElement("ul");
+    ul.className = "muted analysis-hint-decisions-list";
+    ul.style.fontSize = "0.88rem";
+    ul.style.lineHeight = "1.75";
+    ul.style.marginBottom = "0";
+    recent.forEach(function (d) {
+      var li = document.createElement("li");
+      var act = ACTION_LABEL[d.action] || d.action;
+      var span = document.createElement("span");
+      span.className = "analysis-decision-pill";
+      span.textContent = act;
+      li.appendChild(span);
+      li.appendChild(
+        document.createTextNode(
+          " · " + (d.recorded_at || "—") + " · " + (d.id || "—")
+        )
+      );
+      var sum = d.hint_summary || d.note;
+      if (sum) {
+        li.appendChild(document.createTextNode(" — "));
+        var em = document.createElement("span");
+        em.textContent =
+          sum.length > 120 ? sum.slice(0, 120) + "…" : sum;
+        li.appendChild(em);
+      }
+      if (d.pr_url) {
+        li.appendChild(document.createTextNode(" "));
+        var a = document.createElement("a");
+        a.href = d.pr_url;
+        a.rel = "noopener noreferrer";
+        a.target = "_blank";
+        a.textContent = "PR";
+        li.appendChild(a);
+      }
+      ul.appendChild(li);
+    });
+    wrap.appendChild(ul);
+    container.appendChild(wrap);
+  }
+
+  function renderHeatAndRest(container, data) {
+    if (!container || !data) return;
 
     var maxM = 0;
     (data.module_heat || []).forEach(function (x) {
@@ -273,14 +353,24 @@
   }
 
   function load() {
+    var el = document.getElementById("analysis-dashboard");
     fetch(URL_SNAP)
       .then(function (r) {
         if (!r.ok) throw new Error("snap");
         return r.json();
       })
       .then(function (data) {
-        var el = document.getElementById("analysis-dashboard");
         render(el, data);
+        return fetch(URL_HINT_DECISIONS)
+          .then(function (r) {
+            return r.ok ? r.json() : { decisions: [] };
+          })
+          .catch(function () {
+            return { decisions: [] };
+          });
+      })
+      .then(function (decDoc) {
+        renderDecisions(el, decDoc);
         return fetch(URL_TRENDS);
       })
       .then(function (r) {

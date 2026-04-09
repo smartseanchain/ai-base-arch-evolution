@@ -12,6 +12,9 @@ python3 scripts/validate-evolution-manifest.py
 echo "== [2/4] validate evolution-candidates"
 python3 scripts/validate-evolution-candidates.py
 
+echo "== [2a/4] validate evolution-hint-decisions"
+python3 scripts/validate_evolution_hint_decisions.py
+
 echo "== [2b/4] check manifest / candidates vs pages + lab.js"
 python3 scripts/check_manifest_drift.py
 

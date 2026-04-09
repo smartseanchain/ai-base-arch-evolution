@@ -16,7 +16,7 @@
 | 4 | `make validate` | 通过校验 + `analysis_engine --check` + **对账脚本** |
 | 5 | `make analyze` | 更新 `analysis-snapshot.json`、沉淀、trends |
 | 6 | 打开 `analysis-hub.html`（或读 `analysis-snapshot.json`） | 看热力与共现 |
-| 7 | 处理 **≥1 条** `evolution_hints`（`analysis-snapshot.json` 中为对象时可点链到 `target_pages`）：**落实**或 **显式否决** | 闭环有决策痕迹 |
+| 7 | 处理 **≥1 条** `evolution_hints`（`analysis-snapshot.json` 中为对象时可点链到 `target_pages`）：**落实**或 **显式否决**；在 **`assets/evolution-hint-decisions.json`** 追加一条记录（`id`、`action`: `done` / `rejected` / `deferred`、`recorded_at` 等，`make validate` 会校验） | 闭环有可检索的决策痕迹；分析页会展示最近记录 |
 | 8 | 打开 `lab.html`：按热力勾选因子做一轮沙盘 | 与 manifest 映射一致性感性校验 |
 | 9 | `git commit` & `push` | 站点与仓库同步 |
 
@@ -34,3 +34,5 @@
 ## 对账脚本
 
 `python3 scripts/check_manifest_drift.py`：检查 `maps_to.pages` 是否列入 **`scripts/evolution-registry.json`** 且文件存在；`lab_factors` 是否与 registry / `lab.js` 一致；并校验 ingest 配置与 `maps_to_hints`、`gen-sitemap` PRIORITY。已并入 `make validate` 与 CI。
+
+`python3 scripts/validate_evolution_hint_decisions.py`：校验 **`assets/evolution-hint-decisions.json`** 结构及 `related_pages` ⊆ registry。

@@ -9,6 +9,7 @@ if ! command -v python3 >/dev/null 2>&1; then
 fi
 python3 scripts/validate-evolution-manifest.py
 python3 scripts/validate-evolution-candidates.py
+python3 scripts/validate_evolution_hint_decisions.py
 python3 scripts/check_manifest_drift.py
 python3 scripts/sync_site_nav.py --check
 PYTHONPATH=scripts python3 -m unittest discover -s scripts/tests -p 'test_*.py' -q

@@ -4358,6 +4358,21 @@ tr.synth-cat-row td {
   text-decoration: underline;
 }
 
+.analysis-hint-decisions {
+  margin-bottom: var(--space-5);
+}
+
+.analysis-decision-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  background: rgba(94, 234, 212, 0.12);
+  color: var(--accent);
+  margin-right: 0.15rem;
+}
+
 .analysis-panel {
   margin-bottom: var(--space-6);
 }

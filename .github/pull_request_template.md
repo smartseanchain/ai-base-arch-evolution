@@ -14,6 +14,10 @@
 - [ ] 若新增根目录 HTML 或沙盘因子：已同步 **`scripts/evolution-registry.json`** 与 **`assets/lab.js`**
 - [ ] 若改全站顶栏或 skip-bar：已更新 **`partials/site-nav.inc.html`** / **`partials/skip-bar.inc.html`** 并执行 **`make sync-nav`**
 
+## 若本周期处理了分析引擎的 evolution_hints
+
+- [ ] 已在 **`assets/evolution-hint-decisions.json`** 追加对应记录（或注明为何本轮无提示可处理）
+
 ## 备注
 
 <!-- 可选：链接相关 issue、说明为何否决某条候选等 -->

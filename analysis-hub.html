@@ -62,7 +62,7 @@
     <div id="main" class="page-head" tabindex="-1">
       <h1>分析引擎与数据沉淀</h1>
       <p class="lead">
-        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页聚合<strong>分析引擎</strong>的产出：在 <code>evolution-manifest.json</code> 与 <code>evolution-candidates.json</code> 上计算<strong>模块页热力、沙盘因子热力、因子共现</strong>，并给出<strong>规则型自我进化提示</strong>（非预测）。<strong>数据沉淀</strong>由 <code>data/sediment.json</code> 按日记录摘要，并<strong>双写</strong> <code>data/evolution.db</code>（SQLite）；<strong>长期趋势</strong>由 <code>sediment_trends.py</code> 跨日汇总，写入 <code>assets/sediment-trends.json</code> 并在下方仪表盘展示。运行 <code>python3 scripts/analysis_engine.py</code> 生成 <code>assets/analysis-snapshot.json</code>；加 <code>--sediment</code> 同时写入沉淀与库。若要在规则之上叠加模型与检索，见 <a href="intelligent-evolution.html">智能进化</a>（§11 插槽⑨）。
+        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页聚合<strong>分析引擎</strong>的产出：在 <code>evolution-manifest.json</code> 与 <code>evolution-candidates.json</code> 上计算<strong>模块页热力、沙盘因子热力、因子共现</strong>，并给出<strong>规则型自我进化提示</strong>（非预测）。对提示的落实/否决可记在 <code>assets/evolution-hint-decisions.json</code>（见 <a href="docs/EVOLUTION_RUNBOOK.md">双周运行手册</a>），仪表盘会列出最近记录。<strong>数据沉淀</strong>由 <code>data/sediment.json</code> 按日记录摘要，并<strong>双写</strong> <code>data/evolution.db</code>（SQLite）；<strong>长期趋势</strong>由 <code>sediment_trends.py</code> 跨日汇总，写入 <code>assets/sediment-trends.json</code> 并在下方仪表盘展示。运行 <code>python3 scripts/analysis_engine.py</code> 生成 <code>assets/analysis-snapshot.json</code>；加 <code>--sediment</code> 同时写入沉淀与库。若要在规则之上叠加模型与检索，见 <a href="intelligent-evolution.html">智能进化</a>（§11 插槽⑨）。
       </p>
     </div>
 

@@ -2,7 +2,7 @@
 .PHONY: validate test sync-nav check-site-nav ingest ingest-full analyze pipeline check-analysis help hooks sitemap
 
 help:
-	@echo "make validate   - 校验 manifest/候选 + 对账 + 顶栏 + 单测 + analysis_engine --check（与 pre-commit 一致）"
+	@echo "make validate   - 校验 manifest/候选/hint 决策 + 对账 + 顶栏 + 单测 + analysis_engine --check（与 pre-commit 一致）"
 	@echo "make test       - scripts/tests 下 unittest（PYTHONPATH=scripts）"
 	@echo "make sync-nav   - 按 partials 写回各页 skip-bar + site-nav"
 	@echo "make check-site-nav - 仅检查顶栏是否与模板一致（CI 同款）"
@@ -17,6 +17,7 @@ help:
 validate:
 	python3 scripts/validate-evolution-manifest.py
 	python3 scripts/validate-evolution-candidates.py
+	python3 scripts/validate_evolution_hint_decisions.py
 	python3 scripts/check_manifest_drift.py
 	python3 scripts/sync_site_nav.py --check
 	PYTHONPATH=scripts python3 -m unittest discover -s scripts/tests -p 'test_*.py' -q
