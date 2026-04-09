@@ -14,9 +14,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parent.parent
-SEDIMENT = ROOT / "data" / "sediment.json"
-OUT = ROOT / "assets" / "sediment-trends.json"
+from evolution_io import REPO_ROOT
+
+SEDIMENT = REPO_ROOT / "data" / "sediment.json"
+OUT = REPO_ROOT / "assets" / "sediment-trends.json"
 
 
 def load_sediment_entries() -> tuple[list[dict[str, Any]], str]:

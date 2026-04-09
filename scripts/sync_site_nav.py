@@ -20,9 +20,10 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-PARTIAL_NAV = ROOT / "partials" / "site-nav.inc.html"
-PARTIAL_SKIP = ROOT / "partials" / "skip-bar.inc.html"
+from evolution_io import REPO_ROOT
+
+PARTIAL_NAV = REPO_ROOT / "partials" / "site-nav.inc.html"
+PARTIAL_SKIP = REPO_ROOT / "partials" / "skip-bar.inc.html"
 SKIP = frozenset({"404.html", "legacy-all-in-one.html"})
 
 HEADER_INNER_RE = re.compile(
@@ -89,7 +90,7 @@ def build_skip_bar(basename: str, template: str) -> str:
 
 
 def html_targets() -> list[Path]:
-    return [p for p in sorted(ROOT.glob("*.html")) if p.name not in SKIP]
+    return [p for p in sorted(REPO_ROOT.glob("*.html")) if p.name not in SKIP]
 
 
 def main() -> None:

@@ -6,12 +6,12 @@ import json
 import re
 import sys
 import unittest
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-REGISTRY = ROOT / "scripts" / "evolution-registry.json"
-LAB = ROOT / "assets" / "lab.js"
-GEN_SITEMAP = ROOT / "scripts" / "gen-sitemap.py"
+from evolution_io import REPO_ROOT
+
+REGISTRY = REPO_ROOT / "scripts" / "evolution-registry.json"
+LAB = REPO_ROOT / "assets" / "lab.js"
+GEN_SITEMAP = REPO_ROOT / "scripts" / "gen-sitemap.py"
 
 
 class TestRegistry(unittest.TestCase):
@@ -27,7 +27,7 @@ class TestRegistry(unittest.TestCase):
     def test_registry_pages_exist(self) -> None:
         reg = json.loads(REGISTRY.read_text(encoding="utf-8"))
         for p in reg["pages"]:
-            self.assertTrue((ROOT / p).is_file(), msg=p)
+            self.assertTrue((REPO_ROOT / p).is_file(), msg=p)
 
     def test_priority_subset_registry(self) -> None:
         reg = json.loads(REGISTRY.read_text(encoding="utf-8"))

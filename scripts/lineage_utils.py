@@ -7,12 +7,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parent.parent
+from evolution_io import REPO_ROOT
 
 
 def get_repo_revision_short(cwd: Path | None = None) -> str:
     """`git rev-parse --short HEAD`，非 git 环境或失败时返回 ``unknown``。"""
-    base = cwd or ROOT
+    base = cwd or REPO_ROOT
     try:
         r = subprocess.run(
             ["git", "rev-parse", "--short", "HEAD"],

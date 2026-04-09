@@ -6,8 +6,9 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-PATH = ROOT / "assets" / "evolution-candidates.json"
+from evolution_io import REPO_ROOT
+
+PATH = REPO_ROOT / "assets" / "evolution-candidates.json"
 
 ALLOWED_KIND = frozenset({"opinion", "policy", "market", "tech", "law"})
 ALLOWED_WEIGHT = frozenset({"high", "medium", "low"})

@@ -1,0 +1,2 @@
+# 本地 make validate / CI 快照契约校验（JSON Schema）
+jsonschema>=4.22.0,<5

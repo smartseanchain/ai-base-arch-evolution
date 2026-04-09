@@ -3,10 +3,10 @@ from __future__ import annotations
 
 import sys
 import unittest
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-SCRIPTS = ROOT / "scripts"
+from evolution_io import REPO_ROOT
+
+SCRIPTS = REPO_ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
@@ -38,7 +38,7 @@ class TestBuildHeader(unittest.TestCase):
 
 class TestSiteNavSpan(unittest.TestCase):
     def test_index_has_span(self) -> None:
-        text = (ROOT / "index.html").read_text(encoding="utf-8")
+        text = (REPO_ROOT / "index.html").read_text(encoding="utf-8")
         span = site_nav_span(text)
         self.assertIsNotNone(span)
         start, end = span
@@ -60,7 +60,7 @@ class TestSkipBar(unittest.TestCase):
         self.assertIn('href="index.html#three-questions"', s)
 
     def test_span_on_lab(self) -> None:
-        text = (ROOT / "lab.html").read_text(encoding="utf-8")
+        text = (REPO_ROOT / "lab.html").read_text(encoding="utf-8")
         sp = skip_bar_span(text)
         self.assertIsNotNone(sp)
         a, b = sp

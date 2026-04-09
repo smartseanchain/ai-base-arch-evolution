@@ -7,10 +7,10 @@ from __future__ import annotations
 
 import json
 import sys
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "assets" / "analysis-snapshot.json"
+from evolution_io import REPO_ROOT
+
+OUT = REPO_ROOT / "assets" / "analysis-snapshot.json"
 
 
 def main() -> None:

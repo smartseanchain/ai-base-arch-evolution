@@ -8,11 +8,11 @@ from __future__ import annotations
 import json
 import sqlite3
 from datetime import datetime, timezone
-from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parent.parent
-DB_PATH = ROOT / "data" / "evolution.db"
+from evolution_io import REPO_ROOT
+
+DB_PATH = REPO_ROOT / "data" / "evolution.db"
 
 DDL = """
 CREATE TABLE IF NOT EXISTS sediment_entry (

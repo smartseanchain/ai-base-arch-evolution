@@ -4,10 +4,10 @@ from __future__ import annotations
 import sys
 import unittest
 from collections import Counter
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-SCRIPTS = ROOT / "scripts"
+from evolution_io import REPO_ROOT
+
+SCRIPTS = REPO_ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 

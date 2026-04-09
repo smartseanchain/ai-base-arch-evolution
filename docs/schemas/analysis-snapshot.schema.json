@@ -29,10 +29,25 @@
       },
       "additionalProperties": true
     },
-    "sources": { "type": "object" },
+    "sources": {
+      "type": "object",
+      "required": ["combined_for_analysis"],
+      "properties": {
+        "combined_for_analysis": { "type": "integer", "minimum": 0 },
+        "manifest_signals": { "type": "integer", "minimum": 0 },
+        "candidate_signals": { "type": "integer", "minimum": 0 },
+        "candidates_in_file": { "type": "integer", "minimum": 0 },
+        "candidate_review_breakdown": { "type": "object" },
+        "hint_decisions": { "type": "object" }
+      },
+      "additionalProperties": true
+    },
     "module_heat": { "type": "array" },
     "factor_heat": { "type": "array" },
-    "kind_distribution": { "type": "array" },
+    "kind_distribution": {
+      "type": "object",
+      "additionalProperties": { "type": "integer" }
+    },
     "cooccurrence": { "type": "array" },
     "evolution_hints": { "type": "array" },
     "hint_closure_gaps": { "type": "array" }

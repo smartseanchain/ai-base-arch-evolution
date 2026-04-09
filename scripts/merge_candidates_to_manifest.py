@@ -19,9 +19,10 @@ import sys
 from datetime import date
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-MANIFEST = ROOT / "assets" / "evolution-manifest.json"
-CANDIDATES = ROOT / "assets" / "evolution-candidates.json"
+from evolution_io import REPO_ROOT
+
+MANIFEST = REPO_ROOT / "assets" / "evolution-manifest.json"
+CANDIDATES = REPO_ROOT / "assets" / "evolution-candidates.json"
 
 
 def strip_for_manifest(sig: dict) -> dict:

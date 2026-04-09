@@ -16,21 +16,15 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from evolution_io import REPO_ROOT, load_json
 from lineage_utils import build_run_block
 
-ROOT = Path(__file__).resolve().parent.parent
-MANIFEST = ROOT / "assets" / "evolution-manifest.json"
-CANDIDATES = ROOT / "assets" / "evolution-candidates.json"
-OUT = ROOT / "assets" / "analysis-snapshot.json"
-SEDIMENT = ROOT / "data" / "sediment.json"
-HINT_RULES_PATH = ROOT / "scripts" / "evolution-hint-rules.json"
-HINT_DECISIONS_PATH = ROOT / "assets" / "evolution-hint-decisions.json"
-
-
-def load_json(p: Path) -> dict[str, Any]:
-    if not p.is_file():
-        return {}
-    return json.loads(p.read_text(encoding="utf-8"))
+MANIFEST = REPO_ROOT / "assets" / "evolution-manifest.json"
+CANDIDATES = REPO_ROOT / "assets" / "evolution-candidates.json"
+OUT = REPO_ROOT / "assets" / "analysis-snapshot.json"
+SEDIMENT = REPO_ROOT / "data" / "sediment.json"
+HINT_RULES_PATH = REPO_ROOT / "scripts" / "evolution-hint-rules.json"
+HINT_DECISIONS_PATH = REPO_ROOT / "assets" / "evolution-hint-decisions.json"
 
 
 ALLOWED_REVIEW_STATE = frozenset({"pending", "noise", "queued_for_manifest"})

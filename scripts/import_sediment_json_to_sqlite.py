@@ -12,8 +12,9 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-SEDIMENT = ROOT / "data" / "sediment.json"
+from evolution_io import REPO_ROOT
+
+SEDIMENT = REPO_ROOT / "data" / "sediment.json"
 
 from sqlite_store import upsert_sediment  # noqa: E402
 

@@ -11,7 +11,7 @@
     },
     {
       "id": "demo-xinhuanet-politics",
-      "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+      "url": "https://www.xinhuanet.com/politics/news_politics.xml",
       "default_kind": "policy",
       "max_items": 15
     },

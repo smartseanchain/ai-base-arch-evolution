@@ -5,6 +5,11 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
+if ! python3 -c "import jsonschema" 2>/dev/null; then
+  echo "缺少 jsonschema。请执行: python3 -m pip install -r requirements.txt" >&2
+  exit 1
+fi
+
 python3 -m compileall -q scripts
 python3 scripts/validate-evolution-manifest.py
 python3 scripts/validate-evolution-candidates.py

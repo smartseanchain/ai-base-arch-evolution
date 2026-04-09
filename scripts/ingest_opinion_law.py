@@ -5,7 +5,7 @@
 - 仅作「候选线索」：摘要来自提要或标题拼接，非全文法理分析。
 - 须人工审阅后再 merge 进 evolution-manifest.json。
 - 可选配置 require_route_match：为 true 时仅写入至少命中一条 routes 的 RSS/法规线索（减噪）。
-- 依赖：Python 3.9+ 标准库（urllib + xml）。
+- 依赖：Python 3.9+ 标准库（urllib + xml）；配置中 RSS/法规 URL 须为 **https**。
 """
 from __future__ import annotations
 
@@ -19,21 +19,47 @@ import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
-from pathlib import Path
 from urllib.parse import urlparse
 
-ROOT = Path(__file__).resolve().parent.parent
-CONFIG_PATH = ROOT / "scripts" / "ingest_config.json"
-MAPS_HINTS_PATH = ROOT / "scripts" / "maps_to_hints.json"
-OUT_PATH = ROOT / "assets" / "evolution-candidates.json"
-SUMMARY_PATH = ROOT / "ingest-summary.json"
+from evolution_io import REPO_ROOT
 
-UA = "Mozilla/5.0 (compatible; EvolutionIngest/1.0; +https://example.local)"
+CONFIG_PATH = REPO_ROOT / "scripts" / "ingest_config.json"
+MAPS_HINTS_PATH = REPO_ROOT / "scripts" / "maps_to_hints.json"
+OUT_PATH = REPO_ROOT / "assets" / "evolution-candidates.json"
+SUMMARY_PATH = REPO_ROOT / "ingest-summary.json"
+
+INGEST_PROJECT_URL = "https://smartseanchain.github.io/ai-base-arch-evolution/"
+UA = (
+    "Mozilla/5.0 (compatible; EvolutionIngest/1.0; +"
+    + INGEST_PROJECT_URL
+    + ")"
+)
 TIMEOUT = 25
 _KEEP_REVIEW = frozenset({"pending", "noise", "queued_for_manifest"})
 
 
+def assert_https_ingest_url(url: str, label: str) -> None:
+    """仅允许 https，降低误配与内网 SSRF 风险；须在发起请求前调用。"""
+    parsed = urlparse(url)
+    if parsed.scheme.lower() != "https":
+        raise ValueError(f"{label}: 仅允许 https URL，拒绝 {url!r}")
+    if not (parsed.hostname or "").strip():
+        raise ValueError(f"{label}: URL 缺少有效主机名: {url!r}")
+
+
+def validate_config_fetch_urls(cfg: dict) -> None:
+    for feed in cfg.get("rss_feeds") or []:
+        u = feed.get("url")
+        if u:
+            assert_https_ingest_url(str(u), f"RSS·{feed.get('id', u)}")
+    for page in cfg.get("law_html_pages") or []:
+        u = page.get("url")
+        if u:
+            assert_https_ingest_url(str(u), f"法规页·{page.get('id', u)}")
+
+
 def fetch_bytes(url: str) -> bytes:
+    assert_https_ingest_url(url, "fetch")
     req = urllib.request.Request(url, headers={"User-Agent": UA})
     with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
         return resp.read()
@@ -224,6 +250,7 @@ def main(argv: list[str] | None = None) -> None:
     args = ap.parse_args(argv)
 
     cfg = load_config()
+    validate_config_fetch_urls(cfg)
     hints_cfg = load_maps_to_hints()
     routes = cfg.get("routes") or []
     require_route_match = bool(cfg.get("require_route_match"))
@@ -261,7 +288,7 @@ def main(argv: list[str] | None = None) -> None:
         try:
             raw = fetch_bytes(url)
             time.sleep(0.8)
-        except (urllib.error.URLError, OSError) as e:
+        except (urllib.error.URLError, OSError, ValueError) as e:
             rep["error"] = str(e)
             feed_reports.append(rep)
             print(f"[RSS 跳过] {fid}: {e}", file=sys.stderr)
@@ -325,7 +352,7 @@ def main(argv: list[str] | None = None) -> None:
         try:
             raw = fetch_bytes(url)
             time.sleep(1.0)
-        except (urllib.error.URLError, OSError) as e:
+        except (urllib.error.URLError, OSError, ValueError) as e:
             lrep["error"] = str(e)
             law_reports.append(lrep)
             print(f"[页面跳过] {pid}: {e}", file=sys.stderr)

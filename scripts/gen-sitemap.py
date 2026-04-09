@@ -15,8 +15,9 @@ import os
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-REGISTRY_PATH = ROOT / "scripts" / "evolution-registry.json"
+from evolution_io import REPO_ROOT
+
+REGISTRY_PATH = REPO_ROOT / "scripts" / "evolution-registry.json"
 
 PRIORITY: dict[str, tuple[str, str]] = {
     "index.html": ("weekly", "1.0"),
@@ -78,7 +79,7 @@ def main() -> None:
             sys.exit(1)
 
     pages = sorted(
-        p.name for p in ROOT.glob("*.html") if p.name not in SKIP_HTML
+        p.name for p in REPO_ROOT.glob("*.html") if p.name not in SKIP_HTML
     )
     if "index.html" in pages:
         pages.remove("index.html")
@@ -97,7 +98,7 @@ def main() -> None:
         )
     lines.append("</urlset>")
 
-    out = ROOT / "sitemap.xml"
+    out = REPO_ROOT / "sitemap.xml"
     out.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"已写入 {out}（{len(pages)} 条 URL）")
 

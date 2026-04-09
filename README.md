@@ -10,8 +10,14 @@
 
 ## 本地校验与流水线
 
+首次克隆或拉取含 `requirements.txt` 的更新后请安装校验依赖（**jsonschema**，用于 `analysis-snapshot` 与 `docs/schemas/` 对齐）：
+
 ```bash
-make validate    # 等同 bash scripts/run_validate.sh（compileall + 全套 JSON/对账/顶栏/单测/analysis + 快照契约）
+python3 -m pip install -r requirements.txt
+```
+
+```bash
+make validate    # 等同 bash scripts/run_validate.sh（compileall + 全套 JSON/对账/顶栏/单测/analysis + 快照 JSON Schema）
 make ingest      # 抓取候选（需外网，依赖 scripts/ingest_config.json）
 make ingest-full # 同上但单次 --full-pool（忽略 require_route_match）
 make analyze     # 校验 + 分析引擎 --sediment + 长期趋势

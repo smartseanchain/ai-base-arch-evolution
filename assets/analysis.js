@@ -1,5 +1,27 @@
 /**
  * 分析引擎仪表盘：读取 analysis-snapshot.json，渲染热力与共现。
+ *
+ * @typedef {Object} AnalysisRunLineage
+ * @property {string} [run_id] 单次 analyze 标识（与沉淀/SQLite 对齐）
+ * @property {string} [repo_revision] git short HEAD 或 unknown
+ *
+ * @typedef {Object} AnalysisSourcesMeta
+ * @property {number} [combined_for_analysis] 合并后参与统计的条数
+ * @property {number} [candidates_in_file] 候选文件内条数
+ * @property {Object<string,number>} [candidate_review_breakdown] pending / noise / queued_for_manifest
+ * @property {Object} [hint_decisions] total、by_action（done / rejected / deferred）
+ *
+ * @typedef {Object} AnalysisSnapshot
+ * @property {number} schema_version
+ * @property {string} generated_at ISO 时间
+ * @property {AnalysisRunLineage} [run]
+ * @property {AnalysisSourcesMeta} [sources]
+ * @property {Array<{page:string,count:number}>} [module_heat]
+ * @property {Array<{factor:string,count:number}>} [factor_heat]
+ * @property {Object<string,number>} [kind_distribution]
+ * @property {Array<{pair:string[],count:number}>} [cooccurrence]
+ * @property {Array<string|Object>} [evolution_hints]
+ * @property {Array<{rule_id:string,text?:string}>} [hint_closure_gaps]
  */
 (function () {
   "use strict";

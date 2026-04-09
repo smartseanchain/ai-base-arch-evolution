@@ -17,15 +17,16 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-REGISTRY_PATH = ROOT / "scripts" / "evolution-registry.json"
-MANIFEST = ROOT / "assets" / "evolution-manifest.json"
-CANDIDATES = ROOT / "assets" / "evolution-candidates.json"
-LAB = ROOT / "assets" / "lab.js"
-INGEST_CONFIG = ROOT / "scripts" / "ingest_config.json"
-MAPS_HINTS = ROOT / "scripts" / "maps_to_hints.json"
-GEN_SITEMAP = ROOT / "scripts" / "gen-sitemap.py"
-HINT_RULES = ROOT / "scripts" / "evolution-hint-rules.json"
+from evolution_io import REPO_ROOT
+
+REGISTRY_PATH = REPO_ROOT / "scripts" / "evolution-registry.json"
+MANIFEST = REPO_ROOT / "assets" / "evolution-manifest.json"
+CANDIDATES = REPO_ROOT / "assets" / "evolution-candidates.json"
+LAB = REPO_ROOT / "assets" / "lab.js"
+INGEST_CONFIG = REPO_ROOT / "scripts" / "ingest_config.json"
+MAPS_HINTS = REPO_ROOT / "scripts" / "maps_to_hints.json"
+GEN_SITEMAP = REPO_ROOT / "scripts" / "gen-sitemap.py"
+HINT_RULES = REPO_ROOT / "scripts" / "evolution-hint-rules.json"
 
 
 def hint_rules_structural_errors(doc: dict) -> list[str]:
@@ -150,7 +151,7 @@ def check_signals(
                     f"{label} {sid}: 页面不在 evolution-registry.json · {rel}"
                 )
                 continue
-            fp = ROOT / rel
+            fp = REPO_ROOT / rel
             if not fp.is_file():
                 errs.append(f"{label} {sid}: 页面文件不存在 · {rel}")
         for fac in mt.get("lab_factors") or []:
@@ -176,7 +177,7 @@ def main() -> None:
     reg_fac = {str(f).strip() for f in raw_fac if str(f).strip()}
 
     for rel in sorted(allowed_pages):
-        fp = ROOT / rel
+        fp = REPO_ROOT / rel
         if not fp.is_file():
             print(
                 f"错误: registry 列出但仓库无此文件 · {rel}",
@@ -216,7 +217,7 @@ def main() -> None:
 
     all_errs: list[str] = []
 
-    SITE_NAV_PARTIAL = ROOT / "partials" / "site-nav.inc.html"
+    SITE_NAV_PARTIAL = REPO_ROOT / "partials" / "site-nav.inc.html"
     if SITE_NAV_PARTIAL.is_file():
         nav_hrefs = set(
             re.findall(

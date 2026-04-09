@@ -13,10 +13,11 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-DECISIONS_PATH = ROOT / "assets" / "evolution-hint-decisions.json"
-REGISTRY_PATH = ROOT / "scripts" / "evolution-registry.json"
-HINT_RULES_PATH = ROOT / "scripts" / "evolution-hint-rules.json"
+from evolution_io import REPO_ROOT
+
+DECISIONS_PATH = REPO_ROOT / "assets" / "evolution-hint-decisions.json"
+REGISTRY_PATH = REPO_ROOT / "scripts" / "evolution-registry.json"
+HINT_RULES_PATH = REPO_ROOT / "scripts" / "evolution-hint-rules.json"
 
 ALLOWED_ACTIONS = frozenset({"done", "rejected", "deferred"})
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
