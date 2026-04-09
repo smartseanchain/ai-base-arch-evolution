@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-09T00:37:04Z",
+  "generated_at": "2026-04-09T00:42:02Z",
   "sources": {
     "manifest_signals": 3,
-    "candidate_signals": 51,
-    "combined_for_analysis": 54
+    "candidate_signals": 72,
+    "combined_for_analysis": 75
   },
   "module_heat": [
     {
@@ -17,27 +17,27 @@
     },
     {
       "page": "decade.html",
-      "count": 3
+      "count": 7
     },
     {
       "page": "nexus.html",
-      "count": 3
+      "count": 5
     },
     {
       "page": "edu-nexus.html",
-      "count": 3
+      "count": 5
     },
     {
       "page": "work-infra-energy.html",
-      "count": 2
+      "count": 4
+    },
+    {
+      "page": "national-strategy-opinion.html",
+      "count": 3
     },
     {
       "page": "decade-scenes.html",
       "count": 2
-    },
-    {
-      "page": "national-strategy-opinion.html",
-      "count": 1
     },
     {
       "page": "evolution-loop.html",
@@ -59,14 +59,14 @@
     },
     {
       "factor": "reg",
+      "count": 8
+    },
+    {
+      "factor": "esg_compute_carbon",
       "count": 4
     },
     {
       "factor": "water_cooling",
-      "count": 2
-    },
-    {
-      "factor": "esg_compute_carbon",
       "count": 2
     },
     {
@@ -75,8 +75,8 @@
     }
   ],
   "kind_distribution": {
-    "opinion": 30,
-    "policy": 1,
+    "opinion": 31,
+    "policy": 21,
     "tech": 22,
     "law": 1
   },
@@ -111,6 +111,13 @@
     },
     {
       "pair": [
+        "esg_compute_carbon",
+        "reg"
+      ],
+      "count": 2
+    },
+    {
+      "pair": [
         "attention_minors",
         "reg"
       ],
@@ -120,7 +127,7 @@
   "evolution_hints": [
     "多条信号同时指向「监管(reg)」与「AI」——建议在综合推演 §6 检查是否已有监管×AI 配方，若无则按 §11 扩展插槽补一条传导链。",
     "算力—水—碳因子共现：与十年场景·算力能源、职基能同读，关注地方邻避叙事。",
-    "当前共 54 条信号（含候选），建议每季度做一次 §7 复合表对行，删除已失效叙事。",
+    "当前共 75 条信号（含候选），建议每季度做一次 §7 复合表对行，删除已失效叙事。",
     "当前热力靠前的沙盘因子：talent、gig_multiemployer、ai——打开沙盘工坊勾选对应项做一轮压测。"
   ]
 }

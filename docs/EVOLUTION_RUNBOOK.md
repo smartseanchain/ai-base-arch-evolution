@@ -29,6 +29,8 @@
 
 见仓库根 [README.md](../README.md) 与 [scripts/README.md](../scripts/README.md)。
 
+在 GitHub 上开 PR 修改 manifest/候选时，仓库已配置 [PR 模板](../.github/pull_request_template.md)，请勾选自检项。
+
 ## 对账脚本
 
 `python3 scripts/check_manifest_drift.py`：检查 `maps_to.pages` 文件是否存在、`lab_factors` 是否在 `lab.js` 定义。已并入 `make validate` 与 CI。

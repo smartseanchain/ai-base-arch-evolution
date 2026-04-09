@@ -127,7 +127,7 @@ python3 scripts/validate-evolution-candidates.py</pre>
         <pre style="margin:0.75rem 0 0;font-size:0.82rem;line-height:1.65;overflow-x:auto">python3 scripts/merge_candidates_to_manifest.py ing_xxxxxxxxxxxx
 python3 scripts/validate-evolution-manifest.py
 python3 scripts/analysis_engine.py --sediment</pre>
-        <p class="muted" style="margin:1rem 0 0;font-size:0.88rem">定时进化：在 CI 或 cron 中跑抓取（<code>make ingest</code>），对 <code>evolution-candidates.json</code> 开 PR，<strong>勿</strong>自动 merge 进 manifest。GitHub Actions 可手动 <strong>Run workflow</strong>：<code>ingest-pipeline.yml</code>（artifact 下载候选）。分析侧与抓取解耦：<code>bash scripts/run_update_pipeline.sh</code>（<code>make analyze</code>），见 <a href="analysis-hub.html">分析引擎</a>。<strong>持续更新</strong>详见 <a href="analysis-hub.html#continuous">分析引擎 · §6</a>。</p>
+        <p class="muted" style="margin:1rem 0 0;font-size:0.88rem">定时进化：在 CI 或 cron 中跑抓取（<code>make ingest</code>），对 <code>evolution-candidates.json</code> 开 PR，<strong>勿</strong>自动 merge 进 manifest。GitHub Actions 可手动 <strong>Run workflow</strong>：<code>ingest-pipeline.yml</code>（artifact 下载候选）。分析侧与抓取解耦：<code>bash scripts/run_update_pipeline.sh</code>（<code>make analyze</code>），见 <a href="analysis-hub.html">分析引擎</a>。<strong>持续更新</strong>详见 <a href="analysis-hub.html#continuous">分析引擎 · §6</a>。<strong>双周反哺</strong>见 <a href="docs/EVOLUTION_RUNBOOK.md">运行手册</a>；PR 合并 manifest/候选前请跑通 <code>make validate</code>（含 <code>check_manifest_drift.py</code> 对账）。</p>
       </div>
       <div class="callout extend" style="margin-top:1rem">
         <strong>合规：</strong>遵守各站点 robots.txt 与版权；法规正文以<strong>权威发布机关</strong>页面为准，本管道仅作<strong>线索聚合</strong>，不构成法律意见。

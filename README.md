@@ -46,6 +46,7 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 - `ci.yml`：PR/推送时校验 JSON、**manifest/候选对账**（页面与 `lab.js`）、`compileall`、`analysis_engine --check`
 - `update-pipeline.yml`：定时/手动分析 artifact
 - `ingest-pipeline.yml`：手动抓取候选 artifact
+- 在 GitHub 开 PR 时自动带出 **`.github/pull_request_template.md`**（合并 manifest/候选请勾选自检项）
 
 ## 许可与合规
 

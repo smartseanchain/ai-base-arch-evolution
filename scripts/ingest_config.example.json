@@ -9,6 +9,12 @@
       "max_items": 20
     },
     {
+      "id": "demo-xinhuanet-politics",
+      "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+      "default_kind": "policy",
+      "max_items": 15
+    },
+    {
       "id": "demo-chinanews",
       "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
       "default_kind": "opinion",

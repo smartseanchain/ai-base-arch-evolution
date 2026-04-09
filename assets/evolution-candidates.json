@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated": "2026-04-09",
-  "fetched_at": "2026-04-09T00:36:21Z",
+  "fetched_at": "2026-04-09T00:41:56Z",
   "notes": "由 scripts/ingest_opinion_law.py 生成；merge 前请人工筛选。",
   "signals": [
     {
@@ -17,7 +17,7 @@
         "feed_id": "github-blog",
         "url": "https://github.blog/feed/",
         "item_link": "https://github.blog/news-insights/company-news/github-universe-is-back-we-want-you-to-take-the-stage/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -37,7 +37,7 @@
         "feed_id": "github-blog",
         "url": "https://github.blog/feed/",
         "item_link": "https://github.blog/news-insights/product-news/whats-coming-to-our-github-actions-2026-security-roadmap/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -64,7 +64,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/cj/2026/04-09/10600697.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -90,7 +90,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600677.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -130,7 +130,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/life/2026/04-09/10600688.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -150,7 +150,7 @@
         "feed_id": "github-blog",
         "url": "https://github.blog/feed/",
         "item_link": "https://github.blog/engineering/architecture-optimization/the-uphill-climb-of-making-diff-lines-performant/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -170,7 +170,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600683.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -196,7 +196,7 @@
         "feed_id": "w3c-blog",
         "url": "https://www.w3.org/blog/feed/",
         "item_link": "https://www.w3.org/blog/2026/the-w3c-tag-meeting-in-london-march-2026/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -223,7 +223,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600694.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -243,7 +243,7 @@
         "feed_id": "w3c-blog",
         "url": "https://www.w3.org/blog/feed/",
         "item_link": "https://www.w3.org/blog/2026/strengthening-community-engagement-at-tpac-2025-looking-back-at-the-ie-inclusion-funds/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -254,6 +254,32 @@
           "ai",
           "gig_multiemployer",
           "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_34ca24bd1c02",
+      "kind": "policy",
+      "title": "为什么不再公布无症状感染者相关信息？中疾控专家解读",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129207083.htm>近日，我们接到群众对新冠肺炎疫情数据的有关疑问，现请中国疾控中心应急中心李群主任作出解答。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129207083.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [
+          "decade.html",
+          "edu-nexus.html",
+          "nexus.html"
+        ],
+        "lab_factors": [
+          "reg"
         ]
       }
     },
@@ -270,7 +296,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/cj/2026/04-09/10600691.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -290,7 +316,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/sh/2026/04-09/10600698.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -310,7 +336,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600676.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -330,7 +356,7 @@
         "feed_id": "w3c-blog",
         "url": "https://www.w3.org/blog/feed/",
         "item_link": "https://www.w3.org/blog/2025/w3c-seeking-community-input-for-tag-appointments/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -350,11 +376,38 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/sh/2026/04-09/10600695.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
         "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_4ec82b467d61",
+      "kind": "policy",
+      "title": "权威访谈丨全面落实乡村振兴责任——中央农办负责人就《乡村振兴责任制实施办法》答记者问",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/13/c_1129205935.htm>近日，中共中央办公厅、国务院办公厅印发的《乡村振兴责任制实施办法》对外公布。实行乡村振兴责任制的总体要求是什么？办法对落实乡村振兴部门和地方的责任分别作出了哪些规定？办法在强化考核监督方面作出了哪些规定？中央农办负责人就相关问题回答了新华社记者提问。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/13/c_1129205935.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [
+          "decade.html",
+          "national-strategy-opinion.html",
+          "work-infra-energy.html"
+        ],
+        "lab_factors": [
+          "esg_compute_carbon",
+          "reg"
+        ]
       }
     },
     {
@@ -370,7 +423,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600680.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -390,7 +443,27 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/cj/2026/04-09/10600705.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_5101769e9008",
+      "kind": "policy",
+      "title": "全国多地举行南京大屠杀死难者国家公祭日悼念活动",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/13/c_1129205936.htm>2022年12月13日是第九个南京大屠杀死难者国家公祭日。这一天，全国多地举行悼念活动，在悼念中敬畏生命，在哀思中凝聚奋进之力。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/13/c_1129205936.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -410,7 +483,7 @@
         "feed_id": "w3c-blog",
         "url": "https://www.w3.org/blog/feed/",
         "item_link": "https://www.w3.org/blog/2026/epub-and-html-survey-results-and-next-steps/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -437,7 +510,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "http://www.chinanews.com.cn/tp/hd2011/2026/04-09/1187583.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -457,7 +530,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/iframe/2026/04-09/10600678.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -477,7 +550,7 @@
         "feed_id": "w3c-blog",
         "url": "https://www.w3.org/blog/feed/",
         "item_link": "https://www.w3.org/blog/2026/advisory-board-publishes-position-statement-on-ai-in-standards-work/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -504,7 +577,27 @@
         "feed_id": "github-blog",
         "url": "https://github.blog/feed/",
         "item_link": "https://github.blog/developer-skills/github/github-for-beginners-getting-started-with-github-security/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_615c83c2be06",
+      "kind": "policy",
+      "title": "北京今天最高温0℃山区有零星小雪 明起三天冷空气又将来降温",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129206415.htm>今天（12月14日），北京气温将有所回升，最高气温0℃，下午天空云量增多，山区有零星小雪。明起三天，又有冷空气影响北京，北风将再度增大，气温逐渐下降。本周冷空气频繁，气温持续较低，公众请注意防寒保暖。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129206415.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -524,7 +617,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600679.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -544,7 +637,7 @@
         "feed_id": "w3c-blog",
         "url": "https://www.w3.org/blog/feed/",
         "item_link": "https://www.w3.org/blog/2026/past-present-and-future-an-update-on-w3cs-strategic-objectives-on-the-37th-anniversary-of-the-web-proposal/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -564,7 +657,7 @@
         "feed_id": "github-blog",
         "url": "https://github.blog/feed/",
         "item_link": "https://github.blog/ai-and-ml/github-copilot/agent-driven-development-in-copilot-applied-science/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -575,6 +668,32 @@
           "ai",
           "gig_multiemployer",
           "talent"
+        ]
+      }
+    },
+    {
+      "id": "ing_7659342d5cc3",
+      "kind": "policy",
+      "title": "加强和完善现代金融监管（认真学习宣传贯彻党的二十大精神）",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129206432.htm>党的二十大报告提出，加强和完善现代金融监管，强化金融稳定保障体系，依法将各类金融活动全部纳入监管，守住不发生系统性风险底线。必须按照党中央决策部署，深化金融体制改革，推进金融安全网建设，持续强化金融风险防控能力。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129206432.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [
+          "decade.html",
+          "edu-nexus.html",
+          "nexus.html"
+        ],
+        "lab_factors": [
+          "reg"
         ]
       }
     },
@@ -591,7 +710,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/jk/2026/04-09/10600681.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -611,7 +730,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600690.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -637,7 +756,7 @@
         "feed_id": "w3c-blog",
         "url": "https://www.w3.org/blog/feed/",
         "item_link": "https://www.w3.org/blog/2025/november-2025-kobe-devmeetup/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -657,7 +776,47 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600685.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_7bb75d572de1",
+      "kind": "policy",
+      "title": "心血管病患者一旦感染新冠病毒，居家应该注意什么，如何避免基础病加重，何时需要去就医……【科学防疫小贴士】",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129207057.htm>心血管病患者如何做好防护避免被新冠病毒感染。一旦感染应该注意什么，基础病病情加重怎么办，如何评估是否需要去医院……北京安贞医院常务副院长周玉杰来解答。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129207057.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_7cda86bd564d",
+      "kind": "policy",
+      "title": "国务院联防联控机制：原有心血管基础疾病的患者得了新冠也不必焦虑",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/13/c_1129205924.htm>12月13日，国务院联防联控机制召开新闻发布会，介绍重点人群健康管理有关情况。北京安贞医院常务副院长周玉杰表示，原有心血管基础疾病的患者得了新冠也不必焦虑。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/13/c_1129205924.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -677,7 +836,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "http://www.chinanews.com.cn/tp/hd2011/2026/04-09/1187579.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -697,7 +856,7 @@
         "feed_id": "w3c-blog",
         "url": "https://www.w3.org/blog/feed/",
         "item_link": "https://www.w3.org/blog/2025/w3c-standard-odrl-policy-gaining-industry-adoption/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -709,6 +868,26 @@
           "gig_multiemployer",
           "talent"
         ]
+      }
+    },
+    {
+      "id": "ing_80f55c21f0ef",
+      "kind": "policy",
+      "title": "2亿年前蝈蝈嗓门有多高？化石研究得出答案",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129206396.htm>12月13日，《美国科学院院报》（PNAS）在线发表了一项中国科学院南京地质古生物研究所的成果，科研人员对全球各大博物馆1000多块螽斯化石进行研究，重建了其鸣声频率的宏演化历史，发现在2.4亿年前的三叠纪，螽斯可以发出高达12—16kHz的鸣声,这也是整个动物界最古老的高频声音记录。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129206396.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
       }
     },
     {
@@ -724,7 +903,7 @@
         "feed_id": "github-blog",
         "url": "https://github.blog/feed/",
         "item_link": "https://github.blog/security/supply-chain-security/a-year-of-open-source-vulnerability-trends-cves-advisories-and-malware/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -751,11 +930,58 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "http://www.chinanews.com.cn/tp/hd2011/2026/04-09/1187572.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
         "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_8a5b5797be8b",
+      "kind": "policy",
+      "title": "学习进行时｜二十大后重要外交活动，这些关键词习近平总书记反复提及",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129206651.htm>二十大后重要外交活动，这些关键词习近平总书记反复提及</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129206651.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_91451f6babe1",
+      "kind": "policy",
+      "title": "中共中央办公厅 国务院办公厅印发《乡村振兴责任制实施办法》",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129206017.htm>近日，中共中央办公厅、国务院办公厅印发了《乡村振兴责任制实施办法》，并发出通知，要求各地区各部门认真遵照执行。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129206017.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [
+          "decade.html",
+          "national-strategy-opinion.html",
+          "work-infra-energy.html"
+        ],
+        "lab_factors": [
+          "esg_compute_carbon",
+          "reg"
+        ]
       }
     },
     {
@@ -771,7 +997,27 @@
         "feed_id": "w3c-blog",
         "url": "https://www.w3.org/blog/feed/",
         "item_link": "https://www.w3.org/blog/2025/tpac-2025-breakouts-recap/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_9e265366e4cb",
+      "kind": "policy",
+      "title": "微视频丨勿忘！自强！",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/13/c_1129205916.htm>85年前，侵华日军制造了南京大屠杀惨案，六朝古都满目疮痍，30万同胞惨遭屠戮，是城市之殇，也是民族之恸。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/13/c_1129205916.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -791,7 +1037,7 @@
         "feed_id": "w3c-blog",
         "url": "https://www.w3.org/blog/feed/",
         "item_link": "https://www.w3.org/blog/2025/ai-at-tpac-2025/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -818,7 +1064,7 @@
         "feed_id": "github-blog",
         "url": "https://github.blog/feed/",
         "item_link": "https://github.blog/security/supply-chain-security/securing-the-open-source-supply-chain-across-github/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -845,7 +1091,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/sh/2026/04-09/10600692.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -865,7 +1111,7 @@
         "feed_id": "w3c-blog",
         "url": "https://www.w3.org/blog/feed/",
         "item_link": "https://www.w3.org/blog/2025/what-happens-when-you-put-developers-standards-and-sushi-in-one-room/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -885,7 +1131,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/sh/2026/04-09/10600686.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -905,7 +1151,7 @@
         "feed_id": "github-blog",
         "url": "https://github.blog/feed/",
         "item_link": "https://github.blog/news-insights/company-news/updates-to-github-copilot-interaction-data-usage-policy/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -932,7 +1178,47 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/life/2026/04-09/10600693.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_c288ce41e6be",
+      "kind": "policy",
+      "title": "明起新一轮冷空气接踵而至 我国大部将迎大风降温",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129206671.htm>今天（12月14日），全国大部降水仍稀少，雨雪零散分布，冷空气影响也进入尾声阶段。不过，从明天开始，新一轮实力更强的冷空气接踵而至，将率先从新疆北部展开，随后逐渐给我国大部地区带来大风降温天气，同时西南、江汉等地降水也将增多。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129206671.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_c83038c9751d",
+      "kind": "policy",
+      "title": "孙春兰在北京调研时强调 细化致微落实各项优化措施 确保疫情防控转段平稳有序",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/13/c_1129205952.htm>国务院副总理孙春兰13日到北京市调研指导疫情防控工作，转达习近平总书记对首都人民的关心问候，看望慰问奋战在抗疫一线的医务人员和社区工作者，考察北京朝阳医院、首都儿科研究所、清华大学附属垂杨柳医院、连锁药房、建国门社区卫生服务中心，实地了解发热门诊设置、就诊转诊流程、分级诊疗运行、亚定点医院建设、药品储备供应等情况。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/13/c_1129205952.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -952,7 +1238,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "http://www.chinanews.com.cn/tp/hd2011/2026/04-09/1187575.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -972,7 +1258,27 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/jk/2026/04-09/10600704.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_d2e190ad4e16",
+      "kind": "policy",
+      "title": "老年人现在打疫苗晚不晚？受基础病影响的能不能打？独居老人是否有必要接种？【科学防疫小贴士】",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129207047.htm>在目前新冠流行的情况下，建议没有完成接种的老年人尽快接种，尽快按照程序完成全程和加强免疫，使疫苗的保护作用得到更好发挥。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129207047.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -992,7 +1298,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/fz/2026/04-09/10600682.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -1004,6 +1310,46 @@
           "gig_multiemployer",
           "talent"
         ]
+      }
+    },
+    {
+      "id": "ing_d6ec3e2fd8e4",
+      "kind": "policy",
+      "title": "习近平将向《生物多样性公约》第十五次缔约方大会第二阶段高级别会议开幕式致辞",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129206906.htm>外交部发言人华春莹14日宣布：国家主席习近平将于12月15日以视频方式向《生物多样性公约》第十五次缔约方大会第二阶段高级别会议开幕式致辞。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129206906.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_d8b43980833f",
+      "kind": "policy",
+      "title": "国家卫健委发布新冠病毒疫苗第二剂次加强免疫接种实施方案",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129207117.htm>为深入贯彻落实党中央、国务院决策部署，进一步做好新冠肺炎疫情应对工作，保障人民群众生命安全和身体健康，经研究，现提出新冠病毒疫苗第二剂次加强免疫接种实施方案。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129207117.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
       }
     },
     {
@@ -1029,6 +1375,46 @@
       }
     },
     {
+      "id": "ing_e48686c195f4",
+      "kind": "policy",
+      "title": "关于BQ.1，你需要知道的几件事——",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129206954.htm>近日网络流传：代号“地狱犬”的新冠变异毒株，在日本“杀疯了”？消息称，一种名为BQ.1.1的新型变异毒株已经出现。该毒株的传染性和致死率都很高，被称作“地狱犬”，已经在日本“杀疯了”。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129206954.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_e58202951a84",
+      "kind": "policy",
+      "title": "微视频｜“新”在中国",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129207254.htm>新时代的中国，日新月异。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129207254.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
       "id": "ing_e6fffb3b89a6",
       "kind": "opinion",
       "title": "首批3.79万剂艾滋病预防药物运抵南非",
@@ -1041,7 +1427,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600684.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -1061,7 +1447,27 @@
         "feed_id": "w3c-blog",
         "url": "https://www.w3.org/blog/feed/",
         "item_link": "https://www.w3.org/blog/2026/2025-w3c-membership-survey/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
+      }
+    },
+    {
+      "id": "ing_ea7919e1d6ca",
+      "kind": "policy",
+      "title": "疫情防控措施优化 各地复商复市进行时",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129207168.htm>近日，全国多地加大复商复市力度，有序恢复正常生产生活秩序。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129207168.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -1081,7 +1487,7 @@
         "feed_id": "chinanews-scroll",
         "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
         "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600689.shtml",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [],
@@ -1101,7 +1507,7 @@
         "feed_id": "github-blog",
         "url": "https://github.blog/feed/",
         "item_link": "https://github.blog/ai-and-ml/github-copilot/github-copilot-cli-combines-model-families-for-a-second-opinion/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -1113,6 +1519,26 @@
           "gig_multiemployer",
           "talent"
         ]
+      }
+    },
+    {
+      "id": "ing_f3beb3226e3c",
+      "kind": "policy",
+      "title": "6年、10年、12年，他们都经历了什么？",
+      "summary": "<a href=http://www.news.cn/politics/2022-12/14/c_1129206833.htm>为了再次“飞天”圆梦，指令长陈冬准备了6年，刘洋已经准备整整10年，而首次飞向太空的蔡旭哲为了这一天，已经刻苦训练了12年。</a>",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "xinhuanet-politics",
+        "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+        "item_link": "http://www.news.cn/politics/2022-12/14/c_1129206833.htm",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
       }
     },
     {
@@ -1128,7 +1554,7 @@
         "feed_id": "github-blog",
         "url": "https://github.blog/feed/",
         "item_link": "https://github.blog/ai-and-ml/github-copilot/run-multiple-agents-at-once-with-fleet-in-copilot-cli/",
-        "fetched_at": "2026-04-09T00:36:21Z"
+        "fetched_at": "2026-04-09T00:41:56Z"
       },
       "maps_to": {
         "pages": [
@@ -1140,6 +1566,26 @@
           "gig_multiemployer",
           "talent"
         ]
+      }
+    },
+    {
+      "id": "ing_fb99a6ab3f0a",
+      "kind": "opinion",
+      "title": "美国驻伊拉克大使馆敦促美国公民尽快撤离",
+      "summary": "当地时间8日，美国驻伊拉克大使馆发表声明称，“由伊朗支持的”伊拉克民兵武装，可能正在策划针对在伊拉克境内的美国公民和美国相关目标发动更多袭击。",
+      "weight": "medium",
+      "since": "2026-04-09",
+      "status": "candidate",
+      "source": {
+        "type": "rss",
+        "feed_id": "chinanews-scroll",
+        "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+        "item_link": "https://www.chinanews.com.cn/gj/2026/04-09/10600706.shtml",
+        "fetched_at": "2026-04-09T00:41:56Z"
+      },
+      "maps_to": {
+        "pages": [],
+        "lab_factors": []
       }
     }
   ]

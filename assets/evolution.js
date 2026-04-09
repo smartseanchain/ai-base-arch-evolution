@@ -135,7 +135,7 @@
       !candOnly.length
     ) {
       container.innerHTML =
-        '<p class="muted">暂无清单数据。运行 <code>python3 scripts/ingest_opinion_law.py</code> 抓取舆情/法规线索，或编辑 <code>assets/evolution-manifest.json</code>。</p>';
+        '<p class="muted">暂无清单数据。运行 <code>make ingest</code> 或 <code>python3 scripts/ingest_opinion_law.py</code> 抓取线索，或编辑 <code>assets/evolution-manifest.json</code>；双周节奏见 <a href="docs/EVOLUTION_RUNBOOK.md">运行手册</a>。</p>';
     }
   }
 
@@ -220,6 +220,16 @@
       var manifest = pair[0];
       var candidates = pair[1];
       var feed = document.getElementById("evolution-feed");
+      if (!manifest && !candidates && feed) {
+        if (window.location.protocol === "file:") {
+          feed.innerHTML =
+            '<p class="muted"><strong>无法加载 JSON：</strong>当前为 <code>file://</code> 协议，浏览器会拦截 <code>fetch</code>。请用本地 HTTP（如 <code>python3 -m http.server</code>）或部署后的 <strong>https</strong> 打开；说明见 <a href="evolution-loop.html">进化闭环</a>。</p>';
+        } else {
+          feed.innerHTML =
+            '<p class="muted"><strong>无法加载清单：</strong><code>assets/evolution-manifest.json</code> 与 <code>evolution-candidates.json</code> 均未取回（路径或网络）。请检查部署根目录是否含 <code>assets/</code>。</p>';
+        }
+        return;
+      }
       renderFeedSections(feed, manifest, candidates);
       if (document.getElementById("simOptions")) {
         injectLabBanner(manifest, candidates);

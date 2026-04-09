@@ -3,6 +3,12 @@
   "notes": "在此配置 RSS 与法规/政策页面 URL；抓取结果写入 assets/evolution-candidates.json。请遵守各站点 robots.txt 与版权；下列源为可公开访问的演示用组合，可按需增删或换为国内权威源。",
   "rss_feeds": [
     {
+      "id": "xinhuanet-politics",
+      "url": "http://www.xinhuanet.com/politics/news_politics.xml",
+      "default_kind": "policy",
+      "max_items": 20
+    },
+    {
       "id": "chinanews-scroll",
       "url": "https://www.chinanews.com.cn/rss/scroll-news.xml",
       "default_kind": "opinion",
