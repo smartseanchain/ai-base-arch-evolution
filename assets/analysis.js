@@ -74,6 +74,39 @@
     meta.innerHTML = metaHtml;
     container.appendChild(meta);
 
+    var gaps = data.hint_closure_gaps;
+    if (Array.isArray(gaps) && gaps.length) {
+      var gbox = document.createElement("div");
+      gbox.className = "card analysis-closure-gaps";
+      gbox.setAttribute("role", "status");
+      var gh = document.createElement("h4");
+      gh.style.marginTop = "0";
+      gh.textContent = "规则闭环缺口（待落实或否决并记录）";
+      gbox.appendChild(gh);
+      var gp = document.createElement("p");
+      gp.className = "muted";
+      gp.style.fontSize = "0.82rem";
+      gp.textContent =
+        "以下规则已触发且配置了 track_closure，但 evolution-hint-decisions 中尚无同 rule_id 的 done/rejected。延期 deferred 不算闭环。";
+      gbox.appendChild(gp);
+      var gul = document.createElement("ul");
+      gul.className = "analysis-closure-gaps-list";
+      gaps.forEach(function (g) {
+        if (!g || !g.rule_id) return;
+        var gli = document.createElement("li");
+        var code = document.createElement("code");
+        code.className = "analysis-closure-rule-id";
+        code.textContent = g.rule_id;
+        gli.appendChild(code);
+        if (g.text) {
+          gli.appendChild(document.createTextNode(" — " + g.text));
+        }
+        gul.appendChild(gli);
+      });
+      gbox.appendChild(gul);
+      container.appendChild(gbox);
+    }
+
     var hints = data.evolution_hints || [];
     if (hints.length) {
       var hc = document.createElement("div");

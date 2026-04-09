@@ -14,10 +14,12 @@ if str(SCRIPTS) not in sys.path:
 from analysis_engine import (  # noqa: E402
     candidate_review_breakdown,
     compute_diff_hints,
+    compute_hint_closure_gaps,
     evaluate_hint_rules,
     hint_decisions_stats,
     load_hint_rules,
     run_analysis,
+    track_closure_rule_ids,
 )
 
 
@@ -36,6 +38,7 @@ class TestRunAnalysis(unittest.TestCase):
         rules = load_hint_rules()
         out = run_analysis([], None, rules)
         self.assertIn("evolution_hints", out)
+        self.assertEqual(out.get("hint_closure_gaps"), [])
         self.assertIn("信号较少", _hints_text(out["evolution_hints"]))
 
     def test_reg_ai_rule_fires(self) -> None:
@@ -49,10 +52,73 @@ class TestRunAnalysis(unittest.TestCase):
                 },
             }
         ]
-        out = run_analysis(sigs, None, rules)
+        out = run_analysis(sigs, None, rules, {})
         blob = _hints_text(out["evolution_hints"])
         self.assertIn("监管", blob)
         self.assertIn("AI", blob)
+        gap_ids = {g["rule_id"] for g in out.get("hint_closure_gaps") or []}
+        self.assertIn("reg_ai", gap_ids)
+
+    def test_reg_ai_closed_by_decision(self) -> None:
+        rules = load_hint_rules()
+        sigs = [
+            {
+                "_origin": "manifest",
+                "maps_to": {
+                    "pages": ["decade.html"],
+                    "lab_factors": ["reg", "reg", "ai"],
+                },
+            }
+        ]
+        dec = {
+            "decisions": [
+                {"rule_id": "reg_ai", "action": "done"},
+            ]
+        }
+        out = run_analysis(sigs, None, rules, dec)
+        gap_ids = {g["rule_id"] for g in out.get("hint_closure_gaps") or []}
+        self.assertNotIn("reg_ai", gap_ids)
+
+    def test_reg_ai_deferred_not_closed(self) -> None:
+        rules = load_hint_rules()
+        sigs = [
+            {
+                "_origin": "manifest",
+                "maps_to": {
+                    "pages": ["decade.html"],
+                    "lab_factors": ["reg", "reg", "ai"],
+                },
+            }
+        ]
+        dec = {"decisions": [{"rule_id": "reg_ai", "action": "deferred"}]}
+        out = run_analysis(sigs, None, rules, dec)
+        gap_ids = {g["rule_id"] for g in out.get("hint_closure_gaps") or []}
+        self.assertIn("reg_ai", gap_ids)
+
+
+class TestHintClosureGaps(unittest.TestCase):
+    def test_compute_basic(self) -> None:
+        hints = [{"rule_id": "a", "text": "t"}]
+        g = compute_hint_closure_gaps(hints, {"a"}, set())
+        self.assertEqual(len(g), 1)
+        self.assertEqual(g[0]["rule_id"], "a")
+
+    def test_untracked_ignored(self) -> None:
+        rules = {
+            "rules": [
+                {
+                    "id": "only",
+                    "factors_min": {"a": 1},
+                    "hint": "hi",
+                }
+            ]
+        }
+        self.assertEqual(track_closure_rule_ids(rules), set())
+        sigs = [
+            {"_origin": "manifest", "maps_to": {"lab_factors": ["a"]}},
+        ]
+        out = run_analysis(sigs, None, rules, {})
+        self.assertEqual(out["hint_closure_gaps"], [])
 
 
 class TestDiffHints(unittest.TestCase):

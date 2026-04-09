@@ -4358,6 +4358,28 @@ tr.synth-cat-row td {
   text-decoration: underline;
 }
 
+.analysis-closure-gaps {
+  margin-bottom: var(--space-5);
+  border-left: 3px solid var(--warn);
+  padding-left: var(--space-4);
+}
+
+.analysis-closure-gaps-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.analysis-closure-rule-id {
+  font-size: 0.85em;
+  padding: 0.05rem 0.35rem;
+  border-radius: 3px;
+  background: rgba(232, 168, 56, 0.12);
+  color: var(--warn);
+}
+
 .analysis-hint-decisions {
   margin-bottom: var(--space-5);
 }

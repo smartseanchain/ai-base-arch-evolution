@@ -2,6 +2,7 @@
 """
 分析引擎：读取 manifest / candidates，生成模块与因子热力、共现与进化提示；
 可选将日摘要写入 data/sediment.json，并双写到 data/evolution.db（SQLite）。
+对 track_closure 规则比对 evolution-hint-decisions，输出 hint_closure_gaps。
 
 输出: assets/analysis-snapshot.json
 """
@@ -38,6 +39,54 @@ def effective_review_state(sig: dict) -> str:
     if r in ALLOWED_REVIEW_STATE:
         return str(r)
     return "pending"
+
+
+def track_closure_rule_ids(rules_doc: dict[str, Any]) -> set[str]:
+    out: set[str] = set()
+    for rule in rules_doc.get("rules") or []:
+        if not rule.get("track_closure"):
+            continue
+        rid = rule.get("id")
+        if rid is not None and str(rid).strip():
+            out.add(str(rid).strip())
+    return out
+
+
+def closed_rule_ids_from_decisions(doc: dict[str, Any]) -> set[str]:
+    """done / rejected 且带 rule_id 视为已闭环（延期 deferred 不算）。"""
+    out: set[str] = set()
+    for row in doc.get("decisions") or []:
+        if not isinstance(row, dict):
+            continue
+        if row.get("action") not in ("done", "rejected"):
+            continue
+        rid = row.get("rule_id")
+        if isinstance(rid, str) and rid.strip():
+            out.add(rid.strip())
+    return out
+
+
+def compute_hint_closure_gaps(
+    json_hints: list[dict[str, Any]],
+    tracked: set[str],
+    closed: set[str],
+) -> list[dict[str, str]]:
+    gaps: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for h in json_hints:
+        if not isinstance(h, dict):
+            continue
+        rid = h.get("rule_id")
+        if not isinstance(rid, str) or not rid.strip():
+            continue
+        rid = rid.strip()
+        if rid not in tracked or rid in closed or rid in seen:
+            continue
+        seen.add(rid)
+        text = h.get("text")
+        t = (text if isinstance(text, str) else "")[:200]
+        gaps.append({"rule_id": rid, "text": t})
+    return gaps
 
 
 def hint_decisions_stats(doc: dict[str, Any]) -> dict[str, Any]:
@@ -236,6 +285,7 @@ def run_analysis(
     signals: list[dict],
     prev_snapshot: dict[str, Any] | None,
     hint_rules: dict[str, Any],
+    decisions_doc: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     mod_c: Counter[str] = Counter()
     fac_c: Counter[str] = Counter()
@@ -265,13 +315,21 @@ def run_analysis(
     manifest_n = sum(1 for s in signals if s.get("_origin") == "manifest")
     candidate_n = sum(1 for s in signals if s.get("_origin") == "candidate")
 
+    json_hints = evaluate_hint_rules(fac_c, len(signals), hint_rules)
+    dd = decisions_doc if isinstance(decisions_doc, dict) else {}
+    tracked = track_closure_rule_ids(hint_rules)
+    closed = closed_rule_ids_from_decisions(dd)
+    hint_closure_gaps = compute_hint_closure_gaps(
+        json_hints, tracked, closed
+    )
+
     hints: list[dict[str, Any]] = []
     hints.extend(
         compute_diff_hints(
             prev_snapshot, factor_heat, cooccurrence, manifest_n, candidate_n
         )
     )
-    hints.extend(evaluate_hint_rules(fac_c, len(signals), hint_rules))
+    hints.extend(json_hints)
 
     top_tpl = hint_rules.get("top_factors_template") or ""
     top_f = [x["factor"] for x in factor_heat[:3]]
@@ -299,6 +357,7 @@ def run_analysis(
         "kind_distribution": kind_distribution,
         "cooccurrence": cooccurrence,
         "evolution_hints": hints[:8],
+        "hint_closure_gaps": hint_closure_gaps,
     }
 
 
@@ -344,8 +403,28 @@ def _expected_snapshot_keys() -> frozenset[str]:
             "kind_distribution",
             "cooccurrence",
             "evolution_hints",
+            "hint_closure_gaps",
         }
     )
+
+
+def validate_hint_closure_gaps(entries: list[Any]) -> None:
+    if not isinstance(entries, list):
+        print("错误: hint_closure_gaps 须为数组", file=sys.stderr)
+        sys.exit(1)
+    for i, g in enumerate(entries):
+        if not isinstance(g, dict) or not isinstance(g.get("rule_id"), str):
+            print(
+                f"错误: hint_closure_gaps[{i}] 须为含 rule_id 字符串的对象",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        if "text" in g and not isinstance(g.get("text"), str):
+            print(
+                f"错误: hint_closure_gaps[{i}].text 须为字符串",
+                file=sys.stderr,
+            )
+            sys.exit(1)
 
 
 def validate_evolution_hints(entries: list[Any]) -> None:
@@ -382,7 +461,8 @@ def main() -> None:
     if not args.check and OUT.is_file():
         prev_snapshot = load_json(OUT)
     hint_rules = load_hint_rules()
-    analysis = run_analysis(signals, prev_snapshot, hint_rules)
+    decisions_doc = load_json(HINT_DECISIONS_PATH)
+    analysis = run_analysis(signals, prev_snapshot, hint_rules, decisions_doc)
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     out = {
@@ -422,6 +502,7 @@ def main() -> None:
             print(f"错误: 分析输出缺字段: {sorted(missing)}", file=sys.stderr)
             sys.exit(1)
         validate_evolution_hints(out.get("evolution_hints") or [])
+        validate_hint_closure_gaps(out.get("hint_closure_gaps") or [])
         src = out["sources"]
         if not isinstance(src, dict) or "combined_for_analysis" not in src:
             print("错误: sources 结构异常", file=sys.stderr)
