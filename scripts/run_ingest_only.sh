@@ -7,7 +7,11 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
 echo "== [1/2] ingest_opinion_law（写入 assets/evolution-candidates.json）"
-python3 scripts/ingest_opinion_law.py "$@"
+SUMMARY_ARGS=()
+if [ "${WRITE_INGEST_SUMMARY:-}" = "1" ]; then
+  SUMMARY_ARGS=(--write-summary)
+fi
+python3 scripts/ingest_opinion_law.py "${SUMMARY_ARGS[@]}" "$@"
 
 echo "== [2/2] validate evolution-candidates"
 python3 scripts/validate-evolution-candidates.py

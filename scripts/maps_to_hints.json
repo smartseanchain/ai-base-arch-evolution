@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "notes": "ingest 时在 routes 匹配之后合并进 maps_to（去重排序）；不替代人工审阅与 merge_manifest。",
+  "host_suffixes": {
+    "github.blog": {
+      "pages": ["architecture.html", "model.html"],
+      "lab_factors": ["ai"]
+    },
+    "w3.org": {
+      "pages": ["architecture.html"],
+      "lab_factors": ["reg"]
+    },
+    "chinanews.com.cn": {
+      "pages": ["decade.html", "risk-geo.html"],
+      "lab_factors": []
+    },
+    "xinhuanet.com": {
+      "pages": ["national-strategy-opinion.html", "decade.html"],
+      "lab_factors": ["reg"]
+    }
+  },
+  "keyword_routes": [
+    {
+      "match": "Kubernetes|容器|云原生|DevOps|开源",
+      "pages": ["architecture.html"],
+      "lab_factors": []
+    },
+    {
+      "match": "GPU|CUDA|推理|训练|大模型|LLM",
+      "pages": ["model.html", "work-infra-energy.html"],
+      "lab_factors": ["ai"]
+    }
+  ]
+}

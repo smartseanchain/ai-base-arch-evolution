@@ -20,10 +20,13 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "scripts" / "ingest_config.json"
+MAPS_HINTS_PATH = ROOT / "scripts" / "maps_to_hints.json"
 OUT_PATH = ROOT / "assets" / "evolution-candidates.json"
+SUMMARY_PATH = ROOT / "ingest-summary.json"
 
 UA = "Mozilla/5.0 (compatible; EvolutionIngest/1.0; +https://example.local)"
 TIMEOUT = 25
@@ -152,6 +155,50 @@ def apply_routes(
     return sorted(factors), sorted(pages)
 
 
+def load_maps_to_hints() -> dict:
+    if not MAPS_HINTS_PATH.is_file():
+        return {}
+    try:
+        return json.loads(MAPS_HINTS_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+
+
+def merge_maps_to_hints(
+    link: str,
+    title: str,
+    summary: str,
+    lab_factors: list[str],
+    pages: list[str],
+    hints_cfg: dict,
+) -> tuple[list[str], list[str]]:
+    fs = set(lab_factors)
+    ps = set(pages)
+    blob = f"{title} {summary}"
+    host = ""
+    if link:
+        try:
+            host = (urlparse(link).hostname or "").lower()
+        except Exception:
+            host = ""
+    for suffix, m in (hints_cfg.get("host_suffixes") or {}).items():
+        suf = suffix.lower().lstrip(".")
+        if host == suf or host.endswith("." + suf):
+            ps.update(m.get("pages") or [])
+            fs.update(m.get("lab_factors") or [])
+    for row in hints_cfg.get("keyword_routes") or []:
+        pat = row.get("match", "")
+        if not pat:
+            continue
+        try:
+            if re.search(pat, blob, re.I):
+                ps.update(row.get("pages") or [])
+                fs.update(row.get("lab_factors") or [])
+        except re.error:
+            continue
+    return sorted(fs), sorted(ps)
+
+
 def load_config() -> dict:
     if not CONFIG_PATH.is_file():
         print(f"错误: 缺少 {CONFIG_PATH}", file=sys.stderr)
@@ -168,15 +215,23 @@ def main(argv: list[str] | None = None) -> None:
         action="store_true",
         help="本次运行忽略 ingest_config.require_route_match（全量进池，且不清理历史未命中 RSS/法规项）",
     )
+    ap.add_argument(
+        "--write-summary",
+        action="store_true",
+        help="写入项目根 ingest-summary.json（供 CI 汇总各源成功/失败）",
+    )
     args = ap.parse_args(argv)
 
     cfg = load_config()
+    hints_cfg = load_maps_to_hints()
     routes = cfg.get("routes") or []
     require_route_match = bool(cfg.get("require_route_match"))
     if args.full_pool:
         require_route_match = False
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     signals: dict[str, dict] = {}
+    feed_reports: list[dict] = []
+    law_reports: list[dict] = []
 
     if OUT_PATH.is_file():
         try:
@@ -195,13 +250,25 @@ def main(argv: list[str] | None = None) -> None:
         fid = feed.get("id", url)
         default_kind = feed.get("default_kind", "opinion")
         max_items = int(feed.get("max_items") or 15)
+        rep: dict = {
+            "id": fid,
+            "url": url,
+            "ok": False,
+            "items_fetched": 0,
+            "error": None,
+        }
         try:
             raw = fetch_bytes(url)
             time.sleep(0.8)
         except (urllib.error.URLError, OSError) as e:
+            rep["error"] = str(e)
+            feed_reports.append(rep)
             print(f"[RSS 跳过] {fid}: {e}", file=sys.stderr)
             continue
         items = parse_rss_or_atom(raw)[:max_items]
+        rep["ok"] = True
+        rep["items_fetched"] = len(items)
+        feed_reports.append(rep)
         for it in items:
             title = it.get("title") or ""
             link = it.get("link") or ""
@@ -211,6 +278,7 @@ def main(argv: list[str] | None = None) -> None:
             if re.search(r"法|条例|立法|草案|修订|征求|意见|公告|规定", blob):
                 kind = "law" if kind == "opinion" else kind
             lf, pg = apply_routes(blob, routes)
+            lf, pg = merge_maps_to_hints(link, title, summary, lf, pg, hints_cfg)
             if require_route_match and not lf and not pg:
                 continue
             sid = stable_id(link or url, title)
@@ -238,15 +306,26 @@ def main(argv: list[str] | None = None) -> None:
             continue
         pid = page.get("id", url)
         default_kind = page.get("default_kind", "law")
+        lrep: dict = {
+            "id": pid,
+            "url": url,
+            "ok": False,
+            "error": None,
+        }
         try:
             raw = fetch_bytes(url)
             time.sleep(1.0)
         except (urllib.error.URLError, OSError) as e:
+            lrep["error"] = str(e)
+            law_reports.append(lrep)
             print(f"[页面跳过] {pid}: {e}", file=sys.stderr)
             continue
         title = html_title(raw) or f"页面线索 ({pid})"
         blob = title
         lf, pg = apply_routes(blob, routes)
+        lf, pg = merge_maps_to_hints(url, title, "", lf, pg, hints_cfg)
+        lrep["ok"] = True
+        law_reports.append(lrep)
         if require_route_match and not lf and not pg:
             continue
         sid = stable_id(url, title)
@@ -289,6 +368,22 @@ def main(argv: list[str] | None = None) -> None:
         json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print(f"已写入 {OUT_PATH}（{len(signals)} 条，含历史去重 id）")
+
+    if args.write_summary:
+        summary_doc = {
+            "schema_version": 1,
+            "generated_at": now,
+            "require_route_match": require_route_match,
+            "full_pool": bool(args.full_pool),
+            "feeds": feed_reports,
+            "law_pages": law_reports,
+            "signals_count": len(signals),
+        }
+        SUMMARY_PATH.write_text(
+            json.dumps(summary_doc, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        print(f"已写入 {SUMMARY_PATH}")
 
 
 if __name__ == "__main__":

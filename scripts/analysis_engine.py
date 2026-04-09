@@ -20,6 +20,7 @@ MANIFEST = ROOT / "assets" / "evolution-manifest.json"
 CANDIDATES = ROOT / "assets" / "evolution-candidates.json"
 OUT = ROOT / "assets" / "analysis-snapshot.json"
 SEDIMENT = ROOT / "data" / "sediment.json"
+HINT_RULES_PATH = ROOT / "scripts" / "evolution-hint-rules.json"
 
 
 def load_json(p: Path) -> dict[str, Any]:
@@ -42,7 +43,114 @@ def collect_signals(manifest: dict, candidates: dict) -> list[dict]:
     return out
 
 
-def run_analysis(signals: list[dict]) -> dict[str, Any]:
+def load_hint_rules() -> dict[str, Any]:
+    if HINT_RULES_PATH.is_file():
+        try:
+            return json.loads(HINT_RULES_PATH.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            pass
+    return {
+        "rules": [],
+        "top_factors_template": (
+            "当前热力靠前的沙盘因子：{top_factors}——打开沙盘工坊勾选对应项做一轮压测。"
+        ),
+        "fallback_hint": (
+            "信号较少：优先跑 ingest 抓取或手工充实 manifest，再重新执行本分析脚本。"
+        ),
+    }
+
+
+def evaluate_hint_rules(
+    fac_c: Counter,
+    signals_count: int,
+    rules_doc: dict[str, Any],
+) -> list[str]:
+    out: list[str] = []
+    for rule in rules_doc.get("rules") or []:
+        fm = rule.get("factors_min") or {}
+        if any(fac_c.get(k, 0) < int(v) for k, v in fm.items()):
+            continue
+        smin = rule.get("signals_count_min")
+        if smin is not None and signals_count < int(smin):
+            continue
+        tpl = rule.get("hint_template")
+        plain = rule.get("hint")
+        if tpl:
+            out.append(tpl.format(signals_count=signals_count))
+        elif plain:
+            out.append(str(plain))
+    return out
+
+
+def compute_diff_hints(
+    prev: dict[str, Any] | None,
+    factor_heat: list[dict],
+    cooccurrence: list[dict],
+    manifest_n: int,
+    candidate_n: int,
+) -> list[str]:
+    if not prev:
+        return []
+    hints: list[str] = []
+    prev_fac = [x["factor"] for x in (prev.get("factor_heat") or [])[:8]]
+    curr_fac = [x["factor"] for x in factor_heat[:8]]
+    prev_top_set = set(prev_fac[:8])
+    new_in_top = [f for f in curr_fac[:5] if f not in prev_top_set]
+    if new_in_top:
+        hints.append(
+            "相较上期快照，热力因子新进入前列："
+            + "、".join(new_in_top)
+            + "——建议核对 manifest/候选映射是否反映新焦点。"
+        )
+
+    prev_co: dict[tuple[str, str], int] = {}
+    for x in prev.get("cooccurrence") or []:
+        pr = x.get("pair")
+        if isinstance(pr, list) and len(pr) == 2:
+            prev_co[tuple(sorted((str(pr[0]), str(pr[1]))))] = int(x.get("count") or 0)
+
+    co_added = 0
+    for row in cooccurrence[:10]:
+        pr = row.get("pair")
+        if not isinstance(pr, list) or len(pr) != 2:
+            continue
+        p = tuple(sorted((str(pr[0]), str(pr[1]))))
+        c = int(row.get("count") or 0)
+        old = prev_co.get(p)
+        if old is None:
+            hints.append(
+                f"共现新出现：{' × '.join(p)}（count={c}）——可查复合表是否需补传导说明。"
+            )
+            co_added += 1
+        elif c > old:
+            hints.append(
+                f"共现增强：{' × '.join(p)}（{old}→{c}）——关注对应页面交叉叙事。"
+            )
+            co_added += 1
+        if co_added >= 2:
+            break
+
+    prev_src = prev.get("sources") or {}
+    pm = prev_src.get("manifest_signals")
+    pc = prev_src.get("candidate_signals")
+    if isinstance(pm, int) and manifest_n > pm:
+        hints.append(
+            f"已入库信号较上期增加 {manifest_n - pm} 条（{pm}→{manifest_n}），"
+            "建议跑一轮沙盘与 §7 对行。"
+        )
+    if isinstance(pc, int) and candidate_n > pc:
+        hints.append(
+            f"候选较上期增加 {candidate_n - pc} 条——可安排双周审阅或减噪。"
+        )
+
+    return hints[:4]
+
+
+def run_analysis(
+    signals: list[dict],
+    prev_snapshot: dict[str, Any] | None,
+    hint_rules: dict[str, Any],
+) -> dict[str, Any]:
     mod_c: Counter[str] = Counter()
     fac_c: Counter[str] = Counter()
     kind_c: Counter[str] = Counter()
@@ -68,27 +176,25 @@ def run_analysis(signals: list[dict]) -> dict[str, Any]:
     ]
     kind_distribution = dict(kind_c)
 
+    manifest_n = sum(1 for s in signals if s.get("_origin") == "manifest")
+    candidate_n = sum(1 for s in signals if s.get("_origin") == "candidate")
+
     hints: list[str] = []
+    hints.extend(
+        compute_diff_hints(
+            prev_snapshot, factor_heat, cooccurrence, manifest_n, candidate_n
+        )
+    )
+    hints.extend(evaluate_hint_rules(fac_c, len(signals), hint_rules))
+
+    top_tpl = hint_rules.get("top_factors_template") or ""
     top_f = [x["factor"] for x in factor_heat[:3]]
-    if fac_c.get("reg", 0) >= 2 and fac_c.get("ai", 0) >= 1:
-        hints.append(
-            "多条信号同时指向「监管(reg)」与「AI」——建议在综合推演 §6 检查是否已有监管×AI 配方，若无则按 §11 扩展插槽补一条传导链。"
-        )
-    if fac_c.get("water_cooling", 0) >= 1 and fac_c.get("esg_compute_carbon", 0) >= 1:
-        hints.append(
-            "算力—水—碳因子共现：与十年场景·算力能源、职基能同读，关注地方邻避叙事。"
-        )
-    if len(signals) >= 5:
-        hints.append(
-            f"当前共 {len(signals)} 条信号（含候选），建议每季度做一次 §7 复合表对行，删除已失效叙事。"
-        )
-    if top_f:
-        hints.append(
-            "当前热力靠前的沙盘因子：" + "、".join(top_f) + "——打开沙盘工坊勾选对应项做一轮压测。"
-        )
+    if top_f and top_tpl:
+        hints.append(top_tpl.format(top_factors="、".join(top_f)))
     if not hints:
         hints.append(
-            "信号较少：优先跑 ingest 抓取或手工充实 manifest，再重新执行本分析脚本。"
+            hint_rules.get("fallback_hint")
+            or "信号较少：优先跑 ingest 抓取或手工充实 manifest，再重新执行本分析脚本。"
         )
 
     return {
@@ -163,7 +269,11 @@ def main() -> None:
     manifest = load_json(MANIFEST)
     candidates = load_json(CANDIDATES)
     signals = collect_signals(manifest, candidates)
-    analysis = run_analysis(signals)
+    prev_snapshot: dict[str, Any] | None = None
+    if not args.check and OUT.is_file():
+        prev_snapshot = load_json(OUT)
+    hint_rules = load_hint_rules()
+    analysis = run_analysis(signals, prev_snapshot, hint_rules)
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     out = {

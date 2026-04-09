@@ -5,3 +5,6 @@ data/evolution.db-wal
 data/evolution.db-shm
 
 .DS_Store
+
+# 本地/CI 抓取摘要（可选生成，勿提交）
+ingest-summary.json

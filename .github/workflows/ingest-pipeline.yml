@@ -1,9 +1,16 @@
 # 仅抓取候选（需外网）；与「分析流水线」解耦。产出 candidates 以 artifact 下载，默认不回写仓库。
 # 本地同等命令：bash scripts/run_ingest_only.sh  或  make ingest
+# WRITE_INGEST_SUMMARY=1 时额外写入 ingest-summary.json 并写入 GitHub Job Summary。
 name: Ingest candidates
 
 on:
   workflow_dispatch:
+  schedule:
+    # 每周二 08:00 UTC（与周一分析流水线错开）；见 https://crontab.guru
+    - cron: "0 8 * * 2"
+
+env:
+  WRITE_INGEST_SUMMARY: "1"
 
 jobs:
   ingest:
@@ -14,10 +21,54 @@ jobs:
         with:
           python-version: "3.12"
       - name: Ingest and validate candidates
+        id: ingest
         run: bash scripts/run_ingest_only.sh
+      - name: Job summary
+        if: always()
+        run: |
+          python3 <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          out = os.environ.get("GITHUB_STEP_SUMMARY")
+          p = Path("ingest-summary.json")
+          lines = ["## Ingest candidates", ""]
+          if p.is_file():
+              d = json.loads(p.read_text(encoding="utf-8"))
+              lines.append(f"- **signals_count**: {d.get('signals_count')}")
+              lines.append(f"- **require_route_match**: {d.get('require_route_match')}")
+              lines.append("")
+              lines.append("| 源 | 状态 | 条目数 | 错误 |")
+              lines.append("|---|---|---:|---|")
+              for f in d.get("feeds") or []:
+                  ok = f.get("ok")
+                  st = "ok" if ok else "**failed**"
+                  err = (f.get("error") or "").replace("|", "\\|")[:200]
+                  lines.append(
+                      f"| `{f.get('id')}` | {st} | {f.get('items_fetched', 0)} | {err or '—'} |"
+                  )
+              for lp in d.get("law_pages") or []:
+                  ok = lp.get("ok")
+                  st = "ok" if ok else "**failed**"
+                  err = (lp.get("error") or "").replace("|", "\\|")[:200]
+                  lines.append(
+                      f"| law `{lp.get('id')}` | {st} | — | {err or '—'} |"
+                  )
+          else:
+              lines.append("_未生成 ingest-summary.json（抓取可能在写入摘要前失败）_")
+          text = "\n".join(lines) + "\n"
+          if out:
+              Path(out).write_text(text, encoding="utf-8")
+          else:
+              print(text)
+          PY
       - name: Upload candidates
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: evolution-candidates-${{ github.run_id }}
-          path: assets/evolution-candidates.json
+          path: |
+            assets/evolution-candidates.json
+            ingest-summary.json
           if-no-files-found: warn
