@@ -21,6 +21,7 @@
 | `ingest_config.require_route_match` | `true`：仅保留命中 `routes` 的 RSS/法规线索并清理旧未命中候选 | — |
 | `bash scripts/run_update_pipeline.sh` | 校验 manifest/候选 → `analysis_engine --sediment` → `sediment_trends`；沉淀含 `hint_closure_gaps_n` / `hint_decisions_total`，趋势 JSON 含 `closure_backlog` | 否 |
 | `make trends` / `python3 scripts/sediment_trends.py` | 仅根据已有沉淀重算 `assets/sediment-trends.json`（不跑分析引擎） | 否 |
+| `make status` / `python3 scripts/print_evolution_status.py` | 打印 `analysis-snapshot.json` 合并计数、hint 决策统计、闭环缺口条数（及 rule_id 列表） | 否 |
 | `python3 scripts/analysis_engine.py --check` | 跑分析逻辑、校验输出结构，**不写** `analysis-snapshot.json`（CI / pre-commit；**不**与上期快照做 diff 提示）；`sources` 含 `candidate_review_breakdown`、`hint_decisions` | 否 |
 | `python3 scripts/merge_candidates_to_manifest.py <id>…` | 人审后合并进 manifest；**须** `review_state=queued_for_manifest`（`--force` 跳过） | 否 |
 | `python3 scripts/validate-evolution-manifest.py` | 校验正式库结构 | 否 |

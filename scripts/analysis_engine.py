@@ -529,9 +529,11 @@ def main() -> None:
         ):
             print("错误: sources.hint_decisions.by_action 结构异常", file=sys.stderr)
             sys.exit(1)
+        gaps_n = len(out.get("hint_closure_gaps") or [])
         print(
             f"OK --check · combined={src['combined_for_analysis']} "
-            f"manifest={src['manifest_signals']} candidate={src['candidate_signals']}"
+            f"manifest={src['manifest_signals']} candidate={src['candidate_signals']} "
+            f"closure_gaps={gaps_n}"
         )
         return
 

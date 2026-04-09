@@ -15,6 +15,7 @@ make validate    # manifest + 候选 + hint 决策 JSON + 对账（含 hint-rule
 make ingest      # 抓取候选（需外网，依赖 scripts/ingest_config.json）
 make ingest-full # 同上但单次 --full-pool（忽略 require_route_match）
 make analyze     # 校验 + 分析引擎 --sediment + 长期趋势
+make status      # 打印当前 analysis-snapshot 计数与闭环缺口（需先有快照）
 ```
 
 脚本说明：[scripts/README.md](scripts/README.md)。抓取配置：复制 [scripts/ingest_config.example.json](scripts/ingest_config.example.json) 为 `ingest_config.json` 后填写 RSS / 法规索引页。
