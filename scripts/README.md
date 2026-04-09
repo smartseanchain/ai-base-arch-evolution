@@ -1,5 +1,18 @@
 # 可进化管道脚本
 
+**按能力找脚本**（与 [docs/ARCHITECTURE.md#seven-layers](../docs/ARCHITECTURE.md#seven-layers) 七类模块对齐）：
+
+| 能力 | 相关脚本 |
+|------|-----------|
+| 抓取 / 线索入库 | `ingest_opinion_law.py`、`run_ingest_only.sh` |
+| 人审合并 | `merge_candidates_to_manifest.py` |
+| 分析 + 当日快照 | `analysis_engine.py` |
+| 沉淀 + 本地库 | `analysis_engine.py --sediment`、`sqlite_store.py`、`import_sediment_json_to_sqlite.py` |
+| 跨日汇总 | `sediment_trends.py` |
+| 规则闭环 JSON | `validate_evolution_hint_decisions.py` |
+| 闸门 / 对账 | `validate-evolution-*.py`、`check_manifest_drift.py`、`sync_site_nav.py` |
+| 站点辅助 | `gen-sitemap.py` |
+
 | 命令 | 作用 | 外网 |
 |------|------|------|
 | `bash scripts/run_ingest_only.sh` | 抓取 → `evolution-candidates.json` → 校验候选（可附加 `ingest_opinion_law.py` 参数） | 是 |
@@ -12,7 +25,7 @@
 | `python3 scripts/merge_candidates_to_manifest.py <id>…` | 人审后合并进 manifest；**须** `review_state=queued_for_manifest`（`--force` 跳过） | 否 |
 | `python3 scripts/validate-evolution-manifest.py` | 校验正式库结构 | 否 |
 | `python3 scripts/validate-evolution-candidates.py` | 校验候选结构 | 否 |
-| `python3 scripts/validate_evolution_hint_decisions.py` | 校验 `assets/evolution-hint-decisions.json`；`rule_id` 若填写须 ∈ `evolution-hint-rules.json` 的 `rules[].id` | 否 |
+| `python3 scripts/validate_evolution_hint_decisions.py` | 校验 `assets/evolution-hint-decisions.json`；根级可选 `schema_version: 1`；`rule_id` 若填写须 ∈ `evolution-hint-rules.json` 的 `rules[].id` | 否 |
 | `python3 scripts/check_manifest_drift.py` | **对账**：`maps_to.pages` ∈ **`scripts/evolution-registry.json`** 且文件存在；`lab_factors` 与 registry 及 **`lab.js` 因子 id 集合一致**；`ingest_config` / `maps_to_hints` / `gen-sitemap` PRIORITY | 否 |
 | `make test` | `scripts/tests` · unittest（`PYTHONPATH=scripts`） | 否 |
 | `python3 scripts/sync_site_nav.py` / `make sync-nav` | 按 **`partials/skip-bar.inc.html`** + **`partials/site-nav.inc.html`** 写回根目录各页（跳过 404、legacy 单页） | 否 |

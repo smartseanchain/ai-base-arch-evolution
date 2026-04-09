@@ -3,6 +3,7 @@
 校验 assets/evolution-hint-decisions.json：结构化记录对 evolution_hints 的落实 / 否决 / 延期。
 可选 rule_id：若填写则须为 evolution-hint-rules.json 中某条 rules[].id（与快照 evolution_hints 对齐，避免拼写漂移）。
 related_pages 若存在须 ⊆ evolution-registry.json 的 pages。
+根级可选 schema_version（整数，当前为 1）便于日后演进。
 不写文件；供 make validate / CI / pre-commit。
 """
 from __future__ import annotations
@@ -22,6 +23,8 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 MAX_NOTE = 4000
 MAX_SUMMARY = 500
 MAX_RULE_ID = 120
+ALLOWED_ROOT_KEYS = frozenset({"decisions", "schema_version"})
+CURRENT_DECISIONS_SCHEMA = 1
 
 
 def load_hint_rule_ids() -> set[str]:
@@ -62,11 +65,17 @@ def validate_decisions(
     errs: list[str] = []
     if not isinstance(doc, dict):
         return ["根须为 JSON 对象"]
-    extra_root = set(doc.keys()) - {"decisions"}
+    extra_root = set(doc.keys()) - ALLOWED_ROOT_KEYS
     if extra_root:
         errs.append(
-            f"根对象仅允许 decisions 字段，多余: {sorted(extra_root)!r}"
+            f"根对象仅允许 {sorted(ALLOWED_ROOT_KEYS)}，多余: {sorted(extra_root)!r}"
         )
+    sv = doc.get("schema_version")
+    if sv is not None:
+        if not isinstance(sv, int) or sv != CURRENT_DECISIONS_SCHEMA:
+            errs.append(
+                f"schema_version 须为整数 {CURRENT_DECISIONS_SCHEMA} 或省略，当前: {sv!r}"
+            )
     decs = doc.get("decisions")
     if decs is None:
         return ["缺少 decisions 字段"]

@@ -15,6 +15,18 @@ class TestValidateEvolutionHintDecisions(unittest.TestCase):
         e = validate_decisions({"decisions": []}, PAGES, RULE_IDS)
         self.assertEqual(e, [])
 
+    def test_schema_version_ok(self) -> None:
+        e = validate_decisions(
+            {"schema_version": 1, "decisions": []}, PAGES, RULE_IDS
+        )
+        self.assertEqual(e, [])
+
+    def test_schema_version_reject(self) -> None:
+        e = validate_decisions(
+            {"schema_version": 2, "decisions": []}, PAGES, RULE_IDS
+        )
+        self.assertTrue(any("schema_version" in x for x in e))
+
     def test_valid_row(self) -> None:
         e = validate_decisions(
             {
