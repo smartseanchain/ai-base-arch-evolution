@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-09T00:42:02Z",
+  "generated_at": "2026-04-09T00:45:45Z",
   "sources": {
     "manifest_signals": 3,
-    "candidate_signals": 72,
-    "combined_for_analysis": 75
+    "candidate_signals": 22,
+    "combined_for_analysis": 25
   },
   "module_heat": [
     {
@@ -75,9 +75,9 @@
     }
   ],
   "kind_distribution": {
-    "opinion": 31,
-    "policy": 21,
-    "tech": 22,
+    "opinion": 6,
+    "policy": 5,
+    "tech": 13,
     "law": 1
   },
   "cooccurrence": [
@@ -127,7 +127,7 @@
   "evolution_hints": [
     "多条信号同时指向「监管(reg)」与「AI」——建议在综合推演 §6 检查是否已有监管×AI 配方，若无则按 §11 扩展插槽补一条传导链。",
     "算力—水—碳因子共现：与十年场景·算力能源、职基能同读，关注地方邻避叙事。",
-    "当前共 75 条信号（含候选），建议每季度做一次 §7 复合表对行，删除已失效叙事。",
+    "当前共 25 条信号（含候选），建议每季度做一次 §7 复合表对行，删除已失效叙事。",
     "当前热力靠前的沙盘因子：talent、gig_multiemployer、ai——打开沙盘工坊勾选对应项做一轮压测。"
   ]
 }

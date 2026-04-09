@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
-  "notes": "复制为 ingest_config.json 后填写 rss_feeds / law_html_pages；routes 可与本示例一致或按需改写。",
+  "require_route_match": false,
+  "notes": "require_route_match：true=仅写入命中 routes 的线索并清理旧未命中候选；false=全量进池。复制后填写 rss_feeds / law_html_pages。",
   "rss_feeds": [
     {
       "id": "example-feed",

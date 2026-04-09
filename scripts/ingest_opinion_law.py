@@ -4,6 +4,7 @@
 
 - 仅作「候选线索」：摘要来自提要或标题拼接，非全文法理分析。
 - 须人工审阅后再 merge 进 evolution-manifest.json。
+- 可选配置 require_route_match：为 true 时仅写入至少命中一条 routes 的 RSS/法规线索（减噪）。
 - 依赖：Python 3.9+ 标准库（urllib + xml）。
 """
 from __future__ import annotations
@@ -160,6 +161,7 @@ def load_config() -> dict:
 def main() -> None:
     cfg = load_config()
     routes = cfg.get("routes") or []
+    require_route_match = bool(cfg.get("require_route_match"))
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     signals: dict[str, dict] = {}
 
@@ -196,6 +198,8 @@ def main() -> None:
             if re.search(r"法|条例|立法|草案|修订|征求|意见|公告|规定", blob):
                 kind = "law" if kind == "opinion" else kind
             lf, pg = apply_routes(blob, routes)
+            if require_route_match and not lf and not pg:
+                continue
             sid = stable_id(link or url, title)
             signals[sid] = {
                 "id": sid,
@@ -230,6 +234,8 @@ def main() -> None:
         title = html_title(raw) or f"页面线索 ({pid})"
         blob = title
         lf, pg = apply_routes(blob, routes)
+        if require_route_match and not lf and not pg:
+            continue
         sid = stable_id(url, title)
         signals[sid] = {
             "id": sid,
@@ -248,11 +254,22 @@ def main() -> None:
             "maps_to": {"pages": pg, "lab_factors": lf},
         }
 
+    if require_route_match:
+        for sid in list(signals.keys()):
+            s = signals[sid]
+            mt = s.get("maps_to") or {}
+            if (mt.get("pages") or mt.get("lab_factors")):
+                continue
+            src = s.get("source") or {}
+            if src.get("type") in ("rss", "law_html"):
+                del signals[sid]
+
     out = {
         "schema_version": 1,
         "updated": now[:10],
         "fetched_at": now,
-        "notes": "由 scripts/ingest_opinion_law.py 生成；merge 前请人工筛选。",
+        "notes": "由 scripts/ingest_opinion_law.py 生成；merge 前请人工筛选。"
+        + (" require_route_match=on：未命中 routes 的 RSS/法规项已丢弃。" if require_route_match else ""),
         "signals": sorted(signals.values(), key=lambda x: x.get("id", "")),
     }
     OUT_PATH.write_text(

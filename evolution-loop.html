@@ -118,7 +118,7 @@
 
     <section id="ingest">
       <h2>3. 抓取管道：舆情 RSS、法规页标题与候选汇总</h2>
-      <p class="muted" style="margin-top:-0.35rem">配置 <code>scripts/ingest_config.json</code>：列出 <strong>rss_feeds</strong>（标题/摘要/链接）与可选 <strong>law_html_pages</strong>（仅抓页面 <code>&lt;title&gt;</code> / og:title 作<strong>线索</strong>，非全文法条）。脚本按 <strong>routes</strong> 正则把文本路由到站内页与 <code>lab_factors</code>，去重后写入 <code>assets/evolution-candidates.json</code>。</p>
+      <p class="muted" style="margin-top:-0.35rem">配置 <code>scripts/ingest_config.json</code>：列出 <strong>rss_feeds</strong>（标题/摘要/链接）与可选 <strong>law_html_pages</strong>（仅抓页面 <code>&lt;title&gt;</code> / og:title 作<strong>线索</strong>，非全文法条）。脚本按 <strong>routes</strong> 正则把文本路由到站内页与 <code>lab_factors</code>，去重后写入 <code>assets/evolution-candidates.json</code>。可选 <strong>require_route_match</strong>：<code>true</code> 时只保留<strong>至少命中一条 route</strong> 的 RSS/法规项，并移除候选池中历史遗留的未命中项（减噪）。</p>
       <div class="card">
         <p class="muted" style="margin:0 0 0.75rem;font-size:0.9rem"><strong>在项目根目录执行：</strong>（等价：<code>bash scripts/run_ingest_only.sh</code> 或 <code>make ingest</code>；脚本一览见 <a href="scripts/README.md">scripts/README.md</a>）</p>
         <pre style="margin:0;font-size:0.82rem;line-height:1.65;overflow-x:auto">python3 scripts/ingest_opinion_law.py

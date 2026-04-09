@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
-  "notes": "在此配置 RSS 与法规/政策页面 URL；抓取结果写入 assets/evolution-candidates.json。请遵守各站点 robots.txt 与版权；下列源为可公开访问的演示用组合，可按需增删或换为国内权威源。",
+  "require_route_match": true,
+  "notes": "require_route_match=true：仅保留标题/摘要至少命中一条 routes 的 RSS 与 law_html 线索，并清理候选文件中同类未命中项。改为 false 可恢复「全量进池」便于扫池。请遵守各站点 robots.txt 与版权。",
   "rss_feeds": [
     {
       "id": "xinhuanet-politics",

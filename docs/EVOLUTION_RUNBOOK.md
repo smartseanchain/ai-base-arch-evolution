@@ -10,7 +10,7 @@
 
 | 步骤 | 动作 | 产出/记录 |
 |------|------|-----------|
-| 1 | `make ingest`（或 CI 下载 ingest artifact） | 刷新 `evolution-candidates.json` |
+| 1 | `make ingest`（或 CI 下载 ingest artifact） | 刷新 `evolution-candidates.json`；`ingest_config.require_route_match=true` 时仅保留命中 `routes` 的线索 |
 | 2 | 浏览候选：删噪、合并重复、**不**自动 merge | 本地或 PR 中更新候选文件 |
 | 3 | 对值得入库的 id：`python3 scripts/merge_candidates_to_manifest.py …` | 更新 `evolution-manifest.json` |
 | 4 | `make validate` | 通过校验 + `analysis_engine --check` + **对账脚本** |

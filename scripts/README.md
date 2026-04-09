@@ -3,6 +3,7 @@
 | 命令 | 作用 | 外网 |
 |------|------|------|
 | `bash scripts/run_ingest_only.sh` | 抓取 → `evolution-candidates.json` → 校验候选 | 是 |
+| `ingest_config.require_route_match` | `true`：仅保留命中 `routes` 的 RSS/法规线索并清理旧未命中候选 | — |
 | `bash scripts/run_update_pipeline.sh` | 校验 manifest/候选 → `analysis_engine --sediment` → `sediment_trends` | 否 |
 | `python3 scripts/analysis_engine.py --check` | 跑分析逻辑、校验输出结构，**不写** `analysis-snapshot.json`（CI / pre-commit） | 否 |
 | `python3 scripts/merge_candidates_to_manifest.py <id>…` | 人审后合并进 `evolution-manifest.json` | 否 |
