@@ -29,6 +29,16 @@ def load_json(p: Path) -> dict[str, Any]:
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+ALLOWED_REVIEW_STATE = frozenset({"pending", "noise", "queued_for_manifest"})
+
+
+def effective_review_state(sig: dict) -> str:
+    r = sig.get("review_state") or "pending"
+    if r in ALLOWED_REVIEW_STATE:
+        return str(r)
+    return "pending"
+
+
 def collect_signals(manifest: dict, candidates: dict) -> list[dict]:
     out: list[dict] = []
     for s in manifest.get("signals") or []:
@@ -36,10 +46,13 @@ def collect_signals(manifest: dict, candidates: dict) -> list[dict]:
         x["_origin"] = "manifest"
         out.append(x)
     for s in candidates.get("signals") or []:
-        if s.get("status") == "candidate" or s.get("status") is None:
-            x = dict(s)
-            x["_origin"] = "candidate"
-            out.append(x)
+        if s.get("status") != "candidate" and s.get("status") is not None:
+            continue
+        if effective_review_state(s) == "noise":
+            continue
+        x = dict(s)
+        x["_origin"] = "candidate"
+        out.append(x)
     return out
 
 
@@ -60,12 +73,28 @@ def load_hint_rules() -> dict[str, Any]:
     }
 
 
+def _hint_obj(
+    text: str,
+    rule_id: str | None,
+    rule: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    o: dict[str, Any] = {"text": text, "rule_id": rule_id}
+    if rule:
+        tp = rule.get("target_pages")
+        if isinstance(tp, list) and tp:
+            o["target_pages"] = [str(p) for p in tp if p]
+        ah = rule.get("anchor_hint")
+        if isinstance(ah, str) and ah.strip():
+            o["anchor_hint"] = ah.strip()
+    return o
+
+
 def evaluate_hint_rules(
     fac_c: Counter,
     signals_count: int,
     rules_doc: dict[str, Any],
-) -> list[str]:
-    out: list[str] = []
+) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
     for rule in rules_doc.get("rules") or []:
         fm = rule.get("factors_min") or {}
         if any(fac_c.get(k, 0) < int(v) for k, v in fm.items()):
@@ -73,12 +102,16 @@ def evaluate_hint_rules(
         smin = rule.get("signals_count_min")
         if smin is not None and signals_count < int(smin):
             continue
+        rid = rule.get("id")
+        rid_s = str(rid) if rid is not None else None
         tpl = rule.get("hint_template")
         plain = rule.get("hint")
         if tpl:
-            out.append(tpl.format(signals_count=signals_count))
+            out.append(
+                _hint_obj(tpl.format(signals_count=signals_count), rid_s, rule)
+            )
         elif plain:
-            out.append(str(plain))
+            out.append(_hint_obj(str(plain), rid_s, rule))
     return out
 
 
@@ -88,19 +121,22 @@ def compute_diff_hints(
     cooccurrence: list[dict],
     manifest_n: int,
     candidate_n: int,
-) -> list[str]:
+) -> list[dict[str, Any]]:
     if not prev:
         return []
-    hints: list[str] = []
+    hints: list[dict[str, Any]] = []
     prev_fac = [x["factor"] for x in (prev.get("factor_heat") or [])[:8]]
     curr_fac = [x["factor"] for x in factor_heat[:8]]
     prev_top_set = set(prev_fac[:8])
     new_in_top = [f for f in curr_fac[:5] if f not in prev_top_set]
     if new_in_top:
         hints.append(
-            "相较上期快照，热力因子新进入前列："
-            + "、".join(new_in_top)
-            + "——建议核对 manifest/候选映射是否反映新焦点。"
+            _hint_obj(
+                "相较上期快照，热力因子新进入前列："
+                + "、".join(new_in_top)
+                + "——建议核对 manifest/候选映射是否反映新焦点。",
+                "diff_factor_top",
+            )
         )
 
     prev_co: dict[tuple[str, str], int] = {}
@@ -119,12 +155,23 @@ def compute_diff_hints(
         old = prev_co.get(p)
         if old is None:
             hints.append(
-                f"共现新出现：{' × '.join(p)}（count={c}）——可查复合表是否需补传导说明。"
+                _hint_obj(
+                    f"共现新出现：{' × '.join(p)}（count={c}）——可查复合表是否需补传导说明。",
+                    "diff_cooccurrence",
+                    {
+                        "target_pages": ["synthesis.html"],
+                        "anchor_hint": "复合表 / §7",
+                    },
+                )
             )
             co_added += 1
         elif c > old:
             hints.append(
-                f"共现增强：{' × '.join(p)}（{old}→{c}）——关注对应页面交叉叙事。"
+                _hint_obj(
+                    f"共现增强：{' × '.join(p)}（{old}→{c}）——关注对应页面交叉叙事。",
+                    "diff_cooccurrence",
+                    {"target_pages": ["synthesis.html"]},
+                )
             )
             co_added += 1
         if co_added >= 2:
@@ -135,12 +182,20 @@ def compute_diff_hints(
     pc = prev_src.get("candidate_signals")
     if isinstance(pm, int) and manifest_n > pm:
         hints.append(
-            f"已入库信号较上期增加 {manifest_n - pm} 条（{pm}→{manifest_n}），"
-            "建议跑一轮沙盘与 §7 对行。"
+            _hint_obj(
+                f"已入库信号较上期增加 {manifest_n - pm} 条（{pm}→{manifest_n}），"
+                "建议跑一轮沙盘与 §7 对行。",
+                "diff_manifest_count",
+                {"target_pages": ["lab.html", "synthesis.html"]},
+            )
         )
     if isinstance(pc, int) and candidate_n > pc:
         hints.append(
-            f"候选较上期增加 {candidate_n - pc} 条——可安排双周审阅或减噪。"
+            _hint_obj(
+                f"候选较上期增加 {candidate_n - pc} 条——可安排双周审阅或减噪。",
+                "diff_candidate_count",
+                {"target_pages": ["evolution-loop.html", "analysis-hub.html"]},
+            )
         )
 
     return hints[:4]
@@ -179,7 +234,7 @@ def run_analysis(
     manifest_n = sum(1 for s in signals if s.get("_origin") == "manifest")
     candidate_n = sum(1 for s in signals if s.get("_origin") == "candidate")
 
-    hints: list[str] = []
+    hints: list[dict[str, Any]] = []
     hints.extend(
         compute_diff_hints(
             prev_snapshot, factor_heat, cooccurrence, manifest_n, candidate_n
@@ -190,11 +245,21 @@ def run_analysis(
     top_tpl = hint_rules.get("top_factors_template") or ""
     top_f = [x["factor"] for x in factor_heat[:3]]
     if top_f and top_tpl:
-        hints.append(top_tpl.format(top_factors="、".join(top_f)))
+        hints.append(
+            _hint_obj(
+                top_tpl.format(top_factors="、".join(top_f)),
+                "top_factors",
+                {"target_pages": ["lab.html"]},
+            )
+        )
     if not hints:
         hints.append(
-            hint_rules.get("fallback_hint")
-            or "信号较少：优先跑 ingest 抓取或手工充实 manifest，再重新执行本分析脚本。"
+            _hint_obj(
+                hint_rules.get("fallback_hint")
+                or "信号较少：优先跑 ingest 抓取或手工充实 manifest，再重新执行本分析脚本。",
+                "fallback",
+                {"target_pages": ["evolution-loop.html"]},
+            )
         )
 
     return {
@@ -252,6 +317,19 @@ def _expected_snapshot_keys() -> frozenset[str]:
     )
 
 
+def validate_evolution_hints(entries: list[Any]) -> None:
+    for i, h in enumerate(entries):
+        if isinstance(h, str):
+            continue
+        if isinstance(h, dict) and isinstance(h.get("text"), str):
+            continue
+        print(
+            f"错误: evolution_hints[{i}] 须为字符串或含 text 字段的对象",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument(
@@ -286,6 +364,7 @@ def main() -> None:
                     s
                     for s in candidates.get("signals") or []
                     if s.get("status") in (None, "candidate")
+                    and effective_review_state(s) != "noise"
                 ]
             ),
             "combined_for_analysis": len(signals),
@@ -298,6 +377,7 @@ def main() -> None:
         if missing:
             print(f"错误: 分析输出缺字段: {sorted(missing)}", file=sys.stderr)
             sys.exit(1)
+        validate_evolution_hints(out.get("evolution_hints") or [])
         src = out["sources"]
         if not isinstance(src, dict) or "combined_for_analysis" not in src:
             print("错误: sources 结构异常", file=sys.stderr)

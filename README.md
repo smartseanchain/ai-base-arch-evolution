@@ -46,13 +46,14 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 
 - `ci.yml`：PR/推送时校验 JSON、**manifest/候选/ingest 配置对账**（见 `scripts/evolution-registry.json`）、`compileall`、`scripts/tests` **unittest**、`analysis_engine --check`
 - `update-pipeline.yml`：定时/手动分析 artifact
-- `ingest-pipeline.yml`：**每周二 UTC 定时**或手动抓取候选 artifact；Job Summary 汇总各 RSS 源成功/失败（`ingest-summary.json` 一并上传）
+- `ingest-pipeline.yml`：**每周二 UTC 定时**或手动抓取候选 artifact；Job Summary 汇总各 RSS 源成功/失败；**定时失败**会新建 Issue 提醒
+- `pr-candidates.yml`：**手动**跑 ingest 并直接向 `main` 开 PR 更新 `evolution-candidates.json`（需在仓库 **Settings → Actions → General** 将 workflow 权限设为可读写；合并仍人审）
 - 在 GitHub 开 PR 时自动带出 **`.github/pull_request_template.md`**（合并 manifest/候选请勾选自检项）
 
 ### 定时流水线与仓库写入（预期）
 
 - **默认**：上述定时/手动 workflow 产出 **artifact**，**不会**自动 push 到 `main`。线上站点里的 `analysis-snapshot.json`、`sediment.json` 等与 Git 一致，仍依赖你在本地 **`make analyze`**（或下载 artifact 人工合并后提交）。
-- 若将来需要「bot 自动开 PR 写回」，须在仓库另配 workflow + `contents: write` 权限与 PAT；当前刻意保持 **人审闸门** 与 artifact 模式。
+- **候选 PR**：可用 **`PR · refresh candidates`**（`pr-candidates.yml`）触发 bot 分支；**manifest 仍不自动 merge**，须本地/PR 内 `merge_candidates_to_manifest` 且 `review_state=queued_for_manifest`。
 
 ### 单一注册表
 

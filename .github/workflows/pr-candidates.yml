@@ -1,0 +1,39 @@
+# 手动触发：抓取候选并直接向仓库提 PR（需仓库 Settings → Actions → General → Workflow permissions 允许读写）。
+# 合并前请人工审阅 review_state；入库 manifest 仍须本地 merge_candidates_to_manifest（且 review_state=queued_for_manifest）。
+name: PR · refresh candidates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  ingest-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Ingest and validate
+        run: bash scripts/run_ingest_only.sh
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          BR="bot/ingest-candidates-${{ github.run_id }}"
+          git checkout -b "$BR"
+          git add assets/evolution-candidates.json
+          if git diff --cached --quiet; then
+            echo "No changes to evolution-candidates.json — skipping PR."
+            exit 0
+          fi
+          git commit -m "chore(bot): refresh evolution-candidates.json"
+          git push -u origin "$BR"
+          gh pr create --base main --head "$BR" \
+            --title "chore(bot): refresh evolution-candidates.json" \
+            --body "自动化 ingest。请审阅：噪点设 review_state=noise；拟入库设 queued_for_manifest 后本地 merge_candidates_to_manifest。"

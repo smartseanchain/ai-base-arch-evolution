@@ -1,21 +1,27 @@
 {
   "schema_version": 1,
-  "notes": "由 analysis_engine 读取；条件满足则追加对应 hint。可增删规则而不改 Python。",
+  "notes": "由 analysis_engine 读取；条件满足则追加对应 hint。可增删规则而不改 Python。target_pages / anchor_hint 供分析页与自动化消费（可选）。",
   "rules": [
     {
       "id": "reg_ai",
       "factors_min": { "reg": 2, "ai": 1 },
-      "hint": "多条信号同时指向「监管(reg)」与「AI」——建议在综合推演 §6 检查是否已有监管×AI 配方，若无则按 §11 扩展插槽补一条传导链。"
+      "hint": "多条信号同时指向「监管(reg)」与「AI」——建议在综合推演 §6 检查是否已有监管×AI 配方，若无则按 §11 扩展插槽补一条传导链。",
+      "target_pages": ["synthesis.html", "national-strategy-opinion.html"],
+      "anchor_hint": "§6 · §11"
     },
     {
       "id": "water_carbon",
       "factors_min": { "water_cooling": 1, "esg_compute_carbon": 1 },
-      "hint": "算力—水—碳因子共现：与十年场景·算力能源、职基能同读，关注地方邻避叙事。"
+      "hint": "算力—水—碳因子共现：与十年场景·算力能源、职基能同读，关注地方邻避叙事。",
+      "target_pages": ["decade-scenes.html", "work-infra-energy.html"],
+      "anchor_hint": "算力 / 能源"
     },
     {
       "id": "signals_ge_5",
       "signals_count_min": 5,
-      "hint_template": "当前共 {signals_count} 条信号（含候选），建议每季度做一次 §7 复合表对行，删除已失效叙事。"
+      "hint_template": "当前共 {signals_count} 条信号（含候选），建议每季度做一次 §7 复合表对行，删除已失效叙事。",
+      "target_pages": ["synthesis.html"],
+      "anchor_hint": "§7"
     }
   ],
   "top_factors_template": "当前热力靠前的沙盘因子：{top_factors}——打开沙盘工坊勾选对应项做一轮压测。",

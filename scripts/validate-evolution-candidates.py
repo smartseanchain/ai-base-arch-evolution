@@ -11,6 +11,8 @@ PATH = ROOT / "assets" / "evolution-candidates.json"
 
 ALLOWED_KIND = frozenset({"opinion", "policy", "market", "tech", "law"})
 ALLOWED_WEIGHT = frozenset({"high", "medium", "low"})
+ALLOWED_REVIEW_STATE = frozenset({"pending", "noise", "queued_for_manifest"})
+REVIEWER_NOTE_MAX = 500
 
 
 def main() -> None:
@@ -25,6 +27,22 @@ def main() -> None:
         w = s.get("weight", "medium")
         if w not in ALLOWED_WEIGHT:
             print(f"错误: {s.get('id')} weight 非法", file=sys.stderr)
+            sys.exit(1)
+        rs = s.get("review_state") or "pending"
+        if rs not in ALLOWED_REVIEW_STATE:
+            print(
+                f"错误: {s.get('id')} review_state 非法: {rs}（允许 pending|noise|queued_for_manifest）",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        note = s.get("reviewer_note")
+        if note is not None and (
+            not isinstance(note, str) or len(note) > REVIEWER_NOTE_MAX
+        ):
+            print(
+                f"错误: {s.get('id')} reviewer_note 须为字符串且 ≤{REVIEWER_NOTE_MAX} 字",
+                file=sys.stderr,
+            )
             sys.exit(1)
     print(f"OK: {len(data.get('signals') or [])} 条候选 · {PATH}")
 

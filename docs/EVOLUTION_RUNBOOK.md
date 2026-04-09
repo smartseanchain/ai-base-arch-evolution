@@ -11,12 +11,12 @@
 | 步骤 | 动作 | 产出/记录 |
 |------|------|-----------|
 | 1 | `make ingest`（或 **Actions → Ingest candidates** 定时/手动跑并下载 artifact） | 刷新 `evolution-candidates.json`；`require_route_match=true` 时仅保留命中 `routes` 的线索；`maps_to` 另合并 `scripts/maps_to_hints.json`（host/关键词）。CI 可在 Run 摘要里查看各源是否抓取成功 |
-| 2 | 浏览候选：删噪、合并重复、**不**自动 merge | 本地或 PR 中更新候选文件 |
-| 3 | 对值得入库的 id：`python3 scripts/merge_candidates_to_manifest.py …` | 更新 `evolution-manifest.json` |
+| 2 | 浏览候选：将噪点标 `review_state: noise`（不参与分析热力）；拟入库标 `queued_for_manifest`；可写 `reviewer_note`（≤500 字） | 本地或 PR 中更新 `evolution-candidates.json` |
+| 3 | 对值得入库的 id（须已 `queued_for_manifest`）：`python3 scripts/merge_candidates_to_manifest.py …`（应急 `--force`） | 更新 `evolution-manifest.json` |
 | 4 | `make validate` | 通过校验 + `analysis_engine --check` + **对账脚本** |
 | 5 | `make analyze` | 更新 `analysis-snapshot.json`、沉淀、trends |
 | 6 | 打开 `analysis-hub.html`（或读 `analysis-snapshot.json`） | 看热力与共现 |
-| 7 | 处理 **≥1 条** `evolution_hints`：**落实**（改 §6/§7/§11/相关页一句）或 **显式否决**（在私有笔记或 PR 写一句理由） | 闭环有决策痕迹 |
+| 7 | 处理 **≥1 条** `evolution_hints`（`analysis-snapshot.json` 中为对象时可点链到 `target_pages`）：**落实**或 **显式否决** | 闭环有决策痕迹 |
 | 8 | 打开 `lab.html`：按热力勾选因子做一轮沙盘 | 与 manifest 映射一致性感性校验 |
 | 9 | `git commit` & `push` | 站点与仓库同步 |
 

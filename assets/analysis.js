@@ -57,7 +57,30 @@
       ul.style.lineHeight = "1.75";
       hints.forEach(function (t) {
         var li = document.createElement("li");
-        li.textContent = t;
+        var text = typeof t === "string" ? t : t && t.text;
+        if (!text) return;
+        li.appendChild(document.createTextNode(text));
+        if (typeof t === "object" && t !== null) {
+          var pages = t.target_pages;
+          if (Array.isArray(pages) && pages.length) {
+            li.appendChild(document.createTextNode(" "));
+            pages.forEach(function (p, i) {
+              if (i > 0) li.appendChild(document.createTextNode(" · "));
+              var a = document.createElement("a");
+              a.href = p;
+              a.textContent = p;
+              a.className = "analysis-hint-link";
+              li.appendChild(a);
+            });
+          }
+          if (t.anchor_hint) {
+            var sp = document.createElement("span");
+            sp.className = "muted";
+            sp.style.marginLeft = "0.35em";
+            sp.textContent = "（" + t.anchor_hint + "）";
+            li.appendChild(sp);
+          }
+        }
         ul.appendChild(li);
       });
       hc.appendChild(ul);

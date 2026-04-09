@@ -29,7 +29,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_0d2354ac471a",
@@ -55,7 +56,8 @@
         "lab_factors": [
           "reg"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_22ccdbe66a56",
@@ -81,7 +83,8 @@
         "lab_factors": [
           "reg"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_28961586561e",
@@ -108,7 +111,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_2f12bf7c787c",
@@ -135,7 +139,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_34ca24bd1c02",
@@ -161,7 +166,8 @@
         "lab_factors": [
           "reg"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_4ec82b467d61",
@@ -188,7 +194,8 @@
           "esg_compute_carbon",
           "reg"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_54cf2e010907",
@@ -215,7 +222,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_5c6947ad1429",
@@ -242,7 +250,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_734f3b818dbb",
@@ -269,7 +278,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_7659342d5cc3",
@@ -295,7 +305,8 @@
         "lab_factors": [
           "reg"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_78d6ded2917b",
@@ -321,7 +332,8 @@
           "esg_compute_carbon",
           "water_cooling"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_7f8b0c1fe854",
@@ -348,7 +360,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_814a077535fd",
@@ -375,7 +388,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_91451f6babe1",
@@ -402,7 +416,8 @@
           "esg_compute_carbon",
           "reg"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_9f84c157d173",
@@ -429,7 +444,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_a1b5ab729d72",
@@ -456,7 +472,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_c07f8795cb67",
@@ -483,7 +500,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_d31de28ad82f",
@@ -510,7 +528,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_demo_structure",
@@ -532,7 +551,8 @@
         "lab_factors": [
           "reg"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_f162e3db802e",
@@ -559,7 +579,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     },
     {
       "id": "ing_f84cf0b6dfd1",
@@ -586,7 +607,8 @@
           "gig_multiemployer",
           "talent"
         ]
-      }
+      },
+      "review_state": "pending"
     }
   ]
 }

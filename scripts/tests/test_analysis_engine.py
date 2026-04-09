@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import sys
 import unittest
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -16,7 +17,16 @@ from analysis_engine import (  # noqa: E402
     load_hint_rules,
     run_analysis,
 )
-from collections import Counter  # noqa: E402
+
+
+def _hints_text(hints: list) -> str:
+    parts: list[str] = []
+    for h in hints:
+        if isinstance(h, dict):
+            parts.append(str(h.get("text") or ""))
+        else:
+            parts.append(str(h))
+    return " ".join(parts)
 
 
 class TestRunAnalysis(unittest.TestCase):
@@ -24,7 +34,7 @@ class TestRunAnalysis(unittest.TestCase):
         rules = load_hint_rules()
         out = run_analysis([], None, rules)
         self.assertIn("evolution_hints", out)
-        self.assertTrue(any("信号较少" in h for h in out["evolution_hints"]))
+        self.assertIn("信号较少", _hints_text(out["evolution_hints"]))
 
     def test_reg_ai_rule_fires(self) -> None:
         rules = load_hint_rules()
@@ -38,9 +48,9 @@ class TestRunAnalysis(unittest.TestCase):
             }
         ]
         out = run_analysis(sigs, None, rules)
-        hints = " ".join(out["evolution_hints"])
-        self.assertIn("监管", hints)
-        self.assertIn("AI", hints)
+        blob = _hints_text(out["evolution_hints"])
+        self.assertIn("监管", blob)
+        self.assertIn("AI", blob)
 
 
 class TestDiffHints(unittest.TestCase):
@@ -57,7 +67,7 @@ class TestDiffHints(unittest.TestCase):
     def test_manifest_increase(self) -> None:
         prev = {"sources": {"manifest_signals": 1, "candidate_signals": 0}}
         h = compute_diff_hints(prev, [], [], 3, 0)
-        self.assertTrue(any("已入库信号" in x for x in h))
+        self.assertTrue(any("已入库信号" in x["text"] for x in h))
 
 
 class TestEvaluateHintRules(unittest.TestCase):
@@ -73,7 +83,8 @@ class TestEvaluateHintRules(unittest.TestCase):
             ]
         }
         out = evaluate_hint_rules(fac, 10, doc)
-        self.assertEqual(out, ["hit"])
+        self.assertEqual(out[0]["text"], "hit")
+        self.assertEqual(out[0]["rule_id"], "x")
 
 
 if __name__ == "__main__":

@@ -4315,6 +4315,17 @@ tr.synth-cat-row td {
   margin-bottom: var(--space-5);
 }
 
+.analysis-hint-link {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.86em;
+}
+
+.analysis-hint-link:hover {
+  text-decoration: underline;
+}
+
 .analysis-panel {
   margin-bottom: var(--space-6);
 }

@@ -7,6 +7,7 @@
 
 ## 若涉及 manifest / 候选入库
 
+- [ ] 入库条目的 `review_state` 已为 **`queued_for_manifest`**（噪点用 **`noise`**；默认 **`pending`**）
 - [ ] 已本地执行 `make validate`（含对账与 `analysis_engine --check`）
 - [ ] 每条新信号能回答「三问」判据（见站内 `evolution-loop.html` §5 · 人必须做什么）
 - [ ] `maps_to.pages` 与 `lab_factors` 已人工核对；对账脚本无报错

@@ -7,6 +7,9 @@
   python3 scripts/merge_candidates_to_manifest.py ing_aaa ing_bbb
 
 合并后会从候选文件中删除已入库 id（若需保留副本请先备份）。
+
+默认仅允许 review_state=queued_for_manifest 的条目（双周审阅后标记）。
+应急可加 --force。噪点请先将 review_state 设为 noise（不参与分析热力）。
 """
 from __future__ import annotations
 
@@ -46,6 +49,11 @@ def strip_for_manifest(sig: dict) -> dict:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("ids", nargs="+", help="候选信号 id，如 ing_xxxxxxxxxxxx")
+    ap.add_argument(
+        "--force",
+        action="store_true",
+        help="跳过 review_state=queued_for_manifest 检查（不推荐）",
+    )
     args = ap.parse_args()
     want = set(args.ids)
 
@@ -71,6 +79,14 @@ def main() -> None:
         if sig.get("status") != "candidate":
             print(f"警告: {sid} 非 candidate 状态，跳过", file=sys.stderr)
             continue
+        rs = sig.get("review_state") or "pending"
+        if not args.force and rs != "queued_for_manifest":
+            print(
+                f"错误: {sid} 的 review_state 为「{rs}」，仅允许合并 "
+                "review_state=queued_for_manifest 的条目（或改用 --force）",
+                file=sys.stderr,
+            )
+            sys.exit(1)
         row = strip_for_manifest(sig)
         if row["id"] in existing:
             print(f"警告: manifest 已有 {row['id']}，跳过", file=sys.stderr)

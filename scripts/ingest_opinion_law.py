@@ -30,6 +30,7 @@ SUMMARY_PATH = ROOT / "ingest-summary.json"
 
 UA = "Mozilla/5.0 (compatible; EvolutionIngest/1.0; +https://example.local)"
 TIMEOUT = 25
+_KEEP_REVIEW = frozenset({"pending", "noise", "queued_for_manifest"})
 
 
 def fetch_bytes(url: str) -> bytes:
@@ -282,7 +283,8 @@ def main(argv: list[str] | None = None) -> None:
             if require_route_match and not lf and not pg:
                 continue
             sid = stable_id(link or url, title)
-            signals[sid] = {
+            prev = signals.get(sid)
+            row = {
                 "id": sid,
                 "kind": kind,
                 "title": title or "(无标题)",
@@ -290,6 +292,7 @@ def main(argv: list[str] | None = None) -> None:
                 "weight": "medium",
                 "since": now[:10],
                 "status": "candidate",
+                "review_state": "pending",
                 "source": {
                     "type": "rss",
                     "feed_id": fid,
@@ -299,6 +302,13 @@ def main(argv: list[str] | None = None) -> None:
                 },
                 "maps_to": {"pages": pg, "lab_factors": lf},
             }
+            if prev:
+                prs = prev.get("review_state")
+                if prs in _KEEP_REVIEW:
+                    row["review_state"] = prs
+                if prev.get("reviewer_note") is not None:
+                    row["reviewer_note"] = prev["reviewer_note"]
+            signals[sid] = row
 
     for page in cfg.get("law_html_pages") or []:
         url = page.get("url")
@@ -329,7 +339,8 @@ def main(argv: list[str] | None = None) -> None:
         if require_route_match and not lf and not pg:
             continue
         sid = stable_id(url, title)
-        signals[sid] = {
+        prev = signals.get(sid)
+        row = {
             "id": sid,
             "kind": default_kind,
             "title": title[:500],
@@ -337,6 +348,7 @@ def main(argv: list[str] | None = None) -> None:
             "weight": "low",
             "since": now[:10],
             "status": "candidate",
+            "review_state": "pending",
             "source": {
                 "type": "law_html",
                 "page_id": pid,
@@ -345,6 +357,13 @@ def main(argv: list[str] | None = None) -> None:
             },
             "maps_to": {"pages": pg, "lab_factors": lf},
         }
+        if prev:
+            prs = prev.get("review_state")
+            if prs in _KEEP_REVIEW:
+                row["review_state"] = prs
+            if prev.get("reviewer_note") is not None:
+                row["reviewer_note"] = prev["reviewer_note"]
+        signals[sid] = row
 
     if require_route_match:
         for sid in list(signals.keys()):
