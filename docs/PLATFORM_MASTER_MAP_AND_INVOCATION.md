@@ -55,7 +55,8 @@
 1. **`make validate`**（必跑，全闸门）。  
 2. 若动到只读 API 或相关脚本：**`make test-readonly-api`**。  
 3. 若动到 **`admin-console/`**：**`make test-admin-console`**。  
-4. 省事一条命令：**`make merge-ready`** = validate + 上述 API + 管理端烟测（见 **[MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md)**）。
+4. 省事一条命令：**`make merge-ready`** = validate + 上述 API + 管理端烟测（见 **[MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md)**）。  
+5. **`merge-ready` 不含 `spa-build`**：若本次改动会触发 CI 的 **`spa-build`**（**`spa/`**、**`nav.config.json`**、registry、**`sync_spa_public`** 输入等，见 **[docs/README 文首](./README.md)** 双轨说明），合并前请再跑 **`make spa-build`**（与 **[MERGE 清单](./MERGE_AND_RELEASE_CHECKLIST.md)** 表格「触达 spa-build 时」一行对读）。
 
 **原则**：**不要用 `make test` 代替 `make validate`** 作为合并依据（子集不含 manifest 对账、顶栏等）。
 
