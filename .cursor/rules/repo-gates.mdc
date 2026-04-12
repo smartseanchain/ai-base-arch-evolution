@@ -9,7 +9,7 @@ alwaysApply: true
 
 ## 必须遵守
 
-- 建议合并或宣称「可以提交」前：在仓库根执行 **`make validate`**（别名 **`make phase-1`**；与 **`.githooks/pre-commit`**、**`ci.yml` · validate** 一致）。与 CI 子测对齐时一次执行 **`make merge-ready`**（**`validate`** + **`test-readonly-api`**（**`test_readonly*.py`**）+ **`test-admin-console`**），见 **`docs/MERGE_AND_RELEASE_CHECKLIST.md`**。
+- 建议合并或宣称「可以提交」前：在仓库根执行 **`make validate`**（别名 **`make phase-1`**；与 **`.githooks/pre-commit`**、**`ci.yml` · validate** 一致）。与 CI 子测对齐时一次执行 **`make merge-ready`**（**`validate`** + **`test-readonly-api`**（**`test_readonly*.py`**）+ **`test-admin-console`**），见 **`docs/MERGE_AND_RELEASE_CHECKLIST.md`**。**`merge-ready` 不含 `spa-build`**；PR 将触发 CI **`spa-build`** 时须本地再 **`make spa-build`**（**`docs/README.md`** 文首双轨 · **`docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#golden-paths`** 步骤 5）。
 - 迭代中可跑 **`make test`**（registry Schema + 单测 + navLinks + 沉淀/趋势 Schema）；**不替代**合并前的 **`make validate`**（见 **`AGENTS.md`**）。
 - **`make analyze`**（**`evolution_pkg.pipeline.runner`**）在写入快照/沉淀**之前**复用与 **`run_validate.sh`** 相同的闸门至**单测**（含 **registry Schema**、对账、**navLinks**、顶栏）；写入后再校沉淀/趋势与快照 Schema，并以 **`analysis_engine.py --check`** 收尾。
 - **勿**设计或实现绕过 **`review_state` / 人审** 对 **`evolution-manifest.json`** 的自动写入。
@@ -19,7 +19,7 @@ alwaysApply: true
 
 - **`make validate`** 以根目录 **MPA** 为默认真源。
 - 改 **MPA** 枢纽页首屏（`lead` / `read-hint`、路径条短文案）时对照 **`docs/ARCHITECTURE_ONE_PAGER.md`**「内容与呈现」与 **`docs/SITE_REVIEW_THREE_PASSES.md`** §3.5（与 **`AGENTS.md`** 一致）。改 **`index.html`** 读站指路等后，若维护 **SPA**：须 **`make spa-sync`**（或 **`npm run sync`**），见 **`spa/README.md`**。
-- 维护 **SPA** 时：增删注册 **`pages`** 须同步 **`spa/src/navLinks.ts`** 与 **`scripts/evolution-registry.json`**；**`SpaLayout`** 快捷链与 **`partials/skip-bar.inc.html`** 同序（含 **`/#read-guide`**）；总览 hash 的标题/读屏见 **`spa/src/spaRouteMeta.ts`**，iframe **`title`** 见 **`spa/src/LegacyFrame.tsx`**。CI **`spa-build`** 按路径触发，**不替代** JSON 闸门。
+- 维护 **SPA** 时：增删注册 **`pages`** 须同步 **`spa/src/navLinks.ts`** 与 **`scripts/evolution-registry.json`**；**`SpaLayout`** 快捷链与 **`partials/skip-bar.inc.html`** 同序（含 **`/#read-guide`**）；总览 hash 的标题/读屏见 **`spa/src/spaRouteMeta.ts`**，iframe **`title`** 见 **`spa/src/LegacyFrame.tsx`**。CI **`spa-build`** 按路径触发，**不替代** JSON 闸门；亦**不包含**于 **`merge-ready`**（上条「必须遵守」）。
 - 编辑 **`spa/nav.config.json`** 时附加 **`spa-nav-config.mdc`**；**`spa/src/**`** → **`spa-nav-registry.mdc`**；**`scripts/evolution-registry.json`** → **`evolution-registry.mdc`**。
 
 ## 阶段化基础设施（编排 / Kafka / 生产库）

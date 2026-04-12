@@ -2,7 +2,7 @@
 
 维护或修改本仓库时建议遵守以下约定（与人读 **[CONTRIBUTING.md](CONTRIBUTING.md)** 一致）。
 
-- **合并前**：在仓库根执行 **`make validate`**（别名 **`make phase-1`**，阶段 1 站内增强主验收；与 **`.githooks/pre-commit`**、**`ci.yml` · validate** 同款；含 **`evolution-registry.json`** 的 **JSON Schema** 与语义对账）；勿在未跑通校验时建议直接合并。**CI `validate`** 另装 **`requirements-api.txt`**，**`test_readonly*.py`**（HTTP 契约 + 管理端白名单对账）必跑；**`admin-console`** 变更另触发 **`admin-console-tests`**。**`make merge-ready`** = **`validate`** + **`test-readonly-api`** + **`test-admin-console`**（推荐合并前），见 **[docs/MERGE_AND_RELEASE_CHECKLIST.md](docs/MERGE_AND_RELEASE_CHECKLIST.md)**。
+- **合并前**：在仓库根执行 **`make validate`**（别名 **`make phase-1`**，阶段 1 站内增强主验收；与 **`.githooks/pre-commit`**、**`ci.yml` · validate** 同款；含 **`evolution-registry.json`** 的 **JSON Schema** 与语义对账）；勿在未跑通校验时建议直接合并。**CI `validate`** 另装 **`requirements-api.txt`**，**`test_readonly*.py`**（HTTP 契约 + 管理端白名单对账）必跑；**`admin-console`** 变更另触发 **`admin-console-tests`**。**`make merge-ready`** = **`validate`** + **`test-readonly-api`** + **`test-admin-console`**（推荐合并前），见 **[docs/MERGE_AND_RELEASE_CHECKLIST.md](docs/MERGE_AND_RELEASE_CHECKLIST.md)**。**`merge-ready` 不跑 `spa-build`**：PR 将按 **[docs/README 文首](docs/README.md)** 路径触发 CI **`spa-build`** 时，合并前须再 **`make spa-build`**（与 **[PLATFORM_MASTER_MAP · 2.1 步骤 5](docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#golden-paths)** 对读）。
 - **快速子集**：**`make test`** = registry JSON Schema + 单测 + **navLinks** + 沉淀/趋势 Schema + 可选 **`ai-analysis-overlay`** Schema（**无** manifest 对账、顶栏、**`--check`** 等）；合并前仍须完整 **`make validate`**。
 - **人审闸门**：勿设计或实现「自动写入 **`evolution-manifest.json`**」或绕过 **`review_state`** / merge 脚本的流程。
 - **架构边界**：**`analysis_engine`** 产出 **`analysis-snapshot.json`** 等结构化结果；**不写** HTML 正文；叙事与版式在根目录 **`.html`**。

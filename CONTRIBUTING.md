@@ -13,7 +13,7 @@
 - **合并前**：`make validate`（**`make phase-1`** 与其同源；含 **registry** JSON Schema、JSON 对账、nav.config↔navLinks、顶栏、单测、`analysis_engine --check`、快照与沉淀/趋势 Schema）。仅跑子集可用 **`make test`**（**registry** JSON Schema + 单测 + navLinks + 沉淀/趋势 Schema + 可选 **ai-analysis-overlay** Schema）。
 - **合并前推荐**：**`make merge-ready`**（**`make validate`** → **`make test-readonly-api`** → **`make test-admin-console`**）。一页动线见 **[docs/MERGE_AND_RELEASE_CHECKLIST.md](docs/MERGE_AND_RELEASE_CHECKLIST.md)**。
 - **只读 API 单测**：CI **`validate`** 已装 **`requirements-api.txt`**，**`test_readonly*.py`**（**`test_readonly_api`**、**`test_readonly_proxy_segment_sync`**）必跑；本地仅 **`requirements.txt`** 时该类会在 **`make validate`** 中 **skip**，需对齐请执行 **`make test-readonly-api`**（已含于 **`make merge-ready`**）。**管理端烟测**：**`make test-admin-console`**（变更 **`admin-console/**`** 时 CI 另跑 **`admin-console-tests`**；**`make merge-ready`** 亦包含）。
-- **可选**：改全站 SPA 时需 **Node 18+**，`make spa-build`；可选分析栈见 `requirements-analytics.txt` / `requirements-api.txt`（[DATA_CONTRACTS.md](docs/DATA_CONTRACTS.md)）
+- **SPA / Node**：**Node 18+**。**`make merge-ready` 不含 `make spa-build`**；若 PR 将触发 CI **`spa-build`**（路径条件见 **[docs/README 文首](docs/README.md)**），合并前须再 **`make spa-build`**。仅改根 **`index.html`** 读站等、需更新壳内 iframe 时，再 **`make spa-sync`**（**[spa/README.md](spa/README.md)**）。**可选分析栈**：`requirements-analytics.txt`（[DATA_CONTRACTS.md](docs/DATA_CONTRACTS.md)）；API 依赖见上文 **只读 API**。
 
 <a id="contributing-terminology"></a>
 
