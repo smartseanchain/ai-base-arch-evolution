@@ -11,8 +11,9 @@
 | 步骤 | 命令或文档 |
 |------|------------|
 | 全闸门（与 pre-commit、CI **`validate`** 一致） | **`make validate`** |
-| 只读 API + 管理端烟测（本地未单装 **fastapi** 时 **`make validate`** 会 **skip** **`test_readonly*.py`**） | **`make merge-ready`**（= 上一步 + **`make test-readonly-api`**（**`test_readonly*.py`**：HTTP **304** + **`READONLY_PROXY_SEGMENTS`** 对账）+ **`make test-admin-console`**）或分步执行后两者 |
-| 变更触及 **SPA** / **registry** / **sync 输入** 等且 CI 会跑 **spa-build** 时 | **`make spa-build`**（见 **[docs/README 文首](./README.md)** 路径说明） |
+| 只读 API + 管理端烟测（本地未单装 **fastapi** 时 **`make validate`** 会 **skip** **`test_readonly*.py`**） | **`make merge-ready`**（= 上一步 + **`make test-readonly-api`**（**`test_readonly*.py`**：HTTP **304** + **`READONLY_PROXY_SEGMENTS`** 对账）+ **`make test-admin-console`**）或分步执行后两者。**不含 `spa-build`**，与 **[PLATFORM_MASTER_MAP · 2.1 步骤 5](./PLATFORM_MASTER_MAP_AND_INVOCATION.md#golden-paths)**、`[AGENTS.md](../AGENTS.md)` 合并前条一致 |
+| 变更触及 **SPA** / **registry** / **sync 输入** 等且 CI 会跑 **spa-build** 时 | **`make spa-build`**（见 **[docs/README 文首](./README.md)** 路径说明）；须在 **`merge-ready`** 绿之后**追加**，非其子命令 |
+| 仅改根 **`index.html`** 读站指路等、需壳内 **iframe** 与 **`public/docs`** 同步 | **`make spa-sync`**（或 **`npm run sync`**，见 **[spa/README](../spa/README.md)**）；**不替代** **`make validate`** |
 | 增能自检 | [PLATFORM_CAPABILITY_MAP · §6](./PLATFORM_CAPABILITY_MAP.md#enhance-checklist)、[PLATFORM_EXTENSIBILITY · 新增能力检查单](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md#new-capability-checklist) |
 | 架构改造排期 / 分域拆 PR | [ARCHITECTURE_UPGRADE_ROADMAP.md](./ARCHITECTURE_UPGRADE_ROADMAP.md)（决策图 · 分域矩阵 · 阶段卡 · 验收门禁） |
 | **按阶段升级**（当前阶段、准入、验收） | [PHASED_UPGRADE_EXECUTION_GUIDE.md](./PHASED_UPGRADE_EXECUTION_GUIDE.md) |

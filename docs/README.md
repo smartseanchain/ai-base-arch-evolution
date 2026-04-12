@@ -37,7 +37,7 @@
 
 **持续集成（双轨）**：与 [ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md) §1「默认栈」一致。PR/推送时 [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) 的 **`validate`** 始终安装 **`requirements.txt` + `requirements-api.txt`** 并跑 `run_validate.sh`（根目录 MPA 为默认真源；含 **`test_readonly*.py`**）；**`spa-build`** 仅在变更触及 [PLATFORM_CAPABILITY_MAP.md](./PLATFORM_CAPABILITY_MAP.md) 所述路径集合（含 `spa/`、`scripts/evolution-registry.json`、**`docs/schemas/evolution-registry.schema.json`**、**`scripts/validate_evolution_registry_schema.py`**、sync 输入等）时执行 **`make spa-build`**，否则为 skipped。分支保护建议以 **`validate`** 为必选。若评估 Dagster/Prefect 或 Kafka 系，见同目录 **编排与事件流** 文档。
 
-**本地子集**：**`make test`** = registry JSON Schema + 单测 + **`check_nav_links_registry`** + 沉淀/趋势 Schema；**不含** manifest 对账、顶栏、**`analysis_engine --check`** 等。**合并前仍须** **`make validate`**（与 **`run_validate.sh`**、pre-commit、CI **validate** 一致）。合并前推荐 **`make merge-ready`**（另含 **`test-admin-console`**）或分步 **`make test-readonly-api`** / **`make test-admin-console`**（见 [MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md)）。详见 [CONTRIBUTING.md](../CONTRIBUTING.md)、[AGENTS.md](../AGENTS.md)。
+**本地子集**：**`make test`** = registry JSON Schema + 单测 + **`check_nav_links_registry`** + 沉淀/趋势 Schema；**不含** manifest 对账、顶栏、**`analysis_engine --check`** 等。**合并前仍须** **`make validate`**（与 **`run_validate.sh`**、pre-commit、CI **validate** 一致）。合并前推荐 **`make merge-ready`**（**不含 `spa-build`**；另含 **`test-admin-console`**）或分步 **`make test-readonly-api`** / **`make test-admin-console`**（**`merge-ready`/`spa-build`/`spa-sync` 分工**见 [MERGE_AND_RELEASE_CHECKLIST · 第 1 节](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) 表）。详见 [CONTRIBUTING.md](../CONTRIBUTING.md)、[AGENTS.md](../AGENTS.md)。
 
 | 文档 | 用途 |
 |------|------|
