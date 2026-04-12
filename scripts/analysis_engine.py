@@ -19,6 +19,20 @@ from evolution_pkg.analysis_pipeline import (
     parse_analysis_cli,
     run_analysis_pipeline,
 )
+
+# 编排真源在 ``analysis_pipeline``；本模块保留路径常量 + ``run_analysis`` / ``load_hint_rules`` 供单测与脚本导入。
+__all__ = [
+    "CANDIDATES",
+    "HINT_DECISIONS_PATH",
+    "HINT_RULES_PATH",
+    "MANIFEST",
+    "OUT",
+    "SEDIMENT",
+    "load_hint_rules",
+    "main",
+    "run_analysis",
+]
+
 _DEFAULT_PATHS = default_analysis_paths()
 # 模块级路径：与历史脚本/文档对齐；真源为 ``default_analysis_paths()``。
 MANIFEST = _DEFAULT_PATHS.manifest
