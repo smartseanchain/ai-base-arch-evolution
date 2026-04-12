@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "site_version": "1.1.0",
-  "codename": "evolution-surface",
-  "summary": "包化 evolution_pkg、流水线遥测、站点版本展示（总线）",
-  "updated": "2026-04-09"
+  "site_version": "1.3.0",
+  "codename": "stack-upgrade",
+  "summary": "SPA 栈升级：Vite 6、TypeScript 5.7；npm audit 清零",
+  "updated": "2026-04-10"
 }

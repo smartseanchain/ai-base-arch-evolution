@@ -27,13 +27,20 @@ class TestBuildHeader(unittest.TestCase):
     def test_index_threeq_href(self) -> None:
         h = build_header("index.html", self.template)
         self.assertIn('href="#three-questions"', h)
+        self.assertIn('href="#hub-catalog"', h)
         self.assertIn('href="index.html" class="current"', h)
         self.assertIn('class="site-nav-threeq"', h)
 
     def test_other_page_threeq(self) -> None:
         h = build_header("nexus.html", self.template)
         self.assertIn('href="index.html#three-questions"', h)
+        self.assertIn('href="index.html#hub-catalog"', h)
         self.assertIn('href="nexus.html" class="current"', h)
+
+    def test_maintainer_link_may_have_title_before_current(self) -> None:
+        h = build_header("maintainer-hub.html", self.template)
+        self.assertIn('href="maintainer-hub.html" class="current"', h)
+        self.assertIn("reader-admin-surfaces", h)
 
 
 class TestSiteNavSpan(unittest.TestCase):
@@ -54,10 +61,14 @@ class TestSkipBar(unittest.TestCase):
         s = build_skip_bar("index.html", self.tpl)
         self.assertIn('href="#main"', s)
         self.assertIn('href="#three-questions"', s)
+        self.assertIn('href="#read-guide"', s)
+        self.assertIn('href="#hub-catalog"', s)
 
     def test_other_page(self) -> None:
         s = build_skip_bar("lab.html", self.tpl)
         self.assertIn('href="index.html#three-questions"', s)
+        self.assertIn('href="index.html#read-guide"', s)
+        self.assertIn('href="index.html#hub-catalog"', s)
 
     def test_span_on_lab(self) -> None:
         text = (REPO_ROOT / "lab.html").read_text(encoding="utf-8")

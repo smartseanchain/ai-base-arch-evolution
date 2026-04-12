@@ -1,6 +1,6 @@
 # 技术架构总览 · 可实现功能 · 进化能力
 
-本文与 [ARCHITECTURE.md](./ARCHITECTURE.md) **互补**：后者侧重**数据流、关键文件、适应度函数与七类模块映射**；本文用**技术栈分层**收束全站，并列出**已实现 / 可扩展的功能**与**「进化」在本站的三层含义**。定性脚手架、非预测——与 [DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md) 一致。
+本文与 [ARCHITECTURE.md](./ARCHITECTURE.md) **互补**：后者侧重**数据流、关键文件、适应度函数与七类模块映射**；本文用**技术栈分层**收束全站，并列出**已实现 / 可扩展的功能**与**「进化」在本站的三层含义**。定性脚手架、非预测——与 [DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md) 一致。**技术 / 内容 / 推演** 三条架构并列速览：**[ARCHITECTURE_ONE_PAGER · 三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)**（本文主写其中**技术**与**进化三层**）。**一页整理技术分层 + 分阶段升级决策**：**[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md)**。**智能化六域协同**（排期/PR 与七类模块对表）：**[INTELLIGENCE_SIX_DOMAINS.md](./INTELLIGENCE_SIX_DOMAINS.md)**。
 
 <a id="stack"></a>
 
@@ -8,33 +8,37 @@
 
 | 层 | 技术选型 | 职责 |
 |----|-----------|------|
-| **呈现与路由** | 根目录静态 `.html`、`partials/` 模板经 `sync_site_nav.py` 同步顶栏 | 叙事主体、章节结构、无障碍与图例；**不**内嵌业务数据库 |
+| **呈现与路由** | **主轨**：根目录静态 `.html`、`partials/` 经 `sync_site_nav.py`；**副轨**：`spa/`（React + Vite 6 + React Router，iframe 加载 `sync_spa_public.py` 产物） | MPA 为 **validate 默认真源**；SPA 供「单入口」部署；详见 [PLATFORM_CAPABILITY_MAP.md](./PLATFORM_CAPABILITY_MAP.md) |
 | **客户端逻辑** | 原生 JS（`evolution.js`、`analysis.js`、`site-data-bus.js`、`closure-summary.js`、`lab.js`、`motion.js` 等） | `fetch` 读 JSON，DOM 渲染；复杂交互集中在沙盘、分析枢纽、闭环页 |
 | **样式** | `assets/site.css` 及少量页级 CSS | 全站视觉与组件类名（如 `nexus-tag`、`evolution-*`） |
 | **数据契约（Git 真源）** | `assets/*.json`、`scripts/*.json`（规则/配置）、`data/sediment.json`（可选提交） | 可 diff、可校验的结构化事实；**单一注册表** `evolution-registry.json` 约束页面与沙盘因子 |
 | **本地侧车** | `data/evolution.db`（SQLite，通常 gitignore） | 沉淀查询加速，与 JSON 双写；趋势脚本可读库 |
 | **管道（Python 3）** | `scripts/*.py` + 包 **`evolution_pkg`**（`io`、`pipeline`）；`evolution_io.py` 为兼容入口 | 抓取、合并、分析、沉淀、趋势、对账、站点辅助（sitemap） |
 | **契约校验** | `jsonschema`（`requirements.txt`）、`run_validate.sh` | 快照 Schema、manifest/候选/决策结构、compileall、单测 |
-| **持续集成** | GitHub Actions：`ci.yml`、`ingest-pipeline.yml`、`update-pipeline.yml`、`pr-candidates.yml` | PR/推送闸门；定时或手动产出 artifact；可选 bot 开 PR 更新候选 |
+| **持续集成** | GitHub Actions：`ci.yml`（**validate** 必跑；**spa-build** 按路径过滤）、`ingest-pipeline.yml`、`update-pipeline.yml`、`pr-candidates.yml` | 主闸门与根目录 MPA 一致；SPA 构建见 [docs/README 文首](./README.md) · [PLATFORM_CAPABILITY_MAP §4](./PLATFORM_CAPABILITY_MAP.md#ops-tooling) |
 
 ```mermaid
 flowchart LR
   subgraph client [浏览器]
     HTML[静态 HTML]
     JS[JS fetch 展示]
+    SPA[可选 · spa 壳 + iframe]
   end
   subgraph repo [Git 仓库]
     JSON[JSON 契约]
     PY[scripts Python]
   end
   subgraph actions [GitHub Actions]
-    CI[CI validate]
+    CI[ci.yml · validate]
+    SPAJ[条件 · spa-build]
     ING[Ingest artifact]
     UPD[Analyze artifact]
   end
   JSON --> JS
+  JSON -.-> SPA
   PY --> JSON
   CI --> PY
+  SPAJ -.-> SPA
   ING --> JSON
   UPD --> JSON
 ```
@@ -60,9 +64,12 @@ flowchart LR
 | **分析仪表盘** | 聚合解读、热力条、趋势表、决策列表等 | `analysis-hub.html` + `analysis.js` |
 | **闭环页摘要** | 快照驱动的闭环提示 | `evolution-loop.html` + `closure-summary.js` |
 | **沙盘** | 多因子合成、与 manifest 因子高亮联动 | `lab.html` + `lab.js` + `evolution.js` |
-| **工程闸门** | 注册表对账、顶栏一致、单测、快照 Schema | `make validate` = `run_validate.sh` |
+| **工程闸门** | **registry** / **nav.config** / 快照 / **沉淀·趋势** 等 JSON Schema + 对账、顶栏、单测 | **`make validate`** = **`run_validate.sh`**；**`make test`** 为子集（registry Schema + navLinks + 沉淀/趋势 Schema + 单测，无对账/顶栏/`--check`） |
 | **本地提速** | 已校验后仅重算快照/沉淀/趋势 | `make evolution-fast`（见 [EVOLUTION_RUNBOOK.md](./EVOLUTION_RUNBOOK.md#accelerate)） |
 | **CI 节奏** | 定时 ingest / analyze artifact；手动刷新候选 PR | 根目录 README「持续集成」 |
+| **站点发布线** | `site_version` / `codename` 人为维护；与 `run_id` 分离 | `assets/site-meta.json` · 顶栏 `data-site-meta-version` |
+| **全站 SPA** | 客户端路由 + iframe 承载剥壳分页；`navLinks` ≡ registry | `spa/` · `make spa-build` · [spa/README.md](../spa/README.md) |
+| **只读 API 扩展** | HTTP 读 `snapshot` / `trends` / `manifest` / **`site-meta`** | `readonly_api.py` + `requirements-api.txt` |
 
 <a id="evolution"></a>
 
@@ -92,10 +99,12 @@ flowchart LR
 
 ## 4. 可扩展方向（尚未实现或仅部分实现）
 
+评估新能力时建议先按 **[INTELLIGENCE_SIX_DOMAINS.md](./INTELLIGENCE_SIX_DOMAINS.md)** 标明影响域（数据 / 管道 / 分析 / 前端 / 运维 / 治理），再对下表「方向 × 成本」排序。
+
 | 方向 | 说明 | 风险/成本 |
 |------|------|-----------|
-| **脚本分包** | `scripts/` 下按 ingest / analysis / validate 分子包 | 高：import 路径与 CI 全链路需一次迁完 |
-| **草稿生成** | `scripts/draft/` 等产出供 PR 审阅的 Markdown/HTML 片段 | 中：须严格禁止自动写 manifest |
+| **脚本分包** | 其余 `scripts/*.py` 按 ingest / analysis / validate 迁入子包 | 高：`evolution_pkg` 已落地，余下需一次迁完 |
+| **草稿生成** | **`scripts/draft/`** 产出供 PR 审阅的 Markdown/HTML 片段（见 **[scripts/draft/README.md](../scripts/draft/README.md)**） | 中：须严格禁止自动写 manifest；**不**接入 `analysis_engine` 写 HTML |
 | **全自动 artifact 入 main** | Actions 直接 push 快照/候选 | 高：削弱人审与 review 节奏；默认不启用 |
 | **实时告警** | 站外 Webhook / 监控 ingest 失败 | 低到中：已有 Issue 通知可扩展 |
 | **多环境配置** | 分离「个人站」与「机构站」的 `ingest_config` | 中：配置矩阵与文档同步 |
@@ -105,12 +114,17 @@ flowchart LR
 | **任务编排器（Dagster / Prefect）** | 多 DAG、分区回填、跨环境调度时再评估；与 Actions 可并存 | 高：需专职运维或托管产品；见 [ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md) |
 | **事件流（Kafka / Redpanda）** | 多服务实时生产/多消费者回放时再评估；本站默认以 **Git+JSON** 为日志 | 高：集群与 schema 治理；同上篇 |
 
+**在不变量内最大化扩展**：插槽表、四条进化轨、阶段跑道、合并前检查单见 **[PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md)**；**Schema 索引**见 **[docs/schemas/README.md](./schemas/README.md)**。
+
 <a id="index"></a>
 
 ## 5. 文档与页面对照（索引）
 
 | 需求 | 去向 |
 |------|------|
+| 新贡献者 · 合并前自检 | [CONTRIBUTING.md](../CONTRIBUTING.md) |
+| 全文档整理主线（维护者） | [docs/README · 文档主线](./README.md#docs-spine) |
+| 自动化助手 · 闸门与边界 | [AGENTS.md](../AGENTS.md) · Cursor [repo-gates](../.cursor/rules/repo-gates.mdc) · [spa-nav-config](../.cursor/rules/spa-nav-config.mdc) · [spa-nav-registry](../.cursor/rules/spa-nav-registry.mdc) · [evolution-registry](../.cursor/rules/evolution-registry.mdc) |
 | 数据流与关键文件清单 | [ARCHITECTURE.md](./ARCHITECTURE.md) |
 | 全站 JSON 如何驱动页面刷新 | [SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md) |
 | 数据与分析对模块/叙事/动态块的更新矩阵 | [DATA_ANALYSIS_SITE_CONTENT_SYNC.md](./DATA_ANALYSIS_SITE_CONTENT_SYNC.md) |
@@ -119,7 +133,15 @@ flowchart LR
 | 推演认识论与质量控制 | [DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md) |
 | 研究方法与站内资产映射 | [RESEARCH_METHODS_MAP.md](./RESEARCH_METHODS_MAP.md) |
 | 脚本命令表 | [scripts/README.md](../scripts/README.md) |
+| CI 双轨（validate 必跑 · spa-build 按路径） | [docs/README 文首](./README.md) · [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) · [PLATFORM_CAPABILITY_MAP §4](./PLATFORM_CAPABILITY_MAP.md#ops-tooling) |
 | 编排器与消息队列（何时引入） | [ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md) |
+| 技术架构整理 + 升级路径（简版） | [TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md) |
+| 整体适配、分阶段升级、扩展面 | [ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md) |
+| 扩展插槽 · 进化四轨 · 新增能力检查单 | [PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md) |
+| 合并前动线（`merge-ready`）· 发布轻量清单 | [MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md) |
+| 只读 API · OpenAPI · 网关侧 CORS/鉴权 | [INTEGRATION_AND_READONLY_API.md](./INTEGRATION_AND_READONLY_API.md) |
+| 平台能力总览（双轨 / 阅读顺序） | [PLATFORM_CAPABILITY_MAP.md](./PLATFORM_CAPABILITY_MAP.md) |
+| 分端设计（用户/管理 · 数据源 · 审核） | [USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md) |
 | 方法与字段总线（站内） | [analysis-hub.html#panorama](../analysis-hub.html#panorama) |
 
 ---

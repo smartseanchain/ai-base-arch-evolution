@@ -1,12 +1,29 @@
 # 基础架构演变推演
 
-静态站点 + **可进化观测管道**（manifest / 候选 / 分析 / 沉淀）。
+静态站点 + **可进化观测管道**（manifest / 候选 / 分析 / 沉淀）。**参与贡献**（环境、**`make validate`**（必）、**`make merge-ready`**（合并前推荐：validate + 只读 API + 管理端烟测）、CI 双轨、注册表/SPA 自检）：[CONTRIBUTING.md](CONTRIBUTING.md)。**文档整理主线**（维护者按序扫读）：[docs/README.md · 文档主线](docs/README.md#docs-spine)。**自动化助手 / Cursor**：[AGENTS.md](AGENTS.md) · [.cursor/rules/repo-gates.mdc](.cursor/rules/repo-gates.mdc)（始终）· [`spa/src`](spa/src) 编辑时 [.cursor/rules/spa-nav-registry.mdc](.cursor/rules/spa-nav-registry.mdc)。
 
 - **仓库**：https://github.com/smartseanchain/ai-base-arch-evolution  
 - **GitHub Pages**（开启后）：https://smartseanchain.github.io/ai-base-arch-evolution/ — 在仓库 **Settings → Pages** 中选择 **Deploy from a branch**，分支 **main**，文件夹 **/ (root)**，保存后约 1～2 分钟可访问。  
 - 本地预览：直接打开 `index.html`，或用任意静态服务器（`evolution.js` 等需 **http(s)** 才能 `fetch` JSON）。
 
-概念总览见站内 [可进化架构](evolvable-architecture.html)。**文档索引表**：[docs/README.md](docs/README.md)。**仓库架构与数据流**（Mermaid）：[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)；**存储/沉淀/分析/展示等七类模块**：[同一文档 · seven-layers 锚点](docs/ARCHITECTURE.md#seven-layers)。**技术栈分层、已实现功能地图、进化能力三层含义（总览）**：[docs/TECH_ARCHITECTURE_CAPABILITIES.md](docs/TECH_ARCHITECTURE_CAPABILITIES.md)。**全站推演内容如何随 JSON + 分析引擎自动对齐读数**（总线、消费方登记、流水线）：[docs/SITE_DATA_UPDATE_FRAMEWORK.md](docs/SITE_DATA_UPDATE_FRAMEWORK.md)。**数据与分析对全站模块与正文/动态块的更新边界**：[docs/DATA_ANALYSIS_SITE_CONTENT_SYNC.md](docs/DATA_ANALYSIS_SITE_CONTENT_SYNC.md)。**科学的推演策略与方法**（认识论、单轮流程、偏误清单、与闭环对表）：[docs/DEDUCTION_STRATEGY.md](docs/DEDUCTION_STRATEGY.md)。**全站梳理、内容对表、重新推演后如何更新**：[docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md](docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md)。**研究/推演方法与站内页、沙盘、JSON 管道的匹配（A/B/C 可利用性）**：[docs/RESEARCH_METHODS_MAP.md](docs/RESEARCH_METHODS_MAP.md)。**全站标题 · 图例 · TOC · 图形展示**三轮梳理：[docs/SITE_REVIEW_THREE_PASSES.md](docs/SITE_REVIEW_THREE_PASSES.md)。**双周反哺节奏**（可打印照做）：[docs/EVOLUTION_RUNBOOK.md](docs/EVOLUTION_RUNBOOK.md)。
+### 全站 SPA（React + Vite，主形态可选）
+
+- 目录 **`spa/`**：**React 18** + **Vite 6** + **React Router** 客户端路由 + **iframe** 加载剥离顶栏后的各页 HTML（`scripts/sync_spa_public.py` 生成 `spa/public/`），保留原 `assets/`、`evolution.js`、`site-data-bus` 等相对路径行为。
+- **开发**：需 **Node 18+**；`cd spa && npm install && npm run dev`（会先同步 `public`）。
+- **顶栏**：**`spa/nav.config.json`** 为顺序/文案真源；**`make gen-nav-links`** 生成 **`spa/src/navLinks.ts`**（勿手改）。**`make spa-build`** 会先执行 **`gen-nav-links`**。
+- **构建**：`make spa-build` → 产物在 **`spa/dist/`**（已含 **`404.html` = SPA 入口**，供 GitHub Pages 刷新深链）。**GitHub Pages 项目站**构建前设置：  
+  `VITE_BASE=/ai-base-arch-evolution/ npm run build`（与仓库名一致；末尾斜杠保留）。部署时将 **`spa/dist/` 内全部文件** 作为站点根（或 Actions 发布该目录）。
+- 原分页 HTML 仍保留在仓库根目录；**默认 CI/校验仍以根目录分页为准**。详情见 [spa/README.md](spa/README.md)。
+
+### 如何阅读本站（读者）
+
+- **总览入口**：[index.html](index.html) 的 [读站指路](index.html#read-guide)（三条并行：系统首读 / 时间情景 / 数据与迭代）与 [三问导读](index.html#three-questions)。  
+- **与仓库能力对齐的阅读顺序**：[docs/PLATFORM_CAPABILITY_MAP.md](docs/PLATFORM_CAPABILITY_MAP.md) §5（含时间窗官方深链；深链进正文后仍建议扫该页「推演扩展 · 本轮提要」）；**枢纽记忆、站内 `docs/*.md` 在 Pages 上的行为**见同文档 [§7](docs/PLATFORM_CAPABILITY_MAP.md#reader-and-release)。  
+- **文档索引中的读者路径**：[docs/README.md](docs/README.md) 文首。  
+- **全站 SPA**：与 MPA 并行入口见 [spa/README.md](spa/README.md)；壳内快捷链与总览锚点（含读站指路）与根目录 `skip-bar` 同序。  
+- **推演纪律与偏误自检**：[docs/DEDUCTION_STRATEGY.md](docs/DEDUCTION_STRATEGY.md)。
+
+**站内概念总览**：[可进化架构](evolvable-architecture.html)。**架构、契约、推演方法、全站梳理与 CI 说明** 等 Markdown 文档的索引表、**[文档主线表](docs/README.md#docs-spine)** 与文首导读见 **[docs/README.md](docs/README.md)**（含 **CI 双轨**、读者路径、与 [PLATFORM_CAPABILITY_MAP](docs/PLATFORM_CAPABILITY_MAP.md)、[ARCHITECTURE](docs/ARCHITECTURE.md)、[DATA_CONTRACTS](docs/DATA_CONTRACTS.md)、[MERGE_AND_RELEASE_CHECKLIST](docs/MERGE_AND_RELEASE_CHECKLIST.md) 等条目链接）。**技术 / 内容 / 推演** 三条架构一页对照：[ARCHITECTURE_ONE_PAGER · 三架构对照](docs/ARCHITECTURE_ONE_PAGER.md#three-architectures)。**五维整体架构图谱**（数据 · 内容 · 演进 · 方法论 · 运行态）：[PROJECT_ARCHITECTURE_OVERVIEW.md](docs/PROJECT_ARCHITECTURE_OVERVIEW.md)。**按阶段升级执行指南**（阶段 0→1→2/3 · 2.5 数据层 · 验收）：[PHASED_UPGRADE_EXECUTION_GUIDE.md](docs/PHASED_UPGRADE_EXECUTION_GUIDE.md)。**可落地架构升级路线图**（决策全景 · 分域矩阵 · 阶段卡 · 验收）：[ARCHITECTURE_UPGRADE_ROADMAP.md](docs/ARCHITECTURE_UPGRADE_ROADMAP.md)。**模块全量梳理与升级矩阵**：[MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md](docs/MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md)。**增量构建与边调试边补**（提前接组件 · PR 切片）：[INCREMENTAL_BUILD_PLAYBOOK.md](docs/INCREMENTAL_BUILD_PLAYBOOK.md)。**技术架构整理与分阶段升级（简版）**：[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md](docs/TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md)。**智能化 · 六域协同**（数据 / 管道 / 分析 / 前端 / 运维 / 治理）：[INTELLIGENCE_SIX_DOMAINS.md](docs/INTELLIGENCE_SIX_DOMAINS.md)。**读者面（前端）与管理面（后端）分拆**：[USER_ADMIN_SPLIT · 节 1a](docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#reader-frontend-admin-backend)；**与总表对读**：[PLATFORM_MASTER_MAP · 读者面/管理面](docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces)。**管理端 Web 化**（登录、用户与角色、审核等扩展梳理）：[ADMIN_WEB_CONSOLE_ROADMAP.md](docs/ADMIN_WEB_CONSOLE_ROADMAP.md)。**脚本按职责分类**（闸门 / 编排 / 抓取 / 站点 / 侧车等）见 **[scripts/README.md · 脚本分类](scripts/README.md#scripts-by-role)**。
 
 ## 本地校验与流水线
 
@@ -19,12 +36,14 @@ python3 -m pip install -r requirements.txt
 ```
 
 ```bash
-make validate    # 等同 bash scripts/run_validate.sh（compileall + 全套 JSON/对账/顶栏/单测/analysis + 快照 JSON Schema）
+make validate    # 等同 bash scripts/run_validate.sh（compileall + JSON + registry Schema + 对账/navLinks/顶栏/单测/analysis + 快照与沉淀/趋势 Schema）
+make merge-ready # validate + test-readonly-api + test-admin-console（推荐合并前）
 make ingest      # 抓取候选（需外网，依赖 scripts/ingest_config.json）
 make ingest-full # 同上但单次 --full-pool（忽略 require_route_match）
 make analyze     # 校验 + 分析引擎 --sediment + 长期趋势
 make evolution-fast  # 仅刷新快照/沉淀/趋势（须先 make validate；双周内多轮调数时省时间）
 make status      # 打印当前 analysis-snapshot 计数与闭环缺口（需先有快照）
+make spa-build   # 全站 SPA：同步 public + npm ci + Vite 构建 → spa/dist
 ```
 
 **分析引擎总线**（全部定性研究方法、演进策略与 JSON 字段如何对表）：站内 [analysis-hub.html#panorama](analysis-hub.html#panorama)；仓库文档 [docs/RESEARCH_METHODS_MAP.md](docs/RESEARCH_METHODS_MAP.md)、[docs/DEDUCTION_STRATEGY.md](docs/DEDUCTION_STRATEGY.md)。
@@ -52,20 +71,22 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 
 ## Docker
 
-见仓库内 `docker-compose.yml`、`Dockerfile`（按需使用）。
+**默认**：`docker compose up -d` 或 **`make docker-up`** → 根目录 **MPA** 静态站（**http://localhost:8765/**），与 CI **`validate`** 默认真源一致；**`make docker-up-api`** 同时起 **只读 API**（**http://localhost:8099/**，Compose **`--profile api`**）；**`make docker-up-admin`** 起 **管理端脚手架**（**http://localhost:8100/**，Compose **`--profile admin`**，见 **[admin-console/README.md](admin-console/README.md)**、**[docs/DOCKER.md#profile-admin](docs/DOCKER.md#profile-admin)**）。详见 **[docs/DOCKER.md](docs/DOCKER.md)**（开发挂载、SPA 镜像 `Dockerfile.spa`、可选 **[Kafka 本地 PoC · §4a](docs/DOCKER.md#kafka-dev-overlay)**、健康检查、反向代理建议）。若 **`docker compose up --build`** 报 **`x-docker-expose-session-sharedkey`** / 非 ASCII 头错误，见 **[DOCKER · §8 故障排除](docs/DOCKER.md#troubleshoot-bake-grpc)** 或执行 **`make docker-up-stack`**（默认 **`DOCKER_BUILDKIT=0`**，并对**空** **`READONLY_API_BASE_URL`** 先 **`unset`**；勿在子目录单独跑 compose 除非指定 **`-f`** 指向根 **`docker-compose.yml`**）。管理端 **`/api/readonly`** **503** 见 **[DOCKER · §9](docs/DOCKER.md#troubleshoot-admin-readonly)**。**`make docker-build`** / **`make docker-down`** 见 **`make help`**。
 
 ## 持续集成
 
-- `ci.yml`：PR/推送时执行 **`bash scripts/run_validate.sh`**（与 `make validate` 一致：compileall、manifest/候选/hint 决策 JSON、对账、顶栏、单测、`analysis_engine --check`、已提交 `analysis-snapshot` 契约）
+CI **validate** 与 **spa-build** 分工、分支保护建议及路径过滤摘要：**[docs/README.md](docs/README.md) 文首**；workflow 源码：**[.github/workflows/ci.yml](.github/workflows/ci.yml)**。
+
+- `ci.yml`：**validate** job 始终执行 **`bash scripts/run_validate.sh`**（与 `make validate` 一致：compileall、manifest/候选/hint 决策 JSON、**evolution-registry Schema**、对账、**nav.config↔navLinks**、顶栏、单测、`analysis_engine --check`、已提交 **快照 + 沉淀/趋势** Schema），并安装 **`requirements.txt` + `requirements-api.txt`** 跑 **`test_readonly*.py`**；本地对齐请 **`make merge-ready`** 或 **`make pre-merge`**（含 **`test-admin-console`**；见 [MERGE_AND_RELEASE_CHECKLIST](docs/MERGE_AND_RELEASE_CHECKLIST.md)）。**spa-build** 仅在变更触及 **`spa/`**（含 **`nav.config.json`**）、**`scripts/evolution-registry.json`**、**`docs/schemas/evolution-registry.schema.json`**、**`scripts/validate_evolution_registry_schema.py`**、**`gen_nav_links_ts.py`**、`spa_nav.py`、`sync_spa_public.py`、`assets/`、`docs/`、根目录 `*.html`、根 `Makefile` 或 **本 workflow 文件** 时运行 **`make spa-build`**（`partials/` 仅改模板时须 **`make sync-nav`** 写回各 `*.html` 后才会触发；其余提交显示为 skipped；**分支保护建议只必选 validate**，或接受 spa-build 跳过）
 - `update-pipeline.yml`：定时/手动分析 artifact；**定时失败**时新建 Issue（与 ingest 对称），便于发现分析脚本或校验回归
 - `ingest-pipeline.yml`：**每周二 UTC 定时**或手动抓取候选 artifact；Job Summary 汇总各 RSS 源成功/失败；**定时失败**会新建 Issue 提醒
 - `pr-candidates.yml`：**手动**跑 ingest 并直接向 `main` 开 PR 更新 `evolution-candidates.json`（需在仓库 **Settings → Actions → General** 将 workflow 权限设为可读写；合并仍人审）
-- 在 GitHub 开 PR 时自动带出 **`.github/pull_request_template.md`**（合并 manifest/候选请勾选自检项）。新建 Issue 可选用 **「流水线 / 校验失败排查」** 模板（`.github/ISSUE_TEMPLATE/`）。
+- 在 GitHub 开 PR 时自动带出 **`.github/pull_request_template.md`**（合并 manifest/候选请勾选自检项）。新建 Issue 可选用 **[流水线 / 校验失败排查](.github/ISSUE_TEMPLATE/pipeline-triage.md)** 模板。**贡献与自检主线**：[CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ### 定时流水线与仓库写入（预期）
 
 - **默认**：上述定时/手动 workflow 产出 **artifact**，**不会**自动 push 到 `main`。线上站点里的 `analysis-snapshot.json`、`sediment.json` 等与 Git 一致，仍依赖你在本地 **`make analyze`**（或下载 artifact 人工合并后提交）。
-- **合并 artifact 到主分支（建议）**：在 Actions 运行页下载 `analysis-outputs-*` → 解压后替换仓库内 `assets/analysis-snapshot.json`、`assets/sediment-trends.json`、`data/sediment.json` → 执行 **`make validate`** → `git commit` & push。（`data/sediment.json` 的每日条目现含规则闭环 backlog 字段，与 SQLite 双写一致。）
+- **合并 artifact 到主分支（建议）**：在 Actions 运行页下载 `analysis-outputs-*` → 解压后替换仓库内 `assets/analysis-snapshot.json`、`assets/sediment-trends.json`、`data/sediment.json` → 执行 **`make validate`**（推荐再 **`make merge-ready`**）→ `git commit` & push。（`data/sediment.json` 的每日条目现含规则闭环 backlog 字段，与 SQLite 双写一致。）
 - **候选 PR**：可用 **`PR · refresh candidates`**（`pr-candidates.yml`）触发 bot 分支；**manifest 仍不自动 merge**，须本地/PR 内 `merge_candidates_to_manifest` 且 `review_state=queued_for_manifest`。
 
 ### 单一注册表
@@ -73,7 +94,7 @@ SITE_BASE=https://smartseanchain.github.io/ai-base-arch-evolution make sitemap
 - **`scripts/evolution-registry.json`**：声明允许出现在 `maps_to.pages` 的根目录 HTML（不含 `404.html`）及全部 **`lab_factors`**；须与 **`assets/lab.js`** 中因子 `id` **集合完全一致**。
 - **`check_manifest_drift.py`** 同时校验 `ingest_config.json`、`maps_to_hints.json` 内的页面/因子引用，以及 **`gen-sitemap.py` 的 `PRIORITY` 键** ⊆ 注册表页面。
 
-本地：`make test` 仅跑单测；`make validate` 含单测与全套校验。
+本地：`make test` = **`validate_evolution_registry_schema.py`** + 单测 + **`check_nav_links_registry.py`** + **`validate_sediment_artifacts_schema.py`**；`make validate` 含上述全部及更多闸门。
 
 ### 全站顶栏与 skip-bar
 

@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "title_zh": "数据源参考目录",
+  "disclaimer_zh": "下列条目为研究规划用的「公开入口」梳理，不构成法律或商务建议。访问时请使用您本人常用的浏览器或 RSS 阅读器，遵守各站 robots.txt、服务条款、版权与访问频率；勿在管理端或自建脚本中做高频、伪装浏览器或绕过鉴权的抓取，以免触发对方反爬或风控。本控制台不会代您请求这些外站 URL。若要将某源纳入仓库自动 ingest，须编辑 scripts/ingest_config.json 并经 PR 合并（与 make validate 对账）。",
+  "categories": [
+    {
+      "id": "policy_cn",
+      "title_zh": "国内政策与权威媒体",
+      "description_zh": "以官方发布与主流媒体公开 RSS 为主；流水线抓取须低频、可审计。"
+    },
+    {
+      "id": "regulatory_portal",
+      "title_zh": "法规与征求意见（门户）",
+      "description_zh": "适合人工浏览、检索与下载正式文本；不建议对检索接口做机器批量爬取。"
+    },
+    {
+      "id": "tech_open",
+      "title_zh": "开放标准与开发者生态",
+      "description_zh": "技术组织与厂商博客类公开订阅，通常允许个人阅读器与合理自动化（仍以各自条款为准）。"
+    },
+    {
+      "id": "intl_feed",
+      "title_zh": "国际公开资讯（英文参考）",
+      "description_zh": "跨境访问与版权因地区而异；个人阅读为宜，商业用途请单独核对许可。"
+    },
+    {
+      "id": "dataset_api",
+      "title_zh": "开放数据与官方 API 入口",
+      "description_zh": "通常需注册、密钥或配额；请按文档「正常客户端」调用，勿共用爬虫身份池。"
+    }
+  ],
+  "sources": [
+    {
+      "id": "xinhuanet-politics",
+      "title_zh": "新华网 · 时政 RSS",
+      "category_id": "policy_cn",
+      "kind": "rss",
+      "access_mode_zh": "建议用 RSS 阅读器个人订阅；勿高频轮询。",
+      "home_url": "https://www.xinhuanet.com/",
+      "sample_feed_url": "https://www.xinhuanet.com/politics/news_politics.xml"
+    },
+    {
+      "id": "chinanews-scroll",
+      "title_zh": "中国新闻网 · 滚动新闻 RSS",
+      "category_id": "policy_cn",
+      "kind": "rss",
+      "access_mode_zh": "个人阅读器订阅；遵守中新网使用条款。",
+      "home_url": "https://www.chinanews.com.cn/",
+      "sample_feed_url": "https://www.chinanews.com.cn/rss/scroll-news.xml"
+    },
+    {
+      "id": "gov-cn-policy",
+      "title_zh": "中国政府网 · 政策",
+      "category_id": "regulatory_portal",
+      "kind": "portal",
+      "access_mode_zh": "浏览器人工查阅与检索；重要文本以站内 PDF/HTML 官方版本为准。",
+      "home_url": "https://www.gov.cn/zhengce/"
+    },
+    {
+      "id": "npc-flk",
+      "title_zh": "国家法律法规数据库",
+      "category_id": "regulatory_portal",
+      "kind": "portal",
+      "access_mode_zh": "面向公众检索与查看；勿对检索接口做并发抓取。",
+      "home_url": "https://flk.npc.gov.cn/"
+    },
+    {
+      "id": "npc-home",
+      "title_zh": "中国人大网 · 法律草案与征求意见",
+      "category_id": "regulatory_portal",
+      "kind": "portal",
+      "access_mode_zh": "征求意见期内通过官方渠道提交；机器批量下载须谨慎。",
+      "home_url": "https://www.npc.gov.cn/"
+    },
+    {
+      "id": "cac-home",
+      "title_zh": "中央网信办（国家网信办）",
+      "category_id": "regulatory_portal",
+      "kind": "portal",
+      "access_mode_zh": "政策与通报以官网为准；个人正常浏览。",
+      "home_url": "https://www.cac.gov.cn/"
+    },
+    {
+      "id": "ndrc-home",
+      "title_zh": "国家发展改革委",
+      "category_id": "regulatory_portal",
+      "kind": "portal",
+      "access_mode_zh": "政策与数据发布门户；下载公开文件优于整站爬取。",
+      "home_url": "https://www.ndrc.gov.cn/"
+    },
+    {
+      "id": "w3c-blog",
+      "title_zh": "W3C Blog · RSS",
+      "category_id": "tech_open",
+      "kind": "rss",
+      "access_mode_zh": "开放技术新闻；常见阅读器即可。",
+      "home_url": "https://www.w3.org/",
+      "sample_feed_url": "https://www.w3.org/blog/feed/"
+    },
+    {
+      "id": "github-blog",
+      "title_zh": "GitHub Blog · RSS",
+      "category_id": "tech_open",
+      "kind": "rss",
+      "access_mode_zh": "开发者动态；遵守 GitHub 条款与合理使用。",
+      "home_url": "https://github.blog/",
+      "sample_feed_url": "https://github.blog/feed/"
+    },
+    {
+      "id": "ietf-blog-rss",
+      "title_zh": "IETF Blog · RSS",
+      "category_id": "tech_open",
+      "kind": "rss",
+      "access_mode_zh": "标准进程相关公开文章；个人订阅。",
+      "home_url": "https://www.ietf.org/",
+      "sample_feed_url": "https://www.ietf.org/blog/feed/"
+    },
+    {
+      "id": "nist-news-rss",
+      "title_zh": "NIST · News RSS",
+      "category_id": "intl_feed",
+      "kind": "rss",
+      "access_mode_zh": "美国联邦机构公开新闻流；英文阅读。",
+      "home_url": "https://www.nist.gov/",
+      "sample_feed_url": "https://www.nist.gov/news-events/news/rss.xml"
+    },
+    {
+      "id": "bbc-world-rss",
+      "title_zh": "BBC News · World RSS",
+      "category_id": "intl_feed",
+      "kind": "rss",
+      "access_mode_zh": "国际新闻参考；遵守 BBC 使用条款与地域限制。",
+      "home_url": "https://www.bbc.com/news",
+      "sample_feed_url": "https://feeds.bbci.co.uk/news/world/rss.xml"
+    },
+    {
+      "id": "guardian-world-rss",
+      "title_zh": "The Guardian · World news RSS",
+      "category_id": "intl_feed",
+      "kind": "rss",
+      "access_mode_zh": "英文国际报道参考；遵守 The Guardian Open Platform 与版权条款。",
+      "home_url": "https://www.theguardian.com/world",
+      "sample_feed_url": "https://www.theguardian.com/world/rss.xml"
+    },
+    {
+      "id": "data-gov-cn",
+      "title_zh": "国家政务数据开放平台（参考入口）",
+      "category_id": "dataset_api",
+      "kind": "portal",
+      "access_mode_zh": "按平台指引注册与申请数据集；使用官方 API/下载通道，勿抓屏式批量搬运。",
+      "home_url": "https://data.gov.cn/"
+    },
+    {
+      "id": "european-data-portal",
+      "title_zh": "European data portal（欧盟开放数据入口）",
+      "category_id": "dataset_api",
+      "kind": "portal",
+      "access_mode_zh": "通过门户检索与 API 文档获取数据；遵守 EU 及各国使用条件。",
+      "home_url": "https://data.europa.eu/"
+    }
+  ]
+}

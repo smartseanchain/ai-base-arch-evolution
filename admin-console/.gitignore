@@ -1,0 +1,7 @@
+# 本地管理员账户（含 bcrypt 密码哈希）；勿提交
+data/admin_accounts.json
+
+.venv-admin/
+__pycache__/
+*.py[cod]
+.Python

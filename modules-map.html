@@ -26,11 +26,14 @@
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
+      <a class="skip-link" href="index.html#read-guide">读站指路</a>
+      <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
     </div>
     <header class="site-nav">
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+        <a href="index.html#hub-catalog" class="site-nav-threeq site-nav-catalog" title="全站分区速跳（联结 / 时间 / 栈 / 制度 / 推演 / 工程）">分区</a>
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
@@ -39,6 +42,7 @@
         <a href="evolution-triad.html">人与AI演进</a>
         <a href="work-infra-energy.html">职业·基建·能源</a>
         <a href="model.html">分层模型</a>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
         <a href="architecture.html">架构拓扑</a>
         <a href="timeline.html">历史演进</a>
         <a href="past-future.html">廿年视角</a>
@@ -68,8 +72,21 @@
     <div id="main" class="page-head" tabindex="-1">
       <h1>全站模块图谱：分类 · 堆叠 · 扩展 · 可视化推演</h1>
       <p class="lead">
-        全站分页先按<strong>五系</strong>归档（枢轴与时间、硬栈、人、场景、外部性），再按<strong>七层堆叠</strong>理解依赖方向（从地缘外缘到元组合压测）；每张模块表带<strong>向下夯实 / 横向扩展 / 向上显影</strong>的提示，便于与 <a href="synthesis.html#inventory">综合推演 §1</a>、<a href="synthesis.html#continuation">继续推演矩阵</a>、<a href="synthesis-methods.html#perpetual">§11 迭代</a> 同步增删。下文仍保留<strong>星丛图、场景轮、路径与八镜头演示</strong>。判据见 <a href="synthesis.html#criteria">§2</a>；深读见 <a href="synthesis-methods.html#deep-lens">§13</a>；国家叙事与舆情<strong>双轨对账</strong>见 <a href="national-strategy-opinion.html">战略·舆情</a>。        <strong>三问大纲</strong>（我们在哪 / 要做什么 / 将在哪）见 <a href="index.html#three-questions">总览 · 三问导读</a>。
+        <strong>三问大纲</strong>见 <a href="index.html#three-questions">总览 · 三问导读</a>。先按<strong>五系</strong>归档（枢轴与时间、硬栈、人、场景、外部性），再按<strong>七层堆叠</strong>看依赖（地缘外缘→元组合压测）；模块表带<strong>向下夯实 / 横向扩展 / 向上显影</strong>提示。下文含<strong>星丛图、场景轮、路径预设与八镜头演示</strong>。
       </p>
+      <div class="read-hint page-head-deck" role="note" aria-label="判据、深读与双轨对账">
+        <p><strong>与综合推演对账</strong>：<a href="synthesis.html#inventory">主篇 · 模块表</a>；<a href="synthesis.html#continuation">继续推演矩阵</a>；<a href="synthesis-methods.html#perpetual">方法篇 · 持续迭代</a>。</p>
+        <p><strong>判据与深读</strong>：<a href="synthesis.html#criteria">综合推演 · 判据</a>；<a href="synthesis-methods.html#deep-lens">方法篇 · 深读透镜</a>。</p>
+        <p><strong>国家叙事与舆情双轨</strong>：<a href="national-strategy-opinion.html">战略·舆情</a>。</p>
+        <p><strong>仓库数据流</strong>：<a href="docs/ARCHITECTURE.md">ARCHITECTURE</a>（文首 Mermaid 简图）· <a href="docs/ARCHITECTURE.md#seven-layers">七层映射</a>；<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a>；<a href="analysis-hub.html#panorama">分析引擎 · 方法与演进全景</a>。</p>
+      </div>
+      <nav class="page-route-strip" aria-label="与本页相关的站内路径">
+        <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
+        <a href="index.html#hub-read"><span class="page-route-ico" aria-hidden="true">🔗</span>联结卡片</a>
+        <a href="nexus.html"><span class="page-route-ico" aria-hidden="true">◇</span>立体联结</a>
+        <a href="synthesis.html#inventory"><span class="page-route-ico" aria-hidden="true">表</span>主篇 · 模块表</a>
+        <a href="synthesis.html#continuation"><span class="page-route-ico" aria-hidden="true">↔</span>继续矩阵</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
@@ -101,7 +118,7 @@
 
     <section class="card site-round-extension" id="ext-round-modules-map" aria-labelledby="hre-modules-map">
       <h2 class="site-round-extension-h" id="hre-modules-map">推演扩展 · 本轮更新（模块图谱）</h2>
-      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">图谱页本轮要求：每次推演先选<strong>进门系</strong>与<strong>必须踏过的堆叠层</strong>，再打开路径/八镜头；与主篇 <a href="synthesis.html#continuation">继续推演矩阵</a>「模块图谱+三页」行自检。</p>
+      <p class="muted note-kicker">图谱页本轮要求：每次推演先选<strong>进门系</strong>与<strong>必须踏过的堆叠层</strong>，再打开路径/八镜头；与主篇 <a href="synthesis.html#continuation">继续推演矩阵</a>「模块图谱+三页」行自检。</p>
       <ul>
         <li>路径预设与星丛：标注<strong>哪条边最容易被新信号打断</strong>（地缘、电力、校采、支付）。</li>
         <li>扩展三向里「向上显影」须接到 <a href="decade.html">十年六维</a> 或 <a href="national-strategy-opinion.html">战略·舆情</a> 之一，防悬空中枢。</li>
@@ -122,12 +139,12 @@
 
     <section id="taxonomy">
       <h2>1. 五系分类（合理归档）</h2>
-      <p class="muted" style="margin-top:-0.35rem">「系」解决<strong>找邻居</strong>：推演时同系模块共享话语与变量类型的概率更高；跨系组合必须用 <a href="synthesis.html#criteria">§2 判据</a> 写明中介。</p>
+      <p class="muted note-pull">「系」解决<strong>找邻居</strong>：推演时同系模块共享话语与变量类型的概率更高；跨系组合必须用 <a href="synthesis.html#criteria">§2 判据</a> 写明中介。</p>
       <div class="mod-taxonomy-grid">
         <div class="mod-tax-card">
           <h3>Ⅰ · 枢轴与元工具</h3>
-          <p class="muted" style="margin:0 0 0.5rem;font-size:0.82rem">尺度互译、组合判据、图谱导航、因子压测。</p>
-          <ul class="muted" style="margin:0;font-size:0.85rem;line-height:1.7">
+          <p class="muted note-map-kicker">尺度互译、组合判据、图谱导航、因子压测。</p>
+          <ul class="muted list-flat-map">
             <li><a href="nexus.html">立体联结</a>（枢轴）</li>
             <li><a href="synthesis.html">综合推演</a></li>
             <li><a href="modules-map.html">模块图谱</a></li>
@@ -140,8 +157,8 @@
         </div>
         <div class="mod-tax-card">
           <h3>Ⅱ · 时间谱与六维骨架</h3>
-          <p class="muted" style="margin:0 0 0.5rem;font-size:0.82rem">记忆惯性 → 双窗廿年 → 十年六维表与阶段条。</p>
-          <ul class="muted" style="margin:0;font-size:0.85rem;line-height:1.7">
+          <p class="muted note-map-kicker">记忆惯性 → 双窗廿年 → 十年六维表与阶段条。</p>
+          <ul class="muted list-flat-map">
             <li><a href="timeline.html">历史演进</a></li>
             <li><a href="past-future.html">廿年视角</a></li>
             <li><a href="decade.html">十年展望</a></li>
@@ -149,8 +166,8 @@
         </div>
         <div class="mod-tax-card">
           <h3>Ⅲ · 物理—系统—分工栈</h3>
-          <p class="muted" style="margin:0 0 0.5rem;font-size:0.82rem">瓦特/土地/网 → 分层与 Cell → 职业与社会分工。</p>
-          <ul class="muted" style="margin:0;font-size:0.85rem;line-height:1.7">
+          <p class="muted note-map-kicker">瓦特/土地/网 → 分层与 Cell → 职业与社会分工。</p>
+          <ul class="muted list-flat-map">
             <li><a href="work-infra-energy.html">职业·基建·能源</a></li>
             <li><a href="model.html">分层模型</a></li>
             <li><a href="architecture.html">架构拓扑</a></li>
@@ -158,24 +175,24 @@
         </div>
         <div class="mod-tax-card">
           <h3>Ⅳ · 人与学制接口</h3>
-          <p class="muted" style="margin:0 0 0.5rem;font-size:0.82rem">家校政平台、技能与契约三角。</p>
-          <ul class="muted" style="margin:0;font-size:0.85rem;line-height:1.7">
+          <p class="muted note-map-kicker">家校政平台、技能与契约三角。</p>
+          <ul class="muted list-flat-map">
             <li><a href="edu-nexus.html">教育纵轴</a></li>
             <li><a href="evolution-triad.html">人与AI演进</a></li>
           </ul>
         </div>
         <div class="mod-tax-card">
           <h3>Ⅴ · 场景与四问</h3>
-          <p class="muted" style="margin:0 0 0.5rem;font-size:0.82rem">八镜头日常显影；我们/孩子/家庭/国家。</p>
-          <ul class="muted" style="margin:0;font-size:0.85rem;line-height:1.7">
+          <p class="muted note-map-kicker">八镜头日常显影；我们/孩子/家庭/国家。</p>
+          <ul class="muted list-flat-map">
             <li><a href="decade-scenes.html">十年场景</a></li>
             <li><a href="decade-us.html">十年之问</a></li>
           </ul>
         </div>
         <div class="mod-tax-card">
           <h3>Ⅵ · 外部性与风险</h3>
-          <p class="muted" style="margin:0 0 0.5rem;font-size:0.82rem">制裁、支付、供应链；对全栈做边界条件。</p>
-          <ul class="muted" style="margin:0;font-size:0.85rem;line-height:1.7">
+          <p class="muted note-map-kicker">制裁、支付、供应链；对全栈做边界条件。</p>
+          <ul class="muted list-flat-map">
             <li><a href="risk-geo.html">地缘与商业</a></li>
             <li><a href="national-strategy-opinion.html">战略·舆情</a>（国家叙事与舆论场<strong>双轨</strong>，与十年窗对账）</li>
             <li><a href="social-responsibility-evolution.html">社会责任</a>（多源信号 · 自动分析 · 推演输出）</li>
@@ -186,7 +203,7 @@
 
     <section id="layer-stack">
       <h2>2. 七层堆叠（自下而上约束）</h2>
-      <p class="muted" style="margin-top:-0.35rem"><strong>堆叠</strong>表示「缺下层则上层易空转」：<strong>L0</strong> 外部冲击 → <strong>L1</strong> 物理与基建 → <strong>L2</strong> 系统栈 → <strong>L3</strong> 组织与职业 → <strong>L4</strong> 制度与学段接口 → <strong>L5</strong> 可感场景与协商 → <strong>L6</strong> 元组合与压测。<a href="nexus.html">立体联结</a>与<strong>时间谱</strong>（历史/廿年/十年）是<strong>纵切与正交轴</strong>，与层号同时生效。</p>
+      <p class="muted note-pull"><strong>堆叠</strong>表示「缺下层则上层易空转」：<strong>L0</strong> 外部冲击 → <strong>L1</strong> 物理与基建 → <strong>L2</strong> 系统栈 → <strong>L3</strong> 组织与职业 → <strong>L4</strong> 制度与学段接口 → <strong>L5</strong> 可感场景与协商 → <strong>L6</strong> 元组合与压测。<a href="nexus.html">立体联结</a>与<strong>时间谱</strong>（历史/廿年/十年）是<strong>纵切与正交轴</strong>，与层号同时生效。</p>
       <div class="svg-wrap" role="img" aria-label="七层堆叠剖面：自下而上 L0 地缘与商业至 L6 综合推演与工坊；左为立体联结纵切，右为时间谱历史至十年">
         <svg class="module-map-svg mod-stack-svg" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <text x="260" y="22" text-anchor="middle" fill="#e8edf4" font-size="12" font-weight="600" font-family="Noto Sans SC,sans-serif">模块堆叠剖面（自下而上）</text>
@@ -223,7 +240,7 @@
 
     <section id="extension">
       <h2>3. 扩展三向：夯实 · 同窗 · 显影</h2>
-      <p class="muted" style="margin-top:-0.35rem">每条推演建议至少做一次<strong>方向选择</strong>：向下是否接得上瓦特/合同；横向是否同系已穷尽；向上能否在场景里看见行为切片。</p>
+      <p class="muted note-pull">每条推演建议至少做一次<strong>方向选择</strong>：向下是否接得上瓦特/合同；横向是否同系已穷尽；向上能否在场景里看见行为切片。</p>
       <div class="coupling-table-wrap">
         <table>
           <thead>
@@ -278,7 +295,7 @@
 
     <section id="constellation">
       <h2>4. 模块星丛：立体联结为枢</h2>
-      <p class="muted" style="margin-top:-0.35rem">示意：中心是<strong>尺度与话语总枢</strong>；外围六簇为常见<strong>切入话题</strong>。边表示「先读谁再滑向谁」的高频路径，非数据流。</p>
+      <p class="muted note-pull">示意：中心是<strong>尺度与话语总枢</strong>；外围六簇为常见<strong>切入话题</strong>。边表示「先读谁再滑向谁」的高频路径，非数据流。</p>
       <div class="svg-wrap">
         <svg class="module-map-svg" viewBox="0 0 560 400" xmlns="http://www.w3.org/2000/svg" aria-label="全站模块星丛">
           <defs>
@@ -332,7 +349,7 @@
 
     <section id="scene-wheel">
       <h2>5. 场景轮：八镜头绕「十年」骨架</h2>
-      <p class="muted" style="margin-top:-0.35rem">中心锚定 <a href="decade.html">十年展望</a> 六维表；外环为 <a href="decade-scenes.html">十年场景</a> 八条镜头。沿辐条<strong>向外</strong>读日常细节，<strong>向内</strong>对回维度和配方。</p>
+      <p class="muted note-pull">中心锚定 <a href="decade.html">十年展望</a> 六维表；外环为 <a href="decade-scenes.html">十年场景</a> 八条镜头。沿辐条<strong>向外</strong>读日常细节，<strong>向内</strong>对回维度和配方。</p>
       <div class="svg-wrap">
         <svg class="module-map-svg" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" aria-label="八场景轮">
           <circle cx="210" cy="210" r="150" fill="none" stroke="#2a3544" stroke-width="1.5" stroke-dasharray="6 4"/>
@@ -364,7 +381,7 @@
 
     <section id="matrix-table">
       <h2>6. 分系模块总表：堆叠位 · 职责 · 延伸</h2>
-      <p class="muted" style="margin-top:-0.35rem">与 <a href="synthesis.html#inventory">综合推演 §1</a> 同序维护；<strong>堆叠位</strong>对应 §2 七层剖面。<strong>自然延伸</strong>优先同系，跨系须写中介变量。</p>
+      <p class="muted note-pull">与 <a href="synthesis.html#inventory">综合推演 §1</a> 同序维护；<strong>堆叠位</strong>对应 §2 七层剖面。<strong>自然延伸</strong>优先同系，跨系须写中介变量。</p>
       <div class="synth-mod-table-wrap">
         <table>
           <thead>
@@ -511,7 +528,7 @@
 
     <section id="path-presets">
       <h2>7. 预设推演路径（四条主路径 + 一条补充）</h2>
-      <p class="muted" style="margin-top:-0.35rem">每条是<strong>建议阅读顺序</strong>，用于工作坊投屏或自学；走完应能落到 <a href="synthesis-extensions.html#matrix">§7 表</a> 至少一行或 <a href="lab.html">沙盘</a> 一组勾选。需把<strong>正式战略节拍</strong>与<strong>舆情议程</strong>拆开对账时，走<strong>路径 E</strong>。</p>
+      <p class="muted note-pull">每条是<strong>建议阅读顺序</strong>，用于工作坊投屏或自学；走完应能落到 <a href="synthesis-extensions.html#matrix">§7 表</a> 至少一行或 <a href="lab.html">沙盘</a> 一组勾选。需把<strong>正式战略节拍</strong>与<strong>舆情议程</strong>拆开对账时，走<strong>路径 E</strong>。</p>
       <div class="path-preset-grid">
         <div class="scene-demo-card">
           <h3>路径 A · 公文 → 客厅</h3>
@@ -591,7 +608,7 @@
 
     <section id="scene-demos">
       <h2>8. 场景化演示：八镜头各一段「走法」</h2>
-      <p class="muted" style="margin-top:-0.35rem">各镜头正文为<strong>钩子 → 主轴 → 三帧画面 → 机制叠层</strong>，并设<strong>下一境</strong>串联（见 <a href="decade-scenes.html">十年场景</a>）。此处与 <a href="synthesis-methods.html#deep-lens">§13.4</a> 一致，展开为<strong>逐步链接</strong>，便于投屏逐段点开。</p>
+      <p class="muted note-pull">各镜头正文为<strong>钩子 → 主轴 → 三帧画面 → 机制叠层</strong>，并设<strong>下一境</strong>串联（见 <a href="decade-scenes.html">十年场景</a>）。此处与 <a href="synthesis-methods.html#deep-lens">§13.4</a> 一致，展开为<strong>逐步链接</strong>，便于投屏逐段点开。</p>
       <div class="scene-demo-grid">
         <div class="scene-demo-card">
           <h3><a href="decade-scenes.html#scene-office">办公协作</a></h3>

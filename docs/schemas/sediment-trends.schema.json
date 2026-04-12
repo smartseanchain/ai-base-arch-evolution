@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/sediment-trends.schema.json",
+  "title": "assets/sediment-trends.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "generated_at",
+    "source",
+    "summary",
+    "factor_persistence",
+    "page_persistence",
+    "closure_backlog",
+    "longterm_hints"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer" },
+    "generated_at": { "type": "string", "minLength": 1 },
+    "source": { "type": "string" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entry_count", "date_range"],
+      "properties": {
+        "entry_count": { "type": "integer", "minimum": 0 },
+        "date_range": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["first", "last"],
+              "properties": {
+                "first": { "type": "string" },
+                "last": { "type": "string" }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "factor_persistence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "factor",
+          "days_in_top",
+          "coverage",
+          "first_seen",
+          "last_seen"
+        ],
+        "properties": {
+          "factor": { "type": "string" },
+          "days_in_top": { "type": "integer", "minimum": 0 },
+          "coverage": { "type": "number" },
+          "first_seen": { "type": "string" },
+          "last_seen": { "type": "string" }
+        }
+      }
+    },
+    "page_persistence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "page",
+          "days_in_top",
+          "coverage",
+          "first_seen",
+          "last_seen"
+        ],
+        "properties": {
+          "page": { "type": "string" },
+          "days_in_top": { "type": "integer", "minimum": 0 },
+          "coverage": { "type": "number" },
+          "first_seen": { "type": "string" },
+          "last_seen": { "type": "string" }
+        }
+      }
+    },
+    "closure_backlog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["date", "hint_closure_gaps_n", "hint_decisions_total"],
+        "properties": {
+          "date": { "type": "string" },
+          "hint_closure_gaps_n": { "type": "integer", "minimum": 0 },
+          "hint_decisions_total": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "longterm_hints": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

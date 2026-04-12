@@ -12,6 +12,8 @@
   <meta property="og:title" content="进化闭环 · 观测信号与反哺 · 基础架构演变推演" />
   <meta property="og:description" content="进化闭环：观测信号 manifest、OODA 反哺综合推演与沙盘；社会舆情与政策如何驱动站点迭代。" />
   <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="进化闭环 · 观测信号与反哺 · 基础架构演变推演" />
+  <meta name="twitter:description" content="候选与人审 manifest、OODA 反哺综合推演与沙盘；定性脚手架。" />
   <title>进化闭环 · 观测信号与反哺 · 基础架构演变推演</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,11 +26,14 @@
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
+      <a class="skip-link" href="index.html#read-guide">读站指路</a>
+      <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
     </div>
     <header class="site-nav">
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+        <a href="index.html#hub-catalog" class="site-nav-threeq site-nav-catalog" title="全站分区速跳（联结 / 时间 / 栈 / 制度 / 推演 / 工程）">分区</a>
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
@@ -37,6 +42,7 @@
         <a href="evolution-triad.html">人与AI演进</a>
         <a href="work-infra-energy.html">职业·基建·能源</a>
         <a href="model.html">分层模型</a>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
         <a href="architecture.html">架构拓扑</a>
         <a href="timeline.html">历史演进</a>
         <a href="past-future.html">廿年视角</a>
@@ -66,15 +72,27 @@
     <div id="main" class="page-head" tabindex="-1">
       <h1>进化闭环：让推演随观测「长出来」</h1>
       <p class="lead">
-        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页定义<strong>自动进化</strong>在本站中的含义：<strong>不是</strong>替代人类判断的预测机，而是<strong>可重复的观测—编码—反哺</strong>管道——脚本从 RSS、法规/政策索引页等拉取线索，汇总为 <code>assets/evolution-candidates.json</code>（待审），人审后再并入 <code>assets/evolution-manifest.json</code>；前端 <code>evolution.js</code> 同时展示<strong>已入库</strong>与<strong>候选</strong>，并合并 <code>lab_factors</code> 驱动沙盘高亮。人机分工：机器可做抓取、去重、关键词路由；<strong>法理判断与是否升格为站内核</strong>仍须人审。        面向<strong>社会责任取向</strong>的多源信号（舆情/战略/商业等）与推演输出见 <a href="social-responsibility-evolution.html">社会责任 · 可进化推演</a>。
+        本站所谓<strong>自动进化</strong>，<strong>不是</strong>替代人类判断的预测机，而是<strong>可重复的观测—编码—反哺</strong>：抓取线索进 <code>evolution-candidates.json</code>（待审），人审后并入 <code>evolution-manifest.json</code>；<code>evolution.js</code> 展示已入库与候选，并用 <code>lab_factors</code> 驱动沙盘高亮。机器可做抓取、去重、路由；<strong>是否升格为站内核</strong>仍须人审。
       </p>
+      <div class="read-hint page-head-deck" role="note">
+        <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
+        <p>本页与下方动线主要服务<strong>读者面（前端）</strong>：看观测如何入库与反哺。<strong>管理面（后端侧）</strong>（抓取、合并、<code>make validate</code> 等）见 <a href="maintainer-hub.html">维护导读</a>、<a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#reader-frontend-admin-backend">用户端/管理端分拆说明</a> 与 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面速查</a>。</p>
+        <p>面向<strong>社会责任取向</strong>的多源信号（舆情/战略/商业等）与推演输出见 <a href="social-responsibility-evolution.html">社会责任 · 可进化推演</a>。</p>
+      </div>
+      <nav class="page-route-strip" aria-label="与本页相关的站内路径">
+        <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
+        <a href="index.html#hub-eng"><span class="page-route-ico" aria-hidden="true">⚙</span>工程卡片</a>
+        <a href="lab.html"><span class="page-route-ico" aria-hidden="true">盘</span>沙盘工坊</a>
+        <a href="analysis-hub.html"><span class="page-route-ico" aria-hidden="true">析</span>分析引擎</a>
+        <a href="evolvable-architecture.html"><span class="page-route-ico" aria-hidden="true">构</span>可进化架构</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
     <div class="nexus-legend" aria-label="三色标签说明">
       <span class="nexus-tag evidence">观测 — 信号入库（含来源类型与权重）</span>
       <span class="nexus-tag extend">编码 — 映射到页、配方、lab_factors</span>
-      <span class="nexus-tag imagine">反哺 — 触发 §11 扩展或新配方/表行</span>
+      <span class="nexus-tag imagine">反哺 — 方法篇迭代或新配方/表行</span>
     </div>
 
     <div class="page-flow-strip" role="img" aria-label="进化闭环三色与页内目录呼应：观测信号入库、编码映射到站页与沙盘因子、反哺综合推演扩展与正文">
@@ -99,7 +117,7 @@
 
     <section class="card site-round-extension" id="ext-round-evloop" aria-labelledby="hre-evloop">
       <h2 class="site-round-extension-h" id="hre-evloop">推演扩展 · 本轮更新（进化闭环）</h2>
-      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">本轮强调 <strong>candidates → manifest</strong> 的 diff 可讲故事：哪些信号被路由丢弃、哪些升格；与 <a href="synthesis.html#continuation">继续推演矩阵</a> 闭环+沙盘行对读。</p>
+      <p class="muted note-kicker">本轮强调 <strong>candidates → manifest</strong> 的 diff 可讲故事：哪些信号被路由丢弃、哪些升格；与 <a href="synthesis.html#continuation">继续推演矩阵</a> 闭环+沙盘行对读。</p>
       <ul>
         <li>每条 signal 补「建议读者先读的<strong>2 个站内锚点</strong>」再入库。</li>
         <li>ingest 路由变更记录简短理由，防「require_route_match 误杀」无声。</li>
@@ -120,7 +138,7 @@
 
     <section id="ooda">
       <h2>1. OODA 与全站对齐</h2>
-      <p class="muted" style="margin-top:-0.35rem">借用观察—判断—决策—行动的节奏，但本站<strong>决策</strong>落点是「是否改站、改哪一页、是否增配方」而非企业 OKR。</p>
+      <p class="muted note-pull">借用观察—判断—决策—行动的节奏，但本站<strong>决策</strong>落点是「是否改站、改哪一页、是否增配方」而非企业 OKR。</p>
       <div class="page-flow-strip page-flow-strip--ooda" role="img" aria-label="OODA 闭环：Observe 观察事实、Orient 对齐全站模块与判据、Decide 是否入库或改站、Act 更新 manifest 与页面">
         <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
@@ -144,7 +162,7 @@
         </svg>
       </div>
       <div class="card">
-        <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+        <ul class="muted list-flat">
           <li><strong>Observe：</strong>从 <a href="national-strategy-opinion.html">战略·舆情</a> 双轨、媒体/平台议程、部委征求意见、招标条款、事故链等收集<strong>可复述事实</strong>（忌只存标题党）。</li>
           <li><strong>Orient：</strong>用 <a href="synthesis.html#criteria">§2 判据</a> 与 <a href="modules-map.html">五系七层</a> 给信号找「邻居模块」——避免孤立热词。</li>
           <li><strong>Decide：</strong>信号是<strong>一次性注释</strong>还是值得进 <a href="synthesis-extensions.html#stack-domains">扩展页配方</a> / <a href="synthesis-extensions.html#matrix">复合表</a> / <a href="assets/lab.js">沙盘因子</a> 提示。</li>
@@ -155,7 +173,7 @@
 
     <section id="manifest">
       <h2>2. 清单文件：<code>evolution-manifest.json</code></h2>
-      <p class="muted" style="margin-top:-0.35rem">单文件、可版本化；字段经 <code>scripts/validate-evolution-manifest.py</code> 校验。</p>
+      <p class="muted note-pull">单文件、可版本化；字段经 <code>scripts/validate-evolution-manifest.py</code> 校验。</p>
       <div class="card" style="overflow-x:auto;padding:0">
         <table>
           <thead>
@@ -173,22 +191,22 @@
           </tbody>
         </table>
       </div>
-      <p class="muted" style="margin-top:1rem;font-size:0.88rem">扩展：可在 <code>maps_to</code> 中自增 <code>synthesis_recipe</code> 等键，但须同步改 <code>assets/evolution.js</code> 才会在页面上显式展示。</p>
+      <p class="muted note-stack">扩展：可在 <code>maps_to</code> 中自增 <code>synthesis_recipe</code> 等键，但须同步改 <code>assets/evolution.js</code> 才会在页面上显式展示。</p>
     </section>
 
     <section id="ingest">
       <h2>3. 抓取管道：舆情 RSS、法规页标题与候选汇总</h2>
-      <p class="muted" style="margin-top:-0.35rem">配置 <code>scripts/ingest_config.json</code>：列出 <strong>rss_feeds</strong>（标题/摘要/链接）与可选 <strong>law_html_pages</strong>（仅抓页面 <code>&lt;title&gt;</code> / og:title 作<strong>线索</strong>，非全文法条）。脚本按 <strong>routes</strong> 正则把文本路由到站内页与 <code>lab_factors</code>，去重后写入 <code>assets/evolution-candidates.json</code>。可选 <strong>require_route_match</strong>：<code>true</code> 时只保留<strong>至少命中一条 route</strong> 的 RSS/法规项，并移除候选池中历史遗留的未命中项（减噪）。</p>
+      <p class="muted note-pull">配置 <code>scripts/ingest_config.json</code>：列出 <strong>rss_feeds</strong>（标题/摘要/链接）与可选 <strong>law_html_pages</strong>（仅抓页面 <code>&lt;title&gt;</code> / og:title 作<strong>线索</strong>，非全文法条）。脚本按 <strong>routes</strong> 正则把文本路由到站内页与 <code>lab_factors</code>，去重后写入 <code>assets/evolution-candidates.json</code>。可选 <strong>require_route_match</strong>：<code>true</code> 时只保留<strong>至少命中一条 route</strong> 的 RSS/法规项，并移除候选池中历史遗留的未命中项（减噪）。</p>
       <div class="card">
-        <p class="muted" style="margin:0 0 0.75rem;font-size:0.9rem"><strong>在项目根目录执行：</strong>（等价：<code>bash scripts/run_ingest_only.sh</code> 或 <code>make ingest</code>；脚本一览见 <a href="scripts/README.md">scripts/README.md</a>）</p>
-        <pre style="margin:0;font-size:0.82rem;line-height:1.65;overflow-x:auto">python3 scripts/ingest_opinion_law.py
+        <p class="muted note-preblock"><strong>在项目根目录执行：</strong>（等价：<code>bash scripts/run_ingest_only.sh</code> 或 <code>make ingest</code>；脚本一览见 <a href="scripts/README.md">scripts/README.md</a>）</p>
+        <pre class="pre-code-inline">python3 scripts/ingest_opinion_law.py
 python3 scripts/ingest_opinion_law.py --full-pool   # 单次全量进池（忽略 require_route_match）
 python3 scripts/validate-evolution-candidates.py</pre>
-        <p class="muted" style="margin:1rem 0 0;font-size:0.88rem">审阅候选后，将指定 id 合并进正式库：</p>
-        <pre style="margin:0.75rem 0 0;font-size:0.82rem;line-height:1.65;overflow-x:auto">python3 scripts/merge_candidates_to_manifest.py ing_xxxxxxxxxxxx
+        <p class="muted note-post">审阅候选后，将指定 id 合并进正式库：</p>
+        <pre class="pre-code-inline pre-code-inline--spaced">python3 scripts/merge_candidates_to_manifest.py ing_xxxxxxxxxxxx
 python3 scripts/validate-evolution-manifest.py
 python3 scripts/analysis_engine.py --sediment</pre>
-        <p class="muted" style="margin:1rem 0 0;font-size:0.88rem">定时进化：在 CI 或 cron 中跑抓取（<code>make ingest</code>），对 <code>evolution-candidates.json</code> 开 PR，<strong>勿</strong>自动 merge 进 manifest。GitHub Actions 可手动 <strong>Run workflow</strong>：<code>ingest-pipeline.yml</code>（artifact 下载候选）。分析侧与抓取解耦：<code>bash scripts/run_update_pipeline.sh</code>（<code>make analyze</code>），见 <a href="analysis-hub.html">分析引擎</a>。<strong>持续更新</strong>详见 <a href="analysis-hub.html#continuous">分析引擎 · §6</a>。<strong>双周反哺</strong>见 <a href="docs/EVOLUTION_RUNBOOK.md">运行手册</a>；PR 合并 manifest/候选前请跑通 <code>make validate</code>（含 <code>check_manifest_drift.py</code> 对账）。</p>
+        <p class="muted note-post">定时进化：在 CI 或 cron 中跑抓取（<code>make ingest</code>），对 <code>evolution-candidates.json</code> 开 PR，<strong>勿</strong>自动 merge 进 manifest。GitHub Actions 可手动 <strong>Run workflow</strong>：<code>ingest-pipeline.yml</code>（artifact 下载候选）。分析侧与抓取解耦：<code>bash scripts/run_update_pipeline.sh</code>（<code>make analyze</code>），见 <a href="analysis-hub.html">分析引擎</a>。<strong>持续更新</strong>详见 <a href="analysis-hub.html#continuous">分析引擎 · §6</a>。<strong>双周反哺</strong>见 <a href="docs/EVOLUTION_RUNBOOK.md">运行手册</a>；PR 合并 manifest/候选前请跑通 <code>make validate</code>（含 <code>check_manifest_drift.py</code> 对账）。</p>
       </div>
       <div class="callout extend" style="margin-top:1rem">
         <strong>合规：</strong>遵守各站点 robots.txt 与版权；法规正文以<strong>权威发布机关</strong>页面为准，本管道仅作<strong>线索聚合</strong>，不构成法律意见。
@@ -197,9 +215,9 @@ python3 scripts/analysis_engine.py --sediment</pre>
 
     <section id="automation">
       <h2>4. 自动化能做什么（边界）</h2>
-      <p class="muted" style="margin-top:-0.35rem">若计划引入大模型或检索增强，见 <a href="intelligent-evolution.html">智能进化</a> 的<strong>分层、数据治理与路线图</strong>（§11 插槽⑨），与下表互补。</p>
+      <p class="muted note-pull">若计划引入大模型或检索增强，见 <a href="intelligent-evolution.html">智能进化</a> 的<strong>分层、数据治理与路线图</strong>（§11 插槽⑨），与下表互补。</p>
       <div class="card">
-        <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+        <ul class="muted list-flat">
           <li><strong>可脚本化：</strong>定时拉取 RSS/开放 API、关键词聚类、去重、生成候选 JSON 片段；CI 跑校验脚本后<strong>开 PR</strong> 而非静默上线。</li>
           <li><strong>可节奏化：</strong>仓库 Actions 按周历跑 ingest / analyze artifact；双周清单见 <a href="docs/EVOLUTION_RUNBOOK.md">EVOLUTION_RUNBOOK</a>；本地在已校验前提下可用 <code>make evolution-fast</code> 反复刷新快照与趋势。</li>
           <li><strong>可做前端：</strong><code>evolution.js</code> 读取 manifest，渲染<strong>信号栏</strong>、沙盘<strong>因子高亮</strong>（需通过 http(s) 访问站点，<code>file://</code> 下 fetch 可能失败）。</li>
@@ -210,16 +228,16 @@ python3 scripts/analysis_engine.py --sediment</pre>
 
     <section id="human">
       <h2>5. 人必须做什么（站内核纪律）</h2>
-      <p class="muted" style="margin-top:-0.35rem">与 <a href="synthesis-methods.html#perpetual">综合推演 §11</a> 纪律一致：每条入库信号应能回答——若不能，留在私有笔记，不进 manifest。</p>
+      <p class="muted note-pull">与 <a href="synthesis-methods.html#perpetual">综合推演 §11</a> 纪律一致：每条入库信号应能回答——若不能，留在私有笔记，不进 manifest。</p>
       <div class="callout imagine">
         <strong>三问（入库前）：</strong>能否指回 §2 判据之一？能否映射到至少一个模块页或沙盘因子？若发酵消失，是否仍值得保留为「历史切片」？
       </div>
-      <p class="muted" style="margin-top:1rem;font-size:0.88rem"><strong>扩展插槽 ⑦（§11）：</strong>manifest 新增信号 → 沙盘高亮 → 推演一轮 → 决定是否升格为 §6 配方 / §7 表行 / 教育页案例句；见 <a href="synthesis-methods.html#perpetual">§11 列表</a>。</p>
+      <p class="muted note-stack"><strong>扩展插槽 ⑦（§11）：</strong>manifest 新增信号 → 沙盘高亮 → 推演一轮 → 决定是否升格为 §6 配方 / §7 表行 / 教育页案例句；见 <a href="synthesis-methods.html#perpetual">§11 列表</a>。</p>
     </section>
 
     <section id="feed">
       <h2>6. 当前观测信号（manifest + 候选）</h2>
-      <p class="muted" style="margin-top:-0.35rem">以下为实时读取 <code>assets/evolution-manifest.json</code> 与 <code>assets/evolution-candidates.json</code> 的渲染结果；与 <a href="national-strategy-opinion.html#evolution-feed-section">战略·舆情页 · 第 6 节</a> 同源。</p>
+      <p class="muted note-pull">以下为实时读取 <code>assets/evolution-manifest.json</code> 与 <code>assets/evolution-candidates.json</code> 的渲染结果；与 <a href="national-strategy-opinion.html#evolution-feed-section">战略·舆情页 · 第 6 节</a> 同源。</p>
       <div id="evolution-feed" class="evolution-feed" aria-live="polite"></div>
     </section>
 

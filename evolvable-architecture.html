@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="description" content="可进化架构总览：观测—编码—存储—分析—反哺闭环；人机闸门、§11 插槽与全站页面对照。" />
+  <meta name="description" content="可进化架构总览：观测—编码—存储—分析—反哺闭环；人机闸门、方法篇迭代插槽与全站页面对照。" />
   <meta name="theme-color" content="#0c1118" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="基础架构演变推演" />
@@ -12,6 +12,8 @@
   <meta property="og:title" content="可进化架构 · 总览 · 基础架构演变推演" />
   <meta property="og:description" content="观测—编码—存储—分析—反哺；人机闸门与全站对照。" />
   <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="可进化架构 · 总览 · 基础架构演变推演" />
+  <meta name="twitter:description" content="观测—编码—存储—分析—反哺；人机闸门；与进化闭环、分析引擎对表。" />
   <title>可进化架构 · 总览 · 基础架构演变推演</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,11 +26,14 @@
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
+      <a class="skip-link" href="index.html#read-guide">读站指路</a>
+      <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
     </div>
     <header class="site-nav">
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+        <a href="index.html#hub-catalog" class="site-nav-threeq site-nav-catalog" title="全站分区速跳（联结 / 时间 / 栈 / 制度 / 推演 / 工程）">分区</a>
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
@@ -37,6 +42,7 @@
         <a href="evolution-triad.html">人与AI演进</a>
         <a href="work-infra-energy.html">职业·基建·能源</a>
         <a href="model.html">分层模型</a>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
         <a href="architecture.html">架构拓扑</a>
         <a href="timeline.html">历史演进</a>
         <a href="past-future.html">廿年视角</a>
@@ -66,15 +72,28 @@
     <div id="main" class="page-head" tabindex="-1">
       <h1>可进化架构 · 总览</h1>
       <p class="lead">
-        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本站「<strong>可进化</strong>」指：<strong>外部可观测线索</strong>能经<strong>可重复管道</strong>进入站内核（manifest、配方与沙盘），并由<strong>分析与沉淀</strong>反馈是否漂移——全程保留<strong>人审闸门</strong>，不是自动预言机。本页把各模块<strong>收束为一张架构图</strong>；<strong>仓库内数据流与七类模块</strong>（存储 / 沉淀 / 分析 / 展示等）见 <a href="docs/ARCHITECTURE.md#seven-layers">docs/ARCHITECTURE.md</a>；<strong>适应度函数（校验清单）</strong>、<strong>运行血缘</strong>与<strong>决策追溯</strong>见 <a href="docs/ARCHITECTURE.md#fitness-functions">#fitness-functions</a>、<a href="docs/ARCHITECTURE.md#lineage">#lineage</a>、<a href="docs/ARCHITECTURE.md#decision-traceability">#decision-traceability</a>。<strong>叙事侧推演纪律</strong>（三色分层、单轮流程、偏误自检与工程闭环对表）见 <a href="docs/DEDUCTION_STRATEGY.md">docs/DEDUCTION_STRATEGY.md</a>。        工程分期与 WBS 见 <a href="smart-overhaul.html">整体改造</a>，模型分层见 <a href="intelligent-evolution.html">智能进化</a>。<strong>技术架构 · 功能 · 进化能力</strong>总览见仓库 <a href="docs/TECH_ARCHITECTURE_CAPABILITIES.md">docs/TECH_ARCHITECTURE_CAPABILITIES.md</a>。
+        本站「<strong>可进化</strong>」指：<strong>外部可观测线索</strong>经<strong>可重复管道</strong>进入站内核（manifest、配方与沙盘），并由<strong>分析与沉淀</strong>反馈是否漂移——全程<strong>人审闸门</strong>，<strong>不是</strong>自动预言机。本页把各模块<strong>收束为一张架构图</strong>。
       </p>
+      <div class="read-hint page-head-deck" role="note" aria-label="架构文档与工程延伸阅读">
+        <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
+        <p><strong>仓库内数据流</strong>：<a href="docs/ARCHITECTURE.md#seven-layers">ARCHITECTURE · 七类模块</a>。<strong>适应度函数、运行血缘与决策追溯</strong>：<a href="docs/ARCHITECTURE.md#fitness-functions">#fitness-functions</a>、<a href="docs/ARCHITECTURE.md#lineage">#lineage</a>、<a href="docs/ARCHITECTURE.md#decision-traceability">#decision-traceability</a>。</p>
+        <p><strong>叙事纪律与能力总览</strong>：<a href="docs/DEDUCTION_STRATEGY.md">DEDUCTION_STRATEGY</a>；<a href="docs/TECH_ARCHITECTURE_CAPABILITIES.md">TECH_ARCHITECTURE_CAPABILITIES</a>。工程分期与 WBS 见 <a href="smart-overhaul.html">整体改造</a>，模型分层见 <a href="intelligent-evolution.html">智能进化</a>。</p>
+        <p><strong>读者面/管理面</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP</a> · <a href="maintainer-hub.html">维护导读</a>。</p>
+      </div>
+      <nav class="page-route-strip" aria-label="与本页相关的站内路径">
+        <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
+        <a href="index.html#hub-eng"><span class="page-route-ico" aria-hidden="true">⚙</span>工程卡片</a>
+        <a href="evolution-loop.html"><span class="page-route-ico" aria-hidden="true">◇</span>进化闭环</a>
+        <a href="analysis-hub.html"><span class="page-route-ico" aria-hidden="true">析</span>分析引擎</a>
+        <a href="smart-overhaul.html"><span class="page-route-ico" aria-hidden="true">改</span>整体改造</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
     <div class="nexus-legend" aria-label="三色标签说明">
       <span class="nexus-tag evidence">观测 — 双轨与抓取</span>
       <span class="nexus-tag extend">编码 — manifest 与沙盘</span>
-      <span class="nexus-tag imagine">反哺 — §11 · 沉淀 · 可选智能</span>
+      <span class="nexus-tag imagine">反哺 — 方法篇迭代 · 沉淀 · 可选智能</span>
     </div>
 
     <div class="page-flow-strip" role="img" aria-label="可进化架构闭环：外部观测进入候选与 manifest，驱动沙盘编码，经分析与沉淀再反哺综合推演与站点迭代">
@@ -103,7 +122,7 @@
 
     <section class="card site-round-extension" id="ext-round-evoarch" aria-labelledby="hre-evoarch">
       <h2 class="site-round-extension-h" id="hre-evoarch">推演扩展 · 本轮更新（可进化架构）</h2>
-      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">总览页本轮把<strong>观测—编码—分析—反哺</strong>画成可审计闭环：每一步产物文件名与 <a href="docs/ARCHITECTURE.md">ARCHITECTURE</a> 一致；对表 <a href="synthesis.html#continuation">继续推演矩阵</a>。</p>
+      <p class="muted note-kicker">总览页本轮把<strong>观测—编码—分析—反哺</strong>画成可审计闭环：每一步产物文件名与 <a href="docs/ARCHITECTURE.md">ARCHITECTURE</a> 一致；对表 <a href="synthesis.html#continuation">继续推演矩阵</a>。</p>
       <ul>
         <li>七层闭环与 <a href="analysis-hub.html#panorama">分析总线</a> 能力表交叉检查，防重复造轮子。</li>
         <li>人机闸门：列出<strong>三条永不准自动化</strong>的 merge 类型（与进化闭环一致）。</li>
@@ -123,7 +142,7 @@
     <section id="definition">
       <h2>1. 定义与边界</h2>
       <div class="card">
-        <ul class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+        <ul class="muted list-flat">
           <li><strong>可进化</strong>：信号从进入<strong>候选</strong>到升格为<strong>正式库</strong>，再驱动<strong>热力/沉淀/趋势</strong>，最后回到 <a href="synthesis-methods.html#perpetual">综合推演 §11</a> 与 <a href="lab.html">沙盘</a>——形成<strong>可审计闭环</strong>。</li>
           <li><strong>不可自动化</strong>：未经审阅的 merge、直接改 HTML 正文、把热搜等同「国家意志」。</li>
           <li><strong>与「架构拓扑」页区别：</strong><a href="architecture.html">架构拓扑</a>偏<strong>技术栈图示</strong>；本页偏<strong>站点如何随观测迭代</strong>。</li>
@@ -134,7 +153,7 @@
     <section id="layers">
       <h2>2. 七层闭环（逻辑顺序）</h2>
       <div class="card">
-        <ol class="muted" style="margin:0;font-size:0.9rem;line-height:1.85">
+        <ol class="muted list-flat">
           <li><strong>语境与双轨：</strong><a href="national-strategy-opinion.html">战略·舆情</a> 把国家叙事与舆论场对齐十年窗。</li>
           <li><strong>观测与抓取：</strong><a href="evolution-loop.html#ingest">ingest</a> → <code>evolution-candidates.json</code>（待审）；命令见 <a href="scripts/README.md">scripts/README.md</a>（<code>make ingest</code> 与 <code>make analyze</code> 已拆分）。</li>
           <li><strong>编码与入库：</strong>人审后 <code>merge</code> → <code>evolution-manifest.json</code>；映射 <code>pages</code> / <code>lab_factors</code>。</li>
@@ -148,7 +167,7 @@
 
     <section id="diagram">
       <h2>3. 结构示意</h2>
-      <pre class="muted" style="margin:0;font-size:0.76rem;line-height:1.6;overflow-x:auto;padding:1rem;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border)">                    ┌─────────────────────────────────────┐
+      <pre class="muted pre-muted-box">                    ┌─────────────────────────────────────┐
                     │  战略·舆情（双轨语境）               │
                     └──────────────────┬──────────────────┘
                                        ▼
@@ -196,7 +215,7 @@
 
     <section id="slots">
       <h2>5. 与综合推演 §11 插槽映射</h2>
-      <p class="muted" style="margin-top:-0.35rem">扩展插槽与闭环<strong>一一对应</strong>，避免「做了脚本却忘了改站」。</p>
+      <p class="muted note-pull">扩展插槽与闭环<strong>一一对应</strong>，避免「做了脚本却忘了改站」。</p>
       <div class="card" style="overflow-x:auto;padding:0">
         <table>
           <thead>
@@ -210,7 +229,7 @@
           </tbody>
         </table>
       </div>
-      <p class="muted" style="margin-top:1rem;font-size:0.88rem">全文插槽列表仍以 <a href="synthesis-methods.html#perpetual">综合推演 §11</a> 为准。</p>
+      <p class="muted note-stack">全文插槽列表仍以 <a href="synthesis-methods.html#perpetual">综合推演 §11</a> 为准。</p>
     </section>
 
     <section id="reading">

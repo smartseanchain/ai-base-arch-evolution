@@ -1,6 +1,6 @@
 # 科学的推演策略与方法
 
-本文与站内 **[总览 · 三问导读](../index.html#three-questions)**、**[综合推演](../synthesis.html)**（§1—§13）、**[十年之问](../decade-us.html)** 并列：前者给**叙事与结构**，本文给**为何这样推演更稳、如何自检、如何与工程闭环对表**。全文仍坚持：**定性脚手架**，不是计量预测，也不是行动处方。
+本文与站内 **[总览 · 三问导读](../index.html#three-questions)**、**[综合推演](../synthesis.html)**（§1—§13）、**[十年之问](../decade-us.html)** 并列：前者给**叙事与结构**，本文给**为何这样推演更稳、如何自检、如何与工程闭环对表**。全文仍坚持：**定性脚手架**，不是计量预测，也不是行动处方。与**技术架构**、**内容架构**并列的**推演架构**速览见 **[ARCHITECTURE_ONE_PAGER · 三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)**。
 
 <a id="stance"></a>
 

@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="description" content="沙盘工坊：业务连续性依赖流、七步向导与多因子勾选合成；压测旋钮对齐综合推演配方与 §11 迭代。" />
+  <meta name="description" content="沙盘工坊：业务连续性依赖流、七步向导与多因子勾选合成；压测旋钮对齐综合推演配方与推演·方法（持续迭代）。" />
   <meta name="theme-color" content="#0c1118" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="基础架构演变推演" />
   <meta property="og:locale" content="zh_CN" />
   <meta property="og:title" content="沙盘工坊 · 基础架构演变推演" />
-  <meta property="og:description" content="沙盘工坊：业务连续性依赖流、七步向导与多因子勾选合成；压测旋钮对齐综合推演配方与 §11 迭代。" />
+  <meta property="og:description" content="沙盘工坊：依赖流、七步向导与多因子合成；与综合推演配方及持续迭代环对表压测。" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="沙盘工坊 · 基础架构演变推演" />
-  <meta name="twitter:description" content="沙盘工坊：业务连续性依赖流、七步向导与多因子勾选合成；压测旋钮对齐综合推演配方与 §11 迭代。" />
+  <meta name="twitter:description" content="沙盘工坊：依赖流、七步向导与多因子合成；与综合推演配方及持续迭代环对表压测。" />
   <title>沙盘工坊 · 基础架构演变推演</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,11 +26,14 @@
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
+      <a class="skip-link" href="index.html#read-guide">读站指路</a>
+      <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
     </div>
     <header class="site-nav">
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+        <a href="index.html#hub-catalog" class="site-nav-threeq site-nav-catalog" title="全站分区速跳（联结 / 时间 / 栈 / 制度 / 推演 / 工程）">分区</a>
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
@@ -39,6 +42,7 @@
         <a href="evolution-triad.html">人与AI演进</a>
         <a href="work-infra-energy.html">职业·基建·能源</a>
         <a href="model.html">分层模型</a>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
         <a href="architecture.html">架构拓扑</a>
         <a href="timeline.html">历史演进</a>
         <a href="past-future.html">廿年视角</a>
@@ -67,7 +71,21 @@
 
     <div id="main" class="page-head" tabindex="-1">
       <h1>沙盘工坊</h1>
-      <p class="lead">整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。依赖流<strong>自上而下穿透</strong>；下方为可交互的<strong>七步向导</strong>与<strong>多因子合成</strong>。把勾选结果与 <a href="synthesis.html">综合推演</a> 中的配方 F、<a href="synthesis-extensions.html#stack-domains">叠加五域 I—V</a>（含 Q—V）、§7 复合表及 <a href="synthesis-methods.html#perpetual">§11 迭代环</a>对照，可检查叙事是否经得起多轮压测。<a href="evolution-loop.html">进化闭环</a> 中的 <code>evolution-manifest.json</code> 会<strong>高亮</strong>与当前观测信号相关的因子（需本地 HTTP 打开以加载 JSON）。若习惯用<strong>某一研究领域的推演套路</strong>（可靠性树、敏感性分析、情景规划等），见 <a href="synthesis-methods.html#methods">综合推演 · §12</a> 的对照表。</p>
+      <p class="lead">依赖流<strong>自上而下穿透</strong>；下方为可交互的<strong>七步向导</strong>与<strong>多因子合成</strong>。</p>
+      <div class="read-hint page-head-deck" role="note" aria-label="沙盘与综合推演、进化闭环的对照说明">
+        <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
+        <p><strong>与主站叙事对表</strong>：勾选结果可与 <a href="synthesis.html">综合推演</a> 配方 F、<a href="synthesis-extensions.html#stack-domains">叠加五域 I—V</a>（含 Q—V）、<a href="synthesis-extensions.html#matrix">复合焦点总表</a>及 <a href="synthesis-methods.html#perpetual">持续迭代环</a>对照，检查是否经得起多轮压测（正文节号 §5—§7、§11 仍可用于检索）。</p>
+        <p><strong>manifest 高亮</strong>：<a href="evolution-loop.html">进化闭环</a> 的 <code>evolution-manifest.json</code> 会<strong>高亮</strong>与当前观测相关的因子（需本地 HTTP 打开以加载 JSON）。</p>
+        <p><strong>研究套路索引</strong>：可靠性树、敏感性分析、情景规划等见 <a href="synthesis-methods.html#methods">推演·方法 · 跨学科办法</a>对照表。</p>
+        <p><strong>维护面与契约</strong>：<a href="maintainer-hub.html">维护导读</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a>。</p>
+      </div>
+      <nav class="page-route-strip" aria-label="与本页相关的站内路径">
+        <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
+        <a href="index.html#hub-eng"><span class="page-route-ico" aria-hidden="true">⚙</span>工程卡片</a>
+        <a href="synthesis.html"><span class="page-route-ico" aria-hidden="true">🧮</span>综合推演</a>
+        <a href="evolution-loop.html"><span class="page-route-ico" aria-hidden="true">◇</span>进化闭环</a>
+        <a href="index.html#three-questions"><span class="page-route-ico" aria-hidden="true">？</span>三问</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
@@ -97,7 +115,7 @@
 
     <section class="card site-round-extension" id="ext-round-lab" aria-labelledby="hre-lab">
       <h2 class="site-round-extension-h" id="hre-lab">推演扩展 · 本轮更新（沙盘工坊）</h2>
-      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">本轮七步向导每步补<strong>「若旋钮拧紧，哪条 §7 表行先绷紧」</strong>；依赖流与 manifest 高亮同读；对表 <a href="synthesis.html#continuation">继续推演矩阵</a> 沙盘点。</p>
+      <p class="muted note-kicker">本轮七步向导每步补<strong>「若旋钮拧紧，哪条 §7 表行先绷紧」</strong>；依赖流与 manifest 高亮同读；对表 <a href="synthesis.html#continuation">继续推演矩阵</a> 沙盘点。</p>
       <ul>
         <li>因子勾选后写一句<strong>可对账输出</strong>（哪类账单/工单会先变）。</li>
         <li>与 <a href="synthesis-extensions.html#stack-domains">§6 五域</a> 叠加时标明域间中介变量。</li>
@@ -158,7 +176,7 @@
         <div class="sim-grid" id="simOptions"></div>
         <div class="sim-output" id="simOutput" aria-live="polite">
           <h4>合成启示</h4>
-          <p class="muted" style="margin:0">请至少选择一个因子。</p>
+          <p class="muted note-zero">请至少选择一个因子。</p>
         </div>
       </div>
     </section>

@@ -1,5 +1,7 @@
-# 生产/默认：镜像内 COPY 站点；改文件后需 rebuild。
-# 热重载开发见 docker-compose.dev.yml
+# 生产/默认：镜像内 COPY 根目录 MPA（busybox httpd）；不含 spa 构建产物，与 CI「validate 默认真源」一致。
+# 改 HTML/JSON 后需 rebuild。全站 SPA：先 make spa-build，再 docker build -f Dockerfile.spa。热重载开发见 docker-compose.dev.yml。
+# 只读 API：`docker compose --profile api up -d`（另见 docs/DOCKER.md）。
+# 管理端脚手架：`docker compose --profile admin up -d`（见 admin-console/README.md、docs/DOCKER.md#profile-admin）。
 services:
   web:
     build: .
@@ -7,3 +9,57 @@ services:
     ports:
       - "8765:80"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  readonly-api:
+    profiles: ["api"]
+    build:
+      context: .
+      dockerfile: Dockerfile.readonly-api
+    image: ai-arch-evolution:api
+    ports:
+      - "8099:8099"
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8099/health', timeout=3).read()",
+        ]
+      interval: 30s
+      timeout: 8s
+      retries: 3
+      start_period: 20s
+
+  admin-console:
+    profiles: ["admin"]
+    build:
+      context: ./admin-console
+      dockerfile: Dockerfile
+    image: ai-arch-evolution:admin
+    ports:
+      - "8100:8100"
+    environment:
+      # 默认同 compose 网络内只读 API；仅起 admin 而无 api 时代理会 502，可导出覆盖或见 docs/DOCKER.md#profile-admin
+      # 单横线插值：未设置时默认同网络 readonly-api；若需禁用代理可显式 export READONLY_API_BASE_URL=
+      READONLY_API_BASE_URL: ${READONLY_API_BASE_URL-http://readonly-api:8099}
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8100/health', timeout=3).read()",
+        ]
+      interval: 30s
+      timeout: 8s
+      retries: 3
+      start_period: 15s

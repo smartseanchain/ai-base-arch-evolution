@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "title_zh": "控制面能力（对标市面分析 / 治理后台）",
+  "subtitle_zh": "下列对照帮助把「商业 BI / 数据平台后台」常见模块映射到本仓库的分阶段路线；**非采购承诺**、亦非当前实现契约。",
+  "hard_boundaries_zh": "不变量：不实现「一键写入已审 evolution-manifest」或绕过 review_state / merge_candidates_to_manifest 的 Web 发布；**写 JSON 真源**仍以 **Git + PR + make validate** 为主轴。浏览器与控制台**不作为**高频外网抓取出口。",
+  "pillars": [
+    {
+      "id": "data_sources",
+      "label_zh": "数据源",
+      "market_zh": "数据连接、数据源目录、连接测试（市面：观远、Quick BI、Metabase 管理端等）",
+      "current_zh": "数据源参考目录 + 只读 ingest-config 对账；真源 **scripts/ingest_config.json**；勾选关注仅存 **localStorage**。",
+      "next_zh": "**阶段 2**：表单 / 向导编辑配置 → 生成 **JSON diff 或分支 PR**；抓取执行仍在 **Actions / Worker**，带鉴权与审计。",
+      "doc_paths": [
+        "docs/ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md",
+        "docs/DATA_CONTRACTS.md",
+        "docs/DATA_STORES_AND_FUTURE_DB_ARCHITECTURE.md"
+      ]
+    },
+    {
+      "id": "strategy",
+      "label_zh": "策略与口径",
+      "market_zh": "指标口径、语义层、路由 / 筛选 / 血缘（市面：指标平台、数据目录）",
+      "current_zh": "**routes**、**require_route_match**、**maps_to_hints** 等真源在 Git；控制台 **只读探索** 片段与快照；侧车 SQLite **列级清点**见 DATA_CONTRACTS §5。",
+      "next_zh": "可视化策略编辑仍须**产出可 diff 的 JSON** 并经同一套闸门校验，避免「第二真源」漂移。",
+      "doc_paths": [
+        "docs/DATA_CONTRACTS.md",
+        "docs/DATA_STORES_AND_FUTURE_DB_ARCHITECTURE.md",
+        "scripts/README.md"
+      ]
+    },
+    {
+      "id": "approval",
+      "label_zh": "审批与治理",
+      "market_zh": "多级审批、工单、角色与数据权限（市面：治理后台、BPM）",
+      "current_zh": "**PR + 人审**；候选 **review_state**、manifest 合并脚本；分层 **L1—L5** 见 USER_ADMIN_SPLIT。",
+      "next_zh": "**阶段 1—2**：管理台展示队列与 PR 状态；「拟通过」→ **artifact + PR**，默认**不**直连写生产分支。",
+      "doc_paths": [
+        "docs/ADMIN_WEB_CONSOLE_ROADMAP.md",
+        "docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md"
+      ]
+    },
+    {
+      "id": "publish",
+      "label_zh": "发布与运维",
+      "market_zh": "发布、版本、环境晋升、运维大盘（市面：发布台、可观测性）",
+      "current_zh": "**make validate** / **CI**、**Actions** 工作流、**run_id** 血缘；站点 **site-meta**、静态发布链。",
+      "next_zh": "强化 **CI Run / artifact** 链接、发布检查单与回滚剧本；合并闸门语义**不变**。",
+      "doc_paths": [
+        "docs/EVOLUTION_RUNBOOK.md",
+        "docs/MERGE_AND_RELEASE_CHECKLIST.md"
+      ]
+    }
+  ],
+  "admin_phases": [
+    {
+      "phase": "0",
+      "label_zh": "阶段 0（现状）",
+      "scope_zh": "CLI、PR、本只读控制台、readonly_api。"
+    },
+    {
+      "phase": "1",
+      "label_zh": "阶段 1",
+      "scope_zh": "IdP、只读能力放大、审计与外链回 Git。"
+    },
+    {
+      "phase": "2",
+      "label_zh": "阶段 2",
+      "scope_zh": "提案式写：表单 → diff/PR；**validate 在 PR 上必过**。"
+    },
+    {
+      "phase": "3",
+      "label_zh": "阶段 3（慎选）",
+      "scope_zh": "break-glass 直连写 Git：强审计、双人、熔断。"
+    }
+  ]
+}

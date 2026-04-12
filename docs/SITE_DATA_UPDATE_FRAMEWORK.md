@@ -4,6 +4,8 @@
 
 **全站分页模块、叙事正文 vs 动态块**如何被数据与分析更新，见 **[DATA_ANALYSIS_SITE_CONTENT_SYNC.md](./DATA_ANALYSIS_SITE_CONTENT_SYNC.md)**。**全站梳理后按纪律重新推演并决定更新落点**见 **[SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md](./SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md)**。
 
+在 **[三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)** 中，本文主要衔接**技术架构**（读数总线、`fetch` 契约）与**内容架构**（叙事 vs 自动块边界）。
+
 <a id="meaning"></a>
 
 ## 1. 「自动更新」在本站指什么

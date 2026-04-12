@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 仅观测：RSS/法规页抓取 → evolution-candidates.json → 校验候选结构。
+# 仅观测：RSS/法规页/可选 json_feeds（HTTPS JSON）→ evolution-candidates.json → 校验候选结构。
 # 与 run_update_pipeline.sh 解耦：抓取依赖外网，分析仅依赖本地 JSON。
 # 用法：bash scripts/run_ingest_only.sh
 set -euo pipefail

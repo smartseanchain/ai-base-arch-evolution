@@ -35,7 +35,10 @@ def main() -> int:
     args = ap.parse_args()
 
     if not db.is_file():
-        print(f"未找到 {db}，请先运行 analysis_engine.py --sediment。", file=sys.stderr)
+        print(
+            f"未找到 {db}，请先本地运行 analysis_engine.py（写快照会建库）或 analysis_engine.py --sediment。",
+            file=sys.stderr,
+        )
         return 1
 
     con = duckdb.connect(database=":memory:")
@@ -43,21 +46,46 @@ def main() -> int:
     path = db.resolve().as_posix()
     con.execute(f"ATTACH '{path}' AS ev (TYPE sqlite)")
 
+    def _print_result(cur2) -> None:
+        rows2 = cur2.fetchall()
+        desc2 = cur2.description
+        if desc2:
+            print("\t".join(d[0] for d in desc2))
+        for row in rows2:
+            print("\t".join(str(x) for x in row))
+
     sql = args.command.strip()
     if not sql:
-        sql = """
-        SELECT date, run_id, hint_closure_gaps_n, hint_decisions_total
-        FROM ev.sediment_entry
-        ORDER BY date DESC
-        LIMIT 8
-        """.strip()
+        print("# ev.sediment_entry (recent)")
+        _print_result(
+            con.execute(
+                """
+                SELECT date, run_id, hint_closure_gaps_n, hint_decisions_total
+                FROM ev.sediment_entry
+                ORDER BY date DESC
+                LIMIT 8
+                """
+            )
+        )
+        print()
+        print("# ev.analysis_snapshot_history (recent)")
+        try:
+            _print_result(
+                con.execute(
+                    """
+                    SELECT run_id, repo_revision, generated_at, stored_at,
+                           length(snapshot_json) AS bytes
+                    FROM ev.analysis_snapshot_history
+                    ORDER BY stored_at DESC
+                    LIMIT 8
+                    """
+                )
+            )
+        except Exception as exc:  # noqa: BLE001
+            print(f"(跳过: 表不存在或为空 — {exc})")
+        return 0
     cur = con.execute(sql)
-    rows = cur.fetchall()
-    desc = cur.description
-    if desc:
-        print("\t".join(d[0] for d in desc))
-    for row in rows:
-        print("\t".join(str(x) for x in row))
+    _print_result(cur)
     return 0
 
 

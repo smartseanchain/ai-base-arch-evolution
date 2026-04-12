@@ -1,6 +1,9 @@
 .git
 .gitignore
-*.md
+# 根目录若干说明不进镜像（体积与重复）；docs/ 下 Markdown 保留，供站内链与维护导读
+/README.md
+/CONTRIBUTING.md
+/AGENTS.md
 .DS_Store
 __pycache__
 *.pyc
@@ -8,3 +11,8 @@ __pycache__
 Dockerfile
 docker-compose.yml
 .dockerignore
+.env
+# 与默认 MPA 镜像一致：不打包 SPA 依赖与构建产物（若需容器内跑 SPA，另起多阶段构建）
+spa/node_modules
+spa/dist
+artifacts

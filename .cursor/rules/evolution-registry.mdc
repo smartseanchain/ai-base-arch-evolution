@@ -1,0 +1,19 @@
+---
+description: 改 evolution-registry.json 时同步 SPA、顶栏、对账与 CI spa-build
+globs: scripts/evolution-registry.json
+alwaysApply: false
+---
+
+# 单一注册表 `scripts/evolution-registry.json`
+
+- 结构须符合 **`docs/schemas/evolution-registry.schema.json`**（**`validate_evolution_registry_schema.py`**；**`make test`** / **`make validate`**）。
+
+增删 **`pages`** 或 **`lab_factors`** 时至少：
+
+1. 根目录须有对应 **`*.html`**（404 除外）；**`assets/lab.js`** 因子 **`id`** 与 **`lab_factors`** 集合一致。
+2. 维护 **SPA**：在 **`spa/nav.config.json`** 的 **`items`** 中为每个 **`pages`** 条目增加一行（`page` + `label`），再 **`make gen-nav-links`**；**`check_nav_links_registry.py`** 校验配置与生成文件。
+3. 顶栏：只改 **`partials/site-nav.inc.html`**（及 skip-bar 若需）后 **`make sync-nav`**。
+4. **`check_manifest_drift.py`** 会查 ingest、sitemap、hint-rules 等引用 ⊆ 本文件。
+5. PR 若触及本文件，CI 通常会跑 **`spa-build`**。
+
+深读：**CONTRIBUTING.md**、**docs/PLATFORM_CAPABILITY_MAP.md** §6、§7（读者预期、发布前清单、站内 **`docs/*.md`** 静态部署说明）。

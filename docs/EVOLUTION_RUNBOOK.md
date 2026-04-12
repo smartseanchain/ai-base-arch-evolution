@@ -9,18 +9,30 @@
 | 每周二 08:00 UTC | **Ingest candidates** | 抓取候选 → artifact（默认不回写 `main`） |
 | 每周一 16:00 UTC | **Update pipeline** | 全量校验 + 写快照/沉淀/趋势 → artifact |
 | 手动 | **PR · refresh candidates** | ingest 后直接开 PR 更新 `evolution-candidates.json`（仍须人审后再 merge manifest） |
-| push / PR | **CI** | `make validate` 同款，阻断坏 JSON 进主分支 |
+| push / PR | **CI** | **validate** job：`run_validate.sh`（**`make validate`** 同款）并安装 **`requirements-api.txt`** 跑 **`test_readonly*.py`**；**spa-build** 为按路径触发的另 job，见 [docs/README 文首](../docs/README.md) |
+
+**合并 PR 前推荐**：**`make merge-ready`**（**`validate`** + **`test-readonly-api`** + **`test-admin-console`**），见 **[MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)**。
 
 合并 artifact 到仓库、推送后，线上 Pages 与 `site-data-bus` / `analysis.js` 读数才会变——见根目录 [README.md](../README.md)「定时流水线」。
+
+**管理端 Web 上编排 ingest / 分析与数据源**：设计矩阵与阶段见 **[ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md](./ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md)**（不改变上表 Actions 为默认真源）。
 
 <a id="accelerate"></a>
 
 ## 加速本地迭代（不削弱人审）
 
-- **`make analyze`**：完整前置校验 + 写快照/沉淀/趋势（与 Actions **Update pipeline** 一致；已含 `compileall`）。
-- **`make validate` 通过后**，若**同一工作区**内只反复调 manifest/候选并希望**快速**重算热力与趋势，可用 **`make evolution-fast`**：仅执行 `analysis_engine --sediment` → `sediment_trends` → 快照 Schema → `--check`，**跳过** manifest/漂移/单测/顶栏。改完 JSON 未 validate 就提交会有风险，故**提交前仍须** `make validate`。
+- **`make analyze`**：前置校验由 **`evolution_pkg.pipeline.runner`** 的 **analyze** 步骤表执行——与 **`run_validate.sh` 直至单测** 对齐（compileall **scripts**、manifest/候选/hint 校验、registry Schema、对账、navLinks、``sync_site_nav --check``、单测）。**不含** 完整 validate 的 **`check_skip_bar_404.py`**、**不** ``compileall admin-console``；写盘与事后 Schema / ``--check`` 顺序亦与 validate **后半段**不同。**合并前仍须** **`make validate`**（或 **`make merge-ready`**），**勿**以「仅 analyze 绿」代替合并闸门。
+- **`make validate` 通过后**，若**同一工作区**内只反复调 manifest/候选并希望**快速**重算热力与趋势，可用 **`make evolution-fast`**：仅执行 `analysis_engine --sediment` → `sediment_trends` → 快照 Schema → `--check`，**跳过** 自 compileall 至单测的整段前置（manifest、registry Schema、对账、navLinks、顶栏、单测等）。改完 JSON 未 validate 就提交会有风险，故**提交前仍须** `make validate`；与 CI **`validate`** 完全对齐时再 **`make merge-ready`**（见文首「本地与 CI」段）。
 - **只看读数、不写文件**：`make status`。
 - **仅跨日趋势**（沉淀已存在）：`make trends`。
+
+<a id="sqlite-sidecar"></a>
+
+## 本地 SQLite 与快照历史（侧车）
+
+- **`data/evolution.db`** 默认 **gitignore**：含 **`sediment_entry`**（与 `sediment.json` 双写）与 **`analysis_snapshot_history`**（每次本地/流水线 **`analysis_engine.py`** 写 **`assets/analysis-snapshot.json`** 时按 **`run_id`** 追加整份快照 JSON，可用 **`--no-sqlite-snapshot-history`** 关闭）。
+- **闸门真源**仍是仓库内**已提交**的 JSON；库仅加速查询与本地历史对比。**可删除 `evolution.db` 后重跑 `analysis_engine` / `make analyze`** 重建（历史行会丢，不影响 CI 与 `make validate`）。
+- 浏览历史元数据：`python3 scripts/list_analysis_snapshot_history.py`；只读 HTTP：**`readonly_api`** 的 **`/snapshot-history`**、**`/snapshot-history/{run_id}`**（需 **`PYTHONPATH=scripts`**）。
 
 <a id="continuous-push"></a>
 
@@ -41,6 +53,8 @@
 **环境**：首次或更新依赖后执行 `python3 -m pip install -r requirements.txt`（`make validate` / CI 需 **jsonschema** 校验 `analysis-snapshot` 与 `docs/schemas/`）。
 
 **推演纪律**：结构化思考前先扫 [DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md)（三色分层、单轮七步、偏误表）；与 [综合推演](../synthesis.html) §2 / §12 / §13 及 [总览 · 三问](../index.html#three-questions) 对齐。
+
+**大版本或改站壳后**（顶栏、`index.html` 读站指路、总线/版本展示等）：在 **`make validate`** 之外，建议再过 [SITE_REVIEW_THREE_PASSES · 四角色复查](./SITE_REVIEW_THREE_PASSES.md#four-perspectives-review) 的**发布前轻量清单**；读者预期与站内 **`docs/*.md`** 在静态部署下的行为见 [PLATFORM_CAPABILITY_MAP · §7](./PLATFORM_CAPABILITY_MAP.md#reader-and-release)。维护 **全站 SPA** 时，改根目录 **`index.html`** 后须 **`make spa-sync`**（见 [`spa/README.md`](../spa/README.md)）。
 
 | 步骤 | 动作 | 产出/记录 |
 |------|------|-----------|
@@ -79,6 +93,8 @@
 在 GitHub 上开 PR 修改 manifest/候选时，仓库已配置 [PR 模板](../.github/pull_request_template.md)，请勾选自检项。
 
 ## 对账脚本
+
+`python3 scripts/validate_evolution_registry_schema.py`：对照 [**`docs/schemas/evolution-registry.schema.json`**](schemas/evolution-registry.schema.json) 校验 **`scripts/evolution-registry.json`** 结构（先于语义对账）。已并入 **`make test`**、**`make validate`** 与 CI。
 
 `python3 scripts/check_manifest_drift.py`：检查 `maps_to.pages` 是否列入 **`scripts/evolution-registry.json`** 且文件存在；`lab_factors` 是否与 registry / `lab.js` 一致；并校验 ingest 配置与 `maps_to_hints`、`gen-sitemap` PRIORITY；**`evolution-hint-rules.json`** 的 `rules[].id`（唯一、非空）与 `track_closure` 类型、`target_pages` ⊆ registry。已并入 `make validate` 与 CI。
 

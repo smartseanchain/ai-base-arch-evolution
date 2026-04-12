@@ -1,5 +1,12 @@
 """
 编排 make analyze / evolution-fast 对应步骤，并写入流水线遥测 JSON（默认）。
+
+**analyze** 在写快照/沉淀之前，复用与 ``scripts/run_validate.sh`` **直至单测** 的同序步骤
+（compileall **scripts**、各 JSON 校验、对账、``sync_site_nav --check``、unittest）。
+
+**不等于** 完整 ``make validate``：默认**不**跑 ``check_skip_bar_404.py``、**不** ``compileall admin-console/app``；
+写盘段顺序也与 validate 后半段（``--check`` 与 Schema 的先后）不同。**合并 PR 仍以** ``make validate`` **为准**。
+**fast** 路径不重复上述前置步骤。
 """
 from __future__ import annotations
 
@@ -86,13 +93,19 @@ def _run_step(step_id: str, argv: list[str]) -> StepRecord:
 
 
 def steps_analyze() -> list[tuple[str, list[str]]]:
+    """与 ``scripts/run_validate.sh`` 对齐的闸门顺序（至单测为止），再接写入与事后 Schema/--check。"""
     py = sys.executable
     return [
         ("compileall", [py, "-m", "compileall", "-q", "scripts"]),
         ("validate_manifest", [py, str(ROOT / "scripts" / "validate-evolution-manifest.py")]),
         ("validate_candidates", [py, str(ROOT / "scripts" / "validate-evolution-candidates.py")]),
         ("validate_hint_decisions", [py, str(ROOT / "scripts" / "validate_evolution_hint_decisions.py")]),
+        (
+            "validate_evolution_registry_schema",
+            [py, str(ROOT / "scripts" / "validate_evolution_registry_schema.py")],
+        ),
         ("check_manifest_drift", [py, str(ROOT / "scripts" / "check_manifest_drift.py")]),
+        ("check_nav_links_registry", [py, str(ROOT / "scripts" / "check_nav_links_registry.py")]),
         ("sync_site_nav_check", [py, str(ROOT / "scripts" / "sync_site_nav.py"), "--check"]),
         (
             "unit_tests",
@@ -101,10 +114,18 @@ def steps_analyze() -> list[tuple[str, list[str]]]:
         ("analysis_engine_sediment", [py, str(ROOT / "scripts" / "analysis_engine.py"), "--sediment"]),
         ("sediment_trends", [py, str(ROOT / "scripts" / "sediment_trends.py")]),
         (
+            "validate_sediment_artifacts_schema",
+            [py, str(ROOT / "scripts" / "validate_sediment_artifacts_schema.py")],
+        ),
+        (
             "validate_snapshot_schema",
             [py, str(ROOT / "scripts" / "validate_analysis_snapshot_schema.py")],
         ),
         ("analysis_engine_check", [py, str(ROOT / "scripts" / "analysis_engine.py"), "--check"]),
+        (
+            "validate_ai_analysis_overlay_schema",
+            [py, str(ROOT / "scripts" / "validate_ai_analysis_overlay_schema.py")],
+        ),
     ]
 
 
@@ -118,6 +139,10 @@ def steps_fast() -> list[tuple[str, list[str]]]:
             [py, str(ROOT / "scripts" / "validate_analysis_snapshot_schema.py")],
         ),
         ("analysis_engine_check", [py, str(ROOT / "scripts" / "analysis_engine.py"), "--check"]),
+        (
+            "validate_ai_analysis_overlay_schema",
+            [py, str(ROOT / "scripts" / "validate_ai_analysis_overlay_schema.py")],
+        ),
     ]
 
 

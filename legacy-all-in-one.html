@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="description" content="单页归档：叠加栈与情景沙盘。分页阅读见 index.html，三问导读见 index.html#three-questions。" />
+  <meta name="description" content="单页归档：叠加栈与情景沙盘；定性脚手架，非预测。分页真源见 index.html 与三问导读。" />
   <meta name="theme-color" content="#0c1118" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="基础架构演变推演" />
   <meta property="og:locale" content="zh_CN" />
   <meta property="og:title" content="基础架构演变推演 · 叠加栈与情景沙盘" />
-  <meta property="og:description" content="单页归档：叠加栈与情景沙盘。分页阅读见 index.html，三问导读见 index.html#three-questions。" />
+  <meta property="og:description" content="单页归档：叠加栈与情景沙盘；定性脚手架。分页真源见 index.html 与三问导读。" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="基础架构演变推演 · 叠加栈与情景沙盘" />
-  <meta name="twitter:description" content="单页归档：叠加栈与情景沙盘。分页阅读见 index.html，三问导读见 index.html#three-questions。" />
+  <meta name="twitter:description" content="单页归档：叠加栈与情景沙盘；定性脚手架。分页真源见 index.html 与三问导读。" />
   <title>基础架构演变推演 · 叠加栈与情景沙盘</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -79,6 +79,55 @@
       max-width: 52ch;
     }
 
+    /* 与分页站 read-hint 同构（本页不引用 site.css） */
+    header.hero .read-hint.page-head-deck {
+      margin: 1rem 0 0;
+      padding: 0.75rem 1rem;
+      max-width: 52rem;
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--muted);
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--accent);
+    }
+
+    header.hero .read-hint.page-head-deck p {
+      margin: 0 0 0.65rem;
+    }
+
+    header.hero .read-hint.page-head-deck p:last-child {
+      margin-bottom: 0;
+    }
+
+    header.hero .read-hint.page-head-deck a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    header.hero .read-hint.page-head-deck a:hover {
+      text-decoration: underline;
+    }
+
+    .legacy-pagination-hint {
+      margin: 0 0 0.85rem;
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .legacy-pagination-hint a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .legacy-pagination-hint a:hover {
+      text-decoration: underline;
+    }
+
     nav.toc {
       display: flex;
       flex-wrap: wrap;
@@ -140,6 +189,24 @@
       letter-spacing: -0.02em;
     }
 
+    .site-round-extension > p.muted {
+      margin: 0 0 0.5rem;
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    .site-round-extension .muted a,
+    .site-round-extension li a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .site-round-extension .muted a:hover,
+    .site-round-extension li a:hover {
+      text-decoration: underline;
+    }
+
     .site-round-extension ul {
       margin: 0.4rem 0 0;
       padding-left: 1.2rem;
@@ -151,6 +218,26 @@
     .muted {
       color: var(--muted);
       font-size: 0.9rem;
+    }
+
+    .legacy-muted-flush {
+      margin: 0;
+    }
+
+    .legacy-muted-pull {
+      margin-top: -0.5rem;
+    }
+
+    .legacy-list-flush {
+      margin: 0;
+    }
+
+    .legacy-list-gap {
+      margin: 0 0 1rem;
+    }
+
+    .legacy-empty-note {
+      margin: 0;
     }
 
     table {
@@ -946,12 +1033,18 @@
 </head>
 <body>
   <div class="wrap">
-    <p class="legacy-pagination-hint" style="margin:0 0 0.85rem;font-size:0.78rem;line-height:1.55;color:var(--muted)">当前为<strong>单文件归档</strong>。<a href="index.html" style="color:var(--accent);font-weight:600">分页阅读</a>（推荐）· <a href="index.html#three-questions" style="color:var(--accent);font-weight:600">三问导读</a> · 标题下含<strong>本页内阅读顺序</strong>图示 · 与全站对齐的推进链：<a href="national-strategy-opinion.html" style="color:var(--accent);font-weight:600">战略·舆情</a> → <a href="social-responsibility-evolution.html" style="color:var(--accent);font-weight:600">社会责任</a> → <a href="evolution-loop.html" style="color:var(--accent);font-weight:600">进化闭环</a> → <a href="analysis-hub.html" style="color:var(--accent);font-weight:600">分析引擎</a> · <a href="intelligent-evolution.html" style="color:var(--accent);font-weight:600">智能进化</a> · <a href="evolvable-architecture.html" style="color:var(--accent);font-weight:600">可进化架构</a> · <a href="smart-overhaul.html" style="color:var(--accent);font-weight:600">整体改造</a> → <a href="lab.html" style="color:var(--accent);font-weight:600">沙盘工坊</a> · <a href="synthesis-methods.html#perpetual" style="color:var(--accent);font-weight:600">综合推演 §11</a> · <a href="modules-map.html" style="color:var(--accent);font-weight:600">模块图谱</a></p>
+    <p class="legacy-pagination-hint">当前为<strong>单文件归档</strong>。<a href="index.html">分页阅读</a>（推荐）· <a href="index.html#three-questions">三问导读</a> · 标题下含<strong>本页内阅读顺序</strong>图示 · 与全站对齐的推进链：<a href="national-strategy-opinion.html">战略·舆情</a> → <a href="social-responsibility-evolution.html">社会责任</a> → <a href="evolution-loop.html">进化闭环</a> → <a href="analysis-hub.html">分析引擎</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="evolvable-architecture.html">可进化架构</a> · <a href="smart-overhaul.html">整体改造</a> → <a href="lab.html">沙盘工坊</a> · <a href="synthesis-methods.html#perpetual">推演·方法 · 持续迭代</a> · <a href="modules-map.html">模块图谱</a></p>
     <header class="hero">
       <h1>基础架构演变推演</h1>
       <p class="lead">
-        将技术、合规、地缘、国家安全、资本与组织、个人发展等维度梳理为可浏览的叠加栈，并通过多因子情景沙盘合成「架构启示」。仅供战略规划与研讨，不构成法律或投资建议。
+        将技术、合规、地缘、国家安全、资本与组织、个人发展等维度梳理为可浏览的叠加栈，并通过多因子情景沙盘合成「架构启示」。
       </p>
+      <div class="read-hint page-head-deck" role="note" aria-label="使用边界与分页真源">
+        <p><strong>定性脚手架</strong>，非单点预言或精确预测。</p>
+        <p>仅供战略规划与研讨，<strong>不构成法律或投资建议</strong>。</p>
+        <p><strong>真源</strong>：站内叙事以 <a href="index.html">分页 HTML</a> 为准；本页为单文件快照。</p>
+        <p><strong>维护与契约</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a>。</p>
+      </div>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
       <div class="page-flow-strip" role="img" aria-label="单页归档读法：推荐先打开分页总览与三问导读；本页内按目录从全景、十年、模型栈到步进推演与情景沙盘顺序浏览">
         <svg viewBox="0 0 640 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -997,10 +1090,10 @@
 
     <section class="card site-round-extension" id="ext-round-legacy" aria-labelledby="hre-legacy">
       <h2 class="site-round-extension-h" id="hre-legacy">推演扩展 · 本轮更新（单页归档）</h2>
-      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">本文件为<strong>全站快照式叠放</strong>；本轮纪律与分页站一致：任何新增段落须能指回 <a href="synthesis.html#criteria" style="color:var(--accent)">主篇 §2 判据</a> 与 <a href="synthesis.html#continuation" style="color:var(--accent)">继续推演矩阵</a> 中的具体行/锚点，避免「只长篇幅不长接口」。</p>
+      <p class="muted">本文件为<strong>全站快照式叠放</strong>；本轮纪律与分页站一致：任何新增段落须能指回 <a href="synthesis.html#criteria">主篇 §2 判据</a> 与 <a href="synthesis.html#continuation">继续推演矩阵</a> 中的具体行/锚点，避免「只长篇幅不长接口」。</p>
       <ul>
         <li>读法上优先用顶栏<strong>演进链</strong>跳到对应分页深描；本页内顺序以导读条为准，矩阵用于选题而非替代正文。</li>
-        <li>沙盘与矩阵章节并读时，为每个勾选因子写一句<strong>可对账输出</strong>（账单/工单/公告栏类），与 <a href="lab.html" style="color:var(--accent)">分页沙盘</a> 同构。</li>
+        <li>沙盘与矩阵章节并读时，为每个勾选因子写一句<strong>可对账输出</strong>（账单/工单/公告栏类），与 <a href="lab.html">分页沙盘</a> 同构。</li>
         <li>十年表、三平面、十层栈若与分页版措辞分叉，以<strong>分页 HTML + manifest</strong> 为真源；本归档仅作离线打包。</li>
         <li>维护者：改站后应同步重导本文件或改顶栏提示链，并跑全站校验；勿只改此处不改注册表路由。</li>
       </ul>
@@ -1012,7 +1105,7 @@
         <p style="margin: 0 0 0.75rem">
           未来基础架构更接近<strong>社会技术系统</strong>：在合规与主权划定的边界内，用身份、数据目录、策略与可观测连接分散算力与数据；平台工程降低门槛；FinOps 与韧性设计假设「一定会出事」。
         </p>
-        <p class="muted" style="margin: 0">
+        <p class="muted legacy-muted-flush">
           <span class="pill">IDC / 边缘</span>
           <span class="pill">多云 / 混合云</span>
           <span class="pill">零信任 / SASE</span>
@@ -1027,7 +1120,7 @@
 
     <section id="decade">
       <h2>十年周期展望（2026—2036）</h2>
-      <p class="muted" style="margin-top: -0.5rem">
+      <p class="muted legacy-muted-pull">
         以约<strong>十年</strong>为尺度，从架构、产业、职业、安全、国家治理与地域地缘等维度做<strong>情景化扩展</strong>：非预测具体事件，而是梳理<strong>结构张力与可布局方向</strong>，供战略与人才规划对照。时间锚点以当前产业阶段为起点向前展望。
       </p>
       <div class="decade-banner">周期假设：算力需求持续增长 · 监管细化 · 地缘不确定性高于过去二十年 · AI 深度嵌入生产系统</div>
@@ -1140,7 +1233,7 @@
 
       <div class="card" style="margin-top: 1rem">
         <h3 style="margin-top: 0">十年周期的合成结论（用于对齐讨论）</h3>
-        <ul class="muted" style="margin: 0">
+        <ul class="muted legacy-list-flush">
           <li><strong>技术：</strong>分区化、身份化、可观测化、AI 基础设施化四线并进，且彼此纠缠。</li>
           <li><strong>商业与职业：</strong>固定合规与韧性成本上升，「能过审、能恢复、能解释」成为核心竞争力的一部分。</li>
           <li><strong>安全与国家/地域：</strong>威胁与规则均呈「多极叠加」，架构目标应从「最优单点设计」转向「在约束下的可演进韧性」。</li>
@@ -1150,7 +1243,7 @@
 
     <section id="three-planes">
       <h2>三平面分层模型</h2>
-      <p class="muted" style="margin-top: -0.5rem">
+      <p class="muted legacy-muted-pull">
         将「管什么」从单一层级拆开：<strong>控制面</strong>定策略与生命周期，<strong>数据面</strong>承载业务状态与流动，<strong>安全面</strong>横切验证与审计。架构评审时三平面需<strong>同版本对齐</strong>，避免「数据已出境、控制面还以为在区内」。
       </p>
       <div class="three-planes">
@@ -1186,7 +1279,7 @@
 
     <section id="layer-visual">
       <h2>技术栈分层带（由下到上收窄示意）</h2>
-      <p class="muted" style="margin-top: -0.5rem">
+      <p class="muted legacy-muted-pull">
         抽象六层：越往上越贴近业务变更频率。宽度仅作<strong>视觉隐喻</strong>（底层通用面宽、上层领域收窄），非严格比例。
       </p>
       <div class="card">
@@ -1204,7 +1297,7 @@
 
     <section id="ref-arch">
       <h2>参考架构图（逻辑拓扑）</h2>
-      <p class="muted" style="margin-top: -0.5rem">
+      <p class="muted legacy-muted-pull">
         单区域逻辑视图：用户经零信任边缘接入，流量经 API 层进入工作负载，数据面分层；右侧为横切平台服务。实际部署应按 <strong>Cell / 可用区</strong> 复制并加区域间网关。
       </p>
       <div class="svg-wrap" role="img" aria-label="参考架构逻辑图">
@@ -1285,7 +1378,7 @@
 
     <section id="evolution">
       <h2>基础设施形态演进（时间线）</h2>
-      <p class="muted" style="margin-top: -0.5rem">
+      <p class="muted legacy-muted-pull">
         从「资源池化」到「云原生」再到「主权 Cell + AI 算力网」，每一步都在<strong>叠加</strong>新约束而非完全替代旧形态；legacy 与 modern 长期共存。
       </p>
       <div class="card">
@@ -1321,7 +1414,7 @@
 
     <section id="morphologies">
       <h2>部署形态谱系（可并存）</h2>
-      <p class="muted" style="margin-top: -0.5rem">
+      <p class="muted legacy-muted-pull">
         按「控制与数据的驻留、弹性来源、锁定程度」划分常见形态；同一企业不同系统可处于谱系不同位置。
       </p>
       <div class="morph-grid">
@@ -1360,7 +1453,7 @@
 
     <section id="stack">
       <h2>十层叠加栈（自下而上）</h2>
-      <p class="muted" style="margin-top: -0.5rem">点击条目展开要点；上层压力会向下传导，下层能力支撑上层叙事。</p>
+      <p class="muted legacy-muted-pull">点击条目展开要点；上层压力会向下传导，下层能力支撑上层叙事。</p>
       <div class="stack">
         <details class="stack-item" open>
           <summary><span class="stack-num">1</span>物理与能源</summary>
@@ -1523,18 +1616,18 @@
       <h2>创业 · 商业化 · 运营（要点）</h2>
       <div class="card">
         <h3 style="margin-top: 0">创业</h3>
-        <ul class="muted" style="margin: 0">
+        <ul class="muted legacy-list-flush">
           <li>早期定数据模型与分区，避免后期拆分成本碾压。</li>
           <li>多租户 + 区域 cell，合同与部署同步设计。</li>
           <li>对收款、币种、云依赖做地缘情景下的 runway 压力测试。</li>
         </ul>
         <h3>商业化</h3>
-        <ul class="muted" style="margin: 0 0 1rem">
+        <ul class="muted legacy-list-gap">
           <li>三层价值：效率 → 风险（合规/韧性）→ 战略（准入）。</li>
           <li>托管 / 软件 / 本地化交付光谱与定价显式对齐。</li>
         </ul>
         <h3>运营</h3>
-        <ul class="muted" style="margin: 0">
+        <ul class="muted legacy-list-flush">
           <li>技术依赖图与非技术依赖图（合同、关键人、支付、牌照）定期对表。</li>
           <li>法务台账与技术台账（子处理者、数据位置、日志）同源更新。</li>
         </ul>
@@ -1543,7 +1636,7 @@
 
     <section id="step-walk">
       <h2>分步推演向导（七步）</h2>
-      <p class="muted" style="margin-top: -0.5rem">
+      <p class="muted legacy-muted-pull">
         按顺序展开架构决策链：每步可单独评审，亦可作为 workshop 议程骨架。圆点可点击跳转。
       </p>
       <div class="stepper" id="stepperRoot">
@@ -1561,7 +1654,7 @@
 
     <section id="sim">
       <h2>情景推演沙盘</h2>
-      <p class="muted" style="margin-top: -0.5rem">
+      <p class="muted legacy-muted-pull">
         勾选当前或假设的外部因子，下方将<strong>合成</strong>对架构、组织与商业的启示（规则为研讨用启发式，可按组织自定义）。
       </p>
       <div class="card">
@@ -1572,14 +1665,14 @@
         <div class="sim-grid" id="simOptions"></div>
         <div class="sim-output" id="simOutput" aria-live="polite">
           <h4>合成启示</h4>
-          <p class="muted" style="margin: 0">请至少选择一个因子。</p>
+          <p class="muted legacy-empty-note">请至少选择一个因子。</p>
         </div>
       </div>
     </section>
 
     <section id="flow">
       <h2>业务连续性穿过各框（依赖流示意）</h2>
-      <p class="muted" style="margin-top: -0.5rem">自上而下：业务与连续性 → 合规与主权 → 地缘与冲突 → 技术与安全 → 回到业务闭环。</p>
+      <p class="muted legacy-muted-pull">自上而下：业务与连续性 → 合规与主权 → 地缘与冲突 → 技术与安全 → 回到业务闭环。</p>
       <div class="flow-note">业务与连续性 (RTO/RPO 分域、关键业务清单)
         ↓
 合规与主权 (驻留、出境、关基、合同管辖)
@@ -1709,7 +1802,7 @@
 
         if (sel.length === 0) {
           out.innerHTML =
-            '<h4>合成启示</h4><p class="muted" style="margin:0">请至少选择一个因子。</p>';
+            '<h4>合成启示</h4><p class="muted legacy-empty-note">请至少选择一个因子。</p>';
           return;
         }
 

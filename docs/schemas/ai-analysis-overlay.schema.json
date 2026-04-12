@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local/arch/ai-analysis-overlay.schema.json",
+  "title": "ai-analysis-overlay",
+  "description": "可选：对 analysis-snapshot 的 AI/辅助解读叠加层；与 analysis-snapshot.schema 分离，避免非确定性文本进入快照必填域。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "generated_at",
+    "source_run_id",
+    "provider",
+    "disclaimer_zh",
+    "sections"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "generated_at": { "type": "string", "minLength": 1 },
+    "source_run_id": { "type": "string", "minLength": 1 },
+    "source_repo_revision": { "type": "string" },
+    "provider": {
+      "type": "object",
+      "required": ["kind", "model"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "minLength": 1,
+          "description": "如 stub、openai_compatible、azure_openai、anthropic、custom"
+        },
+        "model": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    },
+    "disclaimer_zh": { "type": "string", "minLength": 1 },
+    "summary_md": { "type": "string" },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title_zh", "body_md"],
+        "properties": {
+          "id": { "type": "string" },
+          "title_zh": { "type": "string", "minLength": 1 },
+          "body_md": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

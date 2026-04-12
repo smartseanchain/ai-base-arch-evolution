@@ -1,4 +1,7 @@
-# 在仓库根目录初始化 git 并 push 后生效。仅校验 JSON，不写回 assets/。
+# CI：validate = run_validate.sh（同 make validate / make phase-1）+ requirements-api；单测含 test_readonly*.py（HTTP + 代理白名单对账）。
+# 合并前本地推荐 make merge-ready（validate + test-readonly-api · test_readonly*.py + test-admin-console）；validate job 同 run_validate.sh；admin-console 见 admin-console-tests job。
+# spa-build 按路径过滤；不写回 manifest；artifact 类 workflow 见 README「持续集成」。
+# 若改编排器/broker/生产库与 CI 分工：先对 docs/PHASED_UPGRADE_EXECUTION_GUIDE.md；勿引入第二套脱离 run_validate.sh 的合并真源（与 AGENTS / PR 模板一致）。
 name: CI
 
 on:
@@ -12,6 +15,50 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # 仅当变更影响 sync_spa_public 输入、注册表路由或 SPA 自身时跑 spa-build，其余 PR 跳过以省分钟数
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      spa: ${{ steps.filter.outputs.spa }}
+      admin: ${{ steps.filter.outputs.admin }}
+    steps:
+      - uses: actions/checkout@v4
+      # spa/public 由 sync_spa_public 从根 *.html、assets、docs 生成；partials 经 sync_site_nav 写入各页后体现为 *.html 变更，不必单列以免误触 spa-build
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            spa:
+              - 'spa/**'
+              - 'scripts/evolution-registry.json'
+              - 'docs/schemas/evolution-registry.schema.json'
+              - 'scripts/validate_evolution_registry_schema.py'
+              - 'scripts/gen_nav_links_ts.py'
+              - 'scripts/evolution_pkg/spa_nav.py'
+              - 'scripts/sync_spa_public.py'
+              - 'assets/**'
+              - 'docs/**'
+              - '*.html'
+              - 'Makefile'
+              - '.github/workflows/ci.yml'
+            admin:
+              - 'admin-console/**'
+              - '.github/workflows/ci.yml'
+
+  admin-console-tests:
+    needs: changes
+    if: needs.changes.outputs.admin == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: admin-console/requirements.txt
+      - name: admin-console smoke tests
+        run: make test-admin-console
+
   validate:
     runs-on: ubuntu-latest
     steps:
@@ -20,8 +67,25 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-          cache-dependency-path: requirements.txt
+          cache-dependency-path: |
+            requirements.txt
+            requirements-api.txt
       - name: Install Python dependencies
-        run: python3 -m pip install -r requirements.txt
+        run: python3 -m pip install -r requirements.txt -r requirements-api.txt
       - name: Full validate (compileall + JSON + drift + nav + tests + analysis + snapshot)
         run: bash scripts/run_validate.sh
+
+  # 双轨呈现：不替代 validate；sync + Vite 构建。无相关文件变更时跳过（分支保护请以 validate 为主）
+  spa-build:
+    needs: changes
+    if: needs.changes.outputs.spa == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: spa/package-lock.json
+      - name: SPA production build (make spa-build)
+        run: make spa-build

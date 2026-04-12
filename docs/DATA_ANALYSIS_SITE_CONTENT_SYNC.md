@@ -1,6 +1,8 @@
 # 数据与分析 · 驱动全站内容与模块更新（总览）
 
-本文说明：**结构化数据**与**分析引擎产出**如何作用于站内「**模块**」（分页、沙盘因子、注册表页）与「**内容**」（读者可见的叙事与动态块），以及**哪些会随 JSON 自动变、哪些必须人改**。与 [SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md)（偏 fetch/总线）、[TECH_ARCHITECTURE_CAPABILITIES.md](./TECH_ARCHITECTURE_CAPABILITIES.md)（偏技术栈与能力地图）互补。
+本文说明：**结构化数据**与**分析引擎产出**如何作用于站内「**模块**」（分页、沙盘因子、注册表页）与「**内容**」（读者可见的叙事与动态块），以及**哪些会随 JSON 自动变、哪些必须人改**。与 [SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md)（偏 fetch/总线）、[TECH_ARCHITECTURE_CAPABILITIES.md](./TECH_ARCHITECTURE_CAPABILITIES.md)（偏技术栈与能力地图）互补。**三架构**中横跨**技术**（管道与 JSON）与**内容**（模块/叙事/动态块）——总览 **[ARCHITECTURE_ONE_PAGER · 三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)**。
+
+下表「读者可见」均指**浏览器里刷新即可对齐 JSON** 的呈现面；**改 JSON 语义、跑 ingest、merge manifest** 等仍属 **[管理端（后端侧）](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#reader-frontend-admin-backend)**，不在正文里「一键写库」。
 
 <a id="terms"></a>
 

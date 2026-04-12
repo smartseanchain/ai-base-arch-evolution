@@ -1,0 +1,15 @@
+# 只读 HTTP API（FastAPI）：与 scripts/readonly_api.py、INTEGRATION_AND_READONLY_API.md 一致；不写 manifest。
+# 构建：docker build -f Dockerfile.readonly-api -t ai-arch-evolution:api .
+# 运行：见 docker-compose.yml（profile api）或 docs/DOCKER.md
+FROM python:3.12-slim-bookworm
+WORKDIR /srv
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/srv/scripts
+COPY requirements.txt requirements-api.txt ./
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt -r requirements-api.txt
+COPY . /srv
+EXPOSE 8099
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8099/health', timeout=3).read()" || exit 1
+CMD ["python", "-m", "uvicorn", "readonly_api:app", "--host", "0.0.0.0", "--port", "8099"]

@@ -26,11 +26,14 @@
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
+      <a class="skip-link" href="index.html#read-guide">读站指路</a>
+      <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
     </div>
     <header class="site-nav">
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+        <a href="index.html#hub-catalog" class="site-nav-threeq site-nav-catalog" title="全站分区速跳（联结 / 时间 / 栈 / 制度 / 推演 / 工程）">分区</a>
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
@@ -39,6 +42,7 @@
         <a href="evolution-triad.html">人与AI演进</a>
         <a href="work-infra-energy.html">职业·基建·能源</a>
         <a href="model.html">分层模型</a>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
         <a href="architecture.html">架构拓扑</a>
         <a href="timeline.html">历史演进</a>
         <a href="past-future.html">廿年视角</a>
@@ -67,7 +71,20 @@
 
     <div id="main" class="page-head" tabindex="-1">
       <h1>地缘冲击与商业运营</h1>
-      <p class="lead">整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。热力条表示该通道在冲突/制裁情景下对业务的<strong>相对影响幅度</strong>（定性）；右侧为架构响应关键词。</p>
+      <p class="lead">热力条表示该通道在冲突/制裁情景下对业务的<strong>相对影响幅度</strong>（定性）；右侧为架构响应关键词。</p>
+      <div class="read-hint page-head-deck" role="note" aria-label="边界与同读">
+        <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
+        <p>全文为<strong>定性示意</strong>，非精确预测或投资建议。</p>
+        <p><strong>建议同读</strong>：<a href="net-biz-capital.html">网·商·资·工</a>、<a href="synthesis.html">综合推演</a>、<a href="national-strategy-opinion.html">战略·舆情</a>。</p>
+        <p><strong>维护与契约</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a>。</p>
+      </div>
+      <nav class="page-route-strip" aria-label="与本页相关的站内路径">
+        <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
+        <a href="index.html#hub-stack"><span class="page-route-ico" aria-hidden="true">🧱</span>栈卡片</a>
+        <a href="net-biz-capital.html"><span class="page-route-ico" aria-hidden="true">链</span>网·商·资·工</a>
+        <a href="synthesis.html#criteria"><span class="page-route-ico" aria-hidden="true">§</span>五条判据</a>
+        <a href="national-strategy-opinion.html"><span class="page-route-ico" aria-hidden="true">策</span>战略·舆情</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
@@ -93,7 +110,7 @@
 
     <section class="card site-round-extension" id="ext-round-risk" aria-labelledby="hre-risk">
       <h2 class="site-round-extension-h" id="hre-risk">推演扩展 · 本轮更新（地缘与商业）</h2>
-      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">热力条本轮当<strong>检查单</strong>用：每条「高」旁须有一句架构响应是否已在跑；对表 <a href="synthesis.html#recipes">配方 D/G</a> 与 <a href="synthesis.html#continuation">继续推演矩阵</a>。</p>
+      <p class="muted note-kicker">热力条本轮当<strong>检查单</strong>用：每条「高」旁须有一句架构响应是否已在跑；对表 <a href="synthesis.html#recipes">配方 D/G</a> 与 <a href="synthesis.html#continuation">继续推演矩阵</a>。</p>
       <ul>
         <li>SME vs 大型组织：分开写<strong>最薄环</strong>（常在支付或身份，而非骨干网）。</li>
         <li>与 <a href="architecture.html">架构</a> Cell 化叙事交叉：纸面多活是否经过年检演练。</li>
@@ -151,7 +168,7 @@
             <div class="k">单点英雄风险</div>
             <div class="compare-meter"><span style="width:72%"></span></div>
           </div>
-          <p class="muted" style="margin:0;font-size:0.82rem">策略：买托管能力、模板化认证产品。</p>
+          <p class="muted note-flush-82">策略：买托管能力、模板化认证产品。</p>
         </div>
         <div class="compare-col ent">
           <h4>大型组织</h4>
@@ -167,14 +184,14 @@
             <div class="k">变革速度</div>
             <div class="compare-meter"><span style="width:38%"></span></div>
           </div>
-          <p class="muted" style="margin:0;font-size:0.82rem">策略：建统一身份+数据目录+区域 Cell。</p>
+          <p class="muted note-flush-82">策略：建统一身份+数据目录+区域 Cell。</p>
         </div>
       </div>
     </section>
 
     <section>
       <h2>商业价值漏斗（示意）</h2>
-      <p class="muted" style="margin-top:-0.5rem">从对外报价到战略大单常经过三层；越往下越依赖<strong>可举证</strong>与<strong>准入</strong>。</p>
+      <p class="muted note-pull-lg">从对外报价到战略大单常经过三层；越往下越依赖<strong>可举证</strong>与<strong>准入</strong>。</p>
       <div class="biz-funnel">
         <div class="step s1">效率层：降本、提速、FinOps</div>
         <div class="arrow">▼</div>

@@ -1,0 +1,27 @@
+{
+  "name": "ai-base-arch-spa",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "gen-nav": "cd .. && python3 scripts/gen_nav_links_ts.py --write",
+    "sync": "cd .. && python3 scripts/sync_spa_public.py",
+    "predev": "npm run gen-nav && npm run sync",
+    "prebuild": "npm run gen-nav && npm run sync",
+    "dev": "vite",
+    "build": "vite build && node scripts/postbuild-copy-404.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "~5.7.3",
+    "vite": "^6.4.2"
+  }
+}

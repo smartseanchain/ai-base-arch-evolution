@@ -1,0 +1,6 @@
+node_modules
+dist
+/public/*.html
+/public/assets
+/public/docs
+!/public/.gitkeep

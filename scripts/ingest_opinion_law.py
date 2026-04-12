@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-从 ingest_config.json 中的 RSS 与法规/政策 HTML 页抓取条目，汇总为 assets/evolution-candidates.json。
+从 ingest_config.json 中的 RSS、法规/政策 HTML 页与可选 HTTPS JSON 源抓取条目，汇总为 assets/evolution-candidates.json。
 
 - 仅作「候选线索」：摘要来自提要或标题拼接，非全文法理分析。
 - 须人工审阅后再 merge 进 evolution-manifest.json。
-- 可选配置 require_route_match：为 true 时仅写入至少命中一条 routes 的 RSS/法规线索（减噪）。
-- 依赖：Python 3.9+ 标准库（urllib + xml）；配置中 RSS/法规 URL 须为 **https**。
+- 可选配置 require_route_match：为 true 时仅写入至少命中一条 routes 的 RSS/法规/JSON 线索（减噪）。
+- 可选 **json_feeds**：侧车或公开 API 的 JSON 数组（或 `items_path` 指向的数组）；字段映射见 **evolution_pkg.ingest_json_http**；须 **https**，遵守 ToS/频率。
+- 依赖：Python 3.9+ 标准库（urllib + xml + json）；配置中 URL 须为 **https**。
 """
 from __future__ import annotations
 
@@ -21,6 +22,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
+from evolution_pkg.ingest_json_http import feed_parser_keys, parse_json_feed_body
 from evolution_pkg.io import REPO_ROOT
 
 CONFIG_PATH = REPO_ROOT / "scripts" / "ingest_config.json"
@@ -56,6 +58,12 @@ def validate_config_fetch_urls(cfg: dict) -> None:
         u = page.get("url")
         if u:
             assert_https_ingest_url(str(u), f"法规页·{page.get('id', u)}")
+    for jf in cfg.get("json_feeds") or []:
+        u = jf.get("url")
+        if u:
+            assert_https_ingest_url(
+                str(u), f"JSON·{jf.get('id', u)}"
+            )
 
 
 def fetch_bytes(url: str) -> bytes:
@@ -235,12 +243,12 @@ def load_config() -> dict:
 
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(
-        description="抓取 RSS / 法规索引页 → assets/evolution-candidates.json",
+        description="抓取 RSS / 法规索引页 / 可选 JSON HTTP → assets/evolution-candidates.json",
     )
     ap.add_argument(
         "--full-pool",
         action="store_true",
-        help="本次运行忽略 ingest_config.require_route_match（全量进池，且不清理历史未命中 RSS/法规项）",
+        help="本次运行忽略 ingest_config.require_route_match（全量进池，且不清理历史未命中 RSS/法规/JSON 项）",
     )
     ap.add_argument(
         "--write-summary",
@@ -260,6 +268,7 @@ def main(argv: list[str] | None = None) -> None:
     signals: dict[str, dict] = {}
     feed_reports: list[dict] = []
     law_reports: list[dict] = []
+    json_reports: list[dict] = []
 
     if OUT_PATH.is_file():
         try:
@@ -392,6 +401,91 @@ def main(argv: list[str] | None = None) -> None:
                 row["reviewer_note"] = prev["reviewer_note"]
         signals[sid] = row
 
+    for jfeed in cfg.get("json_feeds") or []:
+        url = jfeed.get("url")
+        if not url:
+            continue
+        fid = jfeed.get("id", url)
+        default_kind = jfeed.get("default_kind", "opinion")
+        max_items = int(jfeed.get("max_items") or 20)
+        items_path = str(jfeed.get("items_path") or "")
+        kt, kl, ks = feed_parser_keys(jfeed if isinstance(jfeed, dict) else {})
+        jrep: dict = {
+            "id": fid,
+            "url": url,
+            "ok": False,
+            "items_fetched": 0,
+            "items_raw": 0,
+            "error": None,
+        }
+        try:
+            raw = fetch_bytes(url)
+            time.sleep(0.8)
+        except (urllib.error.URLError, OSError, ValueError) as e:
+            jrep["error"] = str(e)
+            json_reports.append(jrep)
+            print(f"[JSON 跳过] {fid}: {e}", file=sys.stderr)
+            continue
+        try:
+            items, n_raw = parse_json_feed_body(
+                raw,
+                items_path=items_path,
+                keys_title=kt,
+                keys_link=kl,
+                keys_summary=ks,
+                max_items=max_items,
+            )
+        except (json.JSONDecodeError, TypeError, KeyError, ValueError) as e:
+            jrep["error"] = str(e)
+            json_reports.append(jrep)
+            print(f"[JSON 解析失败] {fid}: {e}", file=sys.stderr)
+            continue
+        jrep["ok"] = True
+        jrep["items_raw"] = n_raw
+        jrep["items_fetched"] = len(items)
+        json_reports.append(jrep)
+        for it in items:
+            title = it.get("title") or ""
+            link = it.get("link") or ""
+            summary = it.get("summary") or ""
+            blob = f"{title} {summary}"
+            kind = default_kind
+            if re.search(r"法|条例|立法|草案|修订|征求|意见|公告|规定", blob):
+                kind = "law" if kind == "opinion" else kind
+            lf, pg = apply_routes(blob, routes)
+            lf, pg = merge_maps_to_hints(link, title, summary, lf, pg, hints_cfg)
+            if require_route_match and not lf and not pg:
+                continue
+            sid = stable_id(link or url, title)
+            prev = signals.get(sid)
+            row = {
+                "id": sid,
+                "kind": kind,
+                "title": title or "(无标题)",
+                "summary": (
+                    (summary[:800] if summary else f"来源 JSON·{fid}")
+                ),
+                "weight": "medium",
+                "since": now[:10],
+                "status": "candidate",
+                "review_state": "pending",
+                "source": {
+                    "type": "json_http",
+                    "feed_id": fid,
+                    "url": url,
+                    "item_link": link,
+                    "fetched_at": now,
+                },
+                "maps_to": {"pages": pg, "lab_factors": lf},
+            }
+            if prev:
+                prs = prev.get("review_state")
+                if prs in _KEEP_REVIEW:
+                    row["review_state"] = prs
+                if prev.get("reviewer_note") is not None:
+                    row["reviewer_note"] = prev["reviewer_note"]
+            signals[sid] = row
+
     if require_route_match:
         for sid in list(signals.keys()):
             s = signals[sid]
@@ -399,7 +493,7 @@ def main(argv: list[str] | None = None) -> None:
             if (mt.get("pages") or mt.get("lab_factors")):
                 continue
             src = s.get("source") or {}
-            if src.get("type") in ("rss", "law_html"):
+            if src.get("type") in ("rss", "law_html", "json_http"):
                 del signals[sid]
 
     out = {
@@ -407,7 +501,11 @@ def main(argv: list[str] | None = None) -> None:
         "updated": now[:10],
         "fetched_at": now,
         "notes": "由 scripts/ingest_opinion_law.py 生成；merge 前请人工筛选。"
-        + (" require_route_match=on：未命中 routes 的 RSS/法规项已丢弃。" if require_route_match else ""),
+        + (
+            " require_route_match=on：未命中 routes 的 RSS/法规/JSON 项已丢弃。"
+            if require_route_match
+            else ""
+        ),
         "signals": sorted(signals.values(), key=lambda x: x.get("id", "")),
     }
     OUT_PATH.write_text(
@@ -423,6 +521,7 @@ def main(argv: list[str] | None = None) -> None:
             "full_pool": bool(args.full_pool),
             "feeds": feed_reports,
             "law_pages": law_reports,
+            "json_feeds": json_reports,
             "signals_count": len(signals),
         }
         SUMMARY_PATH.write_text(

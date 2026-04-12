@@ -6,8 +6,15 @@ data/evolution.db-shm
 
 .DS_Store
 
+# 本地环境变量（勿提交密钥）
+.env
+
 # 本地/CI 抓取摘要（可选生成，勿提交）
 ingest-summary.json
 
 # 流水线遥测（每次 analyze / evolution-fast 可生成；保留 artifacts/ 目录用 .gitkeep）
 artifacts/pipeline-metrics-*.json
+
+# 内容草稿插槽：保留 scripts/draft/README.md；本地生成片段勿提交
+scripts/draft/*
+!scripts/draft/README.md

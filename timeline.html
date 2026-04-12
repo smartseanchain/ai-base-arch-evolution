@@ -9,11 +9,11 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="基础架构演变推演" />
   <meta property="og:locale" content="zh_CN" />
-  <meta property="og:title" content="基础设施形态演进 · 基础架构演变推演" />
-  <meta property="og:description" content="历史演进页：五代横向时间轴，新形态叠加旧形态、并存度示意；可滑动时间线。" />
+  <meta property="og:title" content="历史演进 · 基础架构演变推演" />
+  <meta property="og:description" content="五代基础设施形态横向时间轴（页面主文：基础设施形态演进）；新形态叠加旧形态、并存度示意；可滑动。" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="基础设施形态演进 · 基础架构演变推演" />
-  <meta name="twitter:description" content="历史演进页：五代横向时间轴，新形态叠加旧形态、并存度示意；可滑动时间线。" />
+  <meta name="twitter:title" content="历史演进 · 基础架构演变推演" />
+  <meta name="twitter:description" content="五代基础设施形态横向时间轴；叠加非替代、并存度示意；可滑动。" />
   <title>历史演进 · 基础架构演变推演</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,11 +26,14 @@
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
+      <a class="skip-link" href="index.html#read-guide">读站指路</a>
+      <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
     </div>
     <header class="site-nav">
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+        <a href="index.html#hub-catalog" class="site-nav-threeq site-nav-catalog" title="全站分区速跳（联结 / 时间 / 栈 / 制度 / 推演 / 工程）">分区</a>
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
@@ -39,6 +42,7 @@
         <a href="evolution-triad.html">人与AI演进</a>
         <a href="work-infra-energy.html">职业·基建·能源</a>
         <a href="model.html">分层模型</a>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
         <a href="architecture.html">架构拓扑</a>
         <a href="timeline.html" class="current">历史演进</a>
         <a href="past-future.html">廿年视角</a>
@@ -67,7 +71,19 @@
 
     <div id="main" class="page-head" tabindex="-1">
       <h1>基础设施形态演进</h1>
-      <p class="lead">整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。横向为时间轴（可滑动）；新形态<strong>叠加</strong>旧形态而非完全替代。下方附「并存度」示意条。</p>
+      <p class="lead">横向为时间轴（可滑动）；新形态<strong>叠加</strong>旧形态而非完全替代。下方附「并存度」示意条。</p>
+      <div class="read-hint page-head-deck" role="note" aria-label="同读">
+        <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
+        <p><strong>建议同读</strong>：<a href="past-future.html">廿年视角</a>、<a href="decade.html">十年展望</a>、<a href="architecture.html">架构拓扑</a>、<a href="model.html">分层与模型</a>。</p>
+        <p><strong>维护与契约</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a>。</p>
+      </div>
+      <nav class="page-route-strip" aria-label="与本页相关的站内路径">
+        <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
+        <a href="index.html#hub-time"><span class="page-route-ico" aria-hidden="true">⏳</span>时间卡片</a>
+        <a href="index.html#three-questions"><span class="page-route-ico" aria-hidden="true">？</span>三问</a>
+        <a href="past-future.html"><span class="page-route-ico" aria-hidden="true">‖</span>廿年视角</a>
+        <a href="decade.html"><span class="page-route-ico" aria-hidden="true">→</span>十年展望</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
@@ -93,7 +109,7 @@
 
     <section class="card site-round-extension" id="ext-round-timeline" aria-labelledby="hre-timeline">
       <h2 class="site-round-extension-h" id="hre-timeline">推演扩展 · 本轮更新（历史演进）</h2>
-      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">五代本轮强调<strong>叠加非替代</strong>：每条写清「仍与谁并存」；词汇锁定如何绑架组织 KPI；对表 <a href="synthesis.html#continuation">继续推演矩阵</a> 时间族。</p>
+      <p class="muted note-kicker">五代本轮强调<strong>叠加非替代</strong>：每条写清「仍与谁并存」；词汇锁定如何绑架组织 KPI；对表 <a href="synthesis.html#continuation">继续推演矩阵</a> 时间族。</p>
       <ul>
         <li>为每代补<strong>仍在付账单的技术债</strong>典型一条（许可、维保、专用硬件）。</li>
         <li>与 <a href="past-future.html">廿年视角</a>：过去十年主轴是否在本轴找到对应波次。</li>
@@ -101,8 +117,8 @@
         <li>滚动时间轴阅读时标注读者所在组织的<strong>主要遗留代际</strong>。</li>
       </ul>
     </section>
-    <section>
-      <h2>五代演进（横向轴）</h2>
+    <section id="timeline-five-eras" aria-labelledby="timeline-five-eras-h">
+      <h2 id="timeline-five-eras-h">五代演进（横向轴）</h2>
       <div class="card" style="overflow-x:auto">
         <div class="timeline-h">
           <div class="timeline-h-item">
@@ -141,14 +157,14 @@
 
     <section>
       <h2>legacy 与 modern 并存（示意）</h2>
-      <p class="muted" style="margin-top:-0.5rem">条长表示典型大型组织中该形态仍占工作负载比例的<strong>粗略印象</strong>，用于讨论而非统计。</p>
+      <p class="muted note-pull-lg">条长表示典型大型组织中该形态仍占工作负载比例的<strong>粗略印象</strong>，用于讨论而非统计。</p>
       <div class="card">
         <div class="matrix-viz">
           <div class="matrix-viz-row"><span class="lbl">物理 / 传统虚拟化</span><div class="matrix-viz-track"><div class="matrix-viz-fill" style="width:45%;background:linear-gradient(90deg,#2a3544,#8b9cb3)">仍承载核心稳态</div></div></div>
           <div class="matrix-viz-row"><span class="lbl">VM 云 / 早期 IaaS</span><div class="matrix-viz-track"><div class="matrix-viz-fill" style="width:55%">迁移过渡区</div></div></div>
           <div class="matrix-viz-row"><span class="lbl">K8s / 云原生</span><div class="matrix-viz-track"><div class="matrix-viz-fill" style="width:70%">新增默认首选</div></div></div>
           <div class="matrix-viz-row"><span class="lbl">Serverless / 函数</span><div class="matrix-viz-track"><div class="matrix-viz-fill" style="width:35%">事件型负载</div></div></div>
-          <div class="matrix-viz-row"><span class="lbl">AI 推理 / 训练管线</span><div class="matrix-viz-track"><div class="matrix-viz-fill" style="width:50%;background:linear-gradient(90deg,#6366f1,var(--accent))">快速增长带</div></div></div>
+          <div class="matrix-viz-row"><span class="lbl">AI 推理 / 训练管线</span><div class="matrix-viz-track"><div class="matrix-viz-fill matrix-viz-fill--indigo-accent">快速增长带</div></div></div>
         </div>
       </div>
     </section>

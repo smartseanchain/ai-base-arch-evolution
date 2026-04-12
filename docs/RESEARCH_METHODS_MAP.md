@@ -1,6 +1,6 @@
 # 科学研究与推演方法：与站内能力匹配表
 
-本文回答三件事：**当前文档里已经收纳了哪些研究/推演套路**、它们**落在站内哪里**、以及**哪些可以真正「用起来」**（页面、沙盘、JSON 管道、命令）——与 [DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md)（认识论与单轮流程）、[综合推演 §12](../synthesis-methods.html#methods)（跨学科表）、[§13](../synthesis-methods.html#deep-lens)（深读透镜）互补；**不重复** §12 全文，只做**匹配与可利用性**分级。
+本文回答三件事：**当前文档里已经收纳了哪些研究/推演套路**、它们**落在站内哪里**、以及**哪些可以真正「用起来」**（页面、沙盘、JSON 管道、命令）——与 [DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md)（认识论与单轮流程）、[综合推演 §12](../synthesis-methods.html#methods)（跨学科表）、[§13](../synthesis-methods.html#deep-lens)（深读透镜）互补；**不重复** §12 全文，只做**匹配与可利用性**分级。**推演架构**与工程对表的总入口见 **[ARCHITECTURE_ONE_PAGER · 三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)**。
 
 ## 中枢入口：分析引擎页
 
@@ -60,7 +60,9 @@
 | `scripts/analysis_engine.py` + `assets/analysis-snapshot.json` | **结构校验**：模块热力、因子共现、规则提示、`hint_closure_gaps`（与 `evolution-hint-rules.json` / `evolution-hint-decisions.json`） |
 | `data/sediment.json` + `sediment_trends.py` | **跨日**对比：是否长期偏斜某一模块或因子 |
 | `lab.html` + `assets/lab.js` | **思想实验**与 FMEA/敏感性叙述的交互落点 |
-| `make validate` / `scripts/run_validate.sh` | **适应度函数**：防止页、注册表、快照契约漂移 |
+| `make validate` / `scripts/run_validate.sh` | **适应度函数**：防止页、**`evolution-registry.json`** 结构（**`validate_evolution_registry_schema.py`**）、语义对账、快照与 **沉淀/趋势** 契约、**nav.config↔navLinks** 漂移 |
+| `make test` | 同上之**子集**：registry Schema、单测、**navLinks**、沉淀/趋势 Schema（**无**完整对账、顶栏、**`--check`**）；合并前仍须 **`make validate`** |
+| `docs/schemas/evolution-registry.schema.json` + `validate_evolution_registry_schema.py` | **注册表**字段与类型契约（先于 **`check_manifest_drift`**） |
 | `docs/schemas/analysis-snapshot.schema.json` + `jsonschema` | 快照与展示端**契约**（见 `requirements.txt`） |
 
 **不是**计量平台：不做回归、不做系统动力学数值积分；**是**「定性研究 + 可版本化证据 + 守门脚本」的组合。

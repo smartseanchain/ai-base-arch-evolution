@@ -2,6 +2,8 @@
 
 本文给出**可重复的一轮流程**：在**不假设单点终局**的前提下，把**全站模块与叙事**与**当前数据/分析读数**对表，并决定**下一步更新落在哪里**（JSON 管道、HTML 正文、或仅刷新快照）。与 [EVOLUTION_RUNBOOK](./EVOLUTION_RUNBOOK.md)（偏双周 JSON 节奏）、[DATA_ANALYSIS_SITE_CONTENT_SYNC](./DATA_ANALYSIS_SITE_CONTENT_SYNC.md)（偏数据→界面映射）互补；认识论与单轮七步仍以 [DEDUCTION_STRATEGY](./DEDUCTION_STRATEGY.md) 为准。
 
+在 **[三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)** 中，本文为**推演架构**下的「全站一轮」操作手册，与双周节奏、数据→界面映射文档并用。
+
 <a id="when"></a>
 
 ## 1. 何时做「全站式」一轮

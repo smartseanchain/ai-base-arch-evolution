@@ -1,0 +1,7 @@
+# 可选：连接 docker-compose.kafka-dev.yml（Redpanda / Kafka 协议）做 PoC 消费或生产。
+# 不进入 make validate / CI；安装前见 docs/ORCHESTRATION_AND_EVENT_STREAMING.md §3.4。
+#
+#   python3 -m pip install -r requirements-kafka-dev.txt
+#
+# macOS 若编译失败可先：brew install librdkafka
+confluent-kafka>=2.3.0,<2.11

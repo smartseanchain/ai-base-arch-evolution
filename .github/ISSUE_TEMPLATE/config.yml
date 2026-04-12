@@ -1,1 +1,5 @@
 blank_issues_enabled: true
+contact_links:
+  - name: 文档 · 按阶段升级（编排 / Kafka / 生产库）
+    url: https://github.com/smartseanchain/ai-base-arch-evolution/blob/main/docs/PHASED_UPGRADE_EXECUTION_GUIDE.md
+    about: 先对阶段 0→1→2/3 与准入；决策全景见同目录 ARCHITECTURE_UPGRADE_ROADMAP.md。Fork 后请改链为本仓库 blob/main。

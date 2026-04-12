@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 # 提交前校验 evolution JSON（可选启用：bash scripts/install-git-hooks.sh）
+# 与 make validate / CI validate job 一致；参与贡献与 CI 双轨见根目录 CONTRIBUTING.md
 set -e
 ROOT="$(git rev-parse --show-toplevel)"
 cd "$ROOT"

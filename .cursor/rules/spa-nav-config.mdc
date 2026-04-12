@@ -1,0 +1,13 @@
+---
+description: spa/nav.config.json 与 registry 页面集、gen_nav_links、顶栏 partial 对齐
+globs: spa/nav.config.json
+alwaysApply: false
+---
+
+# `spa/nav.config.json`
+
+- 结构须符合 **`docs/schemas/spa-nav-config.schema.json`**（**`make test`** / **`make validate`** 内由 **`evolution_pkg.spa_nav`** 经 **`check_nav_links_registry`** 校验）。
+- **`items[].page`** 必须与 **`scripts/evolution-registry.json`** 的 **`pages`** 集合**完全一致**（不少不多、文件名含 `.html`）。
+- 改完后执行 **`make gen-nav-links`** 或 **`make spa-build`**，再按需 **`make sync-nav`** 对齐 **`partials/site-nav.inc.html`**。
+- 校验：**`check_nav_links_registry.py`**（**`make test`** / **`make validate`**）。
+- 壳内首页 iframe 加载的是同步后的 **`spa/public/legacy-index.html`**（由根 **`index.html`** 去顶栏生成）。若只改 **总览读站指路 / 分区卡片等**、未动本文件：仍须 **`make spa-sync`**（或 **`npm run sync`**），否则壳内总览仍是旧正文；见 **`spa/README.md`**。

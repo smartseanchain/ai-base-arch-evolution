@@ -29,6 +29,7 @@
   var URL_SNAP = "assets/analysis-snapshot.json";
   var URL_TRENDS = "assets/sediment-trends.json";
   var URL_HINT_DECISIONS = "assets/evolution-hint-decisions.json";
+  var URL_AI_OVERLAY = "assets/ai-analysis-overlay.json";
 
   var ACTION_LABEL = { done: "已落实", rejected: "已否决", deferred: "延期" };
   var KIND_LABEL = {
@@ -837,6 +838,79 @@
     container.appendChild(wrap);
   }
 
+  /**
+   * 可选：渲染 AI/辅助解读叠加层（独立 JSON；与快照 run_id 对读）。
+   * @param {HTMLElement} container
+   * @param {Record<string, unknown>} overlay
+   */
+  function renderAiOverlay(container, overlay) {
+    if (!container || !overlay || typeof overlay !== "object") return;
+    var snapRun =
+      currentSnap && currentSnap.run && currentSnap.run.run_id
+        ? String(currentSnap.run.run_id)
+        : "";
+    var srcRun = overlay.source_run_id != null ? String(overlay.source_run_id) : "";
+    var sec = document.createElement("section");
+    sec.className = "analysis-panel analysis-ai-overlay";
+    sec.setAttribute("aria-labelledby", "analysis-ai-overlay-title");
+    var h3 = document.createElement("h3");
+    h3.id = "analysis-ai-overlay-title";
+    h3.textContent = "AI 辅助解读（可选叠加层）";
+    sec.appendChild(h3);
+    var prov = overlay.provider || {};
+    var meta = document.createElement("p");
+    meta.className = "muted";
+    meta.style.fontSize = "0.82rem";
+    meta.innerHTML =
+      "来源：<code>assets/ai-analysis-overlay.json</code> · provider <code>" +
+      esc(String(prov.kind || "—")) +
+      "</code> / model <code>" +
+      esc(String(prov.model || "—")) +
+      "</code> · 生成 <time>" +
+      esc(String(overlay.generated_at || "—")) +
+      "</time>";
+    sec.appendChild(meta);
+    if (snapRun && srcRun && snapRun !== srcRun) {
+      var warn = document.createElement("p");
+      warn.className = "muted analysis-ai-overlay-warn";
+      warn.style.color = "var(--warn, #b45309)";
+      warn.textContent =
+        "提示：overlay 的 source_run_id 与当前页快照 run_id 不一致，可能为旧文件或未刷新。";
+      sec.appendChild(warn);
+    }
+    var disc = document.createElement("p");
+    disc.className = "muted analysis-ai-overlay-disclaimer";
+    disc.style.fontSize = "0.85rem";
+    disc.style.marginTop = "0.35rem";
+    disc.textContent = String(overlay.disclaimer_zh || "");
+    sec.appendChild(disc);
+    if (overlay.summary_md) {
+      var sum = document.createElement("div");
+      sum.className = "analysis-ai-overlay-summary";
+      sum.style.whiteSpace = "pre-wrap";
+      sum.style.marginTop = "0.5rem";
+      sum.style.fontSize = "0.9rem";
+      sum.textContent = String(overlay.summary_md);
+      sec.appendChild(sum);
+    }
+    var sections = Array.isArray(overlay.sections) ? overlay.sections : [];
+    sections.forEach(function (s) {
+      if (!s || typeof s !== "object") return;
+      var h4 = document.createElement("h4");
+      h4.style.fontSize = "1rem";
+      h4.style.marginTop = "0.75rem";
+      h4.textContent = String(s.title_zh || "—");
+      sec.appendChild(h4);
+      var body = document.createElement("div");
+      body.className = "analysis-ai-overlay-body";
+      body.style.whiteSpace = "pre-wrap";
+      body.style.fontSize = "0.88rem";
+      body.textContent = String(s.body_md != null ? s.body_md : "");
+      sec.appendChild(body);
+    });
+    container.appendChild(sec);
+  }
+
   function fetchSnapshotShared() {
     if (window.SiteDataBus && typeof SiteDataBus.loadSnapshot === "function") {
       return SiteDataBus.loadSnapshot();
@@ -881,8 +955,18 @@
         return fetchTrendsShared();
       })
       .then(function (trends) {
-        if (!trends) return;
-        renderTrends(el, trends);
+        if (trends) renderTrends(el, trends);
+        return fetch(URL_AI_OVERLAY)
+          .then(function (r) {
+            if (!r.ok) return null;
+            return r.json();
+          })
+          .catch(function () {
+            return null;
+          });
+      })
+      .then(function (overlay) {
+        if (overlay) renderAiOverlay(el, overlay);
       })
       .catch(function () {
         if (el && !el.querySelector(".analysis-snap-meta")) {

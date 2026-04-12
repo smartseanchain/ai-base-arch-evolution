@@ -26,11 +26,14 @@
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
+      <a class="skip-link" href="index.html#read-guide">读站指路</a>
+      <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
     </div>
     <header class="site-nav">
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+        <a href="index.html#hub-catalog" class="site-nav-threeq site-nav-catalog" title="全站分区速跳（联结 / 时间 / 栈 / 制度 / 推演 / 工程）">分区</a>
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
@@ -39,6 +42,7 @@
         <a href="evolution-triad.html">人与AI演进</a>
         <a href="work-infra-energy.html" class="current">职业·基建·能源</a>
         <a href="model.html">分层模型</a>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
         <a href="architecture.html">架构拓扑</a>
         <a href="timeline.html">历史演进</a>
         <a href="past-future.html">廿年视角</a>
@@ -68,8 +72,21 @@
     <div id="main" class="page-head" tabindex="-1">
       <h1>社会职业、国家基础设施与能源演进</h1>
       <p class="lead">
-        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。从<strong>社会分工与职业形态</strong>出发，落到<strong>国家硬基础设施</strong>（交通、电力、通信、算力网络），再落到<strong>能源系统</strong>如何约束数字化与 AI 扩张。三线并行、末端<strong>高度耦合</strong>：没有电与网，「数字职业」只是叙事。
+        从<strong>社会分工与职业形态</strong>出发，落到<strong>国家硬基础设施</strong>（交通、电力、通信、算力网络），再落到<strong>能源系统</strong>如何约束数字化与 AI 扩张。
       </p>
+      <div class="read-hint page-head-deck" role="note" aria-label="耦合与同读">
+        <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
+        <p>三线并行、末端<strong>高度耦合</strong>：没有电与网，「数字职业」只是叙事。</p>
+        <p><strong>建议同读</strong>：<a href="nexus.html">立体联结</a>、<a href="decade.html">十年展望</a>、<a href="net-biz-capital.html">网·商·资·工</a>。</p>
+        <p><strong>维护与契约</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a>。</p>
+      </div>
+      <nav class="page-route-strip" aria-label="与本页相关的站内路径">
+        <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
+        <a href="index.html#hub-stack"><span class="page-route-ico" aria-hidden="true">🧱</span>栈卡片</a>
+        <a href="nexus.html"><span class="page-route-ico" aria-hidden="true">◇</span>立体联结</a>
+        <a href="decade.html"><span class="page-route-ico" aria-hidden="true">十</span>十年展望</a>
+        <a href="net-biz-capital.html"><span class="page-route-ico" aria-hidden="true">链</span>网·商·资·工</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
@@ -84,7 +101,7 @@
         <defs>
           <marker id="wieflow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#5c6b7e"/></marker>
         </defs>
-        <text x="340" y="14" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">无电无网则数字职业仅为叙事 — 见 §4 耦合</text>
+        <text x="340" y="14" text-anchor="middle" fill="#8b9cb3" font-size="9" font-family="Noto Sans SC,sans-serif">无电无网则数字职业仅为叙事 — 见下方耦合节</text>
         <rect x="10" y="22" width="150" height="40" rx="8" fill="#141b26" stroke="#3d9cf5"/>
         <text x="85" y="40" text-anchor="middle" fill="#e8edf4" font-size="10" font-weight="600" font-family="Noto Sans SC,sans-serif">社会职业</text>
         <text x="85" y="54" text-anchor="middle" fill="#5c6b7e" font-size="7" font-family="Noto Sans SC,sans-serif">分工 · 契约</text>
@@ -105,7 +122,7 @@
 
     <section class="card site-round-extension" id="ext-round-wie" aria-labelledby="hre-wie">
       <h2 class="site-round-extension-h" id="hre-wie">推演扩展 · 本轮更新（职业·基建·能源）</h2>
-      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">本轮强调<strong>末端闭合</strong>：没有电/网/合同位点的「数字职业」一律标为叙事；与 <a href="synthesis.html#recipes">配方 C</a>、<a href="synthesis.html#continuation">继续推演矩阵</a> 硬栈行对读。</p>
+      <p class="muted note-kicker">本轮强调<strong>末端闭合</strong>：没有电/网/合同位点的「数字职业」一律标为叙事；与 <a href="synthesis.html#recipes">配方 C</a>、<a href="synthesis.html#continuation">继续推演矩阵</a> 硬栈行对读。</p>
       <ul>
         <li>任一算力叙事旁注<strong>kW/冷却/区位</strong>三词中至少其一可来自公开线索或合同类型。</li>
         <li>基建段落与 <a href="architecture.html">架构拓扑</a> 互写「负载实际落点」与「纸面分区」是否一致。</li>
@@ -160,7 +177,7 @@
             <text x="360" y="78" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">非严格年代；强调「风险与保障由谁承担」随阶段迁移</text>
           </svg>
           </div>
-          <p class="muted" style="margin:0.5rem 0 0;font-size:0.82rem">与 <a href="evolution-triad.html">人与AI演进</a> 中职业轴互补：本轴偏社会结构，彼轴偏个体技能与契约。</p>
+          <p class="muted note-subcap">与 <a href="evolution-triad.html">人与AI演进</a> 中职业轴互补：本轴偏社会结构，彼轴偏个体技能与契约。</p>
         </div>
       </div>
     </section>
@@ -237,7 +254,7 @@
 
     <section id="coupling">
       <h2>4. 三者耦合：一张对照表</h2>
-      <p class="muted" style="margin-top:-0.5rem">行与列<strong>非独立变量</strong>；政策与投资决策常在表中找「短板」。</p>
+      <p class="muted note-pull-lg">行与列<strong>非独立变量</strong>；政策与投资决策常在表中找「短板」。</p>
       <div class="coupling-table-wrap">
         <table>
           <thead>
@@ -281,7 +298,7 @@
     <section id="cross">
       <h2>5. 站内对照</h2>
       <div class="card">
-        <ul class="muted" style="margin:0;font-size:0.88rem">
+        <ul class="muted list-flat-plain">
           <li><a href="evolution-triad.html">人与AI演进</a>：个体职业与家庭—AI 三角；本页补<strong>社会结构层</strong>与硬底座。</li>
           <li><a href="decade.html">十年展望</a>：产业与能源、地缘六维表——可与本节耦合表一起读。</li>
           <li><a href="decade-scenes.html">十年场景</a>：算力能源、企业生产、政务等场景的十年三阶段形态。</li>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      name="description"
+      content="与根目录 MPA 并行的单页壳：顶栏分页、总览读站指路/三问/分区锚点；iframe 内为已剥顶栏的静态 HTML。深链进正文后仍建议扫一眼该页「推演扩展 · 本轮提要」。合并前以根目录 validate 为准。"
+    />
+    <meta name="theme-color" content="#0c1118" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="基础架构演变推演" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:title" content="基础架构演变推演 · SPA" />
+    <meta
+      property="og:description"
+      content="单页壳：分页导航与总览锚点；iframe 内静态正文与 MPA 同源。定性脚手架，非预测。"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="基础架构演变推演 · SPA" />
+    <meta
+      name="twitter:description"
+      content="单页壳：分页与总览读站指路/三问/分区；iframe 与 MPA 同源；深链后仍建议看本轮提要。"
+    />
+    <title>基础架构演变推演 · SPA</title>
+    <link rel="icon" href="%BASE_URL%assets/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <noscript>
+      <div
+        style="
+          padding: 1.5rem 1.25rem;
+          font-family: 'Noto Sans SC', system-ui, sans-serif;
+          background: #0b1018;
+          color: #eef2f9;
+          line-height: 1.55;
+        "
+      >
+        <p style="margin: 0 0 0.75rem; font-weight: 700">
+          基础架构演变推演 · SPA
+        </p>
+        <p style="margin: 0; color: #aab6ca">
+          单页壳需启用 JavaScript 才能加载分页与 iframe 正文。请启用后刷新，或直接使用根目录多页 HTML（MPA）。
+        </p>
+      </div>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -5,6 +5,8 @@
   - partials/site-nav.inc.html
 
 按当前文件名：`index.html` 上「三问导读 / 顶栏三问」用 `#three-questions`，其余页用 `index.html#three-questions`；
+「读站指路」在总览为 `#read-guide`，其余页为 `index.html#read-guide`；
+「分区速跳」在总览为 `#hub-catalog`，其余页为 `index.html#hub-catalog`；
 顶栏当前页链接打 class=\"current\"。
 
 跳过：404.html、legacy-all-in-one.html。
@@ -38,6 +40,14 @@ SKIP_BAR_RE = re.compile(
 
 def threeq_href(basename: str) -> str:
     return "#three-questions" if basename == "index.html" else "index.html#three-questions"
+
+
+def hub_catalog_href(basename: str) -> str:
+    return "#hub-catalog" if basename == "index.html" else "index.html#hub-catalog"
+
+
+def read_guide_href(basename: str) -> str:
+    return "#read-guide" if basename == "index.html" else "index.html#read-guide"
 
 
 def _span_with_leading_indent(text: str, inner_start: int, inner_end: int) -> tuple[int, int]:
@@ -76,17 +86,30 @@ def load_template_skip() -> str:
 
 
 def build_header(basename: str, template: str) -> str:
-    block = template.replace("__THREEQ_NAV_HREF__", threeq_href(basename))
-    needle = f'<a href="{basename}">'
-    repl = f'<a href="{basename}" class="current">'
-    if needle not in block:
-        print(f"错误: 导航模板中无链接 {needle}", file=sys.stderr)
+    block = (
+        template.replace("__THREEQ_NAV_HREF__", threeq_href(basename))
+        .replace("__HUB_CATALOG_NAV_HREF__", hub_catalog_href(basename))
+    )
+    # 允许 <a href="page.html" …>（如 title）；须唯一点到本页分页链，勿用裸 ">" 匹配以免误伤其他 href。
+    open_prefix = f'<a href="{basename}"'
+    idx = block.find(open_prefix)
+    if idx == -1:
+        print(f"错误: 导航模板中无链接 {open_prefix}", file=sys.stderr)
         sys.exit(1)
-    return block.replace(needle, repl, 1).rstrip("\n\r")
+    j = idx + len(open_prefix)
+    if block.startswith(" class=", j):
+        return block.rstrip("\n\r")
+    block = block[:j] + ' class="current"' + block[j:]
+    return block.rstrip("\n\r")
 
 
 def build_skip_bar(basename: str, template: str) -> str:
-    return template.replace("__THREEQ_SKIP_HREF__", threeq_href(basename)).rstrip("\n\r")
+    return (
+        template.replace("__THREEQ_SKIP_HREF__", threeq_href(basename))
+        .replace("__READ_GUIDE_SKIP_HREF__", read_guide_href(basename))
+        .replace("__HUB_CATALOG_SKIP_HREF__", hub_catalog_href(basename))
+        .rstrip("\n\r")
+    )
 
 
 def html_targets() -> list[Path]:

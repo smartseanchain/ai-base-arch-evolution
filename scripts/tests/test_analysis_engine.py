@@ -11,16 +11,18 @@ SCRIPTS = REPO_ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
-from analysis_engine import (  # noqa: E402
+from evolution_pkg.analysis_hints import (  # noqa: E402
     candidate_review_breakdown,
     compute_diff_hints,
-    compute_hint_closure_gaps,
     evaluate_hint_rules,
     hint_decisions_stats,
-    load_hint_rules,
-    run_analysis,
+)
+from evolution_pkg.hint_closure import (  # noqa: E402
+    compute_hint_closure_gaps,
     track_closure_rule_ids,
 )
+
+from analysis_engine import load_hint_rules, run_analysis  # noqa: E402
 
 
 def _hints_text(hints: list) -> str:

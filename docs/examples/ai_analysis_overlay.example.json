@@ -1,0 +1,24 @@
+{
+  "_comment_zh": "示例：AI 解读层接入配置形状（勿将本文件当作生产密钥载体）。复制为本地未提交文件或团队模板时，enabled 方可为 true；API Key 仅经环境变量注入。",
+  "schema_version": 0,
+  "enabled": false,
+  "provider": {
+    "kind": "openai_compatible",
+    "base_url_env": "AI_OVERLAY_API_BASE",
+    "model_env": "AI_OVERLAY_MODEL",
+    "api_key_env": "AI_OVERLAY_API_KEY"
+  },
+  "input": {
+    "snapshot_path": "assets/analysis-snapshot.json",
+    "optional_context_paths": ["assets/sediment-trends.json"],
+    "max_context_chars": 24000
+  },
+  "output": {
+    "artifact_path": "assets/ai-analysis-overlay.json",
+    "require_pr_review_for_first_publish": true
+  },
+  "behavior": {
+    "on_api_failure": "soft_skip",
+    "attach_run_id_from_snapshot": true
+  }
+}

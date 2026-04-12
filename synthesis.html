@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="description" content="综合推演主篇：模块表（§1）、五条判据（§2）、毗邻图（§3）、合成轴（§4）、推演配方 A—H（§5）、继续推演全站矩阵、工作台（§10）。叠加五域与复合表见 synthesis-extensions；§11—§13 见 synthesis-methods。" />
+  <meta name="description" content="综合推演主篇：模块表、五条判据、毗邻与合成轴、推演配方 A—H、继续推演全站矩阵、工作台。叠加五域与复合表见推演·扩展；持续迭代与方法见推演·方法。" />
   <meta name="theme-color" content="#0c1118" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="基础架构演变推演" />
   <meta property="og:locale" content="zh_CN" />
   <meta property="og:title" content="综合推演（主篇）· 模块组合与判据 · 基础架构演变推演" />
-  <meta property="og:description" content="§1—§5 与 §10 工作台；§6—§9 与 §11—§13 已拆至子页以减轻阅读负担。" />
+  <meta property="og:description" content="模块表、判据、配方 A—H 与工作台；扩展图景与方法已拆至子页以减轻阅读负担。" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="综合推演（主篇）· 基础架构演变推演" />
   <meta name="twitter:description" content="模块表、判据、配方 A—H 与工作台；扩展图景与方法见子页。" />
@@ -26,11 +26,14 @@
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
+      <a class="skip-link" href="index.html#read-guide">读站指路</a>
+      <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
     </div>
     <header class="site-nav">
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
+        <a href="index.html#hub-catalog" class="site-nav-threeq site-nav-catalog" title="全站分区速跳（联结 / 时间 / 栈 / 制度 / 推演 / 工程）">分区</a>
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
@@ -39,6 +42,7 @@
         <a href="evolution-triad.html">人与AI演进</a>
         <a href="work-infra-energy.html">职业·基建·能源</a>
         <a href="model.html">分层模型</a>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
         <a href="architecture.html">架构拓扑</a>
         <a href="timeline.html">历史演进</a>
         <a href="past-future.html">廿年视角</a>
@@ -68,8 +72,20 @@
     <div id="main" class="page-head" tabindex="-1">
       <h1>综合推演（主篇）：模块、判据、配方与工作台</h1>
       <p class="lead">
-        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页保留<strong>元梳理主干</strong>：<strong>§1</strong> 模块变量表、<strong>§2</strong> 五条判据、<strong>§3—§4</strong> 关联与合成轴、<strong>§5</strong> 配方 A—H，以及 <a href="#continuation"><strong>继续推演 · 全站深描矩阵</strong></a>（按模块列出下一轮变量、邻接补强、分叉与观测挂钩），以及 <strong>§10</strong> 工作台。为减轻单页过长，<strong>§6—§9</strong>（叠加五域、复合总表、三簇图景、五维切片）已迁至 <a href="synthesis-extensions.html">综合推演 · 扩展图景</a>；<strong>§11—§13</strong>（持续迭代、跨学科办法、深读透镜）迁至 <a href="synthesis-methods.html">综合推演 · 方法与透镜</a>。读数与闭环仍与全站一致：<a href="docs/DEDUCTION_STRATEGY.md">科学推演策略</a>、<a href="evolution-loop.html">进化闭环</a>、<a href="analysis-hub.html">分析引擎</a>。
+        整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页保留<strong>元梳理主干</strong>：<strong>模块变量表</strong>、<strong>五条判据</strong>、<strong>毗邻与合成轴</strong>、<strong>配方 A—H</strong>，<a href="#continuation"><strong>继续推演 · 全站深描矩阵</strong></a>（按模块列出下一轮变量、邻接补强、分叉与观测挂钩），以及<strong>工作台</strong>。
       </p>
+      <div class="read-hint page-head-deck" role="note" aria-label="综合推演三页分工与读数闭环">
+        <p><strong>子页分工</strong>：为减轻单页过长，叠加五域、复合总表、三簇图景与五维切片在 <a href="synthesis-extensions.html">推演·扩展</a>；持续迭代、跨学科办法与深读透镜在 <a href="synthesis-methods.html">推演·方法</a>。正文目录仍用 <strong>§1—§13</strong> 节号便于检索与交叉引用。</p>
+        <p><strong>读数与闭环</strong>：<a href="docs/DEDUCTION_STRATEGY.md">科学推演策略</a>、<a href="evolution-loop.html">进化闭环</a>、<a href="analysis-hub.html">分析引擎</a>。</p>
+        <p><strong>维护面与契约</strong>：<a href="maintainer-hub.html">维护导读</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a>。</p>
+      </div>
+      <nav class="page-route-strip" aria-label="与本页相关的站内路径">
+        <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
+        <a href="index.html#hub-synth"><span class="page-route-ico" aria-hidden="true">🧮</span>推演卡片</a>
+        <a href="synthesis.html#criteria"><span class="page-route-ico" aria-hidden="true">§</span>五条判据</a>
+        <a href="synthesis-extensions.html"><span class="page-route-ico" aria-hidden="true">↗</span>推演·扩展</a>
+        <a href="synthesis-methods.html"><span class="page-route-ico" aria-hidden="true">≡</span>推演·方法</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
@@ -127,7 +143,7 @@
 
     <section class="card site-round-extension" id="ext-round-synthesis" aria-labelledby="hre-synthesis">
       <h2 class="site-round-extension-h" id="hre-synthesis">推演扩展 · 本轮更新（主篇）</h2>
-      <p class="muted" style="margin:0 0 0.5rem;font-size:0.88rem;line-height:1.7">主篇负责<strong>判据、毗邻、配方与继续推演矩阵</strong>；本轮同步要求：每读一条配方或矩阵一行，都尝试写出一句话「<strong>若何可见征候则更接近甲/乙</strong>」，并标明时间尺度（短/中/长）。下列清单便于与 <a href="#continuation">继续推演矩阵</a> 对行自检。</p>
+      <p class="muted note-kicker">主篇负责<strong>判据、毗邻、配方与继续推演矩阵</strong>；本轮同步要求：每读一条配方或矩阵一行，都尝试写出一句话「<strong>若何可见征候则更接近甲/乙</strong>」，并标明时间尺度（短/中/长）。下列清单便于与 <a href="#continuation">继续推演矩阵</a> 对行自检。</p>
       <ul>
         <li>扩展 §5 时优先补<strong>传导链上的计量锚</strong>（合同、SLA、电价区间、学段政策名相）而非新形容词。</li>
         <li>任何跨系组合先回到 <a href="#criteria">§2</a>：缺哪条判据，就指定要补读的<strong>第三模块</strong>与页内锚点。</li>
@@ -138,7 +154,8 @@
 
     <section id="inventory">
       <h2>1. 全站模块：五系归档 · 七层堆叠 · 变量与问句</h2>
-      <p class="muted" style="margin-top:-0.35rem"><strong>五系</strong>便于找同窗互证；<strong>堆叠位</strong>（L0—L6 与 T·时间轴）提醒「下层约束上层」。组合时先对表，避免把<strong>不同量纲</strong>硬扭在一起。剖面图与扩展三向见 <a href="modules-map.html#taxonomy">模块图谱 · 五系</a>、<a href="modules-map.html#layer-stack">七层</a>、<a href="modules-map.html#extension">扩展</a>。</p>
+      <p class="muted note-caption-82"><strong>读后自问：</strong>你关心的议题落在哪一系、哪一层堆叠位？缺哪一层会叙事空转？</p>
+      <p class="muted note-pull"><strong>五系</strong>便于找同窗互证；<strong>堆叠位</strong>（L0—L6 与 T·时间轴）提醒「下层约束上层」。组合时先对表，避免把<strong>不同量纲</strong>硬扭在一起。剖面图与扩展三向见 <a href="modules-map.html#taxonomy">模块图谱 · 五系</a>、<a href="modules-map.html#layer-stack">七层</a>、<a href="modules-map.html#extension">扩展</a>。</p>
       <div class="synth-mod-table-wrap">
         <table>
           <thead>
@@ -325,7 +342,8 @@
 
     <section id="criteria">
       <h2>2. 模块组合的合理性：五条可操作的判据</h2>
-      <p class="muted" style="margin-top:-0.35rem">「合理」不是口味，而是<strong>推演是否站得住</strong>：能否指出共享变量、因果顺序或可对照的尺度。以下五条可用来<strong>拒绝随意拼盘</strong>，也可用来<strong>发现遗漏的第三模块</strong>（往往需要补上一环才闭合）。</p>
+      <p class="muted note-caption-82"><strong>读后自问：</strong>你正在拼的两三个模块，最先被哪一条判据打回？</p>
+      <p class="muted note-pull">「合理」不是口味，而是<strong>推演是否站得住</strong>：能否指出共享变量、因果顺序或可对照的尺度。以下五条可用来<strong>拒绝随意拼盘</strong>，也可用来<strong>发现遗漏的第三模块</strong>（往往需要补上一环才闭合）。</p>
       <div class="page-flow-strip" role="img" aria-label="五条判据速览：1对账 2因果 3尺度 4短中长周期 5物理逻辑经济三角">
         <svg viewBox="0 0 640 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="4" y="8" width="118" height="36" rx="6" fill="#141b26" stroke="#3d9cf5"/>
@@ -356,7 +374,8 @@
 
     <section id="graph">
       <h2>3. 关联扩展：毗邻图 + 高权重组合边</h2>
-      <p class="muted" style="margin-top:-0.35rem">下图保留「三簇围心」的直觉；文字再补<strong>高权重无向边</strong>（任取一端即可滑向另一端）——便于你从任意一页跳入组合推演。</p>
+      <p class="muted note-caption-82"><strong>读后自问：</strong>从你当前站着的页出发，沿哪一条高权重边跳进合成心最省力？</p>
+      <p class="muted note-pull">下图保留「三簇围心」的直觉；文字再补<strong>高权重无向边</strong>（任取一端即可滑向另一端）——便于你从任意一页跳入组合推演。</p>
       <div class="synth-hub-wrap" role="img" aria-label="模块毗邻关系：综合推演为中心，外围尺度与社会、时间纵深、硬栈与地缘等簇及高权重组合边示意">
         <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
@@ -396,38 +415,40 @@
         </svg>
       </div>
       <div class="card" style="margin-top:1rem">
-        <p class="muted" style="margin:0;font-size:0.82rem;line-height:1.65"><strong>高权重组合边（扩展关联，示意）：</strong>「十年展望 ↔ 十年场景」（抽象↔具象）；「职基能 ↔ 架构拓扑」（瓦特落点）；「教育纵轴 ↔ 人与AI ↔ 立体联结」（评价权与家庭政治）；「历史演进 ↔ 分层/架构」（词汇锁定与路径依赖）；「地缘 ↔ 场景·跨境 ↔ 架构·Cell」（备用路径）；「沙盘 ↔ 任一页」（把假设压成可比较叙事）。任一边单独读都偏瘦，双边同时读才容易看见<strong>张力与分叉</strong>。</p>
+        <p class="muted note-caption-82"><strong>高权重组合边（扩展关联，示意）：</strong>「十年展望 ↔ 十年场景」（抽象↔具象）；「职基能 ↔ 架构拓扑」（瓦特落点）；「教育纵轴 ↔ 人与AI ↔ 立体联结」（评价权与家庭政治）；「历史演进 ↔ 分层/架构」（词汇锁定与路径依赖）；「地缘 ↔ 场景·跨境 ↔ 架构·Cell」（备用路径）；「沙盘 ↔ 任一页」（把假设压成可比较叙事）。任一边单独读都偏瘦，双边同时读才容易看见<strong>张力与分叉</strong>。</p>
       </div>
     </section>
 
     <section id="axes">
       <h2>4. 三条合成轴（扩展）：对齐方式与易联模块</h2>
-      <p class="muted" style="margin-top:-0.35rem">轴的作用是把异质切片<strong>投影到同一坐标</strong>；下列每条轴下补充「常一起动」的模块，便于扩展而非局限在最初关键词。</p>
+      <p class="muted note-caption-82"><strong>读后自问：</strong>你的命题在尺度、时间、硬栈哪条轴上最先穿帮？</p>
+      <p class="muted note-pull">轴的作用是把异质切片<strong>投影到同一坐标</strong>；下列每条轴下补充「常一起动」的模块，便于扩展而非局限在最初关键词。</p>
       <div class="synth-axis-grid">
         <div class="synth-axis-card">
           <span class="ax-tag">SCALE</span>
           <h3>尺度轴</h3>
           <p style="margin:0 0 0.5rem">个人终端与家庭协商 → 学校/班组与用工组织 → 行业与国家基础设施叙事。问：同一改动在哪一层<strong>最先可感知</strong>、在哪一层<strong>最后才立法</strong>？</p>
-          <p class="muted" style="margin:0;font-size:0.76rem">强联：<a href="nexus.html">立体联结</a>、<a href="evolution-triad.html">人与AI</a>、<a href="edu-nexus.html">教育纵轴</a>、<a href="work-infra-energy.html">职基能</a>、<a href="decade-scenes.html">场景·家庭/办公</a>。</p>
+          <p class="muted note-caption-76">强联：<a href="nexus.html">立体联结</a>、<a href="evolution-triad.html">人与AI</a>、<a href="edu-nexus.html">教育纵轴</a>、<a href="work-infra-energy.html">职基能</a>、<a href="decade-scenes.html">场景·家庭/办公</a>。</p>
         </div>
         <div class="synth-axis-card">
           <span class="ax-tag">TIME</span>
           <h3>时间轴</h3>
           <p style="margin:0 0 0.5rem">工具采纳（短）— 组织/合规（中）— 基建与能源锁仓（长）。问：你的命题落在哪一段？若声称「十年内默认」，长周期模块是否<strong> silent veto</strong>？</p>
-          <p class="muted" style="margin:0;font-size:0.76rem">强联：<a href="timeline.html">历史演进</a>、<a href="past-future.html">廿年视角</a>、<a href="decade.html">十年展望</a>、<a href="decade-scenes.html">十年场景</a>。</p>
+          <p class="muted note-caption-76">强联：<a href="timeline.html">历史演进</a>、<a href="past-future.html">廿年视角</a>、<a href="decade.html">十年展望</a>、<a href="decade-scenes.html">十年场景</a>。</p>
         </div>
         <div class="synth-axis-card">
           <span class="ax-tag">STACK</span>
           <h3>硬栈轴</h3>
           <p style="margin:0 0 0.5rem">瓦特/光缆/机房 → 分层与拓扑边界 → 策略/身份/审计 → 地缘采购与制裁清单。问：策略与拓扑是否<strong>配得上</strong>电力曲线与设备可获性？</p>
-          <p class="muted" style="margin:0;font-size:0.76rem">强联：<a href="work-infra-energy.html">职基能</a>、<a href="model.html">分层</a>、<a href="architecture.html">架构</a>、<a href="risk-geo.html">地缘</a>、<a href="lab.html">沙盘</a>。</p>
+          <p class="muted note-caption-76">强联：<a href="work-infra-energy.html">职基能</a>、<a href="model.html">分层</a>、<a href="architecture.html">架构</a>、<a href="risk-geo.html">地缘</a>、<a href="lab.html">沙盘</a>。</p>
         </div>
       </div>
     </section>
 
     <section id="recipes">
       <h2>5. 推演配方：合理性 → 传导链 → 三种可能形态</h2>
-      <p class="muted" style="margin-top:-0.35rem">每卡结构统一：<strong>组合合理性</strong>（对应 §2 哪几条）→ <strong>传导链</strong>（若…则…）→ <strong>甲/乙/丙</strong> 三种可区分的未来片段（含可见征候）。新增 G、H 两条，覆盖「历史锁定×地缘」与「教育×治理×公共服务」。</p>
+      <p class="muted note-caption-82"><strong>读后自问：</strong>哪一条配方的传导链最贴你观察到的征候？若都不贴，缺的是哪一块模块？</p>
+      <p class="muted note-pull">每卡结构统一：<strong>组合合理性</strong>（对应 §2 哪几条）→ <strong>传导链</strong>（若…则…）→ <strong>甲/乙/丙</strong> 三种可区分的未来片段（含可见征候）。新增 G、H 两条，覆盖「历史锁定×地缘」与「教育×治理×公共服务」。</p>
 
       <div class="synth-recipe-grid">
         <div class="synth-recipe">
@@ -442,7 +463,7 @@
           </div>
         </div>
 
-        <div class="synth-recipe" style="border-left-color:#a78bfa">
+        <div class="synth-recipe synth-recipe--stripe-violet">
           <h3>配方 B · 评价权再分配</h3>
           <p class="mods"><a href="edu-nexus.html">教育纵轴</a> × <a href="evolution-triad.html">人与AI演进</a> × <a href="decade-scenes.html">十年场景</a>·教育</p>
           <p class="recipe-rationale"><strong>合理性：</strong>变量共享（成绩/作业数据/模型输出）（判据 1）+ 尺度嵌套（校—家—政）（判据 3）。</p>
@@ -454,7 +475,7 @@
           </div>
         </div>
 
-        <div class="synth-recipe" style="border-left-color:#e8a838">
+        <div class="synth-recipe synth-recipe--stripe-amber">
           <h3>配方 C · 瓦特落点与拓扑</h3>
           <p class="mods"><a href="work-infra-energy.html">职基能</a> × <a href="architecture.html">架构拓扑</a> × <a href="model.html">分层模型</a></p>
           <p class="recipe-rationale"><strong>合理性：</strong>变量对账（kW、PUE、SLA）（判据 1）+ 物理—经济三角（判据 5）。</p>
@@ -466,7 +487,7 @@
           </div>
         </div>
 
-        <div class="synth-recipe" style="border-left-color:#f07178">
+        <div class="synth-recipe synth-recipe--stripe-coral">
           <h3>配方 D · 链路韧性</h3>
           <p class="mods"><a href="decade-scenes.html">十年场景</a> × <a href="risk-geo.html">地缘与商业</a> × <a href="architecture.html">架构</a>·Cell</p>
           <p class="recipe-rationale"><strong>合理性：</strong>因果邻接（制裁→采购→拓扑→日常）（判据 2）+ 变量共享（路径冗余、支付）（判据 1）。</p>
@@ -478,7 +499,7 @@
           </div>
         </div>
 
-        <div class="synth-recipe" style="border-left-color:#8b9cb3">
+        <div class="synth-recipe synth-recipe--stripe-slate">
           <h3>配方 E · 路径依赖与解锁</h3>
           <p class="mods"><a href="timeline.html">历史演进</a> × <a href="past-future.html">廿年视角</a> × <a href="model.html">分层</a></p>
           <p class="recipe-rationale"><strong>合理性：</strong>时间对齐（判据 4）+ 因果邻接（技术词汇锁定组织行为）（判据 2）。</p>
@@ -490,7 +511,7 @@
           </div>
         </div>
 
-        <div class="synth-recipe" style="border-left-color:#4ecf8e">
+        <div class="synth-recipe synth-recipe--stripe-mint">
           <h3>配方 F · 分层压测</h3>
           <p class="mods"><a href="model.html">分层模型</a> × <a href="lab.html">沙盘工坊</a> × <a href="decade.html">十年展望</a>·架构/安全</p>
           <p class="recipe-rationale"><strong>合理性：</strong>变量共享（责任边界、自动化深度）（判据 1）+ 约束三角（合规可见 vs 加密）（判据 5）。</p>
@@ -502,7 +523,7 @@
           </div>
         </div>
 
-        <div class="synth-recipe" style="border-left-color:#38bdf8">
+        <div class="synth-recipe synth-recipe--stripe-sky">
           <h3>配方 G · 选型锁定 × 断供</h3>
           <p class="mods"><a href="timeline.html">历史演进</a> × <a href="architecture.html">架构拓扑</a> × <a href="risk-geo.html">地缘</a></p>
           <p class="recipe-rationale"><strong>合理性：</strong>因果邻接（历史选型→供应商→制裁）（判据 2）+ 物理/经济（替换成本）（判据 5）。</p>
@@ -514,7 +535,7 @@
           </div>
         </div>
 
-        <div class="synth-recipe" style="border-left-color:#f472b6">
+        <div class="synth-recipe synth-recipe--stripe-pink">
           <h3>配方 H · 公共服务数字化</h3>
           <p class="mods"><a href="edu-nexus.html">教育纵轴</a> × <a href="decade.html">十年展望</a>·治理 × <a href="decade-scenes.html">场景</a>·政务</p>
           <p class="recipe-rationale"><strong>合理性：</strong>尺度嵌套（公民—经办—国家）（判据 3）+ 变量共享（身份、证照、模型输出）（判据 1）。</p>
@@ -530,7 +551,8 @@
 
     <section id="continuation">
       <h2>继续推演：全站模块深描与下一轮分叉</h2>
-      <p class="muted" style="margin-top:-0.35rem">本节在 §1 变量表与 §5 配方之上，把<strong>每一类站内模块</strong>再推一档：写什么算「加深」、缺哪页会空转、下一轮叙事至少<strong>两枝可辨</strong>，以及如何把话接回 <a href="evolution-loop.html">manifest</a> / <a href="analysis-hub.html">分析读数</a>。仍是<strong>定性脚手架</strong>：不补虚构统计，只补可对账的中间变量与可观察征候。</p>
+      <p class="muted note-caption-82"><strong>读后自问：</strong>矩阵里你关心的那一行，「深描变量」是否写满可对账词？</p>
+      <p class="muted note-pull">本节在 §1 变量表与 §5 配方之上，把<strong>每一类站内模块</strong>再推一档：写什么算「加深」、缺哪页会空转、下一轮叙事至少<strong>两枝可辨</strong>，以及如何把话接回 <a href="evolution-loop.html">manifest</a> / <a href="analysis-hub.html">分析读数</a>。仍是<strong>定性脚手架</strong>：不补虚构统计，只补可对账的中间变量与可观察征候。</p>
       <div class="callout evidence">
         <strong>依据：</strong>各行与 <a href="#inventory">§1</a> 五系七层同源；分叉句须能落到「若看见…则更接近甲/乙」式征候，避免形容词堆砌。
       </div>
@@ -673,14 +695,15 @@
           </tbody>
         </table>
       </div>
-      <p class="muted" style="margin-top:1rem;font-size:0.85rem;line-height:1.65">若某一模块在你关心的议题下仍「填不满」上表，用 <a href="#criteria">§2</a> 找缺失判据 → 用 <a href="synthesis-methods.html#deep-lens">§13 透镜</a> 换一视角重写同一格 → 再回 <a href="synthesis-extensions.html#matrix">§7</a> 决定是否增行。全站级重跑纪律见 <a href="docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md">SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK</a>。</p>
-      <p class="muted" style="margin-top:0.85rem;font-size:0.85rem;line-height:1.65"><strong>全站分页同步：</strong>注册内各 HTML 在导读区下增设「推演扩展 · 本轮更新」卡片，可与本矩阵<strong>逐行对读</strong>，亦作维护与教研检查清单；非新预测，仅显式化下一轮可读变量与挂钩。</p>
+      <p class="muted note-stack-relaxed">若某一模块在你关心的议题下仍「填不满」上表，用 <a href="#criteria">§2</a> 找缺失判据 → 用 <a href="synthesis-methods.html#deep-lens">§13 透镜</a> 换一视角重写同一格 → 再回 <a href="synthesis-extensions.html#matrix">§7</a> 决定是否增行。全站级重跑纪律见 <a href="docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md">SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK</a>。</p>
+      <p class="muted note-stack-tight"><strong>全站分页同步：</strong>注册内各 HTML 在导读区下增设「推演扩展 · 本轮更新」卡片，可与本矩阵<strong>逐行对读</strong>，亦作维护与教研检查清单；非新预测，仅显式化下一轮可读变量与挂钩。</p>
     </section>
 
     <section id="workflow">
       <h2>10. 工作台：推荐阅读循环</h2>
+      <p class="muted note-caption-82"><strong>读后自问：</strong>下一轮循环你最想补的是判据、§7 表行、§8 簇，还是沙盘压测？</p>
       <div class="card">
-        <ol class="muted" style="margin:0;font-size:0.88rem;line-height:1.85">
+        <ol class="muted list-flat-sm">
           <li>在 §1 表中圈出与你问题最相关的<strong>2—3 个模块</strong>（优先<strong>同系</strong>，跨系须写明中介变量），写下各自变量与堆叠位。可选：在 <a href="#continuation">继续推演矩阵</a> 对号入座一行，把「深描变量」抄成本轮检查清单。</li>
           <li>用 §2 五条判据检验：缺哪条就<strong>补读第三模块</strong>（常见补块：时间轴或职基能）。</li>
           <li>若问题含<strong>房/老/链/机</strong>、<strong>康养同园 / AIGC 存证</strong>、<strong>物业机器人 / 极端天气限电</strong>、<strong>取水与冷却水平衡</strong>、<strong>开源权重与出口清单</strong>、<strong>未成年人屏幕与家校协同</strong>、<strong>平台用工与社保属地</strong>、<strong>ESG 与算力碳披露</strong>或<strong>科研数据出境与双重用途</strong>，先读 <a href="synthesis-extensions.html#stack-domains"><strong>§6</strong></a>，再选 §5（A—H）或 §6.2（<strong>I—V</strong>）中最贴近的一条配方。</li>
@@ -695,7 +718,7 @@
     </section>
 
       <footer>
-      <a href="decade-scenes.html">← 十年场景</a> · <a href="#continuation">继续推演矩阵</a> · <a href="synthesis-extensions.html">扩展图景 §6—§9</a> · <a href="synthesis-methods.html">方法与透镜 §11—§13</a> · <a href="modules-map.html">模块图谱</a> · <a href="evolvable-architecture.html">可进化架构</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="smart-overhaul.html">整体改造</a> · <a href="lab.html">沙盘工坊</a> · <a href="evolution-triad.html">人与AI演进</a> · <a href="index.html">总览</a> · <a href="index.html#three-questions">三问</a>
+      <a href="decade-scenes.html">← 十年场景</a> · <a href="#continuation">继续推演矩阵</a> · <a href="synthesis-extensions.html">推演·扩展</a> · <a href="synthesis-methods.html">推演·方法</a> · <a href="modules-map.html">模块图谱</a> · <a href="evolvable-architecture.html">可进化架构</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="smart-overhaul.html">整体改造</a> · <a href="lab.html">沙盘工坊</a> · <a href="evolution-triad.html">人与AI演进</a> · <a href="index.html">总览</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
   <script src="assets/site-data-bus.js"></script>
