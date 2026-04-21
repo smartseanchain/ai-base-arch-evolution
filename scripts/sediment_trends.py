@@ -12,10 +12,10 @@ from __future__ import annotations
 
 import json
 from collections import defaultdict
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from evolution_pkg.beijing_time import now_iso_beijing
 from evolution_pkg.io import REPO_ROOT
 
 SEDIMENT = REPO_ROOT / "data" / "sediment.json"
@@ -134,7 +134,7 @@ def main() -> None:
             "沉淀条目仍较少：坚持每日 --sediment，或合并历史备份后再跑本脚本以观察趋势。"
         )
 
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    now = now_iso_beijing()
     out = {
         "schema_version": 1,
         "generated_at": now,
@@ -154,7 +154,7 @@ def main() -> None:
 
 
 def _empty_output() -> dict[str, Any]:
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    now = now_iso_beijing()
     return {
         "schema_version": 1,
         "generated_at": now,

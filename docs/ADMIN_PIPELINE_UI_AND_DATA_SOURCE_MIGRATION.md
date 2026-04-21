@@ -1,6 +1,8 @@
 # 管理端管道 UI 与数据源迁移：整体梳理
 
-**实现与 HTTP/UI 对表**（是否符合仓库预期）：**[ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md)**。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
+**实现与 HTTP/UI 对表**（是否符合仓库预期）：**[ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md)**（**[§7](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)** **`mod-*`** / **`#mod-api`→`#mod-analysis`** · **[§7b](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-ui-ia)**）。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。**呈现双轨（`spa-sync` / `spa-build`）**：[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map)。**MPA 顶栏模板（`partials/`）**：**`make sync-nav`**；**`404.html`** 手调（`sync_site_nav` 不写回）— **[scripts/README · `sync_site_nav`](../scripts/README.md)**。
 
 本文在 **[不变量](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md#invariants)**、**[USER_ADMIN_SPLIT](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md)**、**[ADMIN_WEB_CONSOLE_ROADMAP](./ADMIN_WEB_CONSOLE_ROADMAP.md)** 之内，梳理：
 
@@ -8,7 +10,9 @@
 2. **哪些逻辑**仍应留在 **`evolution_pkg` / `scripts` / CI**，管理端**不复制**闸门；  
 3. **「配置数据源 + 自动拉取 → 沉淀分析」**的推荐分层与分阶段落地，避免与 **manifest 人审**、**`readonly_api` 只读语义** 冲突。
 
-**非当前实现契约**：落地任一写路径或定时任务前，须同步 **[DATA_CONTRACTS](./DATA_CONTRACTS.md)**、**[EVOLUTION_RUNBOOK](./EVOLUTION_RUNBOOK.md)**、**[ORCHESTRATION](./ORCHESTRATION_AND_EVENT_STREAMING.md)** 与 **OpenAPI / 安全设计**。
+**非当前实现契约**：落地任一写路径或定时任务前，须同步 **[DATA_CONTRACTS](./DATA_CONTRACTS.md)**、**[EVOLUTION_RUNBOOK](./EVOLUTION_RUNBOOK.md)**、**[ORCHESTRATION](./ORCHESTRATION_AND_EVENT_STREAMING.md)** 与 **OpenAPI / 安全设计**。**跨层拆 PR 前先对表**：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。
+
+**舆情 / 制度 / 国情**（信源分层、周历、人审与 ingest 反哺；**非**本文件的技术契约）：**[INTEL_AND_POLICY_TRACKING_PLAYBOOK.md](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md)**（**[§2—2a · 拉取约束](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-source-tiers)**：频率 · UA · **`fetch_pacing`**；**[§2b · 微博/站内流](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-social-platforms)**）。
 
 ---
 
@@ -119,7 +123,7 @@ flowchart LR
 
 ## 7. 与当前脚手架的衔接
 
-- **`admin-console/static/index.html`**（已实现）：**只读代理**、**快照摘要**、**历史表**、**管道文档链**（**`pipeline_links`** 含 **ADMIN_WEB_CONSOLE_ROADMAP**、**USER_ADMIN_SPLIT**、契约/集成/编排等；另含 **CLI 占位**、**GitHub Actions / 工作流**、**复制 workflow 路径**）、**数据源参考目录**（**localStorage** 勾选、与 **ingest-config** 对账「在 ingest」、**复制勾选 RSS 为 `rss_feeds` 草案 JSON**；若只读 **`/ingest-config`** 已拉取，与仓库 **`rss_feeds`** 重复的勾选项写入 **`omitted_already_in_ingest`** 并从草案 **`rss_feeds`** 省略）、**控制面路线图**（市面后台四维对表 + ADMIN 阶段）。**不**在未上 IdP 前提供匿名触发写或写 manifest。详见 **[ADMIN_CONSOLE_FRAMEWORK_OVERVIEW](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md)**。  
+- **`admin-console/static/index.html`**（已实现）：**只读代理**、**快照摘要**、**历史表**、**管道文档链**（**`pipeline_links`** 含 **ADMIN_WEB_CONSOLE_ROADMAP**、**USER_ADMIN_SPLIT**、契约/集成/编排等；另含 **CLI 占位**、**GitHub Actions / 工作流**、**复制 workflow 路径**）、**数据源参考目录**（**localStorage** 勾选、与 **ingest-config** 对账「在 ingest」、**复制勾选 RSS 为 `rss_feeds` 草案 JSON**；若只读 **`/ingest-config`** 已拉取，与仓库 **`rss_feeds`** 重复的勾选项写入 **`omitted_already_in_ingest`** 并从草案 **`rss_feeds`** 省略）、**控制面路线图**（市面后台四维对表 + ADMIN 阶段）。**不**在未上 IdP 前提供匿名触发写或写 manifest。顶栏与主区 **`mod-*`** 对表、**`#mod-api`→`#mod-analysis`** 见 **[ADMIN_CONSOLE · §7](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)**。详见 **[ADMIN_CONSOLE_FRAMEWORK_OVERVIEW](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md)**。  
 - **`readonly_api`**：继续承担 **磁盘 JSON 只读**；**调度状态**若未来需要读投影，应 **新路由 + 新 Schema**，**不**混用现有 manifest 路径。  
 - **`evolution_pkg.readonly_disk_routes`**：新增磁盘路由仍按 [INTEGRATION · 扩展只读](./INTEGRATION_AND_READONLY_API.md#extend-readonly-routes) 流程。
 
@@ -127,7 +131,7 @@ flowchart LR
 
 ## 8. 与市面数据分析 / 治理后台的对照（能力映射）
 
-市面「数据分析后台 / 数据平台管理端」常见能力与本仓库的对应关系如下，便于产品沟通时**对齐预期**；**不**表示当前 Web 已全部实现写路径。不变量仍以 **[AGENTS.md](../AGENTS.md)**、**[ADMIN_WEB_CONSOLE_ROADMAP](./ADMIN_WEB_CONSOLE_ROADMAP.md)** 为准。
+市面「数据分析后台 / 数据平台管理端」常见能力与本仓库的对应关系如下，便于产品沟通时**对齐预期**；**不**表示当前 Web 已全部实现写路径。不变量仍以 **[AGENTS.md](../AGENTS.md#agents-invariants)**、**[ADMIN_WEB_CONSOLE_ROADMAP](./ADMIN_WEB_CONSOLE_ROADMAP.md)** 为准。
 
 | 市面常见模块 | 本仓库真源 / 机制 | 管理端（控制台）当前与后续 |
 |--------------|-------------------|---------------------------|
@@ -136,7 +140,7 @@ flowchart LR
 | **审批、工单、角色** | **PR + 人审**；**`review_state`**、**`merge_candidates_to_manifest`**；**USER_ADMIN_SPLIT** L1—L5 | 展示与外链；**不**默认「一键写 manifest」 |
 | **发布、版本、运维** | **`make validate`**、**CI**、**`run_id`** 血缘、**`site-meta`**、静态发布 | 工作流清单、RUNBOOK、合并检查单；闸门语义不变 |
 
-管理端内嵌对照表数据文件：**`admin-console/data/control_plane_roadmap.json`**（经 **`GET /api/bootstrap`** · **`control_plane_roadmap`** 下发至 **`static/index.html`**）。
+管理端内嵌对照表数据文件：**`admin-console/data/control_plane_roadmap.json`**（经 **`GET /api/bootstrap`** · **`control_plane_roadmap`** 下发至 **`static/index.html`**；在 UI 上归入 **[§7](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)** 之**规划对照**模块）。
 
 ---
 

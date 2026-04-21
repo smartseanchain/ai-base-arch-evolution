@@ -1,4 +1,4 @@
-"""diff_analysis_snapshot 摘要逻辑。"""
+"""evolution_pkg.analysis_diff 与 diff_analysis_snapshot CLI。"""
 from __future__ import annotations
 
 import json
@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from diff_analysis_snapshot import build_report
+from evolution_pkg.analysis_diff import build_report, snapshot_diff_json
 
 
 def _minimal_snapshot(
@@ -40,6 +40,14 @@ class TestDiffAnalysisSnapshot(unittest.TestCase):
         self.assertIn("10 → 12", md)
         self.assertIn("evolution_hints", md)
         self.assertIn("1 → 3", md)
+
+    def test_snapshot_diff_json(self) -> None:
+        base = _minimal_snapshot("r0", 10, 1, 2)
+        head = _minimal_snapshot("r1", 12, 3, 1)
+        out = snapshot_diff_json(base, head)
+        self.assertEqual(out["combined_delta"], 2)
+        self.assertEqual(out["hints_delta"], 2)
+        self.assertEqual(out["gaps_delta"], -1)
 
     def test_cli_json_mode(self) -> None:
         import subprocess

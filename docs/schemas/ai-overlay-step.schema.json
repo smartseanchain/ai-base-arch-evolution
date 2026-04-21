@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local/arch/ai-overlay-step.schema.json",
+  "title": "artifacts/ai-overlay-step.json",
+  "description": "AI 解读层单步侧车遥测；由 write_ai_analysis_overlay 写入；可合并入 pipeline-metrics.ai_overlay_step。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "finished_at", "mode"],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "finished_at": { "type": "string", "minLength": 1 },
+    "mode": {
+      "type": "string",
+      "description": "skip=未启用；skip_no_credentials=启用但缺密钥；stub=--stub；llm=成功；llm_stub_fallback=失败回退 stub；skip_on_fail=失败且不写 overlay；error=前置错误退出"
+    },
+    "reason": { "type": "string" },
+    "source_run_id": { "type": ["string", "null"] },
+    "provider_kind": { "type": "string" },
+    "model": { "type": "string" },
+    "duration_ms": { "type": "number" },
+    "prompt_chars": { "type": "integer" },
+    "usage": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "OpenAI 兼容 API 返回的 usage 块（若有）"
+    },
+    "otel_hints": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "由 usage 派生的 OpenTelemetry gen-ai 用量属性提示（侧车 JSON，非 OTLP 导出）"
+    },
+    "error": { "type": ["string", "null"] },
+    "dead_letter_relpath": {
+      "type": ["string", "null"],
+      "description": "相对仓库根的 dead-letter 文本路径（LLM 失败时）"
+    }
+  }
+}

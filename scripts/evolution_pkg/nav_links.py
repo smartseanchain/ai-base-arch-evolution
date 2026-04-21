@@ -1,21 +1,22 @@
-"""Registry → React 路径集合（工具）；完整 SPA 导航校验与生成见 evolution_pkg.spa_nav。"""
+"""Registry → React 路径集合（工具）；完整 SPA 导航校验与生成见 evolution_pkg.spa_nav。
+
+merge / 枢纽: docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix
+"""
 from __future__ import annotations
 
-import json
 import re
 from pathlib import Path
 
-from evolution_pkg.io import REPO_ROOT
+from evolution_pkg.io import REGISTRY_JSON_PATH, REPO_ROOT, load_registry_allowed_sets
 
-REGISTRY_PATH = REPO_ROOT / "scripts" / "evolution-registry.json"
+REGISTRY_PATH = REGISTRY_JSON_PATH
 NAV_LINKS_PATH = REPO_ROOT / "spa" / "src" / "navLinks.ts"
 
 
 def paths_from_registry() -> set[str]:
-    reg = json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
-    pages: list[str] = reg["pages"]
+    pages_f, _ = load_registry_allowed_sets()
     out: set[str] = set()
-    for p in pages:
+    for p in pages_f:
         if p == "index.html":
             out.add("/")
         else:

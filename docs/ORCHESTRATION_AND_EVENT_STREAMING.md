@@ -1,8 +1,10 @@
 # 任务编排器与事件流：选型说明（相对本站默认栈）
 
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
 本文回答：**Dagster / Prefect** 与 **Kafka / Redpanda** 在本仓库语境下何时值得引入、如何与现有 **GitHub Actions + `evolution_pkg.pipeline` + JSON 真源** 并存。定性脚手架、非采购建议——落地前须结合团队运维能力与合规要求。
 
-在 **[三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)** 中，本文属**技术架构**的**阶段 2/3 升级**选型（编排器 §2、事件流 §3—§5），与 **[ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md#upgrade-tiers)** §2.3—§2.4 同读。
+在 **[三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)** 中，本文属**技术架构**的**阶段 2/3 升级**选型（编排器 §2、事件流 §3—§5），与 **[ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md#upgrade-tiers)** §2.3—§2.4 同读。**五维总图 · 主链联动 · 仓库物理分层**：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。**自动化助手（勿拆 validate 真源 · 编排不进默认 CI 须对读）**：[AGENTS.md · 契约速览](../AGENTS.md#agents-contract) · [合并前](../AGENTS.md#agents-pre-merge) · [人审闸门](../AGENTS.md#agents-invariants)。
 
 **目录**：[1. 默认编排](#orchestration-default) · [2. 编排器](#orchestration-schedulers) · [3. 事件流](#3-事件流kafka-vs-redpanda) · [3.3 组件引入序](#33-kafka-生态常见组件引入顺序建议) · [3.4 本地最小栈](#34-本地最小栈本仓库-overlay) · [4. 分阶段组合](#4-与本仓库的推荐组合分阶段) · [5. 反模式](#orchestration-anti) · [6. 延伸阅读](#orchestration-reading)。**数据层正交**：[DATA_STORES](./DATA_STORES_AND_FUTURE_DB_ARCHITECTURE.md) · **执行打勾**：[PHASED · 落地执行](./PHASED_UPGRADE_EXECUTION_GUIDE.md#execution-now)。
 
@@ -13,7 +15,7 @@
 | 层级 | 现状 |
 |------|------|
 | **调度** | GitHub Actions（定时 / 手动 workflow） |
-| **PR / 推送闸门** | **`ci.yml`**：**validate** 始终跑 **`run_validate.sh`**（≈ **`make validate`**，根目录 MPA 默认真源）；**spa-build** 按路径跑 **`make spa-build`**，不替代 JSON 闸门。摘要：[docs/README 文首](./README.md) · [PLATFORM_CAPABILITY_MAP §4](./PLATFORM_CAPABILITY_MAP.md#ops-tooling) |
+| **PR / 推送闸门** | **`ci.yml`**：**validate** 始终跑 **`run_validate.sh`**（≈ **`make validate`**，根目录 MPA 默认真源）；**spa-build** 按路径跑 **`make spa-build`**（会先 **`gen-nav-links`** + **`spa-sync`**），不替代 JSON 闸门。改根 **`.html`** 且验壳可单独 **`make spa-sync`**（[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map) · [系统边界](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)）。**MPA `partials/`**：改模板后 **`make sync-nav`**（**`maintainer-hub.html`** 五链后三锚由 **`build_skip_bar`** 生成，勿手改 HTML）；**`404.html`** **不在** **`sync_site_nav`** 写回范围，须**手调**（**[scripts/README · `sync_site_nav`](../scripts/README.md)**）。摘要：[docs/README 文首](./README.md) · [PLATFORM_CAPABILITY_MAP §4](./PLATFORM_CAPABILITY_MAP.md#ops-tooling) |
 | **本地/合并前** | `make validate`、`make analyze`（`evolution_pkg.pipeline.runner` + 遥测 JSON） |
 | **事实源** | Git 中的 `assets/*.json`、`data/sediment.json`；人审闸门不进自动 manifest |
 | **可观测性** | `artifacts/pipeline-metrics-*.json`、workflow 日志、Issue 告警 |
@@ -130,6 +132,6 @@
 - PR/推送 **CI 双轨**（validate / spa-build）与分支保护建议：[docs/README 文首](./README.md)
 - 平台运维表（含 CI）：[PLATFORM_CAPABILITY_MAP.md](./PLATFORM_CAPABILITY_MAP.md)（§4）
 - 仓库数据流与闸门：[ARCHITECTURE.md](./ARCHITECTURE.md)
-- 技术栈与已实现能力：[TECH_ARCHITECTURE_CAPABILITIES.md](./TECH_ARCHITECTURE_CAPABILITIES.md)
+- 技术栈与已实现能力：[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md · 附录](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md#appendix-tech-capabilities)（[别名](./TECH_ARCHITECTURE_CAPABILITIES.md)）
 - 双周节奏与命令：[EVOLUTION_RUNBOOK.md](./EVOLUTION_RUNBOOK.md)
 - 整体适配与分阶段升级：[ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md)

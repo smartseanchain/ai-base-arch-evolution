@@ -1,10 +1,13 @@
 """sqlite_store · analysis_snapshot_history 追加与查询。"""
 from __future__ import annotations
 
+import io
+import json
 import shutil
 import sys
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 
 from evolution_pkg.io import REPO_ROOT
@@ -56,6 +59,28 @@ class TestAnalysisSnapshotHistory(unittest.TestCase):
     def test_get_missing(self) -> None:
         sqlite_store.init_db()
         self.assertIsNone(sqlite_store.get_analysis_snapshot_history("nope"))
+
+    def test_snapshot_history_main_json(self) -> None:
+        from evolution_pkg.analysis_snapshot_history import main
+
+        sqlite_store.init_db()
+        snap: dict = {
+            "schema_version": 1,
+            "generated_at": "2026-04-02T12:00:00Z",
+            "run": {"run_id": "cli-test-run", "repo_revision": "abc12345"},
+            "sources": {"combined_for_analysis": 2},
+            "module_heat": [],
+            "factor_heat": [],
+        }
+        self.assertTrue(sqlite_store.append_analysis_snapshot_history(snap))
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            rc = main(["--json", "--limit", "5", "--offset", "0"])
+        self.assertEqual(rc, 0)
+        data = json.loads(buf.getvalue())
+        self.assertEqual(data["total"], 1)
+        self.assertEqual(len(data["rows"]), 1)
+        self.assertEqual(data["rows"][0]["run_id"], "cli-test-run")
 
 
 if __name__ == "__main__":

@@ -16,5 +16,9 @@ export default defineConfig({
   build: {
     outDir: "dist",
     emptyDir: true,
+    /** 静态托管体积与 CI 时间；需排查问题时临时改 true */
+    sourcemap: false,
+    target: "es2018",
+    reportCompressedSize: false,
   },
 });

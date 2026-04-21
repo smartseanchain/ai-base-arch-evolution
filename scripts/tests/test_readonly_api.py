@@ -113,6 +113,19 @@ class TestReadonlyApiConditionalGet(unittest.TestCase):
         self.assertEqual(r2.content, b"")
         self.assertEqual(r2.headers.get("etag"), etag)
 
+    def test_site_search_index_304_when_if_none_match_matches(self) -> None:
+        r1 = self.client.get("/site-search-index")
+        if r1.status_code == 404:
+            self.skipTest("assets/site-search-index.json missing (optional)")
+        self.assertEqual(r1.status_code, 200)
+        etag = r1.headers["etag"]
+        r2 = self.client.get(
+            "/site-search-index", headers={"If-None-Match": etag}
+        )
+        self.assertEqual(r2.status_code, 304)
+        self.assertEqual(r2.content, b"")
+        self.assertEqual(r2.headers.get("etag"), etag)
+
     def test_ai_analysis_overlay_304_when_if_none_match_matches(self) -> None:
         r1 = self.client.get("/ai-analysis-overlay")
         if r1.status_code == 404:
@@ -121,6 +134,19 @@ class TestReadonlyApiConditionalGet(unittest.TestCase):
         etag = r1.headers["etag"]
         r2 = self.client.get(
             "/ai-analysis-overlay", headers={"If-None-Match": etag}
+        )
+        self.assertEqual(r2.status_code, 304)
+        self.assertEqual(r2.content, b"")
+        self.assertEqual(r2.headers.get("etag"), etag)
+
+    def test_ai_overlay_step_304_when_if_none_match_matches(self) -> None:
+        r1 = self.client.get("/ai-overlay-step")
+        if r1.status_code == 404:
+            self.skipTest("artifacts/ai-overlay-step.json missing (optional)")
+        self.assertEqual(r1.status_code, 200)
+        etag = r1.headers["etag"]
+        r2 = self.client.get(
+            "/ai-overlay-step", headers={"If-None-Match": etag}
         )
         self.assertEqual(r2.status_code, 304)
         self.assertEqual(r2.content, b"")

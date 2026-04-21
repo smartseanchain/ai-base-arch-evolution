@@ -24,12 +24,15 @@
 <body>
   <div class="wrap">
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py）。maintainer-hub 在五链后另拼 #mh-*（MAINTAINER_HUB_SKIP_EXTRA）。404 / legacy-all-in-one 不经此脚本写回。 -->
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
       <a class="skip-link" href="index.html#read-guide">读站指路</a>
       <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="index.html#reader-next">常见下一站</a>
     </div>
     <header class="site-nav">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py · build_header）。 -->
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
@@ -37,45 +40,73 @@
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
-        <a href="nexus.html">立体联结</a>
-        <a href="edu-nexus.html">教育纵轴</a>
-        <a href="evolution-triad.html">人与AI演进</a>
-        <a href="work-infra-energy.html">职业·基建·能源</a>
-        <a href="model.html">分层模型</a>
-        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
-        <a href="architecture.html" class="current">架构拓扑</a>
-        <a href="timeline.html">历史演进</a>
-        <a href="past-future.html">廿年视角</a>
-        <a href="decade.html">十年展望</a>
-        <a href="decade-scenes.html">十年场景</a>
-        <a href="decade-us.html">十年之问</a>
-        <a href="modules-map.html">模块图谱</a>
-        <a href="synthesis.html">综合推演</a>
-        <a href="synthesis-extensions.html">推演·扩展</a>
-        <a href="synthesis-methods.html">推演·方法</a>
-        <a href="risk-geo.html">地缘与商业</a>
-        <a href="net-biz-capital.html">网·商·资·工</a>
-        <a href="national-strategy-opinion.html">战略·舆情</a>
-        <a href="social-responsibility-evolution.html">社会责任</a>
-        <a href="evolution-loop.html">进化闭环</a>
-        <a href="analysis-hub.html">分析引擎</a>
-        <a href="intelligent-evolution.html">智能进化</a>
-        <a href="smart-overhaul.html">整体改造</a>
-        <a href="evolvable-architecture.html">可进化架构</a>
-        <a href="lab.html">沙盘工坊</a>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">联结与模型</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="nexus.html">立体联结</a></li>
+            <li><a href="edu-nexus.html">教育纵轴</a></li>
+            <li><a href="evolution-triad.html">人与AI演进</a></li>
+            <li><a href="model.html">分层模型</a></li>
+            <li><a href="modules-map.html">模块图谱</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">时间与情景</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="timeline.html">历史演进</a></li>
+            <li><a href="past-future.html">廿年视角</a></li>
+            <li><a href="decade.html">十年展望</a></li>
+            <li><a href="decade-scenes.html">十年场景</a></li>
+            <li><a href="decade-us.html">十年之问</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">推演与沙盘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="synthesis.html">综合推演</a></li>
+            <li><a href="synthesis-extensions.html">推演·扩展</a></li>
+            <li><a href="synthesis-methods.html">推演·方法</a></li>
+            <li><a href="lab.html">沙盘工坊</a></li>
+            <li><a href="evolution-loop.html">进化闭环</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">制度与地缘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="work-infra-energy.html">职业·基建·能源</a></li>
+            <li><a href="risk-geo.html">地缘与商业</a></li>
+            <li><a href="net-biz-capital.html">网·商·资·工</a></li>
+            <li><a href="national-strategy-opinion.html">战略·舆情</a></li>
+            <li><a href="social-responsibility-evolution.html">社会责任</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">架构与分析</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="architecture.html" class="current">架构拓扑</a></li>
+            <li><a href="analysis-hub.html">分析引擎</a></li>
+            <li><a href="intelligent-evolution.html">智能进化</a></li>
+            <li><a href="smart-overhaul.html">整体改造</a></li>
+            <li><a href="evolvable-architecture.html">可进化架构</a></li>
+          </ul>
+        </details>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
-      <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      <div class="site-nav-meta-row">
+        <div class="site-nav-search-host" data-site-quick-search aria-live="polite"></div>
+        <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      </div>
     </header>
 
-
-
-    <div id="main" class="page-head" tabindex="-1">
+    <main id="main" tabindex="-1" aria-label="正文">
+    <div class="page-head">
       <h1>参考拓扑与部署形态</h1>
       <p class="lead">上图：<strong>单区域逻辑流量</strong>。下图：<strong>六种可并存形态</strong>，用色标区分典型驱动力。</p>
       <div class="read-hint page-head-deck" role="note" aria-label="与分层模型、模块图谱互证">
         <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
         <p><strong>建议同读</strong>：<a href="model.html">分层与模型</a>、<a href="modules-map.html">模块图谱</a>。</p>
-        <p><strong>维护与契约</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a>。</p>
+        <p><strong>维护与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 架构师五步</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a>。</p>
       </div>
       <nav class="page-route-strip" aria-label="与本页相关的站内路径">
         <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
@@ -84,9 +115,16 @@
         <a href="modules-map.html"><span class="page-route-ico" aria-hidden="true">图</span>模块图谱</a>
         <a href="index.html#three-questions"><span class="page-route-ico" aria-hidden="true">？</span>三问</a>
       </nav>
+      <nav class="toc toc--pilot" id="architecture-toc" aria-label="本页目录">
+        <p class="toc-pilot-eyebrow">本页目录</p>
+        <a href="#arch-single-region">单区逻辑视图</a>
+        <a href="#arch-multi-cell">多 Cell 拓扑</a>
+        <a href="#arch-deploy-spectrum">部署形态谱系</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
+    <div class="modular-intro-stack" aria-label="架构拓扑 · 导读与本轮提要">
     <div class="page-flow-strip" role="img" aria-label="架构拓扑页结构：先读单区域逻辑流量大图，再对照六种可并存部署形态与色标驱动力">
       <svg viewBox="0 0 560 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
@@ -113,14 +151,15 @@
         <li>引用生成式组件时标注<strong>模型 API 所属法域与日志落点</strong>。</li>
       </ul>
     </section>
-    <section>
-      <h2>单区域逻辑视图（SVG）</h2>
+    </div>
+    <section id="arch-single-region" aria-labelledby="arch-single-region-h">
+      <h2 id="arch-single-region-h">单区域逻辑视图（SVG）</h2>
       <div class="svg-wrap" role="img" aria-label="参考架构">
         <svg viewBox="0 0 920 420" xmlns="http://www.w3.org/2000/svg" width="920" height="420" aria-hidden="true">
           <defs>
             <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#1a2332" />
-              <stop offset="100%" style="stop-color:#141b26" />
+              <stop offset="0%" stop-color="#1a2332" />
+              <stop offset="100%" stop-color="#141b26" />
             </linearGradient>
             <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
               <polygon points="0 0, 8 4, 0 8" fill="#3d9cf5" />
@@ -171,8 +210,8 @@
       </div>
     </section>
 
-    <section>
-      <h2>多 Cell 拓扑（概念）</h2>
+    <section id="arch-multi-cell" aria-labelledby="arch-multi-cell-h">
+      <h2 id="arch-multi-cell-h">多 Cell 拓扑（概念）</h2>
       <div class="svg-wrap" role="img" aria-label="多 Cell 法域、数据驻留与策略网关互联示意">
         <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
@@ -196,8 +235,8 @@
       </div>
     </section>
 
-    <section>
-      <h2>部署形态谱系</h2>
+    <section id="arch-deploy-spectrum" aria-labelledby="arch-deploy-spectrum-h">
+      <h2 id="arch-deploy-spectrum-h">部署形态谱系</h2>
       <div class="morph-grid">
         <div class="morph-card"><span class="tag">自管</span><h4>本地 IDC 全栈</h4><p>强驻留、低延迟；弹性慢。</p></div>
         <div class="morph-card"><span class="tag">云运营</span><h4>专有云 / Dedicated</h4><p>体验与隔离平衡；厘清运维管辖。</p></div>
@@ -208,9 +247,20 @@
       </div>
     </section>
 
+    <section class="card reader-home-next hub-cluster-next" aria-labelledby="arch-ana-next-h">
+      <p class="reader-home-next-kicker" id="arch-ana-next-h">架构与分析 · 下一站</p>
+      <ul class="reader-home-next-list">
+        <li><a href="analysis-hub.html#panorama">分析引擎 · 全景</a></li>
+        <li><a href="intelligent-evolution.html#automated-digest">智能进化 · 进化摘要</a></li>
+        <li><a href="smart-overhaul.html#principles">整体改造 · 原则</a></li>
+      </ul>
+    </section>
+
+    </main>
+
     <footer><a href="model.html">← 分层模型</a> · <a href="timeline.html">历史演进 →</a> · <a href="index.html#three-questions">三问</a></footer>
   </div>
-  <script src="assets/site-data-bus.js"></script>
-  <script src="assets/motion.js"></script>
+  <script src="assets/site-data-bus.js" defer></script>
+  <script src="assets/motion.js" defer></script>
 </body>
 </html>

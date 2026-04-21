@@ -1,6 +1,8 @@
 # 整体适配 · 架构升级建议 · 后续扩展
 
-本文与 [PLATFORM_CAPABILITY_MAP.md](./PLATFORM_CAPABILITY_MAP.md)（能力边界与检查单）、[ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md)（编排与消息队列分阶段）对齐，回答三件事：**当前栈如何「整体适配」**、**升级按什么顺序做**、**可预期的扩展面在哪里**。定性路线图，非采购清单。**可落地改造全景**（决策图、分域矩阵、阶段执行卡、验收门禁）：**[ARCHITECTURE_UPGRADE_ROADMAP.md](./ARCHITECTURE_UPGRADE_ROADMAP.md)**。**技术栈分层 + 升级路径一页收束**（可先读）：**[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md)**。**技术 / 内容 / 推演** 分层与升级落点对照：**[ARCHITECTURE_ONE_PAGER · 三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)**。**在不变量内最大化扩展性、插槽与进化跑道**的落地专篇：**[PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md)**。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
+本文与 [PLATFORM_CAPABILITY_MAP.md](./PLATFORM_CAPABILITY_MAP.md)（能力边界与检查单）、[ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md)（编排与消息队列分阶段）对齐，回答三件事：**当前栈如何「整体适配」**、**升级按什么顺序做**、**可预期的扩展面在哪里**。定性路线图，非采购清单。**可落地改造全景**（决策图、分域矩阵、阶段执行卡、验收门禁）：**[ARCHITECTURE_UPGRADE_ROADMAP.md](./ARCHITECTURE_UPGRADE_ROADMAP.md)**。**技术栈分层 + 升级路径一页收束**（可先读）：**[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md)**（简版 **§1—§4**；**[详版附录](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md#appendix-tech-capabilities)** · [别名](./TECH_ARCHITECTURE_CAPABILITIES.md)）。**技术 / 内容 / 推演** 分层与升级落点对照：**[ARCHITECTURE_ONE_PAGER · 三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)**。**在不变量内最大化扩展性、插槽与进化跑道**的落地专篇：**[PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（主线 **0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。**呈现双轨（`spa-sync` / `spa-build`）**：[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map)。**MPA 顶栏与失页**：**`partials/`** → **`make sync-nav`**；**`404.html`** 手调（`sync_site_nav` 不写回）— **[scripts/README · `sync_site_nav`](../scripts/README.md)**。
 
 <a id="adaptation"></a>
 
@@ -69,7 +71,7 @@
 
 | 域 | 可扩展内容 | 闸门 / 注意 |
 |----|------------|-------------|
-| **内容与叙事** | 新分页、综合推演子页、synthesis 锚点 | registry、sitemap、`sync_site_nav`；正文仍人写 |
+| **内容与叙事** | 新分页、综合推演子页、synthesis 锚点 | registry、sitemap、`sync_site_nav`（**`404.html`** 顶栏/skip **手维护**）；正文仍人写 |
 | **数据与 ingest** | 新源、新 `maps_to` 键、配方扩展 | `validate-evolution-candidates`、drift、merge 闸门 |
 | **分析与沉淀** | 新规则、新统计块、趋势新维度 | `analysis_engine --check`、快照 Schema、import 与 trends 消费方 |
 | **展示与总线** | 新 `data-site-data-live` 占位、总线新 loader | [SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md) 消费方登记 |
@@ -93,22 +95,22 @@
 ## 5. 延伸阅读
 
 - **可落地升级路线图**：[ARCHITECTURE_UPGRADE_ROADMAP.md](./ARCHITECTURE_UPGRADE_ROADMAP.md)
-- **五维整体架构图谱（总索引）**：[PROJECT_ARCHITECTURE_OVERVIEW.md](./PROJECT_ARCHITECTURE_OVERVIEW.md)
-- **技术栈整理与升级路径（简版）**：[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md)
+- **五维整体架构图谱（总索引）**：[PROJECT_ARCHITECTURE_OVERVIEW.md](./PROJECT_ARCHITECTURE_OVERVIEW.md)（**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)**；**[§1a 主链联动与验证](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation)** · **[§1b 仓库物理分层](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**）
+- **技术栈整理与升级路径**：[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md)（简版 **§1—§4**；**[详版附录](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md#appendix-tech-capabilities)** · [旧链别名](./TECH_ARCHITECTURE_CAPABILITIES.md)）
 - 维护者**文档主线表**：[docs/README · 文档主线](./README.md#docs-spine)
-- 新贡献者入门：[CONTRIBUTING.md](../CONTRIBUTING.md) · Agent 速查：[AGENTS.md](../AGENTS.md)
+- 新贡献者入门：[CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd) · Agent 速查：[AGENTS.md](../AGENTS.md#agents-contract) · [框架判型](../AGENTS.md#agents-content-framework)
 - CI 双轨摘要：[docs/README 文首](./README.md)
 - 用户端/管理端分面与审核分层：[USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md)
 - 能力总览与检查单：[PLATFORM_CAPABILITY_MAP.md](./PLATFORM_CAPABILITY_MAP.md)
 - 数据流与适应度函数：[ARCHITECTURE.md](./ARCHITECTURE.md)
-- 技术分层与已实现能力：[TECH_ARCHITECTURE_CAPABILITIES.md](./TECH_ARCHITECTURE_CAPABILITIES.md)
+- 技术分层与已实现能力：[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md · 附录](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md#appendix-tech-capabilities)（[别名](./TECH_ARCHITECTURE_CAPABILITIES.md)）
 - 编排与事件流分阶段：[ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md)
 - 数据存储组件与后续架构（库 · 缓存 · 数仓 · CDC）：[DATA_STORES_AND_FUTURE_DB_ARCHITECTURE.md](./DATA_STORES_AND_FUTURE_DB_ARCHITECTURE.md)
 - 模块全量梳理与阶段升级矩阵：[MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md](./MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md)
 - 按阶段升级执行指南：[PHASED_UPGRADE_EXECUTION_GUIDE.md](./PHASED_UPGRADE_EXECUTION_GUIDE.md)
 - 字段与主键：[DATA_CONTRACTS.md](./DATA_CONTRACTS.md)
 - 扩展插槽与新增能力检查单：[PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md)
-- 合并与发布一页清单：[MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md)
+- 合并与发布一页清单：[MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)
 - 只读 API 集成：[INTEGRATION_AND_READONLY_API.md](./INTEGRATION_AND_READONLY_API.md)
 - Schema 文件索引：[docs/schemas/README.md](./schemas/README.md)
 

@@ -1,6 +1,8 @@
 # 科学的推演策略与方法
 
-本文与站内 **[总览 · 三问导读](../index.html#three-questions)**、**[综合推演](../synthesis.html)**（§1—§13）、**[十年之问](../decade-us.html)** 并列：前者给**叙事与结构**，本文给**为何这样推演更稳、如何自检、如何与工程闭环对表**。全文仍坚持：**定性脚手架**，不是计量预测，也不是行动处方。与**技术架构**、**内容架构**并列的**推演架构**速览见 **[ARCHITECTURE_ONE_PAGER · 三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)**。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
+本文与站内 **[总览 · 三问导读](../index.html#three-questions)**、**[综合推演](../synthesis.html)**（§1—§13）、**[十年之问](../decade-us.html)** 并列：前者给**叙事与结构**，本文给**为何这样推演更稳、如何自检、如何与工程闭环对表**。全文仍坚持：**定性脚手架**，不是计量预测，也不是行动处方。与**技术架构**、**内容架构**并列的**推演架构**速览见 **[ARCHITECTURE_ONE_PAGER · 三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)**。**工程侧主链与分层对表**（推演落点涉及 `assets` / `scripts` / 分页时）：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。**自动化助手（manifest 人审 · 合并前）**：[AGENTS.md · 人审闸门](../AGENTS.md#agents-invariants) · [合并前](../AGENTS.md#agents-pre-merge)。**呈现双轨（`spa-sync` / `spa-build`）**：[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map)。**MPA 顶栏与失页**：**`partials/`** → **`make sync-nav`**；**`404.html`** 手调（`sync_site_nav` 不写回）— **[scripts/README · `sync_site_nav`](../scripts/README.md)**。
 
 <a id="stance"></a>
 
@@ -74,6 +76,7 @@
 - **适应度函数**：`make validate` 与 CI 守门；见 [#fitness-functions](./ARCHITECTURE.md#fitness-functions)。
 - **单次运行血缘**：`run_id` / `repo_revision`；见 [#lineage](./ARCHITECTURE.md#lineage)。
 - **规则闭环**：`evolution-hint-decisions` 与 `hint_closure_gaps`；见 [#decision-traceability](./ARCHITECTURE.md#decision-traceability)。
+- **自动化助手收束**：[人审闸门](../AGENTS.md#agents-invariants) · [架构边界](../AGENTS.md#agents-arch-boundary)（分析不写 HTML、不默认自动写 manifest）。
 
 这样「推演结论」若升格为站内核信号，仍保留 **PR、commit、决策 JSON** 级别的审计链。
 

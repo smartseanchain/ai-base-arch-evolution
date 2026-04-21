@@ -13,10 +13,9 @@ import re
 import sys
 from pathlib import Path
 
-from evolution_pkg.io import REPO_ROOT
+from evolution_pkg.io import REPO_ROOT, load_registry_allowed_sets
 
 DECISIONS_PATH = REPO_ROOT / "assets" / "evolution-hint-decisions.json"
-REGISTRY_PATH = REPO_ROOT / "scripts" / "evolution-registry.json"
 HINT_RULES_PATH = REPO_ROOT / "scripts" / "evolution-hint-rules.json"
 
 ALLOWED_ACTIONS = frozenset({"done", "rejected", "deferred"})
@@ -46,21 +45,9 @@ def load_hint_rule_ids() -> set[str]:
     return out
 
 
-def load_registry_pages() -> set[str]:
-    if not REGISTRY_PATH.is_file():
-        print(f"错误: 缺少注册表 {REGISTRY_PATH}", file=sys.stderr)
-        sys.exit(1)
-    reg = json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
-    pages = reg.get("pages")
-    if not isinstance(pages, list):
-        print("错误: evolution-registry.json 缺少 pages 数组", file=sys.stderr)
-        sys.exit(1)
-    return {p.strip() for p in pages if isinstance(p, str) and p.strip()}
-
-
 def validate_decisions(
     doc: object,
-    allowed_pages: set[str],
+    allowed_pages: frozenset[str],
     hint_rule_ids: set[str],
 ) -> list[str]:
     errs: list[str] = []
@@ -172,7 +159,11 @@ def main() -> None:
     except json.JSONDecodeError as e:
         print(f"错误: JSON 解析失败 — {e}", file=sys.stderr)
         sys.exit(1)
-    allowed = load_registry_pages()
+    try:
+        allowed, _ = load_registry_allowed_sets()
+    except (FileNotFoundError, ValueError) as e:
+        print(f"错误: {e}", file=sys.stderr)
+        sys.exit(1)
     rule_ids = load_hint_rule_ids()
     errs = validate_decisions(doc, allowed, rule_ids)
     if errs:

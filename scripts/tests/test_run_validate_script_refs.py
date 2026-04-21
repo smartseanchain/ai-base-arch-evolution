@@ -1,6 +1,6 @@
 """关键入口 shell 中直接调用的 scripts/*.py 须存在（防漏迁、防改名后未改闸门/管道）。
 
-覆盖：run_validate.sh、run_update_pipeline.sh、run_analyze_write.sh、run_ingest_only.sh。
+覆盖：run_validate.sh、run_validate_fast.sh（子集）、run_update_pipeline.sh、run_analyze_write.sh、run_ingest_only.sh。
 """
 from __future__ import annotations
 
@@ -9,10 +9,14 @@ import unittest
 from pathlib import Path
 
 # 不含 echo 内提示字符串；仅匹配行首（strip 后）真实调用。
-_RE = re.compile(r"^(?:exec\s+)?python3\s+scripts/([^\s#]+\.py)")
+# 允许前置 KEY=value（如 PYTHONPATH=scripts），与 run_validate.sh 中单测/黄金集行一致。
+_RE = re.compile(
+    r"^(?:(?:[A-Za-z_][A-Za-z0-9_]*=\S+)\s+)*(?:exec\s+)?python3\s+scripts/([^\s#]+\.py)"
+)
 
 _GATE_SHELLS = (
     "scripts/run_validate.sh",
+    "scripts/run_validate_fast.sh",
     "scripts/run_update_pipeline.sh",
     "scripts/run_analyze_write.sh",
     "scripts/run_ingest_only.sh",

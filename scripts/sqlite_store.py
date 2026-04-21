@@ -10,9 +10,9 @@ from __future__ import annotations
 
 import json
 import sqlite3
-from datetime import datetime, timezone
 from typing import Any
 
+from evolution_pkg.beijing_time import now_iso_beijing
 from evolution_pkg.io import REPO_ROOT
 
 DB_PATH = REPO_ROOT / "data" / "evolution.db"
@@ -95,7 +95,7 @@ def upsert_sediment(
     repo_revision: str = "",
 ) -> None:
     init_db()
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    now = now_iso_beijing()
     with connect() as conn:
         conn.execute(
             """
@@ -189,7 +189,7 @@ def append_analysis_snapshot_history(snapshot: dict[str, Any]) -> bool:
     repo_revision = str(run.get("repo_revision") or "").strip()
     generated_at = str(snapshot.get("generated_at") or "")
     payload = json.dumps(snapshot, ensure_ascii=False)
-    stored_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    stored_at = now_iso_beijing()
     init_db()
     with connect() as conn:
         cur = conn.execute(

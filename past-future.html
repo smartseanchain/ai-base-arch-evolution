@@ -24,12 +24,15 @@
 <body>
   <div class="wrap">
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py）。maintainer-hub 在五链后另拼 #mh-*（MAINTAINER_HUB_SKIP_EXTRA）。404 / legacy-all-in-one 不经此脚本写回。 -->
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
       <a class="skip-link" href="index.html#read-guide">读站指路</a>
       <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="index.html#reader-next">常见下一站</a>
     </div>
     <header class="site-nav">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py · build_header）。 -->
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
@@ -37,39 +40,67 @@
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
-        <a href="nexus.html">立体联结</a>
-        <a href="edu-nexus.html">教育纵轴</a>
-        <a href="evolution-triad.html">人与AI演进</a>
-        <a href="work-infra-energy.html">职业·基建·能源</a>
-        <a href="model.html">分层模型</a>
-        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
-        <a href="architecture.html">架构拓扑</a>
-        <a href="timeline.html">历史演进</a>
-        <a href="past-future.html" class="current">廿年视角</a>
-        <a href="decade.html">十年展望</a>
-        <a href="decade-scenes.html">十年场景</a>
-        <a href="decade-us.html">十年之问</a>
-        <a href="modules-map.html">模块图谱</a>
-        <a href="synthesis.html">综合推演</a>
-        <a href="synthesis-extensions.html">推演·扩展</a>
-        <a href="synthesis-methods.html">推演·方法</a>
-        <a href="risk-geo.html">地缘与商业</a>
-        <a href="net-biz-capital.html">网·商·资·工</a>
-        <a href="national-strategy-opinion.html">战略·舆情</a>
-        <a href="social-responsibility-evolution.html">社会责任</a>
-        <a href="evolution-loop.html">进化闭环</a>
-        <a href="analysis-hub.html">分析引擎</a>
-        <a href="intelligent-evolution.html">智能进化</a>
-        <a href="smart-overhaul.html">整体改造</a>
-        <a href="evolvable-architecture.html">可进化架构</a>
-        <a href="lab.html">沙盘工坊</a>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">联结与模型</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="nexus.html">立体联结</a></li>
+            <li><a href="edu-nexus.html">教育纵轴</a></li>
+            <li><a href="evolution-triad.html">人与AI演进</a></li>
+            <li><a href="model.html">分层模型</a></li>
+            <li><a href="modules-map.html">模块图谱</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">时间与情景</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="timeline.html">历史演进</a></li>
+            <li><a href="past-future.html" class="current">廿年视角</a></li>
+            <li><a href="decade.html">十年展望</a></li>
+            <li><a href="decade-scenes.html">十年场景</a></li>
+            <li><a href="decade-us.html">十年之问</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">推演与沙盘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="synthesis.html">综合推演</a></li>
+            <li><a href="synthesis-extensions.html">推演·扩展</a></li>
+            <li><a href="synthesis-methods.html">推演·方法</a></li>
+            <li><a href="lab.html">沙盘工坊</a></li>
+            <li><a href="evolution-loop.html">进化闭环</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">制度与地缘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="work-infra-energy.html">职业·基建·能源</a></li>
+            <li><a href="risk-geo.html">地缘与商业</a></li>
+            <li><a href="net-biz-capital.html">网·商·资·工</a></li>
+            <li><a href="national-strategy-opinion.html">战略·舆情</a></li>
+            <li><a href="social-responsibility-evolution.html">社会责任</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">架构与分析</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="architecture.html">架构拓扑</a></li>
+            <li><a href="analysis-hub.html">分析引擎</a></li>
+            <li><a href="intelligent-evolution.html">智能进化</a></li>
+            <li><a href="smart-overhaul.html">整体改造</a></li>
+            <li><a href="evolvable-architecture.html">可进化架构</a></li>
+          </ul>
+        </details>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
-      <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      <div class="site-nav-meta-row">
+        <div class="site-nav-search-host" data-site-quick-search aria-live="polite"></div>
+        <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      </div>
     </header>
 
-
-
-    <div id="main" class="page-head" tabindex="-1">
+    <main id="main" tabindex="-1" aria-label="正文">
+    <div class="page-head">
       <h1>廿年视角：过去十年 → 未来十年</h1>
       <p class="lead">
         以<strong>约 2016—2026</strong>为「已发生的主轴归纳」，以<strong>2026—2036</strong>为「结构推演 + 符合直觉的情景想象」。
@@ -78,7 +109,7 @@
         <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
         <p>下图表均为<strong>定性示意</strong>，用于对齐语言与规划边界，<strong>非精确预测</strong>。</p>
         <p><strong>建议同读</strong>：<a href="timeline.html">历史演进</a>、<a href="decade.html">十年展望</a>、<a href="decade-scenes.html">十年场景</a>、<a href="synthesis.html">综合推演</a>。</p>
-        <p><strong>维护与契约</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a>。</p>
+        <p><strong>维护与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a>。</p>
       </div>
       <nav class="page-route-strip" aria-label="与本页相关的站内路径">
         <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
@@ -87,9 +118,20 @@
         <a href="decade.html"><span class="page-route-ico" aria-hidden="true">→</span>十年展望</a>
         <a href="index.html#three-questions"><span class="page-route-ico" aria-hidden="true">？</span>三问</a>
       </nav>
+      <nav class="toc toc--pilot" id="past-future-toc" aria-label="本页目录">
+        <p class="toc-pilot-eyebrow">本页目录</p>
+        <a href="#past-future-comparison">对照总表</a>
+        <a href="#past-future-dual-track">演进双轨图</a>
+        <a href="#past-future-arch-pair">架构图对照</a>
+        <a href="#past-future-morph-chain">形态图标链</a>
+        <a href="#past-future-dim-shift">六维雷达</a>
+        <a href="#past-future-scenarios">三种档位</a>
+        <a href="#past-future-wrap">文字收束</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
+    <div class="modular-intro-stack" aria-label="廿年视角 · 导读与本轮提要">
     <div class="page-flow-strip" role="img" aria-label="廿年视角：先读约2016—2026已发生主轴，再对照2026—2036结构推演与情景想象；均为定性示意">
       <svg viewBox="0 0 560 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
@@ -116,6 +158,7 @@
         <li>与 <a href="nexus.html">立体联结</a> 尺度并读：国家叙事与客厅体验的时差。</li>
       </ul>
     </section>
+    </div>
     <div class="yy-banner">
       <div class="yy-pill past">
         <strong>过去十年 · 已写入现实</strong>
@@ -129,7 +172,7 @@
 
     <section id="past-future-comparison" aria-labelledby="past-future-comparison-h">
       <h2 id="past-future-comparison-h">对照总表：驱动力 → 架构后果</h2>
-      <div class="yy-table-wrap card" style="padding:0;border:none">
+      <div class="yy-table-wrap card card--table-shell">
         <table>
           <thead>
             <tr>
@@ -169,19 +212,19 @@
       </div>
     </section>
 
-    <section>
-      <h2>演进双轨图（2016—2036）</h2>
+    <section id="past-future-dual-track" aria-labelledby="past-future-dual-track-h">
+      <h2 id="past-future-dual-track-h">演进双轨图（2016—2036）</h2>
       <p class="muted note-pull-lg">上轨：<strong>已经发生的技术—组织叙事</strong>。下轨：<strong>未来十年更可能出现的压强方向</strong>。中间弧线表示<strong>惯性延续 + 新约束叠加</strong>，而非一夜换代。</p>
       <div class="yy-dual-svg" role="img" aria-label="廿年双轨演进：上轨为已发生技术组织主轴，下轨为未来十年压强；legacy 全程并存，新建多按 Cell、数据契约与 AI 拓扑">
         <svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
             <linearGradient id="yyg1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" style="stop-color:#5c6b7e" />
-              <stop offset="100%" style="stop-color:#3d9cf5" />
+              <stop offset="0%" stop-color="#5c6b7e" />
+              <stop offset="100%" stop-color="#3d9cf5" />
             </linearGradient>
             <linearGradient id="yyg2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" style="stop-color:#3d9cf5" />
-              <stop offset="100%" style="stop-color:#4ecf8e" />
+              <stop offset="0%" stop-color="#3d9cf5" />
+              <stop offset="100%" stop-color="#4ecf8e" />
             </linearGradient>
             <marker id="yym" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#8b9cb3"/></marker>
           </defs>
@@ -221,8 +264,8 @@
       </div>
     </section>
 
-    <section>
-      <h2>架构图对照：「典型 2016」与「2036 预期想象」</h2>
+    <section id="past-future-arch-pair" aria-labelledby="past-future-arch-pair-h">
+      <h2 id="past-future-arch-pair-h">架构图对照：「典型 2016」与「2036 预期想象」</h2>
       <p class="muted note-pull-lg">左：以<strong>单区域、单云、边界防护</strong>为认知默认。右：<strong>想象</strong>中的常态——多 Cell、横切策略面、AI 推理贴近数据，且外部互联受合同与策略网关双重约束。</p>
       <div class="arch-compare-grid">
         <div class="arch-panel past-h">
@@ -273,8 +316,8 @@
       </div>
     </section>
 
-    <section>
-      <h2>形态演进图：图标链</h2>
+    <section id="past-future-morph-chain" aria-labelledby="past-future-morph-chain-h">
+      <h2 id="past-future-morph-chain-h">形态演进图：图标链</h2>
       <p class="muted note-pull-lg">从「场所」到「规则」：部署形态的重心逐渐从<strong>在哪里跑</strong>转向<strong>在什么约束下与谁交换数据</strong>。</p>
       <div class="morph-flow" aria-label="形态演进">
         <div class="morph-node">
@@ -299,8 +342,8 @@
       </div>
     </section>
 
-    <section>
-      <h2>六维迁移：雷达式位移（2016 → 2036）</h2>
+    <section id="past-future-dim-shift" aria-labelledby="past-future-dim-shift-h">
+      <h2 id="past-future-dim-shift-h">六维迁移：雷达式位移（2016 → 2036）</h2>
       <p class="muted note-pull-lg">六轴为抽象「关心程度」；<strong>实线多边形</strong>示意 2016，<strong>虚线</strong>示意 2036 预期重心（非量化评分）。</p>
       <div class="dim-shift" role="img" aria-label="六维迁移雷达：交付速度、弹性云化、数据主权、可证明合规、供应链韧性；实线为 2016 重心，虚线为 2036 想象重心">
         <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -325,8 +368,8 @@
       </div>
     </section>
 
-    <section>
-      <h2>更符合预期的三种「想象档位」</h2>
+    <section id="past-future-scenarios" aria-labelledby="past-future-scenarios-h">
+      <h2 id="past-future-scenarios-h">更符合预期的三种「想象档位」</h2>
       <p class="muted note-pull-lg">同一技术现实下，组织采纳速度不同；下列三档覆盖<strong>保守实现</strong>、<strong>中位基线</strong>与<strong>进取但仍受约束</strong>的想象，便于讨论对齐而非押注单一路径。</p>
       <div class="scenario-grid">
         <div class="scenario-card conservative">
@@ -371,20 +414,31 @@
       </div>
     </section>
 
-    <section>
-      <h2>文字收束：廿年一句话</h2>
+    <section id="past-future-wrap" aria-labelledby="past-future-wrap-h">
+      <h2 id="past-future-wrap-h">文字收束：廿年一句话</h2>
       <div class="card">
-        <p style="margin:0;font-size:0.95rem;line-height:1.7">
+        <p class="prose-block-095">
           <strong>过去十年</strong>把「云、容器、DevOps、零信任、合规第一波、远程办公、大模型基建」写进了默认技术栈；<strong>未来十年</strong>更可能在这些之上叠加「<em>分区化、可举证、AI 与能源绑定、规则多极化下的多栈日常</em>」——架构师的产出 increasingly 是<strong>可执行的策略与数据契约</strong>，而不仅是拓扑图。社会分工与电力曲线可对照 <a href="work-infra-energy.html">职业·基建·能源</a>。
         </p>
       </div>
     </section>
 
+    <section class="card reader-home-next hub-cluster-next" aria-labelledby="past-future-time-next-h">
+      <p class="reader-home-next-kicker" id="past-future-time-next-h">时间与情景 · 下一站</p>
+      <ul class="reader-home-next-list">
+        <li><a href="timeline.html#timeline-five-eras">历史演进</a></li>
+        <li><a href="decade.html#decade-six-dim">十年展望</a></li>
+        <li><a href="decade-scenes.html#matrix">十年场景</a></li>
+      </ul>
+    </section>
+
+    </main>
+
     <footer>
       <a href="timeline.html">← 历史演进</a> · <a href="decade.html">十年展望</a> · <a href="decade-scenes.html">十年场景 →</a> · <a href="index.html">总览</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
-  <script src="assets/site-data-bus.js"></script>
-  <script src="assets/motion.js"></script>
+  <script src="assets/site-data-bus.js" defer></script>
+  <script src="assets/motion.js" defer></script>
 </body>
 </html>

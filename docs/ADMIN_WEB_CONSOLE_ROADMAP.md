@@ -1,10 +1,12 @@
 # 管理端 Web 化扩展路线图：登录、用户与审核
 
-本文在不变量之内，**依次**梳理若将「后端管理」从 **CLI + PR + 文档链** 演进为 **带登录的管理 Web** 时，各能力应如何分层、与 Git 真源及人审闸门如何对齐。**非采购清单**、非当前实现契约；落地前须同步 **[DATA_CONTRACTS](./DATA_CONTRACTS.md)**、**[INTEGRATION_AND_READONLY_API](./INTEGRATION_AND_READONLY_API.md)**、**[USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md)** 与 **[PLATFORM_EXTENSIBILITY](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md)**。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
 
-**当前 `admin-console` 实现与 HTTP/UI 对表**（是否符合阶段 0 预期）：**[ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md)**。**读者面三源呈现 + 管理 Web 四可**的用语与表：**[USER_ADMIN_SPLIT · §1c](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#front-three-sources)**。
+本文在不变量之内，**依次**梳理若将「后端管理」从 **CLI + PR + 文档链** 演进为 **带登录的管理 Web** 时，各能力应如何分层、与 Git 真源及人审闸门如何对齐。**非采购清单**、非当前实现契约；落地前须同步 **[DATA_CONTRACTS](./DATA_CONTRACTS.md)**、**[INTEGRATION_AND_READONLY_API](./INTEGRATION_AND_READONLY_API.md)**、**[USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md)** 与 **[PLATFORM_EXTENSIBILITY](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md)**。**主链联动 · 仓库物理分层**（`admin-console` / `scripts` / 只读 API 对读）：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。
 
-**硬边界（与 [AGENTS.md](../AGENTS.md)、[PLATFORM · 不变量](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md#invariants) 一致）**：
+**当前 `admin-console` 实现与 HTTP/UI 对表**（是否符合阶段 0 预期）：**[ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md)**（**[§7 单页模块与锚点](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)**：顶栏七 **`mod-*`** 与 **`#admin-main`** 顺序一致 · **`#mod-api`→`#mod-analysis`**；界面归类 **§7b**）。**读者面三源呈现 + 管理 Web 四可**的用语与表：**[USER_ADMIN_SPLIT · §1c](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#front-three-sources)**。
+
+**硬边界（与 [AGENTS.md](../AGENTS.md#agents-invariants)、[PLATFORM · 不变量](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md#invariants) 一致）**：
 
 - **不**设计或默认实现「管理页一键写入已审 **`evolution-manifest.json`**」或绕过 **`review_state`** / **`merge_candidates_to_manifest.py`** 的审计语义。  
 - **分析引擎不写 HTML**；管理 UI 若展示分析结果，仍只消费已提交 JSON 或只读 API。  
@@ -13,6 +15,10 @@
 **读者面 / 管理面分拆**真源叙述：**[USER_ADMIN_SPLIT · 节 1a](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#reader-frontend-admin-backend)**。**六域协同**中与本路线图最相关：**治理**、**运维**、**数据**。**智能化边界**：[§1.1](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md#automation-and-evolution)。
 
 **管道 UI、数据源与「自动拉取 → 沉淀分析」**（模块迁移矩阵、配置真源、作业执行者分层）：**[ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md](./ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md)**。
+
+**管理端逻辑模块、界面归类与 AI 形态预期**（与 `admin-console` §7 功能区对表）：**[ADMIN_CONSOLE_FRAMEWORK_OVERVIEW · §7a—7c](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)**。
+
+**与读者面 MPA 顶栏并行变更时**：改 **`partials/site-nav.inc.html`** / **`partials/skip-bar.inc.html`** → **`make sync-nav`**（**`maintainer-hub.html`** 五链后三锚由 **`build_skip_bar`** 生成，勿手改 HTML）；**`404.html`** 顶栏/skip **不在** **`sync_site_nav`** 写回范围，须**手调** — **[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)** · **[MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)** · **[scripts/README · `sync_site_nav`](../scripts/README.md)**。
 
 ---
 
@@ -40,7 +46,7 @@
 | **2.1 角色模型（RBAC）** | 建议粗粒度起步：**`admin`**（系统与集成配置）、**`curator`**（候选/manifest 流程与规则 JSON）、**`analyst`**（触发分析/管道只读重跑）、**`viewer`**（只看板与日志）。 | 角色**不**等价于 **`review_state`**；后者仍是**数据字段**，见 [DATA_CONTRACTS](./DATA_CONTRACTS.md)。 |
 | **2.2 用户生命周期** | 邀请、禁用、强退会话、API Token 轮换（机器用户）：走 IdP 或 BFF 管理表；**审计日志**记录操作者 id、时间、对象。 | 人审合并仍建议 **PR + 本地脚本** 为默认；Web 上「点通过」若存在，须生成**可引用事件 id** 并**可回放到 Git 提交**（见第 4 节）。 |
 | **2.3 与 GitHub 分工** | 若团队已用 GitHub **CODEOWNERS**、**branch protection**，管理台可**展示** PR 状态，**不重复**实现整套代码评审。 | 减少「第二套审批系统」漂移。 |
-| **2.4 权限与 JSON 真源** | **写** `assets/*.json` / `scripts/*.json`：**仅** `curator` + 二次确认 + 与 CI 相同校验链（或提交为 PR）；**禁止**低权限角色直接写 manifest。 | 与 **[MERGE_AND_RELEASE_CHECKLIST](./MERGE_AND_RELEASE_CHECKLIST.md)** 对齐。 |
+| **2.4 权限与 JSON 真源** | **写** `assets/*.json` / `scripts/*.json`：**仅** `curator` + 二次确认 + 与 CI 相同校验链（或提交为 PR）；**禁止**低权限角色直接写 manifest。 | 与 **[MERGE_AND_RELEASE_CHECKLIST](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)** 对齐。 |
 
 ---
 
@@ -90,7 +96,7 @@
 
 | 阶段 | 管理端能力范围 | 读者面影响 |
 |------|----------------|------------|
-| **0（现状）** | CLI、PR、Actions artifact、**maintainer-hub** 文档链 | 无登录；无改 |
+| **0（现状）** | CLI、PR、Actions artifact、[**maintainer-hub**](../maintainer-hub.html)（[关系视图](../maintainer-hub.html#mh-spine-map) · [系统边界](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)）文档链 | 无登录；无改 |
 | **1** | **只读**管理看板（OIDC 登录 + **`readonly_api`** + 链接回 GitHub PR/Issue） | 仍无写；可选展示 `site_version` / `run_id` |
 | **2** | **提案式写**：表单 → 生成 JSON diff / 开分支 PR → **`make validate` 在 PR 上必过** | 读者仍只消费合并后的静态/json |
 | **3（慎选）** | 特权路径直连写 Git（强审计、双人、熔断） | 仅组织成熟且合规要求明确时 |
@@ -109,7 +115,7 @@
 2. 是否弱化 **`review_state`** 语义？→ 与 **`merge_candidates_to_manifest`** 文档对表。  
 3. 是否把 **`readonly_api`** 扩展成写接口？→ **禁止**；应新服务名与契约。  
 4. 登录与会话：是否有 **CSRF/XSS/会话固定** 评审？  
-5. 是否更新 **[USER_ADMIN_SPLIT](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md)** 本节互链与 [MERGE 清单](./MERGE_AND_RELEASE_CHECKLIST.md)。
+5. 是否更新 **[USER_ADMIN_SPLIT](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md)** 本节互链与 [MERGE 清单](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)。
 
 **反模式**：
 
@@ -143,7 +149,7 @@
 - [INTELLIGENCE_SIX_DOMAINS.md](./INTELLIGENCE_SIX_DOMAINS.md)  
 - [INTEGRATION_AND_READONLY_API.md](./INTEGRATION_AND_READONLY_API.md) · [扩展只读路由](./INTEGRATION_AND_READONLY_API.md#extend-readonly-routes)  
 - [ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md)  
-- [MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md)  
+- [MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)  
 - [docs/README · 文档主线](./README.md#docs-spine)  
 - [ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md](./ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md)（**管道 UI · 数据源 · 沉淀分析链**）
 

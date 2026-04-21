@@ -25,22 +25,30 @@
     />
     <title>基础架构演变推演 · SPA</title>
     <link rel="icon" href="%BASE_URL%assets/favicon.svg" type="image/svg+xml" />
+    <style>
+      /* noscript 无外链 CSS：独立类名，避免行内 style */
+      .spa-noscript-fallback {
+        padding: 1.5rem 1.25rem;
+        font-family: "Noto Sans SC", system-ui, sans-serif;
+        background: #0b1018;
+        color: #eef2f9;
+        line-height: 1.55;
+      }
+      .spa-noscript-fallback .spa-ns-title {
+        margin: 0 0 0.75rem;
+        font-weight: 700;
+      }
+      .spa-noscript-fallback .spa-ns-body {
+        margin: 0;
+        color: #aab6ca;
+      }
+    </style>
   </head>
   <body>
     <noscript>
-      <div
-        style="
-          padding: 1.5rem 1.25rem;
-          font-family: 'Noto Sans SC', system-ui, sans-serif;
-          background: #0b1018;
-          color: #eef2f9;
-          line-height: 1.55;
-        "
-      >
-        <p style="margin: 0 0 0.75rem; font-weight: 700">
-          基础架构演变推演 · SPA
-        </p>
-        <p style="margin: 0; color: #aab6ca">
+      <div class="spa-noscript-fallback">
+        <p class="spa-ns-title">基础架构演变推演 · SPA</p>
+        <p class="spa-ns-body">
           单页壳需启用 JavaScript 才能加载分页与 iframe 正文。请启用后刷新，或直接使用根目录多页 HTML（MPA）。
         </p>
       </div>

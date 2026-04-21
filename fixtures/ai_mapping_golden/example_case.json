@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "description": "黄金集示例：供未来 ingest/LLM 映射评测或 CI 对比；字段可扩展。",
+  "cases": [
+    {
+      "id": "sample-reg-data",
+      "input": {
+        "title": "数据安全条例征求意见：个人信息与关基运营者义务",
+        "summary_snippet": "监管 关基 数据分类"
+      },
+      "expect": {
+        "lab_factors_contains": ["reg"],
+        "pages_contains": ["nexus.html", "decade.html"]
+      }
+    },
+    {
+      "id": "keyword-gpu-llm",
+      "input": {
+        "title": "大模型推理与 GPU 训练能效",
+        "summary_snippet": ""
+      },
+      "expect": {
+        "lab_factors_contains": ["ai"],
+        "pages_contains": ["model.html"]
+      }
+    },
+    {
+      "id": "national-strategy-route",
+      "input": {
+        "title": "新质生产力与现代化产业体系纲要解读",
+        "summary_snippet": "五年规划 双碳协同"
+      },
+      "expect": {
+        "lab_factors_contains": ["reg"],
+        "pages_contains": ["national-strategy-opinion.html"]
+      }
+    },
+    {
+      "id": "esg-supply-chain-subset",
+      "input": {
+        "title": "ESG 报告：供应链与社会责任披露",
+        "summary_snippet": "劳动者权益 品牌"
+      },
+      "expect": {
+        "lab_factors_contains": ["gig_multiemployer"],
+        "pages_contains": ["net-biz-capital.html"]
+      }
+    }
+  ]
+}

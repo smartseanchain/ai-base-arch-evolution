@@ -1,16 +1,9 @@
 """ingest maps_to 预填逻辑回归。"""
 from __future__ import annotations
 
-import sys
 import unittest
 
-from evolution_pkg.io import REPO_ROOT
-
-SCRIPTS = REPO_ROOT / "scripts"
-if str(SCRIPTS) not in sys.path:
-    sys.path.insert(0, str(SCRIPTS))
-
-from ingest_opinion_law import merge_maps_to_hints  # noqa: E402
+from evolution_pkg.ingest_maps import merge_maps_to_hints
 
 
 class TestMergeMapsToHints(unittest.TestCase):

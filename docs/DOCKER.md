@@ -1,6 +1,8 @@
 # Docker 部署说明
 
-与根目录 **[Dockerfile](../Dockerfile)**、**[docker-compose.yml](../docker-compose.yml)**、**[docker-compose.dev.yml](../docker-compose.dev.yml)**、**[docker-compose.kafka-dev.yml](../docker-compose.kafka-dev.yml)**（可选 Kafka 协议 PoC）、**[INTEGRATION_AND_READONLY_API.md](./INTEGRATION_AND_READONLY_API.md)** 一致。默认镜像为 **根目录 MPA**（与 CI **`validate` 默认真源**一致）；**不写 manifest**、不启动抓取管道（仅静态 + 可选只读 API）。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**本文侧重**：**Docker / Compose** 起本地或容器内 **MPA**（及可选 **只读 API**、Kafka PoC）；不写 manifest、默认不跑 ingest。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
+与根目录 **[Dockerfile](../Dockerfile)**、**[docker-compose.yml](../docker-compose.yml)**、**[docker-compose.dev.yml](../docker-compose.dev.yml)**、**[docker-compose.kafka-dev.yml](../docker-compose.kafka-dev.yml)**（可选 Kafka 协议 PoC）、**[INTEGRATION_AND_READONLY_API.md](./INTEGRATION_AND_READONLY_API.md)** 一致。默认镜像为 **根目录 MPA**（与 CI **`validate` 默认真源**一致）；**不写 manifest**、不启动抓取管道（仅静态 + 可选只读 API）。**五维与分层入口**（MPA / `spa` / 只读 API / `admin-console` 等落点）：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · **[§1a 主链联动与验证](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation)** · **[§1b 仓库物理分层](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。**呈现双轨（`spa-sync` / `spa-build`）**：[README · 双轨真源](../README.md#readme-dual-track-map) · [MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map)。**MPA 顶栏与失页**：**`partials/`** → **`make sync-nav`**；**`404.html`** 手调（`sync_site_nav` 不写回）— **[scripts/README · `sync_site_nav` / 真源](../scripts/README.md#sync-site-nav-source)**。
 
 <a id="quickstart"></a>
 
@@ -13,8 +15,10 @@ docker compose up -d
 
 浏览器访问 **http://localhost:8765/**（端口见 `docker-compose.yml` 的 `ports` 映射 `8765:80`）。
 
+- **无 Docker、仅要读者站 MPA**：仓库根 **`make serve-reader`** → **http://127.0.0.1:8000/**（与上表 **8765** 错开；须 **http** 以便 `fetch` JSON，见根目录 **[README.md](../README.md)** 文首）。  
 - **健康检查**：`web` 服务带 `wget` 探活；`docker compose ps` 可见 `healthy`。  
 - **改站后**：须 **`docker compose build --no-cache`** 或 **`docker compose up -d --build`** 重新打镜像（镜像内 `COPY` 全仓上下文）。
+- **全站顶栏 / skip-bar**：改 **`partials/site-nav.inc.html`** / **`partials/skip-bar.inc.html`** 后 **`make sync-nav`** 写回根目录各注册页；**`maintainer-hub.html`** 五链后三锚由 **`build_skip_bar`** 生成，勿手改 HTML；**`404.html`** **不在** **`sync_site_nav`** 写回范围，须**手调**与 partial 一致 — **[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)** · **[MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)**；合并前 **`make validate`**。
 
 <a id="dev-mount"></a>
 
@@ -24,7 +28,7 @@ docker compose up -d
 docker compose -f docker-compose.dev.yml up -d
 ```
 
-将当前目录**只读**挂载到容器 `/www`，改 HTML/CSS/JS 后**刷新浏览器**即可。停止：`docker compose -f docker-compose.dev.yml down`。
+将当前目录**只读**挂载到容器 `/www`，改 HTML/CSS/JS 后**刷新浏览器**即可。若改 **`partials/`**，须在宿主机执行 **`make sync-nav`** 写回各根 **`*.html`**（挂载后刷新才见新顶栏；**`maintainer-hub`** 五链后三锚由 **`build_skip_bar`** 维护，勿手改 HTML）；**`404.html`** 仍须**手调** — **[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)** · **[MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)**。停止：`docker compose -f docker-compose.dev.yml down`。
 
 <a id="profile-api"></a>
 
@@ -58,6 +62,7 @@ docker compose --profile admin up -d --build
 ```
 
 - 管理端控制台：**http://localhost:8100/**（**`/`** 仪表盘、`/health`、`/docs`、`/api/bootstrap`）  
+- 单页 **`static/index.html`**：顶栏 **七枚模块导航** 与 **`#admin-main`** 内 **`mod-*`** 顺序一致（**[ADMIN_CONSOLE · §7](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)**）；旧书签 **`#mod-api`** 在页内脚本中会**滚动到** **`#mod-analysis`**（只读探索器并入**观测**）。  
 - 与 **只读 API** 同启：`docker compose --profile api --profile admin up -d`。**`docker-compose.yml`** 已为 **`admin-console`** 默认 **`READONLY_API_BASE_URL=http://readonly-api:8099`**（未设置环境变量时）；仅 **`--profile admin`** 时起 **`api`** 则代理可能 **502**，属预期（见 **`admin-console/README.md`**）。
 
 Makefile：**`make docker-up-admin`**。
@@ -71,7 +76,7 @@ Makefile：**`make docker-up-admin`**。
 | **`ADMIN_DEV_BYPASS`** / **`ADMIN_DEV_USER_JSON`** | 仅内网演示 **`/api/me`**；**生产勿开** |
 | **`ADMIN_REPO_WEB_BASE`** | 控制台 **`pipeline_links`** 的 Git **blob** 前缀；未设置时默认上游 **`main`**；Fork 改指向本仓；显式空字符串则无 **`href`**（见 **`admin-console/README.md`**） |
 
-单测：仓库根 **`make test-readonly-api`**（**`test_readonly*.py`**；只读 HTTP + 管理端白名单对账）、**`make test-admin-console`**（见 **`admin-console/README.md`**）。若代理 **503**，见 **[§9](#troubleshoot-admin-readonly)**。
+单测：仓库根 **`make test-readonly-api`**（**`test_readonly*.py`**；只读 HTTP + 管理端白名单对账）、**`make test-admin-console`**（见 **`admin-console/README.md`** · **[ADMIN_CONSOLE · §7](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)**）。若代理 **503**，见 **[§9](#troubleshoot-admin-readonly)**。
 
 <a id="spa-image"></a>
 
@@ -126,7 +131,7 @@ docker compose -f docker-compose.kafka-dev.yml up -d
 ## 6. 构建上下文与 `.dockerignore`
 
 - **`.dockerignore`**：排除 **`.git`**、**`spa/node_modules`**、**`artifacts`** 等；**`docs/`** 下 Markdown **会进入**默认 MPA 镜像，以便站内链到设计文档。  
-- **根目录** `README.md` / `CONTRIBUTING.md` / `AGENTS.md` 默认不进镜像（可在浏览器打开仓库页阅读）。
+- **根目录** [README.md](../README.md) / [CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd) / [AGENTS.md](../AGENTS.md#agents-contract) 默认不进镜像（可在浏览器打开仓库页阅读）。
 
 <a id="reverse-proxy"></a>
 

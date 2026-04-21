@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "description": "maps_to_hints.keyword_routes：标题/摘要命中关键词时合并 pages（常与 ingest routes 叠加；此处选未触发 ingest routes 的短句）。",
+  "cases": [
+    {
+      "id": "keyword-devops-cloud",
+      "input": {
+        "title": "云原生与 DevOps 实践指南",
+        "summary_snippet": ""
+      },
+      "expect": {
+        "pages_contains": ["architecture.html"]
+      }
+    },
+    {
+      "id": "keyword-open-source-stack",
+      "input": {
+        "title": "Elasticsearch 与开源许可",
+        "summary_snippet": ""
+      },
+      "expect": {
+        "pages_contains": ["architecture.html"]
+      }
+    }
+  ]
+}

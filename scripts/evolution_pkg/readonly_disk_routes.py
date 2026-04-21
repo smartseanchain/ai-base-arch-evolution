@@ -11,6 +11,12 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from evolution_pkg.io import (
+    INGEST_CONFIG_JSON_RELPOS,
+    MAPS_TO_HINTS_JSON_RELPOS,
+    REGISTRY_JSON_RELPOS,
+)
+
 
 @dataclass(frozen=True)
 class DiskJsonRoute:
@@ -33,6 +39,11 @@ READONLY_DISK_JSON_ROUTES: tuple[DiskJsonRoute, ...] = (
         "可选：对快照的 AI/辅助解读叠加层；与 ``validate_ai_analysis_overlay_schema`` 契约一致；无文件时 **404**。",
     ),
     DiskJsonRoute(
+        "/ai-overlay-step",
+        "artifacts/ai-overlay-step.json",
+        "AI 解读层单步侧车遥测（``write_ai_analysis_overlay``）；与 ``validate_ai_overlay_step_schema`` 一致；未跑管道或无文件时 **404**。",
+    ),
+    DiskJsonRoute(
         "/trends",
         "assets/sediment-trends.json",
         "沉淀趋势摘要；与 ``sediment_trends`` / ``validate_sediment_artifacts_schema`` 消费路径一致。",
@@ -48,8 +59,13 @@ READONLY_DISK_JSON_ROUTES: tuple[DiskJsonRoute, ...] = (
         "站点元数据（发布线等）；与静态页消费路径一致。",
     ),
     DiskJsonRoute(
+        "/site-search-index",
+        "assets/site-search-index.json",
+        "可选：页题轻量搜索索引（``make site-search-index``）；非分析快照契约；无文件时 **404**。",
+    ),
+    DiskJsonRoute(
         "/registry",
-        "scripts/evolution-registry.json",
+        REGISTRY_JSON_RELPOS,
         "站点注册表（页与 lab 因子等）；与 ``make validate`` / ``check_nav_links_registry`` 真源一致。",
     ),
     DiskJsonRoute(
@@ -74,12 +90,12 @@ READONLY_DISK_JSON_ROUTES: tuple[DiskJsonRoute, ...] = (
     ),
     DiskJsonRoute(
         "/maps-to-hints",
-        "scripts/maps_to_hints.json",
+        MAPS_TO_HINTS_JSON_RELPOS,
         "ingest 时按 host/关键词补 ``maps_to`` 的配置；与 ``ingest_opinion_law`` / ``check_manifest_drift`` 约定一致。",
     ),
     DiskJsonRoute(
         "/ingest-config",
-        "scripts/ingest_config.json",
+        INGEST_CONFIG_JSON_RELPOS,
         "抓取源与 ``routes`` 配方（含可选 ``json_feeds`` HTTPS JSON）；与 ``ingest_opinion_law`` / ``ingest_config`` 真源一致。正文含**第三方 URL**，大规模公网暴露前请自查。",
     ),
 )

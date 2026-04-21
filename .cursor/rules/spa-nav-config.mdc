@@ -6,8 +6,13 @@ alwaysApply: false
 
 # `spa/nav.config.json`
 
+**判型**：[README · 四条动线](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map) · [ONE_PAGER · 架构师五步](../docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [ONE_PAGER · 不变量索引](../docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [docs/README · #content-framework](../docs/README.md#content-framework) · [#front-back-modules](../docs/README.md#front-back-modules) · [#system-components-fusion](../docs/README.md#system-components-fusion) · [quick-paths](../docs/README.md#quick-paths)。
+
 - 结构须符合 **`docs/schemas/spa-nav-config.schema.json`**（**`make test`** / **`make validate`** 内由 **`evolution_pkg.spa_nav`** 经 **`check_nav_links_registry`** 校验）。
 - **`items[].page`** 必须与 **`scripts/evolution-registry.json`** 的 **`pages`** 集合**完全一致**（不少不多、文件名含 `.html`）。
-- 改完后执行 **`make gen-nav-links`** 或 **`make spa-build`**，再按需 **`make sync-nav`** 对齐 **`partials/site-nav.inc.html`**。
+- 可选 **`items[].group`**：连续相同 **`group`** 的条目在 MPA/SPA 顶栏合成一组下拉；缺省则单独成链。改分组时须同步 **`partials/site-nav.inc.html`** 与 **`spa/src/navLinks.ts`**（**`NAV_GROUPS`**）。
+- 改完后执行 **`make gen-nav-links`** 或 **`make spa-build`**，再按需 **`make sync-nav`** 对齐 **`partials/site-nav.inc.html`**（**`maintainer-hub.html`** 五链后三锚由 **`build_skip_bar`** 生成，勿手改 HTML）。若同时改 **`partials/skip-bar.inc.html`**：**`404.html`** 顶栏/skip **不在** `sync_site_nav` 写回范围，须**手调** — **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence`** · **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge`**。
 - 校验：**`check_nav_links_registry.py`**（**`make test`** / **`make validate`**）。
-- 壳内首页 iframe 加载的是同步后的 **`spa/public/legacy-index.html`**（由根 **`index.html`** 去顶栏生成）。若只改 **总览读站指路 / 分区卡片等**、未动本文件：仍须 **`make spa-sync`**（或 **`npm run sync`**），否则壳内总览仍是旧正文；见 **`spa/README.md`**。
+- 壳内首页 iframe 加载的是同步后的 **`spa/public/legacy-index.html`**（由根 **`index.html`** 去顶栏生成）。若改根目录任意 **`.html`**（总览读站指路、**其它注册页的页脚/导读**等）而**未**动本文件：仍须 **`make spa-sync`**（或 **`npm run sync`**），否则 **`spa/public/`** 内 iframe 源页仍是旧版；见 **`spa/README.md`** · **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge`** · **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence`** · **[维护导读](../maintainer-hub.html)** · **[关系视图](../maintainer-hub.html#mh-spine-map)** · **[系统边界](../maintainer-hub.html#mh-boundaries)** · **[衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)**。
+- **跨层对表**（`spa` / `scripts` / `partials` / 根 HTML）：**[PROJECT · §1a](docs/PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation)** · **[§1b](docs/PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。
+- **与根目录契约对读**：[AGENTS.md · 双轨呈现](../AGENTS.md#agents-dual-track) · [Cursor 规则](../AGENTS.md#agents-cursor-rules)（**`spa/nav.config.json`** 与 **`spa/src/**`** 分工）。

@@ -1,17 +1,91 @@
 #!/usr/bin/env python3
 """
 打印 assets/analysis-snapshot.json 中的核心计数（合并样本、决策统计、规则闭环缺口条数）。
+可选打印 artifacts/ai-overlay-step.json、assets/ai-analysis-overlay.json 与 dead-letter 提示。
 便于本地或 CI 日志快速扫一眼；无快照时提示运行 analyze 并以 0 退出。
 """
 from __future__ import annotations
 
 import json
 import sys
+from pathlib import Path
 
 from evolution_pkg.io import REPO_ROOT
 
 OUT = REPO_ROOT / "assets" / "analysis-snapshot.json"
 SITE_META = REPO_ROOT / "assets" / "site-meta.json"
+
+
+def _step_token_hint(doc: dict) -> str:
+    """侧车行尾追加 token 摘要；优先 ``otel_hints.attributes``，否则 OpenAI 兼容 ``usage``。"""
+    oh = doc.get("otel_hints")
+    if isinstance(oh, dict):
+        attrs = oh.get("attributes")
+        if isinstance(attrs, dict):
+            inp = attrs.get("gen_ai.usage.input_tokens")
+            out = attrs.get("gen_ai.usage.output_tokens")
+            tot = attrs.get("gen_ai.usage.total_tokens")
+            if any(x is not None for x in (inp, out, tot)):
+                parts: list[str] = []
+                if inp is not None:
+                    parts.append(f"in={inp}")
+                if out is not None:
+                    parts.append(f"out={out}")
+                if tot is not None:
+                    parts.append(f"tot={tot}")
+                return " · tokens " + " ".join(parts)
+    u = doc.get("usage")
+    if isinstance(u, dict) and u:
+        pt = u.get("prompt_tokens")
+        ct = u.get("completion_tokens")
+        tt = u.get("total_tokens")
+        if any(x is not None for x in (pt, ct, tt)):
+            parts: list[str] = []
+            if pt is not None:
+                parts.append(f"in={pt}")
+            if ct is not None:
+                parts.append(f"out={ct}")
+            if tt is not None:
+                parts.append(f"tot={tt}")
+            return " · tokens " + " ".join(parts)
+    return ""
+
+
+def overlay_status_lines(root: Path) -> list[str]:
+    """维护者可读一行摘要；无相关文件则返回 []。"""
+    lines: list[str] = []
+    step = root / "artifacts" / "ai-overlay-step.json"
+    if step.is_file():
+        try:
+            doc = json.loads(step.read_text(encoding="utf-8"))
+            mode = doc.get("mode", "—")
+            rid = doc.get("source_run_id")
+            rid_s = str(rid) if rid is not None else "—"
+            err = doc.get("error")
+            tail = f" · error={err}" if err else ""
+            lines.append(
+                f"  ai-overlay-step · mode={mode} · source_run_id={rid_s}{tail}"
+                f"{_step_token_hint(doc)}"
+            )
+        except json.JSONDecodeError:
+            lines.append("  ai-overlay-step · (JSON 无效)")
+    asset = root / "assets" / "ai-analysis-overlay.json"
+    if asset.is_file():
+        try:
+            ov = json.loads(asset.read_text(encoding="utf-8"))
+            pk = ov.get("provider") if isinstance(ov.get("provider"), dict) else {}
+            kind = pk.get("kind", "—")
+            model = pk.get("model", "—")
+            sid = ov.get("source_run_id", "—")
+            lines.append(
+                f"  ai-analysis-overlay · provider={kind} model={model} · source_run_id={sid}"
+            )
+        except json.JSONDecodeError:
+            lines.append("  ai-analysis-overlay · (JSON 无效)")
+    dl = root / "artifacts" / "ai-overlay-llm-dead-letter.txt"
+    if dl.is_file():
+        lines.append(f"  ai-overlay-dead-letter · bytes={dl.stat().st_size}")
+    return lines
 
 
 def main() -> None:
@@ -27,6 +101,9 @@ def main() -> None:
             )
         except json.JSONDecodeError:
             print("site · (site-meta.json 解析失败)", file=sys.stderr)
+
+    for line in overlay_status_lines(REPO_ROOT):
+        print(line)
 
     if not OUT.is_file():
         print(

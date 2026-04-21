@@ -1,18 +1,9 @@
 """ingest：仅允许 https 抓取 URL。"""
 from __future__ import annotations
 
-import sys
 import unittest
-from pathlib import Path
 
-SCRIPTS = Path(__file__).resolve().parents[1]
-if str(SCRIPTS) not in sys.path:
-    sys.path.insert(0, str(SCRIPTS))
-
-from ingest_opinion_law import (  # noqa: E402
-    assert_https_ingest_url,
-    validate_config_fetch_urls,
-)
+from evolution_pkg.ingest_https import assert_https_ingest_url, validate_config_fetch_urls
 
 
 class TestIngestHttpsUrl(unittest.TestCase):

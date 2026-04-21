@@ -7,6 +7,28 @@
   var el = document.getElementById("evolution-closure-summary");
   if (!el) return;
 
+  function formatGenAtBeijing(iso) {
+    if (!iso) return "—";
+    var ms = Date.parse(String(iso));
+    if (isNaN(ms)) return String(iso);
+    try {
+      return (
+        new Date(ms).toLocaleString("zh-CN", {
+          timeZone: "Asia/Shanghai",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        }) + "（北京时间）"
+      );
+    } catch (_) {
+      return String(iso);
+    }
+  }
+
   function show(msg, kind) {
     el.hidden = false;
     el.className =
@@ -32,7 +54,7 @@
 
   if (window.location.protocol === "file:") {
     show(
-      '<p class="muted" style="margin:0;font-size:0.88rem">规则闭环摘要需通过 <strong>http(s)</strong> 加载快照；本地请用静态服务器打开本站，或直看 <a href="analysis-hub.html">分析引擎</a>。</p>',
+      '<p class="muted">规则闭环摘要需通过 <strong>http(s)</strong> 加载快照；本地请用静态服务器打开本站，或直看 <a href="analysis-hub.html">分析引擎</a>。</p>',
       "muted"
     );
     return;
@@ -42,8 +64,7 @@
   el.setAttribute("aria-busy", "true");
   el.className =
     "card evolution-closure-summary evolution-closure-summary--muted";
-  el.innerHTML =
-    '<p class="muted" style="margin:0;font-size:0.88rem">正在读取分析快照…</p>';
+  el.innerHTML = '<p class="muted">正在读取分析快照…</p>';
 
   fetchSnapshotShared()
     .then(function (data) {
@@ -51,13 +72,10 @@
       var n = Array.isArray(gaps) ? gaps.length : 0;
       var hd = (data.sources && data.sources.hint_decisions) || {};
       var tot = hd.total != null ? hd.total : 0;
-      var gen = data.generated_at || "—";
+      var gen = formatGenAtBeijing(data.generated_at);
 
       var p = document.createElement("p");
-      p.className = "muted";
-      p.style.margin = "0";
-      p.style.fontSize = "0.9rem";
-      p.style.lineHeight = "1.75";
+      p.className = "muted evolution-closure-summary__snap-body";
 
       var strong = document.createElement("strong");
       strong.textContent = "分析快照 · 规则闭环";
@@ -99,7 +117,7 @@
     })
     .catch(function () {
       show(
-        '<p class="muted" style="margin:0;font-size:0.88rem">无法加载 <code>assets/analysis-snapshot.json</code>。请在仓库根运行 <code>make analyze</code> 后部署，或前往 <a href="analysis-hub.html">分析引擎</a> 查看说明。</p>',
+        '<p class="muted">无法加载 <code>assets/analysis-snapshot.json</code>。请在仓库根运行 <code>make analyze</code> 后部署，或前往 <a href="analysis-hub.html">分析引擎</a> 查看说明。</p>',
         "muted"
       );
     })

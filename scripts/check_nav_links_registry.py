@@ -2,6 +2,8 @@
 """
 校验 spa/src/navLinks.ts 是否由 spa/nav.config.json 生成且与 evolution-registry.json 页面集一致。
 实现：evolution_pkg.spa_nav。纳入 run_validate.sh；无 spa/package.json 时跳过。
+
+对表: docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix
 """
 from __future__ import annotations
 

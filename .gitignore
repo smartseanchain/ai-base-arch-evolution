@@ -6,6 +6,11 @@ data/evolution.db-shm
 
 .DS_Store
 
+# 可选 ``pip install -e .`` 本地构建产物
+*.egg-info/
+build/
+dist/
+
 # 本地环境变量（勿提交密钥）
 .env
 
@@ -14,6 +19,8 @@ ingest-summary.json
 
 # 流水线遥测（每次 analyze / evolution-fast 可生成；保留 artifacts/ 目录用 .gitkeep）
 artifacts/pipeline-metrics-*.json
+artifacts/ai-overlay-step.json
+artifacts/ai-overlay-llm-dead-letter.txt
 
 # 内容草稿插槽：保留 scripts/draft/README.md；本地生成片段勿提交
 scripts/draft/*

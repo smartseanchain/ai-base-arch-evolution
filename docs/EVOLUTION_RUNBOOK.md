@@ -1,30 +1,49 @@
 # 可进化闭环 · 双周反哺节奏（运行手册）
 
-目标：让「观测 → 入库 → 分析 → 改站内核/沙盘」**按固定节奏发生**，避免只堆 JSON 不反哺正文。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
+目标：让「观测 → 入库 → 分析 → 改站内核/沙盘」**按固定节奏发生**，避免只堆 JSON 不反哺正文。**主链联动与验收入口 · 仓库物理分层**：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。
+
+<a id="github-actions-cadence"></a>
 
 ## 自动化周历（GitHub Actions）
 
 | 触发 | Workflow | 作用 |
 |------|----------|------|
-| 每周二 08:00 UTC | **Ingest candidates** | 抓取候选 → artifact（默认不回写 `main`） |
-| 每周一 16:00 UTC | **Update pipeline** | 全量校验 + 写快照/沉淀/趋势 → artifact |
+| 每周二 08:00 UTC（同日 **16:00 北京时间**） | **Ingest candidates** | 抓取候选 → artifact（默认不回写 `main`） |
+| 每周一 16:00 UTC（**周二 00:00 北京时间**） | **Update pipeline** | 全量校验 + 写快照/沉淀/趋势 → artifact |
 | 手动 | **PR · refresh candidates** | ingest 后直接开 PR 更新 `evolution-candidates.json`（仍须人审后再 merge manifest） |
-| push / PR | **CI** | **validate** job：`run_validate.sh`（**`make validate`** 同款）并安装 **`requirements-api.txt`** 跑 **`test_readonly*.py`**；**spa-build** 为按路径触发的另 job，见 [docs/README 文首](../docs/README.md) |
+| push / PR | **CI** | **validate** job：`run_validate.sh`（**`make validate`** 同款）并安装 **`requirements-api.txt`** 跑 **`test_readonly*.py`**；**spa-build** 为按路径触发的另 job，见 [docs/README · 文首（#content-framework）](../docs/README.md#content-framework) |
 
-**合并 PR 前推荐**：**`make merge-ready`**（**`validate`** + **`test-readonly-api`** + **`test-admin-console`**），见 **[MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)**。
+**合并 PR 前推荐**：**`make merge-ready`**（**`validate`** + **`test-readonly-api`** + **`test-admin-console`**），见 **[MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)** · **[MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)**。
+
+**自动化助手（人审 / 合并前 / 子集）**：[AGENTS.md · 人审闸门](../AGENTS.md#agents-invariants) · [合并前 / merge-ready](../AGENTS.md#agents-pre-merge) · [make test 子集](../AGENTS.md#agents-test-subset)。
 
 合并 artifact 到仓库、推送后，线上 Pages 与 `site-data-bus` / `analysis.js` 读数才会变——见根目录 [README.md](../README.md)「定时流水线」。
 
-**管理端 Web 上编排 ingest / 分析与数据源**：设计矩阵与阶段见 **[ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md](./ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md)**（不改变上表 Actions 为默认真源）。
+**管理端 Web 上编排 ingest / 分析与数据源**：设计矩阵与阶段见 **[ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md](./ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md)**（不改变上表 Actions 为默认真源）。**舆情 / 制度 / 国情跟踪与反哺（人审节奏、信源分层）**：[INTEL_AND_POLICY_TRACKING_PLAYBOOK.md](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md)（**[§2—2a · 拉取约束](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-source-tiers)** · **[§2b · 微博/站内流](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-social-platforms)**）。
+
+<a id="pr-evidence-triad"></a>
+
+## PR 与流水线复盘 · 证据三联
+
+与 [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) 同构，便于双周节奏与 CI artifact 对账：
+
+1. **闸门**：本分支 **`make validate`** 是否绿；按需 **`make merge-ready`** / **`make spa-build`** 是否已补跑（或附失败日志摘要）。  
+2. **契约**：触及哪些 **JSON / Schema**；若动快照语义是否已 bump **`schema_version`** — [DATA_CONTRACTS](./DATA_CONTRACTS.md)。  
+3. **外源与叙事**：ingest 是否落在 **INTEL** L2 能力内；动读者 **HTML** 是否与 [DATA_ANALYSIS_SITE_CONTENT_SYNC](./DATA_ANALYSIS_SITE_CONTENT_SYNC.md) 矩阵一致。
 
 <a id="accelerate"></a>
 
 ## 加速本地迭代（不削弱人审）
 
+- **`make validate-fast`**：介于 **`make test`** 与全量 **`make validate`** 之间（见 **`scripts/run_validate_fast.sh`**）；含 **pipeline-metrics** 契约样例校验（与全量 validate **同一** **`validate_pipeline_metrics_schema.py`**，旧格式 **`artifacts/`** 遥测的 **stderr** 提示相同），以及 **`validate_ai_overlay_step_schema`** / **`validate_ai_analysis_overlay_schema`**（无对应文件则跳过）。**CI** 与 **pre-commit** **不跑** **`validate-fast`**。**合并 PR 前仍须** **`make validate`**。
 - **`make analyze`**：前置校验由 **`evolution_pkg.pipeline.runner`** 的 **analyze** 步骤表执行——与 **`run_validate.sh` 直至单测** 对齐（compileall **scripts**、manifest/候选/hint 校验、registry Schema、对账、navLinks、``sync_site_nav --check``、单测）。**不含** 完整 validate 的 **`check_skip_bar_404.py`**、**不** ``compileall admin-console``；写盘与事后 Schema / ``--check`` 顺序亦与 validate **后半段**不同。**合并前仍须** **`make validate`**（或 **`make merge-ready`**），**勿**以「仅 analyze 绿」代替合并闸门。
 - **`make validate` 通过后**，若**同一工作区**内只反复调 manifest/候选并希望**快速**重算热力与趋势，可用 **`make evolution-fast`**：仅执行 `analysis_engine --sediment` → `sediment_trends` → 快照 Schema → `--check`，**跳过** 自 compileall 至单测的整段前置（manifest、registry Schema、对账、navLinks、顶栏、单测等）。改完 JSON 未 validate 就提交会有风险，故**提交前仍须** `make validate`；与 CI **`validate`** 完全对齐时再 **`make merge-ready`**（见文首「本地与 CI」段）。
 - **只看读数、不写文件**：`make status`。
+- **Markdown 截面（贴 PR / 复盘）**：`make digest`（`scripts/evolution_intelligence_digest.py`；快照 + 可选趋势/沉淀；无 LLM）；与 **`diff_analysis_snapshot.py --git …`** 两版 diff 互补。
 - **仅跨日趋势**（沉淀已存在）：`make trends`。
+- **流水线遥测**：**`artifacts/pipeline-metrics-*.json`** 已 **gitignore**；若 **`make validate`** 对旧文件打印「跳过旧格式遥测」，可先 **`make clean-pipeline-metrics-dry-run`** 仅列出将删路径，再 **`make clean-pipeline-metrics`**（或手工删 **`artifacts/pipeline-metrics-*.json`**）后重跑 **`make analyze`** / **`make evolution-fast`**，新文件将含 **`input_artifacts`** 并与 **[DATA_CONTRACTS · §7](./DATA_CONTRACTS.md#pipeline-telemetry)** Schema 对齐。**AI overlay 侧车**（**`ai-overlay-step.json`** / **`ai-overlay-llm-dead-letter.txt`**）亦可 **`make clean-overlay-artifacts`** 清理。
 
 <a id="sqlite-sidecar"></a>
 
@@ -54,13 +73,13 @@
 
 **推演纪律**：结构化思考前先扫 [DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md)（三色分层、单轮七步、偏误表）；与 [综合推演](../synthesis.html) §2 / §12 / §13 及 [总览 · 三问](../index.html#three-questions) 对齐。
 
-**大版本或改站壳后**（顶栏、`index.html` 读站指路、总线/版本展示等）：在 **`make validate`** 之外，建议再过 [SITE_REVIEW_THREE_PASSES · 四角色复查](./SITE_REVIEW_THREE_PASSES.md#four-perspectives-review) 的**发布前轻量清单**；读者预期与站内 **`docs/*.md`** 在静态部署下的行为见 [PLATFORM_CAPABILITY_MAP · §7](./PLATFORM_CAPABILITY_MAP.md#reader-and-release)。维护 **全站 SPA** 时，改根目录 **`index.html`** 后须 **`make spa-sync`**（见 [`spa/README.md`](../spa/README.md)）。
+**大版本或改站壳后**（顶栏、根 **`*.html`** 读站指路/页脚/导读、总线/版本展示等）：在 **`make validate`** 之外，建议再过 [SITE_REVIEW_THREE_PASSES · 四角色复查](./SITE_REVIEW_THREE_PASSES.md#four-perspectives-review) 的**发布前轻量清单**；读者预期与站内 **`docs/*.md`** 在静态部署下的行为见 [PLATFORM_CAPABILITY_MAP · §7](./PLATFORM_CAPABILITY_MAP.md#reader-and-release)。维护 **全站 SPA** 时，改根目录 **`.html`** 后须 **`make spa-sync`**（或 **`make spa-build`**；见 [`spa/README.md`](../spa/README.md) · [MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)）。**维护者收束**：[关系视图](../maintainer-hub.html#mh-spine-map) · [系统边界](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)。
 
 | 步骤 | 动作 | 产出/记录 |
 |------|------|-----------|
 | 1 | `make ingest`（或 **Actions → Ingest candidates** 定时/手动跑并下载 artifact） | 刷新 `evolution-candidates.json`；`require_route_match=true` 时仅保留命中 `routes` 的线索；`maps_to` 另合并 `scripts/maps_to_hints.json`（host/关键词）。CI 可在 Run 摘要里查看各源是否抓取成功 |
 | 2 | 浏览候选：将噪点标 `review_state: noise`（不参与分析热力）；拟入库标 `queued_for_manifest`；可写 `reviewer_note`（≤500 字） | 本地或 PR 中更新 `evolution-candidates.json` |
-| 3 | 对值得入库的 id（须已 `queued_for_manifest`）：`python3 scripts/merge_candidates_to_manifest.py …`（应急 `--force`） | 更新 `evolution-manifest.json` |
+| 3 | 对值得入库的 id（须已 `queued_for_manifest`）：**`PYTHONPATH=scripts python3 -m evolution_pkg.candidate_merge …`** 或 **`python3 scripts/merge_candidates_to_manifest.py …`**（应急 **`--force`**） | 更新 `evolution-manifest.json` |
 | 4 | `make validate` | 通过校验 + `analysis_engine --check` + **对账脚本** |
 | 5 | `make analyze`（已 `make validate` 且本步要跑多轮时可用 `make evolution-fast`）或 `make trends` 仅刷新趋势 | 更新 `analysis-snapshot.json`（根级 **`run.run_id`** / **`run.repo_revision`** 标识本次流水线，便于与 Actions 日志或本地日志对齐）、**`data/sediment.json`**（当日条目同步 `run_id` / `repo_revision`；含 `hint_closure_gaps_n` / `hint_decisions_total`）、**`assets/sediment-trends.json`**（含 `closure_backlog` 近 14 日） |
 | 6 | 打开 `analysis-hub.html`（或读 `analysis-snapshot.json`） | 看热力与共现；需要核对「哪次跑出来的」时看 `run` 块 |

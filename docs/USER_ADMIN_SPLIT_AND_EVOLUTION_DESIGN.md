@@ -1,6 +1,8 @@
 # 分端设计：用户端与管理端 · 数据源 · 进化与分析 · 审核
 
-本文是**产品/能力面**的拓展设计，与工程真源 **[PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md)**（插槽、不变量）、**[ARCHITECTURE.md](./ARCHITECTURE.md)**（数据流）、**[DATA_CONTRACTS.md](./DATA_CONTRACTS.md)**（字段）对齐。**分端**指**职责与动线**的划分，不要求立刻实现两套独立应用；当前仓库以 **Git + 静态站 + Python 管道** 为主，可逐步演化为「读者面更轻、管理面更集中」的体验（含未来可选的独立管理壳或网关）。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
+本文是**产品/能力面**的拓展设计，与工程真源 **[PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md)**（插槽、不变量）、**[ARCHITECTURE.md](./ARCHITECTURE.md)**（数据流）、**[DATA_CONTRACTS.md](./DATA_CONTRACTS.md)**（字段）对齐。**分端**指**职责与动线**的划分，不要求立刻实现两套独立应用；当前仓库以 **Git + 静态站 + Python 管道** 为主，可逐步演化为「读者面更轻、管理面更集中」的体验（含未来可选的独立管理壳或网关）。**五维总图 · 主链联动 · 仓库物理分层**：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。
 
 <a id="design-goals"></a>
 
@@ -17,14 +19,16 @@
 
 ## 1a. 分拆总览：前端给读者 · 后端作管理
 
+**按模块域对读的前后台一页表**（与下表互补）：**[docs/README · #front-back-modules](./README.md#front-back-modules)** · **[docs/README · #system-components-fusion](./README.md#system-components-fusion)** · **[PLATFORM_MASTER_MAP · §1a](./PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces)**。
+
 这里的**前端**指**读者在浏览器里看到、交互的那一层**（静态页 + 客户端 JS + 可选 SPA 壳）；**后端**指**不代替读者「读站」的那一层**：仓库里的脚本与 JSON 真源、本地/CI 命令、容器内 **`readonly_api`** 等——即**管理端**的工程承载。二者**不是**「两个独立产品必须先立项」的关系，而是**职责分拆**：同一套数据，**一部分只在前端暴露为可读呈现**，**一部分只在后端由维护者经 Git/闸门操作**。
 
 | 面 | 谁 | 读者侧「前端」典型有什么 | 管理侧「后端」典型有什么 |
 |----|----|--------------------------|--------------------------|
 | **读者面** | 访客、研究者、业务读者 | 根目录 **`.html`** 叙事、**`site-data-bus`** 一行读数、**`analysis-hub`** 仪表盘、**`lab.html`** 沙盘、**SPA** 壳内 iframe 呈现；仅 **GET** 已部署的 JSON/CSS/JS | **不**承担写 manifest、不跑 ingest、不绕过 **`make validate`** |
-| **管理面** | 维护者、编辑、数据管家 | 站内 **[maintainer-hub.html](../maintainer-hub.html)** 等**仅文档链与导读**（可选书签）；**不**声称在浏览器内完成合并 | **Git + PR**、**`scripts/*.py`**、**`evolution_pkg.*`**、**`make validate` / `merge-ready`**、**GitHub Actions** artifact、**`readonly_api`**（只读 HTTP）、**Docker** 编排；**写**真源一律经提交与闸门 |
+| **管理面** | 维护者、编辑、数据管家 | 站内 **[maintainer-hub.html](../maintainer-hub.html)**（[关系视图](../maintainer-hub.html#mh-spine-map) · [系统边界](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)）等**仅文档链与导读**（可选书签）；**不**声称在浏览器内完成合并 | **Git + PR**、**`scripts/*.py`**、**`evolution_pkg.*`**、**`make validate` / `merge-ready`**、**GitHub Actions** artifact、**`readonly_api`**（只读 HTTP）、**Docker** 编排；**写**真源一律经提交与闸门 |
 
-**对齐用词**：与 [六域协同 · 前端 / 运维 / 治理](./INTELLIGENCE_SIX_DOMAINS.md#six-domains) 一并读时——**前端域**主要服务**读者面**；**数据 / 管道 / 分析** 的真源变更在**管理面**完成；**运维**横跨（CI/Docker/API 服务读者或运维人员）；**治理**（人审、PR 仪式）**只**在管理面落地。**一页速查**（总表旁）：[PLATFORM_MASTER_MAP · 读者面/管理面 · 节 1a](./PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces)。
+**对齐用词**：与 [六域协同 · 前端 / 运维 / 治理](./INTELLIGENCE_SIX_DOMAINS.md#six-domains) 一并读时——**前端域**主要服务**读者面**；**数据 / 管道 / 分析** 的真源变更在**管理面**完成；**运维**横跨（CI/Docker/API 服务读者或运维人员）；**治理**（人审、PR 仪式）**只**在管理面落地。**一页速查**（总表旁）：[PLATFORM_MASTER_MAP · 读者面/管理面 · 节 1a](./PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces)；枢纽 MPA **纯 CSS 版式**（`modular-intro-stack`、`toc--pilot` 等，**非** JSON 总线）：[INTELLIGENCE_SIX_DOMAINS · §2.2](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)。
 
 **硬边界（复述不变量）**：分析引擎**不写 HTML**；**manifest** 不经自动化默认覆盖；读者面再丰富，也只消费**已提交** JSON。
 
@@ -42,11 +46,13 @@
 |----|--------|----------|
 | **定制分析（后端/管道）** | 读 manifest、候选、规则与决策等真源；产出 **`analysis-snapshot.json`**、沉淀 **`sediment*.json`**、侧车 SQLite 历史；带 **`run_id` / `repo_revision`** 血缘 | **不写** 根目录 **`.html` 叙事正文**；**不**在进程内替代 **`make validate`** 闸门定义 |
 | **内容呈现（前台）** | 人类撰写的页面结构、文案、图例；用 **JS** 拉取已部署 JSON，做表格/热力/总线一行数等**展示与筛选** | **不写** manifest、候选、规则真源；**不**把「合并闸门」搬进浏览器静默执行 |
-| **管理观测（管理端壳）** | **`admin-console`**、**`readonly_api`**、**`maintainer-hub`**：链文档、拉只读 JSON、辅助对账 | **不**默认自动写 **`evolution-manifest.json`**；见 **[AGENTS.md](../AGENTS.md)** |
+| **管理观测（管理端壳）** | **`admin-console`**（**[ADMIN_CONSOLE · §7](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)**：**`mod-*`** 与顶栏一致 · **`#mod-api`→`#mod-analysis`**）、**`readonly_api`**、[**maintainer-hub**](../maintainer-hub.html)（[关系视图](../maintainer-hub.html#mh-spine-map) · [系统边界](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)）：链文档、拉只读 JSON、辅助对账 | **不**默认自动写 **`evolution-manifest.json`**；见 **[AGENTS.md](../AGENTS.md#agents-invariants)** |
 
 ### 1b.2 衔接面：契约与数据流
 
 前后台的**唯一稳定接口**是**文件级契约**（路径 + **JSON Schema** + 校验脚本），见 **[DATA_CONTRACTS.md](./DATA_CONTRACTS.md)** 与 **[ARCHITECTURE.md](./ARCHITECTURE.md)** 数据流图。读者页只依赖「部署后可 **GET** 到的 JSON」；分析侧升级时，优先**扩字段/升 `schema_version`** 并保持校验与 **`--check`** 通过，再改前台消费代码。
+
+**一页衔接矩阵与场景对表**（谁消费何 JSON、到 **`admin-console`** 哪一模块查、哪条闸门兜底）：**[PLATFORM_MASTER_MAP · 衔接矩阵](./PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-contract-matrix)** · **[场景×面](./PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-scenarios)**。
 
 ```mermaid
 flowchart LR
@@ -81,9 +87,9 @@ flowchart LR
 1. **先契约、后 UI**：新增分析维度时，先更新 **Schema + `analysis_engine` 输出 + `make validate`**，再在 **`analysis-hub`** 或相关页增加展示。  
 2. **前台薄、后台厚**：复杂聚合、闭环缺口、跨日趋势留在 **Python**；浏览器只做渲染与轻量交互。  
 3. **血缘可问**：展示层宜露出或链接 **`run_id`**（与 **[ARCHITECTURE · run](./ARCHITECTURE.md#lineage)** 一致），便于对照历史与 **SQLite** 快照表。  
-4. **双轨不混**：**MPA** 为默认真源时，**SPA** 增页仍须 **registry + nav** 对账（见 **[AGENTS.md](../AGENTS.md)**），避免「分析已更新、导航仍旧」的读者体验断裂。
+4. **双轨不混**：**MPA** 为默认真源时，**SPA** 增页仍须 **registry + nav** 对账（见 **[AGENTS.md](../AGENTS.md#agents-dual-track)**），避免「分析已更新、导航仍旧」的读者体验断裂。
 
-**管理端控制台**在整体中的位置（bootstrap、只读代理、与本文关系）：**[ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md)**。
+**管理端控制台**在整体中的位置（bootstrap、只读代理、与本文关系）：**[ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md)**；单页 **[§7](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)**（**`mod-*`** / **`#mod-api`→`#mod-analysis`**）· **[§7b](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-ui-ia)**（界面归类）。
 
 <a id="front-three-sources"></a>
 
@@ -112,12 +118,12 @@ flowchart LR
 
 | 能力 | 目标含义 | 当前仓库落点 | 阶段 2+（见 [ADMIN_WEB_CONSOLE_ROADMAP](./ADMIN_WEB_CONSOLE_ROADMAP.md)） |
 |------|----------|--------------|--------------------------------------------------------------------------|
-| **可管理** | 维护者能按**动线**完成：抓取 → 审候选 → 合并 → 分析 → 发布自检，且有文档/清单可依 | **EVOLUTION_RUNBOOK**、**MERGE_AND_RELEASE_CHECKLIST**、**maintainer-hub**、**`admin-console`** 管道区与路线图 | 登录后**队列视图**、链 PR 状态；触发作业仍须审计 |
+| **可管理** | 维护者能按**动线**完成：抓取 → 审候选 → 合并 → 分析 → 发布自检，且有文档/清单可依 | **EVOLUTION_RUNBOOK**、**MERGE_AND_RELEASE_CHECKLIST**、[**maintainer-hub**](../maintainer-hub.html)（[关系视图](../maintainer-hub.html#mh-spine-map) · [系统边界](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)）、**`admin-console`** 管道区与路线图 | 登录后**队列视图**、链 PR 状态；触发作业仍须审计 |
 | **可配置** | **意图**落到可版本化的 JSON（ingest、maps、规则、注册表），而非口头约定 | **Git** 内 **`ingest_config.json`**、**`maps_to_hints.json`**、**`evolution-hint-rules.json`** 等；**`admin-console`** 数据源目录 + **RSS 草案剪贴板**（去重见 **[ADMIN_PIPELINE](./ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md)**） | **表单 → diff / 开 PR**；禁止无 PR 直写生产 manifest |
 | **可观测** | 看得见快照、历史、只读 JSON、服务健康 | **`readonly_api`**、**`admin-console`** 探索器与 **`/health`**、**`run_id`** 血缘 | 保留只读语义；调度/运行结果投影另立契约 |
 | **可演进** | 能力分阶段上线，契约与路线图可更新，避免双实现 | **`control_plane_roadmap.json`**、**`pipeline_links`**、Schema 版本、**[ADMIN_PIPELINE](./ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md)** 迁移矩阵 | **IdP、RBAC、编排 UI** 与 [ORCHESTRATION](./ORCHESTRATION_AND_EVENT_STREAMING.md) 对表后再立项 |
 
-**`admin-console`** 与上述四可的对表短文：**[ADMIN_CONSOLE_FRAMEWORK_OVERVIEW · §1b](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#dual-goals-reader-admin)**。
+**`admin-console`** 与上述四可的对表短文：**[ADMIN_CONSOLE_FRAMEWORK_OVERVIEW · §1b](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#dual-goals-reader-admin)**；与 **`static/index.html`** 顶栏 / 主区 DOM 对表见 **[§7](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)** · **[§7b](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-ui-ia)**。
 
 <a id="split-model"></a>
 
@@ -128,7 +134,7 @@ flowchart LR
 | 端 | 典型使用者 | 主要载体（现状） | 读写特征 |
 |----|------------|------------------|----------|
 | **用户端** | 读者、访客 | 根目录 **MPA** `.html`、可选 **SPA** 壳、**`site-data-bus`** 拉取的 JSON | **只读** `assets/*.json` 等；交互为沙盘/筛选，不写库内真源。 |
-| **管理端** | 维护者、编辑、数据管家 | **本地/CI**：脚本、`ingest_config`、`merge_candidates_to_manifest`、PR、**`make validate`**；文档：**EVOLUTION_RUNBOOK**、**CONTRIBUTING**；站内**导读入口**（仅链，无写操作）：**[maintainer-hub.html](../maintainer-hub.html)** | **写** 通过 Git 提交；审核状态在 **`review_state`**、**`evolution-hint-decisions.json`** 等结构化字段中体现。 |
+| **管理端** | 维护者、编辑、数据管家 | **本地/CI**：脚本、`ingest_config`、`merge_candidates_to_manifest`、PR、**`make validate`**；文档：**EVOLUTION_RUNBOOK**、**CONTRIBUTING**；站内**导读入口**（仅链，无写操作）：**[maintainer-hub.html](../maintainer-hub.html)** · [关系视图](../maintainer-hub.html#mh-spine-map) · [系统边界](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix) | **写** 通过 Git 提交；审核状态在 **`review_state`**、**`evolution-hint-decisions.json`** 等结构化字段中体现。 |
 
 **说明**：管理端**不必**等于「单独的后台网站」；在阶段 0—1，**CLI + PR + Actions artifact** 就是管理端。阶段 1+ 可增：**只读 API** 供外部看板、[INTEGRATION_AND_READONLY_API](./INTEGRATION_AND_READONLY_API.md)；阶段 2+ 再议编排器 UI，仍**不写 manifest**。
 
@@ -146,7 +152,7 @@ flowchart LR
 
 | 类型 | 含义 | 已有示例 | 扩展时落点（插槽） |
 |------|------|----------|-------------------|
-| **外部观测源** | 站外可抓取线索 | RSS、法规索引页 → **候选** | **管道步骤** + **`ingest_config.json`** / **`maps_to_hints.json`**；产出进 **`evolution-candidates.json`**；**契约**校验候选。 |
+| **外部观测源** | 站外可抓取线索 | RSS、法规索引页 → **候选** | **管道步骤** + **`ingest_config.json`** / **`maps_to_hints.json`**；产出进 **`evolution-candidates.json`**；**契约**校验候选。频率与 UA 见 **[INTEL · §2—2a](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-source-tiers)** · **[§2b](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-social-platforms)**。 |
 | **人审正式库** | 已采纳信号 | **`evolution-manifest.json`** | **人审闸门**；仅 **`queued_for_manifest`** 合并；**对账** `registry` / `lab.js`。 |
 | **规则与决策** | 提示与闭环 | **`evolution-hint-rules.json`**、**`evolution-hint-decisions.json`** | **分析规则**插槽；**`rule_id`** 可审计。 |
 | **分析派生** | 由引擎计算 | **`analysis-snapshot.json`**、沉淀、**`sediment-trends.json`** | **契约层** Schema + **`analysis_engine --check`**；**用户端**经总线只读展示。 |
@@ -163,12 +169,12 @@ flowchart LR
 
 | 方法 | 管理端动作 | 用户端可见结果 | 闸门/记录 |
 |------|------------|----------------|-----------|
-| **观测进化** | `ingest`、调 **`ingest_config`**、PR 更新候选 | （通常无直接页）候选经审后影响 manifest 与后续分析 | **`review_state`**、候选校验 |
+| **观测进化** | `ingest`、调 **`ingest_config`**、PR 更新候选 | （通常无直接页）候选经审后影响 manifest 与后续分析 | **`review_state`**、候选校验；拉取节奏 **[INTEL · §2—2a](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-source-tiers)** · **[§2b](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-social-platforms)** |
 | **入库进化** | **`merge_candidates_to_manifest`** | 沙盘/页上信号与 `maps_to` 更新 | **manifest** 校验、**drift** |
 | **分析进化** | **`make analyze`** / **`evolution-fast`**、调规则 JSON | 分析枢纽、闭环页、总线读数更新 | **`run_id`**、快照 Schema、**`--check`** |
 | **规则/闭环进化** | 改 **`evolution-hint-rules`**、写 **hint-decisions** | 提示条、缺口列表、决策列表变化 | **`rule_id`**、**`track_closure`** |
 | **叙事进化** | 编辑 `.html` / 方法篇；草稿经 PR | 新叙事、新深链、新配方表 | **registry**（新页）、**validate** |
-| **呈现进化** | **`sync_site_nav`**、**`spa-sync`**、总线新占位符 | 导航、SPA 路由、读数块 | **navLinks** 对账、**SITE_DATA_UPDATE_FRAMEWORK** 登记 |
+| **呈现进化** | **`sync_site_nav`**、**`spa-sync`**、总线新占位符 | 导航、SPA 路由、读数块 | **navLinks** 对账、**SITE_DATA_UPDATE_FRAMEWORK** 登记；改 **`partials/skip-bar`** 时 **404** 手调（[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)） |
 
 <a id="analysis-methods"></a>
 
@@ -224,7 +230,7 @@ flowchart LR
 | **2** | 一般不增读者复杂度 | 编排器封装**已有**步骤；仍不写 manifest |
 | **3** | 只读订阅/推送可对接 API | 流与 Git 分工合同化 |
 
-详见 [TECH_ARCHITECTURE_AND_UPGRADE_BRIEF](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md) 与 [ARCHITECTURE_UPGRADE](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md)。
+详见 **[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md)**（简版 **§1—§4**）· **[详版附录](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md#appendix-tech-capabilities)**（[别名](./TECH_ARCHITECTURE_CAPABILITIES.md)）与 [ARCHITECTURE_UPGRADE](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md)。
 
 ---
 

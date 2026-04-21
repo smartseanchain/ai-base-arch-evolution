@@ -37,6 +37,16 @@ class TestSpaNavConfigSchema(unittest.TestCase):
         errs = nav_config_schema_violations(doc)
         self.assertTrue(errs)
 
+    def test_optional_group_on_items_passes(self) -> None:
+        doc = {
+            "schema_version": 1,
+            "items": [
+                {"page": "index.html", "label": "总览"},
+                {"page": "nexus.html", "label": "立体联结", "group": "联结与模型"},
+            ],
+        }
+        self.assertEqual(nav_config_schema_violations(doc), [])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -4,20 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="description" content="全站总览：三问导读、读站指路、分区卡片与阅读路径图；联结·时间·栈·制度·推演·工程闭环。定性脚手架，非预测。" />
+  <meta name="description" content="全站总览：三问导读、读站指路、分区导航；面向架构与政策读者的定性脚手架（非预测）。改站与合并闸门见「维护导读」。" />
   <meta name="theme-color" content="#0c1118" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="基础架构演变推演" />
   <meta property="og:locale" content="zh_CN" />
   <meta property="og:title" content="基础架构演变推演 · 总览" />
-  <meta property="og:description" content="三问导读、读站指路、分区卡片与路径图；定性脚手架，非预测。" />
+  <meta property="og:description" content="三问导读、读站指路、分区导航；定性脚手架（非预测）。读者从此入；维护与闸门见维护导读。" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="基础架构演变推演 · 总览" />
-  <meta name="twitter:description" content="三问导读、读站指路、分区卡片与路径图；定性脚手架，非预测。" />
+  <meta name="twitter:description" content="三问导读、读站指路、分区导航；定性脚手架（非预测）。读者从此入；维护见维护导读。" />
   <title>基础架构演变推演 · 总览</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <script type="application/ld+json">
-  {"@context": "https://schema.org", "@type": "WebSite", "name": "基础架构演变推演", "description": "全站分区总览：三问导读、路径图与分区卡片；联结·时间·栈·制度·推演·工程闭环。定性脚手架，非预测。", "inLanguage": "zh-CN"}
+  {"@context": "https://schema.org", "@type": "WebSite", "name": "基础架构演变推演", "description": "全站总览：三问导读、读站指路、分区导航；定性脚手架（非预测）。读者与维护者入口分轨。", "inLanguage": "zh-CN"}
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,12 +27,15 @@
 <body class="page-index">
   <div class="wrap">
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py）。maintainer-hub 在五链后另拼 #mh-*（MAINTAINER_HUB_SKIP_EXTRA）。404 / legacy-all-in-one 不经此脚本写回。 -->
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="#three-questions">三问导读</a>
       <a class="skip-link" href="#read-guide">读站指路</a>
       <a class="skip-link" href="#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="#reader-next">常见下一站</a>
     </div>
     <header class="site-nav">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py · build_header）。 -->
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
@@ -40,47 +43,93 @@
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html" class="current">总览</a>
-        <a href="nexus.html">立体联结</a>
-        <a href="edu-nexus.html">教育纵轴</a>
-        <a href="evolution-triad.html">人与AI演进</a>
-        <a href="work-infra-energy.html">职业·基建·能源</a>
-        <a href="model.html">分层模型</a>
-        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
-        <a href="architecture.html">架构拓扑</a>
-        <a href="timeline.html">历史演进</a>
-        <a href="past-future.html">廿年视角</a>
-        <a href="decade.html">十年展望</a>
-        <a href="decade-scenes.html">十年场景</a>
-        <a href="decade-us.html">十年之问</a>
-        <a href="modules-map.html">模块图谱</a>
-        <a href="synthesis.html">综合推演</a>
-        <a href="synthesis-extensions.html">推演·扩展</a>
-        <a href="synthesis-methods.html">推演·方法</a>
-        <a href="risk-geo.html">地缘与商业</a>
-        <a href="net-biz-capital.html">网·商·资·工</a>
-        <a href="national-strategy-opinion.html">战略·舆情</a>
-        <a href="social-responsibility-evolution.html">社会责任</a>
-        <a href="evolution-loop.html">进化闭环</a>
-        <a href="analysis-hub.html">分析引擎</a>
-        <a href="intelligent-evolution.html">智能进化</a>
-        <a href="smart-overhaul.html">整体改造</a>
-        <a href="evolvable-architecture.html">可进化架构</a>
-        <a href="lab.html">沙盘工坊</a>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">联结与模型</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="nexus.html">立体联结</a></li>
+            <li><a href="edu-nexus.html">教育纵轴</a></li>
+            <li><a href="evolution-triad.html">人与AI演进</a></li>
+            <li><a href="model.html">分层模型</a></li>
+            <li><a href="modules-map.html">模块图谱</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">时间与情景</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="timeline.html">历史演进</a></li>
+            <li><a href="past-future.html">廿年视角</a></li>
+            <li><a href="decade.html">十年展望</a></li>
+            <li><a href="decade-scenes.html">十年场景</a></li>
+            <li><a href="decade-us.html">十年之问</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">推演与沙盘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="synthesis.html">综合推演</a></li>
+            <li><a href="synthesis-extensions.html">推演·扩展</a></li>
+            <li><a href="synthesis-methods.html">推演·方法</a></li>
+            <li><a href="lab.html">沙盘工坊</a></li>
+            <li><a href="evolution-loop.html">进化闭环</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">制度与地缘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="work-infra-energy.html">职业·基建·能源</a></li>
+            <li><a href="risk-geo.html">地缘与商业</a></li>
+            <li><a href="net-biz-capital.html">网·商·资·工</a></li>
+            <li><a href="national-strategy-opinion.html">战略·舆情</a></li>
+            <li><a href="social-responsibility-evolution.html">社会责任</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">架构与分析</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="architecture.html">架构拓扑</a></li>
+            <li><a href="analysis-hub.html">分析引擎</a></li>
+            <li><a href="intelligent-evolution.html">智能进化</a></li>
+            <li><a href="smart-overhaul.html">整体改造</a></li>
+            <li><a href="evolvable-architecture.html">可进化架构</a></li>
+          </ul>
+        </details>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
-      <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      <div class="site-nav-meta-row">
+        <div class="site-nav-search-host" data-site-quick-search aria-live="polite"></div>
+        <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      </div>
     </header>
 
-
-
-    <div id="main" class="page-head" tabindex="-1">
+    <main id="main" tabindex="-1" aria-label="正文">
+    <div class="page-head">
       <h1>全站总览</h1>
       <p class="lead">
         可先 <a href="#read-guide">读站指路</a> 选一条入口，再读 <a href="#three-questions">三问</a>（在哪 → 做什么 → 去哪），用 <a href="#hub-catalog">分区速跳</a> 或卡片下钻。定性脚手架，非单点预言。
       </p>
+      <div class="index-intent-pick card" id="index-intent-pick" role="navigation" aria-label="判型入口 · 我是来…">
+        <p class="index-intent-pick-kicker">我是来…</p>
+        <ul class="index-intent-pick-list">
+          <li><a href="#read-guide"><strong>系统深读</strong></a> — 读站指路 → 三问 → 枢纽下钻</li>
+          <li><a href="#hub-time"><strong>押时间线与情景</strong></a> — 历史 · 廿年 · 十年窗</li>
+          <li><a href="maintainer-hub.html#mh-reader-admin-matrix"><strong>合 PR / 改站 / 管道</strong></a> — 维护导读 · 衔接矩阵与闸门</li>
+        </ul>
+      </div>
       <p class="index-scroll-hint" role="note"><span class="index-scroll-hint-inner" aria-hidden="true">↓</span> 向下浏览分区与卡片</p>
       <div class="read-hint page-head-deck" role="note" aria-label="导读提要">
+        <p class="muted note-kicker"><strong>你是谁、从哪进</strong>：<strong>读者</strong> → 下方 <a href="#read-guide">读站指路</a> 与 <a href="#three-questions">三问</a>；<strong>改站 / 合 PR</strong> → <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a>；<strong>跨 PR 架构收束</strong> → <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index">不变量索引</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a>；<strong>数据与管道</strong> → <a href="docs/README.md#quick-paths">docs · 最短链（0c）</a> · <a href="docs/README.md#content-framework">真源分层</a> · <a href="docs/README.md#front-back-modules">前后台</a> · <a href="docs/README.md#system-components-fusion">组件×主链</a> · <a href="analysis-hub.html">分析引擎</a>；<strong>本地与部署</strong> → 页脚与根目录 <a href="README.md">README</a>。</p>
         <p><strong>一条主脉</strong>：<a href="nexus.html">立体联结</a> → <a href="modules-map.html">模块图谱</a> / <a href="synthesis.html">综合推演</a> → <a href="lab.html">沙盘</a>。<strong>并行窗</strong>：<a href="timeline.html">历史</a>、<a href="decade-scenes.html">十年场景</a>、<a href="net-biz-capital.html">网·商·资·工</a>。<a href="legacy-all-in-one.html">旧版单页</a> 备用。</p>
       </div>
+      <nav class="toc toc--pilot" id="index-toc" aria-label="本页目录">
+        <p class="toc-pilot-eyebrow">本页目录</p>
+        <a href="#index-intent-pick">判型入口</a>
+        <a href="#ext-round-index">本轮提要</a>
+        <a href="#three-questions">三问导读</a>
+        <a href="#read-guide">读站指路</a>
+        <a href="#hub-catalog">分区速跳</a>
+        <a href="#reader-next">常见下一站</a>
+      </nav>
       <div class="hub-three-q" id="three-questions" aria-label="三问导读">
         <p class="hub-three-q-kicker">三问导读 · 对齐全站</p>
         <div class="page-flow-strip hub-three-q-fig" role="img" aria-label="三问顺序示意：我们在哪（现状与栈）→ 我们要做什么（组合与闭环）→ 我们将在哪（分叉非预言）；可循环对照">
@@ -107,11 +156,12 @@
           <li><strong>要做什么？</strong> 组合模块、对账变量：<a href="synthesis.html">综合推演</a>（<a href="synthesis.html#continuation">继续矩阵</a> · <a href="synthesis-methods.html#perpetual">持续迭代</a> · <a href="synthesis-methods.html#methods">跨学科办法</a>）、<a href="lab.html">沙盘</a>；维护 <a href="evolution-loop.html">闭环</a>、<a href="analysis-hub.html#panorama">分析引擎</a>；全貌 <a href="evolvable-architecture.html">可进化架构</a>；模型辅助见 <a href="intelligent-evolution.html">智能进化</a>。个人边界：<a href="decade-us.html#do">要做</a> / <a href="decade-us.html#dont">勿做</a> / <a href="decade-us.html#live">活得好些</a>。</li>
           <li><strong>将在哪？</strong> 只看分叉形态：<a href="decade.html">十年展望</a>、<a href="decade-scenes.html">十年场景</a>、<a href="synthesis-extensions.html#forks">三簇图景</a>、<a href="decade-us.html">十年之问</a>。</li>
         </ol>
-        <p class="muted note-post-relaxed">推演认识论与偏误清单：<a href="docs/DEDUCTION_STRATEGY.md">DEDUCTION_STRATEGY</a>；全站重跑更新：<a href="docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md">SITE_WIDE_RERUN</a>。</p>
+        <p class="muted note-post-relaxed">推演认识论与偏误清单：<a href="docs/DEDUCTION_STRATEGY.md#stance">DEDUCTION_STRATEGY</a>；全站重跑更新：<a href="docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md#steps">SITE_WIDE_RERUN</a>。</p>
       </div>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
+    <div class="modular-intro-stack" aria-label="总览 · 本轮提要">
     <section class="card site-round-extension" id="ext-round-index" aria-labelledby="hre-index">
       <h2 class="site-round-extension-h" id="hre-index">本轮提要</h2>
       <p class="muted note-kicker">入口：<a href="#three-questions">三问</a> → <a href="modules-map.html">图谱</a> 或 <a href="synthesis.html#continuation">继续矩阵</a> → 分页；卡片要与 <a href="synthesis.html#criteria">判据</a> 对照读。</p>
@@ -127,16 +177,21 @@
       <p class="muted note-kicker">全站是<strong>定性脚手架</strong>：帮你<strong>对齐变量、传导与分叉</strong>，<strong>不代替你下结论</strong>。三条入口可并行，择一条深读即可。</p>
       <p class="muted note-post-relaxed"><strong>顶栏链多不必慌记</strong>：可先抓住五枢纽——<a href="index.html">总览</a> → <a href="nexus.html">立体联结</a> 或 <a href="modules-map.html">模块图谱</a> → <a href="synthesis.html">综合推演</a> → <a href="analysis-hub.html">分析引擎</a> → <a href="lab.html">沙盘工坊</a>；其余从下方<strong>分区速跳</strong>或顶栏检索即可。</p>
       <p class="muted note-post-relaxed">下方每个分区大标题下还有一行<strong>读后自问</strong>；可先读问题，再点卡片。不少卡片<strong>点开即落到页内关键节</strong>；多数页在该节之上仍有<strong>推演扩展 · 本轮提要</strong>，深链落地后仍建议快速过目。</p>
-      <p class="muted note-post-relaxed">文中链到 <code>docs/*.md</code> 的，在 <strong>GitHub Pages</strong> 等静态根部署下常为浏览器打开 <strong>Markdown 原文</strong>；若要渲染版式，请在 <strong>GitHub 仓库页</strong>打开同路径文件，或克隆仓库本地阅读 <code>docs/</code>。维护说明见 <a href="docs/SITE_REVIEW_THREE_PASSES.md">全站梳理 · 四角色复查</a>。</p>
+      <p class="muted note-post-relaxed">文中链到 <code>docs/*.md</code> 的，在 <strong>GitHub Pages</strong> 等静态根部署下常为浏览器打开 <strong>Markdown 原文</strong>；若要渲染版式，请在 <strong>GitHub 仓库页</strong>打开同路径文件，或克隆仓库本地阅读 <code>docs/</code>。维护说明见 <a href="docs/SITE_REVIEW_THREE_PASSES.md#four-perspectives-review">全站梳理 · 四角色复查</a>。</p>
+      <p class="muted note-post-relaxed">
+        <strong>克隆到本机后</strong>：总线 JSON（如 <code>evolution.js</code> 拉取的文件）须用 <strong><code>http://</code></strong> 打开站点；勿仅用 <strong><code>file://</code></strong> 双击 <code>index.html</code>。仓库根执行 <code>make serve-reader</code> 后访问 <strong>127.0.0.1:8000</strong>，或用 Docker 映射 <strong>8765</strong>；读者 / 贡献者入口与双轨说明见根目录 <a href="README.md#readme-start-here">README · 从这里开始</a> · <a href="README.md#readme-dual-track-map">双轨真源</a>，运维快启见 <a href="docs/DOCKER.md#quickstart">DOCKER.md</a>。
+      </p>
+      <p class="muted note-post-relaxed"><strong>线上 / 子路径 / 可选 SPA</strong>：GitHub Pages 须在仓库 <strong>Settings → Pages</strong> 选对源与目录；默认以根目录 <strong>MPA</strong> 为主读形态，若要发布<strong>全站单页壳</strong>，构建前须设与仓库路径一致的 <strong><code>VITE_BASE</code></strong>（见 <a href="spa/README.md#spa-github-pages">spa/README · GitHub Pages</a>）。</p>
       <ul>
-        <li><strong>维护者 / 数据管家</strong>：写操作与闸门在 <strong>Git、脚本、CI</strong>（管理端/后端侧），不在站内静默改库；导读链见 <a href="maintainer-hub.html">维护导读</a>，分拆说明见 <a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#reader-frontend-admin-backend">用户端/管理端 · 前端与后端</a>，总览表见 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面速查</a>。读者仍以本页与 <a href="evolution-loop.html">进化闭环</a> 为主链。</li>
+        <li><strong>维护者 / 数据管家</strong>：写操作与闸门在 <strong>Git、脚本、CI</strong>（管理端/后端侧），不在站内静默改库；导读见 <a href="maintainer-hub.html">维护导读</a>，一页内「本页 ↔ 注册表 ↔ 文档锚点」见 <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵（站内速览）</a>；跨 PR 架构收束见 <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步表</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index">不变量索引</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a>；分拆说明见 <a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#reader-frontend-admin-backend">用户端/管理端 · 前端与后端</a>，总览与全文矩阵见 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面速查</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-contract-matrix">衔接矩阵</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-scenarios">场景×面</a>。读者仍以本页与 <a href="evolution-loop.html">进化闭环</a> 为主链。</li>
         <li><strong>第一次系统读</strong>：<a href="#three-questions">三问导读</a> → <a href="nexus.html">立体联结</a> 或 <a href="modules-map.html">模块图谱</a> → <a href="synthesis.html#criteria">五条判据</a> → 按下方分区卡片下钻。</li>
         <li><strong>想押时间线与情景</strong>：<a href="timeline.html#timeline-five-eras">历史 · 五代横轴</a>、<a href="past-future.html#past-future-comparison">廿年 · 对照总表</a>、<a href="decade.html#decade-six-dim">十年 · 六维总表</a> / <a href="decade.html#decade-phase-bars">阶段条</a>、<a href="decade-scenes.html#matrix">十年场景 · 矩阵</a>；动手用 <a href="lab.html">沙盘</a> 与 <a href="synthesis.html#continuation">继续推演矩阵</a> 加压。</li>
-        <li><strong>想看读数与站内核如何迭代</strong>：<a href="analysis-hub.html#panorama">分析引擎 · 方法与演进全景</a>、<a href="evolution-loop.html">进化闭环</a>、<a href="evolvable-architecture.html">可进化架构</a>；推演纪律与偏误自检见 <a href="docs/DEDUCTION_STRATEGY.md">DEDUCTION_STRATEGY</a>。</li>
+        <li><strong>想看读数与站内核如何迭代</strong>：<a href="analysis-hub.html#panorama">分析引擎 · 方法与演进全景</a>、<a href="evolution-loop.html">进化闭环</a>、<a href="evolvable-architecture.html">可进化架构</a>；推演纪律与偏误自检见 <a href="docs/DEDUCTION_STRATEGY.md#stance">DEDUCTION_STRATEGY</a>。</li>
       </ul>
     </section>
+    </div>
 
-    <nav class="index-hub-toc card" id="hub-catalog" aria-label="分区速跳">
+    <nav class="index-hub-toc card index-hub-toc--dock" id="hub-catalog" aria-label="分区速跳">
       <p class="index-hub-toc-kicker">分区速跳</p>
       <ul class="index-hub-toc-list">
         <li><a href="#hub-read"><span class="index-hub-toc-ico" aria-hidden="true">🔗</span>联结与图谱</a></li>
@@ -153,8 +208,8 @@
       <svg viewBox="0 0 640 268" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
           <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#3d9cf5;stop-opacity:0.9" />
-            <stop offset="100%" style="stop-color:#4ecf8e;stop-opacity:0.7" />
+            <stop offset="0%" stop-color="#3d9cf5" stop-opacity="0.9" />
+            <stop offset="100%" stop-color="#4ecf8e" stop-opacity="0.7" />
           </linearGradient>
         </defs>
         <text x="320" y="20" text-anchor="middle" fill="#e8edf4" font-size="12" font-weight="600" font-family="Noto Sans SC,sans-serif">阅读路径：总览 → 四枢 → 栈与时间 → 合成收口</text>
@@ -212,7 +267,7 @@
       <h2 class="hub-band-h" id="hub-read-h"><span class="hub-band-ico" aria-hidden="true">🔗</span><span class="hub-band-text"><span class="hub-band-title">联结与图谱</span><span class="hub-band-sub">尺度、纵轴与全站模块索引</span><span class="hub-band-prompt" role="note">读后自问：个人—国家尺度与模块图谱，你能对上号吗？</span></span></h2>
       <div class="hub-grid">
         <a class="hub-card" href="nexus.html#main">
-          <div class="hub-card-visual" style="padding:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#0c1118,#1a2332)">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-12 hub-card-visual--bg-deep">
             <svg width="160" height="84" viewBox="0 0 160 84" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="50" y="8" width="60" height="18" rx="3" fill="#1a2332" stroke="#f97316"/>
               <rect x="35" y="32" width="90" height="20" rx="3" fill="#141b26" stroke="#3d9cf5"/>
@@ -226,7 +281,7 @@
           </div>
         </a>
         <a class="hub-card" href="edu-nexus.html#edu-ladder">
-          <div class="hub-card-visual" style="padding:14px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-14">
             <svg width="140" height="80" viewBox="0 0 140 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="8" y="22" width="28" height="40" rx="4" fill="#141b26" stroke="#38bdf8"/>
               <rect x="44" y="18" width="32" height="48" rx="4" fill="#141b26" stroke="#3d9cf5"/>
@@ -244,7 +299,7 @@
           </div>
         </a>
         <a class="hub-card" href="evolution-triad.html#evo-edu">
-          <div class="hub-card-visual" style="padding:16px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-16">
             <svg width="150" height="76" viewBox="0 0 150 76" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <line x1="10" y1="38" x2="140" y2="38" stroke="#2a3544" stroke-width="2"/>
               <circle cx="35" cy="38" r="10" fill="#1a2332" stroke="#3d9cf5"/><text x="35" y="41" text-anchor="middle" fill="#8b9cb3" font-size="7">教</text>
@@ -259,7 +314,7 @@
           </div>
         </a>
         <a class="hub-card" href="modules-map.html#taxonomy">
-          <div class="hub-card-visual" style="padding:12px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-12">
             <svg width="150" height="80" viewBox="0 0 150 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="75" cy="40" r="14" fill="#1a2332" stroke="#4ecf8e" stroke-width="1.5"/>
               <line x1="75" y1="26" x2="75" y2="12" stroke="#3d9cf5" stroke-width="1.2"/>
@@ -289,10 +344,10 @@
       <div class="hub-grid">
         <a class="hub-card" href="timeline.html#timeline-five-eras">
           <div class="hub-card-visual timeline">
-            <span class="node" style="left:18%"></span>
-            <span class="node" style="left:38%"></span>
-            <span class="node" style="left:58%"></span>
-            <span class="node" style="left:78%"></span>
+            <span class="node node--tl-18"></span>
+            <span class="node node--tl-38"></span>
+            <span class="node node--tl-58"></span>
+            <span class="node node--tl-78"></span>
           </div>
           <div class="hub-card-body">
             <h2>历史演进轴</h2>
@@ -300,9 +355,9 @@
           </div>
         </a>
         <a class="hub-card" href="past-future.html#past-future-comparison">
-          <div class="hub-card-visual" style="padding:10px 14px">
+          <div class="hub-card-visual hub-card-visual--p-10-14">
             <svg width="100%" height="88" viewBox="0 0 220 88" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <defs><linearGradient id="hubyy" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#3d9cf5"/><stop offset="100%" style="stop-color:#4ecf8e"/></linearGradient></defs>
+              <defs><linearGradient id="hubyy" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3d9cf5" /><stop offset="100%" stop-color="#4ecf8e" /></linearGradient></defs>
               <text x="110" y="12" text-anchor="middle" fill="#8b9cb3" font-size="8" font-family="Noto Sans SC,sans-serif">2016→2026</text>
               <line x1="20" y1="22" x2="200" y2="22" stroke="#5c6b7e" stroke-width="2"/>
               <circle cx="50" cy="22" r="4" fill="#8b9cb3"/><circle cx="110" cy="22" r="4" fill="#8b9cb3"/><circle cx="170" cy="22" r="4" fill="#3d9cf5"/>
@@ -319,8 +374,8 @@
         </a>
         <a class="hub-card" href="decade.html#decade-phase-bars">
           <div class="hub-card-visual">
-            <div class="mini-stack" style="justify-content:center;padding-top:8px">
-              <div class="phase-bar" style="margin:0;width:100%;max-width:180px">
+            <div class="mini-stack mini-stack--center-pt8">
+              <div class="phase-bar phase-bar--hub-compact">
                 <span class="p1"></span><span class="p2"></span><span class="p3"></span>
               </div>
               <p class="hub-card-visual-caption">2026 — 2036 三阶段</p>
@@ -332,7 +387,7 @@
           </div>
         </a>
         <a class="hub-card" href="decade-scenes.html#matrix">
-          <div class="hub-card-visual" style="padding:12px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-12">
             <svg width="168" height="80" viewBox="0 0 168 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <text x="84" y="12" text-anchor="middle" fill="#8b9cb3" font-size="7" font-family="Noto Sans SC,sans-serif">8 场景 × 3 阶段</text>
               <g transform="translate(24,22)">
@@ -358,7 +413,7 @@
           </div>
         </a>
         <a class="hub-card" href="decade-us.html#do">
-          <div class="hub-card-visual" style="padding:12px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-12">
             <svg width="140" height="80" viewBox="0 0 140 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <line x1="70" y1="12" x2="70" y2="62" stroke="#2a3544" stroke-width="2"/>
               <line x1="22" y1="38" x2="118" y2="38" stroke="#2a3544" stroke-width="2"/>
@@ -381,7 +436,7 @@
       <h2 class="hub-band-h" id="hub-stack-h"><span class="hub-band-ico" aria-hidden="true">🧱</span><span class="hub-band-text"><span class="hub-band-title">栈与形态</span><span class="hub-band-sub">模型、架构、职基能与风险</span><span class="hub-band-prompt" role="note">读后自问：哪几层栈、哪一条风险链穿过你的议题？</span></span></h2>
       <div class="hub-grid">
         <a class="hub-card" href="work-infra-energy.html#soc-work">
-          <div class="hub-card-visual" style="padding:14px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-14">
             <svg width="150" height="78" viewBox="0 0 150 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <line x1="12" y1="40" x2="138" y2="40" stroke="#2a3544" stroke-width="2"/>
               <circle cx="30" cy="40" r="9" fill="#1a2332" stroke="#e8a838"/><text x="30" y="43" text-anchor="middle" fill="#8b9cb3" font-size="7">职</text>
@@ -422,10 +477,10 @@
         </a>
         <a class="hub-card" href="risk-geo.html#main">
           <div class="hub-card-visual">
-            <div class="mini-stack" style="padding-top:20px">
-              <div class="mini-bar" style="width:90%;background:linear-gradient(90deg,var(--danger),var(--warn))"></div>
-              <div class="mini-bar" style="width:70%"></div>
-              <div class="mini-bar" style="width:55%;background:var(--ok)"></div>
+            <div class="mini-stack mini-stack--pt20">
+              <div class="mini-bar mini-bar--w90"></div>
+              <div class="mini-bar mini-bar--w70"></div>
+              <div class="mini-bar mini-bar--w55-ok"></div>
             </div>
           </div>
           <div class="hub-card-body">
@@ -439,7 +494,7 @@
       <h2 class="hub-band-h" id="hub-inst-h"><span class="hub-band-ico" aria-hidden="true">🏛</span><span class="hub-band-text"><span class="hub-band-title">制度与主链</span><span class="hub-band-sub">网商资工与战略舆情</span><span class="hub-band-prompt" role="note">读后自问：网·商·资·工 与战略舆情，哪两条最贴你的场景？</span></span></h2>
       <div class="hub-grid">
         <a class="hub-card" href="net-biz-capital.html#diagram">
-          <div class="hub-card-visual" style="padding:12px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-12">
             <svg width="156" height="72" viewBox="0 0 156 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="4" y="22" width="28" height="20" rx="4" fill="#141b26" stroke="#3d9cf5"/>
               <rect x="44" y="22" width="28" height="20" rx="4" fill="#141b26" stroke="#e8a838"/>
@@ -458,7 +513,7 @@
           </div>
         </a>
         <a class="hub-card" href="national-strategy-opinion.html#dual-track">
-          <div class="hub-card-visual" style="padding:14px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-14">
             <svg width="150" height="76" viewBox="0 0 150 76" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <line x1="20" y1="28" x2="130" y2="28" stroke="#3d9cf5" stroke-width="1.5"/>
               <line x1="20" y1="48" stroke="#f97316" stroke-width="1.5" x2="130" y2="48"/>
@@ -476,7 +531,7 @@
           </div>
         </a>
         <a class="hub-card" href="social-responsibility-evolution.html#gates">
-          <div class="hub-card-visual" style="padding:14px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-14">
             <svg width="150" height="76" viewBox="0 0 150 76" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <ellipse cx="75" cy="36" rx="58" ry="26" fill="#141b26" stroke="#4ecf8e" stroke-width="1.2"/>
               <circle cx="48" cy="34" r="7" fill="#0c1118" stroke="#3d9cf5"/>
@@ -496,7 +551,7 @@
       <h2 class="hub-band-h" id="hub-synth-h"><span class="hub-band-ico" aria-hidden="true">🧮</span><span class="hub-band-text"><span class="hub-band-title">推演合成</span><span class="hub-band-sub">判据、配方与方法论</span><span class="hub-band-prompt" role="note">读后自问：五条判据能帮你挡掉哪一种一厢情愿？</span></span></h2>
       <div class="hub-grid">
         <a class="hub-card" href="synthesis.html#criteria">
-          <div class="hub-card-visual" style="padding:14px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-14">
             <svg width="150" height="78" viewBox="0 0 150 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="75" cy="40" r="22" fill="#1a2332" stroke="#4ecf8e" stroke-width="1.5"/>
               <text x="75" y="44" text-anchor="middle" fill="#e8edf4" font-size="8" font-family="Noto Sans SC,sans-serif">合成</text>
@@ -517,7 +572,7 @@
           </div>
         </a>
         <a class="hub-card" href="synthesis-extensions.html#forks">
-          <div class="hub-card-visual" style="padding:14px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-14">
             <svg width="150" height="78" viewBox="0 0 150 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M40 58 L75 22 L110 58 Z" fill="#141b26" stroke="#f97316" stroke-width="1.2"/>
               <path d="M38 48 L75 16 L112 48" fill="none" stroke="#6366f1" stroke-width="1" stroke-dasharray="3 2"/>
@@ -531,7 +586,7 @@
           </div>
         </a>
         <a class="hub-card" href="synthesis-methods.html#perpetual">
-          <div class="hub-card-visual" style="padding:14px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-14">
             <svg width="150" height="78" viewBox="0 0 150 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="28" y="18" width="94" height="44" rx="4" fill="#141b26" stroke="#3d9cf5"/>
               <line x1="36" y1="30" x2="114" y2="30" stroke="#5c6b7e" stroke-width="1"/>
@@ -551,7 +606,7 @@
       <h2 class="hub-band-h" id="hub-eng-h"><span class="hub-band-ico" aria-hidden="true">⚙️</span><span class="hub-band-text"><span class="hub-band-title">工程与闭环</span><span class="hub-band-sub">manifest、分析与可进化架构</span><span class="hub-band-prompt" role="note">读后自问：快照、manifest 与继续矩阵，各守住哪一环？</span></span></h2>
       <div class="hub-grid">
         <a class="hub-card" href="evolution-loop.html#manifest">
-          <div class="hub-card-visual" style="padding:14px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-14">
             <svg width="150" height="78" viewBox="0 0 150 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M75 12 L118 38 L75 64 L32 38 Z" fill="#141b26" stroke="#4ecf8e" stroke-width="1.5"/>
               <circle cx="75" cy="38" r="8" fill="#0c1118" stroke="#3d9cf5"/>
@@ -565,7 +620,7 @@
           </div>
         </a>
         <a class="hub-card" href="analysis-hub.html#panorama">
-          <div class="hub-card-visual" style="padding:14px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-14">
             <svg width="150" height="78" viewBox="0 0 150 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="20" y="18" width="110" height="44" rx="6" fill="#141b26" stroke="#6366f1"/>
               <path d="M35 48 L55 32 L75 48 L95 28 L115 48" fill="none" stroke="#4ecf8e" stroke-width="2"/>
@@ -578,7 +633,7 @@
           </div>
         </a>
         <a class="hub-card" href="intelligent-evolution.html#boundary">
-          <div class="hub-card-visual" style="padding:14px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-14">
             <svg width="150" height="78" viewBox="0 0 150 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="75" cy="38" r="22" fill="#141b26" stroke="#a78bfa" stroke-width="1.5"/>
               <circle cx="52" cy="30" r="6" fill="#0c1118" stroke="#3d9cf5"/>
@@ -595,7 +650,7 @@
           </div>
         </a>
         <a class="hub-card" href="smart-overhaul.html#principles">
-          <div class="hub-card-visual" style="padding:14px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-14">
             <svg width="150" height="78" viewBox="0 0 150 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="25" y="24" width="100" height="34" rx="4" fill="#141b26" stroke="#e8a838"/>
               <path d="M42 41 L58 30 L74 41 L90 30 L106 41" fill="none" stroke="#4ecf8e" stroke-width="2"/>
@@ -609,7 +664,7 @@
           </div>
         </a>
         <a class="hub-card" href="evolvable-architecture.html#definition">
-          <div class="hub-card-visual" style="padding:14px;display:flex;align-items:center;justify-content:center">
+          <div class="hub-card-visual hub-card-visual--center hub-card-visual--p-14">
             <svg width="150" height="78" viewBox="0 0 150 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M75 8 L140 38 L75 68 L10 38 Z" fill="#141b26" stroke="#4ecf8e" stroke-width="1.2"/>
               <circle cx="75" cy="38" r="10" fill="#0c1118" stroke="#3d9cf5"/>
@@ -624,7 +679,7 @@
         </a>
         <a class="hub-card" href="lab.html#main">
           <div class="hub-card-visual">
-            <div class="mini-stack" style="padding-top:24px;align-items:center">
+            <div class="mini-stack mini-stack--center-pt24">
               <div class="hub-legend-dots" aria-hidden="true">
                 <span class="hub-legend-dot hub-legend-dot--ok"></span>
                 <span class="hub-legend-dot hub-legend-dot--accent"></span>
@@ -639,8 +694,21 @@
           </div>
         </a>
       </div>
-      <p class="muted hub-map-foot" style="margin-top:0.75rem">维护者与闸门：<a href="maintainer-hub.html">维护导读</a>（文档链与 CI 对齐；不写 manifest）；前后台职责速查 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a>。</p>
+      <p class="muted hub-map-foot">维护者与闸门：<a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a>（文档链 / 注册表 / 锚点）· <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a>；不写 manifest。跨 PR 收束 <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index">不变量索引</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a>；前后台职责速查 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a>。</p>
     </section>
+
+    <section class="card reader-home-next hub-cluster-next" id="reader-next" aria-labelledby="reader-next-h">
+      <p class="reader-home-next-kicker" id="reader-next-h">常见下一站（与五枢纽对齐）</p>
+      <ul class="reader-home-next-list">
+        <li><a href="nexus.html#main">立体联结</a></li>
+        <li><a href="modules-map.html">模块图谱</a></li>
+        <li><a href="synthesis.html#criteria">综合推演 · 判据</a></li>
+        <li><a href="analysis-hub.html#panorama">分析引擎</a></li>
+        <li><a href="lab.html#main">沙盘工坊</a></li>
+      </ul>
+    </section>
+
+    </main>
 
     <footer>
       <p class="hub-map-foot hub-footer-threeq"><a href="#three-questions">三问导读</a> · <a href="#hub-catalog">分区速跳</a> · 我们在哪 / 要做什么 / 将在哪</p>
@@ -648,6 +716,6 @@
     </footer>
   </div>
   <a class="back-to-top-fab" href="#main" title="回到页首" aria-label="回到页首"><span aria-hidden="true">↑</span></a>
-  <script src="assets/site-data-bus.js"></script>
+  <script src="assets/site-data-bus.js" defer></script>
 </body>
 </html>

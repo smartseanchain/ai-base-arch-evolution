@@ -1,8 +1,10 @@
 # 全站梳理 · 内容对表 · 重新推演与更新（操作手册）
 
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
 本文给出**可重复的一轮流程**：在**不假设单点终局**的前提下，把**全站模块与叙事**与**当前数据/分析读数**对表，并决定**下一步更新落在哪里**（JSON 管道、HTML 正文、或仅刷新快照）。与 [EVOLUTION_RUNBOOK](./EVOLUTION_RUNBOOK.md)（偏双周 JSON 节奏）、[DATA_ANALYSIS_SITE_CONTENT_SYNC](./DATA_ANALYSIS_SITE_CONTENT_SYNC.md)（偏数据→界面映射）互补；认识论与单轮七步仍以 [DEDUCTION_STRATEGY](./DEDUCTION_STRATEGY.md) 为准。
 
-在 **[三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)** 中，本文为**推演架构**下的「全站一轮」操作手册，与双周节奏、数据→界面映射文档并用。
+在 **[三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)** 中，本文为**推演架构**下的「全站一轮」操作手册，与双周节奏、数据→界面映射文档并用。**主链联动 · 仓库物理分层**（本轮若动 JSON / 脚本 / 呈现多目录）：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。**自动化助手（全站对表后仍须过闸门）**：[AGENTS.md · 合并前](../AGENTS.md#agents-pre-merge) · [框架判型](../AGENTS.md#agents-content-framework) · [架构边界](../AGENTS.md#agents-arch-boundary)。**呈现双轨（`spa-sync` / `spa-build`）**：[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map)。**MPA 顶栏与失页**：**`partials/`** → **`make sync-nav`**；**`404.html`** 手调（`sync_site_nav` 不写回）— **[scripts/README · `sync_site_nav`](../scripts/README.md)**。
 
 <a id="when"></a>
 
@@ -100,4 +102,4 @@ flowchart TB
 | [综合推演 §11](../synthesis-methods.html#perpetual)（持续迭代插槽） |
 | [RESEARCH_METHODS_MAP.md](./RESEARCH_METHODS_MAP.md)（方法 ↔ 工具） |
 | [SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md) |
-| [TECH_ARCHITECTURE_CAPABILITIES.md](./TECH_ARCHITECTURE_CAPABILITIES.md) |
+| [TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md · 附录](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md#appendix-tech-capabilities)（[别名](./TECH_ARCHITECTURE_CAPABILITIES.md)） |

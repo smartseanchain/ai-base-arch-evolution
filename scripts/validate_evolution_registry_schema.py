@@ -11,23 +11,25 @@ import sys
 from jsonschema import Draft202012Validator
 from jsonschema.exceptions import ValidationError
 
-from evolution_pkg.io import REPO_ROOT
+from evolution_pkg.io import REGISTRY_JSON_PATH, REPO_ROOT, load_json
 
-REGISTRY = REPO_ROOT / "scripts" / "evolution-registry.json"
 SCHEMA_PATH = REPO_ROOT / "docs" / "schemas" / "evolution-registry.schema.json"
 
 
 def main() -> None:
-    if not REGISTRY.is_file():
-        print(f"错误: 缺少 {REGISTRY}", file=sys.stderr)
+    if not REGISTRY_JSON_PATH.is_file():
+        print(f"错误: 缺少 {REGISTRY_JSON_PATH}", file=sys.stderr)
         sys.exit(1)
     if not SCHEMA_PATH.is_file():
         print(f"错误: 缺少 Schema {SCHEMA_PATH}", file=sys.stderr)
         sys.exit(1)
     try:
-        doc = json.loads(REGISTRY.read_text(encoding="utf-8"))
+        doc = load_json(REGISTRY_JSON_PATH)
     except json.JSONDecodeError as e:
-        print(f"错误: {REGISTRY} JSON 无效 — {e}", file=sys.stderr)
+        print(f"错误: {REGISTRY_JSON_PATH} JSON 无效 — {e}", file=sys.stderr)
+        sys.exit(1)
+    if not doc:
+        print(f"错误: {REGISTRY_JSON_PATH} 为空或不可解析", file=sys.stderr)
         sys.exit(1)
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     validator = Draft202012Validator(schema)

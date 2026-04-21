@@ -4,6 +4,8 @@
 （避免与 React 壳重复导航）。index.html → legacy-index.html。404、legacy-all-in-one 整页拷贝不剥壳。
 
 用法（仓库根）: python3 scripts/sync_spa_public.py
+
+合并与双轨对表: docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help
 """
 from __future__ import annotations
 

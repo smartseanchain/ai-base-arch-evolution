@@ -7,6 +7,7 @@ from unittest import mock
 from evolution_pkg.analysis_pipeline import (
     AnalysisPaths,
     default_analysis_paths,
+    main,
     parse_analysis_cli,
     run_analysis_pipeline,
 )
@@ -27,6 +28,10 @@ class TestParseAnalysisCli(unittest.TestCase):
         self.assertTrue(f.check)
         self.assertTrue(f.write_sediment)
         self.assertTrue(f.no_sqlite_snapshot_history)
+
+    def test_dry_run_aliases_check(self) -> None:
+        f = parse_analysis_cli(["--dry-run"])
+        self.assertTrue(f.check)
 
 
 class TestDefaultAnalysisPaths(unittest.TestCase):
@@ -53,6 +58,13 @@ class TestRunAnalysisPipelineCheck(unittest.TestCase):
         self.assertIn("sources", out)
         self.assertIn("hint_closure_gaps", out)
         self.assertIsInstance(out["sources"].get("combined_for_analysis"), int)
+
+
+class TestAnalysisPipelineMain(unittest.TestCase):
+    @mock.patch("builtins.print")
+    def test_main_returns_0_in_check_mode(self, _print: mock.MagicMock) -> None:
+        rc = main(["--check"])
+        self.assertEqual(rc, 0)
 
 
 if __name__ == "__main__":

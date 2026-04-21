@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { NAV_LINKS } from "./navLinks";
+import { NAV_GROUPS } from "./navLinks";
 import { spaDocumentTitle, spaRouteAnnounce } from "./spaRouteMeta";
 
 type SiteMeta = {
@@ -55,6 +55,35 @@ export function SpaLayout({ children }: { children: ReactNode }) {
       ? `v${meta.site_version}`
       : "…";
 
+  function renderNavLeaf(to: string, label: string, key: string) {
+    if (to === "/") {
+      const overviewActive = pathname === "/" && hash === "";
+      return (
+        <Link
+          key={key}
+          to="/"
+          className={
+            overviewActive ? "spa-shell-nav-a is-active" : "spa-shell-nav-a"
+          }
+          aria-current={overviewActive ? "page" : undefined}
+        >
+          {label}
+        </Link>
+      );
+    }
+    return (
+      <NavLink
+        key={key}
+        to={to}
+        className={({ isActive }) =>
+          isActive ? "spa-shell-nav-a is-active" : "spa-shell-nav-a"
+        }
+      >
+        {label}
+      </NavLink>
+    );
+  }
+
   return (
     <div className="spa-shell">
       <div
@@ -86,6 +115,12 @@ export function SpaLayout({ children }: { children: ReactNode }) {
           className="spa-skip-link"
         >
           分区速跳
+        </Link>
+        <Link
+          to={{ pathname: "/", hash: "reader-next" }}
+          className="spa-skip-link"
+        >
+          常见下一站
         </Link>
         <a href="#spa-site-nav" className="spa-skip-link">
           跳到分页导航
@@ -155,32 +190,29 @@ export function SpaLayout({ children }: { children: ReactNode }) {
           tabIndex={-1}
           aria-label="站内分页"
         >
-          {NAV_LINKS.map(({ to, label }) => {
-            if (to === "/") {
-              const overviewActive = pathname === "/" && hash === "";
-              return (
-                <Link
-                  key={to}
-                  to="/"
-                  className={
-                    overviewActive ? "spa-shell-nav-a is-active" : "spa-shell-nav-a"
-                  }
-                  aria-current={overviewActive ? "page" : undefined}
-                >
-                  {label}
-                </Link>
+          {NAV_GROUPS.flatMap((group, gi) => {
+            if (group.title === null) {
+              return group.items.map((it, ii) =>
+                renderNavLeaf(it.to, it.label, `solo-${gi}-${ii}-${it.to}`),
               );
             }
             return (
-              <NavLink
-                key={to}
-                to={to}
-                className={({ isActive }) =>
-                  isActive ? "spa-shell-nav-a is-active" : "spa-shell-nav-a"
-                }
+              <details
+                key={group.title}
+                className="spa-shell-nav-details"
+                name="spa-nav-group"
               >
-                {label}
-              </NavLink>
+                <summary className="spa-shell-nav-summary">{group.title}</summary>
+                <div className="spa-shell-nav-dropdown" role="group">
+                  {group.items.map((it) =>
+                    renderNavLeaf(
+                      it.to,
+                      it.label,
+                      `grp-${group.title}-${it.to}`,
+                    ),
+                  )}
+                </div>
+              </details>
             );
           })}
         </nav>
@@ -196,7 +228,10 @@ export function SpaLayout({ children }: { children: ReactNode }) {
           <a href={platformMasterReaderAdminHref()}>
             PLATFORM_MASTER_MAP · 读者面/管理面
           </a>
-          ；维护入口见 <Link to="/maintainer-hub">维护导读</Link>。
+          ；维护入口见 <Link to="/maintainer-hub">维护导读</Link>
+          · <Link to="/maintainer-hub#mh-spine-map">关系视图</Link>
+          · <Link to="/maintainer-hub#mh-boundaries">系统边界</Link>
+          · <Link to="/maintainer-hub#mh-reader-admin-matrix">衔接矩阵</Link>。
         </p>
       </header>
       <main

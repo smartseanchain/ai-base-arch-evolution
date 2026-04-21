@@ -1,10 +1,12 @@
 # 全站推演内容 · 数据与分析引擎驱动的更新框架
 
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
 本文说明：在**静态站点**前提下，如何让「推演相关读数」随 **JSON 数据** 与 **分析引擎** 产出**自动对齐**，并与**人工叙事**划清边界。
 
 **全站分页模块、叙事正文 vs 动态块**如何被数据与分析更新，见 **[DATA_ANALYSIS_SITE_CONTENT_SYNC.md](./DATA_ANALYSIS_SITE_CONTENT_SYNC.md)**。**全站梳理后按纪律重新推演并决定更新落点**见 **[SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md](./SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md)**。
 
-在 **[三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)** 中，本文主要衔接**技术架构**（读数总线、`fetch` 契约）与**内容架构**（叙事 vs 自动块边界）。
+在 **[三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)** 中，本文主要衔接**技术架构**（读数总线、`fetch` 契约）与**内容架构**（叙事 vs 自动块边界）。**主链联动与验收入口 · 仓库物理分层**（`assets` / `scripts` / MPA 等）：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。**总线与版式分工的索引收束**：[docs/README · 内容驱动链](./README.md#content-driven-chain)。**自动化助手（总线读数 vs 枢纽版式）**：[AGENTS.md · 架构边界](../AGENTS.md#agents-arch-boundary) · [读者惯例](../AGENTS.md#agents-reader-conventions)。**MPA 与 SPA `public/` 同源**：改根 **`.html`** 后 **`make spa-sync`**（或 **`make spa-build`**）— [MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [维护导读 · 关系视图](../maintainer-hub.html#mh-spine-map)。
 
 <a id="meaning"></a>
 
@@ -19,6 +21,8 @@
 | 用模型批量生成「终局预言」 | | ✓（本站定性脚手架，非预测） |
 
 **结论**：真相在 **Git 内的 JSON**；**自动更新** = **管道写 JSON + 前端读 JSON**。叙事长文仍由人编辑 `.html`，数据块由脚本挂载。
+
+**纯 CSS 版式（非本文登记范围）**：枢纽长页首屏 **`modular-intro-stack` / `toc--pilot`** 等与 **`site-data-bus`** 分工见 **[INTELLIGENCE_SIX_DOMAINS · §2.2](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)**——不新增 `fetch` 消费方，**无须**在本框架表登记。
 
 <a id="layers"></a>
 
@@ -69,6 +73,14 @@ flowchart LR
 | `analysis-snapshot.json` | 热力、共现、`evolution_hints`、`hint_closure_gaps`、`run` | `analysis.js`（全量仪表盘） | `analysis-hub.html` |
 | `sediment-trends.json` | 跨日持久度、`longterm_hints` | `analysis.js` | `analysis-hub.html` |
 | `analysis-snapshot.json`（+ 可选 trends） | 当日样本数、`run_id`、因子 Top 等**一行摘要** | **`site-data-bus.js`** | 已挂载（根目录 HTML，字母序）：`analysis-hub.html`（`snapshot-only` + `data-site-data-hub="#dashboard"`，与同页 `analysis.js` 共用 `loadSnapshot` 缓存）、`architecture.html`、`decade-scenes.html`、`decade-us.html`、`decade.html`、`edu-nexus.html`、`evolvable-architecture.html`、`evolution-loop.html`、`evolution-triad.html`、`index.html`、`intelligent-evolution.html`、`lab.html`、`legacy-all-in-one.html`（单页归档、内联条带样式，不引 `site.css`）、`model.html`、`modules-map.html`、`national-strategy-opinion.html`、`net-biz-capital.html`、`nexus.html`、`past-future.html`、`risk-geo.html`、`smart-overhaul.html`、`social-responsibility-evolution.html`、`synthesis-extensions.html`、`synthesis-methods.html`、`synthesis.html`、`timeline.html`、`work-infra-energy.html`。任意页可加 `data-site-data-live` 占位；**仅快照、不请求趋势**时用 `data-site-data-live="snapshot-only"`；**仪表盘链接改成本页锚点**时用 `data-site-data-hub="#…"` |
+| `site-meta.json` | `site_version`、`codename`、`summary`、`updated` | **`site-data-bus.js`** · `mountSiteMetaVersion` | 顶栏 **`[data-site-meta-version]`**（`partials/site-nav.inc.html`）；与 **`analysis-snapshot.json` 的 `run` 块**（分析血缘）语义不同，勿混 |
+| `site-search-index.json` | 各注册页 `path`、`title`（轻量搜索索引） | **`site-data-bus.js`**：`[data-site-quick-search]`（**`partials/site-nav.inc.html`** 已挂；经 **`make sync-nav`** 写入各页）；失败或缺文件时该格隐藏 | 增删 **`evolution-registry.json` · `pages`** 或改页 `<title>` 后按需 **`make site-search-index`**；**非**契约 JSON，**不入** `make validate`。**顶栏 / skip-bar 模板**变更时 **`404.html`** 须**手调**（`sync_site_nav` 不写回）— **[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)** · **[MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)** |
+
+<a id="reader-chrome"></a>
+
+### 3a. 读者壳层（`site-data-bus.js` · 不占上表「新 JSON」行）
+
+与 **`[data-site-data-live]`** 并行：`DOMContentLoaded` 时挂载 **顶缘 `.reading-progress`**（整页滚动进度，**不** `fetch` 额外文件）；若页内**尚无** `.back-to-top-fab` 且存在**主内容锚**（通常为 **`<main id="main">`**，须与 skip-bar **`#main`** 一致），则插入同款**回顶**链；顶栏 **`[data-site-quick-search]`** 则 **`fetch`** **`site-search-index.json`** 并渲染轻量过滤（索引缺失时该宿主 **`hidden`**）。关闭顶缘进度条：在 `<body>` 上加 **`data-no-reading-progress="1"`**。样式：**`assets/site.css`**（`.reading-progress`、`.site-quick-search-*`）。**不**因此新增 §3 表行；若改动涉及**新 JSON** 或**新占位属性**，仍须按 §3 步骤与 **[DATA_ANALYSIS_SITE_CONTENT_SYNC](./DATA_ANALYSIS_SITE_CONTENT_SYNC.md)** 判型。
 
 **新增一页「数据驱动区块」的步骤**：
 
@@ -94,6 +106,7 @@ flowchart LR
 
 - **分析引擎**：只产出**结构化快照**与沉淀索引，**不**生成各页论述段落。
 - **聚合解读**（`analysis.js` 卡片、`site-data-bus` 摘要）：**定性扫读**，须标注非预测，与 [DEDUCTION_STRATEGY.md](./DEDUCTION_STRATEGY.md)、[RESEARCH_METHODS_MAP.md](./RESEARCH_METHODS_MAP.md) 对表。
+- **读者壳层**（顶缘进度、条件回顶）：见 **[§3a](#reader-chrome)**；与叙事/CSS 改版分开判型，避免把壳层改动登记成新 `fetch` 消费方。
 - **程序化 API**：`window.SiteDataBus` 供同域其他脚本复用；跨页共享缓存，必要时可 `SiteDataBus.clearCache()`（一般不需要）。
 
 <a id="programmatic"></a>
@@ -105,11 +118,13 @@ flowchart LR
 | `loadSnapshot()` | `Promise<对象>`，读 `assets/analysis-snapshot.json`（带内存缓存） |
 | `loadTrends()` | `Promise<对象 \| null>`，读 `assets/sediment-trends.json`，失败返回 `null` |
 | `loadSiteMeta()` | `Promise<对象>`，读 `assets/site-meta.json`（站点发布版本 `site_version` 等，带内存缓存） |
+| `loadSiteSearchIndex()` | `Promise<对象 \| null>`，读 `assets/site-search-index.json`；无文件或非数组 **`entries`** 时返回 **`null`**（带内存缓存） |
+| `getCachedSiteSearchIndex()` | 返回已缓存的搜索索引对象或 **`null`** |
 | `mountLiveStrip(el, options)` | 向 DOM 节点写入摘要 HTML（内部 `loadSnapshot`） |
 | `mountAllLiveStrips()` | 挂载所有 `[data-site-data-live]`（DOMContentLoaded 时自动执行） |
-| `clearCache()` | 清空缓存（测试或热替换 JSON 时用；含 site-meta） |
+| `clearCache()` | 清空缓存（测试或热替换 JSON 时用；含 site-meta 与 site-search） |
 
-DOMContentLoaded 时还会执行 **`mountSiteMetaVersion()`**：为所有 **`[data-site-meta-version]`** 写入 `v{site_version}`（顶栏模板见 `partials/site-nav.inc.html`）。
+DOMContentLoaded 时还会执行 **`mountSiteMetaVersion()`**、**`mountAllQuickSearch()`**（**`[data-site-quick-search]`**）：为顶栏版本号写入 `v{site_version}`，并在有索引时渲染轻量搜索（顶栏模板见 `partials/site-nav.inc.html`）。
 
 自定义事件：`sitedatabus:ready`，`detail.snapshot` 为快照对象，`detail.trends` 为趋势对象或 `null`（未加载、无文件或 `snapshot-only` 时为 `null`）。**`sitedatabus:meta`**：`detail.meta` 为 `site-meta.json` 对象。
 

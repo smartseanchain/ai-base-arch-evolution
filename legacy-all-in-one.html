@@ -54,6 +54,63 @@
       font-size: 15px;
     }
 
+    /* 与分页站 skip-bar 同构（本页不引用 site.css） */
+    .skip-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 300;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem 0.75rem;
+      padding: 0.45rem 0.75rem;
+      background: var(--elevated);
+      border-bottom: 1px solid var(--border);
+      transform: translateY(-100%);
+      transition: transform 0.18s ease;
+    }
+
+    .skip-bar:focus-within {
+      transform: translateY(0);
+    }
+
+    .skip-link {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      min-height: 2.75rem;
+      padding: 0.4rem 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 8px;
+      border: 1px solid rgba(61, 156, 245, 0.35);
+      background: var(--accent-dim);
+    }
+
+    .skip-link:hover {
+      color: var(--text);
+    }
+
+    .skip-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      color: var(--text);
+    }
+
+    .skip-link:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .skip-bar {
+        transition: none;
+      }
+    }
+
     .wrap {
       max-width: 1120px;
       margin: 0 auto;
@@ -177,6 +234,28 @@
       margin-bottom: 1rem;
     }
 
+    /* 与分页站表格卡同构；本页不引用 site.css，故在此声明 */
+    .card.legacy-card-table-scroll {
+      overflow-x: auto;
+      padding: 0;
+    }
+
+    .legacy-p-lead-tight {
+      margin: 0 0 0.75rem;
+    }
+
+    .card.legacy-card--mt-section {
+      margin-top: 1rem;
+    }
+
+    .card h3.legacy-h3-flush-top {
+      margin-top: 0;
+    }
+
+    th.legacy-th-w-7 {
+      width: 7rem;
+    }
+
     .site-round-extension {
       margin-bottom: 1.25rem;
     }
@@ -215,9 +294,54 @@
       line-height: 1.75;
     }
 
+    /* 与分页站 reader-home-next + hub-cluster-next 同构；本页不引用 site.css */
+    .legacy-archive-next {
+      margin-top: 2rem;
+    }
+    .legacy-archive-next-kicker {
+      margin: 0 0 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .legacy-archive-next-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .legacy-archive-next-list li {
+      margin: 0;
+    }
+    .legacy-archive-next-list a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.5rem;
+      padding: 0.35rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.88rem;
+    }
+    .legacy-archive-next-list a:hover {
+      background: var(--accent-dim);
+      color: var(--text);
+    }
+
     .muted {
       color: var(--muted);
       font-size: 0.9rem;
+    }
+
+    header.hero .read-hint.page-head-deck p.muted.note-kicker {
+      font-size: 0.88rem;
+      line-height: 1.7;
     }
 
     .legacy-muted-flush {
@@ -1033,6 +1157,14 @@
 </head>
 <body>
   <div class="wrap">
+    <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <a class="skip-link" href="#main">跳到正文</a>
+      <a class="skip-link" href="index.html#three-questions">三问导读</a>
+      <a class="skip-link" href="index.html#read-guide">读站指路</a>
+      <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="index.html#reader-next">常见下一站</a>
+    </div>
+    <main id="main" tabindex="-1" aria-label="正文">
     <p class="legacy-pagination-hint">当前为<strong>单文件归档</strong>。<a href="index.html">分页阅读</a>（推荐）· <a href="index.html#three-questions">三问导读</a> · 标题下含<strong>本页内阅读顺序</strong>图示 · 与全站对齐的推进链：<a href="national-strategy-opinion.html">战略·舆情</a> → <a href="social-responsibility-evolution.html">社会责任</a> → <a href="evolution-loop.html">进化闭环</a> → <a href="analysis-hub.html">分析引擎</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="evolvable-architecture.html">可进化架构</a> · <a href="smart-overhaul.html">整体改造</a> → <a href="lab.html">沙盘工坊</a> · <a href="synthesis-methods.html#perpetual">推演·方法 · 持续迭代</a> · <a href="modules-map.html">模块图谱</a></p>
     <header class="hero">
       <h1>基础架构演变推演</h1>
@@ -1040,10 +1172,11 @@
         将技术、合规、地缘、国家安全、资本与组织、个人发展等维度梳理为可浏览的叠加栈，并通过多因子情景沙盘合成「架构启示」。
       </p>
       <div class="read-hint page-head-deck" role="note" aria-label="使用边界与分页真源">
+        <p class="muted note-kicker"><strong>温读入口</strong>：<strong>读者</strong> → <a href="index.html#read-guide">读站指路</a> · <a href="index.html#three-questions">三问</a>；<strong>合 PR</strong> → <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="CONTRIBUTING.md#contributing-env-and-cmd">CONTRIBUTING</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a>；<strong>数据 / 分析</strong> → <a href="docs/README.md#quick-paths">docs · 最短链（0c）</a> · <a href="docs/README.md#content-framework">真源分层</a> · <a href="docs/README.md#front-back-modules">前后台</a> · <a href="docs/README.md#system-components-fusion">组件×主链</a> · <a href="analysis-hub.html">分析引擎</a>。</p>
         <p><strong>定性脚手架</strong>，非单点预言或精确预测。</p>
         <p>仅供战略规划与研讨，<strong>不构成法律或投资建议</strong>。</p>
         <p><strong>真源</strong>：站内叙事以 <a href="index.html">分页 HTML</a> 为准；本页为单文件快照。</p>
-        <p><strong>维护与契约</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a>。</p>
+        <p><strong>维护与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a>。</p>
       </div>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
       <div class="page-flow-strip" role="img" aria-label="单页归档读法：推荐先打开分页总览与三问导读；本页内按目录从全景、十年、模型栈到步进推演与情景沙盘顺序浏览">
@@ -1102,7 +1235,7 @@
     <section id="overview">
       <h2>全景总览</h2>
       <div class="card">
-        <p style="margin: 0 0 0.75rem">
+        <p class="legacy-p-lead-tight">
           未来基础架构更接近<strong>社会技术系统</strong>：在合规与主权划定的边界内，用身份、数据目录、策略与可观测连接分散算力与数据；平台工程降低门槛；FinOps 与韧性设计假设「一定会出事」。
         </p>
         <p class="muted legacy-muted-flush">
@@ -1125,11 +1258,11 @@
       </p>
       <div class="decade-banner">周期假设：算力需求持续增长 · 监管细化 · 地缘不确定性高于过去二十年 · AI 深度嵌入生产系统</div>
 
-      <div class="card" style="overflow-x: auto; padding: 0; margin-bottom: 1rem">
+      <div class="card legacy-card-table-scroll">
         <table>
           <thead>
             <tr>
-              <th style="width: 7rem">维度</th>
+              <th class="legacy-th-w-7">维度</th>
               <th>十年间可能的主旋律</th>
               <th>主要风险或张力</th>
             </tr>
@@ -1231,8 +1364,8 @@
         </div>
       </div>
 
-      <div class="card" style="margin-top: 1rem">
-        <h3 style="margin-top: 0">十年周期的合成结论（用于对齐讨论）</h3>
+      <div class="card legacy-card--mt-section">
+        <h3 class="legacy-h3-flush-top">十年周期的合成结论（用于对齐讨论）</h3>
         <ul class="muted legacy-list-flush">
           <li><strong>技术：</strong>分区化、身份化、可观测化、AI 基础设施化四线并进，且彼此纠缠。</li>
           <li><strong>商业与职业：</strong>固定合规与韧性成本上升，「能过审、能恢复、能解释」成为核心竞争力的一部分。</li>
@@ -1304,8 +1437,8 @@
         <svg viewBox="0 0 920 420" xmlns="http://www.w3.org/2000/svg" width="920" height="420" aria-hidden="true">
           <defs>
             <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#1a2332" />
-              <stop offset="100%" style="stop-color:#141b26" />
+              <stop offset="0%" stop-color="#1a2332" />
+              <stop offset="100%" stop-color="#141b26" />
             </linearGradient>
             <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
               <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.35" />
@@ -1550,7 +1683,7 @@
 
     <section id="matrix">
       <h2>架构平面 × 典型议题</h2>
-      <div class="card" style="overflow-x: auto; padding: 0">
+      <div class="card legacy-card-table-scroll">
         <table>
           <thead>
             <tr>
@@ -1574,7 +1707,7 @@
 
     <section id="geo">
       <h2>地缘冲突 → 基础设施冲击通道</h2>
-      <div class="card" style="overflow-x: auto; padding: 0">
+      <div class="card legacy-card-table-scroll">
         <table>
           <thead>
             <tr>
@@ -1594,7 +1727,7 @@
       </div>
 
       <h3>中小企业 vs 大型组织</h3>
-      <div class="card" style="overflow-x: auto; padding: 0">
+      <div class="card legacy-card-table-scroll">
         <table>
           <thead>
             <tr>
@@ -1615,7 +1748,7 @@
     <section id="biz">
       <h2>创业 · 商业化 · 运营（要点）</h2>
       <div class="card">
-        <h3 style="margin-top: 0">创业</h3>
+        <h3 class="legacy-h3-flush-top">创业</h3>
         <ul class="muted legacy-list-flush">
           <li>早期定数据模型与分区，避免后期拆分成本碾压。</li>
           <li>多租户 + 区域 cell，合同与部署同步设计。</li>
@@ -1683,6 +1816,17 @@
         ↓
 → 业务降级与恢复闭环</div>
     </section>
+
+    <section class="card legacy-archive-next" aria-labelledby="legacy-archive-next-h">
+      <p class="legacy-archive-next-kicker" id="legacy-archive-next-h">单页归档 · 下一站</p>
+      <ul class="legacy-archive-next-list">
+        <li><a href="index.html#read-guide">分页总览 · 读站指路</a></li>
+        <li><a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a></li>
+        <li><a href="lab.html#main">沙盘工坊（分页）</a></li>
+      </ul>
+    </section>
+
+    </main>
 
     <footer>
       本地单页：可直接用浏览器打开本文件。若要团队共创，可将本目录置于任意静态服务器或内网 Wiki 中引用。分页版总览见 <a href="index.html">index.html</a>；全站三问骨架见 <a href="index.html#three-questions">index.html#three-questions</a>。若从分页站打开 <a href="evolution-loop.html">进化闭环</a> / <a href="analysis-hub.html">分析引擎</a> 等需 <code>fetch</code> JSON 的页面，请用 HTTP（如本目录 <code>docker compose</code> 或 <code>python -m http.server</code>），勿依赖 <code>file://</code>。
@@ -1983,7 +2127,7 @@
       renderStep();
     })();
   </script>
-  <script src="assets/site-data-bus.js"></script>
-  <script src="assets/motion.js"></script>
+  <script src="assets/site-data-bus.js" defer></script>
+  <script src="assets/motion.js" defer></script>
 </body>
 </html>

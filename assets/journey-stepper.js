@@ -87,7 +87,10 @@
       var r = sec.getBoundingClientRect();
       var cy = r.top + Math.min(Math.max(r.height * 0.22, 24), 140);
       var pct = vh > 0 ? (cy / vh) * 100 : 50;
-      dot.style.top = Math.max(-6, Math.min(106, pct)) + "%";
+      dot.style.setProperty(
+        "--corridor-mark-top",
+        Math.max(-6, Math.min(106, pct)) + "%"
+      );
       var near = pct > -14 && pct < 114;
       dot.classList.toggle("is-active", i === current);
       dot.classList.toggle("is-offscreen", !near);
@@ -143,9 +146,15 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
   } else {
+    var scheduledNoStepper = false;
     function onScrollNoStepper() {
-      corridorFill();
-      updateSpineMarks();
+      if (scheduledNoStepper) return;
+      scheduledNoStepper = true;
+      requestAnimationFrame(function () {
+        scheduledNoStepper = false;
+        corridorFill();
+        updateSpineMarks();
+      });
     }
     window.addEventListener("scroll", onScrollNoStepper, { passive: true });
     window.addEventListener("resize", onScrollNoStepper, { passive: true });

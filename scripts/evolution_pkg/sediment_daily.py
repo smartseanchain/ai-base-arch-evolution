@@ -7,15 +7,16 @@ from __future__ import annotations
 
 import json
 import sys
-from datetime import date
 from pathlib import Path
 from typing import Any
+
+from evolution_pkg.beijing_time import today_iso_beijing
 
 
 def append_daily_sediment(sediment_path: Path, snapshot_meta: dict[str, Any]) -> None:
     """当日条目存在则 ``update``，否则 ``append``；SQLite 失败时 stderr 警告，JSON 已落盘。"""
     sediment_path.parent.mkdir(parents=True, exist_ok=True)
-    today = date.today().isoformat()
+    today = today_iso_beijing()
     if sediment_path.is_file():
         data = json.loads(sediment_path.read_text(encoding="utf-8"))
     else:

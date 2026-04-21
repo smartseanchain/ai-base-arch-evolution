@@ -68,6 +68,7 @@ def load_settings() -> Settings:
 READONLY_PROXY_SEGMENTS: frozenset[str] = frozenset(
     {
         "ai-analysis-overlay",
+        "ai-overlay-step",
         "candidates",
         "health",
         "ingest-config",
@@ -81,6 +82,7 @@ READONLY_PROXY_SEGMENTS: frozenset[str] = frozenset(
         "registry",
         "sediment",
         "site-meta",
+        "site-search-index",
         "openapi.json",
         "docs",
     }

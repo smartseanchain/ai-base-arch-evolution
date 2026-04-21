@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/pipeline-metrics.schema.json",
+  "title": "artifacts/pipeline-metrics-*.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "pipeline",
+    "telemetry_run_id",
+    "started_at",
+    "finished_at",
+    "repo_revision",
+    "success",
+    "failed_step",
+    "input_artifacts",
+    "otel_semantics",
+    "steps"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "pipeline": { "type": "string", "enum": ["analyze", "fast"] },
+    "telemetry_run_id": { "type": "string", "minLength": 1 },
+    "started_at": { "type": "string", "minLength": 1 },
+    "finished_at": { "type": "string", "minLength": 1 },
+    "repo_revision": { "type": "string" },
+    "success": { "type": "boolean" },
+    "failed_step": { "type": ["string", "null"] },
+    "input_artifacts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["relpath"],
+        "additionalProperties": false,
+        "properties": {
+          "relpath": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "bytes": { "type": "integer", "minimum": 0 },
+          "missing": { "type": "boolean" }
+        }
+      }
+    },
+    "otel_semantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hint_version", "span_name_field", "notes"],
+      "properties": {
+        "hint_version": { "type": "integer", "minimum": 1 },
+        "span_name_field": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "ai_overlay_step": {
+      "type": "object",
+      "description": "可选：来自 artifacts/ai-overlay-step.json（管道结束时快照），与 ai-overlay-step.schema.json 对表；LLM 成功时可含 usage 与派生 otel_hints",
+      "additionalProperties": true
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "otel_span_name",
+          "argv",
+          "duration_ms",
+          "exit_code",
+          "stderr_tail"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "otel_span_name": { "type": "string" },
+          "argv": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "duration_ms": { "type": "number" },
+          "exit_code": { "type": "integer" },
+          "stderr_tail": { "type": "string" }
+        }
+      }
+    }
+  }
+}

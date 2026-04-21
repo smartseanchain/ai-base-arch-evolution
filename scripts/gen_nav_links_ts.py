@@ -3,6 +3,8 @@
 由 spa/nav.config.json 生成 spa/src/navLinks.ts（路由与 evolution-registry.json 对齐）。
 用法：python3 scripts/gen_nav_links_ts.py --write
 无参数：比对 navLinks.ts 与配置是否一致（同 check_nav_links_registry）
+
+对表: docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · spa/README.md
 """
 from __future__ import annotations
 

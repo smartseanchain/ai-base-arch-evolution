@@ -1,4 +1,5 @@
 # 全站 SPA 静态产物（与 spa/README、make spa-build 一致）。构建前须在仓库根执行：make spa-build
+# 双轨动线 / 枢纽：docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix
 # 构建：docker build -f Dockerfile.spa -t ai-arch-evolution:spa .
 # 若 spa/dist 不存在，构建将失败 — 请先 npm run build / make spa-build。
 FROM busybox:1.36

@@ -74,6 +74,9 @@ def main() -> None:
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
+      <a class="skip-link" href="index.html#read-guide">读站指路</a>
+      <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="index.html#reader-next">常见下一站</a>
     </div>
     <header class="site-nav">
       <div class="site-nav-start">
@@ -87,9 +90,8 @@ def main() -> None:
       </nav>
     </header>
 
-
-
-    <div id="main" class="page-head" tabindex="-1">
+    <main id="main" tabindex="-1" aria-label="正文">
+    <div class="page-head">
       <h1>综合推演（主篇）：模块、判据、配方与工作台</h1>
       <p class="lead">
         整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页保留<strong>元梳理主干</strong>：<strong>§1</strong> 模块变量表、<strong>§2</strong> 五条判据、<strong>§3—§4</strong> 关联与合成轴、<strong>§5</strong> 配方 A—H，以及 <strong>§10</strong> 工作台。为减轻单页过长，<strong>§6—§9</strong>（叠加五域、复合总表、三簇图景、五维切片）已迁至 <a href="synthesis-extensions.html">综合推演 · 扩展图景</a>；<strong>§11—§13</strong>（持续迭代、跨学科办法、深读透镜）迁至 <a href="synthesis-methods.html">综合推演 · 方法与透镜</a>。读数与闭环仍与全站一致：<a href="docs/DEDUCTION_STRATEGY.md">科学推演策略</a>、<a href="evolution-loop.html">进化闭环</a>、<a href="analysis-hub.html">分析引擎</a>。
@@ -152,6 +154,9 @@ def main() -> None:
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
+      <a class="skip-link" href="index.html#read-guide">读站指路</a>
+      <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="index.html#reader-next">常见下一站</a>
     </div>
     <header class="site-nav">
       <div class="site-nav-start">
@@ -165,9 +170,8 @@ def main() -> None:
       </nav>
     </header>
 
-
-
-    <div id="main" class="page-head" tabindex="-1">
+    <main id="main" tabindex="-1" aria-label="正文">
+    <div class="page-head">
       <h1>综合推演 · 扩展图景（§6—§9）</h1>
       <p class="lead">
         本页为 <a href="synthesis.html">综合推演主篇</a> 的<strong>扩展子页</strong>，承载原 §6—§9：<strong>叠加五域</strong>、<strong>复合焦点总表</strong>、<strong>三簇图景</strong>、<strong>五维形态切片</strong>。判据与配方 A—H 见主篇 <a href="synthesis.html#criteria">§2</a>、<a href="synthesis.html#recipes">§5</a>；工作台见 <a href="synthesis.html#workflow">§10</a>；持续迭代与跨学科办法见 <a href="synthesis-methods.html">方法与透镜</a>。
@@ -220,6 +224,9 @@ def main() -> None:
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
+      <a class="skip-link" href="index.html#read-guide">读站指路</a>
+      <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="index.html#reader-next">常见下一站</a>
     </div>
     <header class="site-nav">
       <div class="site-nav-start">
@@ -233,9 +240,8 @@ def main() -> None:
       </nav>
     </header>
 
-
-
-    <div id="main" class="page-head" tabindex="-1">
+    <main id="main" tabindex="-1" aria-label="正文">
+    <div class="page-head">
       <h1>综合推演 · 方法与透镜（§11—§13）</h1>
       <p class="lead">
         本页为 <a href="synthesis.html">综合推演主篇</a> 的<strong>方法子页</strong>：原 <strong>§11</strong> 持续迭代与扩展插槽、<strong>§12</strong> 跨学科推演办法、<strong>§13</strong> 深读透镜。模块表与判据见主篇 <a href="synthesis.html#inventory">§1</a>、<a href="synthesis.html#criteria">§2</a>；五域与复合表见 <a href="synthesis-extensions.html">扩展图景</a>；工作台见 <a href="synthesis.html#workflow">§10</a>。
@@ -289,7 +295,9 @@ def main() -> None:
     ext_body = fix_ext("".join(lines[476:956]))
     meth_body = fix_meth("".join(lines[974:1277]))
 
-    FOOT_EXT = """    <footer>
+    FOOT_EXT = """    </main>
+
+    <footer>
       <a href="synthesis.html">← 综合推演主篇</a> · <a href="synthesis-methods.html">方法与透镜</a> · <a href="modules-map.html">模块图谱</a> · <a href="lab.html">沙盘工坊</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="index.html">总览</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
@@ -299,7 +307,9 @@ def main() -> None:
 </html>
 """
 
-    FOOT_METH = """    <footer>
+    FOOT_METH = """    </main>
+
+    <footer>
       <a href="synthesis.html">← 综合推演主篇</a> · <a href="synthesis-extensions.html">扩展图景</a> · <a href="modules-map.html">模块图谱</a> · <a href="lab.html">沙盘工坊</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="index.html">总览</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
@@ -348,7 +358,9 @@ def main() -> None:
         "再回 <a href=\"synthesis-extensions.html#matrix\">§7</a>/<a href=\"synthesis-extensions.html#stack-domains\">§6</a>。",
     )
 
-    FOOT_MAIN = """    <footer>
+    FOOT_MAIN = """    </main>
+
+    <footer>
       <a href="decade-scenes.html">← 十年场景</a> · <a href="synthesis-extensions.html">扩展图景 §6—§9</a> · <a href="synthesis-methods.html">方法与透镜 §11—§13</a> · <a href="modules-map.html">模块图谱</a> · <a href="evolvable-architecture.html">可进化架构</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="smart-overhaul.html">整体改造</a> · <a href="lab.html">沙盘工坊</a> · <a href="evolution-triad.html">人与AI演进</a> · <a href="index.html">总览</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>

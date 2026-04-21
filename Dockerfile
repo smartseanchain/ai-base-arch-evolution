@@ -1,4 +1,5 @@
 # 根目录 MPA 静态站点（与 CI validate 默认真源一致）；busybox httpd，镜像小。全站 SPA 见 Dockerfile.spa · spa/README · make spa-build。
+# 双轨 / merge / 枢纽：docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help
 FROM busybox:1.36
 WORKDIR /www
 LABEL org.opencontainers.image.title="ai-base-arch-evolution-mp" \

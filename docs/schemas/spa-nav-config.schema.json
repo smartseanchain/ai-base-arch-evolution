@@ -28,6 +28,11 @@
           "label": {
             "type": "string",
             "minLength": 1
+          },
+          "group": {
+            "type": "string",
+            "minLength": 1,
+            "description": "可选；连续相同 group 的条目在顶栏合成一组下拉；缺省则单独成链"
           }
         }
       }

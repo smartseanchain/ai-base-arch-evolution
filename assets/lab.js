@@ -164,7 +164,7 @@
 
     if (sel.length === 0) {
       out.innerHTML =
-        '<h4>合成启示</h4><p class="muted" style="margin:0">请至少选择一个因子。</p>';
+        '<h4>合成启示</h4><p class="muted">请至少选择一个因子。</p>';
       return;
     }
 

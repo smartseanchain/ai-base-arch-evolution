@@ -1,8 +1,12 @@
 # 方法论分析 + 可配置 AI 解读层
 
-本文与 **[ARCHITECTURE.md](./ARCHITECTURE.md)**（数据流、**`analysis_engine` 不写 HTML**）、**[DATA_CONTRACTS.md](./DATA_CONTRACTS.md)**（快照契约）、**[PLATFORM_EXTENSIBILITY](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md#invariants)**（不变量）、**[USER_ADMIN_SPLIT · §1c](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#front-three-sources)**（前台三源）对齐，说明：**数据分析结论**如何在**确定性方法论产出**之上，**可选地**叠加 **AI 服务**生成的解读，以及如何通过**配置**接入外部模型，而不削弱闸门与人审语义。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
 
-**已实现（契约层）**：**`docs/schemas/ai-analysis-overlay.schema.json`**、**`validate_ai_analysis_overlay_schema.py`**（并入 **`make validate` / `make test`**）、**`write_ai_analysis_overlay_stub.py`**（无 LLM 的占位写入）。**尚未默认实现**：对外呼 LLM 的步骤须另 PR，并落实**密钥管理**与**发布策略**（见下文检查单）。**只读 GET** **`/ai-analysis-overlay`** 已随磁盘路由注册。
+本文与 **[ARCHITECTURE.md](./ARCHITECTURE.md)**（数据流、**`analysis_engine` 不写 HTML**）、**[DATA_CONTRACTS.md](./DATA_CONTRACTS.md)**（快照契约）、**[PLATFORM_EXTENSIBILITY](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md#invariants)**（不变量）、**[USER_ADMIN_SPLIT · §1c](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#front-three-sources)**（前台三源）对齐，说明：**数据分析结论**如何在**确定性方法论产出**之上，**可选地**叠加 **AI 服务**生成的解读，以及如何通过**配置**接入外部模型，而不削弱闸门与人审语义。**站内「AI + 自动进化」全文收束**（overlay · 黄金集 · 草稿插槽 · 管道节奏；**非**全自动改 manifest）：**[docs/README · #ai-assisted-evolution](./README.md#ai-assisted-evolution)** · **[INTELLIGENCE · §8](./INTELLIGENCE_SIX_DOMAINS.md#ai-era-alignment)**。
+
+**已实现（契约层）**：**`docs/schemas/ai-analysis-overlay.schema.json`**、**`validate_ai_analysis_overlay_schema.py`**（并入 **`make validate` / `make test`**）、**`write_ai_analysis_overlay_stub.py`**（向后兼容入口）、**`write_ai_analysis_overlay.py`**（默认跳过；**`--stub`** 占位；**`AI_OVERLAY_ENABLE=1`** + **`AI_OVERLAY_API_BASE`** / **`AI_OVERLAY_API_KEY`** 时可选调用 OpenAI 兼容 **`/v1/chat/completions`**，见 **`evolution_pkg.ai_overlay_write`**）。**合并前仍须**：密钥仅 env、overlay **不**进快照必填域；外呼失败默认软回退（**`AI_OVERLAY_ON_FAILURE`**，见下文检查单）。**只读 GET** **`/ai-analysis-overlay`** 已随磁盘路由注册。**主链联动 · 仓库物理分层**（`assets/` 叠加层与脚本闸门对读）：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。**自动化助手（overlay 不替代人审 · 分析边界）**：[AGENTS.md · 人审闸门](../AGENTS.md#agents-invariants) · [架构边界](../AGENTS.md#agents-arch-boundary) · [合并前](../AGENTS.md#agents-pre-merge)。**呈现双轨（`spa-sync` / `spa-build`）**：[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map)。**MPA 顶栏模板（`partials/`）**：**`make sync-nav`**；**`404.html`** 手调（`sync_site_nav` 不写回）— **[scripts/README · `sync_site_nav`](../scripts/README.md)**。
+
+<a id="ai-assisted-overlay"></a>
 
 ---
 
@@ -16,7 +20,7 @@
 **原则**：
 
 1. **不把 LLM 输出并入 `analysis-snapshot.json` 的必填域**，避免 CI 对非确定性文本做强闸门时抖动或掩盖确定性指标。  
-2. **AI 不直接写 `evolution-manifest.json`、不写候选真源**；与 **[AGENTS.md](../AGENTS.md)** 人审不变量一致。  
+2. **AI 不直接写 `evolution-manifest.json`、不写候选真源**；与 **[AGENTS.md](../AGENTS.md#agents-invariants)** 人审不变量一致。  
 3. **叙事类长文草稿**仍优先走 **`scripts/draft/`**（[README](../scripts/draft/README.md)）；本层侧重**「对当日/近期分析结果的解读与对照」**，与纯页面草稿分流。  
 4. **密钥与 endpoint** 只出现在**环境变量或密钥管理器**，**不进**静态管理页、**不进**提交的 JSON（示例见 **`docs/examples/ai_analysis_overlay.example.json`**）。
 
@@ -44,7 +48,7 @@
 
 **优点**：`validate_analysis_snapshot_schema.py` 与 **`analysis_engine --check`** 保持纯粹；AI 步骤失败**不**阻断确定性快照；可按环境 **省略该文件** 发布。
 
-**只读 API**：已注册 **`GET /ai-analysis-overlay`**（磁盘 **`assets/ai-analysis-overlay.json`**；无文件 **404**），与 [INTEGRATION · 路由一览](./INTEGRATION_AND_READONLY_API.md) 及 **`admin-console`** **`READONLY_PROXY_SEGMENTS`** 对表；**不**混用 **`/snapshot`** 的语义。
+**只读 API**：已注册 **`GET /ai-analysis-overlay`**（磁盘 **`assets/ai-analysis-overlay.json`**；无文件 **404**）与 **`GET /ai-overlay-step`**（**`artifacts/ai-overlay-step.json`** 侧车遥测；未跑步骤则无文件 **404**），与 [INTEGRATION · 路由一览](./INTEGRATION_AND_READONLY_API.md) 及 **`admin-console`** **`READONLY_PROXY_SEGMENTS`** 对表；**不**混用 **`/snapshot`** 的语义。
 
 ---
 
@@ -60,14 +64,9 @@
 
 ### 4.2 管道挂载点
 
-与 **[EVOLUTION_RUNBOOK](./EVOLUTION_RUNBOOK.md)**、**`evolution_pkg.pipeline.runner`** 对表：建议在 **`analysis_engine` 成功写快照并 `--check` 通过之后**，增加**可选步骤** `ai_overlay`（命名示例）：
+与 **[EVOLUTION_RUNBOOK](./EVOLUTION_RUNBOOK.md)**、**`evolution_pkg.pipeline.runner`** 对表：**`make analyze` / `evolution-fast`** 在 **`analysis_engine --check` 之后**、**`validate_ai_analysis_overlay_schema` 之前**运行 **`scripts/write_ai_analysis_overlay.py`**（步骤 id **`write_ai_analysis_overlay`**）。默认**不写盘、不联网**（未设置 **`AI_OVERLAY_ENABLE=1`** 时退出 0）；启用时读 **`assets/analysis-snapshot.json`** 与可选 **`assets/sediment-trends.json`**，调用外部 API 后写 **`assets/ai-analysis-overlay.json`**。该步骤**不**并入 **`analysis_engine.py`**。
 
-- 读 **`assets/analysis-snapshot.json`**（及可选 **`sediment-trends.json`** 摘要）；  
-- 读配置判断是否 **`enabled`**；  
-- 若启用则调用外部 API，写 **`assets/ai-analysis-overlay.json`**；  
-- 该步骤**失败**时策略二选一并在文档中写死：**软失败仅告警**（推荐默认）或 **硬失败阻断**（仅在内网严格环境）。
-
-**不要**把该步骤塞进 **`analysis_engine.py` 核心路径**的第一版实现，以免分析核心与供应商 SDK 强耦合；宜 **独立脚本** + runner 一步。
+- **失败策略**（环境变量 **`AI_OVERLAY_ON_FAILURE`**）：**`stub`**（默认，回退占位 overlay）、**`skip`**（不写文件）、**`fail`**（非 0 退出，阻断流水线）。
 
 ---
 
@@ -85,7 +84,7 @@
 ## 6. 落地检查单（维护者）
 
 - [x] **Schema 与校验**：overlay 独立契约；**不**扩展 `analysis-snapshot` 的 `required`（**`validate_ai_analysis_overlay_schema.py`**；存在 overlay 时与快照 **`run_id` 对账**）。  
-- [ ] **密钥**：无密钥进 Git；扫描与 pre-commit 规则与团队策略一致。  
+- [x] **可选外呼**：**`write_ai_analysis_overlay.py`** + env（**无密钥进 Git**）；扫描与 pre-commit 规则与团队策略一致。  
 - [x] **血缘**：overlay 内 **`source_run_id`** 与 **`analysis-snapshot.json`** 的 **`run.run_id`** 在校验脚本中对账（快照缺失时仅验 Schema）。  
 - [x] **前台文案**：**`analysis-hub`** 经 **`analysis.js`** 独立区块展示，含免责声明与 **`run_id`** 不一致提示。  
 - [ ] **成本与合规**：日志保留、不向模型发送 PII/未授权正文；遵守供应商条款。  

@@ -1,14 +1,13 @@
 """
-管理端控制台脚手架：健康检查、静态占位、只读 API 受控代理、CORS、开发用 /api/me。
-
-不写 ``evolution-manifest``、不代理写操作。只读 API 见仓库 ``scripts/readonly_api.py``。
-规划见 ``docs/ADMIN_WEB_CONSOLE_ROADMAP.md``。
+管理端：静态仪表盘 + /api/bootstrap + 只读 API 同源代理；不写 manifest、不代理写操作。
+只读 API 见 ``scripts/readonly_api.py``；规划见 ``docs/ADMIN_WEB_CONSOLE_ROADMAP.md``。
 """
 from __future__ import annotations
 
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime
+from zoneinfo import ZoneInfo
 import threading
 from pathlib import Path
 from typing import Any
@@ -76,28 +75,31 @@ def _load_control_plane_roadmap() -> dict[str, Any]:
 
 # ``/api/bootstrap`` 内 ``pipeline_links``：供控制台拼 Git 托管文档/真源外链（路径相对仓库根）。
 _PIPELINE_LINK_ITEMS: tuple[tuple[str, str], ...] = (
-    ("管道 UI · 数据源与沉淀链", "docs/ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md"),
-    ("管理端控制台框架总览", "docs/ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md"),
-    ("管理端 Web 路线图（登录与分阶段）", "docs/ADMIN_WEB_CONSOLE_ROADMAP.md"),
-    ("读者/管理分拆与审核分层 L0—L5", "docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md"),
-    ("运行手册（ingest / analyze 节奏）", "docs/EVOLUTION_RUNBOOK.md"),
-    ("数据契约与沉淀", "docs/DATA_CONTRACTS.md"),
-    ("方法论分析 + 可选 AI 解读层", "docs/AI_ASSISTED_ANALYSIS_LAYER.md"),
-    ("数据存储后续（侧车/OLTP/CDC 排期）", "docs/DATA_STORES_AND_FUTURE_DB_ARCHITECTURE.md"),
+    ("管道与数据源 UI", "docs/ADMIN_PIPELINE_UI_AND_DATA_SOURCE_MIGRATION.md"),
+    ("管理端框架总览", "docs/ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md"),
+    ("管理端路线图", "docs/ADMIN_WEB_CONSOLE_ROADMAP.md"),
+    ("读者/管理与审核分层", "docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md"),
+    ("运行手册：ingest / analyze", "docs/EVOLUTION_RUNBOOK.md"),
+    ("舆情与制度跟踪", "docs/INTEL_AND_POLICY_TRACKING_PLAYBOOK.md"),
+    ("舆情类产品对标（参考）", "docs/REFERENCE_DESIGN_OPINION_MONITORING.md"),
+    ("数据契约", "docs/DATA_CONTRACTS.md"),
+    ("AI 辅助分析层", "docs/AI_ASSISTED_ANALYSIS_LAYER.md"),
+    ("数据存储与后续架构", "docs/DATA_STORES_AND_FUTURE_DB_ARCHITECTURE.md"),
     ("只读 API 集成", "docs/INTEGRATION_AND_READONLY_API.md"),
-    ("编排与事件流（阶段规划）", "docs/ORCHESTRATION_AND_EVENT_STREAMING.md"),
-    ("合并与发布自检清单", "docs/MERGE_AND_RELEASE_CHECKLIST.md"),
-    ("抓取与路由配置（JSON）", "scripts/ingest_config.json"),
-    ("ingest 映射提示（JSON）", "scripts/maps_to_hints.json"),
+    ("编排与事件流", "docs/ORCHESTRATION_AND_EVENT_STREAMING.md"),
+    ("合并与发布清单", "docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge"),
+    ("MERGE · partials 手顺", "docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence"),
+    ("ingest 配置", "scripts/ingest_config.json"),
+    ("ingest 映射提示", "scripts/maps_to_hints.json"),
 )
 
 # 与 ``EVOLUTION_RUNBOOK`` 对齐的只读「命令链」占位（控制台展示，不代为执行）。
 _PIPELINE_CLI_HINTS: tuple[tuple[str, str], ...] = (
-    ("抓取候选（真源仍须本地提交或 PR）", "make ingest"),
-    ("合并前完整闸门（与 CI validate 同款语义）", "make validate"),
-    ("合并 PR 前推荐（validate + test-readonly-api + test-admin-console）", "make merge-ready"),
-    ("分析 + 沉淀 + 趋势（前置至单测；合并前仍须完整 validate）", "make analyze"),
-    ("已 validate 后仅重算沉淀与趋势", "make evolution-fast"),
+    ("抓取候选入池", "make ingest"),
+    ("合并前完整校验", "make validate"),
+    ("PR 前推荐一键", "make merge-ready"),
+    ("分析 + 沉淀 + 趋势", "make analyze"),
+    ("校验通过后快算趋势", "make evolution-fast"),
 )
 
 _GITHUB_BLOB_BASE = re.compile(
@@ -131,8 +133,16 @@ def _github_workflow_ui_href(repo_web_base: str, workflow_filename: str) -> str:
 
 # 与 ``docs/EVOLUTION_RUNBOOK.md`` ·「自动化周历（GitHub Actions）」对表；文件名须与 ``.github/workflows/`` 一致。
 _PIPELINE_WORKFLOWS: tuple[tuple[str, str, str], ...] = (
-    ("Ingest candidates", "每周二 08:00 UTC", "ingest-pipeline.yml"),
-    ("Update pipeline", "每周一 16:00 UTC", "update-pipeline.yml"),
+    (
+        "Ingest candidates",
+        "每周二 16:00 北京时间（GitHub cron 08:00 UTC）",
+        "ingest-pipeline.yml",
+    ),
+    (
+        "Update pipeline",
+        "每周二 00:00 北京时间（GitHub cron 周一 16:00 UTC）",
+        "update-pipeline.yml",
+    ),
     ("PR · refresh candidates", "手动", "pr-candidates.yml"),
     ("CI", "push / PR", "ci.yml"),
 )
@@ -193,7 +203,7 @@ def _shared_httpx_client() -> httpx.Client:
 app = FastAPI(
     title="ai-arch-evolution-admin-console",
     version="0",
-    description="管理端脚手架；认证与写路径见 ADMIN_WEB_CONSOLE_ROADMAP.md",
+    description="演进站点管理端：只读仪表盘与代理；认证与写路径见 ADMIN_WEB_CONSOLE_ROADMAP.md",
 )
 
 _cfg = load_settings()
@@ -251,7 +261,7 @@ def me() -> JSONResponse:
             "authenticated": False,
             "sub": None,
             "roles": [],
-            "hint": "生产环境请接 IdP；本地可设 ADMIN_DEV_BYPASS=1 与 ADMIN_DEV_USER_JSON（见 admin-console/README）",
+            "hint": "生产请接 IdP；本地演示见 ADMIN_DEV_BYPASS 与 ADMIN_DEV_USER_JSON（admin-console/README）",
         }
     )
 
@@ -259,12 +269,13 @@ def me() -> JSONResponse:
 @app.get("/api/bootstrap", response_model=None)
 def bootstrap() -> JSONResponse:
     s = load_settings()
-    server_now = datetime.now(timezone.utc).replace(microsecond=0)
-    server_time_utc = server_now.isoformat().replace("+00:00", "Z")
+    tz_cn = ZoneInfo("Asia/Shanghai")
+    server_now = datetime.now(tz_cn).replace(microsecond=0)
+    server_time_beijing = server_now.isoformat()
     return JSONResponse(
         {
             "service": "admin-console",
-            "server_time_utc": server_time_utc,
+            "server_time_beijing": server_time_beijing,
             "readonly_api_base_url": s.readonly_api_base_url,
             "readonly_proxy_segments": sorted(READONLY_PROXY_SEGMENTS),
             "docs_roadmap": "docs/ADMIN_WEB_CONSOLE_ROADMAP.md",

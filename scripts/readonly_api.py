@@ -15,16 +15,16 @@
 或先: pip install -r requirements-api.txt
 
 OpenAPI: GET /openapi.json · Swagger UI: GET /docs。部署与 CORS/鉴权见 docs/INTEGRATION_AND_READONLY_API.md。
+
+合并与呈现总索引: docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix
 """
 from __future__ import annotations
 
 import sys
-from pathlib import Path
 from typing import Callable, Optional, Union
 
+from evolution_pkg.io import REPO_ROOT
 from evolution_pkg.ops.http_cache import prepare_dynamic_json, prepare_revalidated_json
-
-_ROOT = Path(__file__).resolve().parent.parent
 
 try:
     from fastapi import FastAPI, Request
@@ -36,13 +36,39 @@ except ImportError:
     )
     raise
 
-app = FastAPI(title="ai-base-arch-evolution-readonly", version="1")
+_OPENAPI_DESCRIPTION = (
+    "只读 JSON over HTTP：正文来自仓库**已提交**磁盘 JSON 或本地 SQLite 侧车；"
+    "**不提供写接口**（不写 manifest、不改真源文件）。\n\n"
+    "路由 ↔ 磁盘路径 ↔ 敏感性总表：**docs/DATA_CONTRACTS.md** §8.1（锚点 `readonly-api-routes`）。\n"
+    "缓存：**ETag** + **If-None-Match** → **304**；动态 JSON 为 **no-store**。\n\n"
+    "集成建议：拉取 **GET /openapi.json** 生成客户端或契约测试；敏感路径请在网关 ACL / 鉴权后再对公网暴露。"
+)
+
+app = FastAPI(
+    title="基础架构演变推演 · 只读 API",
+    description=_OPENAPI_DESCRIPTION,
+    version="1",
+    openapi_tags=[
+        {
+            "name": "health",
+            "description": "存活检查（无 ETag 游戏）",
+        },
+        {
+            "name": "disk-json",
+            "description": "已提交磁盘 JSON；`public, max-age=0, must-revalidate` + ETag",
+        },
+        {
+            "name": "snapshot-history",
+            "description": "SQLite `analysis_snapshot_history`；`private, no-store`",
+        },
+    ],
+)
 
 
 def _json_file_response(
     rel: str, if_none_match: Optional[str] = None
 ) -> Union[Response, JSONResponse]:
-    p = _ROOT / rel
+    p = REPO_ROOT / rel
     if not p.is_file():
         return JSONResponse(
             {"error": "not_found", "path": rel},
@@ -95,12 +121,15 @@ def _register_disk_json_routes() -> None:
 
     for spec in READONLY_DISK_JSON_ROUTES:
         op = "readonly_get_" + spec.path.strip("/").replace("-", "_")
-        app.get(spec.path, response_model=None, description=spec.description)(
-            _make_disk_json_endpoint(spec.rel_path, op, spec.description)
-        )
+        app.get(
+            spec.path,
+            response_model=None,
+            description=spec.description,
+            tags=["disk-json"],
+        )(_make_disk_json_endpoint(spec.rel_path, op, spec.description))
 
 
-@app.get("/health", response_model=None)
+@app.get("/health", response_model=None, tags=["health"])
 def health() -> Response:
     body = b'{"status":"ok"}'
     return Response(
@@ -113,7 +142,7 @@ def health() -> Response:
 _register_disk_json_routes()
 
 
-@app.get("/snapshot-history", response_model=None)
+@app.get("/snapshot-history", response_model=None, tags=["snapshot-history"])
 def snapshot_history(
     request: Request, limit: int = 30, offset: int = 0
 ) -> Response:
@@ -135,7 +164,7 @@ def snapshot_history(
     )
 
 
-@app.get("/snapshot-history/{run_id}", response_model=None)
+@app.get("/snapshot-history/{run_id}", response_model=None, tags=["snapshot-history"])
 def snapshot_history_by_run(
     run_id: str, request: Request
 ) -> Union[Response, JSONResponse]:

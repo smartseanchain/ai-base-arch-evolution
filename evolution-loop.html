@@ -24,12 +24,15 @@
 <body>
   <div class="wrap">
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py）。maintainer-hub 在五链后另拼 #mh-*（MAINTAINER_HUB_SKIP_EXTRA）。404 / legacy-all-in-one 不经此脚本写回。 -->
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
       <a class="skip-link" href="index.html#read-guide">读站指路</a>
       <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="index.html#reader-next">常见下一站</a>
     </div>
     <header class="site-nav">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py · build_header）。 -->
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
@@ -37,46 +40,75 @@
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
-        <a href="nexus.html">立体联结</a>
-        <a href="edu-nexus.html">教育纵轴</a>
-        <a href="evolution-triad.html">人与AI演进</a>
-        <a href="work-infra-energy.html">职业·基建·能源</a>
-        <a href="model.html">分层模型</a>
-        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
-        <a href="architecture.html">架构拓扑</a>
-        <a href="timeline.html">历史演进</a>
-        <a href="past-future.html">廿年视角</a>
-        <a href="decade.html">十年展望</a>
-        <a href="decade-scenes.html">十年场景</a>
-        <a href="decade-us.html">十年之问</a>
-        <a href="modules-map.html">模块图谱</a>
-        <a href="synthesis.html">综合推演</a>
-        <a href="synthesis-extensions.html">推演·扩展</a>
-        <a href="synthesis-methods.html">推演·方法</a>
-        <a href="risk-geo.html">地缘与商业</a>
-        <a href="net-biz-capital.html">网·商·资·工</a>
-        <a href="national-strategy-opinion.html">战略·舆情</a>
-        <a href="social-responsibility-evolution.html">社会责任</a>
-        <a href="evolution-loop.html" class="current">进化闭环</a>
-        <a href="analysis-hub.html">分析引擎</a>
-        <a href="intelligent-evolution.html">智能进化</a>
-        <a href="smart-overhaul.html">整体改造</a>
-        <a href="evolvable-architecture.html">可进化架构</a>
-        <a href="lab.html">沙盘工坊</a>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">联结与模型</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="nexus.html">立体联结</a></li>
+            <li><a href="edu-nexus.html">教育纵轴</a></li>
+            <li><a href="evolution-triad.html">人与AI演进</a></li>
+            <li><a href="model.html">分层模型</a></li>
+            <li><a href="modules-map.html">模块图谱</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">时间与情景</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="timeline.html">历史演进</a></li>
+            <li><a href="past-future.html">廿年视角</a></li>
+            <li><a href="decade.html">十年展望</a></li>
+            <li><a href="decade-scenes.html">十年场景</a></li>
+            <li><a href="decade-us.html">十年之问</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">推演与沙盘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="synthesis.html">综合推演</a></li>
+            <li><a href="synthesis-extensions.html">推演·扩展</a></li>
+            <li><a href="synthesis-methods.html">推演·方法</a></li>
+            <li><a href="lab.html">沙盘工坊</a></li>
+            <li><a href="evolution-loop.html" class="current">进化闭环</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">制度与地缘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="work-infra-energy.html">职业·基建·能源</a></li>
+            <li><a href="risk-geo.html">地缘与商业</a></li>
+            <li><a href="net-biz-capital.html">网·商·资·工</a></li>
+            <li><a href="national-strategy-opinion.html">战略·舆情</a></li>
+            <li><a href="social-responsibility-evolution.html">社会责任</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">架构与分析</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="architecture.html">架构拓扑</a></li>
+            <li><a href="analysis-hub.html">分析引擎</a></li>
+            <li><a href="intelligent-evolution.html">智能进化</a></li>
+            <li><a href="smart-overhaul.html">整体改造</a></li>
+            <li><a href="evolvable-architecture.html">可进化架构</a></li>
+          </ul>
+        </details>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
-      <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      <div class="site-nav-meta-row">
+        <div class="site-nav-search-host" data-site-quick-search aria-live="polite"></div>
+        <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      </div>
     </header>
 
-
-
-    <div id="main" class="page-head" tabindex="-1">
+    <main id="main" tabindex="-1" aria-label="正文">
+    <div class="page-head">
       <h1>进化闭环：让推演随观测「长出来」</h1>
       <p class="lead">
         本站所谓<strong>自动进化</strong>，<strong>不是</strong>替代人类判断的预测机，而是<strong>可重复的观测—编码—反哺</strong>：抓取线索进 <code>evolution-candidates.json</code>（待审），人审后并入 <code>evolution-manifest.json</code>；<code>evolution.js</code> 展示已入库与候选，并用 <code>lab_factors</code> 驱动沙盘高亮。机器可做抓取、去重、路由；<strong>是否升格为站内核</strong>仍须人审。
       </p>
       <div class="read-hint page-head-deck" role="note">
+        <p class="muted note-kicker"><strong>温读入口</strong>：<strong>读者</strong>看下文观测入库与反哺；<strong>合 PR / 闸门</strong> → <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="CONTRIBUTING.md#contributing-env-and-cmd">CONTRIBUTING</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a>；<strong>回总览</strong> → <a href="index.html#read-guide">读站指路</a> · <a href="analysis-hub.html">分析引擎</a>。</p>
         <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
-        <p>本页与下方动线主要服务<strong>读者面（前端）</strong>：看观测如何入库与反哺。<strong>管理面（后端侧）</strong>（抓取、合并、<code>make validate</code> 等）见 <a href="maintainer-hub.html">维护导读</a>、<a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#reader-frontend-admin-backend">用户端/管理端分拆说明</a> 与 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面速查</a>。</p>
+        <p>本页与下方动线主要服务<strong>读者面（前端）</strong>：看观测如何入库与反哺。<strong>管理面（后端侧）</strong>（抓取、合并、<code>make validate</code> 等）见 <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#reader-frontend-admin-backend">用户端/管理端分拆说明</a> 与 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面速查</a>。<strong>跨 PR 架构收束</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a>。</p>
         <p>面向<strong>社会责任取向</strong>的多源信号（舆情/战略/商业等）与推演输出见 <a href="social-responsibility-evolution.html">社会责任 · 可进化推演</a>。</p>
       </div>
       <nav class="page-route-strip" aria-label="与本页相关的站内路径">
@@ -86,9 +118,19 @@
         <a href="analysis-hub.html"><span class="page-route-ico" aria-hidden="true">析</span>分析引擎</a>
         <a href="evolvable-architecture.html"><span class="page-route-ico" aria-hidden="true">构</span>可进化架构</a>
       </nav>
+      <nav class="toc toc--pilot" id="evolution-loop-toc" aria-label="本页目录">
+        <p class="toc-pilot-eyebrow">本页目录</p>
+        <a href="#ooda">OODA 闭环</a>
+        <a href="#manifest">清单格式</a>
+        <a href="#ingest">抓取管道</a>
+        <a href="#automation">自动化边界</a>
+        <a href="#human">人必须做什么</a>
+        <a href="#feed">当前信号</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
+    <div class="modular-intro-stack" aria-label="本页导读与本轮提要">
     <div class="nexus-legend" aria-label="三色标签说明">
       <span class="nexus-tag evidence">观测 — 信号入库（含来源类型与权重）</span>
       <span class="nexus-tag extend">编码 — 映射到页、配方、lab_factors</span>
@@ -126,15 +168,7 @@
       </ul>
     </section>
     <aside id="evolution-closure-summary" class="card evolution-closure-summary" aria-live="polite" hidden></aside>
-
-    <nav class="toc" aria-label="本页目录">
-      <a href="#ooda">OODA 闭环</a>
-      <a href="#manifest">清单格式</a>
-      <a href="#ingest">抓取管道</a>
-      <a href="#automation">自动化边界</a>
-      <a href="#human">人必须做什么</a>
-      <a href="#feed">当前信号</a>
-    </nav>
+    </div>
 
     <section id="ooda">
       <h2>1. OODA 与全站对齐</h2>
@@ -174,7 +208,7 @@
     <section id="manifest">
       <h2>2. 清单文件：<code>evolution-manifest.json</code></h2>
       <p class="muted note-pull">单文件、可版本化；字段经 <code>scripts/validate-evolution-manifest.py</code> 校验。</p>
-      <div class="card" style="overflow-x:auto;padding:0">
+      <div class="card card--table-shell">
         <table>
           <thead>
             <tr><th>字段</th><th>含义</th></tr>
@@ -206,9 +240,9 @@ python3 scripts/validate-evolution-candidates.py</pre>
         <pre class="pre-code-inline pre-code-inline--spaced">python3 scripts/merge_candidates_to_manifest.py ing_xxxxxxxxxxxx
 python3 scripts/validate-evolution-manifest.py
 python3 scripts/analysis_engine.py --sediment</pre>
-        <p class="muted note-post">定时进化：在 CI 或 cron 中跑抓取（<code>make ingest</code>），对 <code>evolution-candidates.json</code> 开 PR，<strong>勿</strong>自动 merge 进 manifest。GitHub Actions 可手动 <strong>Run workflow</strong>：<code>ingest-pipeline.yml</code>（artifact 下载候选）。分析侧与抓取解耦：<code>bash scripts/run_update_pipeline.sh</code>（<code>make analyze</code>），见 <a href="analysis-hub.html">分析引擎</a>。<strong>持续更新</strong>详见 <a href="analysis-hub.html#continuous">分析引擎 · §6</a>。<strong>双周反哺</strong>见 <a href="docs/EVOLUTION_RUNBOOK.md">运行手册</a>；PR 合并 manifest/候选前请跑通 <code>make validate</code>（含 <code>check_manifest_drift.py</code> 对账）。</p>
+        <p class="muted note-post">定时进化：在 CI 或 cron 中跑抓取（<code>make ingest</code>），对 <code>evolution-candidates.json</code> 开 PR，<strong>勿</strong>自动 merge 进 manifest。GitHub Actions 可手动 <strong>Run workflow</strong>：<code>ingest-pipeline.yml</code>（artifact 下载候选）。分析侧与抓取解耦：<code>bash scripts/run_update_pipeline.sh</code>（<code>make analyze</code>），见 <a href="analysis-hub.html">分析引擎</a>。<strong>持续更新</strong>详见 <a href="analysis-hub.html#continuous">分析引擎 · §6</a>。<strong>双周反哺</strong>见 <a href="docs/EVOLUTION_RUNBOOK.md#github-actions-cadence">运行手册</a>；PR 合并 manifest/候选前请跑通 <code>make validate</code>（含 <code>check_manifest_drift.py</code> 对账）。</p>
       </div>
-      <div class="callout extend" style="margin-top:1rem">
+      <div class="callout extend callout--more-top">
         <strong>合规：</strong>遵守各站点 robots.txt 与版权；法规正文以<strong>权威发布机关</strong>页面为准，本管道仅作<strong>线索聚合</strong>，不构成法律意见。
       </div>
     </section>
@@ -219,7 +253,7 @@ python3 scripts/analysis_engine.py --sediment</pre>
       <div class="card">
         <ul class="muted list-flat">
           <li><strong>可脚本化：</strong>定时拉取 RSS/开放 API、关键词聚类、去重、生成候选 JSON 片段；CI 跑校验脚本后<strong>开 PR</strong> 而非静默上线。</li>
-          <li><strong>可节奏化：</strong>仓库 Actions 按周历跑 ingest / analyze artifact；双周清单见 <a href="docs/EVOLUTION_RUNBOOK.md">EVOLUTION_RUNBOOK</a>；本地在已校验前提下可用 <code>make evolution-fast</code> 反复刷新快照与趋势。</li>
+          <li><strong>可节奏化：</strong>仓库 Actions 按周历跑 ingest / analyze artifact；双周清单见 <a href="docs/EVOLUTION_RUNBOOK.md#github-actions-cadence">EVOLUTION_RUNBOOK</a>；本地在已校验前提下可用 <code>make evolution-fast</code> 反复刷新快照与趋势。</li>
           <li><strong>可做前端：</strong><code>evolution.js</code> 读取 manifest，渲染<strong>信号栏</strong>、沙盘<strong>因子高亮</strong>（需通过 http(s) 访问站点，<code>file://</code> 下 fetch 可能失败）。</li>
           <li><strong>不宜自动化：</strong>把「热搜」直接写成「国家意志」；省略 §2 判据；未经人工审核就改配方正文。</li>
         </ul>
@@ -241,13 +275,24 @@ python3 scripts/analysis_engine.py --sediment</pre>
       <div id="evolution-feed" class="evolution-feed" aria-live="polite"></div>
     </section>
 
+    <section class="card reader-home-next hub-cluster-next" aria-labelledby="evloop-synth-next-h">
+      <p class="reader-home-next-kicker" id="evloop-synth-next-h">推演与沙盘 · 下一站</p>
+      <ul class="reader-home-next-list">
+        <li><a href="synthesis.html#continuation">综合推演 · 继续矩阵</a></li>
+        <li><a href="lab.html#main">沙盘工坊</a></li>
+        <li><a href="analysis-hub.html#panorama">分析引擎</a></li>
+      </ul>
+    </section>
+
+    </main>
+
     <footer>
       <a href="national-strategy-opinion.html">← 战略·舆情</a> · <a href="social-responsibility-evolution.html">社会责任</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="intelligent-evolution.html">智能进化</a> · <a href="synthesis-methods.html#perpetual">综合推演 §11</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
-  <script src="assets/site-data-bus.js"></script>
-  <script src="assets/motion.js"></script>
-  <script src="assets/evolution.js"></script>
-  <script src="assets/closure-summary.js"></script>
+  <script src="assets/site-data-bus.js" defer></script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/evolution.js" defer></script>
+  <script src="assets/closure-summary.js" defer></script>
 </body>
 </html>

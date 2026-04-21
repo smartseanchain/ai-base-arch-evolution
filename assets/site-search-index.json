@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-04-18T05:20:58Z",
+  "source": "evolution-registry.json#pages + root HTML <title>",
+  "entries": [
+    {
+      "path": "analysis-hub.html",
+      "title": "分析引擎 · 方法与演进总线 · 基础架构演变推演"
+    },
+    {
+      "path": "architecture.html",
+      "title": "架构拓扑与形态 · 基础架构演变推演"
+    },
+    {
+      "path": "decade-scenes.html",
+      "title": "未来十年：各场景形态 · 基础架构演变推演"
+    },
+    {
+      "path": "decade-us.html",
+      "title": "十年后：我们、孩子、家庭与国家 · 基础架构演变推演"
+    },
+    {
+      "path": "decade.html",
+      "title": "十年展望 · 基础架构演变推演"
+    },
+    {
+      "path": "edu-nexus.html",
+      "title": "教育纵轴：家庭—学校—社会 · 微—宏 · 师生 · 基础架构演变推演"
+    },
+    {
+      "path": "evolution-loop.html",
+      "title": "进化闭环 · 观测信号与反哺 · 基础架构演变推演"
+    },
+    {
+      "path": "evolution-triad.html",
+      "title": "教育·职业·人与AI：演进与走向 · 基础架构演变推演"
+    },
+    {
+      "path": "evolvable-architecture.html",
+      "title": "可进化架构 · 总览 · 基础架构演变推演"
+    },
+    {
+      "path": "index.html",
+      "title": "基础架构演变推演 · 总览"
+    },
+    {
+      "path": "intelligent-evolution.html",
+      "title": "智能进化 · 能力梳理 · 基础架构演变推演"
+    },
+    {
+      "path": "lab.html",
+      "title": "沙盘工坊 · 基础架构演变推演"
+    },
+    {
+      "path": "legacy-all-in-one.html",
+      "title": "基础架构演变推演 · 叠加栈与情景沙盘"
+    },
+    {
+      "path": "model.html",
+      "title": "分层与模型 · 基础架构演变推演"
+    },
+    {
+      "path": "maintainer-hub.html",
+      "title": "维护导读 · 管理端入口与文档 · 基础架构演变推演"
+    },
+    {
+      "path": "modules-map.html",
+      "title": "模块图谱：五系分类 · 七层堆叠 · 场景推演 · 基础架构演变推演"
+    },
+    {
+      "path": "national-strategy-opinion.html",
+      "title": "战略叙事与社会舆情 · 同步对齐 · 基础架构演变推演"
+    },
+    {
+      "path": "net-biz-capital.html",
+      "title": "互联网 · 商业 · 资本 · 工作：关键词链 · 基础架构演变推演"
+    },
+    {
+      "path": "nexus.html",
+      "title": "立体联结：个人—家庭—国家 · 基础架构演变推演"
+    },
+    {
+      "path": "past-future.html",
+      "title": "廿年视角：过去十年 → 未来十年 · 基础架构演变推演"
+    },
+    {
+      "path": "risk-geo.html",
+      "title": "地缘与商业 · 基础架构演变推演"
+    },
+    {
+      "path": "smart-overhaul.html",
+      "title": "整体改造 · 基础架构演变推演"
+    },
+    {
+      "path": "social-responsibility-evolution.html",
+      "title": "社会责任 · 可进化推演 · 基础架构演变推演"
+    },
+    {
+      "path": "synthesis-extensions.html",
+      "title": "综合推演 · 扩展图景 · 基础架构演变推演"
+    },
+    {
+      "path": "synthesis-methods.html",
+      "title": "综合推演 · 方法与透镜 · 基础架构演变推演"
+    },
+    {
+      "path": "synthesis.html",
+      "title": "综合推演（主篇）· 模块组合与判据 · 基础架构演变推演"
+    },
+    {
+      "path": "timeline.html",
+      "title": "历史演进 · 基础架构演变推演"
+    },
+    {
+      "path": "work-infra-energy.html",
+      "title": "社会职业、国家基础设施与能源演进 · 基础架构演变推演"
+    }
+  ]
+}

@@ -2,9 +2,12 @@
 """
 404.html 的 skip-bar 不经 sync_site_nav 写回，须与 partials/skip-bar.inc.html 的意图对齐。
 
+不含 maintainer-hub 的 #mh-* 扩展（仅注册页由 sync_site_nav 写回；见 scripts/sync_site_nav.py）。
+
 规则（与 docs/PLATFORM、SITE_REVIEW 一致）：
 - 须含跳到正文（#main）、index.html#three-questions、index.html#read-guide（模板含读站指路占位时）。
 - 第四链：模板为「分区速跳」；404 可用 index.html#hub-catalog **或** synthesis.html#continuation（失页回正常用矩阵）。
+- 第五链：模板为「常见下一站」；404 须含 index.html#reader-next（与模板占位对齐）。
 """
 from __future__ import annotations
 
@@ -60,6 +63,11 @@ def main(*, quiet: bool = False) -> int:
             errs.append(
                 "404 skip-bar 第四链须为 index.html#hub-catalog 或 synthesis.html#continuation"
             )
+
+    if "__READER_NEXT_SKIP_HREF__" in tpl and "index.html#reader-next" not in inner:
+        errs.append(
+            "404 skip-bar 缺少 index.html#reader-next（与模板常见下一站占位对齐）"
+        )
 
     if errs:
         for e in errs:

@@ -1,5 +1,7 @@
 # 定时或手动跑分析流水线，产出 JSON 以 artifact 下载（默认不回写仓库）。
+# 分析不写 HTML 正文：AGENTS.md#agents-arch-boundary；合并真源仍以 run_validate.sh / make validate 为准：AGENTS.md#agents-pre-merge。
 # 本地同等命令：bash scripts/run_update_pipeline.sh
+# 全站呈现双轨 / merge / 枢纽：docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help
 name: Update pipeline
 
 on:

@@ -1,8 +1,10 @@
 # 脚本、只读 API 与组件化：替换边界与升级建议
 
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
 **本文定位**：回答「**部分脚本能否换成 API 或组件**」——在**不削弱 Git 真源、`make validate` 闸门与人审 manifest** 的前提下，给出**整体分类、可替换边界与推荐升级顺序**。
 
-**不替代**命令表与管道细节：**[scripts/README.md](../scripts/README.md)**、**[INTEGRATION_AND_READONLY_API.md](./INTEGRATION_AND_READONLY_API.md)**、**[PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md)**。**按阶段执行**仍以 **[PHASED_UPGRADE_EXECUTION_GUIDE.md](./PHASED_UPGRADE_EXECUTION_GUIDE.md)** 为准。
+**不替代**命令表与管道细节：**[scripts/README.md](../scripts/README.md)**、**[INTEGRATION_AND_READONLY_API.md](./INTEGRATION_AND_READONLY_API.md)**、**[PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md)**。**按阶段执行**仍以 **[PHASED_UPGRADE_EXECUTION_GUIDE.md](./PHASED_UPGRADE_EXECUTION_GUIDE.md)** 为准。**五维总图 · 主链联动 · 仓库物理分层**：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。**自动化助手（validate 真源 · 人审 manifest）**：[AGENTS.md · 契约速览](../AGENTS.md#agents-contract) · [人审闸门](../AGENTS.md#agents-invariants) · [合并前](../AGENTS.md#agents-pre-merge)。**呈现双轨（`spa-sync` / `spa-build`）**：[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map)。**MPA 顶栏与失页**：**`partials/`** → **`make sync-nav`**；**`404.html`** 手调（`sync_site_nav` 不写回）— **[scripts/README · `sync_site_nav`](../scripts/README.md)**。
 
 ---
 
@@ -14,7 +16,7 @@
 | **可复用的校验、对账、解析、写盘算法** | **收进 `evolution_pkg.*`**；根目录 **`scripts/*.py`** 保持**薄 CLI**（`python3 scripts/foo.py` 或 `python -m`）。 |
 | **合并闸门、PR 与 CI 必须一致** | **保留** **`run_validate.sh`** 及其中 **`validate_*` / `check_*` / `sync_site_nav --check`** 等**可本地复现**入口；**勿**用「仅远端才有的 HTTP 校验」替代合并真源。 |
 | **有副作用的长作业**（分析写盘、ingest、趋势） | **不宜**做成匿名公网 API；应保留为 **CLI + 定时/编排调用**（GitHub Actions、未来 **Prefect/Dagster** 封装**同一 argv**）。 |
-| **人审合并 manifest** | **不**改为对外 **POST** 自动写 **`evolution-manifest.json`**；管理端若提供 UI，仍走 **[AGENTS.md](../AGENTS.md)** / **[CONTRIBUTING.md](../CONTRIBUTING.md)** 所述人审与 PR 节奏（见 **[ADMIN_WEB_CONSOLE_ROADMAP.md](./ADMIN_WEB_CONSOLE_ROADMAP.md)**）。 |
+| **人审合并 manifest** | **不**改为对外 **POST** 自动写 **`evolution-manifest.json`**；管理端若提供 UI，仍走 **[AGENTS.md](../AGENTS.md#agents-invariants)** / **[CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd)** 所述人审与 PR 节奏（见 **[ADMIN_WEB_CONSOLE_ROADMAP.md](./ADMIN_WEB_CONSOLE_ROADMAP.md)**）。 |
 
 **一句话**：**阅读面**优先 **API 化**；**闸门与写盘**优先 **包化 + 脚本/编排调用**，而不是「用公网 CRUD 替代仓库工具链」。
 
@@ -26,7 +28,7 @@
 |----|------|------|
 | **库组件** | **`evolution_pkg`**（`io`、`pipeline.runner`、`spa_nav`、`sediment_validate`、`ops.http_cache` 等） | 供脚本、API、单测 **import**；六域归属见 **[INTELLIGENCE_SIX_DOMAINS.md · 代码映射](./INTELLIGENCE_SIX_DOMAINS.md#code-mapping)**。 |
 | **只读 API** | **`scripts/readonly_api.py`**（FastAPI） | **`GET`** 暴露快照、趋势、manifest、site-meta、快照历史等；**不写盘**、**不改 manifest**。 |
-| **闸门入口** | **`run_validate.sh`**、`make validate` / **`make phase-1`** | 与 pre-commit、CI **validate** **同源**；含 compileall、JSON 校验、对账、顶栏、单测、`analysis_engine --check`、Schema 等。 |
+| **闸门入口** | **`run_validate.sh`**、`make validate` / **`make phase-1`** | 与 pre-commit、CI **validate** **同源**；含 compileall、JSON 校验、对账、顶栏、单测、`analysis_engine --check`、Schema 等。**子集**：**`run_validate_fast.sh`** / **`make validate-fast`** 仅本地迭代，**不**入 CI/pre-commit（**[ARCHITECTURE#run-validate-gate](./ARCHITECTURE.md#run-validate-gate)**）。 |
 | **分析管道** | **`run_pipeline_steps.py`** → **`evolution_pkg.pipeline.runner`** | **analyze** / **fast** 步骤表；与 validate **前半段对齐关系**见 runner 模块说明。 |
 
 ---
@@ -39,9 +41,9 @@
 |----|----------|------|
 | **闸门与对账** | `validate-evolution-*.py`、`validate_*_schema.py`、`check_manifest_drift.py`、`check_nav_links_registry.py`、`sync_site_nav.py --check`、`check_skip_bar_404.py` | 合并真源须与 **本地/CI 同一命令**；远端-only 校验会形成第二套真相。 |
 | **分析写盘** | `analysis_engine.py`（含 `--sediment`）、`sediment_trends.py` | CPU/IO 与**写 JSON** 副作用；公网 POST 难做配额与审计对齐 Git。 |
-| **抓取入池** | `ingest_opinion_law.py`、`run_ingest_only.sh`（**`ingest_config.json`** 含可选 **`json_feeds`**：HTTPS JSON 侧车/API） | 外网依赖、频率与合规；适合 **定时 job / 内网 worker**，而非开放 HTTP。 |
-| **人审合并** | `merge_candidates_to_manifest.py` | **人审**与 **PR diff** 是产品边界；API 自动合并违反 **[AGENTS.md](../AGENTS.md)** 闸门表述。 |
-| **站点生成/同步** | `sync_site_nav.py`（写回）、`gen_nav_links_ts.py`、`sync_spa_public.py`、`gen-sitemap.py` | 修改**仓库内** HTML/TS/产物；属**开发者工作流**，不是站点读者 API。 |
+| **抓取入池** | `ingest_opinion_law.py`、`run_ingest_only.sh`（**`ingest_config.json`** 含可选 **`json_feeds`**：HTTPS JSON 侧车/API） | 外网依赖、频率与合规；适合 **定时 job / 内网 worker**，而非开放 HTTP。频率与 UA 约定见 **[INTEL · §2—2a](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-source-tiers)** · **[§2b](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-social-platforms)**。 |
+| **人审合并** | **`python3 -m evolution_pkg.candidate_merge`**（**`main()`** 在包内）· **`merge_candidates_to_manifest.py`**（薄壳） | **人审**与 **PR diff** 是产品边界；API 自动合并违反 **[AGENTS.md](../AGENTS.md#agents-invariants)** 闸门表述。 |
+| **站点生成/同步** | `sync_site_nav.py`（写回各页，**跳过 `404.html`**）、`gen_nav_links_ts.py`、`sync_spa_public.py`、`gen-sitemap.py` | 修改**仓库内** HTML/TS/产物；属**开发者工作流**，不是站点读者 API；**404** 顶栏/skip 与 **`check_skip_bar_404`** 见 [MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)。 |
 
 **若未来管理端要「点按钮触发」**：可做**内网、鉴权后的「触发器」**（例如仅内网队列 + worker 仍执行同一 CLI），默认仍**不**自动 merge manifest；见 **[ADMIN_WEB_CONSOLE_ROADMAP.md](./ADMIN_WEB_CONSOLE_ROADMAP.md)**。
 

@@ -1,5 +1,14 @@
 blank_issues_enabled: true
 contact_links:
   - name: 文档 · 按阶段升级（编排 / Kafka / 生产库）
-    url: https://github.com/smartseanchain/ai-base-arch-evolution/blob/main/docs/PHASED_UPGRADE_EXECUTION_GUIDE.md
+    url: https://github.com/smartseanchain/ai-base-arch-evolution/blob/main/docs/PHASED_UPGRADE_EXECUTION_GUIDE.md#execution-now
     about: 先对阶段 0→1→2/3 与准入；决策全景见同目录 ARCHITECTURE_UPGRADE_ROADMAP.md。Fork 后请改链为本仓库 blob/main。
+  - name: 维护导读 · 关系视图（merge / spa-sync 收束）
+    url: https://github.com/smartseanchain/ai-base-arch-evolution/blob/main/maintainer-hub.html#mh-spine-map
+    about: 枢纽页 ↔ 注册表 ↔ 文档锚点；同页「闸门、合并与 CI」含 ci.yml、Makefile、MERGE。Fork 后请改链为本仓库 blob/main。
+  - name: 维护导读 · 系统边界速查
+    url: https://github.com/smartseanchain/ai-base-arch-evolution/blob/main/maintainer-hub.html#mh-boundaries
+    about: 真源 / 生成物 / 侧车 / 闸门 / 手调例外；与关系视图同页。Fork 后请改链为本仓库 blob/main。
+  - name: 维护导读 · 衔接矩阵（读者面/管理面）
+    url: https://github.com/smartseanchain/ai-base-arch-evolution/blob/main/maintainer-hub.html#mh-reader-admin-matrix
+    about: 站内速览三行摘要；与 PLATFORM_MASTER_MAP 全文矩阵对读；与关系视图、系统边界同页。Fork 后请改链为本仓库 blob/main。

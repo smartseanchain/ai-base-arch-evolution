@@ -23,13 +23,19 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+    <div class="skip-bar" role="navigation" aria-label="快捷跳转与本页锚点">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py）。maintainer-hub 在五链后另拼 #mh-*（MAINTAINER_HUB_SKIP_EXTRA）。404 / legacy-all-in-one 不经此脚本写回。 -->
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
       <a class="skip-link" href="index.html#read-guide">读站指路</a>
       <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="index.html#reader-next">常见下一站</a>
+      <a class="skip-link" href="#mh-spine-map">关系视图</a>
+      <a class="skip-link" href="#mh-boundaries">系统边界</a>
+      <a class="skip-link" href="#mh-reader-admin-matrix">衔接矩阵</a>
     </div>
     <header class="site-nav">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py · build_header）。 -->
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
@@ -37,88 +43,200 @@
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
-        <a href="nexus.html">立体联结</a>
-        <a href="edu-nexus.html">教育纵轴</a>
-        <a href="evolution-triad.html">人与AI演进</a>
-        <a href="work-infra-energy.html">职业·基建·能源</a>
-        <a href="model.html">分层模型</a>
-        <a href="maintainer-hub.html" class="current" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
-        <a href="architecture.html">架构拓扑</a>
-        <a href="timeline.html">历史演进</a>
-        <a href="past-future.html">廿年视角</a>
-        <a href="decade.html">十年展望</a>
-        <a href="decade-scenes.html">十年场景</a>
-        <a href="decade-us.html">十年之问</a>
-        <a href="modules-map.html">模块图谱</a>
-        <a href="synthesis.html">综合推演</a>
-        <a href="synthesis-extensions.html">推演·扩展</a>
-        <a href="synthesis-methods.html">推演·方法</a>
-        <a href="risk-geo.html">地缘与商业</a>
-        <a href="net-biz-capital.html">网·商·资·工</a>
-        <a href="national-strategy-opinion.html">战略·舆情</a>
-        <a href="social-responsibility-evolution.html">社会责任</a>
-        <a href="evolution-loop.html">进化闭环</a>
-        <a href="analysis-hub.html">分析引擎</a>
-        <a href="intelligent-evolution.html">智能进化</a>
-        <a href="smart-overhaul.html">整体改造</a>
-        <a href="evolvable-architecture.html">可进化架构</a>
-        <a href="lab.html">沙盘工坊</a>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">联结与模型</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="nexus.html">立体联结</a></li>
+            <li><a href="edu-nexus.html">教育纵轴</a></li>
+            <li><a href="evolution-triad.html">人与AI演进</a></li>
+            <li><a href="model.html">分层模型</a></li>
+            <li><a href="modules-map.html">模块图谱</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">时间与情景</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="timeline.html">历史演进</a></li>
+            <li><a href="past-future.html">廿年视角</a></li>
+            <li><a href="decade.html">十年展望</a></li>
+            <li><a href="decade-scenes.html">十年场景</a></li>
+            <li><a href="decade-us.html">十年之问</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">推演与沙盘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="synthesis.html">综合推演</a></li>
+            <li><a href="synthesis-extensions.html">推演·扩展</a></li>
+            <li><a href="synthesis-methods.html">推演·方法</a></li>
+            <li><a href="lab.html">沙盘工坊</a></li>
+            <li><a href="evolution-loop.html">进化闭环</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">制度与地缘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="work-infra-energy.html">职业·基建·能源</a></li>
+            <li><a href="risk-geo.html">地缘与商业</a></li>
+            <li><a href="net-biz-capital.html">网·商·资·工</a></li>
+            <li><a href="national-strategy-opinion.html">战略·舆情</a></li>
+            <li><a href="social-responsibility-evolution.html">社会责任</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">架构与分析</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="architecture.html">架构拓扑</a></li>
+            <li><a href="analysis-hub.html">分析引擎</a></li>
+            <li><a href="intelligent-evolution.html">智能进化</a></li>
+            <li><a href="smart-overhaul.html">整体改造</a></li>
+            <li><a href="evolvable-architecture.html">可进化架构</a></li>
+          </ul>
+        </details>
+        <a href="maintainer-hub.html" class="current" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
-      <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      <div class="site-nav-meta-row">
+        <div class="site-nav-search-host" data-site-quick-search aria-live="polite"></div>
+        <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      </div>
     </header>
 
-    <div id="main" class="page-head" tabindex="-1">
+    <main id="main" tabindex="-1" aria-label="正文">
+    <div class="page-head">
       <h1>维护导读：管理端入口与文档</h1>
       <p class="lead">
-        本页<strong>不替代</strong> Git 与 PR 流程，仅汇总<strong>维护者 / 数据管家</strong>常用入口：分端设计、合并闸门、文档主线与契约。读者仍以 <a href="index.html#read-guide">读站指路</a> 与 <a href="evolution-loop.html">进化闭环</a> 为主链；<strong>manifest 人审、分析不写 HTML</strong> 等不变量见各链文档。
+        本页<strong>不替代</strong> Git 与 PR 流程，仅汇总<strong>维护者 / 数据管家</strong>常用入口：分端设计、合并闸门、文档主线与契约。读者仍以 <a href="index.html#read-guide">读站指路</a> 与 <a href="evolution-loop.html">进化闭环</a> 为主链；<strong>manifest 人审、分析不写 HTML</strong> 等不变量见 <a href="AGENTS.md#agents-invariants">AGENTS · 人审闸门</a> · <a href="AGENTS.md#agents-arch-boundary">架构边界</a> 与各专篇文档。
       </p>
       <div class="read-hint page-head-deck" role="note">
+        <p class="muted note-kicker"><strong>你多半是</strong>：<strong>维护 / 合 PR</strong> → 下文与 <a href="CONTRIBUTING.md#contributing-env-and-cmd">CONTRIBUTING</a> · <code>make validate</code>；<strong>只想读站</strong> → <a href="index.html#read-guide">总览 · 读站指路</a>；<strong>看分析读数</strong> → <a href="analysis-hub.html">分析引擎</a>。</p>
         <p>站内 <code>docs/*.md</code> 在根部署下可能为原文或下载；长文建议在仓库网页阅读或克隆后本地打开。</p>
+        <p>
+          <strong>本地预览读者 MPA</strong>（总线 <code>fetch</code> 须有 <strong>http</strong>）：仓库根 <code>make serve-reader</code> → <strong>127.0.0.1:8000</strong>，或 <code>make docker-up</code> / compose → <strong>8765</strong>；勿仅用 <code>file://</code> 双击 <code>index.html</code>。详见根
+          <a href="README.md">README.md</a> · <a href="docs/DOCKER.md#quickstart">DOCKER.md</a>。
+        </p>
         <p>合并前推荐 <code>make merge-ready</code>（<code>validate</code> + 只读 API + 管理端烟测），见下链。</p>
-        <p><strong>读者面/管理面速查</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP（锚 reader-admin-surfaces）</a>；下文「读者面（前端）与管理面（后端）」一节有展开链。</p>
+        <p><strong>读者面/管理面速查</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP（reader-admin-surfaces）</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-contract-matrix">衔接矩阵</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-scenarios">场景×面</a>；下文「衔接矩阵（站内速览）」与「读者面（前端）与管理面（后端）」有展开链。</p>
+        <p><strong>跨 PR 架构收束</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ARCHITECTURE_ONE_PAGER · 五步表</a>（粒度 · 真源 · 闸门 · 演进 · 节奏；与 PLATFORM_MASTER_MAP 总表互补）· <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index">不变量索引（五条红线）</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a>。</p>
       </div>
       <nav class="page-route-strip" aria-label="与本页相关的站内路径">
         <a href="evolution-loop.html"><span class="page-route-ico" aria-hidden="true">环</span>进化闭环</a>
         <a href="analysis-hub.html"><span class="page-route-ico" aria-hidden="true">析</span>分析引擎</a>
-        <a href="CONTRIBUTING.md"><span class="page-route-ico" aria-hidden="true">稿</span>CONTRIBUTING</a>
+        <a href="CONTRIBUTING.md#contributing-env-and-cmd"><span class="page-route-ico" aria-hidden="true">稿</span>CONTRIBUTING</a>
+        <a href="AGENTS.md#agents-contract"><span class="page-route-ico" aria-hidden="true">约</span>AGENTS</a>
       </nav>
+      <nav class="toc toc--pilot" id="maintainer-hub-toc" aria-label="本页目录">
+        <p class="toc-pilot-eyebrow">本页目录</p>
+        <a href="#mh-spine-map">关系视图</a>
+        <a href="#mh-boundaries">系统边界</a>
+        <a href="#mh-reader-admin-matrix">衔接矩阵</a>
+        <a href="#mh-fe-be">读者面 / 管理面</a>
+        <a href="#mh-split">分端与能力</a>
+        <a href="#mh-gates">闸门与 CI</a>
+        <a href="#mh-contracts">契约与数据</a>
+      </nav>
+      <section class="card read-hint" id="mh-spine-map" aria-labelledby="mh-spine-map-h">
+        <h2 id="mh-spine-map-h">关系视图：本页 ↔ 注册表 ↔ 文档锚点</h2>
+        <p class="muted card-muted-tight">只读汇总，便于在「枢纽页 / JSON 登记 / Markdown 真源」之间跳转；不改变闸门语义。</p>
+        <ul>
+          <li><strong>本页（MPA）</strong>：<code>maintainer-hub.html</code>，顶栏「维护导读」；读者主链仍以 <a href="index.html#read-guide">读站指路</a> 为准。</li>
+          <li><strong>注册表</strong>：<a href="scripts/evolution-registry.json"><code>scripts/evolution-registry.json</code></a> 的 <code>pages[]</code> 含本文件名；增删分页见 <a href="CONTRIBUTING.md#contributing-common-changes-checklist">CONTRIBUTING · 常见变更自检</a> · <a href="docs/PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation">PROJECT · §1a</a>。</li>
+          <li><strong>文档主线 / 判型 / 双轨</strong>：<a href="README.md#readme-start-here">README · 从这里开始</a> · <a href="README.md#readme-dual-track-map">双轨真源</a> · <a href="docs/README.md#docs-spine">docs/README · #docs-spine</a> · <a href="docs/README.md#content-framework">#content-framework（真源分层）</a> · <a href="docs/README.md#quick-paths">#quick-paths（0c）</a>（含「情报 ingest · 管理控制台 · SPA 壳」合一判型行）· <a href="docs/README.md#front-back-modules">#front-back-modules（前后台按域）</a> · <a href="docs/README.md#system-components-fusion">#system-components-fusion（组件×功能一条表）</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步表</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index">不变量索引</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面（§1a）</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-contract-matrix">衔接矩阵</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-scenarios">场景×面</a> · <a href="spa/README.md">spa/README</a> · 改根 <code>.html</code> / <code>docs/</code> 后维护壳内 iframe：<code>make spa-sync</code> 或 <code>make spa-build</code>，动线 <a href="docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge">MERGE · §1（pre-merge）</a> · <a href="docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence">MERGE · partials 手顺</a>。</li>
+          <li><strong>全站顶栏与失页</strong>：只改 <code>partials/site-nav.inc.html</code> / <code>partials/skip-bar.inc.html</code> 后 <code>make sync-nav</code> → <code>make validate</code>，并<strong>手调</strong> <code>404.html</code>（<code>404</code> 顶栏/skip <strong>不</strong>在 <code>sync_site_nav</code> 写回）— <a href="docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence">MERGE · partials 手顺</a> · <a href="docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge">MERGE · §1</a> · <a href="scripts/README.md#sync-site-nav-source">scripts/README · <code>sync_site_nav</code> / 真源</a>。</li>
+          <li><strong>读者预期与发布复查</strong>：<a href="docs/PLATFORM_CAPABILITY_MAP.md#reader-and-release">PLATFORM · §7</a> · <a href="docs/SITE_REVIEW_THREE_PASSES.md#four-perspectives-review">SITE_REVIEW · 四角色</a>。</li>
+          <li><strong>管理脚手架（观测）</strong>：<a href="admin-console/README.md">admin-console/README</a>（与 <a href="scripts/README.md">scripts/README</a> 命令表对读；不写 manifest）。</li>
+        </ul>
+      </section>
+
+      <section class="card" id="mh-boundaries" aria-labelledby="mh-boundaries-h">
+        <h2 id="mh-boundaries-h">系统边界速查</h2>
+        <p class="muted card-muted-tight">判型与合入时「哪儿是人编真源、哪儿是生成物、哪儿可重建、哪儿不能自动写」；细节以链上专篇为准。</p>
+        <ul>
+          <li><strong>人编真源</strong>：根目录 <code>*.html</code> 叙事、<code>partials/</code> 顶栏与 skip 模板、<code>scripts/evolution-registry.json</code>、<code>docs/</code> 与 <code>docs/schemas/</code> — <a href="docs/README.md#content-framework">docs/README · 真源分层（#content-framework）</a> · <a href="docs/PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout">PROJECT · §1b 物理分层</a>。</li>
+          <li><strong>生成 / 同步产物</strong>：<code>spa/src/navLinks.ts</code>（<code>make gen-nav-links</code>）、<code>spa/public/</code>（<code>make spa-sync</code> / <code>make spa-build</code>）— <a href="docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge">MERGE · §1（pre-merge）</a> · <a href="docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence">MERGE · partials 手顺</a> · <a href="spa/README.md">spa/README</a>。</li>
+          <li><strong>侧车可重建</strong>：<code>data/evolution.db</code>、本地 <code>artifacts/</code> 遥测等 — <a href="docs/EVOLUTION_RUNBOOK.md#sqlite-sidecar">EVOLUTION_RUNBOOK · SQLite</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步表</a>（与侧车/闸门节奏对读）。</li>
+          <li><strong>合并不变</strong>：<code>bash scripts/run_validate.sh</code> / <code>make validate</code> 为 CI 与 pre-commit 真源；<code>make test</code>、<code>make validate-fast</code> <strong>不替代</strong>合并前全量 — <a href="docs/ARCHITECTURE.md#run-validate-gate">ARCHITECTURE · run_validate</a> · <a href="AGENTS.md#agents-pre-merge">AGENTS · 合并前</a>。</li>
+          <li><strong>手调例外</strong>：<code>404.html</code>、<code>legacy-all-in-one.html</code> 不经 <code>sync_site_nav</code>；改 <code>partials/skip-bar.inc.html</code> 后须手调 <code>404</code> / <code>legacy</code>，并跑 <code>make validate</code>（含 <code>check_skip_bar_404.py</code> 与 skip 对表单测）— <a href="scripts/README.md#sync-site-nav-source">scripts/README · <code>sync_site_nav</code> / 真源</a>。</li>
+        </ul>
+      </section>
+
+      <section class="card" id="mh-reader-admin-matrix" aria-labelledby="mh-reader-admin-matrix-h">
+        <h2 id="mh-reader-admin-matrix-h">读者面与管理面：衔接矩阵（站内速览）</h2>
+        <p class="muted card-muted-tight">
+          与 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-contract-matrix">PLATFORM_MASTER_MAP · 衔接矩阵（全文）</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-scenarios">场景×面</a>
+          及 <a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#analysis-presentation-bridge">USER_ADMIN_SPLIT · 分析与呈现衔接</a> 同源；下表为高频三行摘要，改契约或 UI 时请对全文矩阵逐行。
+        </p>
+        <div class="card card--table-shell">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">读者侧典型入口</th>
+                <th scope="col">契约 / 管理到站</th>
+                <th scope="col">闸门（摘要）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="analysis-hub.html">分析引擎</a> 与相关读数</td>
+                <td><code>analysis-snapshot.json</code> 等 · 管理端 <strong>观测</strong> / <strong>管道与闸门</strong>（见 <a href="admin-console/README.md">admin-console/README</a>）</td>
+                <td><code>make analyze</code> 后仍须 <code>make validate</code>；血缘见 <a href="docs/ARCHITECTURE.md#lineage">ARCHITECTURE · lineage</a></td>
+              </tr>
+              <tr>
+                <td>总线一行数、页内 <code>[data-*]</code> 动态块</td>
+                <td><code>assets/*.json</code>（以 <a href="docs/SITE_DATA_UPDATE_FRAMEWORK.md#registry">SITE_DATA_UPDATE_FRAMEWORK · 登记与消费方</a> 为准）· 只读 API / 探索器</td>
+                <td><code>make validate</code>；扩路由时 <code>make test-readonly-api</code>（<a href="docs/INTEGRATION_AND_READONLY_API.md#extend-readonly-routes">INTEGRATION · 扩展只读路由</a> · <a href="docs/DATA_CONTRACTS.md#readonly-api-routes">DATA_CONTRACTS · 只读路由总表</a>）</td>
+              </tr>
+              <tr>
+                <td>注册分页、<a href="spa/README.md">SPA</a> 壳、<a href="lab.html">沙盘</a></td>
+                <td><code>scripts/evolution-registry.json</code> · <code>partials/</code> · <code>spa/nav.config.json</code></td>
+                <td><code>make validate</code> · <code>make gen-nav-links</code> · 触路径时 <code>make spa-build</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
+    <div class="modular-intro-stack" aria-label="维护导读 · 本轮提要">
     <section class="card site-round-extension" id="ext-round-maintainer" aria-labelledby="hre-maintainer">
       <h2 class="site-round-extension-h" id="hre-maintainer">推演扩展 · 本轮提要（维护导读）</h2>
       <p class="muted note-kicker">新增顶栏「维护导读」一页：链向设计文档与闸门，不改变既有数据管道与校验语义。</p>
     </section>
+    </div>
 
     <section class="card" aria-labelledby="mh-fe-be">
       <h2 id="mh-fe-be">读者面（前端）与管理面（后端）</h2>
-      <p class="lead" style="font-size:1rem;margin-bottom:0.75rem"><strong>前端</strong>：给读者看的枢纽、叙事、总线读数与沙盘——只读已发布内容。<strong>后端</strong>：本仓库脚本、CI、只读 API、Docker 与 PR 闸门——维护者与数据管家的操作面；<strong>不在</strong>站内页面里写 manifest 或绕过 <code>make validate</code>。</p>
+      <p class="lead lead-compact"><strong>前端</strong>：给读者看的枢纽、叙事、总线读数与沙盘——只读已发布内容。<strong>后端</strong>：本仓库脚本、CI、只读 API、Docker 与 PR 闸门——维护者与数据管家的操作面；<strong>不在</strong>站内页面里写 manifest 或绕过 <code>make validate</code>。</p>
       <ul>
         <li><a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#reader-frontend-admin-backend">分拆总览：前端读者 · 后端管理（节 1a）</a></li>
-        <li><a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">平台总览 · 读者面/管理面速查（PLATFORM_MASTER_MAP · 读者面/管理面）</a></li>
-        <li><a href="docs/INTELLIGENCE_SIX_DOMAINS.md#reader-vs-admin-surfaces">六域协同与读者面/管理面对齐</a></li>
-        <li><a href="docs/ADMIN_WEB_CONSOLE_ROADMAP.md">管理端 Web 化路线图</a>（登录、用户与角色、审核工作流、Git 审计、分阶段）</li>
+        <li><a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#analysis-presentation-bridge">分析与呈现衔接（USER_ADMIN_SPLIT · 1b）</a> · 一页矩阵 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-contract-matrix">衔接矩阵</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-scenarios">场景×面</a></li>
+        <li><a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">平台总览 · 读者面/管理面速查（PLATFORM_MASTER_MAP · 读者面/管理面）</a> · <a href="docs/README.md#front-back-modules">docs/README · 前后台（#front-back-modules）</a> · <a href="docs/README.md#system-components-fusion">docs/README · 组件×主链（#system-components-fusion）</a></li>
+        <li><a href="docs/INTELLIGENCE_SIX_DOMAINS.md#reader-vs-admin-surfaces">六域协同与读者面/管理面对齐</a> · <a href="docs/INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract">枢纽页版式契约（复用组件）</a></li>
+        <li><a href="docs/ADMIN_WEB_CONSOLE_ROADMAP.md#layer-1-authn">管理端 Web 化路线图</a>（登录、用户与角色、审核工作流、Git 审计、分阶段；自 §1 身份认证）</li>
       </ul>
     </section>
 
     <section class="card" aria-labelledby="mh-split">
       <h2 id="mh-split">分端与能力设计（Markdown）</h2>
       <ul>
-        <li><a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md">用户端 / 管理端 · 数据源 · 进化与分析 · 审核分层</a></li>
-        <li><a href="docs/PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md">扩展插槽、进化轨、智能化边界与检查单</a></li>
-        <li><a href="docs/TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md">技术架构整理与升级路径（简版）</a></li>
-        <li><a href="docs/INTELLIGENCE_SIX_DOMAINS.md">智能化 · 六域协同</a>（数据 / 管道 / 分析 / 前端 / 运维 / 治理）</li>
+        <li><a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#design-goals">用户端 / 管理端 · 数据源 · 进化与分析 · 审核分层</a></li>
+        <li><a href="docs/PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md#extension-slots">扩展插槽、进化轨、智能化边界与检查单</a></li>
+        <li><a href="docs/TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md#layers-summary">技术架构整理与升级路径（简版 §1—§4）</a> · <a href="docs/TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md#appendix-tech-capabilities">附录 · 详版能力地图</a>（<a href="docs/TECH_ARCHITECTURE_CAPABILITIES.md#tech-capabilities-alias">别名</a>）</li>
+        <li><a href="docs/INTELLIGENCE_SIX_DOMAINS.md#six-domains">智能化 · 六域协同</a>（数据 / 管道 / 分析 / 前端 / 运维 / 治理）</li>
       </ul>
     </section>
 
     <section class="card" aria-labelledby="mh-gates">
       <h2 id="mh-gates">闸门、合并与 CI</h2>
       <ul>
-        <li><a href="docs/MERGE_AND_RELEASE_CHECKLIST.md">合并与发布一页清单</a>（<code>make merge-ready</code>）</li>
-        <li><a href="CONTRIBUTING.md">参与贡献与环境命令</a></li>
-        <li><a href="docs/README.md#docs-spine">文档主线表（#docs-spine）</a></li>
-        <li><a href="docs/INTEGRATION_AND_READONLY_API.md">只读 API 与 OpenAPI</a></li>
-        <li><a href="docs/DOCKER.md">Docker 部署</a>（<code>make docker-up</code> / <code>make docker-up-api</code> / <code>make docker-up-admin</code>）</li>
+        <li><a href="docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge">合并与发布一页清单</a> · <a href="docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence">MERGE · partials 手顺</a>（<code>make merge-ready</code>；<code>make spa-sync</code> / <code>make spa-build</code> 与 MPA 同源）</li>
+          <li><strong>CI 与 Make 入口</strong>：<a href=".github/workflows/ci.yml"><code>.github/workflows/ci.yml</code></a>（<code>validate</code> 始终；<code>spa-build</code> 按路径）· <a href="Makefile"><code>Makefile</code></a> / 仓库根 <code>make help</code>（<code>spa-sync</code>、MERGE、<a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> 等一行收束）· 与 <a href="docs/README.md#content-framework">docs/README · 文首真源分层（#content-framework）</a> 及 <a href="docs/README.md#quick-paths">#quick-paths</a> 双轨对读。</li>
+        <li><a href="AGENTS.md#agents-pre-merge">自动化助手 · 合并前 / merge-ready（AGENTS）</a> · <a href="AGENTS.md#agents-contract">契约速览</a></li>
+        <li><a href="CONTRIBUTING.md#contributing-env-and-cmd">参与贡献与环境命令</a></li>
+        <li><a href="docs/README.md#docs-spine">文档主线（#docs-spine）</a> · <a href="docs/README.md#content-framework">真源分层（#content-framework）</a> · <a href="docs/README.md#quick-paths">判型（#quick-paths）</a> · <a href="docs/README.md#front-back-modules">前后台（#front-back-modules）</a> · <a href="docs/README.md#system-components-fusion">组件×主链（#system-components-fusion）</a></li>
+        <li><a href="docs/INTEGRATION_AND_READONLY_API.md#integration-openapi">只读 API 与 OpenAPI</a></li>
+        <li><a href="docs/DOCKER.md#quickstart">Docker 部署</a>（<code>make docker-up</code> / <code>make docker-up-api</code> / <code>make docker-up-admin</code>）· 无 Docker 时起读者站 <code>make serve-reader</code></li>
         <li><a href="admin-console/README.md">管理端脚手架</a>（本地 / Compose profile <code>admin</code>，端口 8100）</li>
       </ul>
     </section>
@@ -126,16 +244,29 @@
     <section class="card" aria-labelledby="mh-contracts">
       <h2 id="mh-contracts">契约与数据索引</h2>
       <ul>
-        <li><a href="docs/DATA_CONTRACTS.md">DATA_CONTRACTS</a> · <a href="docs/schemas/README.md">JSON Schema 索引</a></li>
-        <li><a href="docs/ARCHITECTURE.md">ARCHITECTURE</a> · <a href="docs/SITE_DATA_UPDATE_FRAMEWORK.md">总线消费方登记</a></li>
+        <li><a href="docs/DATA_CONTRACTS.md#signals-candidates">DATA_CONTRACTS</a> · <a href="docs/schemas/README.md#schemas-readme-index">JSON Schema 索引</a></li>
+        <li><a href="docs/ARCHITECTURE.md#seven-layers">ARCHITECTURE</a> · <a href="docs/SITE_DATA_UPDATE_FRAMEWORK.md#registry">总线消费方登记</a></li>
         <li><a href="scripts/draft/README.md">内容草稿插槽（LLM/辅助）</a></li>
       </ul>
     </section>
+
+    <section class="card reader-home-next hub-cluster-next" aria-labelledby="mh-maint-next-h">
+      <p class="reader-home-next-kicker" id="mh-maint-next-h">维护导读 · 下一站</p>
+      <ul class="reader-home-next-list">
+        <li><a href="index.html#hub-catalog">总览 · 分区速跳</a></li>
+        <li><a href="maintainer-hub.html#mh-spine-map">关系视图（枢纽 ↔ 注册表 ↔ 文档）</a></li>
+        <li><a href="maintainer-hub.html#mh-boundaries">系统边界速查</a></li>
+        <li><a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵（站内速览）</a></li>
+        <li><a href="analysis-hub.html#panorama">分析引擎 · 全景</a></li>
+      </ul>
+    </section>
+
+    </main>
 
     <footer>
       <a href="index.html">← 总览</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="index.html#read-guide">读站指路</a>
     </footer>
   </div>
-  <script src="assets/site-data-bus.js"></script>
+  <script src="assets/site-data-bus.js" defer></script>
 </body>
 </html>

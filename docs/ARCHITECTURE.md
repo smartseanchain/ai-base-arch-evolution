@@ -1,15 +1,19 @@
 # 仓库架构一览
 
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**本文侧重**：**数据流**与**七类模块**、`run_validate` 等闸门总览；字段级 JSON 契约见 [DATA_CONTRACTS](./DATA_CONTRACTS.md)。**架构师梳理入口**（粒度—真源—闸门—演进节奏）：[架构一页纸 · 架构师视角](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
 静态站点 + **可进化数据管道**：人审闸门贯穿 manifest 入库与规则闭环记录。
 
-**与「内容架构」「推演架构」并列速览**（升级分阶段见 **[ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md)**）：**[架构一页纸 · 三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)**。**五维总索引**（数据 · 内容 · 演进 · 方法论 · 运行态）：**[PROJECT_ARCHITECTURE_OVERVIEW.md](./PROJECT_ARCHITECTURE_OVERVIEW.md)**。**智能化目标架构**（六域协同：数据 / 管道 / 分析 / 前端 / 运维 / 治理）见 **[INTELLIGENCE_SIX_DOMAINS.md](./INTELLIGENCE_SIX_DOMAINS.md)**，与下文「七类模块」对照使用。
+**与「内容架构」「推演架构」并列速览**（升级分阶段见 **[ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md)**）：**[架构一页纸 · 三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)**。**五维总索引**（数据 · 内容 · 演进 · 方法论 · 运行态）：**[PROJECT_ARCHITECTURE_OVERVIEW.md](./PROJECT_ARCHITECTURE_OVERVIEW.md)**（**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)**；**[§1a 主链联动与验证](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation)** · **[§1b 仓库物理分层](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**）。**智能化目标架构**（六域协同：数据 / 管道 / 分析 / 前端 / 运维 / 治理）见 **[INTELLIGENCE_SIX_DOMAINS.md](./INTELLIGENCE_SIX_DOMAINS.md)**（枢纽 MPA **纯 CSS 版式契约**见 **[§2.2](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)**），与下文「七类模块」对照使用。**整体内容框架**见 **[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按本轮改动判型**（主线 **0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。
+
+<a id="architecture-dataflow"></a>
 
 ## 数据流（简图）
 
 ```mermaid
 flowchart TB
   subgraph ingest [抓取]
-    RSS[RSS / 法规页] --> IC[ingest_opinion_law.py]
+    RSS[RSS / 法规页] --> IC["ingest（ingest_opinion_law · pool）"]
     IC --> Cand[evolution-candidates.json]
     Hints[maps_to_hints.json] --> IC
   end
@@ -66,18 +70,23 @@ flowchart TB
 | `validate_evolution_hint_decisions.py` | 决策记录与 `rule_id`、页面白名单一致，可追溯 |
 | `validate_evolution_registry_schema.py` | **`evolution-registry.json`** 与 **`docs/schemas/evolution-registry.schema.json`** 一致（先于对账） |
 | `check_manifest_drift.py` | **单一注册表**：`maps_to.pages`、`lab_factors`、ingest、sitemap、hint-rules 与真实页面/沙盘因子对齐 |
-| `sync_site_nav.py --check` | 顶栏与 partial 一致，避免读者迷路 |
-| `check_skip_bar_404.py` | **404.html** 内 skip-bar 与 **`partials/skip-bar.inc.html`** 对齐（含总览第四链 **`#hub-catalog`** / **`#continuation`** 约定） |
+| `sync_site_nav.py --check` | 顶栏与 partial 一致，避免读者迷路；**`maintainer-hub.html`** 在五链 skip 后再由 **`build_skip_bar`** 拼 **`#mh-spine-map` / `#mh-boundaries` / `#mh-reader-admin-matrix`**（勿手改 HTML 中该段，见 **[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)** · **[MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)**） |
+| `check_skip_bar_404.py` | **404.html** 内 skip-bar 与 **`partials/skip-bar.inc.html`** 对齐（第四链 **`#hub-catalog`** / **`#continuation`** 失页变体；第五链 **`index.html#reader-next`**） |
 | `scripts/tests` | 分析规则、闭环、diff 提示等回归 |
 | `analysis_engine.py --check` | 当日分析逻辑产出结构正确（含 `run` 血缘块） |
 | `validate_analysis_snapshot_schema.py` | **已提交** `analysis-snapshot.json` 与 **`docs/schemas/analysis-snapshot.schema.json`** 一致（`jsonschema` Draft 2020-12），避免 hub 读到缺字段旧快照 |
 | `validate_sediment_artifacts_schema.py` | **已提交** `data/sediment.json`、`assets/sediment-trends.json` 与 **`docs/schemas/sediment*.schema.json`** 一致（无文件则跳过） |
 | `check_nav_links_registry.py` | **SPA**：**nav.config.json** 符合 **`docs/schemas/spa-nav-config.schema.json`**；**navLinks.ts** 由配置生成且 **items.page** 集等于 registry **`pages`**（**`evolution_pkg.spa_nav`**；无 **spa/package.json** 则跳过） |
+| `validate_golden_mapping.py` | **`ingest_config.routes` + `maps_to_hints`** 与 **`fixtures/ai_mapping_golden/*.json`** 对齐；**expect** ⊆ **registry**（防路由/夹具漂移） |
 | `gen_nav_links_ts.py` | **`--write`**：由 **nav.config.json** 写回 **navLinks.ts**；默认检查与磁盘一致（**`make gen-nav-links`**） |
-| `scripts/evolution_pkg/` | **包化**（顶层子模块须在 **`domains.SUBMODULE_DOMAIN`** 登记，与 **[INTELLIGENCE_SIX_DOMAINS](./INTELLIGENCE_SIX_DOMAINS.md#code-mapping)** 对表）：**数据** `io`、`ingest_json_http`、`sediment_validate`、`sediment_daily`；**分析** `hint_closure`、`analysis_hints`、`analysis_core`、`analysis_validate`、`analysis_snapshot_build`、`analysis_pipeline`、`analysis_snapshot_history`、`ai_overlay_validate`；**前端** `nav_links`、`spa_nav`；**运维** `ops`、`readonly_disk_routes`；**管道** `pipeline` |
+| `scripts/evolution_pkg/` | **包化**（**27** 个顶层子模块须在 **`domains.SUBMODULE_DOMAIN`** 登记，与 **[INTELLIGENCE_SIX_DOMAINS](./INTELLIGENCE_SIX_DOMAINS.md#code-mapping)** · **[MODULE_INVENTORY · §2](./MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md#evolution-pkg)** 对表）：**数据** `io`、**`signals_flat_validate`**（manifest/候选扁平校验；**`validate-evolution-*.py`** 调包）、**`ingest_opinion_pool`**、**`ingest_*`**（json_http、maps、https、fetch、rss）、`sediment_validate`、`sediment_daily`；**分析** `hint_closure`、`analysis_hints`、`analysis_core`、`analysis_validate`、`analysis_snapshot_build`、`analysis_pipeline`、`analysis_snapshot_history`、`ai_overlay_validate`、**`analysis_diff`**（快照两版 diff / Markdown 摘要）、**`analysis_lineage`**（`run` 块 / `git` revision）；**前端** `nav_links`、`spa_nav`；**运维** `ops`、**`beijing_time`**（业务时区 ISO）、`readonly_disk_routes`；**管道** `pipeline`；**治理** **`candidate_merge`** |
 | `scripts/evolution_io.py` | **兼容层**：`from evolution_io import …` 仍指向 `evolution_pkg.io` |
 
-上述检查（外加 `python3 -m compileall -q scripts`）由 **`scripts/run_validate.sh`** 按固定顺序串行执行；**`make validate`**、**`.githooks/pre-commit`** 与 **CI** 的校验 job 均调用该脚本，避免 Makefile / 钩子 / Actions 步骤漂移。运行前需 **`pip install -r requirements.txt`**（见根目录 README）。**新增或变更 JSON 契约**时按 **[scripts/README.md](../scripts/README.md)** 文首检查单走 Schema → 校验脚本 → `run_validate.sh` → 文档/消费者说明。
+<a id="run-validate-gate"></a>
+
+上述检查（外加 `python3 -m compileall -q scripts`）由 **`scripts/run_validate.sh`** 按固定顺序串行执行；**`make validate`**、**`.githooks/pre-commit`** 与 **CI** 的校验 job 均调用该脚本，避免 Makefile / 钩子 / Actions 步骤漂移。**`run_validate_fast.sh`** / **`make validate-fast`** 为本地子集，**不**纳入 pre-commit 与 CI。运行前需 **`pip install -r requirements.txt`**（见根目录 README）。**新增或变更 JSON 契约**时按 **[scripts/README.md](../scripts/README.md)** 文首检查单走 Schema → 校验脚本 → `run_validate.sh` → 文档/消费者说明。
+
+**全站顶栏与失页**：改 **`partials/site-nav.inc.html`** / **`partials/skip-bar.inc.html`** 后 **`make sync-nav`**（写回各注册页内嵌顶栏）；**`maintainer-hub.html`** 上五链后的三条页内 skip 由 **`build_skip_bar`** 生成（与 **[维护导读 · `toc--pilot`](../maintainer-hub.html)** 前三锚一致），**勿**在 HTML 手改；**`404.html`** 顶栏/skip **不在** **`sync_site_nav`** 写回范围，须与 partial **手调**一致 — **[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)** · **[MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)** · **[scripts/README · `sync_site_nav`](../scripts/README.md)**。
 
 <a id="lineage"></a>
 
@@ -85,7 +94,7 @@ flowchart TB
 
 每次执行 `analysis_engine.py` 写入快照时，根级增加 **`run`**：
 
-- **`run_id`**：本次运行的唯一标识（UTC 日期前缀 + 随机十六进制），便于在沉淀与日志中对齐「哪次 analyze」。
+- **`run_id`**：本次运行的唯一标识（**北京日历日** `YYYYMMDD` 前缀 + 随机十六进制），便于在沉淀与日志中对齐「哪次 analyze」。
 - **`repo_revision`**：`git rev-parse --short HEAD`，非 git 环境为 `unknown`。
 
 同一日多次 `analysis_engine.py --sediment` 时，当日 `data/sediment.json` 条目会更新，并带上**最后一次**运行的 `run_id` / `repo_revision`；SQLite `sediment_entry` 同步双写这两列（旧库启动时自动 `ALTER`）。
@@ -112,6 +121,7 @@ flowchart TB
 | `assets/evolution-candidates.json` | 待审候选 |
 | `assets/evolution-hint-decisions.json` | 对规则提示的 done/rejected/deferred；`rule_id` 须 ∈ hint-rules |
 | `scripts/evolution-hint-rules.json` | 条件提示 + `track_closure`；驱动 `hint_closure_gaps` |
+| `fixtures/ai_mapping_golden/*.json` | ingest 路由 + host/keyword hints 的**规则层黄金用例**（CI **`validate_golden_mapping.py --dir`**）；契约见 **[DATA_CONTRACTS · §2](./DATA_CONTRACTS.md#signals-candidates)** |
 | `assets/analysis-snapshot.json` | 热力、共现、`evolution_hints`、`hint_closure_gaps` |
 | `assets/site-meta.json` | 站点发布线 `site_version`（与 `run_id` 无关）；顶栏/总线可读 |
 | `data/sediment.json` | 按日摘要（含 `hint_closure_gaps_n`、`hint_decisions_total`） |
@@ -128,30 +138,31 @@ flowchart TB
 | **数据存储** | 可版本化、可校验的结构化事实 | `assets/*.json`、`data/sediment.json`、`data/evolution.db`（本地，gitignore） | 信号库、决策记录、规则配置以 **JSON 为源**；SQLite 为 **加速/查询侧车**（**`sediment_entry`** 与沉淀双写；**`analysis_snapshot_history`** 按 `run_id` 追加快照 JSON，见 **DATA_CONTRACTS §5**），**不**替代已提交快照文件闸门。 |
 | **沉淀** | 按日追加的「运行痕迹」 | `analysis_engine.py --sediment` → `sediment.json` + `sqlite_store.py` | 与「分析」解耦入口：同一次跑可只写快照不写沉淀；沉淀字段扩展需同步 **import 脚本**与 **trends** 消费方。 |
 | **分析** | 在 manifest/候选上算热力、共现、规则提示与闭环缺口 | `analysis_engine.py`、`evolution-hint-rules.json`、`evolution-hint-decisions.json` | **不做**正文生成；输出为 **只读快照** `analysis-snapshot.json`；与全站方法/演进策略的总说明见站内 **[analysis-hub.html#panorama](../analysis-hub.html#panorama)**。 |
-| **内容生成** | 面向读者的叙事与版式 | 各 `.html` + `assets/lab.js` 等；**结构化线索**来自 `ingest_opinion_law.py` | 本站 **不**把分析引擎当 LLM 用；「生成」= **人写页面** + **脚本写候选 JSON**。若将来接模型，应挂在 [智能进化](../intelligent-evolution.html) 所述插槽，而非混进 `analysis_engine`。 |
+| **内容生成** | 面向读者的叙事与版式 | 各 `.html` + `assets/lab.js` 等；**结构化线索**来自 **`ingest_opinion_law.py`**（薄 CLI → **`ingest_opinion_pool`**） | 本站 **不**把分析引擎当 LLM 用；「生成」= **人写页面** + **脚本写候选 JSON**。若将来接模型，应挂在 [智能进化](../intelligent-evolution.html) 所述插槽，而非混进 **`analysis_pipeline`**。 |
 | **进化** | 观测如何升格为站内核 | `review_state`、`merge_candidates_to_manifest.py`、`track_closure` / `hint_closure_gaps`、registry | **人审闸门** + **可审计决策 JSON**；进化状态可拆成：候选池 → 正式 manifest → 规则闭环记录。 |
 | **汇总** | 把多源合成可扫一眼的结论 | **当日**：`analysis-snapshot.json`；**跨日**：`sediment_trends.py` → `sediment-trends.json`；全站导航/地图：`gen-sitemap.py` | 两轨已分离；避免把「趋势」逻辑塞进快照生成器，反之亦然。 |
-| **展示** | 读 JSON 渲染 + 读者路由 | **MPA**：`evolution.js`、`analysis.js`、`closure-summary.js`、`site-data-bus.js`、`lab.html`；**可选 SPA**：`spa/`（壳内 iframe 加载剥顶栏后的同名 HTML，路由与 registry 对齐） | 保持 **fetch + 纯展示**；**`make validate` 以根目录 MPA 为准**；SPA 增页须更新 **`spa/nav.config.json`** 并 **`make gen-nav-links`**（或 **`make spa-build`** 会自动生成）。总线见 [SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md)。 |
+| **展示** | 读 JSON 渲染 + 读者路由 | **MPA**：`evolution.js`、`analysis.js`、`closure-summary.js`、`site-data-bus.js`、`lab.html`；**可选 SPA**：`spa/`（壳内 iframe 加载剥顶栏后的同名 HTML，路由与 registry 对齐） | 保持 **fetch + 纯展示**；**`make validate` 以根目录 MPA 为准**；SPA 增页须更新 **`spa/nav.config.json`** 并 **`make gen-nav-links`**（或 **`make spa-build`** 会自动生成；**`spa-build` 前含 `spa-sync`**）。改根 **`.html`** 且验 **`spa/public/`** 与 MPA 一致时 **`make spa-sync`**（[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map) · [系统边界](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)）。总线见 [SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md)。首屏 **`modular-intro-stack` / `toc--pilot`** 等 **HTML/CSS 复用**见 [INTELLIGENCE · §2.2](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)（**不**写入总线消费方表）。 |
 
 <a id="intelligence-six-domains"></a>
 
 ### 与「六域协同」的读法
 
-上表按**存储与模块形状**拆成七类；讨论**平台扩展、PR 影响面、智能化边界**时，建议同时用 **六域**（数据 / 管道 / 分析 / 前端 / 运维 / 治理）打点，避免「只想到脚本」漏掉契约、总线或闸门。定义、协同图、与七类的映射见 **[INTELLIGENCE_SIX_DOMAINS.md](./INTELLIGENCE_SIX_DOMAINS.md)**。
+上表按**存储与模块形状**拆成七类；讨论**平台扩展、PR 影响面、智能化边界**时，建议同时用 **六域**（数据 / 管道 / 分析 / 前端 / 运维 / 治理）打点，避免「只想到脚本」漏掉契约、总线或闸门。定义、协同图、与七类的映射见 **[INTELLIGENCE_SIX_DOMAINS.md](./INTELLIGENCE_SIX_DOMAINS.md)**；**读者面版式**（`assets/site.css` + 根 `.html` 结构）与总线分工见 **[同文档 §2.2](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)**。
 
 <a id="module-inventory-upgrade"></a>
 
 ### 模块全量梳理与架构升级
 
-七类之上的**脚本簇、`evolution_pkg` 登记表、MPA/SPA/管理端分面**，以及与 **阶段 0—3** 对齐的**升级矩阵与推荐顺序**，见 **[MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md](./MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md)**（与 **[scripts/README.md](../scripts/README.md)** 职责表互补）。
+七类之上的**脚本簇、`evolution_pkg` 登记表、MPA/SPA/管理端分面**，以及与 **阶段 0—3** 对齐的**升级矩阵与推荐顺序**，见 **[MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md](./MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md)**（与 **[scripts/README.md](../scripts/README.md)** 职责表互补）。**`admin-console/static/index.html`** 顶栏与 **`mod-*`**、**`#mod-api`→`#mod-analysis`** 见 **[ADMIN_CONSOLE · §7](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)**。
 
 <a id="site-data-bus"></a>
 
 ### 全站读数与 `site-data-bus`
 
-- **`assets/site-data-bus.js`**：`loadSnapshot` / `loadTrends`（带内存缓存）、`mountLiveStrip`，并在 DOMContentLoaded 时自动挂载所有 **`[data-site-data-live]`** 占位。
+- **`assets/site-data-bus.js`**：`loadSnapshot` / `loadTrends`（带内存缓存）、`mountLiveStrip`，并在 DOMContentLoaded 时自动挂载所有 **`[data-site-data-live]`** 占位；**`loadSiteSearchIndex`** + **`[data-site-quick-search]`** 消费可选 **`assets/site-search-index.json`**（见 **[SITE_DATA · §3](./SITE_DATA_UPDATE_FRAMEWORK.md#registry)**、**`make site-search-index`**）。
 - **与 `analysis.js` 分工**：仪表盘全量可视化仍在 **`analysis-hub.html`**；其余页用总线挂**一行读数**。枢纽页本身亦挂 **`snapshot-only`** 读数条，且 **`analysis.js` 与总线共用** `loadSnapshot` / `loadTrends` 缓存，避免重复 `fetch`。
 - **「自动更新」含义**：JSON 随流水线提交后，读者刷新即可看到新数；**不**由引擎改写 HTML 正文。完整消费方登记表与扩展步骤见 **[SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md)**。
+- **版式与总线分列**：改 **`assets/site.css`** 或枢纽页 **DOM 骨架**（图例 / 流程条 / 目录栈等）时，按 **[INTELLIGENCE · §2.2](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)** 自检；**不**替代上文总线登记与 **`[data-site-data-live]`** 约定。
 
 ### 分层简图（与数据流正交）
 
@@ -188,27 +199,28 @@ flowchart TB
 ### 可继续优化的方向（按成本）
 
 1. **文档与命名（低成本）**：在 PR / issue 中固定使用上表术语，避免「分析」与「生成」混谈；README 已链到本文。  
-2. **契约（中成本）**：快照已有 `schema_version`；**已增加** `run` 血缘与 `docs/schemas/analysis-snapshot.schema.json` + `validate_analysis_snapshot_schema.py`。`sediment` 条目可选带 `run_id` / `repo_revision`（与 `--sediment` 同跑 analyze 时写入）。大改时递增 `schema_version` 并同步校验脚本。  
-3. **代码分包（进行中）**：已引入 **`scripts/evolution_pkg/`**（`io`、`pipeline`、**`analysis_snapshot_history`**、**`sediment_daily`**（**`--sediment`** 写 JSON + SQLite）、**`hint_closure`** / **`analysis_hints`**（含 **`load_hint_rules_from_path`**）/ **`analysis_core`** / **`analysis_validate`** / **`analysis_snapshot_build`** / **`analysis_pipeline`**（**`default_analysis_paths`**、**`parse_analysis_cli`** / **`AnalysisCliFlags`**、**`run_analysis_pipeline`**、**`--check`**、快照组装与写盘编排）等）；快照历史只读逻辑经 **`evolution_pkg.analysis_snapshot_history`** 供 CLI / **`readonly_api`** 复用；**`analysis_engine.py`** 侧重 CLI 与读盘写盘；其余校验/抓取脚本仍平铺在 `scripts/`，可按域逐步迁入子包。  
+2. **契约（中成本）**：快照已有 `schema_version`；**已增加** `run` 血缘与 `docs/schemas/analysis-snapshot.schema.json` + `validate_analysis_snapshot_schema.py`。`sediment` 条目可选带 `run_id` / `repo_revision`（与 `--sediment` 同跑 analyze 时写入）。**ingest 规则层**由 **`fixtures/ai_mapping_golden/`** + **`validate_golden_mapping.py`**（并入 **`run_validate.sh`**）锁定 **`routes` / `maps_to_hints`** 与 **registry** 的交集。大改时递增 `schema_version` 并同步校验脚本。  
+3. **代码分包（进行中）**：已引入 **`scripts/evolution_pkg/`**（`io`、`pipeline`、**`analysis_snapshot_history`**、**`sediment_daily`**（**`--sediment`** 写 JSON + SQLite）、**`hint_closure`** / **`analysis_hints`**（含 **`load_hint_rules_from_path`**）/ **`analysis_core`** / **`analysis_validate`** / **`analysis_snapshot_build`** / **`analysis_pipeline`**（**`main()`**、**`default_analysis_paths`**、**`parse_analysis_cli`** / **`AnalysisCliFlags`**、**`run_analysis_pipeline`**、**`--check`**、快照组装与写盘编排）、**`analysis_lineage`**（**`run`** 块）、**`analysis_diff`**（两版快照摘要）等）；快照历史只读逻辑经 **`evolution_pkg.analysis_snapshot_history`** 供 CLI / **`readonly_api`** 复用；**`analysis_engine.py`** 为薄 CLI 壳（重导出路径常量与 **``load_hint_rules``**，等价 **``python3 -m evolution_pkg.analysis_pipeline``**）；**`lineage_utils`**、**`diff_analysis_snapshot`** 为薄兼容 / CLI；其余校验/抓取脚本仍平铺在 `scripts/`，可按域逐步迁入子包。  
 4. **内容生成插槽（按需）**：若引入自动生成草稿，使用 **`scripts/draft/`**（约定见 **[scripts/draft/README.md](../scripts/draft/README.md)**）+ 明确 **不** 自动写 manifest；产出经 PR 审阅后再合入 `.html` 或结构化 JSON，**不**默认写入 **`assets/`** 真源。
 
 ## 自动化与仓库写入
 
-- **CI · validate**（`make validate` 同款、`run_validate.sh`）：校验 + 单测 + `analysis_engine --check`，**不写**快照。另 **`ci.yml` · spa-build** 按路径跑 **`make spa-build`**，验证全站 SPA 可构建，**不替代**本条闸门；双轨摘要见 [docs/README 文首](./README.md)。
+- **CI · validate**（`make validate` 同款、`run_validate.sh`）：校验 + 单测 + `analysis_engine --check`，**不写**快照。另 **`ci.yml` · spa-build** 按路径跑 **`make spa-build`**（会先 **`gen-nav-links`** + **`spa-sync`**），验证全站 SPA 可构建，**不替代**本条闸门；双轨摘要见 [docs/README 文首](./README.md)。仅改根 **`.html`**、须 **`spa/public/`** 与 MPA 对齐时亦可本地 **`make spa-sync`**（[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map) · [系统边界](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)）。
 - **定时 Actions**：ingest / analyze 产出 **artifact**，默认 **不 push**；合并步骤见根目录 [README.md](../README.md)。
 - **可选**：`pr-candidates.yml` 手动刷新候选并开 PR。
 
 ## 延伸阅读
 
-- **参与贡献（环境与合并前自检）**：[CONTRIBUTING.md](../CONTRIBUTING.md) · **Agent 速查**：[AGENTS.md](../AGENTS.md)
+- **参与贡献（环境与合并前自检）**：[CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd) · **Agent 速查**：[AGENTS.md](../AGENTS.md#agents-contract) · [框架判型](../AGENTS.md#agents-content-framework)
 - **整体适配、分阶段升级与扩展路线图**：[ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md)
-- **文档索引与 CI 双轨说明（文首）**：[docs/README.md](./README.md)
+- **文档索引与 CI 双轨说明（文首）**：[docs/README.md](./README.md)（**[前后台模块总览](./README.md#front-back-modules)** · **[组件与功能融合](./README.md#system-components-fusion)**）
 - **数据契约与主键索引（JSON / 侧车 / 遥测）**：[DATA_CONTRACTS.md](./DATA_CONTRACTS.md)
 - **舆情类开源：参考引用设计（侧车 / `ai-analysis-overlay`；非子模块、不自动写 manifest）**：[REFERENCE_DESIGN_OPINION_MONITORING.md](./REFERENCE_DESIGN_OPINION_MONITORING.md)
 - **任务编排与事件流选型**（Dagster/Prefect、Kafka/Redpanda；**§1 默认栈含 PR/推送 CI 双轨**）：[ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md)
 - **平台能力总览 · 双轨呈现 · 阅读顺序**：[PLATFORM_CAPABILITY_MAP.md](./PLATFORM_CAPABILITY_MAP.md)
-- **智能化 · 六域协同（目标架构）**：[INTELLIGENCE_SIX_DOMAINS.md](./INTELLIGENCE_SIX_DOMAINS.md)
-- **技术栈 + 可实现功能 + 进化能力（总览一篇）**：[TECH_ARCHITECTURE_CAPABILITIES.md](./TECH_ARCHITECTURE_CAPABILITIES.md)
+- **五维总图 · 勿混粒度 · 主链 · 物理分层**：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · **[§1a 主链联动与验证](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation)** · **[§1b 仓库物理分层](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)** · [模块全量矩阵](./MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md)
+- **智能化 · 六域协同（目标架构）**：[INTELLIGENCE_SIX_DOMAINS.md](./INTELLIGENCE_SIX_DOMAINS.md) · **[§2.2 读者面版式](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)**
+- **技术栈 + 可实现功能 + 进化能力（总览一篇）**：[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md · 附录](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md#appendix-tech-capabilities)（[别名](./TECH_ARCHITECTURE_CAPABILITIES.md)）
 - **数据与分析如何驱动全站模块与内容更新**：[DATA_ANALYSIS_SITE_CONTENT_SYNC.md](./DATA_ANALYSIS_SITE_CONTENT_SYNC.md)
 - **全站梳理 + 重新推演 + 更新落点（一轮操作手册）**：[SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md](./SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md)
 - 全站推演读数如何随数据/分析引擎更新：[SITE_DATA_UPDATE_FRAMEWORK.md](./SITE_DATA_UPDATE_FRAMEWORK.md)

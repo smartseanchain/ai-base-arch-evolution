@@ -11,7 +11,9 @@ function frameTitle(file: string, hash: string): string {
   if (file === "legacy-index.html") {
     if (hash === "#three-questions") return "总览 · 三问导读";
     if (hash === "#read-guide") return "总览 · 读站指路";
+    if (hash === "#index-intent-pick") return "总览 · 判型入口";
     if (hash === "#hub-catalog") return "总览 · 分区速跳";
+    if (hash === "#reader-next") return "总览 · 常见下一站";
     return "总览";
   }
   const seg = file.replace(/\.html$/, "");

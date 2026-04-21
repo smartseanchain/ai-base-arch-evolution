@@ -1,7 +1,8 @@
 # CI：validate = run_validate.sh（同 make validate / make phase-1）+ requirements-api；单测含 test_readonly*.py（HTTP + 代理白名单对账）。
-# 合并前本地推荐 make merge-ready（validate + test-readonly-api · test_readonly*.py + test-admin-console）；validate job 同 run_validate.sh；admin-console 见 admin-console-tests job。
+# 本地迭代可用 make validate-fast（子集）；本 workflow 仍以全量 validate 为合并真源，不另跑 fast。
+# 合并前本地推荐 make merge-ready（validate + test-readonly-api · test_readonly*.py + test-admin-console）；validate job 同 run_validate.sh；admin-console 见 admin-console-tests job；单页 UI 分区 docs/ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan。
 # spa-build 按路径过滤；不写回 manifest；artifact 类 workflow 见 README「持续集成」。
-# 若改编排器/broker/生产库与 CI 分工：先对 docs/PHASED_UPGRADE_EXECUTION_GUIDE.md；勿引入第二套脱离 run_validate.sh 的合并真源（与 AGENTS / PR 模板一致）。
+# 若改编排器/broker/生产库与 CI 分工：先对 docs/PHASED_UPGRADE_EXECUTION_GUIDE.md；勿引入第二套脱离 run_validate.sh 的合并真源（与 AGENTS.md#agents-pre-merge、PR 模板一致）。
 name: CI
 
 on:
@@ -23,7 +24,9 @@ jobs:
       admin: ${{ steps.filter.outputs.admin }}
     steps:
       - uses: actions/checkout@v4
-      # spa/public 由 sync_spa_public 从根 *.html、assets、docs 生成；partials 经 sync_site_nav 写入各页后体现为 *.html 变更，不必单列以免误触 spa-build
+      # spa/public 由 sync_spa_public 从根 *.html、assets、docs 生成；partials 经 sync_site_nav 写入各页后体现为 *.html 变更，不必单列以免误触 spa-build。
+      # 404.html 顶栏/skip 不在 sync_site_nav 写回范围；改 skip-bar 须手调 404 — docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence
+      # maintainer-hub.html 五链后三锚由 build_skip_bar 拼入；勿手改 HTML 中该段
       - uses: dorny/paths-filter@v3
         id: filter
         with:
@@ -76,6 +79,7 @@ jobs:
         run: bash scripts/run_validate.sh
 
   # 双轨呈现：不替代 validate；sync + Vite 构建。无相关文件变更时跳过（分支保护请以 validate 为主）
+  # 本地仅同步 iframe 源页与 public/docs：make spa-sync。merge / 枢纽收束：docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix
   spa-build:
     needs: changes
     if: needs.changes.outputs.spa == 'true'

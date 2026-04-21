@@ -6,9 +6,14 @@ alwaysApply: false
 
 # 全站 SPA（`spa/src`）
 
+**判型**：[README · 四条动线](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map) · [ONE_PAGER · 架构师五步](../docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [ONE_PAGER · 不变量索引](../docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [docs/README · #content-framework](../docs/README.md#content-framework) · [#front-back-modules](../docs/README.md#front-back-modules) · [#system-components-fusion](../docs/README.md#system-components-fusion) · [quick-paths](../docs/README.md#quick-paths)。
+
 1. **顶栏顺序与文案**：改 **`spa/nav.config.json`**（`items[].page` 须与 registry **`pages`** 集合一致），再 **`make gen-nav-links`** 或 **`make spa-build`）。**`spa/src/navLinks.ts` 为生成文件，勿手改**。
 2. 合并前 **`make test`** / **`make validate`**（**`check_nav_links_registry.py`**；逻辑 **`evolution_pkg.spa_nav`**）。**`make test`** 还含 registry JSON Schema 与沉淀/趋势 Schema；**`make validate`** 另含对账、顶栏、**`--check`** 等。
 3. 修改 **`routes.tsx`**、**`LegacyFrame.tsx`** 等与 **iframe 目标** 相关的逻辑时，仍须与 registry 页面名一致。
-4. CI：**`ci.yml` · spa-build** 在变更触及 `spa/`、registry、sync 输入等时会跑 **`make spa-build`**；**validate** job 始终运行，二者**不互相替代**。
+4. CI：**`ci.yml` · spa-build** 在变更触及 `spa/`、registry、sync 输入等时会跑 **`make spa-build`**；**validate** job 始终运行，二者**不互相替代**。仅改根 **`.html`** 且 CI 未跑 **`spa-build`** 时本地须 **`make spa-sync`**；动线 **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge`** · **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence`** · **[维护导读](../maintainer-hub.html)** · **[关系视图](../maintainer-hub.html#mh-spine-map)** · **[系统边界](../maintainer-hub.html#mh-boundaries)** · **[衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)**。
+5. **对读 MPA**：改 **`partials/site-nav.inc.html`** 后 **`make sync-nav`**（**`maintainer-hub.html`** 五链后三锚由 **`build_skip_bar`** 生成，勿手改 HTML）；**`404.html`** 顶栏/skip **不在** `sync_site_nav` 写回范围，改 **`partials/skip-bar.inc.html`** 时须**手调** — **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence`** · **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge`** · **`spa-nav-config.mdc`**。
 
-深读：根 **`CONTRIBUTING.md`**、**`spa/README.md`**、**`docs/PLATFORM_CAPABILITY_MAP.md`** §2、§6、§7（读者预期与 **`docs/*.md`** 静态站行为）。根 **`index.html`** 总览正文变更后须 **`make spa-sync`**，见 **`spa/README.md`**。
+**与根目录契约对读**：[AGENTS.md · 双轨呈现](../AGENTS.md#agents-dual-track) · [Cursor 规则](../AGENTS.md#agents-cursor-rules)。
+
+深读：根 **`CONTRIBUTING.md`**、**`spa/README.md`**、**`docs/PLATFORM_CAPABILITY_MAP.md`** §2、§6、§7（读者预期与 **`docs/*.md`** 静态站行为）。根目录任意 **`.html`**（**`index.html`** 读站指路、多页页脚、**`analysis-hub`** 导读等）变更后须 **`make spa-sync`**，见 **`spa/README.md`** · **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge`** · **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence`**。**MPA 维护枢纽**：[维护导读](../maintainer-hub.html) · [关系视图](../maintainer-hub.html#mh-spine-map) · [系统边界](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)。**主链联动 · 仓库物理分层**：[PROJECT · §1a](docs/PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · [§1b](docs/PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)。

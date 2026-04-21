@@ -24,12 +24,15 @@
 <body>
   <div class="wrap">
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py）。maintainer-hub 在五链后另拼 #mh-*（MAINTAINER_HUB_SKIP_EXTRA）。404 / legacy-all-in-one 不经此脚本写回。 -->
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
       <a class="skip-link" href="index.html#read-guide">读站指路</a>
       <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="index.html#reader-next">常见下一站</a>
     </div>
     <header class="site-nav">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py · build_header）。 -->
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
@@ -37,39 +40,67 @@
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
-        <a href="nexus.html">立体联结</a>
-        <a href="edu-nexus.html" class="current">教育纵轴</a>
-        <a href="evolution-triad.html">人与AI演进</a>
-        <a href="work-infra-energy.html">职业·基建·能源</a>
-        <a href="model.html">分层模型</a>
-        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
-        <a href="architecture.html">架构拓扑</a>
-        <a href="timeline.html">历史演进</a>
-        <a href="past-future.html">廿年视角</a>
-        <a href="decade.html">十年展望</a>
-        <a href="decade-scenes.html">十年场景</a>
-        <a href="decade-us.html">十年之问</a>
-        <a href="modules-map.html">模块图谱</a>
-        <a href="synthesis.html">综合推演</a>
-        <a href="synthesis-extensions.html">推演·扩展</a>
-        <a href="synthesis-methods.html">推演·方法</a>
-        <a href="risk-geo.html">地缘与商业</a>
-        <a href="net-biz-capital.html">网·商·资·工</a>
-        <a href="national-strategy-opinion.html">战略·舆情</a>
-        <a href="social-responsibility-evolution.html">社会责任</a>
-        <a href="evolution-loop.html">进化闭环</a>
-        <a href="analysis-hub.html">分析引擎</a>
-        <a href="intelligent-evolution.html">智能进化</a>
-        <a href="smart-overhaul.html">整体改造</a>
-        <a href="evolvable-architecture.html">可进化架构</a>
-        <a href="lab.html">沙盘工坊</a>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">联结与模型</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="nexus.html">立体联结</a></li>
+            <li><a href="edu-nexus.html" class="current">教育纵轴</a></li>
+            <li><a href="evolution-triad.html">人与AI演进</a></li>
+            <li><a href="model.html">分层模型</a></li>
+            <li><a href="modules-map.html">模块图谱</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">时间与情景</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="timeline.html">历史演进</a></li>
+            <li><a href="past-future.html">廿年视角</a></li>
+            <li><a href="decade.html">十年展望</a></li>
+            <li><a href="decade-scenes.html">十年场景</a></li>
+            <li><a href="decade-us.html">十年之问</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">推演与沙盘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="synthesis.html">综合推演</a></li>
+            <li><a href="synthesis-extensions.html">推演·扩展</a></li>
+            <li><a href="synthesis-methods.html">推演·方法</a></li>
+            <li><a href="lab.html">沙盘工坊</a></li>
+            <li><a href="evolution-loop.html">进化闭环</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">制度与地缘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="work-infra-energy.html">职业·基建·能源</a></li>
+            <li><a href="risk-geo.html">地缘与商业</a></li>
+            <li><a href="net-biz-capital.html">网·商·资·工</a></li>
+            <li><a href="national-strategy-opinion.html">战略·舆情</a></li>
+            <li><a href="social-responsibility-evolution.html">社会责任</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">架构与分析</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="architecture.html">架构拓扑</a></li>
+            <li><a href="analysis-hub.html">分析引擎</a></li>
+            <li><a href="intelligent-evolution.html">智能进化</a></li>
+            <li><a href="smart-overhaul.html">整体改造</a></li>
+            <li><a href="evolvable-architecture.html">可进化架构</a></li>
+          </ul>
+        </details>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
-      <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      <div class="site-nav-meta-row">
+        <div class="site-nav-search-host" data-site-quick-search aria-live="polite"></div>
+        <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      </div>
     </header>
 
-
-
-    <div id="main" class="page-head" tabindex="-1">
+    <main id="main" tabindex="-1" aria-label="正文">
+    <div class="page-head">
       <h1>教育纵轴：从家庭到学校，从学校到社会</h1>
       <p class="lead">
         与 <a href="nexus.html">立体联结</a> 同构，本页把<strong>教育场域</strong>单独拉成纵轴：<strong>家庭教养环境 → 学校信息化 → 社会用工与继续教育 → 国家制度与基础设施</strong>。
@@ -78,7 +109,7 @@
         <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
         <p><strong>角色轴</strong>：同时看<strong>学生与教师</strong>的数据与权力关系。</p>
         <p><strong>方法</strong>：微观行为可观察、宏观结构可对照制度类型；想象单独标注。</p>
-        <p><strong>维护与契约</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a>。</p>
+        <p><strong>维护与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a>。</p>
       </div>
       <nav class="page-route-strip" aria-label="与本页相关的站内路径">
         <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
@@ -87,9 +118,24 @@
         <a href="evolution-triad.html"><span class="page-route-ico" aria-hidden="true">△</span>人与AI演进</a>
         <a href="index.html#three-questions"><span class="page-route-ico" aria-hidden="true">？</span>三问</a>
       </nav>
+      <nav class="toc toc--pilot" id="edu-nexus-toc" aria-label="本页目录">
+        <p class="toc-pilot-eyebrow">本页目录</p>
+        <a href="#edu-ladder">四阶微宏</a>
+        <a href="#edu-roles">师生双极</a>
+        <a href="#edu-social">校社接口</a>
+        <a href="#edu-matrix">微宏表</a>
+        <a href="#edu-triangle">家校政三角</a>
+        <a href="#edu-stages">学制分段</a>
+        <a href="#edu-risks">数字风险谱</a>
+        <a href="#edu-lifecycle">入学—校友</a>
+        <a href="#edu-crossborder">跨境在线</a>
+        <a href="#edu-ai-chain">AI 触点链</a>
+        <a href="#edu-infra">架构衔接</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
+    <div class="modular-intro-stack" aria-label="教育纵轴 · 导读与本轮提要">
     <div class="nexus-legend" aria-label="三色标签说明">
       <span class="nexus-tag evidence">依据 — 已普及形态</span>
       <span class="nexus-tag extend">扩展 — 机制链条</span>
@@ -130,25 +176,14 @@
         <li>与 <a href="decade-scenes.html#scene-edu">十年场景·教育</a> 互证：同一政策在教室与家庭 UI 上的差异。</li>
       </ul>
     </section>
-    <nav aria-label="本页章节">
-      <ul class="edu-toc">
-        <li><a href="#edu-ladder">四阶微宏</a></li>
-        <li><a href="#edu-roles">师生双极</a></li>
-        <li><a href="#edu-social">校社接口</a></li>
-        <li><a href="#edu-matrix">微宏表</a></li>
-        <li><a href="#edu-triangle">家校政三角</a></li>
-        <li><a href="#edu-stages">学制分段</a></li>
-        <li><a href="#edu-risks">数字风险谱</a></li>
-        <li><a href="#edu-lifecycle">入学—校友</a></li>
-        <li><a href="#edu-crossborder">跨境在线</a></li>
-        <li><a href="#edu-ai-chain">AI 触点链</a></li>
-        <li><a href="#edu-infra">架构衔接</a></li>
-        <li><a href="evolution-triad.html">人与AI演进 →</a></li>
-        <li><a href="work-infra-energy.html">职业·基建·能源 →</a></li>
-        <li><a href="decade-scenes.html">十年场景 →</a></li>
-        <li><a href="decade-us.html">十年之问 →</a></li>
-        <li><a href="synthesis.html">综合推演 →</a></li>
-      </ul>
+    </div>
+    <nav class="toc toc--pilot toc--synthesis-extra" aria-label="延展阅读">
+      <p class="toc-pilot-eyebrow">延展阅读</p>
+      <a href="evolution-triad.html">人与AI演进</a>
+      <a href="work-infra-energy.html">职业·基建·能源</a>
+      <a href="decade-scenes.html">十年场景</a>
+      <a href="decade-us.html">十年之问</a>
+      <a href="synthesis.html">综合推演</a>
     </nav>
 
     <section id="edu-ladder">
@@ -205,7 +240,7 @@
       <div class="edu-pair-grid">
         <div class="edu-pair-card student">
           <h4>学生侧（微观主体）</h4>
-          <ul style="margin:0;padding-left:1.1rem">
+          <ul class="list-tight-indent">
             <li>终端多为家长购买或校发；<strong>未成年人同意</strong>由监护人代行，与产品默认条款常错位。</li>
             <li>作业与考试平台沉淀<strong>过程数据</strong>（时长、切屏、错题轨迹）——扩展用途若未界定易引发争议。</li>
             <li>生成式 AI：<strong>辅助学习 vs 学术诚信</strong>边界随校规与国家考试规则调整。</li>
@@ -213,7 +248,7 @@
         </div>
         <div class="edu-pair-card teacher">
           <h4>教师侧（中观枢纽）</h4>
-          <ul style="margin:0;padding-left:1.1rem">
+          <ul class="list-tight-indent">
             <li>既是<strong>数据控制者</strong>（班级名单、评语）又是<strong>被管理系统考核的对象</strong>（评课、考勤、科研 KPI）。</li>
             <li>备课与出题使用云与模型服务时，<strong>校本资料与版权、学生隐私</strong>可能同时进入提示词上下文。</li>
             <li>行政系统与教学系统<strong>账号不统一</strong>时，权限蔓延与钓鱼面扩大——属可观察的运维现实。</li>
@@ -261,7 +296,7 @@
 
     <section id="edu-matrix">
       <h2>4. 微—宏对照表（教育场域）</h2>
-      <div class="card" style="padding:0;border:none">
+      <div class="card card--table-shell">
         <div class="cross-matrix">
           <table>
             <thead>
@@ -341,7 +376,7 @@
     <section id="edu-stages">
       <h2>6. 学制分段：数据重心与微—宏差异</h2>
       <p class="muted note-pull-lg">不同阶段<strong>监护人角色、考试主权、用工衔接</strong>不同，同一技术（摄像头、学习分析）的<strong>敏感度与合法性叙事</strong>也不同。</p>
-      <div class="card" style="padding:0;border:none">
+      <div class="card card--table-shell">
         <div class="cross-matrix">
           <table>
             <thead>
@@ -422,7 +457,7 @@
           <div class="risk-ladder-row">
             <span class="risk-sev m">中</span>
             <span>深度伪造用于考场身份或证书（想象加速）</span>
-            <span class="muted"><span class="nexus-tag imagine" style="display:inline;padding:0.1rem 0.35rem;font-size:0.6rem">想象</span> 倒逼活体+链上凭证与监考架构升级</span>
+            <span class="muted"><span class="nexus-tag imagine nexus-tag--compact-inline">想象</span> 倒逼活体+链上凭证与监考架构升级</span>
           </div>
         </div>
       </div>
@@ -506,11 +541,22 @@
       </div>
     </section>
 
+    <section class="card reader-home-next hub-cluster-next" aria-labelledby="edu-nexus-cluster-next-h">
+      <p class="reader-home-next-kicker" id="edu-nexus-cluster-next-h">联结与模型 · 下一站</p>
+      <ul class="reader-home-next-list">
+        <li><a href="nexus.html">立体联结</a></li>
+        <li><a href="evolution-triad.html">人与AI演进</a></li>
+        <li><a href="model.html">分层模型</a></li>
+      </ul>
+    </section>
+
+    </main>
+
     <footer>
       <a href="nexus.html">← 立体联结</a> · <a href="evolution-triad.html">人与AI演进 →</a> · <a href="lab.html">沙盘工坊</a> · <a href="model.html">分层模型 →</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
-  <script src="assets/site-data-bus.js"></script>
-  <script src="assets/motion.js"></script>
+  <script src="assets/site-data-bus.js" defer></script>
+  <script src="assets/motion.js" defer></script>
 </body>
 </html>

@@ -1,8 +1,10 @@
 # 数据存储组件与后续架构设计（与 Git 真源 · 编排 · 事件流衔接）
 
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
 本文与 **[DATA_CONTRACTS.md · §5](./DATA_CONTRACTS.md#存储策略哪些适合写入数据库与架构预期对齐)**（当前哪些数据进 SQLite；**[侧车表列速查](./DATA_CONTRACTS.md#sqlite-sidecar-column-inventory)**）、**[ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md)**（阶段 0—3）、**[ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md)**（编排器与 Kafka/Redpanda）对齐，专门回答：**在已有 Git JSON + 侧车 SQLite 的前提下，何时、以何顺序引入服务器级数据库、缓存、分析库与 CDC**，以及它们与 **Kafka 生态**如何拼成一张**后续整体架构**图。
 
-**定性设计说明**，非固定采购清单；落地前须结合团队规模、合规与运维能力。
+**定性设计说明**，非固定采购清单；落地前须结合团队规模、合规与运维能力。**五维总图 · 主链联动 · 仓库物理分层**（数据层升级与脚本/资产目录对读）：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。**自动化助手（Git JSON 真源 · 勿拆 validate）**：[AGENTS.md · 人审闸门](../AGENTS.md#agents-invariants) · [契约速览](../AGENTS.md#agents-contract) · [合并前](../AGENTS.md#agents-pre-merge)。**呈现双轨（`spa-sync` / `spa-build`）**：[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map)。**MPA 顶栏模板（`partials/`）**：**`make sync-nav`** 写回各注册页；**`404.html`** 顶栏/skip **不在** **`sync_site_nav`** 写回范围，须**手调** — **[scripts/README · `sync_site_nav`](../scripts/README.md)**。
 
 **目录**：[1. 现状](#current-layers) · [2. 可选组件](#future-components) · [3. 阶段排期](#integration-order) · [4. Kafka/CDC](#kafka-cdc) · [5. 编排器](#orchestrator-db) · [6. 反模式](#anti-patterns) · [7. 延伸阅读](#reading)。**Kafka PoC**：[DOCKER · §4a](./DOCKER.md#kafka-dev-overlay) · **编排/事件流**：[ORCHESTRATION](./ORCHESTRATION_AND_EVENT_STREAMING.md)。
 
@@ -118,7 +120,7 @@ flowchart LR
 
 - 当前字段与 **SQLite 表**：[DATA_CONTRACTS.md](./DATA_CONTRACTS.md) · [EVOLUTION_RUNBOOK · SQLite](./EVOLUTION_RUNBOOK.md#sqlite-sidecar)
 - 阶段 0—3 与扩展矩阵：[ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md)
-- 升级简表 + backlog：[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md)
+- 升级简表 + backlog + **技术栈详版**：[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md)（**§1—§4**）· **[附录](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md#appendix-tech-capabilities)**（[别名](./TECH_ARCHITECTURE_CAPABILITIES.md)）
 - 编排与 Kafka：[ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md)
 - 管理端与会话/审计走向：[ADMIN_WEB_CONSOLE_ROADMAP.md](./ADMIN_WEB_CONSOLE_ROADMAP.md)
 - 增量引入顺序：[INCREMENTAL_BUILD_PLAYBOOK.md](./INCREMENTAL_BUILD_PLAYBOOK.md)

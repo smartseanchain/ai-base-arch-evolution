@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/ai-mapping-golden.schema.json",
+  "title": "fixtures/ai_mapping_golden/*.json",
+  "description": "ingest 路由 + maps_to_hints 规则层黄金集；由 validate_golden_mapping.py 校验。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "cases"],
+  "properties": {
+    "schema_version": { "type": "integer", "minimum": 1 },
+    "description": { "type": "string" },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "input", "expect"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "input": {
+            "type": "object",
+            "required": ["title"],
+            "additionalProperties": false,
+            "properties": {
+              "title": { "type": "string" },
+              "summary_snippet": { "type": "string" },
+              "link": {
+                "type": "string",
+                "description": "条目 URL；传入 merge_maps_to_hints 以匹配 host_suffixes",
+                "pattern": "^https://"
+              }
+            }
+          },
+          "expect": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "lab_factors_contains": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "pages_contains": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

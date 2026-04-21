@@ -17,14 +17,18 @@ import re
 import sys
 from pathlib import Path
 
-from evolution_pkg.io import REPO_ROOT
+from evolution_pkg.io import (
+    INGEST_CONFIG_JSON_PATH,
+    MAPS_TO_HINTS_JSON_PATH,
+    REPO_ROOT,
+    load_registry_allowed_sets,
+)
 
-REGISTRY_PATH = REPO_ROOT / "scripts" / "evolution-registry.json"
 MANIFEST = REPO_ROOT / "assets" / "evolution-manifest.json"
 CANDIDATES = REPO_ROOT / "assets" / "evolution-candidates.json"
 LAB = REPO_ROOT / "assets" / "lab.js"
-INGEST_CONFIG = REPO_ROOT / "scripts" / "ingest_config.json"
-MAPS_HINTS = REPO_ROOT / "scripts" / "maps_to_hints.json"
+INGEST_CONFIG = INGEST_CONFIG_JSON_PATH
+MAPS_HINTS = MAPS_TO_HINTS_JSON_PATH
 GEN_SITEMAP = REPO_ROOT / "scripts" / "gen-sitemap.py"
 HINT_RULES = REPO_ROOT / "scripts" / "evolution-hint-rules.json"
 
@@ -72,13 +76,6 @@ def hint_rules_target_pages(doc: dict) -> set[str]:
             if isinstance(p, str) and p.strip():
                 out.add(p.strip())
     return out
-
-
-def load_registry() -> dict:
-    if not REGISTRY_PATH.is_file():
-        print(f"错误: 缺少注册表 {REGISTRY_PATH}", file=sys.stderr)
-        sys.exit(1)
-    return json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
 
 
 def lab_factor_ids_from_js() -> set[str]:
@@ -132,8 +129,8 @@ def collect_hints_refs(h: dict) -> tuple[set[str], set[str]]:
 def check_signals(
     signals: list[dict],
     label: str,
-    allowed_pages: set[str],
-    lab_ids: set[str],
+    allowed_pages: frozenset[str],
+    lab_ids: frozenset[str],
 ) -> list[str]:
     errs: list[str] = []
     for s in signals:
@@ -166,15 +163,11 @@ def check_signals(
 
 
 def main() -> None:
-    reg = load_registry()
-    raw_pages = reg.get("pages") or []
-    raw_fac = reg.get("lab_factors") or []
-    if not isinstance(raw_pages, list) or not isinstance(raw_fac, list):
-        print("错误: registry pages / lab_factors 须为数组", file=sys.stderr)
+    try:
+        allowed_pages, reg_fac = load_registry_allowed_sets()
+    except (FileNotFoundError, ValueError) as e:
+        print(f"错误: {e}", file=sys.stderr)
         sys.exit(1)
-
-    allowed_pages = {str(p).strip() for p in raw_pages if str(p).strip()}
-    reg_fac = {str(f).strip() for f in raw_fac if str(f).strip()}
 
     for rel in sorted(allowed_pages):
         fp = REPO_ROOT / rel

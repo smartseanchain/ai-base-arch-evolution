@@ -1,6 +1,8 @@
 # 全站模块 · 三轮梳理（标题 / 内容 / 版式与图形）
 
-对根目录内容页（不含 `404`、`legacy-all-in-one`）做**结构对照**，标出**不合理 / 不匹配**与**建议优先级**。结论：**无单点「错误」居多**，主要是**模式不统一**与**少数命名落差**，可按 P0→P2 分批收敛。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+
+对根目录内容页（不含 `404`、`legacy-all-in-one`）做**结构对照**，标出**不合理 / 不匹配**与**建议优先级**。结论：**无单点「错误」居多**，主要是**模式不统一**与**少数命名落差**，可按 P0→P2 分批收敛。**主链验收入口 · 仓库物理分层**（`partials/`、`assets/`、`spa/` 等同轮改动）：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。
 
 ---
 
@@ -39,7 +41,7 @@
 - **分析引擎、进化闭环、可进化架构** 等：**观测 / 编码 / 反哺**或**聚合 / 分析 / 反哺**——与**同一 CSS 类名**（`evidence` / `extend` / `imagine`）绑定，**语义已换场景**。
 
 **判断**：**类名统一、文案按页定制**是合理产品设计；风险是**新编辑误以为**全站同一套中文。  
-**建议（P1）**：✅ 已写入 [ARCHITECTURE.md · 三色标签](./ARCHITECTURE.md#nexus-tag-labels) 与 [CONTRIBUTING.md](../CONTRIBUTING.md) 自检表：**`nexus-tag` 三色类可承载不同中文标签，以各页 `nexus-legend` 为准。**
+**建议（P1）**：✅ 已写入 [ARCHITECTURE.md · 三色标签](./ARCHITECTURE.md#nexus-tag-labels) 与 [CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd) 自检表：**`nexus-tag` 三色类可承载不同中文标签，以各页 `nexus-legend` 为准。**
 
 ### 2.2 §11 / 三问 / 沙盘 交叉链
 
@@ -69,9 +71,15 @@
 - **`page-head` + `lead` + `card`** 在全站主流页**一致**，**好**。
 - **index** 使用 **hub 卡片 + SVG 地图**，**刻意不同**，**合理**。
 
+<a id="section-3-5-lead-readhint"></a>
+
 ### 3.5 页头导语分层与正文链接（P1 · 已部分落地）
 
+与 **[AGENTS.md · 枢纽首屏](../AGENTS.md#agents-hub-lead)**（自动化助手收束）及 **[ARCHITECTURE_ONE_PAGER · 内容与呈现](./ARCHITECTURE_ONE_PAGER.md)** 互证。
+
 - **长枢纽页 / 总览与工具页**（含 **index 总览**、立体联结、教育纵轴、综合推演三页、分析引擎、可进化架构、沙盘、战略·舆情、进化闭环、模块图谱、社会责任、人与 AI 演进、整体改造、智能进化、十年之问/展望/场景、网·商·资·工、廿年视角、职基能、历史演进、分层模型、架构拓扑、地缘与商业）：**`p.lead`** 只保留「本页一句定位 + 最短必要机制」；判据/深读/双轨对账、数据侧读数、概念对齐、边界声明、同读页等收入 **`<div class="read-hint page-head-deck" role="note">`** 内分段 `<p><strong>小标题</strong>：…</p>`，避免首屏单段过长。
+- **首屏下「图例 / 流程条 / 推演扩展 / pill 目录」**：与上条 **互补**——优先复用 **`modular-intro-stack`**、**`nav.toc.toc--pilot`**、命令向 **`card--action-module` / `workbench-split`** 等（**不**替代 `lead`/`read-hint` 语义），契约与分工见 **[INTELLIGENCE_SIX_DOMAINS · §2.2](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)**；与 **`site-data-bus`** 总线读数对读 **[SITE_DATA_UPDATE_FRAMEWORK](./SITE_DATA_UPDATE_FRAMEWORK.md)**。
+- **正文地标（复查）**：根目录读者页以 **`<main id="main">`** 包住 **`</header>` 之后、`<footer>` 之前**的主体，与 skip-bar **`#main`**、**`site-data-bus.js`** 动态回顶链一致，**每页仅一个 `<main>`**；规范句见 **[ARCHITECTURE_ONE_PAGER · 内容与呈现](./ARCHITECTURE_ONE_PAGER.md#content-presentation)**。
 - **样式真源**：`assets/site.css` 中 **`.page-head .read-hint.page-head-deck`** 控制与 `lead` 的间距；正文区链接**不要**在 HTML 上写 `style="color:var(--accent)"`，交给 **`.page-head .lead a`、`.read-hint a`、section 内链接规则**统一呈现（与焦点环、hover 一致）。图例色块、网·商·资·工关键词柱、总览卡片缩略说明等已逐步收拢为 **`.phase-legend-swatch*`、`.icbw-kw-*`、`.hub-card-visual-caption*`** 等类，避免重复内联。**综合推演配方卡**左边条色用 **`.synth-recipe--stripe-*`**；**辅文段/列表**与 **`<pre>` 命令行**用 **`.muted.note-*`、`.muted.list-*`、`.pre-code-inline*`**（`scripts/migrate_muted_inline_styles.py` 可对新页做同类替换；**不**处理 `legacy-all-in-one.html` 的空格差异）。
 
 ### 3.6 深链锚点与「推演扩展 · 本轮提要」（惯例）
@@ -91,7 +99,7 @@
 | 优先级 | 项 | 动作 |
 |--------|----|------|
 | **P0** | 图例条 a11y | ✅ 已：补全 `nexus-legend` 的 `aria-label` |
-| **P1** | 三色文案多义 | ✅ 已：[ARCHITECTURE.md · 三色标签](ARCHITECTURE.md#nexus-tag-labels)；[CONTRIBUTING.md](../CONTRIBUTING.md) 常见变更自检表增行 |
+| **P1** | 三色文案多义 | ✅ 已：[ARCHITECTURE.md · 三色标签](ARCHITECTURE.md#nexus-tag-labels)；[CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd) 常见变更自检表增行 |
 | **P1** | 枢纽页 `lead` 过长 | ✅ 已部分：**总览 index**、上列页 + **历史演进、分层模型、架构拓扑、地缘与商业、十年展望/场景** 等采用 **短 `lead` + `read-hint page-head-deck`**（`decade-scenes` 附注与 `read-hint` 同构）；**404** 附常用入口 **`read-hint`**（含读站指路）；其 **skip-bar** 手维护，**`sync_site_nav`** 不写回；**legacy-all-in-one** 导语拆分并在页内 CSS 对齐 `read-hint` 外观（不引用 `site.css`）。规范与链接勿手写 accent 见 **§3.5** |
 | **P2** | 顶栏「整体改造」 vs h1「整体智能化改造」 | ✅ 已：`smart-overhaul` 的 h1 / `<title>` / `og:title` 与顶栏统一为「整体改造」，导语标明智能化方向 |
 | **P2** | timeline 分享标题 vs h1 | ✅ 已：**`<title>` / `og:title` / `twitter:title`** 与顶栏短名一致（「历史演进」）；**`og:description`** 点出正文 **h1「基础设施形态演进」**；进入页后以 h1 为专名 |
@@ -130,6 +138,7 @@
   - [ ] 打开 **总线** 页（如 `analysis-hub`），确认 **`data-site-meta-version`** 与 **`site-meta.json`** 意图一致（若本版要升 **`site_version`**）。  
   - [ ] 任点一条站内 **`docs/*.md`**（见下节），在 **实际部署环境**（如 GitHub Pages）下确认 **可接受** 或改链说明。  
   - [ ] 若有 **SPA 发布**：抽一条壳内路由与 **iframe** 内分页标题是否可读。
+  - [ ] 若本版改了根目录 **`*.html`**（读站指路、页脚、**`analysis-hub`** 导读等）且仍维护 **SPA**：已 **`make spa-sync`**（或 **`make spa-build`**），确认 **`spa/public/`** 与 **`public/docs`** 与 MPA 一致；动线见 **[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)** · **[MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)** · **[关系视图](../maintainer-hub.html#mh-spine-map)** · **[系统边界](../maintainer-hub.html#mh-boundaries)** · **[衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)**。
 
 ### 站内链到 `docs/*.md` 与 GitHub Pages
 
@@ -141,6 +150,6 @@
 
 ## 维护建议
 
-- **改顶栏**：只动 **`partials/site-nav.inc.html`** 后 `make sync-nav`（见根 README）。
+- **改顶栏 / skip-bar 模板**：只动 **`partials/site-nav.inc.html`** / **`partials/skip-bar.inc.html`**，再 **`make sync-nav`** → **`make validate`**（见根 [README](../README.md) · [MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)）。**`maintainer-hub.html`** 五链后三页内 skip 由 **`build_skip_bar`** 生成，勿在 HTML 手改。**`404.html`** 不在 `sync_site_nav` 写回范围，失页顶栏/skip 须**手调**。
 - **大改某一类版式**：优先改 **`assets/site.css`** 与 **单页试点**，再横向推广。
 - **重审本文**：重大增页或改版后做一轮 **diff 对照本清单**即可。

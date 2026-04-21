@@ -2,6 +2,7 @@
   "name": "ai-base-arch-spa",
   "private": true,
   "version": "0.0.0",
+  "description": "全站 SPA（Vite）；npm run sync = 仓库根 sync_spa_public。merge/spa 收束见 ../docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · ../maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · 根目录 make help",
   "type": "module",
   "scripts": {
     "gen-nav": "cd .. && python3 scripts/gen_nav_links_ts.py --write",

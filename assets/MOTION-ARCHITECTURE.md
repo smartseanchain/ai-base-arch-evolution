@@ -1,6 +1,8 @@
 # 动效与读者路径架构（前端）
 
-全站样式以 `site.css` 为主入口；**人与 AI 演进页**（`body.page-triad-future`）在 `evolution-triad.html` 中**额外**加载 `triad.css`（脊、步进器、五站、epoch 氛围；**大门入场默认跳过**，动效与全站其他页同档简化，见 `triad.css` 文末覆盖块）。**滚动揭示**基线（`phase-bar`、`triad-block-in` 等）仍在 `site.css`。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](../docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship)。
+
+全站样式以 `site.css` 为主入口；**人与 AI 演进页**（`body.page-triad-future`）在 `evolution-triad.html` 中**额外**加载 `triad.css`（脊、步进器、五站、epoch 氛围；**大门入场默认跳过**，动效与全站其他页同档简化，见 `triad.css` 文末覆盖块）。**滚动揭示**基线（`phase-bar`、`triad-block-in` 等）仍在 `site.css`。**`assets/` 与根 MPA 在仓库物理分层中的位置 · 主链验收入口**：**[勿混粒度 · 五维/六域/七类](../docs/PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1b](../docs/PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout) · **[§1a](../docs/PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation)**（改 CSS/JS 后仍须 **`make validate`**）。**整体内容框架** / **前后台** / **组件×主链**：[docs/README · #content-framework](../docs/README.md#content-framework) · [#front-back-modules](../docs/README.md#front-back-modules) · [#system-components-fusion](../docs/README.md#system-components-fusion)。**按改动判型**（**0c**）：[docs/README · #quick-paths](../docs/README.md#quick-paths)。**呈现双轨（`spa-sync` / `spa-build`）**（动根 **`.html`** 且维护 SPA 壳时）：[MERGE · §1](../docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](../docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map)。**MPA 顶栏与失页**：**`partials/`** → **`make sync-nav`**；**`404.html`** 手调（`sync_site_nav` 不写回）— **[MERGE · §1](../docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)** · **[MERGE · partials 手顺](../docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)** · **[scripts/README · `sync_site_nav`](../scripts/README.md)**。
 
 ## 1. 分层总览
 
@@ -27,7 +29,7 @@
 
 ## 4. 维护提示
 
-- **全站顶栏与 skip-bar**：维护 **`partials/site-nav.inc.html`** 与 **`partials/skip-bar.inc.html`**，再运行 **`make sync-nav`**（见仓库根 README）；勿在单页手改以免漂移。
+- **全站顶栏与 skip-bar**：维护 **`partials/site-nav.inc.html`** 与 **`partials/skip-bar.inc.html`**，再运行 **`make sync-nav`**（见仓库根 README）；勿在单页手改以免漂移。**`404.html`** 顶栏/skip **不在** `sync_site_nav` 写回列表，改模板后须**手调** **404** — [MERGE · §1](../docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](../docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)。
 - 增删演进页「站点」时：同时改 **五处** HTML（`section` id、`journey-stepper` 链接、`.corridor-spine-mark` 数量）、`journey-stepper.js` 中 `STATION_IDS` / `epochLabels`、站牌文案。
 - 若需**恢复**大门入场：去掉 `journey-stepper.js` 里对 `corridor-gate--skip` 的强制、恢复延时 `kick()`，并核对 `triad.css` 中 `.corridor-gate--opening` 时长。
 - 演进页样式：`triad.css` 已独立；改 `site.css` 设计令牌时注意 `triad.css` 仍依赖 `:root` 变量。

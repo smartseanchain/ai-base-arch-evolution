@@ -684,7 +684,7 @@ body.page-triad-future.epoch-future .corridor-epoch-chip {
   }
 }
 
-/* 五站在视口中的纵向投影：固定脊上的「深度信标」（位置由 journey-stepper.js 写入 top%） */
+/* 五站在视口中的纵向投影：固定脊上的「深度信标」（--corridor-mark-top 由 journey-stepper.js 写入） */
 .corridor-spine-marks {
   position: absolute;
   inset: 0;
@@ -695,7 +695,7 @@ body.page-triad-future.epoch-future .corridor-epoch-chip {
 .corridor-spine-mark {
   position: absolute;
   left: 50%;
-  top: 0;
+  top: var(--corridor-mark-top, 0%);
   width: 6px;
   height: 6px;
   margin: 0;

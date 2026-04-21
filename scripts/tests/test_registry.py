@@ -7,9 +7,9 @@ import re
 import sys
 import unittest
 
-from evolution_pkg.io import REPO_ROOT
+from evolution_pkg.io import REGISTRY_JSON_PATH, REPO_ROOT
 
-REGISTRY = REPO_ROOT / "scripts" / "evolution-registry.json"
+REGISTRY = REGISTRY_JSON_PATH
 LAB = REPO_ROOT / "assets" / "lab.js"
 GEN_SITEMAP = REPO_ROOT / "scripts" / "gen-sitemap.py"
 

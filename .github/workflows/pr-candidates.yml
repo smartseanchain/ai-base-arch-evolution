@@ -1,5 +1,7 @@
 # 手动触发：抓取候选并直接向仓库提 PR（需仓库 Settings → Actions → General → Workflow permissions 允许读写）。
 # 合并前请人工审阅 review_state；入库 manifest 仍须本地 merge_candidates_to_manifest（且 review_state=queued_for_manifest）。
+# 与 AGENTS.md#agents-invariants 人审闸门一致；本 workflow 不替代本地 merge 脚本与 PR diff。
+# 全站呈现双轨 / merge / 枢纽：docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help
 name: PR · refresh candidates
 
 on:

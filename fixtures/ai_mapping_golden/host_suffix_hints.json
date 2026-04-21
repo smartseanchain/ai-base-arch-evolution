@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "description": "maps_to_hints.host_suffixes：凭链接主机名合并 pages / lab_factors（与正文路由独立）。",
+  "cases": [
+    {
+      "id": "host-github-blog",
+      "input": {
+        "title": "Engineering blog weekly",
+        "summary_snippet": "",
+        "link": "https://github.blog/2024/example-post/"
+      },
+      "expect": {
+        "lab_factors_contains": ["ai"],
+        "pages_contains": ["architecture.html"]
+      }
+    },
+    {
+      "id": "host-xinhuanet",
+      "input": {
+        "title": "地方时政要闻",
+        "summary_snippet": "",
+        "link": "https://www.xinhuanet.com/local/2025/c.htm"
+      },
+      "expect": {
+        "lab_factors_contains": ["reg"],
+        "pages_contains": ["national-strategy-opinion.html"]
+      }
+    },
+    {
+      "id": "host-chinanews",
+      "input": {
+        "title": "滚动快讯",
+        "summary_snippet": "",
+        "link": "https://www.chinanews.com.cn/news/2025/example.html"
+      },
+      "expect": {
+        "pages_contains": ["decade.html"]
+      }
+    },
+    {
+      "id": "host-w3-tr",
+      "input": {
+        "title": "Weekly notes",
+        "summary_snippet": "",
+        "link": "https://www.w3.org/TR/2024/example/"
+      },
+      "expect": {
+        "lab_factors_contains": ["reg"],
+        "pages_contains": ["architecture.html"]
+      }
+    }
+  ]
+}

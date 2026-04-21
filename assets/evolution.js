@@ -251,7 +251,7 @@
     banner.className = "callout extend evolution-lab-banner";
     banner.setAttribute("role", "note");
     banner.innerHTML =
-      "<p class=\"muted\" style=\"margin:0\"><strong>观测信号：</strong>已入库 " +
+      "<p class=\"muted\"><strong>观测信号：</strong>已入库 " +
       n +
       " 条 · 候选（非噪点）" +
       nc +

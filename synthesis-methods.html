@@ -24,12 +24,15 @@
 <body>
   <div class="wrap">
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py）。maintainer-hub 在五链后另拼 #mh-*（MAINTAINER_HUB_SKIP_EXTRA）。404 / legacy-all-in-one 不经此脚本写回。 -->
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
       <a class="skip-link" href="index.html#read-guide">读站指路</a>
       <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="index.html#reader-next">常见下一站</a>
     </div>
     <header class="site-nav">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py · build_header）。 -->
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
@@ -37,39 +40,67 @@
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
-        <a href="nexus.html">立体联结</a>
-        <a href="edu-nexus.html">教育纵轴</a>
-        <a href="evolution-triad.html">人与AI演进</a>
-        <a href="work-infra-energy.html">职业·基建·能源</a>
-        <a href="model.html">分层模型</a>
-        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
-        <a href="architecture.html">架构拓扑</a>
-        <a href="timeline.html">历史演进</a>
-        <a href="past-future.html">廿年视角</a>
-        <a href="decade.html">十年展望</a>
-        <a href="decade-scenes.html">十年场景</a>
-        <a href="decade-us.html">十年之问</a>
-        <a href="modules-map.html">模块图谱</a>
-        <a href="synthesis.html">综合推演</a>
-        <a href="synthesis-extensions.html">推演·扩展</a>
-        <a href="synthesis-methods.html" class="current">推演·方法</a>
-        <a href="risk-geo.html">地缘与商业</a>
-        <a href="net-biz-capital.html">网·商·资·工</a>
-        <a href="national-strategy-opinion.html">战略·舆情</a>
-        <a href="social-responsibility-evolution.html">社会责任</a>
-        <a href="evolution-loop.html">进化闭环</a>
-        <a href="analysis-hub.html">分析引擎</a>
-        <a href="intelligent-evolution.html">智能进化</a>
-        <a href="smart-overhaul.html">整体改造</a>
-        <a href="evolvable-architecture.html">可进化架构</a>
-        <a href="lab.html">沙盘工坊</a>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">联结与模型</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="nexus.html">立体联结</a></li>
+            <li><a href="edu-nexus.html">教育纵轴</a></li>
+            <li><a href="evolution-triad.html">人与AI演进</a></li>
+            <li><a href="model.html">分层模型</a></li>
+            <li><a href="modules-map.html">模块图谱</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">时间与情景</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="timeline.html">历史演进</a></li>
+            <li><a href="past-future.html">廿年视角</a></li>
+            <li><a href="decade.html">十年展望</a></li>
+            <li><a href="decade-scenes.html">十年场景</a></li>
+            <li><a href="decade-us.html">十年之问</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">推演与沙盘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="synthesis.html">综合推演</a></li>
+            <li><a href="synthesis-extensions.html">推演·扩展</a></li>
+            <li><a href="synthesis-methods.html" class="current">推演·方法</a></li>
+            <li><a href="lab.html">沙盘工坊</a></li>
+            <li><a href="evolution-loop.html">进化闭环</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">制度与地缘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="work-infra-energy.html">职业·基建·能源</a></li>
+            <li><a href="risk-geo.html">地缘与商业</a></li>
+            <li><a href="net-biz-capital.html">网·商·资·工</a></li>
+            <li><a href="national-strategy-opinion.html">战略·舆情</a></li>
+            <li><a href="social-responsibility-evolution.html">社会责任</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">架构与分析</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="architecture.html">架构拓扑</a></li>
+            <li><a href="analysis-hub.html">分析引擎</a></li>
+            <li><a href="intelligent-evolution.html">智能进化</a></li>
+            <li><a href="smart-overhaul.html">整体改造</a></li>
+            <li><a href="evolvable-architecture.html">可进化架构</a></li>
+          </ul>
+        </details>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
-      <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      <div class="site-nav-meta-row">
+        <div class="site-nav-search-host" data-site-quick-search aria-live="polite"></div>
+        <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      </div>
     </header>
 
-
-
-    <div id="main" class="page-head" tabindex="-1">
+    <main id="main" tabindex="-1" aria-label="正文">
+    <div class="page-head">
       <h1>综合推演 · 方法与透镜</h1>
       <p class="lead">
         本页为 <a href="synthesis.html">综合推演主篇</a> 的<strong>方法子页</strong>：<strong>持续迭代与扩展插槽</strong>、<strong>跨学科推演办法</strong>、<strong>深读透镜</strong>。
@@ -78,7 +109,7 @@
         <p><strong>节号</strong>：正文与目录仍用 <strong>§11—§13</strong>，便于检索与插槽对照。</p>
         <p><strong>模块与判据</strong>：<a href="synthesis.html#inventory">模块变量表</a>；<a href="synthesis.html#criteria">五条判据</a>。</p>
         <p><strong>深描与图景</strong>：<a href="synthesis.html#continuation">继续推演矩阵</a>；<a href="synthesis-extensions.html">推演·扩展</a>；<a href="synthesis.html#workflow">工作台</a>。</p>
-        <p><strong>维护面与契约</strong>：<a href="maintainer-hub.html">维护导读</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a>。</p>
+        <p><strong>维护面与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a>。</p>
       </div>
       <nav class="page-route-strip" aria-label="与本页相关的站内路径">
         <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
@@ -87,9 +118,16 @@
         <a href="synthesis-extensions.html"><span class="page-route-ico" aria-hidden="true">↗</span>推演·扩展</a>
         <a href="synthesis-methods.html#methods"><span class="page-route-ico" aria-hidden="true">≡</span>跨学科办法</a>
       </nav>
+      <nav class="toc toc--pilot" id="synthesis-methods-toc" aria-label="本页目录 · §11—§13">
+        <p class="toc-pilot-eyebrow">本页目录 · §11—§13</p>
+        <a href="#perpetual">§11 持续迭代</a>
+        <a href="#methods">§12 跨学科办法</a>
+        <a href="#deep-lens">§13 深读透镜</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
+    <div class="modular-intro-stack" aria-label="方法与透镜 · 导读与本轮提要">
     <div class="nexus-legend" aria-label="三色标签说明">
       <span class="nexus-tag evidence">依据 — 站内各页已写明的结构与可观察现象</span>
       <span class="nexus-tag extend">扩展 — 变量如何在模块间传导、放大或抵消</span>
@@ -117,15 +155,12 @@
       </svg>
     </div>
 
-    <nav aria-label="本页章节">
-      <ul class="edu-toc">
-        <li><a href="synthesis.html">← 综合推演主篇</a></li>
-        <li><a href="synthesis-extensions.html">← 推演·扩展</a>（正文 §6—§9）</li>
-        <li><a href="#perpetual">§11 持续迭代</a></li>
-        <li><a href="#methods">§12 跨学科办法</a></li>
-        <li><a href="#deep-lens">§13 深读透镜</a></li>
-        <li><a href="docs/DEDUCTION_STRATEGY.md">科学推演策略</a> · <a href="docs/RESEARCH_METHODS_MAP.md">方法·工具匹配</a></li>
-      </ul>
+    <nav class="toc toc--pilot toc--synthesis-extra" aria-label="延展阅读 · 主篇与扩展">
+      <p class="toc-pilot-eyebrow">延展阅读</p>
+      <a href="synthesis.html">综合推演主篇</a>
+      <a href="synthesis-extensions.html">推演·扩展</a>
+      <a href="docs/DEDUCTION_STRATEGY.md#stance">科学推演策略</a>
+      <a href="docs/RESEARCH_METHODS_MAP.md#tiers">方法·工具匹配</a>
     </nav>
     <section class="card site-round-extension" id="ext-round-synmeth" aria-labelledby="hre-synmeth">
       <h2 class="site-round-extension-h" id="hre-synmeth">推演扩展 · 本轮更新（方法与透镜）</h2>
@@ -137,11 +172,12 @@
         <li>持续迭代笔记建议链到具体 <code>signals[].id</code> 或 §7 表行草稿。</li>
       </ul>
     </section>
+    </div>
     <section id="perpetual">
       <h2>11. 持续梳理、扩展与推演：本页如何「不断生长」</h2>
       <p class="muted note-caption-82"><strong>读后自问：</strong>本轮循环卡在梳理、扩展还是推演？哪一条插槽该动？</p>
       <p class="muted note-pull"><strong>梳理</strong>不是一次性读完 §1，而是每次把新现象<strong>对回变量表与判据</strong>；<strong>扩展</strong>是在不破坏可对账性的前提下加模块、加域、加配方、加表行；<strong>推演</strong>是强制产出传导链与<strong>至少一枝分叉</strong>（甲/乙/丙或 §8 簇），避免只有形容词。</p>
-      <p class="muted note-follow">若要做<strong>全站级</strong>一轮梳理（三问 → 模块图谱 → 本页判据/配方 → 分析读数 → 沙盘 → 决定改 JSON 还是改正文），见仓库 <a href="docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md">docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md</a>，与双周 <a href="docs/EVOLUTION_RUNBOOK.md">EVOLUTION_RUNBOOK</a> 可同次或分次进行。</p>
+      <p class="muted note-follow">若要做<strong>全站级</strong>一轮梳理（三问 → 模块图谱 → 本页判据/配方 → 分析读数 → 沙盘 → 决定改 JSON 还是改正文），见仓库 <a href="docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md#steps">docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md</a>，与双周 <a href="docs/EVOLUTION_RUNBOOK.md#github-actions-cadence">EVOLUTION_RUNBOOK</a> 可同次或分次进行。</p>
 
       <div class="perpetual-cycle-wrap" role="img" aria-label="持续梳理、扩展与推演三环：梳理对表判据、扩展配方域表行、推演传导链与分叉；顺时针循环">
         <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -176,7 +212,7 @@
         </ul>
       </div>
 
-      <div class="callout imagine" style="margin-top:1rem">
+      <div class="callout imagine callout--more-top">
         <strong>自我追问（每轮结尾用）：</strong>本轮是否把「电/钱/责任/时间」至少一个量纲说清？若只增加了形容词，回到梳理；若增加了新模块却无法对账，删掉或合并。
       </div>
     </section>
@@ -185,18 +221,18 @@
       <h2>12. 跨学科推演办法：各研究领域的套路如何嵌进本站</h2>
       <p class="muted note-caption-82"><strong>读后自问：</strong>本轮只选一到两种手法时，你选哪两种？它们如何收紧 §2 判据而非堆术语？</p>
       <p class="muted note-pull">下列不是「正确方法论」排名，而是<strong>可借用的思维外衣</strong>：把你在某一学科里习惯的推理步骤，显式对齐到 §1—§9 与 <a href="lab.html">沙盘</a>，避免只有术语没有可对账的链。一轮推演建议<strong>只主动选用一到两种</strong>，防止清单化表演。</p>
-      <div class="callout extend" style="margin-top:0.65rem">
-        <strong>升级导读：</strong>将认识论立场、三色证据分层、<strong>单轮七步流程</strong>、常见<strong>认知偏误</strong>及与 <code>manifest</code> / 分析引擎的<strong>审计对表</strong>收束为 <a href="docs/DEDUCTION_STRATEGY.md">docs/DEDUCTION_STRATEGY.md</a>。<strong>各研究方法在本站「能用页面 / 能用脚本 / 仅能自建」</strong>的对照见 <a href="docs/RESEARCH_METHODS_MAP.md">docs/RESEARCH_METHODS_MAP.md</a>。与下表各行动态互补，而非重复。
+      <div class="callout extend callout--more-top-65">
+        <strong>升级导读：</strong>将认识论立场、三色证据分层、<strong>单轮七步流程</strong>、常见<strong>认知偏误</strong>及与 <code>manifest</code> / 分析引擎的<strong>审计对表</strong>收束为 <a href="docs/DEDUCTION_STRATEGY.md#stance">docs/DEDUCTION_STRATEGY.md</a>。<strong>各研究方法在本站「能用页面 / 能用脚本 / 仅能自建」</strong>的对照见 <a href="docs/RESEARCH_METHODS_MAP.md#tiers">docs/RESEARCH_METHODS_MAP.md</a>。与下表各行动态互补，而非重复。
       </div>
 
       <div class="synth-mod-table-wrap">
         <table>
           <thead>
             <tr>
-              <th style="width:22%">领域或传统</th>
-              <th style="width:28%">常见手法（极简）</th>
+              <th class="col-w-22p">领域或传统</th>
+              <th class="col-w-28p">常见手法（极简）</th>
               <th>在本站中的落点</th>
-              <th style="width:18%">用时注意</th>
+              <th class="col-w-18p">用时注意</th>
             </tr>
           </thead>
           <tbody>
@@ -276,7 +312,7 @@
         </table>
       </div>
 
-      <h3 style="margin-top:1.5rem;font-size:1.05rem">12.1 按「问题类型」选用（示意）</h3>
+      <h3 class="subhead-h3-section-150">12.1 按「问题类型」选用（示意）</h3>
       <div class="card">
         <ul class="muted list-flat-sm">
           <li><strong>谁先坏、何处单点：</strong>优先 FTA/FMEA 式分解 + <a href="lab.html">依赖流</a>，再接到 §5/§6 传导链。</li>
@@ -286,7 +322,7 @@
         </ul>
       </div>
 
-      <div class="callout evidence" style="margin-top:1rem">
+      <div class="callout evidence callout--more-top">
         <strong>依据：</strong>上表各手法在各自学科中有更严格的操作定义；此处只取<strong>与定性传导链兼容</strong>的那一层，避免把本站冒充为计量模型或仿真平台。
       </div>
       <div class="callout extend">
@@ -302,11 +338,11 @@
       <p class="muted note-caption-82"><strong>读后自问：</strong>四穿透里哪一层你至今还指不出一条可对账变量？</p>
       <p class="muted note-pull">本节不是新预测，而是<strong>阅读纪律</strong>：如何把已有页面当作<strong>可旋转的棱镜</strong>，让同一命题在技术、制度、市场与客厅之间<strong>多次显影</strong>，减少「单页读后过度自信」。</p>
 
-      <h3 style="margin-top:1.35rem;font-size:1.05rem">13.1 加深：四穿透（每层至少补一条可对账变量）</h3>
+      <h3 class="subhead-h3-section-spaced">13.1 加深：四穿透（每层至少补一条可对账变量）</h3>
       <div class="synth-mod-table-wrap">
         <table>
           <thead>
-            <tr><th style="width:7rem">穿透层</th><th>你在读什么</th><th>典型入口</th><th>加深检查句</th></tr>
+            <tr><th class="col-w-7rem">穿透层</th><th>你在读什么</th><th>典型入口</th><th>加深检查句</th></tr>
           </thead>
           <tbody>
             <tr>
@@ -338,12 +374,12 @@
       </div>
       <p class="muted note-gap-md">四穿透不必一次读完；但<strong>停在单层</strong>时，应在 §7 或笔记里标注「未穿透层」，以免把技术乐观当成社会结论。</p>
 
-      <h3 style="margin-top:1.5rem;font-size:1.05rem">13.2 多角度：六种凝视者（同一命题的六种合法问法）</h3>
+      <h3 class="subhead-h3-section-150">13.2 多角度：六种凝视者（同一命题的六种合法问法）</h3>
       <p class="muted note-tuck">下列不是角色扮演游戏，而是<strong>遗漏检查</strong>：若某凝视者完全插不进话，往往说明变量表缺一条中介（常见缺：电、支付、护理工时、保险）。</p>
       <div class="coupling-table-wrap">
         <table>
           <thead>
-            <tr><th style="width:8rem">凝视者</th><th>优先追问</th><th>站内落点</th></tr>
+            <tr><th class="col-w-8rem">凝视者</th><th>优先追问</th><th>站内落点</th></tr>
           </thead>
           <tbody>
             <tr><td>监管 / 执法</td><td>可举证吗、最小必要、跨境与关基谁背锅</td><td><a href="decade.html">十年</a>·安全/治理、<a href="synthesis.html#recipes">配方 H/N</a>、<a href="synthesis-extensions.html#dimensions">§9</a> 切片</td></tr>
@@ -356,7 +392,7 @@
         </table>
       </div>
 
-      <h3 style="margin-top:1.5rem;font-size:1.05rem">13.3 多维度：四套「坐标」如何叠放（不混量纲）</h3>
+      <h3 class="subhead-h3-section-150">13.3 多维度：四套「坐标」如何叠放（不混量纲）</h3>
       <div class="card">
         <ul class="muted list-flat-sm">
           <li><strong>五系与七层：</strong><a href="modules-map.html#taxonomy">模块图谱 · 五系</a> 定同窗互证范围；<a href="modules-map.html#layer-stack">七层堆叠</a> 检查是否缺 L1/L0 却在谈 L5—L6。</li>
@@ -367,7 +403,7 @@
         </ul>
       </div>
 
-      <h3 style="margin-top:1.5rem;font-size:1.05rem">13.4 多场景：八条日常—产业镜头与主维、配方挂钩</h3>
+      <h3 class="subhead-h3-section-150">13.4 多场景：八条日常—产业镜头与主维、配方挂钩</h3>
       <p class="muted note-tuck">下表帮助「从场景跳入多维」：先定<strong>镜头</strong>，再回 <a href="decade.html">六维表</a> 圈两行，最后选 §5—§6 配方加压。</p>
       <div class="synth-mod-table-wrap">
         <table>
@@ -427,7 +463,7 @@
         </table>
       </div>
 
-      <h3 style="margin-top:1.5rem;font-size:1.05rem">13.5 一趟「加深版」走法（可重复）</h3>
+      <h3 class="subhead-h3-section-150">13.5 一趟「加深版」走法（可重复）</h3>
       <div class="card">
         <ol class="muted list-flat-sm-19">
           <li>若需先建立全站鸟瞰，打开 <a href="modules-map.html">模块图谱</a> 的星丛/场景轮；再在 <a href="decade-scenes.html">十年场景</a> 选<strong>一个镜头</strong>，用 13.4 表圈定六维主读项。</li>
@@ -439,15 +475,26 @@
         </ol>
       </div>
 
-      <div class="callout imagine" style="margin-top:1rem">
+      <div class="callout imagine callout--more-top">
         <strong>想象：</strong>同一周用三个不同镜头（如「算力能源」「家庭日常」「政务合规」）各跑一遍 13.5——若三条结论在<strong>电/钱/责任</strong>上指向同一绷紧顺序，该顺序可升格为个人或团队的<strong>主风险登记</strong>；若互相矛盾，优先修 <strong>13.1 未穿透层</strong>而非争论形容词。
       </div>
     </section>
+
+    <section class="card reader-home-next hub-cluster-next" aria-labelledby="synthesis-meth-synth-next-h">
+      <p class="reader-home-next-kicker" id="synthesis-meth-synth-next-h">推演与沙盘 · 下一站</p>
+      <ul class="reader-home-next-list">
+        <li><a href="synthesis.html#criteria">综合推演 · 判据</a></li>
+        <li><a href="synthesis-extensions.html#matrix">推演·扩展 · 复合表</a></li>
+        <li><a href="lab.html#main">沙盘工坊</a></li>
+      </ul>
+    </section>
+    </main>
+
     <footer>
       <a href="synthesis.html">← 综合推演主篇</a> · <a href="synthesis-extensions.html">扩展图景</a> · <a href="modules-map.html">模块图谱</a> · <a href="lab.html">沙盘工坊</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="index.html">总览</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
-  <script src="assets/site-data-bus.js"></script>
-  <script src="assets/motion.js"></script>
+  <script src="assets/site-data-bus.js" defer></script>
+  <script src="assets/motion.js" defer></script>
 </body>
 </html>

@@ -27,12 +27,15 @@
 <body>
   <div class="wrap">
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py）。maintainer-hub 在五链后另拼 #mh-*（MAINTAINER_HUB_SKIP_EXTRA）。404 / legacy-all-in-one 不经此脚本写回。 -->
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
       <a class="skip-link" href="index.html#read-guide">读站指路</a>
       <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="index.html#reader-next">常见下一站</a>
     </div>
     <header class="site-nav">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py · build_header）。 -->
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
@@ -40,39 +43,67 @@
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
-        <a href="nexus.html">立体联结</a>
-        <a href="edu-nexus.html">教育纵轴</a>
-        <a href="evolution-triad.html">人与AI演进</a>
-        <a href="work-infra-energy.html">职业·基建·能源</a>
-        <a href="model.html">分层模型</a>
-        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
-        <a href="architecture.html">架构拓扑</a>
-        <a href="timeline.html">历史演进</a>
-        <a href="past-future.html">廿年视角</a>
-        <a href="decade.html">十年展望</a>
-        <a href="decade-scenes.html">十年场景</a>
-        <a href="decade-us.html">十年之问</a>
-        <a href="modules-map.html">模块图谱</a>
-        <a href="synthesis.html">综合推演</a>
-        <a href="synthesis-extensions.html">推演·扩展</a>
-        <a href="synthesis-methods.html">推演·方法</a>
-        <a href="risk-geo.html">地缘与商业</a>
-        <a href="net-biz-capital.html">网·商·资·工</a>
-        <a href="national-strategy-opinion.html" class="current">战略·舆情</a>
-        <a href="social-responsibility-evolution.html">社会责任</a>
-        <a href="evolution-loop.html">进化闭环</a>
-        <a href="analysis-hub.html">分析引擎</a>
-        <a href="intelligent-evolution.html">智能进化</a>
-        <a href="smart-overhaul.html">整体改造</a>
-        <a href="evolvable-architecture.html">可进化架构</a>
-        <a href="lab.html">沙盘工坊</a>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">联结与模型</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="nexus.html">立体联结</a></li>
+            <li><a href="edu-nexus.html">教育纵轴</a></li>
+            <li><a href="evolution-triad.html">人与AI演进</a></li>
+            <li><a href="model.html">分层模型</a></li>
+            <li><a href="modules-map.html">模块图谱</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">时间与情景</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="timeline.html">历史演进</a></li>
+            <li><a href="past-future.html">廿年视角</a></li>
+            <li><a href="decade.html">十年展望</a></li>
+            <li><a href="decade-scenes.html">十年场景</a></li>
+            <li><a href="decade-us.html">十年之问</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">推演与沙盘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="synthesis.html">综合推演</a></li>
+            <li><a href="synthesis-extensions.html">推演·扩展</a></li>
+            <li><a href="synthesis-methods.html">推演·方法</a></li>
+            <li><a href="lab.html">沙盘工坊</a></li>
+            <li><a href="evolution-loop.html">进化闭环</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">制度与地缘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="work-infra-energy.html">职业·基建·能源</a></li>
+            <li><a href="risk-geo.html">地缘与商业</a></li>
+            <li><a href="net-biz-capital.html">网·商·资·工</a></li>
+            <li><a href="national-strategy-opinion.html" class="current">战略·舆情</a></li>
+            <li><a href="social-responsibility-evolution.html">社会责任</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">架构与分析</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="architecture.html">架构拓扑</a></li>
+            <li><a href="analysis-hub.html">分析引擎</a></li>
+            <li><a href="intelligent-evolution.html">智能进化</a></li>
+            <li><a href="smart-overhaul.html">整体改造</a></li>
+            <li><a href="evolvable-architecture.html">可进化架构</a></li>
+          </ul>
+        </details>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
-      <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      <div class="site-nav-meta-row">
+        <div class="site-nav-search-host" data-site-quick-search aria-live="polite"></div>
+        <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      </div>
     </header>
 
-
-
-    <div id="main" class="page-head" tabindex="-1">
+    <main id="main" tabindex="-1" aria-label="正文">
+    <div class="page-head">
       <h1>国家十年叙事与社会舆情：双轨对齐</h1>
       <p class="lead">
         本页把<strong>正式战略与制度输出</strong>（规划、立法、试点、考核）与<strong>舆论场</strong>（议题发酵、情绪峰值、反转与沉淀）当作<strong>两条不同步的时间轴</strong>，与本站 <strong>2026—2036</strong> 十年窗、<a href="decade.html">六维表</a>「国家治理」行<strong>对账变量</strong>：政策是否落地、是否仍停在话语层、舆情如何<strong>提前或滞后</strong>牵动采购与合规节奏。
@@ -82,7 +113,7 @@
         <p>若要把法律、中长期战略与五年规划、十年窗、舆情、全球资本与主要经济体政策放在同一套纪律下推演，并对接本站<strong>热力/共现/沉淀与沙盘</strong>，见 <a href="#integrated-deduction">多源综合推演工作台</a>（正文 §6 节号仍可用于检索）。</p>
         <p><strong>社会责任取向</strong>：同类信号纳入自动分析与推演输出的写法见 <a href="social-responsibility-evolution.html">社会责任 · 可进化推演</a>。</p>
         <p><strong>边界</strong>：仍是<strong>定性脚手架</strong>——不替代对原文的阅读，也不充当实时新闻聚合；条文与数据以正式发布与一手来源为准。</p>
-        <p><strong>维护与契约</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a>。</p>
+        <p><strong>维护与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a>。</p>
       </div>
       <nav class="page-route-strip" aria-label="与本页相关的站内路径">
         <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
@@ -94,6 +125,7 @@
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
+    <div class="modular-intro-stack" aria-label="战略·舆情 · 导读与本轮提要">
     <div class="nexus-legend" aria-label="三色标签说明">
       <span class="nexus-tag evidence">依据 — 可引用的公开文本、预算与招标、试点名录</span>
       <span class="nexus-tag extend">扩展 — 双轴时差、传导链、与十年窗的接法</span>
@@ -130,7 +162,10 @@
         <li>法律/规划类线索入库时同步想 <code>kind: law | policy</code> 与目标页映射。</li>
       </ul>
     </section>
-    <nav class="toc" aria-label="本页目录">
+    </div>
+
+    <nav class="toc toc--pilot" aria-label="本页目录">
+      <span class="toc-pilot-eyebrow">本节速达</span>
       <a href="#dual-track">双轨时间轴</a>
       <a href="#align-decade">与十年窗对齐</a>
       <a href="#checklist">跟踪清单</a>
@@ -143,10 +178,10 @@
     <section id="dual-track">
       <h2>1. 双轨：正式战略 vs 社会舆情</h2>
       <p class="muted note-pull">两轨<strong>量纲不同</strong>：前者偏「文件—预算—项目—指标」，后者偏「注意力—情绪—联盟—问责」。推演时忌把热搜当政策，也忌只读文件不看基层议价。</p>
-      <div class="card" style="overflow-x:auto;padding:0">
+      <div class="card card--table-shell">
         <table>
           <thead>
-            <tr><th style="width:8rem">轨</th><th>典型节拍</th><th>可观察锚点</th><th>易错</th></tr>
+            <tr><th class="col-w-8rem">轨</th><th>典型节拍</th><th>可观察锚点</th><th>易错</th></tr>
           </thead>
           <tbody>
             <tr>
@@ -164,7 +199,7 @@
           </tbody>
         </table>
       </div>
-      <div class="callout extend" style="margin-top:1rem">
+      <div class="callout extend callout--more-top">
         <strong>扩展：</strong>同一主题（如算力、数据出境、教育数字化）在两条轨上可能<strong>相差 1—3 个规划节拍</strong>——适合用 <a href="timeline.html">历史演进</a> 与 <a href="past-future.html">廿年视角</a> 标定「词汇锁定」与「惯性」。
       </div>
     </section>
@@ -183,14 +218,14 @@
       <h2>3. 同步跟踪清单（自检用）</h2>
       <p class="muted note-pull">下列为<strong>类型学</strong>，便于自建表格或笔记；勾选后应能指回 <a href="synthesis.html#criteria">综合推演 · 判据</a> 中的至少一条（尺度、因果延迟、可对账变量等）。</p>
       <div class="card">
-        <h3 style="margin-top:0;font-size:1rem">A. 国家战略与制度输出</h3>
+        <h3 class="subhead-h3-card-flush">A. 国家战略与制度输出</h3>
         <ul class="muted list-top-sm">
           <li>中长期规划纲要、政府工作报告中的量化目标与约束性指标</li>
           <li>部委专项规划、行业标准与<strong>征求意见</strong>稿（窗口期）</li>
           <li>试点城市/示范区/重大工程清单与财政科目</li>
           <li>政府采购与国资平台招标中的<strong>技术条款</strong>（信创、密评、等保、能效）</li>
         </ul>
-        <h3 style="margin-top:1.25rem;font-size:1rem">B. 社会舆情与议程</h3>
+        <h3 class="subhead-h3-card-gap">B. 社会舆情与议程</h3>
         <ul class="muted list-top-sm">
           <li>平台热搜与主流媒体议程（峰值易失真，宜记<strong>持续周数</strong>）</li>
           <li>垂直社群（家长、开发者、医护、基层公务员等）的<strong>重复怨怼点</strong></li>
@@ -205,7 +240,7 @@
       <p class="muted note-pull">推荐每次写清<strong>一条链</strong>，并标出<strong>滞后</strong>（常见：舆论先动、预算后动；或试点先动、立法后至）。</p>
       <div class="card">
         <p class="muted note-preblock"><strong>示意链（非唯一）：</strong></p>
-        <p style="margin:0;font-size:0.9rem;line-height:1.75">
+        <p class="card-sample-chain">
           战略关键词 → 部委细则/标准 → 地方招商与园区 KPI → 企业 CAPEX/OPEX → 产品默认设置与合同条款 → 家庭/个人可感界面（学费、电价、App 默认、求职门槛）
         </p>
         <p class="muted note-post">若链在某一环<strong>断裂</strong>，在 <a href="synthesis-methods.html#perpetual">综合推演 §11</a> 中应记为「扩展插槽」素材：要么补读 <a href="net-biz-capital.html">网·商·资·工</a> 里的资本与商业化节奏，要么补 <a href="nexus.html">立体联结</a> 的尺度嵌套（国家叙事 vs 客厅感受）。</p>
@@ -214,7 +249,7 @@
 
     <section id="site-map">
       <h2>5. 站内模块接法</h2>
-      <div class="card" style="overflow-x:auto;padding:0">
+      <div class="card card--table-shell">
         <table>
           <thead>
             <tr><th>模块</th><th>与本页关系</th></tr>
@@ -233,20 +268,20 @@
           </tbody>
         </table>
       </div>
-      <div class="callout imagine" style="margin-top:1rem">
+      <div class="callout imagine callout--more-top">
         <strong>想象（征候练习）：</strong>若某主题在舆论场已热两年，但招标文件与行业标准仍无对应条款——更像<strong>补丁型/试点型</strong>走向（见 <a href="evolution-triad.html#directions">人与AI · 走向合成</a>）；若反之，文件已密而民间无感——可能<strong>执行摩擦</strong>或<strong>话语未下沉</strong>。
       </div>
     </section>
 
     <section id="integrated-deduction">
       <h2>6. 法律—战略—规划—舆情—资本—多国政策：综合推演工作台</h2>
-      <p class="muted note-pull">本节把读者常同时打开的<strong>六类信源</strong>，压进<strong>同一套可对账的变量语言</strong>（与 <a href="synthesis.html#criteria">综合推演 · §2 判据</a>、<a href="docs/DEDUCTION_STRATEGY.md">docs/DEDUCTION_STRATEGY.md</a> 一致），并显式接到本站<strong>当前可用的分析方法</strong>：<a href="analysis-hub.html">分析引擎</a>（热力、共现、规则提示、<code>sediment</code> 沉淀）、<a href="evolution-loop.html">进化闭环</a>（manifest / 候选 / ingest）、<a href="lab.html">沙盘工坊</a>（因子加压）。仍是<strong>定性脚手架</strong>：不写国别排名、不做投资建议；各国政策只作<strong>透镜与价差叙事</strong>，事实以一手文本与市场披露为准。</p>
+      <p class="muted note-pull">本节把读者常同时打开的<strong>六类信源</strong>，压进<strong>同一套可对账的变量语言</strong>（与 <a href="synthesis.html#criteria">综合推演 · §2 判据</a>、<a href="docs/DEDUCTION_STRATEGY.md#stance">docs/DEDUCTION_STRATEGY.md</a> 一致），并显式接到本站<strong>当前可用的分析方法</strong>：<a href="analysis-hub.html">分析引擎</a>（热力、共现、规则提示、<code>sediment</code> 沉淀）、<a href="evolution-loop.html">进化闭环</a>（manifest / 候选 / ingest）、<a href="lab.html">沙盘工坊</a>（因子加压）。仍是<strong>定性脚手架</strong>：不写国别排名、不做投资建议；各国政策只作<strong>透镜与价差叙事</strong>，事实以一手文本与市场披露为准。</p>
 
-      <h3 style="margin-top:1.25rem;font-size:1.05rem">6.1 六类信源：各回答什么、易错是什么</h3>
-      <div class="card" style="overflow-x:auto;padding:0">
+      <h3 class="subhead-h3-section">6.1 六类信源：各回答什么、易错是什么</h3>
+      <div class="card card--table-shell">
         <table>
           <thead>
-            <tr><th style="width:9rem">信源</th><th>推演中扮演的角色</th><th>与全站模块的典型接法</th><th>常见误用</th></tr>
+            <tr><th class="col-w-9rem">信源</th><th>推演中扮演的角色</th><th>与全站模块的典型接法</th><th>常见误用</th></tr>
           </thead>
           <tbody>
             <tr>
@@ -289,14 +324,14 @@
         </table>
       </div>
 
-      <h3 style="margin-top:1.35rem;font-size:1.05rem">6.2 合成传导链（示意，非唯一）</h3>
+      <h3 class="subhead-h3-section-spaced">6.2 合成传导链（示意，非唯一）</h3>
       <p class="muted note-tuck">用于自检：你的命题能否在链上<strong>至少标出两环滞后</strong>（见 <a href="#conduction">§4</a>）。</p>
       <div class="callout extend">
-        <p style="margin:0;font-size:0.92rem;line-height:1.8"><strong>链 A（ outward—inward ）：</strong>主要经济体产业补贴或出口清单摆动 → 全球资本再配置与供应链<strong>友岸/回岸</strong>叙事 → 跨国企业多实体账簿与采购条款改写 → <strong>国内</strong>招标文件技术条目与等保/密评口径变化 → 舆论场对「国产/自研/合规包」情绪反馈 → 家庭端可见为 App 默认、校采与家长控制、求职技能条。</p>
-        <p style="margin:1rem 0 0;font-size:0.92rem;line-height:1.8"><strong>链 B（ inward—outward ）：</strong>国内立法或国标征求意见窗 → 平台与行业龙头提前改<strong>用户协议与日志留存</strong> → SME 买模板或退出市场（摩擦↑）→ 创投与并购对「合规折旧」重新定价 → 海外上市或发债披露增加地缘与数据条款 → 反向影响下一轮融资叙事。</p>
+        <p class="callout-prose"><strong>链 A（ outward—inward ）：</strong>主要经济体产业补贴或出口清单摆动 → 全球资本再配置与供应链<strong>友岸/回岸</strong>叙事 → 跨国企业多实体账簿与采购条款改写 → <strong>国内</strong>招标文件技术条目与等保/密评口径变化 → 舆论场对「国产/自研/合规包」情绪反馈 → 家庭端可见为 App 默认、校采与家长控制、求职技能条。</p>
+        <p class="callout-prose"><strong>链 B（ inward—outward ）：</strong>国内立法或国标征求意见窗 → 平台与行业龙头提前改<strong>用户协议与日志留存</strong> → SME 买模板或退出市场（摩擦↑）→ 创投与并购对「合规折旧」重新定价 → 海外上市或发债披露增加地缘与数据条款 → 反向影响下一轮融资叙事。</p>
       </div>
 
-      <h3 style="margin-top:1.35rem;font-size:1.05rem">6.3 对接本站「当前可用的分析方法」</h3>
+      <h3 class="subhead-h3-section-spaced">6.3 对接本站「当前可用的分析方法」</h3>
       <ol class="muted list-stack-sm">
         <li><strong>结构化入库（人审）：</strong>将重复出现的法规标题、规划关键词、舆情节拍与资本事件摘要写入 <code>evolution-candidates.json</code>，审后 <code>merge</code> 进 <code>evolution-manifest.json</code>，映射 <code>maps_to.pages</code> / <code>lab_factors</code> —— 与 <a href="evolution-loop.html#ingest">进化闭环 · 管道</a>、<a href="synthesis-methods.html#perpetual">§11 插槽 ⑦</a> 同构。</li>
         <li><strong>结构是否漂移：</strong>跑 <code>analysis_engine.py</code>（可加 <code>--sediment</code>），读 <a href="analysis-hub.html">分析引擎</a> 的模块热力、因子共现与 <code>hint_closure_gaps</code> —— 若「战略·舆情 / 地缘 / 网·商·资·工」长期共现偏斜，回到 <a href="synthesis-extensions.html#matrix">综合推演 §7</a> 决定是否<strong>增表行</strong>（本站已增「规制—资本—舆论综合台」一行对表本节）。</li>
@@ -304,7 +339,7 @@
         <li><strong>纪律：</strong>每条新结论须指回 <a href="synthesis.html#criteria">§2 判据</a>；禁止未人审的自动改正文（见 <a href="intelligent-evolution.html">智能进化</a>、<a href="evolvable-architecture.html">可进化架构</a>）。</li>
       </ol>
 
-      <h3 style="margin-top:1.35rem;font-size:1.05rem">6.4 三种综合结局形态（分叉，非预测）</h3>
+      <h3 class="subhead-h3-section-spaced">6.4 三种综合结局形态（分叉，非预测）</h3>
       <div class="card">
         <ul class="muted list-flat-sm">
           <li><strong>甲 · 规制领先、资本跟进：</strong>国内标准/执法节点清晰且跨境资本愿为合规付溢价 → 更接近 <a href="synthesis-extensions.html#forks">§8 簇 α</a> 叙事；<strong>征候：</strong>条文明细进入采购模板、诉讼与鉴证常态化。</li>
@@ -316,16 +351,27 @@
 
     <section id="evolution-feed-section">
       <h2>7. 观测信号清单（自动对齐沙盘）</h2>
-      <p class="muted note-pull">下列由 <code>assets/evolution-manifest.json</code>（已入库）与 <code>assets/evolution-candidates.json</code>（脚本抓取、待审）共同驱动，与 <a href="evolution-loop.html#ingest">进化闭环 · 抓取管道</a> 同源；合并后的 <code>lab_factors</code> 会在 <a href="lab.html">沙盘工坊</a> 高亮。维护节奏见 <a href="docs/EVOLUTION_RUNBOOK.md">双周运行手册</a>；合并入库前请 <code>make validate</code>（含页面/因子对账）。</p>
+      <p class="muted note-pull">下列由 <code>assets/evolution-manifest.json</code>（已入库）与 <code>assets/evolution-candidates.json</code>（脚本抓取、待审）共同驱动，与 <a href="evolution-loop.html#ingest">进化闭环 · 抓取管道</a> 同源；合并后的 <code>lab_factors</code> 会在 <a href="lab.html">沙盘工坊</a> 高亮。维护节奏见 <a href="docs/EVOLUTION_RUNBOOK.md#github-actions-cadence">双周运行手册</a>；合并入库前请 <code>make validate</code>（含页面/因子对账）。</p>
       <div id="evolution-feed" class="evolution-feed" aria-live="polite"></div>
     </section>
+
+    <section class="card reader-home-next hub-cluster-next" aria-labelledby="natstr-inst-next-h">
+      <p class="reader-home-next-kicker" id="natstr-inst-next-h">制度与地缘 · 下一站</p>
+      <ul class="reader-home-next-list">
+        <li><a href="social-responsibility-evolution.html#model">社会责任 · 模型</a></li>
+        <li><a href="work-infra-energy.html#cross">职业·基建·能源 · 站内对照</a></li>
+        <li><a href="risk-geo.html#risk-geo-channels">地缘与商业 · 冲击通道</a></li>
+      </ul>
+    </section>
+
+    </main>
 
     <footer>
       <a href="decade.html">← 十年展望</a> · <a href="#integrated-deduction">多源综合台</a> · <a href="evolution-loop.html">进化闭环</a> · <a href="net-biz-capital.html">网·商·资·工</a> · <a href="synthesis-extensions.html#matrix">综合推演 §7</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a>
     </footer>
   </div>
-  <script src="assets/site-data-bus.js"></script>
-  <script src="assets/motion.js"></script>
-  <script src="assets/evolution.js"></script>
+  <script src="assets/site-data-bus.js" defer></script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/evolution.js" defer></script>
 </body>
 </html>

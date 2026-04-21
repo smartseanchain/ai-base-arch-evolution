@@ -24,12 +24,15 @@
 <body>
   <div class="wrap">
     <div class="skip-bar" role="navigation" aria-label="快捷跳转">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py）。maintainer-hub 在五链后另拼 #mh-*（MAINTAINER_HUB_SKIP_EXTRA）。404 / legacy-all-in-one 不经此脚本写回。 -->
       <a class="skip-link" href="#main">跳到正文</a>
       <a class="skip-link" href="index.html#three-questions">三问导读</a>
       <a class="skip-link" href="index.html#read-guide">读站指路</a>
       <a class="skip-link" href="index.html#hub-catalog">分区速跳</a>
+      <a class="skip-link" href="index.html#reader-next">常见下一站</a>
     </div>
     <header class="site-nav">
+      <!-- 真源：改后 make sync-nav（scripts/sync_site_nav.py · build_header）。 -->
       <div class="site-nav-start">
         <a class="brand" href="index.html">基础架构演变推演</a>
         <a href="index.html#three-questions" class="site-nav-threeq" title="我们在哪 · 要做什么 · 将在哪">三问</a>
@@ -37,46 +40,74 @@
       </div>
       <nav class="site-links" aria-label="站内分页">
         <a href="index.html">总览</a>
-        <a href="nexus.html">立体联结</a>
-        <a href="edu-nexus.html">教育纵轴</a>
-        <a href="evolution-triad.html">人与AI演进</a>
-        <a href="work-infra-energy.html">职业·基建·能源</a>
-        <a href="model.html">分层模型</a>
-        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP 锚 reader-admin-surfaces">维护导读</a>
-        <a href="architecture.html">架构拓扑</a>
-        <a href="timeline.html">历史演进</a>
-        <a href="past-future.html">廿年视角</a>
-        <a href="decade.html">十年展望</a>
-        <a href="decade-scenes.html">十年场景</a>
-        <a href="decade-us.html">十年之问</a>
-        <a href="modules-map.html">模块图谱</a>
-        <a href="synthesis.html">综合推演</a>
-        <a href="synthesis-extensions.html">推演·扩展</a>
-        <a href="synthesis-methods.html">推演·方法</a>
-        <a href="risk-geo.html" class="current">地缘与商业</a>
-        <a href="net-biz-capital.html">网·商·资·工</a>
-        <a href="national-strategy-opinion.html">战略·舆情</a>
-        <a href="social-responsibility-evolution.html">社会责任</a>
-        <a href="evolution-loop.html">进化闭环</a>
-        <a href="analysis-hub.html">分析引擎</a>
-        <a href="intelligent-evolution.html">智能进化</a>
-        <a href="smart-overhaul.html">整体改造</a>
-        <a href="evolvable-architecture.html">可进化架构</a>
-        <a href="lab.html">沙盘工坊</a>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">联结与模型</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="nexus.html">立体联结</a></li>
+            <li><a href="edu-nexus.html">教育纵轴</a></li>
+            <li><a href="evolution-triad.html">人与AI演进</a></li>
+            <li><a href="model.html">分层模型</a></li>
+            <li><a href="modules-map.html">模块图谱</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">时间与情景</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="timeline.html">历史演进</a></li>
+            <li><a href="past-future.html">廿年视角</a></li>
+            <li><a href="decade.html">十年展望</a></li>
+            <li><a href="decade-scenes.html">十年场景</a></li>
+            <li><a href="decade-us.html">十年之问</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">推演与沙盘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="synthesis.html">综合推演</a></li>
+            <li><a href="synthesis-extensions.html">推演·扩展</a></li>
+            <li><a href="synthesis-methods.html">推演·方法</a></li>
+            <li><a href="lab.html">沙盘工坊</a></li>
+            <li><a href="evolution-loop.html">进化闭环</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">制度与地缘</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="work-infra-energy.html">职业·基建·能源</a></li>
+            <li><a href="risk-geo.html" class="current">地缘与商业</a></li>
+            <li><a href="net-biz-capital.html">网·商·资·工</a></li>
+            <li><a href="national-strategy-opinion.html">战略·舆情</a></li>
+            <li><a href="social-responsibility-evolution.html">社会责任</a></li>
+          </ul>
+        </details>
+        <details class="site-nav-details" name="site-nav-group">
+          <summary class="site-nav-summary">架构与分析</summary>
+          <ul class="site-nav-sub" role="list">
+            <li><a href="architecture.html">架构拓扑</a></li>
+            <li><a href="analysis-hub.html">分析引擎</a></li>
+            <li><a href="intelligent-evolution.html">智能进化</a></li>
+            <li><a href="smart-overhaul.html">整体改造</a></li>
+            <li><a href="evolvable-architecture.html">可进化架构</a></li>
+          </ul>
+        </details>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
-      <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      <div class="site-nav-meta-row">
+        <div class="site-nav-search-host" data-site-quick-search aria-live="polite"></div>
+        <span class="site-nav-version muted" data-site-meta-version aria-live="polite" title="站点发布版本">…</span>
+      </div>
     </header>
 
-
-
-    <div id="main" class="page-head" tabindex="-1">
+    <main id="main" tabindex="-1" aria-label="正文">
+    <div class="page-head">
       <h1>地缘冲击与商业运营</h1>
       <p class="lead">热力条表示该通道在冲突/制裁情景下对业务的<strong>相对影响幅度</strong>（定性）；右侧为架构响应关键词。</p>
       <div class="read-hint page-head-deck" role="note" aria-label="边界与同读">
         <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
         <p>全文为<strong>定性示意</strong>，非精确预测或投资建议。</p>
         <p><strong>建议同读</strong>：<a href="net-biz-capital.html">网·商·资·工</a>、<a href="synthesis.html">综合推演</a>、<a href="national-strategy-opinion.html">战略·舆情</a>。</p>
-        <p><strong>维护与契约</strong>：<a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a>。</p>
+        <p><strong>维护与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a>。</p>
       </div>
       <nav class="page-route-strip" aria-label="与本页相关的站内路径">
         <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
@@ -85,9 +116,17 @@
         <a href="synthesis.html#criteria"><span class="page-route-ico" aria-hidden="true">§</span>五条判据</a>
         <a href="national-strategy-opinion.html"><span class="page-route-ico" aria-hidden="true">策</span>战略·舆情</a>
       </nav>
+      <nav class="toc toc--pilot" id="risk-geo-toc" aria-label="本页目录">
+        <p class="toc-pilot-eyebrow">本页目录</p>
+        <a href="#risk-geo-channels">冲击与热力</a>
+        <a href="#risk-geo-sme-large">中小 vs 大型</a>
+        <a href="#risk-geo-funnel">价值漏斗</a>
+        <a href="#risk-geo-ops">创业与运营</a>
+      </nav>
       <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
     </div>
 
+    <div class="modular-intro-stack" aria-label="地缘与商业 · 导读与本轮提要">
     <div class="page-flow-strip" role="img" aria-label="地缘商业读法：按冲击通道看相对热力，再落到架构与运营响应关键词">
       <svg viewBox="0 0 600 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
@@ -118,8 +157,9 @@
         <li>热力调整时同步想沙盘因子 <code>sanction</code>、<code>geo</code> 是否勾选。</li>
       </ul>
     </section>
-    <section>
-      <h2>冲击通道 × 热力</h2>
+    </div>
+    <section id="risk-geo-channels" aria-labelledby="risk-geo-channels-h">
+      <h2 id="risk-geo-channels-h">冲击通道 × 热力</h2>
       <div class="card">
         <div class="geo-channels">
           <div class="geo-ch-row">
@@ -151,22 +191,22 @@
       </div>
     </section>
 
-    <section>
-      <h2>中小企业 vs 大型组织</h2>
+    <section id="risk-geo-sme-large" aria-labelledby="risk-geo-sme-large-h">
+      <h2 id="risk-geo-sme-large-h">中小企业 vs 大型组织</h2>
       <div class="compare-visual">
         <div class="compare-col sme">
           <h4>中小企业</h4>
           <div class="compare-row">
             <div class="k">敏捷度</div>
-            <div class="compare-meter"><span style="width:88%"></span></div>
+            <div class="compare-meter"><span class="w-pct-88"></span></div>
           </div>
           <div class="compare-row">
             <div class="k">合规固定成本承受</div>
-            <div class="compare-meter"><span style="width:42%"></span></div>
+            <div class="compare-meter"><span class="w-pct-42"></span></div>
           </div>
           <div class="compare-row">
             <div class="k">单点英雄风险</div>
-            <div class="compare-meter"><span style="width:72%"></span></div>
+            <div class="compare-meter"><span class="w-pct-72"></span></div>
           </div>
           <p class="muted note-flush-82">策略：买托管能力、模板化认证产品。</p>
         </div>
@@ -174,23 +214,23 @@
           <h4>大型组织</h4>
           <div class="compare-row">
             <div class="k">平台与议价力</div>
-            <div class="compare-meter"><span style="width:90%"></span></div>
+            <div class="compare-meter"><span class="w-pct-90"></span></div>
           </div>
           <div class="compare-row">
             <div class="k">全球一致 vs 本地合规张力</div>
-            <div class="compare-meter"><span style="width:85%"></span></div>
+            <div class="compare-meter"><span class="w-pct-85"></span></div>
           </div>
           <div class="compare-row">
             <div class="k">变革速度</div>
-            <div class="compare-meter"><span style="width:38%"></span></div>
+            <div class="compare-meter"><span class="w-pct-38"></span></div>
           </div>
           <p class="muted note-flush-82">策略：建统一身份+数据目录+区域 Cell。</p>
         </div>
       </div>
     </section>
 
-    <section>
-      <h2>商业价值漏斗（示意）</h2>
+    <section id="risk-geo-funnel" aria-labelledby="risk-geo-funnel-h">
+      <h2 id="risk-geo-funnel-h">商业价值漏斗（示意）</h2>
       <p class="muted note-pull-lg">从对外报价到战略大单常经过三层；越往下越依赖<strong>可举证</strong>与<strong>准入</strong>。</p>
       <div class="biz-funnel">
         <div class="step s1">效率层：降本、提速、FinOps</div>
@@ -201,9 +241,9 @@
       </div>
     </section>
 
-    <section>
-      <h2>创业 · 运营要点（简表）</h2>
-      <div class="card" style="overflow-x:auto;padding:0">
+    <section id="risk-geo-ops" aria-labelledby="risk-geo-ops-h">
+      <h2 id="risk-geo-ops-h">创业 · 运营要点（简表）</h2>
+      <div class="card card--table-shell">
         <table>
           <thead><tr><th>域</th><th>要点</th></tr></thead>
           <tbody>
@@ -215,9 +255,20 @@
       </div>
     </section>
 
+    <section class="card reader-home-next hub-cluster-next" aria-labelledby="risk-geo-inst-next-h">
+      <p class="reader-home-next-kicker" id="risk-geo-inst-next-h">制度与地缘 · 下一站</p>
+      <ul class="reader-home-next-list">
+        <li><a href="net-biz-capital.html#diagram">网·商·资·工 · 主图</a></li>
+        <li><a href="national-strategy-opinion.html#dual-track">战略·舆情 · 双轨</a></li>
+        <li><a href="social-responsibility-evolution.html#model">社会责任 · 模型</a></li>
+      </ul>
+    </section>
+
+    </main>
+
     <footer><a href="decade.html">← 十年展望</a> · <a href="decade-scenes.html">十年场景</a> · <a href="synthesis.html">综合推演</a> · <a href="lab.html">沙盘工坊 →</a> · <a href="index.html#three-questions">三问</a></footer>
   </div>
-  <script src="assets/site-data-bus.js"></script>
-  <script src="assets/motion.js"></script>
+  <script src="assets/site-data-bus.js" defer></script>
+  <script src="assets/motion.js" defer></script>
 </body>
 </html>

@@ -6,14 +6,19 @@ alwaysApply: false
 
 # 单一注册表 `scripts/evolution-registry.json`
 
+**判型**：[README · 四条动线](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map) · [ONE_PAGER · 架构师五步](../docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [ONE_PAGER · 不变量索引](../docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [docs/README · #content-framework](../docs/README.md#content-framework) · [#front-back-modules](../docs/README.md#front-back-modules) · [#system-components-fusion](../docs/README.md#system-components-fusion) · [quick-paths](../docs/README.md#quick-paths)。
+
 - 结构须符合 **`docs/schemas/evolution-registry.schema.json`**（**`validate_evolution_registry_schema.py`**；**`make test`** / **`make validate`**）。
 
 增删 **`pages`** 或 **`lab_factors`** 时至少：
 
 1. 根目录须有对应 **`*.html`**（404 除外）；**`assets/lab.js`** 因子 **`id`** 与 **`lab_factors`** 集合一致。
 2. 维护 **SPA**：在 **`spa/nav.config.json`** 的 **`items`** 中为每个 **`pages`** 条目增加一行（`page` + `label`），再 **`make gen-nav-links`**；**`check_nav_links_registry.py`** 校验配置与生成文件。
-3. 顶栏：只改 **`partials/site-nav.inc.html`**（及 skip-bar 若需）后 **`make sync-nav`**。
+3. 顶栏：只改 **`partials/site-nav.inc.html`**（及 skip-bar 若需）后 **`make sync-nav`**。**`maintainer-hub.html`** 在五链 skip 后再由 **`build_skip_bar`** 拼 **`#mh-spine-map` / `#mh-boundaries` / `#mh-reader-admin-matrix`**，勿手改 HTML。**`404.html`** 顶栏/skip **不在** `sync_site_nav` 写回范围，改 **`skip-bar.inc.html`** 或影响失页顶栏时须**手调** **404** — **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence`** · **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge`**。
 4. **`check_manifest_drift.py`** 会查 ingest、sitemap、hint-rules 等引用 ⊆ 本文件。
-5. PR 若触及本文件，CI 通常会跑 **`spa-build`**。
+5. PR 若触及本文件，CI 通常会跑 **`spa-build`**（其前会 **`gen-nav-links`** + **`spa-sync`**）。
+6. 若本轮**同时**改了根目录 **`.html`**（页脚深链、导读块等）以与注册/顶栏叙事对齐：合并前仍须 **`make spa-sync`**（或完整 **`make spa-build`**），否则 **`spa/public/`** 内 iframe 源页可能落后 MPA；动线见 **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge`** · **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence`**；收束叙述见 [维护导读](../maintainer-hub.html) · [关系视图](../maintainer-hub.html#mh-spine-map) · [系统边界](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)。
 
-深读：**CONTRIBUTING.md**、**docs/PLATFORM_CAPABILITY_MAP.md** §6、§7（读者预期、发布前清单、站内 **`docs/*.md`** 静态部署说明）。
+**与根目录契约对读**：[AGENTS.md · 框架判型](../AGENTS.md#agents-content-framework) · [双轨呈现](../AGENTS.md#agents-dual-track)。
+
+深读：**CONTRIBUTING.md**、**docs/PLATFORM_CAPABILITY_MAP.md** §6、§7（读者预期、发布前清单、站内 **`docs/*.md`** 静态部署说明）。**主链联动 · 仓库物理分层**：[PROJECT · §1a](docs/PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · [§1b](docs/PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)。

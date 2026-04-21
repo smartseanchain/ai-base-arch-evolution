@@ -1,8 +1,9 @@
 """
 分析引擎主流程（读 manifest/候选 → ``run_analysis`` → 组装快照 → 校验或写盘）。
 
-路径由 ``AnalysisPaths`` / ``default_analysis_paths`` 注入；CLI 旗标见 ``parse_analysis_cli``，
-供 ``analysis_engine`` 与单测复用。
+路径由 ``AnalysisPaths`` / ``default_analysis_paths`` 注入；CLI 旗标见 ``parse_analysis_cli``。
+**推荐**：``PYTHONPATH=scripts python3 -m evolution_pkg.analysis_pipeline``；根目录
+**``analysis_engine.py``** 为兼容薄壳（仍导出路径常量与 **``load_hint_rules``**）。
 """
 from __future__ import annotations
 
@@ -10,17 +11,17 @@ import argparse
 import json
 import sys
 from dataclasses import dataclass
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Sequence
 
+from evolution_pkg.beijing_time import now_iso_beijing
 from evolution_pkg.analysis_core import run_analysis
 from evolution_pkg.analysis_hints import collect_signals, load_hint_rules_from_path
 from evolution_pkg.analysis_snapshot_build import build_analysis_snapshot_document
 from evolution_pkg.analysis_validate import validate_analysis_output_for_check
 from evolution_pkg.io import REPO_ROOT, load_json
 from evolution_pkg.sediment_daily import append_daily_sediment
-from lineage_utils import build_run_block
+from evolution_pkg.analysis_lineage import build_run_block
 
 
 @dataclass(frozen=True)
@@ -64,9 +65,14 @@ def parse_analysis_cli(argv: Sequence[str] | None = None) -> AnalysisCliFlags:
         action="store_true",
         help="仅校验：跑完整分析逻辑并检查输出结构，不写 analysis-snapshot.json / 沉淀（供 CI）",
     )
+    ap.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="同 --check：不写 snapshot/沉淀/SQLite 快照历史，仅打印 OK 行（便于与「整体改造」文档用语对齐）",
+    )
     ns = ap.parse_args(list(argv) if argv is not None else None)
     return AnalysisCliFlags(
-        check=bool(ns.check),
+        check=bool(ns.check or ns.dry_run),
         write_sediment=bool(ns.sediment),
         no_sqlite_snapshot_history=bool(ns.no_sqlite_snapshot_history),
     )
@@ -111,7 +117,7 @@ def run_analysis_pipeline(
     decisions_doc = load_json(paths.hint_decisions)
     analysis = run_analysis(signals, prev_snapshot, hint_rules, decisions_doc)
 
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    now = now_iso_beijing()
     run = build_run_block()
     out = build_analysis_snapshot_document(
         manifest=manifest,
@@ -126,8 +132,9 @@ def run_analysis_pipeline(
     if check:
         src = validate_analysis_output_for_check(out)
         gaps_n = len(out.get("hint_closure_gaps") or [])
+        mode = "--check/--dry-run"
         print(
-            f"OK --check · combined={src['combined_for_analysis']} "
+            f"OK {mode} · combined={src['combined_for_analysis']} "
             f"manifest={src['manifest_signals']} candidate={src['candidate_signals']} "
             f"closure_gaps={gaps_n}"
         )
@@ -167,3 +174,15 @@ def run_analysis_pipeline(
         print(f"已更新 {paths.sediment}")
 
     return out
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    """解析 CLI 并以仓库默认路径执行流水线；成功返回 **0**。"""
+    flags = parse_analysis_cli(argv)
+    run_analysis_pipeline(
+        default_analysis_paths(),
+        check=flags.check,
+        write_sediment=flags.write_sediment,
+        no_sqlite_snapshot_history=flags.no_sqlite_snapshot_history,
+    )
+    return 0

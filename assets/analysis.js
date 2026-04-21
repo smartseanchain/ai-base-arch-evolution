@@ -13,7 +13,7 @@
  *
  * @typedef {Object} AnalysisSnapshot
  * @property {number} schema_version
- * @property {string} generated_at ISO 时间
+ * @property {string} generated_at ISO 时间（北京时间 +08:00，或历史 UTC「Z」）
  * @property {AnalysisRunLineage} [run]
  * @property {AnalysisSourcesMeta} [sources]
  * @property {Array<{page:string,count:number}>} [module_heat]
@@ -30,6 +30,7 @@
   var URL_TRENDS = "assets/sediment-trends.json";
   var URL_HINT_DECISIONS = "assets/evolution-hint-decisions.json";
   var URL_AI_OVERLAY = "assets/ai-analysis-overlay.json";
+  var BEIJING_TZ = "Asia/Shanghai";
 
   var ACTION_LABEL = { done: "已落实", rejected: "已否决", deferred: "延期" };
   var KIND_LABEL = {
@@ -52,6 +53,29 @@
     return d.innerHTML;
   }
 
+  /** @param {string|number|null|undefined} isoOrMs */
+  function formatTimeBeijingReadable(isoOrMs) {
+    if (isoOrMs == null || isoOrMs === "") return "—";
+    var ms = typeof isoOrMs === "number" ? isoOrMs : Date.parse(String(isoOrMs));
+    if (isNaN(ms)) return String(isoOrMs);
+    try {
+      return (
+        new Date(ms).toLocaleString("zh-CN", {
+          timeZone: BEIJING_TZ,
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        }) + "（北京时间）"
+      );
+    } catch (_) {
+      return String(isoOrMs);
+    }
+  }
+
   function barRow(label, count, max) {
     var pct = max > 0 ? Math.round((count / max) * 100) : 0;
     var row = document.createElement("div");
@@ -61,9 +85,10 @@
       esc(label) +
       '</span><span class="analysis-bar-count">' +
       esc(String(count)) +
-      '</span><div class="analysis-bar-track"><div class="analysis-bar-fill" style="width:' +
-      pct +
-      '%"></div></div>';
+      '</span><div class="analysis-bar-track"><div class="analysis-bar-fill"></div></div>';
+    row
+      .querySelector(".analysis-bar-fill")
+      .style.setProperty("--analysis-bar-pct", String(pct));
     return row;
   }
 
@@ -271,14 +296,11 @@
     card.setAttribute("aria-label", "聚合解读");
 
     var h4 = document.createElement("h4");
-    h4.style.marginTop = "0";
     h4.textContent = "聚合解读（当日快照）";
     card.appendChild(h4);
 
     var sub = document.createElement("p");
     sub.className = "muted";
-    sub.style.fontSize = "0.82rem";
-    sub.style.marginTop = "0.25rem";
     sub.textContent =
       "由分析引擎 JSON 自动拼接的定性摘要，便于扫读与复制；非预测，不替代 §2 判据与人工叙事。";
     card.appendChild(sub);
@@ -330,7 +352,9 @@
     if (!currentSnap) return parts.join("");
     parts.push("> 自动生成于仪表盘；定性脚手架，非预测。\n\n");
     parts.push("## 元数据\n");
-    parts.push("- 生成时间: " + (currentSnap.generated_at || "—") + "\n");
+    parts.push(
+      "- 生成时间: " + formatTimeBeijingReadable(currentSnap.generated_at) + "\n"
+    );
     var run = currentSnap.run || {};
     if (run.run_id) parts.push("- run_id: `" + run.run_id + "`\n");
     if (run.repo_revision) parts.push("- repo_revision: `" + run.repo_revision + "`\n");
@@ -402,7 +426,7 @@
     var src0 = data.sources || {};
     var metaHtml =
       "生成时间 <time>" +
-      esc(data.generated_at || "—") +
+      esc(formatTimeBeijingReadable(data.generated_at)) +
       "</time> · 合并分析样本 <strong>" +
       esc(String(src0.combined_for_analysis || 0)) +
       "</strong> 条";
@@ -467,12 +491,10 @@
       gbox.className = "card analysis-closure-gaps";
       gbox.setAttribute("role", "status");
       var gh = document.createElement("h4");
-      gh.style.marginTop = "0";
       gh.textContent = "规则闭环缺口（待落实或否决并记录）";
       gbox.appendChild(gh);
       var gp = document.createElement("p");
       gp.className = "muted";
-      gp.style.fontSize = "0.82rem";
       gp.textContent =
         "以下规则已触发且配置了 track_closure，但 evolution-hint-decisions 中尚无同 rule_id 的 done/rejected。延期 deferred 不算闭环。";
       gbox.appendChild(gp);
@@ -499,14 +521,10 @@
       var hc = document.createElement("div");
       hc.className = "card analysis-hints";
       var h4 = document.createElement("h4");
-      h4.style.marginTop = "0";
       h4.textContent = "自我进化提示（规则引擎）";
       hc.appendChild(h4);
       var ul = document.createElement("ul");
       ul.className = "muted";
-      ul.style.margin = "0";
-      ul.style.fontSize = "0.88rem";
-      ul.style.lineHeight = "1.75";
       hints.forEach(function (t) {
         var li = document.createElement("li");
         var text = typeof t === "string" ? t : t && t.text;
@@ -527,8 +545,7 @@
           }
           if (t.anchor_hint) {
             var sp = document.createElement("span");
-            sp.className = "muted";
-            sp.style.marginLeft = "0.35em";
+            sp.className = "muted analysis-hint-anchor-note";
             sp.textContent = "（" + t.anchor_hint + "）";
             li.appendChild(sp);
           }
@@ -561,23 +578,16 @@
 
     var wrap = document.createElement("div");
     wrap.className = "card analysis-hint-decisions";
-    wrap.style.marginTop = "1rem";
     var h4 = document.createElement("h4");
-    h4.style.marginTop = "0";
     h4.textContent = "提示项处理记录（evolution-hint-decisions）";
     wrap.appendChild(h4);
     var p0 = document.createElement("p");
     p0.className = "muted";
-    p0.style.fontSize = "0.82rem";
-    p0.style.marginTop = "0.25rem";
     p0.textContent =
       "双周闭环中落实或否决规则提示时，请在仓库内追加 JSON 记录（make validate 会校验）。";
     wrap.appendChild(p0);
     var ul = document.createElement("ul");
     ul.className = "muted analysis-hint-decisions-list";
-    ul.style.fontSize = "0.88rem";
-    ul.style.lineHeight = "1.75";
-    ul.style.marginBottom = "0";
     recent.forEach(function (d) {
       var li = document.createElement("li");
       var act = ACTION_LABEL[d.action] || d.action;
@@ -696,8 +706,6 @@
       sec4.appendChild(h34);
       var ul2 = document.createElement("ul");
       ul2.className = "muted kind-distribution";
-      ul2.style.fontSize = "0.88rem";
-      ul2.style.margin = "0";
       kdKeys.forEach(function (k) {
         var li = document.createElement("li");
         li.textContent = k + "：" + kd[k];
@@ -718,15 +726,12 @@
 
     var wrap = document.createElement("div");
     wrap.className = "card analysis-trends";
-    wrap.style.marginTop = "1.25rem";
     var h = document.createElement("h3");
-    h.style.marginTop = "0";
     h.textContent = "长期沉淀与趋势（自 sediment）";
     wrap.appendChild(h);
 
     var meta = document.createElement("p");
     meta.className = "muted";
-    meta.style.fontSize = "0.88rem";
     var dr = t.summary.date_range;
     meta.innerHTML =
       "沉淀日数 <strong>" +
@@ -740,7 +745,7 @@
           "</time>"
         : "") +
       " · 生成 <time>" +
-      esc(t.generated_at || "—") +
+      esc(formatTimeBeijingReadable(t.generated_at)) +
       "</time>";
     wrap.appendChild(meta);
 
@@ -748,8 +753,6 @@
     if (hints.length) {
       var ul = document.createElement("ul");
       ul.className = "muted";
-      ul.style.fontSize = "0.88rem";
-      ul.style.lineHeight = "1.75";
       hints.forEach(function (line) {
         var li = document.createElement("li");
         li.textContent = line;
@@ -761,10 +764,8 @@
     function smallTable(title, rows, keyField) {
       if (!rows || !rows.length) return;
       var sec = document.createElement("section");
-      sec.className = "analysis-panel";
-      sec.style.marginTop = "0.75rem";
+      sec.className = "analysis-panel analysis-panel--stack";
       var h4 = document.createElement("h4");
-      h4.style.fontSize = "1rem";
       h4.textContent = title;
       sec.appendChild(h4);
       var tbl = document.createElement("table");
@@ -797,15 +798,11 @@
     if (Array.isArray(cb) && cb.length && n >= 1) {
       var csec = document.createElement("section");
       csec.className = "analysis-panel analysis-closure-backlog-panel";
-      csec.style.marginTop = "0.75rem";
       var ch = document.createElement("h4");
-      ch.style.fontSize = "1rem";
       ch.textContent = "规则闭环 backlog（按日 · 近 14 日）";
       csec.appendChild(ch);
       var cp = document.createElement("p");
       cp.className = "muted";
-      cp.style.fontSize = "0.82rem";
-      cp.style.marginTop = "0.25rem";
       cp.textContent =
         "缺口 = 当日 analysis 中 hint_closure_gaps 条数；决策累计 = evolution-hint-decisions 总条数（当日晚快照时刻）。";
       csec.appendChild(cp);
@@ -859,37 +856,30 @@
     sec.appendChild(h3);
     var prov = overlay.provider || {};
     var meta = document.createElement("p");
-    meta.className = "muted";
-    meta.style.fontSize = "0.82rem";
+    meta.className = "muted analysis-ai-overlay-meta";
     meta.innerHTML =
       "来源：<code>assets/ai-analysis-overlay.json</code> · provider <code>" +
       esc(String(prov.kind || "—")) +
       "</code> / model <code>" +
       esc(String(prov.model || "—")) +
       "</code> · 生成 <time>" +
-      esc(String(overlay.generated_at || "—")) +
+      esc(formatTimeBeijingReadable(overlay.generated_at)) +
       "</time>";
     sec.appendChild(meta);
     if (snapRun && srcRun && snapRun !== srcRun) {
       var warn = document.createElement("p");
       warn.className = "muted analysis-ai-overlay-warn";
-      warn.style.color = "var(--warn, #b45309)";
       warn.textContent =
         "提示：overlay 的 source_run_id 与当前页快照 run_id 不一致，可能为旧文件或未刷新。";
       sec.appendChild(warn);
     }
     var disc = document.createElement("p");
     disc.className = "muted analysis-ai-overlay-disclaimer";
-    disc.style.fontSize = "0.85rem";
-    disc.style.marginTop = "0.35rem";
     disc.textContent = String(overlay.disclaimer_zh || "");
     sec.appendChild(disc);
     if (overlay.summary_md) {
       var sum = document.createElement("div");
       sum.className = "analysis-ai-overlay-summary";
-      sum.style.whiteSpace = "pre-wrap";
-      sum.style.marginTop = "0.5rem";
-      sum.style.fontSize = "0.9rem";
       sum.textContent = String(overlay.summary_md);
       sec.appendChild(sum);
     }
@@ -897,14 +887,11 @@
     sections.forEach(function (s) {
       if (!s || typeof s !== "object") return;
       var h4 = document.createElement("h4");
-      h4.style.fontSize = "1rem";
-      h4.style.marginTop = "0.75rem";
+      h4.className = "analysis-ai-overlay-section-title";
       h4.textContent = String(s.title_zh || "—");
       sec.appendChild(h4);
       var body = document.createElement("div");
       body.className = "analysis-ai-overlay-body";
-      body.style.whiteSpace = "pre-wrap";
-      body.style.fontSize = "0.88rem";
       body.textContent = String(s.body_md != null ? s.body_md : "");
       sec.appendChild(body);
     });

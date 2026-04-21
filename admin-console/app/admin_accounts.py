@@ -11,7 +11,8 @@ import re
 import secrets
 import threading
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from typing import Any, List, Optional
 
@@ -28,7 +29,7 @@ _LOGGER = logging.getLogger("admin_console.admin_accounts")
 
 def _audit(level: int, event: str, **fields: Any) -> None:
     """单行 JSON，便于日志采集；不含密码、不含 API 密钥。"""
-    payload: dict[str, Any] = {"event": event, "ts": _utc_now_iso()}
+    payload: dict[str, Any] = {"event": event, "ts": _beijing_now_iso()}
     for k, v in fields.items():
         if v is not None:
             payload[k] = v
@@ -45,8 +46,8 @@ def _accounts_file_path(settings: Settings) -> Path:
     return _ROOT / p
 
 
-def _utc_now_iso() -> str:
-    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+def _beijing_now_iso() -> str:
+    return datetime.now(ZoneInfo("Asia/Shanghai")).replace(microsecond=0).isoformat()
 
 
 def _empty_store() -> dict[str, Any]:
@@ -194,7 +195,7 @@ def create_admin_account(request: Request, body: AdminUserCreate) -> dict[str, A
         for u in users:
             if isinstance(u, dict) and u.get("username") == uname:
                 raise HTTPException(status_code=409, detail="username already exists")
-        now = _utc_now_iso()
+        now = _beijing_now_iso()
         uid = str(uuid.uuid4())
         row = {
             "id": uid,
@@ -243,7 +244,7 @@ def update_admin_account(
                 break
         if found is None:
             raise HTTPException(status_code=404, detail="user not found")
-        now = _utc_now_iso()
+        now = _beijing_now_iso()
         if body.password is not None:
             found["password_hash"] = _hash_password(body.password)
         if body.roles is not None:

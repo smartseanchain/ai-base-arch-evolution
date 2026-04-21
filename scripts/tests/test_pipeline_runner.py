@@ -13,6 +13,8 @@ class TestPipelineRunner(unittest.TestCase):
             "validate_evolution_registry_schema",
             "check_nav_links_registry",
             "validate_sediment_artifacts_schema",
+            "write_ai_analysis_overlay",
+            "validate_ai_overlay_step_schema",
             "validate_ai_analysis_overlay_schema",
         ):
             self.assertIn(required, ids, msg=f"缺少步骤 {required}，应与 run_validate.sh 对齐")
@@ -37,6 +39,14 @@ class TestPipelineRunner(unittest.TestCase):
         )
         self.assertLess(
             ids.index("analysis_engine_check"),
+            ids.index("write_ai_analysis_overlay"),
+        )
+        self.assertLess(
+            ids.index("write_ai_analysis_overlay"),
+            ids.index("validate_ai_overlay_step_schema"),
+        )
+        self.assertLess(
+            ids.index("validate_ai_overlay_step_schema"),
             ids.index("validate_ai_analysis_overlay_schema"),
         )
 
@@ -44,6 +54,8 @@ class TestPipelineRunner(unittest.TestCase):
         ids = {sid for sid, _ in steps_fast()}
         self.assertNotIn("validate_evolution_registry_schema", ids)
         self.assertNotIn("check_nav_links_registry", ids)
+        self.assertIn("write_ai_analysis_overlay", ids)
+        self.assertIn("validate_ai_overlay_step_schema", ids)
         self.assertIn("validate_ai_analysis_overlay_schema", ids)
 
 

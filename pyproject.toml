@@ -1,0 +1,25 @@
+# 可选：在仓库根执行 ``pip install -e .`` 后，可直接运行 ``evolution-ingest`` / ``evolution-analyze`` /
+# ``evolution-merge``（无需再设 ``PYTHONPATH=scripts``）。CI 与 ``make validate`` 仍以脚本路径为真源。
+# 仓库文档主线 / 关系视图：docs/README.md#docs-spine · maintainer-hub.html#mh-spine-map；merge 与 spa-sync：docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evolution-site-pipeline"
+version = "0.1.0"
+description = "Evolution site: evolution_pkg (validate / ingest / analysis / merge)"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "jsonschema>=4.23.0,<5",
+]
+
+[project.scripts]
+evolution-ingest = "evolution_pkg.ingest_opinion_pool:main"
+evolution-analyze = "evolution_pkg.analysis_pipeline:main"
+evolution-merge = "evolution_pkg.candidate_merge:main"
+
+[tool.setuptools.packages.find]
+where = ["scripts"]
+include = ["evolution_pkg*"]

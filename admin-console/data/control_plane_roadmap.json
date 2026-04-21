@@ -47,7 +47,8 @@
       "next_zh": "强化 **CI Run / artifact** 链接、发布检查单与回滚剧本；合并闸门语义**不变**。",
       "doc_paths": [
         "docs/EVOLUTION_RUNBOOK.md",
-        "docs/MERGE_AND_RELEASE_CHECKLIST.md"
+        "docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge",
+        "docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence"
       ]
     }
   ],

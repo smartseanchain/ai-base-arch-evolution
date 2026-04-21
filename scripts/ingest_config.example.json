@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "require_route_match": false,
-  "notes": "require_route_match：true=仅写入命中 routes 的线索并清理旧未命中候选；false=全量进池。复制后填写 rss_feeds / law_html_pages。",
+  "notes": "require_route_match：true=仅写入命中 routes 的线索并清理旧未命中候选；false=全量进池。复制后填写 rss_feeds / law_html_pages。微博/热搜/仅 App 或登录态信源默认不接 ingest 进程内抓取，见 docs/INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-social-platforms。",
   "rss_feeds": [
     {
       "id": "example-feed",
@@ -65,5 +65,10 @@
       "lab_factors": ["gig_multiemployer", "talent"],
       "pages": ["net-biz-capital.html", "decade-us.html", "national-strategy-opinion.html", "risk-geo.html"]
     }
-  ]
+  ],
+  "fetch_pacing": {
+    "after_rss_fetch": 1.0,
+    "after_law_html_fetch": 1.2,
+    "after_json_feed_fetch": 1.0
+  }
 }

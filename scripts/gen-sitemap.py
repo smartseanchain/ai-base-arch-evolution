@@ -10,14 +10,11 @@ SITE_BASE 不要末尾斜杠；若站点在子路径，请包含子路径（无�
 """
 from __future__ import annotations
 
-import json
 import os
 import sys
 from pathlib import Path
 
-from evolution_pkg.io import REPO_ROOT
-
-REGISTRY_PATH = REPO_ROOT / "scripts" / "evolution-registry.json"
+from evolution_pkg.io import REPO_ROOT, load_registry_allowed_sets
 
 PRIORITY: dict[str, tuple[str, str]] = {
     "index.html": ("weekly", "1.0"),
@@ -67,11 +64,12 @@ def main() -> None:
         print("错误: SITE_BASE 须以 http:// 或 https:// 开头", file=sys.stderr)
         sys.exit(1)
 
-    if not REGISTRY_PATH.is_file():
-        print(f"错误: 缺少注册表 {REGISTRY_PATH}", file=sys.stderr)
+    try:
+        reg_pages_f, _ = load_registry_allowed_sets()
+    except (FileNotFoundError, ValueError) as e:
+        print(f"错误: {e}", file=sys.stderr)
         sys.exit(1)
-    reg = json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
-    reg_pages = {str(p).strip() for p in (reg.get("pages") or []) if str(p).strip()}
+    reg_pages = set(reg_pages_f)
     for k in PRIORITY:
         if k not in reg_pages:
             print(

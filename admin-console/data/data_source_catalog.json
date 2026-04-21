@@ -1,8 +1,13 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "title_zh": "数据源参考目录",
-  "disclaimer_zh": "下列条目为研究规划用的「公开入口」梳理，不构成法律或商务建议。访问时请使用您本人常用的浏览器或 RSS 阅读器，遵守各站 robots.txt、服务条款、版权与访问频率；勿在管理端或自建脚本中做高频、伪装浏览器或绕过鉴权的抓取，以免触发对方反爬或风控。本控制台不会代您请求这些外站 URL。若要将某源纳入仓库自动 ingest，须编辑 scripts/ingest_config.json 并经 PR 合并（与 make validate 对账）。",
+  "disclaimer_zh": "本目录仅供规划参考，非法律或商务意见。请用浏览器或 RSS 阅读器自行打开外链，遵守各站条款与访问频率；勿高频或违规抓取。本控制台不代请求外网。若要自动 ingest，请改 scripts/ingest_config.json 并 PR，合并前 make validate。跟踪节奏与信源分层见 docs/INTEL_AND_POLICY_TRACKING_PLAYBOOK.md；微博/热搜/主媒 App 流见该文档 intel-social-platforms（§2b）。综合推演与仓库内 JSON/HTML 对表入口见下方「全站推演与对表 · 仓库内真源」类目。",
   "categories": [
+    {
+      "id": "repo_workflow",
+      "title_zh": "与本仓库 ingest 对齐的入口",
+      "description_zh": "配置真源与脚本位置说明；外链随部署仓库而变，以本地克隆与只读 API 对账为准。与「舆情/制度/国情」反哺流程对读：docs/INTEL_AND_POLICY_TRACKING_PLAYBOOK.md。"
+    },
     {
       "id": "policy_cn",
       "title_zh": "国内政策与权威媒体",
@@ -27,15 +32,131 @@
       "id": "dataset_api",
       "title_zh": "开放数据与官方 API 入口",
       "description_zh": "通常需注册、密钥或配额；请按文档「正常客户端」调用，勿共用爬虫身份池。"
+    },
+    {
+      "id": "deduction_truth",
+      "title_zh": "全站推演与对表 · 仓库内真源",
+      "description_zh": "manifest→候选→人审→快照→沉淀/趋势 链路上的 Git 内 JSON、只读 HTTP 与关键页面；勾选表示「纳入本次推演对账范围」。与 docs/DEDUCTION_STRATEGY.md、docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md、docs/RESEARCH_METHODS_MAP.md 对读；外网舆情 ingest 见上列类目。"
     }
   ],
+  "fetch_method_catalog": {
+    "title_zh": "信息拉取方式与市面常用工具（选型参考）",
+    "intro_zh": "建议顺序：① 有 RSS 就用「RSS + 本仓 ingest + Actions/cron」；② 无 RSS 可用 HTTPS JSON（json_feeds）；③ 法规站以人工与官方下载为主；④ 微博/主媒 App 流与热搜见 INTEL §2b（intel-social-platforms）与下方 social_timeline_official；⑤ 多源再上集成/编排工具。均需合规低频；本页不代抓外网。周历与人审见 docs/INTEL_AND_POLICY_TRACKING_PLAYBOOK.md。",
+    "methods": [
+      {
+        "id": "rss_atom_scheduled",
+        "title_zh": "RSS / Atom + 定时 HTTP",
+        "priority": "首选（与本仓默认一致）",
+        "fit_for_zh": "有稳定公开 feed 的新闻、博客、机构动态；易 diff、易回滚、易在 CI 审计。",
+        "tool_examples_zh": "GitHub Actions（schedule / workflow_dispatch）、crontab + curl、Python feedparser、本仓库 scripts/ingest_opinion_law.py + ingest_config.json 中的 rss_feeds。",
+        "caution_zh": "控制间隔与并发；尊重 robots、CDN 与版权；勿轮换伪造 User-Agent。"
+      },
+      {
+        "id": "https_json_sidecar",
+        "title_zh": "HTTPS JSON 侧车 / 只读 REST GET",
+        "priority": "推荐补充",
+        "fit_for_zh": "无 RSS 但提供稳定 JSON 列表或公开只读 API 的场景，与 ingest_config.json 的 json_feeds 对齐。",
+        "tool_examples_zh": "curl、httpx/requests、OpenAPI 文档化客户端；仍由同一 ingest 脚本路径合并入池。",
+        "caution_zh": "密钥与配额勿入库；侧车 URL 变更需版本化与告警。"
+      },
+      {
+        "id": "official_sdk_openapi",
+        "title_zh": "官方 SDK / OpenAPI 客户端",
+        "priority": "数据集与云平台优先",
+        "fit_for_zh": "政务数据开放平台、云厂商 API、科研数据接口；有 SLA 与计费模型。",
+        "tool_examples_zh": "各云 CLI（aws、gcloud、az）、OpenAPI Generator、厂商 Python/Go SDK。",
+        "caution_zh": "与「站点 RSS 叙事」分工：通常不进 rss_feeds，而走独立数据管道或人工落盘。"
+      },
+      {
+        "id": "browser_manual",
+        "title_zh": "浏览器 + RSS 阅读器（纯人工）",
+        "priority": "法规与强合规场景首选",
+        "fit_for_zh": "征求意见、付费墙、强登录或条款禁止自动化的门户。",
+        "tool_examples_zh": "Chrome/Safari/Firefox、Feedly、Inoreader、本地书签与剪藏。",
+        "caution_zh": "零自动化成本最低，但不可复现于 CI；重要结论需留档链接与日期。"
+      },
+      {
+        "id": "social_timeline_official",
+        "title_zh": "微博等社交平台（公开 RSS / 开放平台 / 人工）",
+        "priority": "按源可得性选择，非默认爬时间线",
+        "fit_for_zh": "媒体或机构在**官网**提供的 RSS、或经授权的开放平台 API 输出；与「App 内时间线、热搜、登录态全文」区分——后者默认不进入本仓 ingest 的页面抓取路径。",
+        "tool_examples_zh": "官网 RSS 写入 rss_feeds；平台开放平台文档与配额；人工剪藏 + PR 进候选。详 INTEL §2b（intel-social-platforms）。",
+        "caution_zh": "勿将 OAuth/密钥写入 ingest_config；勿用本仓脚本替代平台服务条款允许的接入方式。"
+      },
+      {
+        "id": "etl_connectors",
+        "title_zh": "数据集成 / ELT 连接器",
+        "priority": "多源、多租户时考虑",
+        "fit_for_zh": "SaaS、数据库、对象存储等到仓到湖的批量同步；与本 Git 叙事真源并行存在。",
+        "tool_examples_zh": "Airbyte、Meltano、Fivetran、Stitch、Talend、Informatica（商业）。",
+        "caution_zh": "许可证与出站 IP 白名单；与「公开网页 RSS」管线分开治理与密钥。"
+      },
+      {
+        "id": "orchestration",
+        "title_zh": "工作流编排与分布式任务",
+        "priority": "复杂依赖与重试时考虑",
+        "fit_for_zh": "多步依赖、SLA、回填、血缘；在 RSS 拉取之外编排 law_html、质检、通知。",
+        "tool_examples_zh": "Apache Airflow、Dagster、Prefect、Temporal、Luigi。",
+        "caution_zh": "运维与观测成本显著；仓库内仍以 Actions 为小团队默认。"
+      },
+      {
+        "id": "low_code_webhook",
+        "title_zh": "低代码集成与 Webhook",
+        "priority": "原型与跨系统 glue",
+        "fit_for_zh": "快速把外站事件推到 Slack/表单/无服务器函数，非核心 ingest 主路径。",
+        "tool_examples_zh": "Zapier、Make（Integromat）、n8n、IFTTT、云厂商 EventBridge。",
+        "caution_zh": "供应商锁定与审计链；敏感数据勿经未评审第三方。"
+      },
+      {
+        "id": "cdc_streaming",
+        "title_zh": "CDC / 消息总线（企业内部）",
+        "priority": "内源系统同步",
+        "fit_for_zh": "数据库变更、内部门户事件流；与「外网公开 RSS」场景不同。",
+        "tool_examples_zh": "Kafka Connect、Debezium、AWS DMS、RisingWave/Materialize 等流处理。",
+        "caution_zh": "不适用于替代对公开法规门户的合规访问策略。"
+      },
+      {
+        "id": "headless_browser",
+        "title_zh": "无头浏览器自动化（最后手段）",
+        "priority": "非必要不使用",
+        "fit_for_zh": "仅当无 API、无 RSS、且书面授权允许自动化时。",
+        "tool_examples_zh": "Playwright、Puppeteer、Selenium。",
+        "caution_zh": "易触发反爬与条款风险；成本高、脆弱；本仓库 ingest 不以之为默认。"
+      }
+    ]
+  },
   "sources": [
+    {
+      "id": "ingest-config-json",
+      "title_zh": "仓库 ingest 真源 · scripts/ingest_config.json",
+      "category_id": "repo_workflow",
+      "kind": "config",
+      "access_mode_zh": "RSS、json_feeds、law_html_pages 与 routes 的合并入口；变更须 Git diff + PR 与 make validate。",
+      "recommended_pull_zh": "本地编辑或 CI 生成草案后 PR；勿在管理端写外网。"
+    },
+    {
+      "id": "ingest-script-py",
+      "title_zh": "抽池脚本 · scripts/ingest_opinion_law.py",
+      "category_id": "repo_workflow",
+      "kind": "script",
+      "access_mode_zh": "在开发者机器或 CI 中调用；参数与用法见 scripts/README。",
+      "recommended_pull_zh": "与 GitHub Actions / cron 低频组合；对账只读 API 中的 ingest 片段。"
+    },
+    {
+      "id": "github-workflows-ingest",
+      "title_zh": "CI 编排 · .github/workflows（ingest 相关）",
+      "category_id": "repo_workflow",
+      "kind": "workflow",
+      "access_mode_zh": "定时或手动触发 ingest；具体 workflow 文件名以仓库为准。",
+      "recommended_pull_zh": "公开仓库在 GitHub Actions 页查看；链接由 ADMIN_REPO_WEB_BASE 推导。"
+    },
     {
       "id": "xinhuanet-politics",
       "title_zh": "新华网 · 时政 RSS",
       "category_id": "policy_cn",
       "kind": "rss",
       "access_mode_zh": "建议用 RSS 阅读器个人订阅；勿高频轮询。",
+      "recommended_pull_zh": "已与本仓示例 rss_feeds 对齐：Actions/cron + ingest 脚本。",
       "home_url": "https://www.xinhuanet.com/",
       "sample_feed_url": "https://www.xinhuanet.com/politics/news_politics.xml"
     },
@@ -45,8 +166,36 @@
       "category_id": "policy_cn",
       "kind": "rss",
       "access_mode_zh": "个人阅读器订阅；遵守中新网使用条款。",
+      "recommended_pull_zh": "已与本仓示例 rss_feeds 对齐。",
       "home_url": "https://www.chinanews.com.cn/",
       "sample_feed_url": "https://www.chinanews.com.cn/rss/scroll-news.xml"
+    },
+    {
+      "id": "people-cn-home",
+      "title_zh": "人民网",
+      "category_id": "policy_cn",
+      "kind": "portal",
+      "access_mode_zh": "权威新闻报道与政策解读门户；正文以站内刊登为准。",
+      "recommended_pull_zh": "门户以人工与站内检索为主；若官网提供 RSS 再低频接入。",
+      "home_url": "http://www.people.com.cn/"
+    },
+    {
+      "id": "gmw-home",
+      "title_zh": "光明网",
+      "category_id": "policy_cn",
+      "kind": "portal",
+      "access_mode_zh": "时政、理论与文化报道；遵守光明网服务条款。",
+      "recommended_pull_zh": "人工阅读为主；机器拉取前核对 robots 与版权声明。",
+      "home_url": "https://www.gmw.cn/"
+    },
+    {
+      "id": "cctv-news-home",
+      "title_zh": "央视网 · 新闻",
+      "category_id": "policy_cn",
+      "kind": "portal",
+      "access_mode_zh": "视频与图文新闻门户；播放与转载规则以站方为准。",
+      "recommended_pull_zh": "以人工或官方合作接口为主；勿对视频 CDN 做批量扒流。",
+      "home_url": "https://news.cctv.com/"
     },
     {
       "id": "gov-cn-policy",
@@ -54,6 +203,7 @@
       "category_id": "regulatory_portal",
       "kind": "portal",
       "access_mode_zh": "浏览器人工查阅与检索；重要文本以站内 PDF/HTML 官方版本为准。",
+      "recommended_pull_zh": "法规类建议人工核对文号与成文日期后再引用。",
       "home_url": "https://www.gov.cn/zhengce/"
     },
     {
@@ -62,6 +212,7 @@
       "category_id": "regulatory_portal",
       "kind": "portal",
       "access_mode_zh": "面向公众检索与查看；勿对检索接口做并发抓取。",
+      "recommended_pull_zh": "使用站内检索与「下载正式文本」；勿脚本遍历全库。",
       "home_url": "https://flk.npc.gov.cn/"
     },
     {
@@ -70,6 +221,7 @@
       "category_id": "regulatory_portal",
       "kind": "portal",
       "access_mode_zh": "征求意见期内通过官方渠道提交；机器批量下载须谨慎。",
+      "recommended_pull_zh": "征求意见窗口内人工提交；抓取草案 HTML 须极低频并留档。",
       "home_url": "https://www.npc.gov.cn/"
     },
     {
@@ -78,6 +230,7 @@
       "category_id": "regulatory_portal",
       "kind": "portal",
       "access_mode_zh": "政策与通报以官网为准；个人正常浏览。",
+      "recommended_pull_zh": "政策速递以人工订阅站内栏目为宜。",
       "home_url": "https://www.cac.gov.cn/"
     },
     {
@@ -86,7 +239,35 @@
       "category_id": "regulatory_portal",
       "kind": "portal",
       "access_mode_zh": "政策与数据发布门户；下载公开文件优于整站爬取。",
+      "recommended_pull_zh": "优先下载已发布的 PDF/Word 正式文件。",
       "home_url": "https://www.ndrc.gov.cn/"
+    },
+    {
+      "id": "samr-home",
+      "title_zh": "国家市场监督管理总局",
+      "category_id": "regulatory_portal",
+      "kind": "portal",
+      "access_mode_zh": "市场监管、反垄断、标准与召回信息；以官网栏目为准。",
+      "recommended_pull_zh": "人工跟踪「政务公开」与「通知公告」。",
+      "home_url": "https://www.samr.gov.cn/"
+    },
+    {
+      "id": "csrc-home",
+      "title_zh": "中国证券监督管理委员会",
+      "category_id": "regulatory_portal",
+      "kind": "portal",
+      "access_mode_zh": "监管规则与信息披露；注意站内栏目更新频繁。",
+      "recommended_pull_zh": "法规与规则变更建议人工核对发文字号。",
+      "home_url": "http://www.csrc.gov.cn/"
+    },
+    {
+      "id": "pboc-home",
+      "title_zh": "中国人民银行",
+      "category_id": "regulatory_portal",
+      "kind": "portal",
+      "access_mode_zh": "货币政策、金融市场与支付监管公开信息。",
+      "recommended_pull_zh": "以「新闻发布」与「政策法规」栏目人工拉取为主。",
+      "home_url": "http://www.pbc.gov.cn/"
     },
     {
       "id": "w3c-blog",
@@ -94,6 +275,7 @@
       "category_id": "tech_open",
       "kind": "rss",
       "access_mode_zh": "开放技术新闻；常见阅读器即可。",
+      "recommended_pull_zh": "已与本仓示例 rss_feeds 对齐。",
       "home_url": "https://www.w3.org/",
       "sample_feed_url": "https://www.w3.org/blog/feed/"
     },
@@ -103,6 +285,7 @@
       "category_id": "tech_open",
       "kind": "rss",
       "access_mode_zh": "开发者动态；遵守 GitHub 条款与合理使用。",
+      "recommended_pull_zh": "已与本仓示例 rss_feeds 对齐。",
       "home_url": "https://github.blog/",
       "sample_feed_url": "https://github.blog/feed/"
     },
@@ -112,8 +295,59 @@
       "category_id": "tech_open",
       "kind": "rss",
       "access_mode_zh": "标准进程相关公开文章；个人订阅。",
+      "recommended_pull_zh": "RSS + 本仓 ingest 路径即可。",
       "home_url": "https://www.ietf.org/",
       "sample_feed_url": "https://www.ietf.org/blog/feed/"
+    },
+    {
+      "id": "techcrunch-rss",
+      "title_zh": "TechCrunch · RSS",
+      "category_id": "tech_open",
+      "kind": "rss",
+      "access_mode_zh": "科技创投报道；英文；遵守站方与版权说明。",
+      "recommended_pull_zh": "标准 RSS 拉取；纳入 ingest 前在 routes 中校验收敛主题。",
+      "home_url": "https://techcrunch.com/",
+      "sample_feed_url": "https://techcrunch.com/feed/"
+    },
+    {
+      "id": "mit-news-rss",
+      "title_zh": "MIT News · RSS",
+      "category_id": "tech_open",
+      "kind": "rss",
+      "access_mode_zh": "MIT 公开新闻稿；英文参考。",
+      "recommended_pull_zh": "RSS + 低频 HTTP；适合技术政策交叉观察。",
+      "home_url": "https://news.mit.edu/",
+      "sample_feed_url": "https://news.mit.edu/rss"
+    },
+    {
+      "id": "apache-blog-rss",
+      "title_zh": "Apache Software Foundation · 聚合 RSS",
+      "category_id": "tech_open",
+      "kind": "rss",
+      "access_mode_zh": "基金会项目博客聚合更新。",
+      "recommended_pull_zh": "公开 feed；注意单条条目可能指向不同子项目。",
+      "home_url": "https://blogs.apache.org/",
+      "sample_feed_url": "https://blogs.apache.org/feed"
+    },
+    {
+      "id": "mozilla-hacks-rss",
+      "title_zh": "Mozilla Hacks · RSS",
+      "category_id": "tech_open",
+      "kind": "rss",
+      "access_mode_zh": "Web 平台与浏览器技术文章。",
+      "recommended_pull_zh": "RSS + ingest；条目频率适中。",
+      "home_url": "https://hacks.mozilla.org/",
+      "sample_feed_url": "https://hacks.mozilla.org/feed/"
+    },
+    {
+      "id": "lwn-headlines-rss",
+      "title_zh": "LWN.net · Headlines RSS",
+      "category_id": "tech_open",
+      "kind": "rss",
+      "access_mode_zh": "Linux 与开源社区深度报道；部分内容subscriber-only，RSS 为标题流。",
+      "recommended_pull_zh": "仅作线索流；全文权限以 LWN 订阅条款为准。",
+      "home_url": "https://lwn.net/",
+      "sample_feed_url": "https://lwn.net/headlines/newrss"
     },
     {
       "id": "nist-news-rss",
@@ -121,6 +355,7 @@
       "category_id": "intl_feed",
       "kind": "rss",
       "access_mode_zh": "美国联邦机构公开新闻流；英文阅读。",
+      "recommended_pull_zh": "RSS + 低频拉取；与标准/测量叙事相关。",
       "home_url": "https://www.nist.gov/",
       "sample_feed_url": "https://www.nist.gov/news-events/news/rss.xml"
     },
@@ -130,6 +365,7 @@
       "category_id": "intl_feed",
       "kind": "rss",
       "access_mode_zh": "国际新闻参考；遵守 BBC 使用条款与地域限制。",
+      "recommended_pull_zh": "公开 RSS；跨境网络与版权因地而异。",
       "home_url": "https://www.bbc.com/news",
       "sample_feed_url": "https://feeds.bbci.co.uk/news/world/rss.xml"
     },
@@ -139,8 +375,19 @@
       "category_id": "intl_feed",
       "kind": "rss",
       "access_mode_zh": "英文国际报道参考；遵守 The Guardian Open Platform 与版权条款。",
+      "recommended_pull_zh": "RSS 阅读器或 ingest；商业再利用须单独许可。",
       "home_url": "https://www.theguardian.com/world",
       "sample_feed_url": "https://www.theguardian.com/world/rss.xml"
+    },
+    {
+      "id": "arxiv-csAI-rss",
+      "title_zh": "arXiv · cs.AI RSS",
+      "category_id": "dataset_api",
+      "kind": "rss",
+      "access_mode_zh": "预印本聚合；引用与再分发遵守 arXiv 许可标识。",
+      "recommended_pull_zh": "HTTP GET feed；量大时宜限流并仅保留标题摘要做线索。",
+      "home_url": "https://arxiv.org/list/cs.AI/recent",
+      "sample_feed_url": "https://export.arxiv.org/rss/cs.AI"
     },
     {
       "id": "data-gov-cn",
@@ -148,6 +395,7 @@
       "category_id": "dataset_api",
       "kind": "portal",
       "access_mode_zh": "按平台指引注册与申请数据集；使用官方 API/下载通道，勿抓屏式批量搬运。",
+      "recommended_pull_zh": "走平台 API / 文件下载；与 RSS ingest 分管线与密钥。",
       "home_url": "https://data.gov.cn/"
     },
     {
@@ -156,7 +404,146 @@
       "category_id": "dataset_api",
       "kind": "portal",
       "access_mode_zh": "通过门户检索与 API 文档获取数据；遵守 EU 及各国使用条件。",
+      "recommended_pull_zh": "官方 API / 批量下载；注意多语言元数据。",
       "home_url": "https://data.europa.eu/"
+    },
+    {
+      "id": "zenodo-home",
+      "title_zh": "Zenodo（开放研究与数据集）",
+      "category_id": "dataset_api",
+      "kind": "portal",
+      "access_mode_zh": "CERN 支持的开放存取仓库；数据集带 DOI。",
+      "recommended_pull_zh": "优先 REST API / 批量下载；大文件注意带宽与引用。",
+      "home_url": "https://zenodo.org/"
+    },
+    {
+      "id": "huggingface-hub-home",
+      "title_zh": "Hugging Face Hub（模型与数据集）",
+      "category_id": "dataset_api",
+      "kind": "portal",
+      "access_mode_zh": "模型、数据集与 Space；需账号与 token 的场景见官方文档。",
+      "recommended_pull_zh": "huggingface_hub CLI/SDK；不走 rss_feeds。",
+      "home_url": "https://huggingface.co/"
+    },
+    {
+      "id": "deduction-doc-strategy",
+      "title_zh": "推演方法论 · docs/DEDUCTION_STRATEGY.md",
+      "category_id": "deduction_truth",
+      "kind": "doc",
+      "access_mode_zh": "仓库内 Markdown；判型、重跑与对表顺序以本文为准。",
+      "recommended_pull_zh": "本地克隆打开；与 make validate / analysis_engine --check 动线一并阅读。"
+    },
+    {
+      "id": "deduction-doc-site-rerun",
+      "title_zh": "全站重跑与对账手册 · docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md",
+      "category_id": "deduction_truth",
+      "kind": "doc",
+      "access_mode_zh": "站点级重跑、闸门与回滚叙事真源。",
+      "recommended_pull_zh": "改 manifest 或批量页面读数前通读；合并前对齐 CI validate。"
+    },
+    {
+      "id": "deduction-doc-research-map",
+      "title_zh": "研究方法映射 · docs/RESEARCH_METHODS_MAP.md",
+      "category_id": "deduction_truth",
+      "kind": "doc",
+      "access_mode_zh": "情报域、方法与产物落点对照。",
+      "recommended_pull_zh": "与 INTEL_AND_POLICY_TRACKING_PLAYBOOK 及本类目 JSON 条目交叉勾选。"
+    },
+    {
+      "id": "deduction-artifact-manifest",
+      "title_zh": "已采纳演进清单 · assets/evolution-manifest.json",
+      "category_id": "deduction_truth",
+      "kind": "artifact",
+      "access_mode_zh": "Git 提交真源；全站 HTML 与总线读数的主索引之一。",
+      "recommended_pull_zh": "make validate 对账；变更经 PR 与 evolution 流水线，勿在管理端写入。"
+    },
+    {
+      "id": "deduction-artifact-candidates",
+      "title_zh": "演进候选池（未审） · assets/evolution-candidates.json",
+      "category_id": "deduction_truth",
+      "kind": "artifact",
+      "access_mode_zh": "敏感/未人审条目可能集中于此；对外展示与集成前须按仓库闸门处理。",
+      "recommended_pull_zh": "只读 API /manifest、/candidates 与本地文件对表；生产宜鉴权或禁用候选路由。"
+    },
+    {
+      "id": "deduction-artifact-hint-decisions",
+      "title_zh": "人审 hint 决策 · assets/evolution-hint-decisions.json",
+      "category_id": "deduction_truth",
+      "kind": "artifact",
+      "access_mode_zh": "闭环与人审结论真源；与 hint 规则、候选分解对读。",
+      "recommended_pull_zh": "validate 与 digest 脚本消费；对外接口见 DATA_CONTRACTS 只读路由说明。"
+    },
+    {
+      "id": "deduction-config-registry",
+      "title_zh": "演进注册表 · scripts/evolution-registry.json",
+      "category_id": "deduction_truth",
+      "kind": "config",
+      "access_mode_zh": "能力卡与扩展槽注册；受 evolution-registry.schema.json 约束。",
+      "recommended_pull_zh": "改 Schema → 改 registry → gen-nav / spa-sync；合并前单测与 Schema 校验。"
+    },
+    {
+      "id": "deduction-artifact-analysis-snapshot",
+      "title_zh": "分析引擎快照 · assets/analysis-snapshot.json",
+      "category_id": "deduction_truth",
+      "kind": "artifact",
+      "access_mode_zh": "analysis_engine 输出；站点总线与多页「当日读数」主源。",
+      "recommended_pull_zh": "make analyze / 流水线生成；提交前 analysis_engine --check。"
+    },
+    {
+      "id": "deduction-artifact-sediment",
+      "title_zh": "沉淀池 · data/sediment.json",
+      "category_id": "deduction_truth",
+      "kind": "artifact",
+      "access_mode_zh": "跨轮次沉淀条目；可选与 evolution.db 同生。",
+      "recommended_pull_zh": "带 --sediment 的分析管线或独立写入脚本；Schema 见 docs/schemas。"
+    },
+    {
+      "id": "deduction-artifact-sediment-trends",
+      "title_zh": "跨日趋势 · assets/sediment-trends.json（可选）",
+      "category_id": "deduction_truth",
+      "kind": "artifact",
+      "access_mode_zh": "由 scripts/sediment_trends.py 生成；无文件时只读 API 可能 404。",
+      "recommended_pull_zh": "make trends 或等价脚本；analysis-hub 与 digest 可选消费。"
+    },
+    {
+      "id": "deduction-artifact-site-meta",
+      "title_zh": "站点元数据 · assets/site-meta.json",
+      "category_id": "deduction_truth",
+      "kind": "artifact",
+      "access_mode_zh": "总线 loadMeta、部分页脚/版本展示用。",
+      "recommended_pull_zh": "与 analysis-snapshot 同次发布或独立 bump；见 SITE_DATA_UPDATE_FRAMEWORK。"
+    },
+    {
+      "id": "deduction-page-synthesis",
+      "title_zh": "综合推演页 · synthesis.html（根目录 MPA）",
+      "category_id": "deduction_truth",
+      "kind": "page",
+      "access_mode_zh": "静态 HTML；读数依赖 site-data-bus 与快照/沉淀路径。",
+      "recommended_pull_zh": "本地 file:// 或 docker MPA（如 localhost:8765/synthesis.html）；与 spa 镜像分工见 DOCKER.md。"
+    },
+    {
+      "id": "deduction-page-analysis-hub",
+      "title_zh": "分析引擎仪表盘 · analysis-hub.html",
+      "category_id": "deduction_truth",
+      "kind": "page",
+      "access_mode_zh": "快照 + 可选 trends 仪表盘锚点；与 data-site-data-hub 属性联用。",
+      "recommended_pull_zh": "全站重跑后人工 spot-check 首选页之一。"
+    },
+    {
+      "id": "deduction-api-readonly",
+      "title_zh": "只读 HTTP API（readonly_api）· /snapshot /manifest /registry /sediment /candidates 等",
+      "category_id": "deduction_truth",
+      "kind": "api",
+      "access_mode_zh": "本地 uvicorn 或 compose profile api；管理端经 GET /api/readonly/{segment} 白名单代理。",
+      "recommended_pull_zh": "make test-readonly-api；路由与契约见 docs/DATA_CONTRACTS.md、scripts/README.md。"
+    },
+    {
+      "id": "deduction-pipeline-validate",
+      "title_zh": "对表闸门 · make validate / scripts/run_validate.sh",
+      "category_id": "deduction_truth",
+      "kind": "workflow",
+      "access_mode_zh": "CI 与合并前真源：manifest、候选、registry Schema、快照与沉淀 Schema、顶栏与单测等。",
+      "recommended_pull_zh": "改任一推演产物后必跑；与 merge-ready（含 test-admin-console）对读 MERGE_AND_RELEASE_CHECKLIST。"
     }
   ]
 }

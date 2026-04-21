@@ -1,6 +1,8 @@
 # 仅抓取候选（需外网）；与「分析流水线」解耦。产出 candidates 以 artifact 下载，默认不回写仓库。
+# 候选≠已审 manifest：人审与 PR 闸门见 AGENTS.md#agents-invariants。
 # 本地同等命令：bash scripts/run_ingest_only.sh  或  make ingest
 # WRITE_INGEST_SUMMARY=1 时额外写入 ingest-summary.json 并写入 GitHub Job Summary。
+# 全站呈现双轨 / merge / 枢纽：docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help
 name: Ingest candidates
 
 on:
