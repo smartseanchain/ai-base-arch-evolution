@@ -45,6 +45,7 @@ ADMIN_CONSOLE_INDEX_HTML = REPO_ROOT / "admin-console" / "static" / "index.html"
 SPA_LAYOUT_TSX = REPO_ROOT / "spa" / "src" / "SpaLayout.tsx"
 SPA_INDEX_HTML = REPO_ROOT / "spa" / "index.html"
 SPA_NOT_FOUND_TSX = REPO_ROOT / "spa" / "src" / "NotFound.tsx"
+SPA_ERROR_BOUNDARY_TSX = REPO_ROOT / "spa" / "src" / "SpaErrorBoundary.tsx"
 SPA_SITE_DOC_HREFS_TS = REPO_ROOT / "spa" / "src" / "siteDocHrefs.ts"
 
 _HUB_MAIN_QUESTIONS_FRAG = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
@@ -339,6 +340,32 @@ class TestContributingDocAnchors(unittest.TestCase):
             f'return `${{spaPublicPrefix()}}{_HUB_MAIN_QUESTIONS_FRAG}`;',
             body,
             f"{SPA_SITE_DOC_HREFS_TS.relative_to(REPO_ROOT)} 须有 hubMainQuestionsHref 实现",
+        )
+
+    def test_spa_site_doc_hrefs_ts_exports_standalone_404(self) -> None:
+        body = SPA_SITE_DOC_HREFS_TS.read_text(encoding="utf-8")
+        self.assertIn(
+            "return `${spaPublicPrefix()}standalone-404.html`;",
+            body,
+            f"{SPA_SITE_DOC_HREFS_TS.relative_to(REPO_ROOT)} 须有 standalone404HtmlHref",
+        )
+
+    def test_spa_error_boundary_tsx_links_hub_main_questions(self) -> None:
+        body = SPA_ERROR_BOUNDARY_TSX.read_text(encoding="utf-8")
+        self.assertGreaterEqual(
+            body.count("hubMainQuestionsHref()"),
+            2,
+            "SpaErrorBoundary 失叶面应两次调用 hubMainQuestionsHref()",
+        )
+        self.assertGreaterEqual(
+            body.count("枢纽主问题备忘"),
+            2,
+            f"{SPA_ERROR_BOUNDARY_TSX.relative_to(REPO_ROOT)} 应至少两处「枢纽主问题备忘」",
+        )
+        self.assertIn(
+            "standalone404HtmlHref",
+            body,
+            "SpaErrorBoundary 应链接独立 404 静态页",
         )
 
     def test_maintainer_hub_docs_readme_hrefs_have_url_fragments(self) -> None:

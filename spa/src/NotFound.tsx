@@ -1,10 +1,9 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { hubMainQuestionsHref } from "./siteDocHrefs";
+import { hubMainQuestionsHref, standalone404HtmlHref } from "./siteDocHrefs";
 
 export function NotFound() {
-  const base = import.meta.env.BASE_URL || "/";
-  const u404 = legacySrcJoin(base, "standalone-404.html");
+  const u404 = standalone404HtmlHref();
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -50,9 +49,4 @@ export function NotFound() {
       </nav>
     </div>
   );
-}
-
-function legacySrcJoin(base: string, file: string): string {
-  const prefix = base.endsWith("/") ? base : `${base}/`;
-  return `${prefix}${file}`;
 }

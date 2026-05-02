@@ -23,3 +23,8 @@ export function contributingMdHref(fragment: string): string {
 export function hubMainQuestionsHref(): string {
   return `${spaPublicPrefix()}docs/HUB_MAIN_QUESTIONS.md#hub-main-questions`;
 }
+
+/** `sync_spa_public` 写入的独立失页（根目录 `404.html` 快照）。 */
+export function standalone404HtmlHref(): string {
+  return `${spaPublicPrefix()}standalone-404.html`;
+}
