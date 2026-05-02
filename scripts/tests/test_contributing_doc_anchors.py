@@ -39,6 +39,7 @@ SYNTHESIS_EXTENSIONS_HTML = REPO_ROOT / "synthesis-extensions.html"
 SYNTHESIS_METHODS_HTML = REPO_ROOT / "synthesis-methods.html"
 ARCHITECTURE_HTML = REPO_ROOT / "architecture.html"
 MODEL_HTML = REPO_ROOT / "model.html"
+LEGACY_ALL_IN_ONE_HTML = REPO_ROOT / "legacy-all-in-one.html"
 
 _HUB_MAIN_QUESTIONS_FRAG = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
 
@@ -266,6 +267,11 @@ class TestContributingDocAnchors(unittest.TestCase):
 
     def test_model_html_links_hub_main_questions(self) -> None:
         self._assert_hub_main_questions_twice(MODEL_HTML, "read-hint")
+
+    def test_legacy_all_in_one_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(
+            LEGACY_ALL_IN_ONE_HTML, "pagination-hint · read-hint 维护与契约"
+        )
 
     def test_maintainer_hub_docs_readme_hrefs_have_url_fragments(self) -> None:
         body = MAINTAINER_HUB.read_text(encoding="utf-8")
