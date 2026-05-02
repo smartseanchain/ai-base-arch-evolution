@@ -55,6 +55,16 @@ class TestContributingDocAnchors(unittest.TestCase):
             "#contributing-five-minute (开 PR 前速览)",
         )
 
+    def test_maintainer_hub_links_hub_main_questions(self) -> None:
+        body = MAINTAINER_HUB.read_text(encoding="utf-8")
+        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
+        self.assertIn(
+            frag,
+            body,
+            f"{MAINTAINER_HUB.relative_to(REPO_ROOT)} should link {frag!r} "
+            "(枢纽主问题写作备忘)",
+        )
+
     def test_maintainer_hub_links_invariants_index_pr_triad_partials_sequence(
         self,
     ) -> None:
