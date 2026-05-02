@@ -30,6 +30,13 @@ function contributingMdHref(fragment: string): string {
   return `${prefix}CONTRIBUTING.md#${fragment}`;
 }
 
+/** 与 MPA `href="docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"` 同源（`spa/public/docs` 由 spa-sync 同步）。 */
+function hubMainQuestionsHref(): string {
+  const b = import.meta.env.BASE_URL || "/";
+  const prefix = b.endsWith("/") ? b : `${b}/`;
+  return `${prefix}docs/HUB_MAIN_QUESTIONS.md#hub-main-questions`;
+}
+
 export function SpaLayout({ children }: { children: ReactNode }) {
   const { pathname, hash } = useLocation();
   const [meta, setMeta] = useState<SiteMeta | null>(null);
@@ -228,7 +235,9 @@ export function SpaLayout({ children }: { children: ReactNode }) {
           静态正文（已去顶栏与快捷跳转，避免重复）；资源与 MPA 同源。首次按
           Tab 展开快捷跳转，顺序与 MPA 一致（跳到正文、三问导读、读站指路、分区速跳），另增
           跳到分页导航。从总览深链进某页锚点时，iframe 内该节之上常有「推演扩展 ·
-          本轮提要」，仍建议快速过目再读正文。
+          本轮提要」，仍建议快速过目再读正文；
+          <a href={hubMainQuestionsHref()}>枢纽主问题备忘</a>
+          可与总览三问对读。
         </p>
         <p className="spa-shell-disclaimer muted">
           读者面（站内页与读数）与管理面（脚本、CI、只读 API）分工见{" "}
@@ -251,6 +260,8 @@ export function SpaLayout({ children }: { children: ReactNode }) {
           <a href={contributingMdHref("contributing-change-to-command")}>
             动手→命令速查
           </a>
+          ·{" "}
+          <a href={hubMainQuestionsHref()}>枢纽主问题备忘</a>
           。
         </p>
       </header>
