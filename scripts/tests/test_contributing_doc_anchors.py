@@ -24,6 +24,23 @@ MODULES_MAP_HTML = REPO_ROOT / "modules-map.html"
 EVOLUTION_TRIAD_HTML = REPO_ROOT / "evolution-triad.html"
 EDU_NEXUS_HTML = REPO_ROOT / "edu-nexus.html"
 DECADE_SCENES_HTML = REPO_ROOT / "decade-scenes.html"
+TIMELINE_HTML = REPO_ROOT / "timeline.html"
+PAST_FUTURE_HTML = REPO_ROOT / "past-future.html"
+DECADE_US_HTML = REPO_ROOT / "decade-us.html"
+INTELLIGENT_EVOLUTION_HTML = REPO_ROOT / "intelligent-evolution.html"
+SMART_OVERHAUL_HTML = REPO_ROOT / "smart-overhaul.html"
+EVOLVABLE_ARCHITECTURE_HTML = REPO_ROOT / "evolvable-architecture.html"
+WORK_INFRA_ENERGY_HTML = REPO_ROOT / "work-infra-energy.html"
+RISK_GEO_HTML = REPO_ROOT / "risk-geo.html"
+NET_BIZ_CAPITAL_HTML = REPO_ROOT / "net-biz-capital.html"
+NATIONAL_STRATEGY_OPINION_HTML = REPO_ROOT / "national-strategy-opinion.html"
+SOCIAL_RESPONSIBILITY_EVOLUTION_HTML = REPO_ROOT / "social-responsibility-evolution.html"
+SYNTHESIS_EXTENSIONS_HTML = REPO_ROOT / "synthesis-extensions.html"
+SYNTHESIS_METHODS_HTML = REPO_ROOT / "synthesis-methods.html"
+ARCHITECTURE_HTML = REPO_ROOT / "architecture.html"
+MODEL_HTML = REPO_ROOT / "model.html"
+
+_HUB_MAIN_QUESTIONS_FRAG = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
 
 _REQUIRED_CONTRIBUTING_ANCHORS = (
     "contributing-five-minute",
@@ -36,6 +53,15 @@ _REQUIRED_CONTRIBUTING_ANCHORS = (
 )
 
 class TestContributingDocAnchors(unittest.TestCase):
+    def _assert_hub_main_questions_twice(self, html_path: Path, hint: str) -> None:
+        body = html_path.read_text(encoding="utf-8")
+        self.assertGreaterEqual(
+            body.count(_HUB_MAIN_QUESTIONS_FRAG),
+            2,
+            f"{html_path.relative_to(REPO_ROOT)} should link {_HUB_MAIN_QUESTIONS_FRAG!r} "
+            f"at least twice ({hint})",
+        )
+
     def test_contributing_has_stable_html_anchors(self) -> None:
         text = CONTRIBUTING.read_text(encoding="utf-8")
         for aid in _REQUIRED_CONTRIBUTING_ANCHORS:
@@ -65,13 +91,8 @@ class TestContributingDocAnchors(unittest.TestCase):
         )
 
     def test_maintainer_hub_links_hub_main_questions(self) -> None:
-        body = MAINTAINER_HUB.read_text(encoding="utf-8")
-        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
-        self.assertGreaterEqual(
-            body.count(frag),
-            2,
-            f"{MAINTAINER_HUB.relative_to(REPO_ROOT)} should link {frag!r} "
-            "at least twice (page-head · 关系视图)",
+        self._assert_hub_main_questions_twice(
+            MAINTAINER_HUB, "page-head · 关系视图"
         )
 
     def test_maintainer_hub_links_invariants_index_pr_triad_partials_sequence(
@@ -125,13 +146,8 @@ class TestContributingDocAnchors(unittest.TestCase):
         )
 
     def test_index_html_links_hub_main_questions(self) -> None:
-        body = INDEX_HTML.read_text(encoding="utf-8")
-        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
-        self.assertGreaterEqual(
-            body.count(frag),
-            2,
-            f"{INDEX_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
-            "at least twice (page-head kicker · read-guide)",
+        self._assert_hub_main_questions_twice(
+            INDEX_HTML, "page-head kicker · read-guide"
         )
 
     def test_analysis_hub_html_links_invariants_index_and_pr_triad(self) -> None:
@@ -169,104 +185,87 @@ class TestContributingDocAnchors(unittest.TestCase):
         )
 
     def test_analysis_hub_html_links_hub_main_questions(self) -> None:
-        body = ANALYSIS_HUB.read_text(encoding="utf-8")
-        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
-        self.assertGreaterEqual(
-            body.count(frag),
-            2,
-            f"{ANALYSIS_HUB.relative_to(REPO_ROOT)} should link {frag!r} "
-            "at least twice (note-kicker + 架构与读数总线)",
+        self._assert_hub_main_questions_twice(
+            ANALYSIS_HUB, "note-kicker + 架构与读数总线"
         )
 
     def test_evolution_loop_html_links_hub_main_questions(self) -> None:
-        body = EVOLUTION_LOOP_HTML.read_text(encoding="utf-8")
-        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
-        self.assertGreaterEqual(
-            body.count(frag),
-            2,
-            f"{EVOLUTION_LOOP_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
-            "at least twice (read-hint)",
-        )
+        self._assert_hub_main_questions_twice(EVOLUTION_LOOP_HTML, "read-hint")
 
     def test_nexus_html_links_hub_main_questions(self) -> None:
-        body = NEXUS_HTML.read_text(encoding="utf-8")
-        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
-        self.assertGreaterEqual(
-            body.count(frag),
-            2,
-            f"{NEXUS_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
-            "at least twice (read-hint)",
-        )
+        self._assert_hub_main_questions_twice(NEXUS_HTML, "read-hint")
 
     def test_synthesis_html_links_hub_main_questions(self) -> None:
-        body = SYNTHESIS_HTML.read_text(encoding="utf-8")
-        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
-        self.assertGreaterEqual(
-            body.count(frag),
-            2,
-            f"{SYNTHESIS_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
-            "at least twice (read-hint)",
-        )
+        self._assert_hub_main_questions_twice(SYNTHESIS_HTML, "read-hint")
 
     def test_lab_html_links_hub_main_questions(self) -> None:
-        body = LAB_HTML.read_text(encoding="utf-8")
-        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
-        self.assertGreaterEqual(
-            body.count(frag),
-            2,
-            f"{LAB_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
-            "at least twice (read-hint)",
-        )
+        self._assert_hub_main_questions_twice(LAB_HTML, "read-hint")
 
     def test_decade_html_links_hub_main_questions(self) -> None:
-        body = DECADE_HTML.read_text(encoding="utf-8")
-        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
-        self.assertGreaterEqual(
-            body.count(frag),
-            2,
-            f"{DECADE_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
-            "at least twice (read-hint)",
-        )
+        self._assert_hub_main_questions_twice(DECADE_HTML, "read-hint")
 
     def test_modules_map_html_links_hub_main_questions(self) -> None:
-        body = MODULES_MAP_HTML.read_text(encoding="utf-8")
-        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
-        self.assertGreaterEqual(
-            body.count(frag),
-            2,
-            f"{MODULES_MAP_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
-            "at least twice (read-hint)",
-        )
+        self._assert_hub_main_questions_twice(MODULES_MAP_HTML, "read-hint")
 
     def test_evolution_triad_html_links_hub_main_questions(self) -> None:
-        body = EVOLUTION_TRIAD_HTML.read_text(encoding="utf-8")
-        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
-        self.assertGreaterEqual(
-            body.count(frag),
-            2,
-            f"{EVOLUTION_TRIAD_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
-            "at least twice (read-hint)",
-        )
+        self._assert_hub_main_questions_twice(EVOLUTION_TRIAD_HTML, "read-hint")
 
     def test_edu_nexus_html_links_hub_main_questions(self) -> None:
-        body = EDU_NEXUS_HTML.read_text(encoding="utf-8")
-        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
-        self.assertGreaterEqual(
-            body.count(frag),
-            2,
-            f"{EDU_NEXUS_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
-            "at least twice (read-hint)",
-        )
+        self._assert_hub_main_questions_twice(EDU_NEXUS_HTML, "read-hint")
 
     def test_decade_scenes_html_links_hub_main_questions(self) -> None:
-        body = DECADE_SCENES_HTML.read_text(encoding="utf-8")
-        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
-        self.assertGreaterEqual(
-            body.count(frag),
-            2,
-            f"{DECADE_SCENES_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
-            "at least twice (read-hint)",
+        self._assert_hub_main_questions_twice(DECADE_SCENES_HTML, "read-hint")
+
+    def test_timeline_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(TIMELINE_HTML, "read-hint")
+
+    def test_past_future_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(PAST_FUTURE_HTML, "read-hint")
+
+    def test_decade_us_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(DECADE_US_HTML, "read-hint")
+
+    def test_intelligent_evolution_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(INTELLIGENT_EVOLUTION_HTML, "read-hint")
+
+    def test_smart_overhaul_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(SMART_OVERHAUL_HTML, "read-hint")
+
+    def test_evolvable_architecture_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(EVOLVABLE_ARCHITECTURE_HTML, "read-hint")
+
+    def test_work_infra_energy_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(WORK_INFRA_ENERGY_HTML, "read-hint")
+
+    def test_risk_geo_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(RISK_GEO_HTML, "read-hint")
+
+    def test_net_biz_capital_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(NET_BIZ_CAPITAL_HTML, "read-hint")
+
+    def test_national_strategy_opinion_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(
+            NATIONAL_STRATEGY_OPINION_HTML, "read-hint"
         )
+
+    def test_social_responsibility_evolution_html_links_hub_main_questions(
+        self,
+    ) -> None:
+        self._assert_hub_main_questions_twice(
+            SOCIAL_RESPONSIBILITY_EVOLUTION_HTML, "read-hint"
+        )
+
+    def test_synthesis_extensions_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(SYNTHESIS_EXTENSIONS_HTML, "read-hint")
+
+    def test_synthesis_methods_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(SYNTHESIS_METHODS_HTML, "read-hint")
+
+    def test_architecture_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(ARCHITECTURE_HTML, "read-hint")
+
+    def test_model_html_links_hub_main_questions(self) -> None:
+        self._assert_hub_main_questions_twice(MODEL_HTML, "read-hint")
 
     def test_maintainer_hub_docs_readme_hrefs_have_url_fragments(self) -> None:
         body = MAINTAINER_HUB.read_text(encoding="utf-8")
