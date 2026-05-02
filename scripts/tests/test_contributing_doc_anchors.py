@@ -44,6 +44,8 @@ NOT_FOUND_404_HTML = REPO_ROOT / "404.html"
 ADMIN_CONSOLE_INDEX_HTML = REPO_ROOT / "admin-console" / "static" / "index.html"
 SPA_LAYOUT_TSX = REPO_ROOT / "spa" / "src" / "SpaLayout.tsx"
 SPA_INDEX_HTML = REPO_ROOT / "spa" / "index.html"
+SPA_NOT_FOUND_TSX = REPO_ROOT / "spa" / "src" / "NotFound.tsx"
+SPA_SITE_DOC_HREFS_TS = REPO_ROOT / "spa" / "src" / "siteDocHrefs.ts"
 
 _HUB_MAIN_QUESTIONS_FRAG = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
 
@@ -290,9 +292,10 @@ class TestContributingDocAnchors(unittest.TestCase):
     def test_spa_layout_tsx_links_hub_main_questions(self) -> None:
         body = SPA_LAYOUT_TSX.read_text(encoding="utf-8")
         self.assertIn(
-            _HUB_MAIN_QUESTIONS_FRAG,
+            "hubMainQuestionsHref",
             body,
-            f"{SPA_LAYOUT_TSX.relative_to(REPO_ROOT)} should reference {_HUB_MAIN_QUESTIONS_FRAG!r}",
+            f"{SPA_LAYOUT_TSX.relative_to(REPO_ROOT)} should use hubMainQuestionsHref "
+            f"(see siteDocHrefs.ts · {_HUB_MAIN_QUESTIONS_FRAG!r})",
         )
         label = "枢纽主问题备忘"
         self.assertGreaterEqual(
@@ -300,6 +303,11 @@ class TestContributingDocAnchors(unittest.TestCase):
             2,
             f"{SPA_LAYOUT_TSX.relative_to(REPO_ROOT)} should surface {label!r} "
             "at least twice (壳说明 · 维护脚注)",
+        )
+        self.assertGreaterEqual(
+            body.count("hubMainQuestionsHref()"),
+            2,
+            "SpaLayout 应两次调用 hubMainQuestionsHref()",
         )
 
     def test_spa_index_html_noscript_links_hub_main_questions(self) -> None:
@@ -311,6 +319,27 @@ class TestContributingDocAnchors(unittest.TestCase):
             f"{_HUB_MAIN_QUESTIONS_FRAG!r}",
         )
         self.assertIn("%BASE_URL%legacy-index.html#three-questions", body)
+
+    def test_spa_not_found_tsx_links_hub_main_questions(self) -> None:
+        body = SPA_NOT_FOUND_TSX.read_text(encoding="utf-8")
+        self.assertGreaterEqual(
+            body.count("hubMainQuestionsHref()"),
+            2,
+            "NotFound 应两次调用 hubMainQuestionsHref()",
+        )
+        self.assertGreaterEqual(
+            body.count("枢纽主问题备忘"),
+            2,
+            f"{SPA_NOT_FOUND_TSX.relative_to(REPO_ROOT)} 应至少两处读者可见「枢纽主问题备忘」",
+        )
+
+    def test_spa_site_doc_hrefs_ts_exports_hub_main_questions(self) -> None:
+        body = SPA_SITE_DOC_HREFS_TS.read_text(encoding="utf-8")
+        self.assertIn(
+            f'return `${{spaPublicPrefix()}}{_HUB_MAIN_QUESTIONS_FRAG}`;',
+            body,
+            f"{SPA_SITE_DOC_HREFS_TS.relative_to(REPO_ROOT)} 须有 hubMainQuestionsHref 实现",
+        )
 
     def test_maintainer_hub_docs_readme_hrefs_have_url_fragments(self) -> None:
         body = MAINTAINER_HUB.read_text(encoding="utf-8")

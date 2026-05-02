@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { hubMainQuestionsHref } from "./siteDocHrefs";
 
 export function NotFound() {
   const base = import.meta.env.BASE_URL || "/";
@@ -21,6 +22,20 @@ export function NotFound() {
       </h1>
       <p className="spa-not-found-lead" role="status">
         当前路径无对应注册页面（SPA 客户端路由）。请从总览或分页导航重新进入。
+      </p>
+      <p className="spa-not-found-doc muted">
+        可先对读总览{" "}
+        <Link to={{ pathname: "/", hash: "three-questions" }}>三问导读</Link>
+        与{" "}
+        <a href={hubMainQuestionsHref()}>枢纽主问题备忘</a>
+        。
+      </p>
+      <p className="spa-not-found-doc muted">
+        静态失页（与 MPA <code>404.html</code> 同源快照）见{" "}
+        <a href={u404}>独立 404 页</a>
+        ；文中亦含{" "}
+        <a href={hubMainQuestionsHref()}>枢纽主问题备忘</a>
+        脚注。
       </p>
       <nav className="spa-not-found-actions" aria-label="可选操作">
         <Link to="/">返回总览</Link>

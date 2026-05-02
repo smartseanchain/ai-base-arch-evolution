@@ -436,6 +436,20 @@ body {
   color: var(--spa-muted);
 }
 
+.spa-not-found-doc {
+  margin: 0 0 0.75rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.spa-not-found-doc:last-of-type {
+  margin-bottom: 1.1rem;
+}
+
+.spa-not-found-doc code {
+  font-size: 0.86em;
+}
+
 .spa-not-found-actions {
   display: flex;
   flex-wrap: wrap;
@@ -574,6 +588,10 @@ body {
   }
 
   .spa-not-found-lead {
+    color: color-mix(in srgb, var(--spa-text) 82%, var(--spa-muted));
+  }
+
+  .spa-not-found-doc {
     color: color-mix(in srgb, var(--spa-text) 82%, var(--spa-muted));
   }
 

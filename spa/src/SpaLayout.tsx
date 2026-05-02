@@ -1,6 +1,12 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { NAV_GROUPS } from "./navLinks";
+import {
+  contributingMdHref,
+  hubMainQuestionsHref,
+  metaUrl,
+  platformMasterReaderAdminHref,
+} from "./siteDocHrefs";
 import { spaDocumentTitle, spaRouteAnnounce } from "./spaRouteMeta";
 
 type SiteMeta = {
@@ -9,33 +15,6 @@ type SiteMeta = {
   summary?: string;
   updated?: string;
 };
-
-function metaUrl(): string {
-  const b = import.meta.env.BASE_URL || "/";
-  const prefix = b.endsWith("/") ? b : `${b}/`;
-  return `${prefix}assets/site-meta.json`;
-}
-
-/** 与 `metaUrl` 同源：`spa/public/docs` 由根目录 `make spa-sync` 同步。 */
-function platformMasterReaderAdminHref(): string {
-  const b = import.meta.env.BASE_URL || "/";
-  const prefix = b.endsWith("/") ? b : `${b}/`;
-  return `${prefix}docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces`;
-}
-
-/** 与 iframe 内 MPA 页 `href="CONTRIBUTING.md#…"` 同源：部署根与 `BASE_URL` 对齐。 */
-function contributingMdHref(fragment: string): string {
-  const b = import.meta.env.BASE_URL || "/";
-  const prefix = b.endsWith("/") ? b : `${b}/`;
-  return `${prefix}CONTRIBUTING.md#${fragment}`;
-}
-
-/** 与 MPA `href="docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"` 同源（`spa/public/docs` 由 spa-sync 同步）。 */
-function hubMainQuestionsHref(): string {
-  const b = import.meta.env.BASE_URL || "/";
-  const prefix = b.endsWith("/") ? b : `${b}/`;
-  return `${prefix}docs/HUB_MAIN_QUESTIONS.md#hub-main-questions`;
-}
 
 export function SpaLayout({ children }: { children: ReactNode }) {
   const { pathname, hash } = useLocation();
