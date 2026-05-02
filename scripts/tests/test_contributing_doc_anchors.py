@@ -159,6 +159,16 @@ class TestContributingDocAnchors(unittest.TestCase):
             "at least twice (note-kicker + 架构与读数总线)",
         )
 
+    def test_analysis_hub_html_links_hub_main_questions(self) -> None:
+        body = ANALYSIS_HUB.read_text(encoding="utf-8")
+        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
+        self.assertGreaterEqual(
+            body.count(frag),
+            2,
+            f"{ANALYSIS_HUB.relative_to(REPO_ROOT)} should link {frag!r} "
+            "at least twice (note-kicker + 架构与读数总线)",
+        )
+
     def test_maintainer_hub_docs_readme_hrefs_have_url_fragments(self) -> None:
         body = MAINTAINER_HUB.read_text(encoding="utf-8")
         for m in re.finditer(r'href="(docs/README\.md[^"]*)"', body):
