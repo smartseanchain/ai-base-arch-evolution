@@ -19,6 +19,11 @@ EVOLUTION_LOOP_HTML = REPO_ROOT / "evolution-loop.html"
 NEXUS_HTML = REPO_ROOT / "nexus.html"
 SYNTHESIS_HTML = REPO_ROOT / "synthesis.html"
 LAB_HTML = REPO_ROOT / "lab.html"
+DECADE_HTML = REPO_ROOT / "decade.html"
+MODULES_MAP_HTML = REPO_ROOT / "modules-map.html"
+EVOLUTION_TRIAD_HTML = REPO_ROOT / "evolution-triad.html"
+EDU_NEXUS_HTML = REPO_ROOT / "edu-nexus.html"
+DECADE_SCENES_HTML = REPO_ROOT / "decade-scenes.html"
 
 _REQUIRED_CONTRIBUTING_ANCHORS = (
     "contributing-five-minute",
@@ -210,6 +215,56 @@ class TestContributingDocAnchors(unittest.TestCase):
             body.count(frag),
             2,
             f"{LAB_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
+            "at least twice (read-hint)",
+        )
+
+    def test_decade_html_links_hub_main_questions(self) -> None:
+        body = DECADE_HTML.read_text(encoding="utf-8")
+        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
+        self.assertGreaterEqual(
+            body.count(frag),
+            2,
+            f"{DECADE_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
+            "at least twice (read-hint)",
+        )
+
+    def test_modules_map_html_links_hub_main_questions(self) -> None:
+        body = MODULES_MAP_HTML.read_text(encoding="utf-8")
+        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
+        self.assertGreaterEqual(
+            body.count(frag),
+            2,
+            f"{MODULES_MAP_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
+            "at least twice (read-hint)",
+        )
+
+    def test_evolution_triad_html_links_hub_main_questions(self) -> None:
+        body = EVOLUTION_TRIAD_HTML.read_text(encoding="utf-8")
+        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
+        self.assertGreaterEqual(
+            body.count(frag),
+            2,
+            f"{EVOLUTION_TRIAD_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
+            "at least twice (read-hint)",
+        )
+
+    def test_edu_nexus_html_links_hub_main_questions(self) -> None:
+        body = EDU_NEXUS_HTML.read_text(encoding="utf-8")
+        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
+        self.assertGreaterEqual(
+            body.count(frag),
+            2,
+            f"{EDU_NEXUS_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
+            "at least twice (read-hint)",
+        )
+
+    def test_decade_scenes_html_links_hub_main_questions(self) -> None:
+        body = DECADE_SCENES_HTML.read_text(encoding="utf-8")
+        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
+        self.assertGreaterEqual(
+            body.count(frag),
+            2,
+            f"{DECADE_SCENES_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
             "at least twice (read-hint)",
         )
 
