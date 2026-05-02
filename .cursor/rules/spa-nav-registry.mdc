@@ -6,7 +6,9 @@ alwaysApply: false
 
 # 全站 SPA（`spa/src`）
 
-**判型**：[README · 四条动线](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map) · [ONE_PAGER · 架构师五步](../docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [ONE_PAGER · 不变量索引](../docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [docs/README · #content-framework](../docs/README.md#content-framework) · [#front-back-modules](../docs/README.md#front-back-modules) · [#system-components-fusion](../docs/README.md#system-components-fusion) · [quick-paths](../docs/README.md#quick-paths)。
+**判型**：[README · 四条动线](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map) · [ONE_PAGER · 架构师五步](../docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [ONE_PAGER · 不变量索引](../docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · 开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [CONTRIBUTING · 动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command) · [docs/README · #content-framework](../docs/README.md#content-framework) · [#front-back-modules](../docs/README.md#front-back-modules) · [#system-components-fusion](../docs/README.md#system-components-fusion) · [quick-paths](../docs/README.md#quick-paths)。
+
+**与 repo-gates / AGENTS 同构**：扩展上文「判型」链时，须与 [repo-gates.mdc](repo-gates.mdc) 文首及 [AGENTS.md · Cursor 规则](../AGENTS.md#agents-cursor-rules) 对读并保持同扩同收。
 
 1. **顶栏顺序与文案**：改 **`spa/nav.config.json`**（`items[].page` 须与 registry **`pages`** 集合一致），再 **`make gen-nav-links`** 或 **`make spa-build`）。**`spa/src/navLinks.ts` 为生成文件，勿手改**。
 2. 合并前 **`make test`** / **`make validate`**（**`check_nav_links_registry.py`**；逻辑 **`evolution_pkg.spa_nav`**）。**`make test`** 还含 registry JSON Schema 与沉淀/趋势 Schema；**`make validate`** 另含对账、顶栏、**`--check`** 等。

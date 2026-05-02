@@ -2,7 +2,7 @@
 # 提交前校验 evolution JSON（可选启用：bash scripts/install-git-hooks.sh）
 # 与 make validate / CI validate job 一致（run_validate.sh）；不跑 run_validate_fast.sh / make validate-fast
 # 参与贡献与 CI 双轨见根目录 CONTRIBUTING.md
-# 本钩子不跑 spa-build；改根 *.html 或 docs 后维护 SPA 时请自行 make spa-sync（见 docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help）
+# 本钩子不跑 spa-build；改根 *.html 或 docs 后维护 SPA 时请自行 make spa-sync（见 docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help（CONTRIBUTING.md#contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command））
 set -e
 ROOT="$(git rev-parse --show-toplevel)"
 cd "$ROOT"

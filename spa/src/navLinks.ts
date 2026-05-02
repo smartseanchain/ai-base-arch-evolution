@@ -1,7 +1,7 @@
 /** 由 spa/nav.config.json + scripts/gen_nav_links_ts.py 生成；请勿手改。
  * 顺序与文案：编辑 spa/nav.config.json 后执行 python3 scripts/gen_nav_links_ts.py --write
  * 与 partials/site-nav.inc.html 对齐；path 为 React Router（无 .html）
- * 改根 *.html 后维护 SPA iframe：make spa-sync；见 ../docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · ../maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix
+ * 改根 *.html 后维护 SPA iframe：make spa-sync；见 ../docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · ../maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help（CONTRIBUTING.md#contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command）
  */
 export const NAV_LINKS: { to: string; label: string }[] = [
   { to: "/", label: "总览" },

@@ -1,6 +1,6 @@
 # 全站推演内容 · 数据与分析引擎驱动的更新框架
 
-**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)。
 
 本文说明：在**静态站点**前提下，如何让「推演相关读数」随 **JSON 数据** 与 **分析引擎** 产出**自动对齐**，并与**人工叙事**划清边界。
 
@@ -72,7 +72,7 @@ flowchart LR
 | `evolution-hint-decisions.json` | 闭环落实统计 | `closure-summary.js`（与 manifest 规则对表） | `evolution-loop.html` |
 | `analysis-snapshot.json` | 热力、共现、`evolution_hints`、`hint_closure_gaps`、`run` | `analysis.js`（全量仪表盘） | `analysis-hub.html` |
 | `sediment-trends.json` | 跨日持久度、`longterm_hints` | `analysis.js` | `analysis-hub.html` |
-| `analysis-snapshot.json`（+ 可选 trends） | 当日样本数、`run_id`、因子 Top 等**一行摘要** | **`site-data-bus.js`** | 已挂载（根目录 HTML，字母序）：`analysis-hub.html`（`snapshot-only` + `data-site-data-hub="#dashboard"`，与同页 `analysis.js` 共用 `loadSnapshot` 缓存）、`architecture.html`、`decade-scenes.html`、`decade-us.html`、`decade.html`、`edu-nexus.html`、`evolvable-architecture.html`、`evolution-loop.html`、`evolution-triad.html`、`index.html`、`intelligent-evolution.html`、`lab.html`、`legacy-all-in-one.html`（单页归档、内联条带样式，不引 `site.css`）、`model.html`、`modules-map.html`、`national-strategy-opinion.html`、`net-biz-capital.html`、`nexus.html`、`past-future.html`、`risk-geo.html`、`smart-overhaul.html`、`social-responsibility-evolution.html`、`synthesis-extensions.html`、`synthesis-methods.html`、`synthesis.html`、`timeline.html`、`work-infra-energy.html`。任意页可加 `data-site-data-live` 占位；**仅快照、不请求趋势**时用 `data-site-data-live="snapshot-only"`；**仪表盘链接改成本页锚点**时用 `data-site-data-hub="#…"` |
+| `analysis-snapshot.json`（+ 可选 trends） | 当日样本数、`run_id`、因子 Top 等**一行摘要** | **`site-data-bus.js`** | registry 内根分页均已挂载读数条（含 **`legacy-all-in-one.html`** 单页归档）。**默认**：除 **`evolution-loop.html`**、**`lab.html`** 使用 **`data-site-data-live`**（条带会 **`fetch`** **`sediment-trends.json`**）外，**其余分页均为 `snapshot-only`**（只拉快照，不拉 trends）。**`analysis-hub.html`**：`snapshot-only` + **`data-site-data-hub="#dashboard"`**，与同页 **`analysis.js`** 共用 **`SiteDataBus`** 快照缓存；跨日图表仍由 **`analysis.js`** 加载 trends。新页占位：默认 **`snapshot-only`**；若属闭环/沙盘向且需在条带露出跨日一行，再用裸 **`data-site-data-live`**；仪表盘指本页锚用 **`data-site-data-hub="#…"`** |
 | `site-meta.json` | `site_version`、`codename`、`summary`、`updated` | **`site-data-bus.js`** · `mountSiteMetaVersion` | 顶栏 **`[data-site-meta-version]`**（`partials/site-nav.inc.html`）；与 **`analysis-snapshot.json` 的 `run` 块**（分析血缘）语义不同，勿混 |
 | `site-search-index.json` | 各注册页 `path`、`title`（轻量搜索索引） | **`site-data-bus.js`**：`[data-site-quick-search]`（**`partials/site-nav.inc.html`** 已挂；经 **`make sync-nav`** 写入各页）；失败或缺文件时该格隐藏 | 增删 **`evolution-registry.json` · `pages`** 或改页 `<title>` 后按需 **`make site-search-index`**；**非**契约 JSON，**不入** `make validate`。**顶栏 / skip-bar 模板**变更时 **`404.html`** 须**手调**（`sync_site_nav` 不写回）— **[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)** · **[MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)** |
 
@@ -84,7 +84,7 @@ flowchart LR
 
 **新增一页「数据驱动区块」的步骤**：
 
-1. 在 HTML 放入占位：`<aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>`（脚本会短暂展示「正在加载」再填入读数）。若**不要**请求 `sediment-trends.json`，使用 `data-site-data-live="snapshot-only"`。若「分析引擎仪表盘」链需指向本页某节，在占位上增加 `data-site-data-hub="#锚点"`（默认 `analysis-hub.html`）。
+1. 在 HTML 放入占位：默认 **`<aside class="card site-data-live-strip-host" data-site-data-live="snapshot-only" aria-live="polite" hidden></aside>`**（不请求 `sediment-trends.json`）。闭环 / 沙盘等需在条带展示跨日摘要时，改用 **`data-site-data-live`**（无值）。若「分析引擎仪表盘」链需指向本页某节，在占位上增加 `data-site-data-hub="#锚点"`（默认 `analysis-hub.html`）。
 2. 在 `</body>` 前增加：`<script src="assets/site-data-bus.js"></script>`（**在**依赖 `SiteDataBus` 的脚本之前）。
 3. 需要全量图表时，复制 `analysis-hub.html` 对 `analysis.js` 的用法，而非重复实现统计逻辑。
 4. 大改快照结构时：递增 `schema_version`，更新 `docs/schemas/analysis-snapshot.schema.json` 与 `validate_analysis_snapshot_schema.py`。

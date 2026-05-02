@@ -1,6 +1,6 @@
 # 平台能力总览 · 阅读顺序 · 双轨呈现
 
-**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [总览 MPA · 四条动线卡](../index.html#index-intent-pick) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**读站顺序（含 §5 步骤 0）**：[§5 推荐阅读顺序](#reading-order)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)。
 
 本文把仓库当作**可演进推演平台**来梳理：**数据与闸门**、**分析与读数**、**叙事与路由**、**发布与运维**四条线各指哪里、如何增强。与 [ARCHITECTURE.md](./ARCHITECTURE.md)、[TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md · 附录](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md#appendix-tech-capabilities)（[别名](./TECH_ARCHITECTURE_CAPABILITIES.md)）互补——偏「一张图看清能力边界与入口」。
 
@@ -60,9 +60,10 @@ PR/Issue 里写清引用的是 **site_version** 还是 **run_id**，避免对账
 
 若要把**内容、架构分层、主要组件**与推荐 **`make` / 文档入口**收在**一页总表**里，先读 **[PLATFORM_MASTER_MAP_AND_INVOCATION.md](./PLATFORM_MASTER_MAP_AND_INVOCATION.md)**（三条黄金路径 + 低收益调用清单），再回到本节按角色下钻。
 
-**整体内容框架（真源分层）**与判型入口合一见 **[docs/README · #content-framework](./README.md#content-framework)**（再进 **#quick-paths**）；**读者面 × 管理面按模块一页表**见 **[#front-back-modules](./README.md#front-back-modules)**；**系统组件与功能一条表**见 **[#system-components-fusion](./README.md#system-components-fusion)**。
+**整体内容框架（真源分层）**与判型最短链（**#quick-paths** / 0c）合一见 **[docs/README · #content-framework](./README.md#content-framework)**（再进 **#quick-paths**）；**读者面 × 管理面按模块一页表**见 **[#front-back-modules](./README.md#front-back-modules)**；**系统组件与功能一条表**见 **[#system-components-fusion](./README.md#system-components-fusion)**。
 
 **新读者（读站）**  
+0. [index.html#index-intent-pick](../index.html#index-intent-pick) **四条动线卡**（与根 [README · 产品视角 #pm-four-journeys](../README.md#pm-four-journeys) 对表；先定**角色 / 从哪进**）→ 再按需进入下列 1—3  
 1. [index.html#read-guide](../index.html#read-guide) 读站指路（三条并行入口）与 [三问导读](../index.html#three-questions) → [nexus.html](../nexus.html) 或 [modules-map.html](../modules-map.html)  
 2. [synthesis.html#criteria](../synthesis.html#criteria) 判据 → [synthesis.html#continuation](../synthesis.html#continuation) 继续推演矩阵  
 3. 按需下钻分页；**时间窗**可先 [历史 · 五代横轴](../timeline.html#timeline-five-eras)、[廿年 · 对照总表](../past-future.html#past-future-comparison)、[十年 · 六维总表](../decade.html#decade-six-dim) / [阶段条](../decade.html#decade-phase-bars)（深链落节后仍建议扫一眼该页「推演扩展 · 本轮提要」）。分析向 [analysis-hub.html#panorama](../analysis-hub.html#panorama)
@@ -73,7 +74,7 @@ PR/Issue 里写清引用的是 **site_version** 还是 **run_id**，避免对账
 0. **[docs/README.md · 文档主线表](./README.md#docs-spine)**（整理速览；与下列条目一致）  
 0c. **[docs/README · 常见改动最短链](./README.md#quick-paths)**（判型后再下钻；与主线表 **0c** 同锚；registry 三件套 · [MODULE · §1a](./MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md#seven-class-pkg-quick)）  
 0d. **[docs/README · AI 与自动进化](./README.md#ai-assisted-evolution)**（overlay · 黄金集 · 草稿插槽 · 管道节奏；**非**自动写 manifest）· [INTELLIGENCE · §8](./INTELLIGENCE_SIX_DOMAINS.md#ai-era-alignment)  
-0.1. [CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd) 环境与合并前底线（**`make validate`**（必）、**`make merge-ready`**（与 CI 对齐推荐）、CI 双轨、常见自检表）· [MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)  
+0.1. [CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) 环境与合并前底线（**`make validate`**（必）、**`make merge-ready`**（与 CI 对齐推荐）、CI 双轨、常见自检表）· [MERGE_AND_RELEASE_CHECKLIST.md](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)  
 0.2. [PROJECT_ARCHITECTURE_OVERVIEW.md](./PROJECT_ARCHITECTURE_OVERVIEW.md) **五维整体架构图谱**（数据 · 内容 · 演进 · 方法论 · 运行态；**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)**；**[§1a 主链联动与验证](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation)** · **[§1b 仓库物理分层](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**；总索引后再下钻专篇）  
 0.3. [INCREMENTAL_BUILD_PLAYBOOK.md](./INCREMENTAL_BUILD_PLAYBOOK.md) **增量构建与调试**（提前接组件、**[PR 切片模板](./templates/incremental-pr-slice.md)**）· [ARCHITECTURE_UPGRADE_ROADMAP.md](./ARCHITECTURE_UPGRADE_ROADMAP.md) 可落地升级全景  
 0.5. [ARCHITECTURE_ONE_PAGER.md](./ARCHITECTURE_ONE_PAGER.md) 架构一页纸（**[三架构对照](./ARCHITECTURE_ONE_PAGER.md#three-architectures)** · 主链 / 闸门 / 双轨 / 侧车 / 内容与呈现）；**扩展性与进化落地** [§8](./PLATFORM_CAPABILITY_MAP.md#extensibility) · [PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md)  
@@ -112,7 +113,14 @@ PR/Issue 里写清引用的是 **site_version** 还是 **run_id**，避免对账
 
 ## 7. 读者预期与发布前复查（摘要）
 
-**若迷路**：新读者先 [index.html · 读站指路](../index.html#read-guide) 或 [判型入口 · 我是来…](../index.html#index-intent-pick)；整理文档结构或判型改哪一篇 → [docs/README · 文档主线表](../docs/README.md#docs-spine) · [常见改动最短链 0c](../docs/README.md#quick-paths)；维护者闸门与分端入口 → [maintainer-hub.html](../maintainer-hub.html)（[关系视图 · 本页 ↔ 注册表 ↔ 锚点](../maintainer-hub.html#mh-spine-map) · [系统边界速查](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)）。
+**读者可读性（发布前心测，非 CSS 教程）**
+
+- **链接与焦点**：键盘 Tab 时主导航、目录 pill、正文链均有可见焦点；见 [SITE_REVIEW · §3.5](./SITE_REVIEW_THREE_PASSES.md#section-3-5-lead-readhint)。  
+- **系统「增强对比度」或高对比偏好**：顶栏、脚注、沙盘药丸等仍应可辨；版式与动效边界见 [INTELLIGENCE · §2.2](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)（与 SPA 壳对表）。  
+- **深链与首屏**：首屏外链宜少而准；进正文后仍可多深链，但须有锚可回读（与 [§5 阅读顺序](./PLATFORM_CAPABILITY_MAP.md#reading-order) 对读）。  
+- **枢纽叙事**：五组分区与「本页主问题」一句的写作备忘见 [HUB_MAIN_QUESTIONS](./HUB_MAIN_QUESTIONS.md#hub-main-questions)。
+
+**若迷路**：新读者先 [index.html · 读站指路](../index.html#read-guide) 或 [总览 · 四条动线](../index.html#index-intent-pick)；整理文档结构或判型改哪一篇 → [docs/README · 文档主线表](../docs/README.md#docs-spine) · [常见改动最短链 0c](../docs/README.md#quick-paths)；维护者闸门与分端入口 → [maintainer-hub.html](../maintainer-hub.html)（[关系视图 · 本页 ↔ 注册表 ↔ 锚点](../maintainer-hub.html#mh-spine-map) · [系统边界速查](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)）。
 
 **部署一页检**：线上 404 / 空白 → 核对 GitHub **Settings → Pages** 源分支与发布目录；**全站 SPA（项目子路径）** → [spa/README · GitHub Pages](../spa/README.md#spa-github-pages) 内 **`VITE_BASE`** 与 `npm run build` 示例须与仓库名一致；**本地** → 根目录 **`make serve-reader`** / Docker，勿 **`file://`**（与下条「本地读者站」对读）。
 
@@ -122,7 +130,7 @@ PR/Issue 里写清引用的是 **site_version** 还是 **run_id**，避免对账
 - **枢纽页 CSS 模块**（导读栈、pill 目录、命令卡分栏等，**非** JSON 总线）：[INTELLIGENCE_SIX_DOMAINS · §2.2](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)。  
 - **正文地标**：根目录读者页以 **`<main id="main">`** 包住 **`</header>` 之后、`<footer>` 之前**的主体（与 skip **`#main`**、**`site-data-bus.js`** 回顶链一致，**每页仅一个 `<main>`**）— [ARCHITECTURE_ONE_PAGER · 内容与呈现](./ARCHITECTURE_ONE_PAGER.md#content-presentation) · [SITE_REVIEW · §3.5](./SITE_REVIEW_THREE_PASSES.md#section-3-5-lead-readhint)。  
 - **`docs/*.md` 在静态站**：根目录部署下点击 **`docs/… .md`** 多为浏览器打开**源码/下载**，与 GitHub 网页渲染不同；详见 [SITE_REVIEW_THREE_PASSES · 四角色复查](./SITE_REVIEW_THREE_PASSES.md#four-perspectives-review)。  
-- **本地读者站 MPA（须 http(s)，勿 `file://`）**：根目录 **`make serve-reader`** → **http://127.0.0.1:8000/**；或 **`docker compose`** / **`docker-compose.dev.yml`** 映射 **8765**（见根 **[README.md](../README.md)** · **[DOCKER.md](./DOCKER.md)** §1）。  
+- **本地读者站 MPA（须 http(s)，勿 `file://`）**：根目录 **`make serve-reader`** → **http://127.0.0.1:8000/**（默认端口；占用时可 **`READER_PORT=8001`** 等）；或 **`docker compose`** / **`docker-compose.dev.yml`** 映射 **8765**（见根 **[README.md](../README.md)** · **[DOCKER.md](./DOCKER.md)** §1）。  
 - **合并或大版本发布**：除 **`make validate`** 外，建议过一遍 [SITE_REVIEW_THREE_PASSES · 发布前轻量清单](./SITE_REVIEW_THREE_PASSES.md#four-perspectives-review)（顶栏抽样、窄屏、总线版本、`.md` 链、可选 SPA）。  
 - **自动化助手收束**（与上条对读）：[AGENTS.md · 合并前](../AGENTS.md#agents-pre-merge) · [枢纽首屏](../AGENTS.md#agents-hub-lead) · [MPA+SPA 双轨](../AGENTS.md#agents-dual-track)。  
 - **顶栏分组 / 文档 HTML 化**：属产品定稿后的结构改版，**当前仓库不强制**；定稿前仍以注册表全链 + 分区速跳为准。

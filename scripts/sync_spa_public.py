@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-为 SPA 开发/构建准备 spa/public：复制 assets、docs；根目录 HTML 去掉顶栏与 skip-bar 后写入 public
+为 SPA 开发/构建准备 spa/public：复制 assets、docs、CONTRIBUTING.md；根目录 HTML 去掉顶栏与 skip-bar 后写入 public
 （避免与 React 壳重复导航）。index.html → legacy-index.html。404、legacy-all-in-one 整页拷贝不剥壳。
 
 用法（仓库根）: python3 scripts/sync_spa_public.py
 
-合并与双轨对表: docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help
+合并与双轨对表: docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help（CONTRIBUTING.md#contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command）
 """
 from __future__ import annotations
 
@@ -54,6 +54,10 @@ def main() -> None:
     if docs_dst.exists():
         shutil.rmtree(docs_dst)
     shutil.copytree(docs_src, docs_dst)
+
+    contrib_src = REPO_ROOT / "CONTRIBUTING.md"
+    if contrib_src.is_file():
+        shutil.copy2(contrib_src, SPA_PUBLIC / "CONTRIBUTING.md")
 
     for p in sorted(REPO_ROOT.glob("*.html")):
         text = p.read_text(encoding="utf-8")

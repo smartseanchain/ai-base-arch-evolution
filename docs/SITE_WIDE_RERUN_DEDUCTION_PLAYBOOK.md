@@ -1,6 +1,6 @@
 # 全站梳理 · 内容对表 · 重新推演与更新（操作手册）
 
-**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)。
 
 本文给出**可重复的一轮流程**：在**不假设单点终局**的前提下，把**全站模块与叙事**与**当前数据/分析读数**对表，并决定**下一步更新落在哪里**（JSON 管道、HTML 正文、或仅刷新快照）。与 [EVOLUTION_RUNBOOK](./EVOLUTION_RUNBOOK.md)（偏双周 JSON 节奏）、[DATA_ANALYSIS_SITE_CONTENT_SYNC](./DATA_ANALYSIS_SITE_CONTENT_SYNC.md)（偏数据→界面映射）互补；认识论与单轮七步仍以 [DEDUCTION_STRATEGY](./DEDUCTION_STRATEGY.md) 为准。
 

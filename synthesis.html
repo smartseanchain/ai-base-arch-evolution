@@ -90,7 +90,7 @@
             <li><a href="evolvable-architecture.html">可进化架构</a></li>
           </ul>
         </details>
-        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-five-minute · CONTRIBUTING#contributing-pr-evidence-triad · CONTRIBUTING#contributing-change-to-command">维护导读</a>
         <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
       <div class="site-nav-meta-row">
@@ -105,10 +105,12 @@
       <p class="lead">
         整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。本页保留<strong>元梳理主干</strong>：<strong>模块变量表</strong>、<strong>五条判据</strong>、<strong>毗邻与合成轴</strong>、<strong>配方 A—H</strong>，<a href="#continuation"><strong>继续推演 · 全站深描矩阵</strong></a>（按模块列出下一轮变量、邻接补强、分叉与观测挂钩），以及<strong>工作台</strong>。
       </p>
+      <p class="muted hub-cluster-thread" role="note">本簇主题：用「判据—方法—沙盘—闭环」做可复核的组合与压力测试。</p>
       <div class="read-hint page-head-deck" role="note" aria-label="综合推演三页分工与读数闭环">
+        <p class="muted page-main-question" id="synthesis-main-question"><strong>本页主问题</strong>：给定判据与矩阵，本轮模块组合与分叉如何可对账、可返回修正？</p>
         <p><strong>子页分工</strong>：为减轻单页过长，叠加五域、复合总表、三簇图景与五维切片在 <a href="synthesis-extensions.html">推演·扩展</a>；持续迭代、跨学科办法与深读透镜在 <a href="synthesis-methods.html">推演·方法</a>。正文目录仍用 <strong>§1—§13</strong> 节号便于检索与交叉引用。</p>
         <p><strong>读数与闭环</strong>：<a href="docs/DEDUCTION_STRATEGY.md#stance">科学推演策略</a>、<a href="evolution-loop.html">进化闭环</a>、<a href="analysis-hub.html">分析引擎</a>。</p>
-        <p><strong>维护面与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a>。</p>
+        <p><strong>维护面与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="CONTRIBUTING.md#contributing-five-minute">开 PR 前速览</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a> · <a href="CONTRIBUTING.md#contributing-change-to-command">动手→命令速查</a>。</p>
       </div>
       <nav class="page-route-strip" aria-label="与本页相关的站内路径">
         <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
@@ -119,6 +121,7 @@
       </nav>
       <nav class="toc toc--pilot" id="synthesis-toc" aria-label="本页目录 · 主篇主干">
         <p class="toc-pilot-eyebrow">本页目录 · 主篇主干</p>
+        <a href="#synthesis-main-question">本页主问题</a>
         <a href="#inventory">§1 模块·五系七层</a>
         <a href="#criteria">§2 组合合理性</a>
         <a href="#graph">§3 关联与毗邻</a>
@@ -127,7 +130,7 @@
         <a href="#continuation">继续推演 · 矩阵</a>
         <a href="#workflow">§10 工作台</a>
       </nav>
-      <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
+      <aside class="card site-data-live-strip-host" data-site-data-live="snapshot-only" aria-live="polite" hidden></aside>
     </div>
 
     <div class="modular-intro-stack" aria-label="综合推演主篇 · 导读与本轮提要">
@@ -374,6 +377,7 @@
           </tbody>
         </table>
       </div>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>能否在 §1 表中找到你议题对应的<strong>系与堆叠位</strong>，并说一句「缺哪一层会叙事空转」？</p>
     </section>
 
     <section id="criteria">
@@ -406,6 +410,7 @@
         <li><strong>短中长周期对齐或显式打架：</strong>工具采纳（短）、组织与合规（中）、基建与能源锁仓（长）是否指向同一方向？若打架，分叉才是诚实结论，而非强行汇入单形态。</li>
         <li><strong>物理—逻辑—经济约束三角：</strong>同时经得起瓦特/光缆（物理）、规则举证（逻辑）、谁付费能否持续（经济）三问。<a href="work-infra-energy.html">职基能</a>+<a href="risk-geo.html">地缘</a>+<a href="decade.html">治理维</a>常一起充当这三角的锚。</li>
       </ol>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>你正在拼的两三个模块，最先会被<strong>五条里的哪两条</strong>打回或要求补一环？</p>
     </section>
 
     <section id="graph">
@@ -453,6 +458,7 @@
       <div class="card card--mt-section">
         <p class="muted note-caption-82"><strong>高权重组合边（扩展关联，示意）：</strong>「十年展望 ↔ 十年场景」（抽象↔具象）；「职基能 ↔ 架构拓扑」（瓦特落点）；「教育纵轴 ↔ 人与AI ↔ 立体联结」（评价权与家庭政治）；「历史演进 ↔ 分层/架构」（词汇锁定与路径依赖）；「地缘 ↔ 场景·跨境 ↔ 架构·Cell」（备用路径）；「沙盘 ↔ 任一页」（把假设压成可比较叙事）。任一边单独读都偏瘦，双边同时读才容易看见<strong>张力与分叉</strong>。</p>
       </div>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>从当前站着的页出发，你会沿图中<strong>哪一条高权重边</strong>跳进合成心最省力？</p>
     </section>
 
     <section id="axes">
@@ -479,6 +485,7 @@
           <p class="muted note-caption-76">强联：<a href="work-infra-energy.html">职基能</a>、<a href="model.html">分层</a>、<a href="architecture.html">架构</a>、<a href="risk-geo.html">地缘</a>、<a href="lab.html">沙盘</a>。</p>
         </div>
       </div>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>你的命题在<strong>尺度 / 时间 / 硬栈</strong>哪条轴上最先需要补强或显式标注「打架」？</p>
     </section>
 
     <section id="recipes">
@@ -583,6 +590,7 @@
           </div>
         </div>
       </div>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>能否<strong>不看甲/乙/丙形态标题</strong>，先口述一条配方里的「传导链」因果顺序（若…则…）？</p>
     </section>
 
     <section id="continuation">

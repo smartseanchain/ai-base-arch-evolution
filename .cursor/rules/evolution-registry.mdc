@@ -6,7 +6,9 @@ alwaysApply: false
 
 # 单一注册表 `scripts/evolution-registry.json`
 
-**判型**：[README · 四条动线](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map) · [ONE_PAGER · 架构师五步](../docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [ONE_PAGER · 不变量索引](../docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [docs/README · #content-framework](../docs/README.md#content-framework) · [#front-back-modules](../docs/README.md#front-back-modules) · [#system-components-fusion](../docs/README.md#system-components-fusion) · [quick-paths](../docs/README.md#quick-paths)。
+**判型**：[README · 四条动线](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map) · [ONE_PAGER · 架构师五步](../docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [ONE_PAGER · 不变量索引](../docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · 开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [CONTRIBUTING · 动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command) · [docs/README · #content-framework](../docs/README.md#content-framework) · [#front-back-modules](../docs/README.md#front-back-modules) · [#system-components-fusion](../docs/README.md#system-components-fusion) · [quick-paths](../docs/README.md#quick-paths)。
+
+**与 repo-gates / AGENTS 同构**：扩展上文「判型」链时，须与 [repo-gates.mdc](repo-gates.mdc) 文首及 [AGENTS.md · Cursor 规则](../AGENTS.md#agents-cursor-rules) 对读并保持同扩同收。
 
 - 结构须符合 **`docs/schemas/evolution-registry.schema.json`**（**`validate_evolution_registry_schema.py`**；**`make test`** / **`make validate`**）。
 
@@ -19,6 +21,6 @@ alwaysApply: false
 5. PR 若触及本文件，CI 通常会跑 **`spa-build`**（其前会 **`gen-nav-links`** + **`spa-sync`**）。
 6. 若本轮**同时**改了根目录 **`.html`**（页脚深链、导读块等）以与注册/顶栏叙事对齐：合并前仍须 **`make spa-sync`**（或完整 **`make spa-build`**），否则 **`spa/public/`** 内 iframe 源页可能落后 MPA；动线见 **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge`** · **`docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence`**；收束叙述见 [维护导读](../maintainer-hub.html) · [关系视图](../maintainer-hub.html#mh-spine-map) · [系统边界](../maintainer-hub.html#mh-boundaries) · [衔接矩阵](../maintainer-hub.html#mh-reader-admin-matrix)。
 
-**与根目录契约对读**：[AGENTS.md · 框架判型](../AGENTS.md#agents-content-framework) · [双轨呈现](../AGENTS.md#agents-dual-track)。
+**与根目录契约对读**：[AGENTS.md · 框架判型](../AGENTS.md#agents-content-framework) · [双轨呈现](../AGENTS.md#agents-dual-track) · [Cursor 规则](../AGENTS.md#agents-cursor-rules)。
 
 深读：**CONTRIBUTING.md**、**docs/PLATFORM_CAPABILITY_MAP.md** §6、§7（读者预期、发布前清单、站内 **`docs/*.md`** 静态部署说明）。**主链联动 · 仓库物理分层**：[PROJECT · §1a](docs/PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · [§1b](docs/PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)。

@@ -23,6 +23,13 @@ function platformMasterReaderAdminHref(): string {
   return `${prefix}docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces`;
 }
 
+/** 与 iframe 内 MPA 页 `href="CONTRIBUTING.md#…"` 同源：部署根与 `BASE_URL` 对齐。 */
+function contributingMdHref(fragment: string): string {
+  const b = import.meta.env.BASE_URL || "/";
+  const prefix = b.endsWith("/") ? b : `${b}/`;
+  return `${prefix}CONTRIBUTING.md#${fragment}`;
+}
+
 export function SpaLayout({ children }: { children: ReactNode }) {
   const { pathname, hash } = useLocation();
   const [meta, setMeta] = useState<SiteMeta | null>(null);
@@ -231,7 +238,20 @@ export function SpaLayout({ children }: { children: ReactNode }) {
           ；维护入口见 <Link to="/maintainer-hub">维护导读</Link>
           · <Link to="/maintainer-hub#mh-spine-map">关系视图</Link>
           · <Link to="/maintainer-hub#mh-boundaries">系统边界</Link>
-          · <Link to="/maintainer-hub#mh-reader-admin-matrix">衔接矩阵</Link>。
+          · <Link to="/maintainer-hub#mh-reader-admin-matrix">衔接矩阵</Link>
+          ·{" "}
+          <a href={contributingMdHref("contributing-five-minute")}>
+            开 PR 前速览
+          </a>
+          ·{" "}
+          <a href={contributingMdHref("contributing-pr-evidence-triad")}>
+            PR 证据三联
+          </a>
+          ·{" "}
+          <a href={contributingMdHref("contributing-change-to-command")}>
+            动手→命令速查
+          </a>
+          。
         </p>
       </header>
       <main

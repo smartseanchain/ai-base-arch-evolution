@@ -29,7 +29,7 @@
 改根 ``*.html`` 后若仍维护 SPA 壳内 iframe：须 ``make spa-sync``（或 ``make spa-build``）。
 
 对表：``docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge`` · ``#pre-merge-partials-sequence`` · ``scripts/README.md``（``sync_site_nav`` 行）·
-``maintainer-hub.html#mh-spine-map`` · ``#mh-boundaries`` · ``#mh-reader-admin-matrix`` · ``make help``
+``maintainer-hub.html#mh-spine-map`` · ``#mh-boundaries`` · ``#mh-reader-admin-matrix`` · ``make help（CONTRIBUTING.md#contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command）``
 """
 from __future__ import annotations
 

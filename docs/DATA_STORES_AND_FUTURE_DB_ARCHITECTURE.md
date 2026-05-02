@@ -1,6 +1,6 @@
 # 数据存储组件与后续架构设计（与 Git 真源 · 编排 · 事件流衔接）
 
-**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)。
 
 本文与 **[DATA_CONTRACTS.md · §5](./DATA_CONTRACTS.md#存储策略哪些适合写入数据库与架构预期对齐)**（当前哪些数据进 SQLite；**[侧车表列速查](./DATA_CONTRACTS.md#sqlite-sidecar-column-inventory)**）、**[ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md)**（阶段 0—3）、**[ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md)**（编排器与 Kafka/Redpanda）对齐，专门回答：**在已有 Git JSON + 侧车 SQLite 的前提下，何时、以何顺序引入服务器级数据库、缓存、分析库与 CDC**，以及它们与 **Kafka 生态**如何拼成一张**后续整体架构**图。
 

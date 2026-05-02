@@ -90,7 +90,7 @@
             <li><a href="evolvable-architecture.html">可进化架构</a></li>
           </ul>
         </details>
-        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-five-minute · CONTRIBUTING#contributing-pr-evidence-triad · CONTRIBUTING#contributing-change-to-command">维护导读</a>
         <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
       <div class="site-nav-meta-row">
@@ -105,8 +105,10 @@
       <p class="lead">
         本站所谓<strong>自动进化</strong>，<strong>不是</strong>替代人类判断的预测机，而是<strong>可重复的观测—编码—反哺</strong>：抓取线索进 <code>evolution-candidates.json</code>（待审），人审后并入 <code>evolution-manifest.json</code>；<code>evolution.js</code> 展示已入库与候选，并用 <code>lab_factors</code> 驱动沙盘高亮。机器可做抓取、去重、路由；<strong>是否升格为站内核</strong>仍须人审。
       </p>
+      <p class="muted hub-cluster-thread" role="note">本簇主题：用「判据—方法—沙盘—闭环」做可复核的组合与压力测试。</p>
       <div class="read-hint page-head-deck" role="note">
-        <p class="muted note-kicker"><strong>温读入口</strong>：<strong>读者</strong>看下文观测入库与反哺；<strong>合 PR / 闸门</strong> → <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="CONTRIBUTING.md#contributing-env-and-cmd">CONTRIBUTING</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a>；<strong>回总览</strong> → <a href="index.html#read-guide">读站指路</a> · <a href="analysis-hub.html">分析引擎</a>。</p>
+        <p class="muted page-main-question" id="evolution-loop-main-question"><strong>本页主问题</strong>：信号、候选与 manifest 闭环如何支撑「下一轮改什么」，而非堆功能？</p>
+        <p class="muted note-kicker"><strong>温读入口</strong>：<strong>读者</strong>看下文观测入库与反哺；<strong>合 PR / 闸门</strong> → <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="CONTRIBUTING.md#contributing-env-and-cmd">CONTRIBUTING</a> · <a href="CONTRIBUTING.md#contributing-five-minute">开 PR 前速览</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a> · <a href="CONTRIBUTING.md#contributing-change-to-command">动手→命令速查</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a>；<strong>回总览</strong> → <a href="index.html#read-guide">读站指路</a> · <a href="analysis-hub.html">分析引擎</a>。</p>
         <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
         <p>本页与下方动线主要服务<strong>读者面（前端）</strong>：看观测如何入库与反哺。<strong>管理面（后端侧）</strong>（抓取、合并、<code>make validate</code> 等）见 <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#reader-frontend-admin-backend">用户端/管理端分拆说明</a> 与 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面速查</a>。<strong>跨 PR 架构收束</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a>。</p>
         <p>面向<strong>社会责任取向</strong>的多源信号（舆情/战略/商业等）与推演输出见 <a href="social-responsibility-evolution.html">社会责任 · 可进化推演</a>。</p>
@@ -120,6 +122,7 @@
       </nav>
       <nav class="toc toc--pilot" id="evolution-loop-toc" aria-label="本页目录">
         <p class="toc-pilot-eyebrow">本页目录</p>
+        <a href="#evolution-loop-main-question">本页主问题</a>
         <a href="#ooda">OODA 闭环</a>
         <a href="#manifest">清单格式</a>
         <a href="#ingest">抓取管道</a>
@@ -203,6 +206,7 @@
           <li><strong>Act：</strong>更新 manifest 或候选文件；必要时改 HTML 正文；版本控制留下 diff；读者在 <a href="lab.html">沙盘</a> 与 <a href="national-strategy-opinion.html#evolution-feed-section">战略·舆情 · 信号栏</a> 看到结果。</li>
         </ul>
       </div>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>能否用一句话说清本站 OODA 里 <strong>Decide</strong> 落点是什么（与 OKR 有何不同）？</p>
     </section>
 
     <section id="manifest">
@@ -226,6 +230,7 @@
         </table>
       </div>
       <p class="muted note-stack">扩展：可在 <code>maps_to</code> 中自增 <code>synthesis_recipe</code> 等键，但须同步改 <code>assets/evolution.js</code> 才会在页面上显式展示。</p>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>一条信号要进 manifest，至少须具备哪几个字段、<code>maps_to</code> 与沙盘如何对齐？</p>
     </section>
 
     <section id="ingest">
@@ -245,6 +250,7 @@ python3 scripts/analysis_engine.py --sediment</pre>
       <div class="callout extend callout--more-top">
         <strong>合规：</strong>遵守各站点 robots.txt 与版权；法规正文以<strong>权威发布机关</strong>页面为准，本管道仅作<strong>线索聚合</strong>，不构成法律意见。
       </div>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>候选 → merge → manifest 之间，哪一步<strong>必须人审</strong>、为什么不能定时自动 merge？</p>
     </section>
 
     <section id="automation">
@@ -258,6 +264,7 @@ python3 scripts/analysis_engine.py --sediment</pre>
           <li><strong>不宜自动化：</strong>把「热搜」直接写成「国家意志」；省略 §2 判据；未经人工审核就改配方正文。</li>
         </ul>
       </div>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>列出两条「脚本可做」与两条「不应交给脚本单独做」的边界。</p>
     </section>
 
     <section id="human">
@@ -267,12 +274,14 @@ python3 scripts/analysis_engine.py --sediment</pre>
         <strong>三问（入库前）：</strong>能否指回 §2 判据之一？能否映射到至少一个模块页或沙盘因子？若发酵消失，是否仍值得保留为「历史切片」？
       </div>
       <p class="muted note-stack"><strong>扩展插槽 ⑦（§11）：</strong>manifest 新增信号 → 沙盘高亮 → 推演一轮 → 决定是否升格为 §6 配方 / §7 表行 / 教育页案例句；见 <a href="synthesis-methods.html#perpetual">§11 列表</a>。</p>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>入库前三问里，哪一问若答不上来就应<strong>留在笔记、不进 manifest</strong>？</p>
     </section>
 
     <section id="feed">
       <h2>6. 当前观测信号（manifest + 候选）</h2>
       <p class="muted note-pull">以下为实时读取 <code>assets/evolution-manifest.json</code> 与 <code>assets/evolution-candidates.json</code> 的渲染结果；与 <a href="national-strategy-opinion.html#evolution-feed-section">战略·舆情页 · 第 6 节</a> 同源。</p>
       <div id="evolution-feed" class="evolution-feed" aria-live="polite"></div>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>若下方为空或需 <code>http(s)</code> 才显示，原因可能是哪两类（真源缺失 vs 打开方式）？</p>
     </section>
 
     <section class="card reader-home-next hub-cluster-next" aria-labelledby="evloop-synth-next-h">

@@ -4,7 +4,7 @@
 # 省略：hint_decisions、对账 drift、顶栏 partial 对齐、404 skip-bar、黄金集映射、沉淀 Schema 等。
 # 已含（与全量 validate 同源）：**`validate_ai_overlay_step_schema`**、**`validate_ai_analysis_overlay_schema`**（无对应文件则跳过）。
 # 合并 PR 前仍须：``make validate``（见 CONTRIBUTING.md · docs/README.md#quick-paths）。
-# 不含 spa-sync：改根 HTML/docs 维护 SPA 见 docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help
+# 不含 spa-sync：改根 HTML/docs 维护 SPA 见 docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help（CONTRIBUTING.md#contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command）
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"

@@ -1153,6 +1153,239 @@
       max-width: 100%;
       height: auto;
     }
+
+    /* 高对比偏好：与全站 assets/site.css EOF 块粗略对表（本页仍不引入 site.css） */
+    @media (prefers-contrast: more) {
+      :root {
+        --border: #3d4d62;
+        --muted: #a8b8ce;
+      }
+
+      .skip-link {
+        border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+        color: color-mix(in srgb, var(--accent) 85%, var(--text));
+      }
+
+      header.hero {
+        border-bottom-color: var(--border);
+      }
+
+      header.hero .read-hint.page-head-deck {
+        border-color: var(--border);
+        border-left-color: var(--accent);
+        color: color-mix(in srgb, var(--text) 78%, var(--muted));
+      }
+
+      header.hero .read-hint.page-head-deck a {
+        color: color-mix(in srgb, var(--accent) 12%, var(--text));
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.14em;
+      }
+
+      main#main p a,
+      main#main li a {
+        color: color-mix(in srgb, var(--accent) 15%, var(--text));
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.14em;
+      }
+
+      main#main header.hero .read-hint.page-head-deck a {
+        color: color-mix(in srgb, var(--accent) 10%, var(--text));
+      }
+
+      main#main .legacy-pagination-hint a {
+        color: color-mix(in srgb, var(--accent) 12%, var(--text));
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.12em;
+      }
+
+      main#main nav.toc a {
+        color: var(--text);
+        border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+        background: color-mix(in srgb, var(--accent-dim) 55%, var(--surface));
+      }
+
+      main#main nav.toc a:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+
+      section h2 {
+        border-bottom-color: var(--border);
+      }
+
+      .card {
+        border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+      }
+
+      .site-round-extension ul {
+        color: color-mix(in srgb, var(--text) 58%, var(--muted));
+      }
+
+      .site-round-extension .muted a,
+      .site-round-extension li a {
+        color: color-mix(in srgb, var(--accent) 10%, var(--text));
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.12em;
+      }
+
+      .legacy-archive-next-list a {
+        color: color-mix(in srgb, var(--accent) 8%, var(--text));
+        border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+      }
+
+      .legacy-archive-next-list a:hover {
+        color: var(--text);
+        border-color: var(--accent);
+      }
+
+      th,
+      td {
+        border-color: color-mix(in srgb, var(--accent) 25%, var(--border));
+      }
+
+      footer {
+        border-top-color: var(--border);
+        color: color-mix(in srgb, var(--text) 72%, var(--muted));
+      }
+
+      footer a {
+        color: color-mix(in srgb, var(--accent) 12%, var(--text));
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.12em;
+      }
+
+      .page-flow-strip {
+        border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
+      }
+
+      .site-data-live-strip-kicker {
+        color: color-mix(in srgb, var(--text) 92%, var(--muted));
+      }
+
+      .site-data-live-strip-body,
+      .site-data-live-strip-trends,
+      .site-data-live-strip-foot {
+        color: color-mix(in srgb, var(--text) 82%, var(--muted));
+      }
+
+      .site-data-live-strip-body a,
+      .site-data-live-strip-trends a {
+        color: color-mix(in srgb, var(--accent) 12%, var(--text));
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+      }
+
+      .stack-item {
+        border-color: var(--border);
+      }
+
+      .subtheme {
+        border-color: var(--border);
+      }
+
+      .sim-option label {
+        border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+      }
+
+      .sim-option input:checked + label {
+        border-color: var(--accent);
+        color: var(--text);
+        background: color-mix(in srgb, var(--accent-dim) 75%, var(--surface));
+      }
+
+      .sim-output {
+        border-color: var(--border);
+      }
+
+      button.btn {
+        border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+      }
+
+      button.btn-primary {
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 22%, transparent);
+      }
+
+      .flow-note {
+        color: color-mix(in srgb, var(--text) 76%, var(--muted));
+        border-style: solid;
+        border-color: var(--border);
+      }
+
+      .pill {
+        color: color-mix(in srgb, var(--accent) 6%, var(--text));
+        background: color-mix(in srgb, var(--accent-dim) 85%, var(--surface));
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 42%, var(--border));
+      }
+
+      .plane-card {
+        border-color: var(--border);
+      }
+
+      .plane-card ul {
+        color: color-mix(in srgb, var(--text) 72%, var(--muted));
+      }
+
+      .viz-bar {
+        border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
+      }
+
+      .viz-bar:hover {
+        transform: none;
+        box-shadow:
+          inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent),
+          0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent);
+      }
+
+      .evo-track {
+        border-left-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+      }
+
+      .evo-node::before {
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-dim) 90%, var(--surface));
+      }
+
+      .evo-node p {
+        color: color-mix(in srgb, var(--text) 68%, var(--muted));
+      }
+
+      .morph-card {
+        border-color: var(--border);
+      }
+
+      .morph-card .tag {
+        color: color-mix(in srgb, var(--text) 65%, var(--muted));
+        box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 22%, var(--border));
+      }
+
+      .morph-card p {
+        color: color-mix(in srgb, var(--text) 68%, var(--muted));
+      }
+
+      .stepper {
+        border-color: var(--border);
+      }
+
+      .stepper-head {
+        border-bottom-color: var(--border);
+      }
+
+      .stepper-dot:hover {
+        transform: none;
+        background: color-mix(in srgb, var(--accent) 45%, var(--border));
+      }
+
+      ::selection {
+        background: rgba(107, 184, 252, 0.45);
+        color: var(--bg);
+      }
+    }
   </style>
 </head>
 <body>
@@ -1172,13 +1405,13 @@
         将技术、合规、地缘、国家安全、资本与组织、个人发展等维度梳理为可浏览的叠加栈，并通过多因子情景沙盘合成「架构启示」。
       </p>
       <div class="read-hint page-head-deck" role="note" aria-label="使用边界与分页真源">
-        <p class="muted note-kicker"><strong>温读入口</strong>：<strong>读者</strong> → <a href="index.html#read-guide">读站指路</a> · <a href="index.html#three-questions">三问</a>；<strong>合 PR</strong> → <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="CONTRIBUTING.md#contributing-env-and-cmd">CONTRIBUTING</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a>；<strong>数据 / 分析</strong> → <a href="docs/README.md#quick-paths">docs · 最短链（0c）</a> · <a href="docs/README.md#content-framework">真源分层</a> · <a href="docs/README.md#front-back-modules">前后台</a> · <a href="docs/README.md#system-components-fusion">组件×主链</a> · <a href="analysis-hub.html">分析引擎</a>。</p>
+        <p class="muted note-kicker"><strong>温读入口</strong>：<strong>读者</strong> → <a href="index.html#read-guide">读站指路</a> · <a href="index.html#three-questions">三问</a>；<strong>合 PR</strong> → <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="CONTRIBUTING.md#contributing-env-and-cmd">CONTRIBUTING</a> · <a href="CONTRIBUTING.md#contributing-five-minute">开 PR 前速览</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a> · <a href="CONTRIBUTING.md#contributing-change-to-command">动手→命令速查</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a>；<strong>数据 / 分析</strong> → <a href="docs/README.md#quick-paths">docs · 最短链（0c）</a> · <a href="docs/README.md#content-framework">真源分层</a> · <a href="docs/README.md#front-back-modules">前后台</a> · <a href="docs/README.md#system-components-fusion">组件×主链</a> · <a href="analysis-hub.html">分析引擎</a>。</p>
         <p><strong>定性脚手架</strong>，非单点预言或精确预测。</p>
         <p>仅供战略规划与研讨，<strong>不构成法律或投资建议</strong>。</p>
         <p><strong>真源</strong>：站内叙事以 <a href="index.html">分页 HTML</a> 为准；本页为单文件快照。</p>
-        <p><strong>维护与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a>。</p>
+        <p><strong>维护与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="CONTRIBUTING.md#contributing-five-minute">开 PR 前速览</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a> · <a href="CONTRIBUTING.md#contributing-change-to-command">动手→命令速查</a>。</p>
       </div>
-      <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
+      <aside class="card site-data-live-strip-host" data-site-data-live="snapshot-only" aria-live="polite" hidden></aside>
       <div class="page-flow-strip" role="img" aria-label="单页归档读法：推荐先打开分页总览与三问导读；本页内按目录从全景、十年、模型栈到步进推演与情景沙盘顺序浏览">
         <svg viewBox="0 0 640 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>

@@ -1,9 +1,11 @@
 # 可进化站点 · 常用目标（在项目根执行 make <target>）
 SHELL := /bin/bash
+# 读者站静态服务端口（8000 被占用时可 `make serve-reader READER_PORT=8001`）
+READER_PORT ?= 8000
 .PHONY: validate validate-fast clean-pipeline-metrics clean-pipeline-metrics-dry-run clean-overlay-artifacts phase-1 test test-readonly-api test-admin-console merge-ready pre-merge sync-nav check-site-nav ingest ingest-full analyze pipeline evolution-fast check-analysis digest maintainer-roundup ai-overlay ai-overlay-stub help hooks sitemap site-search-index trends status gen-nav-links spa-sync spa-install spa-build spa-preview serve-reader docker-build docker-up docker-down docker-up-api docker-up-admin docker-up-stack docker-up-kafka-dev docker-down-kafka-dev
 
 help:
-	@echo "参与贡献 / 合并前自检：见根目录 CONTRIBUTING.md · 整体内容框架：docs/README.md#content-framework · 文档主线表：docs/README.md#docs-spine · 五条架构红线：docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index · PR 证据三联：CONTRIBUTING.md#contributing-pr-evidence-triad"
+	@echo "参与贡献 / 合并前自检：见根目录 CONTRIBUTING.md · 整体内容框架：docs/README.md#content-framework · 文档主线表：docs/README.md#docs-spine · 五条架构红线：docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index · 开 PR 前速览：CONTRIBUTING.md#contributing-five-minute · PR 证据三联：CONTRIBUTING.md#contributing-pr-evidence-triad · 动手→命令速查：CONTRIBUTING.md#contributing-change-to-command"
 	@echo "前后台按域：docs/README.md#front-back-modules · 组件×主链：docs/README.md#system-components-fusion · 按改动判型（0c）：docs/README.md#quick-paths"
 	@echo "维护者一页收束（枢纽↔注册表↔文档锚点）：maintainer-hub.html#mh-spine-map · #mh-boundaries（系统边界） · #mh-reader-admin-matrix（衔接矩阵） · merge/spa 动线：docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence"
 	@echo "整体架构（五维/六域/七类勿混）：docs/PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain · 主链/验收入口 §1a · 物理分层 §1b · 模块矩阵 docs/MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md"
@@ -38,10 +40,10 @@ help:
 	@echo "make sitemap    - 需 SITE_BASE=https://... 生成 sitemap.xml"
 	@echo "make site-search-index - 由 registry pages + 各页 <title> 生成 assets/site-search-index.json（可选；不入 validate）"
 	@echo "make gen-nav-links - 由 spa/nav.config.json 生成 spa/src/navLinks.ts（增删注册页后先跑）"
-	@echo "make spa-sync   - 同步根目录 HTML/assets/docs → spa/public（供全站 SPA）；merge/双轨见 docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix"
-	@echo "make spa-build  - gen-nav-links + spa-sync + npm ci + vite build（产物 spa/dist，含 404 回退）；MERGE §1 · partials 手顺 · 关系视图（docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map）"
+	@echo "make spa-sync   - 同步根目录 HTML/assets/docs → spa/public（供全站 SPA）；merge/双轨见 docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help（CONTRIBUTING.md#contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command）"
+	@echo "make spa-build  - gen-nav-links + spa-sync + npm ci + vite build（产物 spa/dist，含 404 回退）；MERGE §1 · partials 手顺 · 关系视图（docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · make help（CONTRIBUTING.md#contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command））"
 	@echo "make spa-preview - 预览 spa 构建（默认端口见终端）"
-	@echo "make serve-reader - 本机起静态服务读 MPA（127.0.0.1:8000；见 README 读者站排障）"
+	@echo "make serve-reader - 本机起静态服务读 MPA（127.0.0.1:READER_PORT，默认 8000；端口占用时可 READER_PORT=8001；见 README 读者站排障）"
 	@echo "make docker-build - docker compose build（MPA 镜像）"
 	@echo "make docker-up    - docker compose up -d（默认仅 web:8765）"
 	@echo "make docker-up-api - docker compose --profile api up -d（web + 只读 API:8099）"
@@ -167,10 +169,10 @@ spa-build: gen-nav-links spa-sync
 spa-preview:
 	cd spa && npm run preview
 
-# 读者站（根目录 MPA）：须 http(s) 才能 fetch JSON；端口 8000 与 compose web 8765 错开
+# 读者站（根目录 MPA）：须 http(s) 才能 fetch JSON；默认端口 8000 与 compose web 8765 错开
 serve-reader:
-	@echo "读者站（MPA）：http://127.0.0.1:8000/  （Ctrl+C 停止）"
-	cd "$(CURDIR)" && python3 -m http.server 8000 --bind 127.0.0.1
+	@echo "读者站（MPA）：http://127.0.0.1:$(READER_PORT)/  （READER_PORT=$(READER_PORT)；Ctrl+C 停止）"
+	cd "$(CURDIR)" && python3 -m http.server "$(READER_PORT)" --bind 127.0.0.1
 
 # Compose 在部分版本下即使用 COMPOSE_BAKE=false 仍可能走 Buildx（日志仍见 load local bake definitions）；
 # 中文路径会触发 x-docker-expose-session-* gRPC 头错误，故构建类命令默认关 BuildKit（见 docs/DOCKER.md §8）。

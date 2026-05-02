@@ -1,10 +1,20 @@
 # 合并与发布检查单（一页汇总）
 
-**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**本文侧重**：**合并前**命令与核对、**`spa-sync` / `spa-build`**、发布习惯；以 **贡献 / 维护者**动线为主。**架构师跨 PR 收束**：[ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**本文侧重**：**合并前**命令与核对、**`spa-sync` / `spa-build`**、发布习惯；以 **贡献 / 维护者**动线为主。**架构师跨 PR 收束**：[ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)。
 
-本文把分散在多篇文档里的**合并前工程步骤**与**大版本发布习惯**收成一条动线，避免漏项；与 **[CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd)**、**[PLATFORM_CAPABILITY_MAP · §6—§7](./PLATFORM_CAPABILITY_MAP.md#enhance-checklist)**、**[SITE_REVIEW_THREE_PASSES · 四角色复查](./SITE_REVIEW_THREE_PASSES.md#four-perspectives-review)** 一致，**不替代**其中细节。
+本文把分散在多篇文档里的**合并前工程步骤**与**大版本发布习惯**收成一条动线，避免漏项；与 **[CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd)** · **[开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute)**、**[PLATFORM_CAPABILITY_MAP · §6—§7](./PLATFORM_CAPABILITY_MAP.md#enhance-checklist)**、**[SITE_REVIEW_THREE_PASSES · 四角色复查](./SITE_REVIEW_THREE_PASSES.md#four-perspectives-review)** 一致，**不替代**其中细节。
 
 **智能化与可演进自动化**在本仓库的含义：契约校验、管道步骤、规则 JSON、只读 API、定时 ingest/分析 artifact 等——在 **[PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md · §1.1](./PLATFORM_EXTENSIBILITY_AND_EVOLUTION.md#automation-and-evolution)** 所述**不变量**内演进；**不**包含默认自动覆盖已审 **`evolution-manifest.json`**。目标架构按 **六域协同**（数据 / 管道 / 分析 / 前端 / 运维 / 治理）打点，见 **[INTELLIGENCE_SIX_DOMAINS.md](./INTELLIGENCE_SIX_DOMAINS.md)**（阅读顺序与文首一致：**[进化与优化](./INTELLIGENCE_SIX_DOMAINS.md#evolution-and-optimization)** · **[持续分析优化](./INTELLIGENCE_SIX_DOMAINS.md#continuous-analysis-optimization)** · **[持续的优化](./INTELLIGENCE_SIX_DOMAINS.md#sustained-optimization)**（**[持续的进行优化](./INTELLIGENCE_SIX_DOMAINS.md#ongoing-optimization)**）· **[持续的升级](./INTELLIGENCE_SIX_DOMAINS.md#sustained-upgrade)** · **[§2.2 读者面版式](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)**）：改枢纽 MPA 与总线步骤**分列自检**；合并/阶段与小轮迭代习惯）。
+
+<a id="merge-at-a-glance"></a>
+
+### 合并前速览（五条）
+
+1. **`make validate`** 绿（合并真闸门；**`make test` / `validate-fast` 不可替代**）。  
+2. 推荐 **`make merge-ready`**：validate + **`test-readonly-api`** + **`test-admin-console`**。  
+3. 改 **`partials/`** → **`make sync-nav`** → **手调 `404.html`**（及 **`legacy-all-in-one.html`** skip 与 partial 一致）。  
+4. 改根 **`*.html` / `docs/`** 且维护 SPA → **`make spa-sync`** 或按 CI 路径 **`make spa-build`**。  
+5. **`evolution-manifest.json`**：仅经人审闸门合并；**不**设计默认自动写入。
 
 <a id="pre-merge"></a>
 
@@ -12,10 +22,12 @@
 
 <a id="pre-merge-partials-sequence"></a>
 
-**改 `partials/site-nav.inc.html` / `partials/skip-bar.inc.html` 时建议固定顺序**：**`make sync-nav`** → **`make validate`**；**`404.html`**（及需与 skip 五链一致的 **`legacy-all-in-one.html`**）**不在** **`sync_site_nav`** 写回范围，改模板后须**手调**与 partial 一致 — 下表对应行 · **[scripts/README · sync_site_nav 真源](../scripts/README.md#sync-site-nav-source)**。**`make help`** 文首亦有同序提示。
+**改 `partials/site-nav.inc.html` / `partials/skip-bar.inc.html` 时建议固定顺序**：**`make sync-nav`** → **`make validate`**；**`404.html`**（及需与 skip 五链一致的 **`legacy-all-in-one.html`**）**不在** **`sync_site_nav`** 写回范围，改模板后须**手调**与 partial 一致 — 下表对应行 · **[scripts/README · sync_site_nav 真源](../scripts/README.md#sync-site-nav-source)**。**`make help`** 文首 echo 与 **[CONTRIBUTING · 开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute)** · **[PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)** · **[动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)** 三锚对表；往下亦有 MERGE / **maintainer-hub** 收束行。
 
 | 步骤 | 命令或文档 |
 |------|------------|
+| **开 PR 前**最短步骤（`pip` → `validate` → `merge-ready`；三锚 + **`make help`**） | **[开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute)** |
+| 不确定改了 partials / SPA / registry 时**先执行哪条** | **[开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute)** · **[PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)** · **[动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)**（根 **`make help`** 文首三锚对表） |
 | 全闸门（与 pre-commit、CI **`validate`** 一致） | **`make validate`** |
 | 仅用 **`make validate-fast`** / **`make test`** 本地迭代 | **不可**作为合并依据；**CI** 与 **pre-commit** **不跑** **`validate-fast`**；仍须本表 **`make validate`**（见 **[docs/README · 持续集成](./README.md)** 与 **[ARCHITECTURE · `run_validate.sh` 与 fast 子集](./ARCHITECTURE.md#run-validate-gate)**） |
 | **`validate` stderr 提示跳过旧格式 `pipeline-metrics`**（仅本地 **`artifacts/`**，已 gitignore） | 先 **`make clean-pipeline-metrics-dry-run`** 查看将删文件，再 **`make clean-pipeline-metrics`**，重跑 **`make analyze`** / **`make evolution-fast`**；契约见 **[DATA_CONTRACTS · §7](./DATA_CONTRACTS.md#pipeline-telemetry)** · **[EVOLUTION_RUNBOOK · 加速](./EVOLUTION_RUNBOOK.md#accelerate)** |
@@ -43,7 +55,7 @@
 - [ ] **窄窗**（约 390px）顶栏换行与三问/分区可点  
 - [ ] 总线页 **`data-site-meta-version`** 与 **`assets/site-meta.json`** 意图一致（若本版要升 **`site_version`**）  
 - [ ] 在**实际部署环境**抽一条 **`docs/*.md`** 链，确认读者可接受（静态根部署下多为原文/下载，见 [PLATFORM · §7](./PLATFORM_CAPABILITY_MAP.md#reader-and-release)）  
-- [ ] **本地读者站**：用 **`make serve-reader`**（**8000**）或 **Docker / dev compose**（**8765**）打开首页，确认总线非白屏（勿 **`file://`**；见根 [README.md](../README.md)）  
+- [ ] **本地读者站**：用 **`make serve-reader`**（默认 **8000**，占用时可 **`READER_PORT=8001`**）或 **Docker / dev compose**（**8765**）打开首页，确认总线非白屏（勿 **`file://`**；见根 [README.md](../README.md)）  
 - [ ] 若依赖顶栏 **「搜页面…」**：已 **`make site-search-index`** 且 **`assets/site-search-index.json`** 与当前注册页一致（无则顶栏该格隐藏，属预期）  
 - [ ] 若发布 **SPA**：抽一条壳内路由 + **iframe** 内标题可读性  
 - [ ] 若本版改 **`admin-console`**：除 **`make test-admin-console`** 外，可抽 **≤60rem** 顶栏横向滚动与 **`#mod-…`** 深链（**[§7](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)** · **[§7b](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-ui-ia)**）
@@ -63,6 +75,8 @@
 
 | 需求 | 去向 |
 |------|------|
+| **开 PR 前**最短步骤（与上文「合并前速览（五条）」对读） | **[开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute)** |
+| 合并前「改了什么 → 先跑什么」一页表 | **[开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute)** · **[PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)** · **[动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)**（根 **`make help`** 文首三锚对表） |
 | 全文档整理主线（维护者按序扫读） | [docs/README.md · 文档主线](./README.md#docs-spine) |
 | 整体内容框架（真源分层） | [docs/README · #content-framework](./README.md#content-framework) |
 | 前后台模块总览（读者面 × 管理面） | [docs/README · #front-back-modules](./README.md#front-back-modules) |
@@ -70,8 +84,8 @@
 | 按改动类型判型（最短链 · 与主线 **0c** 同锚） | [docs/README · #quick-paths](./README.md#quick-paths) · [MODULE · §1a](./MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md#seven-class-pkg-quick) · [内容驱动链 · #content-driven-chain](./README.md#content-driven-chain) · [AI 与自动进化 · #ai-assisted-evolution](./README.md#ai-assisted-evolution) |
 | 五维总图 · 主链联动验证 · 仓库物理分层 · 勿混粒度 | **[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · **[§1a 主链联动与验证](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation)** · **[§1b 仓库物理分层](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)** |
 | 术语 · CI · 常见变更表 | [CONTRIBUTING.md](../CONTRIBUTING.md#contributing-terminology) |
-| 五条红线 · PR 复盘 · 改 partials 手顺 | [ONE_PAGER · 不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [MERGE · partials 手顺](#pre-merge-partials-sequence) |
-| 自动化助手闸门 | [AGENTS.md](../AGENTS.md#agents-contract) · [框架判型](../AGENTS.md#agents-content-framework) · [合并前](../AGENTS.md#agents-pre-merge) · [人审](../AGENTS.md#agents-invariants) · [管理端 IA](../AGENTS.md#agents-admin-console) · [双轨](../AGENTS.md#agents-dual-track) · [枢纽首屏](../AGENTS.md#agents-hub-lead) · [make test 子集](../AGENTS.md#agents-test-subset) · [Cursor 规则](../AGENTS.md#agents-cursor-rules) · [repo-gates.mdc](../.cursor/rules/repo-gates.mdc)（[README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)）· [spa-nav-config](../.cursor/rules/spa-nav-config.mdc) · [spa-nav-registry](../.cursor/rules/spa-nav-registry.mdc) · [evolution-registry](../.cursor/rules/evolution-registry.mdc) |
+| 五条红线 · PR 复盘 · 改 partials 手顺 | [ONE_PAGER · 不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · 开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [CONTRIBUTING · 动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command) · [MERGE · partials 手顺](#pre-merge-partials-sequence) |
+| 自动化助手闸门 | [AGENTS.md](../AGENTS.md#agents-contract) · [框架判型](../AGENTS.md#agents-content-framework) · [合并前](../AGENTS.md#agents-pre-merge) · [人审](../AGENTS.md#agents-invariants) · [管理端 IA](../AGENTS.md#agents-admin-console) · [双轨](../AGENTS.md#agents-dual-track) · [枢纽首屏](../AGENTS.md#agents-hub-lead) · [make test 子集](../AGENTS.md#agents-test-subset) · [Cursor 规则](../AGENTS.md#agents-cursor-rules) · [repo-gates.mdc](../.cursor/rules/repo-gates.mdc)（[README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map) · 文首「子规则对读」）· [spa-nav-config](../.cursor/rules/spa-nav-config.mdc) · [spa-nav-registry](../.cursor/rules/spa-nav-registry.mdc) · [evolution-registry](../.cursor/rules/evolution-registry.mdc) |
 | 命令与脚本职责 | [scripts/README.md](../scripts/README.md)（**`sync_site_nav` / `make sync-nav`**：顶栏模板 → 各页 · **[#sync-site-nav-source](../scripts/README.md#sync-site-nav-source)**） |
 | 技术架构整理 · 分阶段升级 | [PHASED_UPGRADE_EXECUTION_GUIDE.md](./PHASED_UPGRADE_EXECUTION_GUIDE.md) · [TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md)（[附录 · 详版能力地图](./TECH_ARCHITECTURE_AND_UPGRADE_BRIEF.md#appendix-tech-capabilities)；[TECH_ARCHITECTURE_CAPABILITIES 别名](./TECH_ARCHITECTURE_CAPABILITIES.md)） · [ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md) |
 | 多篇都写「技术栈」· 简版 vs 详版 · 防散读法 | [docs/README · #tech-stack-read-merge](./README.md#tech-stack-read-merge) |
@@ -84,7 +98,7 @@
 | 舆情 / 制度 / 国情 · ingest 信源分层与反哺 | [INTEL_AND_POLICY_TRACKING_PLAYBOOK.md](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md)（**[§2—2a](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-source-tiers)** · **[§2b](./INTEL_AND_POLICY_TRACKING_PLAYBOOK.md#intel-social-platforms)**） |
 | OpenAPI · 网关 | [INTEGRATION_AND_READONLY_API.md](./INTEGRATION_AND_READONLY_API.md) |
 | Docker 部署 | [DOCKER.md](./DOCKER.md)（含 profile **`admin`** · **[§3a](./DOCKER.md#profile-admin)**） |
-| 本地读者站 MPA（无 Docker） | 根 **`make serve-reader`**（**8000**）· 根 [README.md](../README.md) · [DOCKER.md §1](./DOCKER.md#quickstart) |
+| 本地读者站 MPA（无 Docker） | 根 **`make serve-reader`**（默认 **8000**，**`READER_PORT`** 可改）· 根 [README.md](../README.md) · [DOCKER.md §1](./DOCKER.md#quickstart) |
 | 管理端脚手架（`admin-console`） | [admin-console/README.md](../admin-console/README.md) · [ADMIN_WEB_CONSOLE_ROADMAP · §8](./ADMIN_WEB_CONSOLE_ROADMAP.md#scaffold-implementation) · [ADMIN_CONSOLE · §7](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan)（**`mod-*`** · **`#mod-api`→`#mod-analysis`**） · [ADMIN_CONSOLE · §11a 索引](./ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-console-doc-index) |
 | 内容草稿（LLM/辅助） | [scripts/draft/README.md](../scripts/draft/README.md) |
 

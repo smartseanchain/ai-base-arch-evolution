@@ -338,9 +338,13 @@ body {
   color: var(--spa-muted);
   text-decoration: none;
   font-size: 0.78rem;
-  padding: 0.25rem 0.45rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.55rem;
   border-radius: 4px;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .spa-shell-nav-a:hover {
@@ -352,6 +356,16 @@ body {
   color: var(--spa-accent);
   background: rgba(61, 156, 245, 0.15);
   border: 1px solid rgba(61, 156, 245, 0.35);
+}
+
+.spa-shell-nav-a:focus-visible {
+  outline: 2px solid var(--spa-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.spa-shell-nav-a:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .spa-shell-nav:focus {
@@ -496,4 +510,88 @@ body {
 .spa-error-fallback-retry:focus-visible {
   outline: 2px solid var(--spa-accent);
   outline-offset: 2px;
+}
+
+/* 高对比偏好：与 MPA `.site-nav` 在 prefers-contrast: more 下的强化对表 */
+@media (prefers-contrast: more) {
+  :root {
+    --spa-border: #3d5070;
+    --spa-muted: #c4cfdf;
+  }
+
+  .spa-skip-bar,
+  .spa-shell-header {
+    border-bottom-color: color-mix(in srgb, var(--spa-accent) 32%, var(--spa-border));
+  }
+
+  .spa-skip-link {
+    border-color: color-mix(in srgb, var(--spa-accent) 52%, var(--spa-border));
+    color: color-mix(in srgb, var(--spa-accent) 88%, var(--spa-text));
+  }
+
+  .spa-shell-brand {
+    color: var(--spa-text);
+  }
+
+  .spa-shell-threeq {
+    color: color-mix(in srgb, var(--spa-muted) 55%, var(--spa-text));
+    border-color: color-mix(in srgb, var(--spa-accent) 26%, var(--spa-border));
+    animation: none !important;
+    box-shadow: none;
+  }
+
+  .spa-shell-threeq.spa-shell-catalog {
+    border-color: color-mix(in srgb, var(--spa-accent-2) 42%, var(--spa-border));
+  }
+
+  .spa-shell-nav-summary {
+    color: color-mix(in srgb, var(--spa-muted) 45%, var(--spa-text));
+    border-color: color-mix(in srgb, var(--spa-accent) 22%, var(--spa-border));
+  }
+
+  .spa-shell-nav-dropdown {
+    border-color: color-mix(in srgb, var(--spa-accent) 45%, var(--spa-border));
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.62),
+      0 0 0 1px rgba(107, 184, 252, 0.28);
+  }
+
+  .spa-shell-nav-a {
+    color: color-mix(in srgb, var(--spa-accent) 18%, var(--spa-text));
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.12em;
+  }
+
+  .spa-shell-nav-a:hover,
+  .spa-shell-nav-a.is-active {
+    color: var(--spa-text);
+    text-decoration-color: color-mix(in srgb, var(--spa-accent) 55%, transparent);
+  }
+
+  .spa-error-fallback-detail {
+    color: color-mix(in srgb, var(--spa-muted) 65%, var(--spa-text));
+  }
+
+  .spa-not-found-lead {
+    color: color-mix(in srgb, var(--spa-text) 82%, var(--spa-muted));
+  }
+
+  .spa-not-found a,
+  .spa-error-fallback a {
+    color: color-mix(in srgb, var(--spa-accent) 8%, var(--spa-text));
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.12em;
+  }
+
+  .spa-error-fallback-retry {
+    border-color: color-mix(in srgb, var(--spa-accent) 52%, var(--spa-border));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--spa-text) 22%, transparent);
+  }
+
+  ::selection {
+    background: rgba(107, 184, 252, 0.45);
+    color: var(--spa-bg);
+  }
 }

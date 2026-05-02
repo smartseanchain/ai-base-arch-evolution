@@ -11,7 +11,7 @@ export function spaDocumentTitle(pathname: string, hash: string): string {
     if (hash === "#hub-catalog")
       return `${SPA_SITE_NAME} · 总览 · 分区速跳`;
     if (hash === "#index-intent-pick")
-      return `${SPA_SITE_NAME} · 总览 · 判型入口`;
+      return `${SPA_SITE_NAME} · 总览 · 四条动线`;
     if (hash === "#read-guide")
       return `${SPA_SITE_NAME} · 总览 · 读站指路`;
     if (hash === "#three-questions")
@@ -30,7 +30,7 @@ export function spaRouteAnnounce(pathname: string, hash: string): string {
   if (unknown) return "当前：页面未找到";
   if (pathname === "/") {
     if (hash === "#hub-catalog") return "当前：总览 · 分区速跳";
-    if (hash === "#index-intent-pick") return "当前：总览 · 判型入口";
+    if (hash === "#index-intent-pick") return "当前：总览 · 四条动线";
     if (hash === "#read-guide") return "当前：总览 · 读站指路";
     if (hash === "#three-questions") return "当前：总览 · 三问导读";
     if (hash === "#reader-next") return "当前：总览 · 常见下一站";

@@ -1,6 +1,6 @@
 # 舆情、制度与国情 · 跟踪与反哺操作手册
 
-**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**本文侧重**：**ingest 信源分层**、外链与自动化边界、把线索**接进闸门与 PR**；判型合一见 [docs/README · #quick-paths](./README.md#quick-paths) 表内「情报 ingest · 管理控制台 · SPA 壳」行。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**本文侧重**：**ingest 信源分层**、外链与自动化边界、把线索**接进闸门与 PR**；判型合一见 [docs/README · #quick-paths](./README.md#quick-paths) 表内「情报 ingest · 管理控制台 · SPA 壳」行。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)。
 
 **整体内容框架** / **读者面×管理面** / **组件串主链**：[docs/README · #content-framework](./README.md#content-framework) · **[#front-back-modules](./README.md#front-back-modules)** · **[#system-components-fusion](./README.md#system-components-fusion)**。
 
@@ -134,7 +134,7 @@ AI 辅助归纳时：**事实断言仍以原文为准**；解读见 [AI_ASSISTED
 | 读者 / 管理分拆 | [USER_ADMIN_SPLIT](./USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md) |
 | 六域与智能化边界 | [INTELLIGENCE_SIX_DOMAINS](./INTELLIGENCE_SIX_DOMAINS.md)（延伸阅读亦回链本手册） |
 | 合并 / 发布自检 | [MERGE_AND_RELEASE_CHECKLIST](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [AGENTS.md · 合并前](../AGENTS.md#agents-pre-merge) |
-| 五条红线与 PR 复盘 | [ONE_PAGER · 不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [EVOLUTION · 证据三联](./EVOLUTION_RUNBOOK.md#pr-evidence-triad) |
+| 五条红线与 PR 复盘 | [ONE_PAGER · 不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [CONTRIBUTING · 动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command) · [EVOLUTION · 证据三联](./EVOLUTION_RUNBOOK.md#pr-evidence-triad) |
 | 真源分层与判型（0c） | [AGENTS.md · 框架](../AGENTS.md#agents-content-framework) · [docs/README · #content-framework](./README.md#content-framework) · [#front-back-modules](./README.md#front-back-modules) · [#system-components-fusion](./README.md#system-components-fusion) · [#quick-paths](./README.md#quick-paths) |
 | 自动化助手 · 人审闸门 | [AGENTS.md](../AGENTS.md#agents-invariants) |
 | 枢纽页 `lead` / `read-hint` | [SITE_REVIEW · §3.5](./SITE_REVIEW_THREE_PASSES.md#section-3-5-lead-readhint) · [AGENTS.md · 枢纽首屏](../AGENTS.md#agents-hub-lead) |
@@ -142,8 +142,8 @@ AI 辅助归纳时：**事实断言仍以原文为准**；解读见 [AI_ASSISTED
 | 分析管道 vs 枢纽 HTML | [AGENTS.md · 架构边界](../AGENTS.md#agents-arch-boundary) |
 | 读者链路与深链惯例 | [AGENTS.md · 读者惯例](../AGENTS.md#agents-reader-conventions) · [PLATFORM · §7 读者预期](./PLATFORM_CAPABILITY_MAP.md#reader-and-release) |
 | 长文档索引（深读） | [AGENTS.md · 深读](../AGENTS.md#agents-deep-read) · [PLATFORM_MASTER_MAP · §1a](./PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces) |
-| Cursor 规则映射 | [AGENTS.md · Cursor](../AGENTS.md#agents-cursor-rules) · [repo-gates.mdc](../.cursor/rules/repo-gates.mdc) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map) · [CONTRIBUTING · Cursor / 子规则](../CONTRIBUTING.md#contributing-env-and-cmd) |
-| 全量 **`validate`** 与本地 **`validate-fast`** | [ARCHITECTURE · `run_validate.sh` 与 fast 子集](./ARCHITECTURE.md#run-validate-gate) · [docs/README · 持续集成](./README.md) · [CONTRIBUTING](../CONTRIBUTING.md#contributing-env-and-cmd) |
+| Cursor 规则映射 | [AGENTS.md · Cursor](../AGENTS.md#agents-cursor-rules) · [repo-gates.mdc](../.cursor/rules/repo-gates.mdc)（文首「子规则对读」）· [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map) · [CONTRIBUTING · Cursor / 子规则](../CONTRIBUTING.md#contributing-env-and-cmd) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) |
+| 全量 **`validate`** 与本地 **`validate-fast`** | [ARCHITECTURE · `run_validate.sh` 与 fast 子集](./ARCHITECTURE.md#run-validate-gate) · [docs/README · 持续集成](./README.md) · [CONTRIBUTING](../CONTRIBUTING.md#contributing-env-and-cmd) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) |
 | 贡献与常见变更表 | [CONTRIBUTING](../CONTRIBUTING.md#contributing-common-changes-checklist) |
 
 ---

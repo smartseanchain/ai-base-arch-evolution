@@ -1,7 +1,7 @@
 /**
  * 全站数据总线：并行缓存加载 analysis-snapshot、sediment-trends、site-meta；
  * 可选加载 assets/site-search-index.json 并在 [data-site-quick-search] 提供轻量页题搜索。
- * 自动挂载 [data-site-data-live]（可选 data-site-data-live="snapshot-only" 跳过趋势请求）。
+ * 自动挂载 [data-site-data-live]（data-site-data-live="snapshot-only" 时不 fetch sediment-trends.json；页内无一节需要趋势时整页为零次 trends 请求）。
  */
 (function () {
   "use strict";
@@ -462,6 +462,29 @@
     document.body.appendChild(a);
   }
 
+  /**
+   * 滚动超过阈值时为 body 加上 is-scrolled-deep，配合 site.css 略压暗基底色（仅装饰性阅读体验）。
+   */
+  function bindScrollAmbientDim() {
+    if (document.body.classList.contains("page-triad-future")) return;
+    var threshold = Math.min(160, Math.max(96, Math.round(window.innerHeight * 0.18)));
+    var ticking = false;
+    function apply() {
+      ticking = false;
+      var y = window.scrollY || document.documentElement.scrollTop || 0;
+      document.body.classList.toggle("is-scrolled-deep", y > threshold);
+    }
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(apply);
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    apply();
+  }
+
   function mountReadingProgressBar() {
     if (document.body.getAttribute("data-no-reading-progress") === "1") return;
     if (document.querySelector(".reading-progress")) return;
@@ -497,6 +520,7 @@
   }
 
   function boot() {
+    bindScrollAmbientDim();
     mountReadingProgressBar();
     mountBackToTopFab();
     mountAllLiveStrips();

@@ -3,6 +3,7 @@
 # 合并前本地推荐 make merge-ready（validate + test-readonly-api · test_readonly*.py + test-admin-console）；validate job 同 run_validate.sh；admin-console 见 admin-console-tests job；单页 UI 分区 docs/ADMIN_CONSOLE_FRAMEWORK_OVERVIEW.md#admin-module-plan。
 # spa-build 按路径过滤；不写回 manifest；artifact 类 workflow 见 README「持续集成」。
 # 若改编排器/broker/生产库与 CI 分工：先对 docs/PHASED_UPGRADE_EXECUTION_GUIDE.md；勿引入第二套脱离 run_validate.sh 的合并真源（与 AGENTS.md#agents-pre-merge、PR 模板一致）。
+# make help（CONTRIBUTING.md#contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command）与其它 workflow / compose 收束注释对表。
 name: CI
 
 on:

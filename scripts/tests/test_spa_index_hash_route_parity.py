@@ -12,7 +12,7 @@ _FRAME = REPO_ROOT / "spa" / "src" / "LegacyFrame.tsx"
 # 与 index.html 内 toc / 锚点及壳层约定一致；改 MPA 或 SPA 时须同步本表与 spa/README、CONTRIBUTING。
 INDEX_HASH_LABELS: tuple[tuple[str, str], ...] = (
     ("#hub-catalog", "分区速跳"),
-    ("#index-intent-pick", "判型入口"),
+    ("#index-intent-pick", "四条动线"),
     ("#read-guide", "读站指路"),
     ("#three-questions", "三问导读"),
     ("#reader-next", "常见下一站"),

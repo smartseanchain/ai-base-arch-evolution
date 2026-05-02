@@ -1,6 +1,6 @@
 # 仓库架构一览
 
-**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**本文侧重**：**数据流**与**七类模块**、`run_validate` 等闸门总览；字段级 JSON 契约见 [DATA_CONTRACTS](./DATA_CONTRACTS.md)。**架构师梳理入口**（粒度—真源—闸门—演进节奏）：[架构一页纸 · 架构师视角](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**本文侧重**：**数据流**与**七类模块**、`run_validate` 等闸门总览；字段级 JSON 契约见 [DATA_CONTRACTS](./DATA_CONTRACTS.md)。**架构师梳理入口**（粒度—真源—闸门—演进节奏）：[架构一页纸 · 架构师视角](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)。
 
 静态站点 + **可进化数据管道**：人审闸门贯穿 manifest 入库与规则闭环记录。
 
@@ -211,7 +211,7 @@ flowchart TB
 
 ## 延伸阅读
 
-- **参与贡献（环境与合并前自检）**：[CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd) · **Agent 速查**：[AGENTS.md](../AGENTS.md#agents-contract) · [框架判型](../AGENTS.md#agents-content-framework)
+- **参与贡献（环境与合并前自检）**：[CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · **Agent 速查**：[AGENTS.md](../AGENTS.md#agents-contract) · [框架判型](../AGENTS.md#agents-content-framework)
 - **整体适配、分阶段升级与扩展路线图**：[ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md](./ARCHITECTURE_UPGRADE_AND_EXTENSIONS.md)
 - **文档索引与 CI 双轨说明（文首）**：[docs/README.md](./README.md)（**[前后台模块总览](./README.md#front-back-modules)** · **[组件与功能融合](./README.md#system-components-fusion)**）
 - **数据契约与主键索引（JSON / 侧车 / 遥测）**：[DATA_CONTRACTS.md](./DATA_CONTRACTS.md)

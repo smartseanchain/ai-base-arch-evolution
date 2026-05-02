@@ -1,13 +1,14 @@
 # 基础架构演变推演
 
-**读者入口** → [总览 · 我是来…](index.html#index-intent-pick) · [读站指路](index.html#read-guide)　|　**贡献与闸门** → [CONTRIBUTING · 环境与命令](CONTRIBUTING.md#contributing-env-and-cmd) · [维护导读](maintainer-hub.html) · **`make validate`** · [validate 失败速查](CONTRIBUTING.md#contributing-validate-faq)
+**读者入口** → [总览 · 四条动线](index.html#index-intent-pick) · [读站指路](index.html#read-guide)　|　**贡献与闸门** → [CONTRIBUTING · 环境与命令](CONTRIBUTING.md#contributing-env-and-cmd) · [开 PR 前速览](CONTRIBUTING.md#contributing-five-minute) · [维护导读](maintainer-hub.html) · **`make validate`** · [validate 失败速查](CONTRIBUTING.md#contributing-validate-faq)
 
-静态站点 + **可进化观测管道**（manifest / 候选 / 分析 / 沉淀）。**先判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：[#产品视角四条动线](#pm-four-journeys) · [#从这里开始（产品与角色）](#readme-start-here) · [#双轨真源一览](#readme-dual-track-map)。**架构师梳理与持续改进**：[docs/ARCHITECTURE_ONE_PAGER · 五步表](docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [五条架构红线](docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](CONTRIBUTING.md#contributing-pr-evidence-triad)。**整体内容框架**（叙事 / JSON / `docs` / 闸门 / MPA·SPA / 管理面真源分层）：[docs/README.md · 整体内容框架](docs/README.md#content-framework)。**前后台模块一页表**：[docs/README · 前后台模块总览](docs/README.md#front-back-modules)。**系统组件与功能一条表**：[docs/README · #system-components-fusion](docs/README.md#system-components-fusion)。**参与贡献**（环境、**`make validate`**（必）、**`make merge-ready`**（合并前推荐：validate + 只读 API + 管理端烟测）、CI 双轨、注册表/SPA 自检）：[CONTRIBUTING.md](CONTRIBUTING.md#contributing-env-and-cmd)。**文档整理主线**（维护者按序扫读）：[docs/README.md · 文档主线](docs/README.md#docs-spine)。**按改动类型秒选入口**：[docs/README · 常见改动最短链](docs/README.md#quick-paths)。**内容驱动**（数据/分析→模块与叙事→总线 vs 纯版式）：[docs/README · 内容驱动链](docs/README.md#content-driven-chain)。**AI 与自动进化**（契约内能力链）：[docs/README · #ai-assisted-evolution](docs/README.md#ai-assisted-evolution)。**自动化助手 / Cursor**：[AGENTS.md](AGENTS.md#agents-contract) · [架构师梳理](AGENTS.md#agents-architect-stewardship) · [框架判型](AGENTS.md#agents-content-framework) · [深读索引](AGENTS.md#agents-deep-read) · [Cursor 规则](AGENTS.md#agents-cursor-rules) · [.cursor/rules/repo-gates.mdc](.cursor/rules/repo-gates.mdc)（始终）· [`spa/src`](spa/src) 编辑时 [.cursor/rules/spa-nav-registry.mdc](.cursor/rules/spa-nav-registry.mdc)。
+静态站点 + **可进化观测管道**（manifest / 候选 / 分析 / 沉淀）。**先判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：[#产品视角四条动线](#pm-four-journeys) · [#从这里开始（产品与角色）](#readme-start-here) · [#双轨真源一览](#readme-dual-track-map)。**架构师梳理与持续改进**：[docs/ARCHITECTURE_ONE_PAGER · 五步表](docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [五条架构红线](docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [开 PR 前速览](CONTRIBUTING.md#contributing-five-minute) · [PR 证据三联](CONTRIBUTING.md#contributing-pr-evidence-triad) · [动手→命令速查](CONTRIBUTING.md#contributing-change-to-command)。**整体内容框架**（叙事 / JSON / `docs` / 闸门 / MPA·SPA / 管理面真源分层）：[docs/README.md · 整体内容框架](docs/README.md#content-framework)。**前后台模块一页表**：[docs/README · 前后台模块总览](docs/README.md#front-back-modules)。**系统组件与功能一条表**：[docs/README · #system-components-fusion](docs/README.md#system-components-fusion)。**参与贡献**（环境、**`make validate`**（必）、**`make merge-ready`**（合并前推荐：validate + 只读 API + 管理端烟测）、CI 双轨、注册表/SPA 自检）：[CONTRIBUTING.md](CONTRIBUTING.md#contributing-env-and-cmd) · [开 PR 前速览](CONTRIBUTING.md#contributing-five-minute)。**文档整理主线**（维护者按序扫读）：[docs/README.md · 文档主线](docs/README.md#docs-spine)。**按改动类型秒选入口**：[docs/README · 常见改动最短链](docs/README.md#quick-paths)。**内容驱动**（数据/分析→模块与叙事→总线 vs 纯版式）：[docs/README · 内容驱动链](docs/README.md#content-driven-chain)。**AI 与自动进化**（契约内能力链）：[docs/README · #ai-assisted-evolution](docs/README.md#ai-assisted-evolution)。**自动化助手 / Cursor**：[AGENTS.md](AGENTS.md#agents-contract) · [架构师梳理](AGENTS.md#agents-architect-stewardship) · [框架判型](AGENTS.md#agents-content-framework) · [深读索引](AGENTS.md#agents-deep-read) · [Cursor 规则](AGENTS.md#agents-cursor-rules) · [.cursor/rules/repo-gates.mdc](.cursor/rules/repo-gates.mdc)（始终；文首「子规则对读」链式点名三份子规则）· [`spa/src`](spa/src) 编辑时 [.cursor/rules/spa-nav-registry.mdc](.cursor/rules/spa-nav-registry.mdc)。
 
 - **仓库**：https://github.com/smartseanchain/ai-base-arch-evolution  
 - **GitHub Pages**（开启后）：https://smartseanchain.github.io/ai-base-arch-evolution/ — 在仓库 **Settings → Pages** 中选择 **Deploy from a branch**，分支 **main**，文件夹 **/ (root)**，保存后约 1～2 分钟可访问。  
-- **本地读者站（推荐）**：仓库根执行 **`make serve-reader`**，浏览器打开 **http://127.0.0.1:8000/**（与 Docker 静态站 **8765** 端口错开）。也可用 **`docker compose up -d`** 访问 **http://localhost:8765/**（见 [docs/DOCKER.md](docs/DOCKER.md)）。  
+- **本地读者站（推荐）**：仓库根执行 **`make serve-reader`**，浏览器打开 **http://127.0.0.1:8000/**（与 Docker 静态站 **8765** 端口错开）。若 **8000** 已被占用，可 **`make serve-reader READER_PORT=8001`**（或任意空闲端口）。也可用 **`docker compose up -d`** 访问 **http://localhost:8765/**（见 [docs/DOCKER.md](docs/DOCKER.md)）。  
 - **勿仅用 `file://` 打开 `index.html`**：`evolution.js`、`site-data-bus` 等依赖 **`fetch` 读 JSON**，多数浏览器在 `file://` 下会拦截，表现为脚本不工作或整页像「坏了」；请始终走 **http(s)**（与 [#从这里开始](#readme-start-here) 中读者「完成标准」一致）。
+- **站内轻量搜索（可选）**：总览与各页顶栏搜索依赖 **`assets/site-search-index.json`**；维护者本地可 **`make site-search-index`** 生成（**不入**默认 `make validate`）。与只读 API **`GET /site-search-index`** 及路由契约对读 **[DATA_CONTRACTS · §8.1](docs/DATA_CONTRACTS.md#readonly-api-routes)** · **[scripts/README · 命令表](scripts/README.md)**（检索 **`site-search-index`**）。
 - **维护者 / 闸门导读**：[维护导读](maintainer-hub.html) · [关系视图](maintainer-hub.html#mh-spine-map) · [系统边界](maintainer-hub.html#mh-boundaries) · [衔接矩阵](maintainer-hub.html#mh-reader-admin-matrix)（枢纽页 ↔ 注册表 ↔ 文档锚点；**不**在浏览器内写 manifest）。与 [读站指路 · 维护者条](index.html#read-guide)、[PLATFORM_MASTER_MAP · 管理面](docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces) 对读。
 - **全站顶栏与根 `404.html`**：改 **`partials/site-nav.inc.html`** / **`partials/skip-bar.inc.html`** 后 **`make sync-nav`**；**`maintainer-hub.html`** 在五链 skip 后再由 **`sync_site_nav.py` · `build_skip_bar`** 拼三页内锚，**勿**在 HTML 手改；**`404.html`** 顶栏/skip **不在** **`sync_site_nav`** 写回范围，须**手调** — [MERGE · §1](docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [下文 · 全站顶栏与 skip-bar](#全站顶栏与-skip-bar) · [scripts/README — `sync_site_nav` / 真源（#sync-site-nav-source）](scripts/README.md#sync-site-nav-source)。
 
@@ -17,8 +18,31 @@
 
 | 你是谁 | 第一站 | 约 15 分钟内的「完成标准」 |
 |--------|--------|---------------------------|
-| **读者** | [判型入口](index.html#index-intent-pick) · [读站指路](index.html#read-guide) · [分区速跳](index.html#hub-catalog) | 在 **http(s)** 下打开站点（**`make serve-reader`** 或 GitHub Pages），任选一条分区读完一页即算「激活」 |
-| **贡献 / 维护** | [CONTRIBUTING](CONTRIBUTING.md#contributing-env-and-cmd) · [常见改动最短链](docs/README.md#quick-paths) · [MERGE · pre-merge](docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) | 克隆后能 **`python3 -m pip install -r requirements.txt`** 且 **`make validate` 绿**；深度合并前推荐 **`make merge-ready`**（见 CONTRIBUTING） |
+| **读者** | [四条动线](index.html#index-intent-pick) · [读站指路](index.html#read-guide) · [分区速跳](index.html#hub-catalog) | 在 **http(s)** 下打开站点（**`make serve-reader`** 或 GitHub Pages），任选一条分区读完一页即算「激活」 |
+| **贡献 / 维护** | [CONTRIBUTING](CONTRIBUTING.md#contributing-env-and-cmd) · [开 PR 前速览](CONTRIBUTING.md#contributing-five-minute) · [常见改动最短链](docs/README.md#quick-paths) · [MERGE · pre-merge](docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) | 克隆后能 **`python3 -m pip install -r requirements.txt`** 且 **`make validate` 绿**；深度合并前推荐 **`make merge-ready`**（见 CONTRIBUTING） |
+
+<a id="readme-sixty-second"></a>
+
+**约一分钟路径（与上表「完成标准」互补）**：**读者** — 用 **http(s)** 打开站点（**`make serve-reader`** 或 Pages）→ [总览 · 四条动线卡](index.html#index-intent-pick) 定角色 → [分区速跳](index.html#hub-catalog)（或顶栏）任选一页读完即算「激活」。**贡献 / 维护** — 克隆后 **`python3 -m pip install -r requirements.txt`** → **`make validate`** 绿；合并前推荐 **`make merge-ready`**（见 [CONTRIBUTING · 开 PR 前速览](CONTRIBUTING.md#contributing-five-minute)）。更深链路仍看上表「第一站」列。
+
+**双轨（给读者的一句话）**：日常阅读用根目录**多篇分页（MPA）**即可；想在**同一壳**里快速切换注册表内分页时，再用 **`spa/` 全站壳**；合并与校验仍以 MPA 为准 — [#双轨真源一览](#readme-dual-track-map) · [spa/README · 默认读站](spa/README.md#spa-default-read)。
+
+<a id="readme-term-glossary"></a>
+
+#### 常用词速查（维护者扫文档时）
+
+| 词 | 一句话 |
+|----|--------|
+| **MPA** | 根目录多篇 `*.html`；**`make validate` / CI 默认真源** |
+| **SPA** | `spa/` 全站壳 + iframe 承载分页；与 **registry** 对齐见 **`make gen-nav-links`** |
+| **`make validate`** | 合并主闸门（与 pre-commit、CI 同款） |
+| **`make merge-ready`** | validate + 只读 API 测 + 管理端烟测（推荐合并前） |
+| **manifest** | 人审后的演进登记；**不**默认自动写 |
+| **registry** | `scripts/evolution-registry.json`（允许出现的分页与 **`lab_factors`**） |
+| **总线** | `site-data-bus.js` 等对快照等的读数呈现；**≠** 叙事正文 |
+| **partials** | 顶栏与 skip 模板；改后 **`make sync-nav`**，`404` 须手调 |
+| **五维 / 六域 / 七类** | 不同抽象粒度；勿混 — [勿混粒度](docs/PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain) |
+| **枢纽主问题** | 每枢纽页一句独占命题 — [HUB_MAIN_QUESTIONS](docs/HUB_MAIN_QUESTIONS.md#hub-main-questions) |
 
 **`validate` 报错**：优先对照 [CONTRIBUTING · validate 常见失败速查](CONTRIBUTING.md#contributing-validate-faq)；仍卡壳可用 [流水线 / 校验失败排查](.github/ISSUE_TEMPLATE/pipeline-triage.md) 开 Issue（附日志）。
 
@@ -52,10 +76,12 @@ flowchart LR
 
 | 角色 | 你要完成的事 | 建议第一站 |
 |------|----------------|------------|
-| **读者** | 在定性框架里理解栈、制度与分叉，不自代预言 | [判型入口 · 我是来…](index.html#index-intent-pick) · [读站指路](index.html#read-guide) · [三问导读](index.html#three-questions) |
-| **贡献者 / 维护** | 改 HTML/契约、开 PR、过闸门 | [维护导读](maintainer-hub.html) · [CONTRIBUTING](CONTRIBUTING.md#contributing-env-and-cmd) · **`make validate`** |
+| **读者** | 在定性框架里理解栈、制度与分叉，不自代预言 | [四条动线 · 从哪进](index.html#index-intent-pick) · [读站指路](index.html#read-guide) · [三问导读](index.html#three-questions) |
+| **贡献者 / 维护** | 改 HTML/契约、开 PR、过闸门 | [维护导读](maintainer-hub.html) · [CONTRIBUTING](CONTRIBUTING.md#contributing-env-and-cmd) · [开 PR 前速览](CONTRIBUTING.md#contributing-five-minute) · **`make validate`** |
 | **数据 / 管道** | 快照、ingest、registry、分析规则 | [docs · 常见改动最短链](docs/README.md#quick-paths) · [分析引擎](analysis-hub.html) |
 | **部署 / 运维** | 可访问、可观测、排障 | 上文本地预览与 **`file://`** 提示 · [DOCKER](docs/DOCKER.md) · [只读 API](docs/INTEGRATION_AND_READONLY_API.md) |
+
+与 [总览 · 四条动线卡](index.html#index-intent-pick) 同骨架；**「本页主问题」**与 **五簇 `hub-cluster-thread`** 写法见 [HUB_MAIN_QUESTIONS](docs/HUB_MAIN_QUESTIONS.md#hub-main-questions) · [INTELLIGENCE · §2.2](docs/INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)。
 
 #### 读者站打不开（404 / 白屏）时
 
@@ -65,6 +91,7 @@ flowchart LR
 
 ### 全站 SPA（React + Vite，主形态可选）
 
+- **读者默认只需 MPA**：根目录多页 + **`make serve-reader`** 即可，**不必**安装 Node。只有在你**维护全站壳**、改壳内顶栏/路由、或发布 **`spa/dist`** 时，才需要读 **[spa/README · 默认读站](spa/README.md#spa-default-read)** 并执行 **`make spa-sync`** / **`make spa-build`**（与 [PLATFORM · 部署一页检](docs/PLATFORM_CAPABILITY_MAP.md#reader-and-release) 对读）。
 - **默认仍以根目录 MPA 为主读**；全站壳、子路径 **`VITE_BASE`** 与何时启用 SPA，见 **[spa/README · 默认读站](spa/README.md#spa-default-read)**（与 [PLATFORM · 部署一页检](docs/PLATFORM_CAPABILITY_MAP.md#reader-and-release) 对读）。
 - 目录 **`spa/`**：**React 18** + **Vite 6** + **React Router** 客户端路由 + **iframe** 加载剥离顶栏后的各页 HTML（`scripts/sync_spa_public.py` 生成 `spa/public/`），保留原 `assets/`、`evolution.js`、`site-data-bus` 等相对路径行为。
 - **开发**：需 **Node 18+**；`cd spa && npm install && npm run dev`（会先同步 `public`）。
@@ -75,9 +102,10 @@ flowchart LR
 
 ### 如何阅读本站（读者）
 
-- **总览入口**：[判型入口](index.html#index-intent-pick)（系统深读 / 时间情景 / 合 PR）· [读站指路](index.html#read-guide) · [三问导读](index.html#three-questions)。  
+- **总览入口**：[四条动线](index.html#index-intent-pick)（读者 / 贡献 / 数据管道 / 部署）· [读站指路](index.html#read-guide) · [三问导读](index.html#three-questions) · [本页主问题](index.html#index-main-question)（总览导读块内一句）。  
+- **枢纽长页怎么写「主问题」· 总览角色卡与主问题分工**：[docs/HUB_MAIN_QUESTIONS.md](docs/HUB_MAIN_QUESTIONS.md#hub-main-questions)（与 [INTELLIGENCE · §2.2](docs/INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract) 对表；**`#index-intent-pick`** 与 **`#index-main-question`** 分工见该篇「总览」段）。  
 - **与仓库能力对齐的阅读顺序**：[docs/PLATFORM_CAPABILITY_MAP.md](docs/PLATFORM_CAPABILITY_MAP.md) §5（含时间窗官方深链；深链进正文后仍建议扫该页「推演扩展 · 本轮提要」）；**枢纽记忆、站内 `docs/*.md` 在 Pages 上的行为**见同文档 [§7](docs/PLATFORM_CAPABILITY_MAP.md#reader-and-release)。  
-- **文档索引中的读者路径**：[docs/README.md · #content-framework](docs/README.md#content-framework) 文首。  
+- **文档索引中的读者路径**：[docs/README.md · #content-framework](docs/README.md#content-framework) 文首；维护者判型可先扫 **[三十秒我该从哪读](docs/README.md#docs-30s)** 再进 [#quick-paths](docs/README.md#quick-paths)。  
 - **全站 SPA**：与 MPA 并行入口见 [spa/README.md](spa/README.md)；壳内快捷链与总览锚点（含读站指路）与根目录 `skip-bar` 同序。  
 - **推演纪律与偏误自检**：[docs/DEDUCTION_STRATEGY.md](docs/DEDUCTION_STRATEGY.md)。
 
@@ -88,6 +116,8 @@ flowchart LR
 首次克隆或拉取含 `requirements.txt` 的更新后请安装校验依赖（**jsonschema**，用于 `analysis-snapshot` 与 `docs/schemas/` 对齐）：
 
 **可选依赖**（不进入默认 CI）：`requirements-analytics.txt`（DuckDB / Polars）、`requirements-api.txt`（只读 FastAPI）。字段与文件索引见 [docs/DATA_CONTRACTS.md](docs/DATA_CONTRACTS.md)。
+
+**合并前不知先跑哪条 `make`**（`sync-nav` / `spa-sync` / `gen-nav-links` / `spa-build`）：见 **[开 PR 前速览](CONTRIBUTING.md#contributing-five-minute)** · **[PR 证据三联](CONTRIBUTING.md#contributing-pr-evidence-triad)** · **[动手→命令速查](CONTRIBUTING.md#contributing-change-to-command)**（根目录 **`make help`** 文首三锚对表）。
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -100,7 +130,7 @@ make validate-fast # 子集闸门（省时间）；CI/pre-commit 不跑；合并
 make clean-pipeline-metrics # 删本地 artifacts/pipeline-metrics-*.json（旧遥测；gitignore）
 make clean-pipeline-metrics-dry-run # 仅列出将删的 pipeline-metrics 文件（不删除）
 make merge-ready   # validate + test-readonly-api + test-admin-console（推荐合并前）
-make help          # 常用目标；含 maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence 收束行
+make help          # 常用目标；文首三锚对表（CONTRIBUTING #contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command）；另含 maintainer-hub 收束与 MERGE 深链等
 make spa-sync      # sync_spa_public：根 HTML/docs/assets → spa/public（维护 SPA；详下「双轨」段）
 make ingest      # 抓取候选（需外网，依赖 scripts/ingest_config.json）
 make ingest-full # 同上但单次 --full-pool（忽略 require_route_match）
@@ -148,7 +178,7 @@ CI **validate** 与 **spa-build** 分工、分支保护建议及路径过滤摘�
 - `update-pipeline.yml`：定时/手动分析 artifact；**定时失败**时新建 Issue（与 ingest 对称），便于发现分析脚本或校验回归
 - `ingest-pipeline.yml`：**每周二 08:00 UTC**（同日 **16:00 北京时间**）定时或手动抓取候选 artifact；Job Summary 汇总各 RSS 源成功/失败；**定时失败**会新建 Issue 提醒
 - `pr-candidates.yml`：**手动**跑 ingest 并直接向 `main` 开 PR 更新 `evolution-candidates.json`（需在仓库 **Settings → Actions → General** 将 workflow 权限设为可读写；合并仍人审）
-- 在 GitHub 开 PR 时自动带出 **`.github/pull_request_template.md`**（合并 manifest/候选请勾选自检项）。新建 Issue 可选用 **[流水线 / 校验失败排查](.github/ISSUE_TEMPLATE/pipeline-triage.md)** 模板。**贡献与自检主线**：[CONTRIBUTING.md](CONTRIBUTING.md#contributing-env-and-cmd)。
+- 在 GitHub 开 PR 时自动带出 **`.github/pull_request_template.md`**（合并 manifest/候选请勾选自检项）。新建 Issue 可选用 **[流水线 / 校验失败排查](.github/ISSUE_TEMPLATE/pipeline-triage.md)** 模板。**贡献与自检主线**：[CONTRIBUTING.md](CONTRIBUTING.md#contributing-env-and-cmd) · [开 PR 前速览](CONTRIBUTING.md#contributing-five-minute)。
 
 ### 定时流水线与仓库写入（预期）
 

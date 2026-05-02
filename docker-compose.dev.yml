@@ -1,5 +1,5 @@
 # 本地开发：挂载根目录 MPA；改 HTML/CSS/JS 后刷新即可，无需 compose build。无 Docker 时也可用仓库根 make serve-reader → http://127.0.0.1:8000/（与 8765 错开）。全站 SPA 用 cd spa && npm run dev。
-# 改根 .html / docs 后维护 SPA public：make spa-sync；docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix
+# 改根 .html / docs 后维护 SPA public：make spa-sync；docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help（CONTRIBUTING.md#contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command）
 # 用法：docker compose -f docker-compose.dev.yml up -d
 # 停止：docker compose -f docker-compose.dev.yml down
 # 只读 API（可选）：docker compose -f docker-compose.dev.yml --profile api up -d

@@ -8,7 +8,7 @@ from typing import Any
 # scripts/evolution_pkg/io.py → 上级 scripts → 再上级仓库根
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
-# merge / SPA 双轨文档锚点（仓库根）：docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help
+# merge / SPA 双轨文档锚点（仓库根）：docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help（CONTRIBUTING.md#contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command）
 
 # 仓库内相对路径（POSIX）；与 ``readonly_api`` 磁盘路由、文档中的 ``scripts/…`` 表述一致。
 REGISTRY_JSON_RELPOS = "scripts/evolution-registry.json"

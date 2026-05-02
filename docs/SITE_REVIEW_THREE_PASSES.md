@@ -1,6 +1,6 @@
 # 全站模块 · 三轮梳理（标题 / 内容 / 版式与图形）
 
-**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [总览 MPA · 四条动线卡](../index.html#index-intent-pick) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**读站顺序（含步骤 0）**：[PLATFORM_CAPABILITY_MAP · §5](./PLATFORM_CAPABILITY_MAP.md#reading-order)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)。
 
 对根目录内容页（不含 `404`、`legacy-all-in-one`）做**结构对照**，标出**不合理 / 不匹配**与**建议优先级**。结论：**无单点「错误」居多**，主要是**模式不统一**与**少数命名落差**，可按 P0→P2 分批收敛。**主链验收入口 · 仓库物理分层**（`partials/`、`assets/`、`spa/` 等同轮改动）：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · [PROJECT_ARCHITECTURE_OVERVIEW · §1a](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation) · **[§1b](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。
 
@@ -77,6 +77,7 @@
 
 与 **[AGENTS.md · 枢纽首屏](../AGENTS.md#agents-hub-lead)**（自动化助手收束）及 **[ARCHITECTURE_ONE_PAGER · 内容与呈现](./ARCHITECTURE_ONE_PAGER.md)** 互证。
 
+- **总览四条动线与五簇锚句**：**`index.html`** 的 **`#index-intent-pick`**（四条动线卡）与根 **[README · 产品视角 #pm-four-journeys](../README.md#pm-four-journeys)** 对表；**联结 / 时间 / 推演 / 制度 / 架构** 五簇读者枢纽可在 **`p.lead`** 与 **`read-hint`** 之间加 **`p.muted.hub-cluster-thread`** 一行簇内承诺（**`site.css`** · **`.page-head > p.hub-cluster-thread`**），契约与「勿冒充总线消费方」见 **[INTELLIGENCE · §2.2](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)**（与 **AGENTS** 中 **`page-head` 默认顺序**一致）。
 - **长枢纽页 / 总览与工具页**（含 **index 总览**、立体联结、教育纵轴、综合推演三页、分析引擎、可进化架构、沙盘、战略·舆情、进化闭环、模块图谱、社会责任、人与 AI 演进、整体改造、智能进化、十年之问/展望/场景、网·商·资·工、廿年视角、职基能、历史演进、分层模型、架构拓扑、地缘与商业）：**`p.lead`** 只保留「本页一句定位 + 最短必要机制」；判据/深读/双轨对账、数据侧读数、概念对齐、边界声明、同读页等收入 **`<div class="read-hint page-head-deck" role="note">`** 内分段 `<p><strong>小标题</strong>：…</p>`，避免首屏单段过长。
 - **首屏下「图例 / 流程条 / 推演扩展 / pill 目录」**：与上条 **互补**——优先复用 **`modular-intro-stack`**、**`nav.toc.toc--pilot`**、命令向 **`card--action-module` / `workbench-split`** 等（**不**替代 `lead`/`read-hint` 语义），契约与分工见 **[INTELLIGENCE_SIX_DOMAINS · §2.2](./INTELLIGENCE_SIX_DOMAINS.md#reader-layout-contract)**；与 **`site-data-bus`** 总线读数对读 **[SITE_DATA_UPDATE_FRAMEWORK](./SITE_DATA_UPDATE_FRAMEWORK.md)**。
 - **正文地标（复查）**：根目录读者页以 **`<main id="main">`** 包住 **`</header>` 之后、`<footer>` 之前**的主体，与 skip-bar **`#main`**、**`site-data-bus.js`** 动态回顶链一致，**每页仅一个 `<main>`**；规范句见 **[ARCHITECTURE_ONE_PAGER · 内容与呈现](./ARCHITECTURE_ONE_PAGER.md#content-presentation)**。
@@ -118,7 +119,7 @@
 ### 产品经理 · 顶栏与记忆负荷
 
 - **注册表一致性**：顶栏链接数与 **`evolution-registry.json`** 对齐，**27 链并列**是刻意取舍（全站可发现性优先），窄屏由 **`site.css`** 换行承载。
-- **枢纽记忆口诀（给读者）**：不必死记全栏——优先记住 **五枢纽**：**总览**（`index.html`）→ **立体联结** 或 **模块图谱** → **综合推演** → **分析引擎** → **沙盘工坊**；其余从分区速跳或检索进。总览 [读站指路](../index.html#read-guide) 已写入口分层。
+- **枢纽记忆口诀（给读者）**：不必死记全栏——先 **[四条动线](../index.html#index-intent-pick)** 定角色，再记 **五枢纽**：**总览**（`index.html`）→ **立体联结** 或 **模块图谱** → **综合推演** → **分析引擎** → **沙盘工坊**；其余从分区速跳或检索进。总览 [读站指路](../index.html#read-guide) 已写入口分层。
 - **后续可选（需产品定稿）**：顶栏分组、折叠菜单或 SPA 侧分组 **不**在本清单内实施；定稿后再开专门改版。
 
 ### 领域专家 · 深链与本轮提要

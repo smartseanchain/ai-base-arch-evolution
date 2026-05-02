@@ -1,6 +1,6 @@
 # 脚本、只读 API 与组件化：替换边界与升级建议
 
-**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)。
 
 **本文定位**：回答「**部分脚本能否换成 API 或组件**」——在**不削弱 Git 真源、`make validate` 闸门与人审 manifest** 的前提下，给出**整体分类、可替换边界与推荐升级顺序**。
 
@@ -16,7 +16,7 @@
 | **可复用的校验、对账、解析、写盘算法** | **收进 `evolution_pkg.*`**；根目录 **`scripts/*.py`** 保持**薄 CLI**（`python3 scripts/foo.py` 或 `python -m`）。 |
 | **合并闸门、PR 与 CI 必须一致** | **保留** **`run_validate.sh`** 及其中 **`validate_*` / `check_*` / `sync_site_nav --check`** 等**可本地复现**入口；**勿**用「仅远端才有的 HTTP 校验」替代合并真源。 |
 | **有副作用的长作业**（分析写盘、ingest、趋势） | **不宜**做成匿名公网 API；应保留为 **CLI + 定时/编排调用**（GitHub Actions、未来 **Prefect/Dagster** 封装**同一 argv**）。 |
-| **人审合并 manifest** | **不**改为对外 **POST** 自动写 **`evolution-manifest.json`**；管理端若提供 UI，仍走 **[AGENTS.md](../AGENTS.md#agents-invariants)** / **[CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd)** 所述人审与 PR 节奏（见 **[ADMIN_WEB_CONSOLE_ROADMAP.md](./ADMIN_WEB_CONSOLE_ROADMAP.md)**）。 |
+| **人审合并 manifest** | **不**改为对外 **POST** 自动写 **`evolution-manifest.json`**；管理端若提供 UI，仍走 **[AGENTS.md](../AGENTS.md#agents-invariants)** / **[CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd)** · **[开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute)** 所述人审与 PR 节奏（见 **[ADMIN_WEB_CONSOLE_ROADMAP.md](./ADMIN_WEB_CONSOLE_ROADMAP.md)**）。 |
 
 **一句话**：**阅读面**优先 **API 化**；**闸门与写盘**优先 **包化 + 脚本/编排调用**，而不是「用公网 CRUD 替代仓库工具链」。
 
@@ -72,7 +72,7 @@
 1. **先包化**：把共享逻辑迁入 **`evolution_pkg`**，脚本只解析参数并调用包内函数（与 **[MODULE_INVENTORY · §2](./MODULE_INVENTORY_AND_ARCHITECTURE_UPGRADE_MATRIX.md#evolution-pkg)** 一致）。  
 2. **再只读 API 化**：对**稳定、已提交**的 JSON 增加 **GET**；**不**把 validate 链整体改成「调远程服务才算绿」。  
 3. **长作业**：继续 **`make analyze` / `make evolution-fast` / ingest shell**；阶段 2 引入编排器时 **只换调度层**，**不换**步骤语义（见 **[ORCHESTRATION_AND_EVENT_STREAMING.md](./ORCHESTRATION_AND_EVENT_STREAMING.md)**）。  
-4. **第二套 validate**：**禁止**（与 **[repo-gates](../.cursor/rules/repo-gates.mdc)**、**[run_validate.sh](../scripts/run_validate.sh)** 文首注释一致）。  
+4. **第二套 validate**：**禁止**（与 **[repo-gates](../.cursor/rules/repo-gates.mdc)**、**[run_validate.sh](../scripts/run_validate.sh)** 文首注释一致；**repo-gates** 文首「子规则对读」仅索引 **mdc** 判型与 SPA/registry 分工，**不**构成并行校验入口）。  
 
 单测层面：入口 shell 与 **`pipeline.runner` 步骤表** 引用的 **`scripts/*.py`** 已由 **`test_run_validate_script_refs`**、**`test_pipeline_runner_script_refs`** 兜底（见 **[PHASED · 阶段 1](./PHASED_UPGRADE_EXECUTION_GUIDE.md#phase-1)**）。
 

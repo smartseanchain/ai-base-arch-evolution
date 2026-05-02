@@ -1,6 +1,6 @@
 # 生产/默认：镜像内 COPY 根目录 MPA（busybox httpd）；不含 spa 构建产物，与 CI「validate 默认真源」一致。
 # 改 HTML/JSON 后需 rebuild。全站 SPA：先 make spa-build，再 docker build -f Dockerfile.spa。热重载开发见 docker-compose.dev.yml。
-# MPA+SPA 双轨与 make spa-sync：docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help
+# MPA+SPA 双轨与 make spa-sync：docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help（CONTRIBUTING.md#contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command）
 # 只读 API：`docker compose --profile api up -d`（另见 docs/DOCKER.md）。
 # 管理端脚手架：`docker compose --profile admin up -d`（见 admin-console/README.md、docs/DOCKER.md#profile-admin）。
 services:

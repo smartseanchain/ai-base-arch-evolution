@@ -5,7 +5,7 @@
 # make test 仅覆盖其中子集（registry Schema + 单测 + navLinks + 沉淀/趋势 Schema），合并前仍以本脚本为准。
 # CI validate job 另装 requirements-api.txt，使 test_readonly*.py 必跑；本地未装 fastapi 时该类 skip，可用 make test-readonly-api 对齐。
 # 改编排器 / broker / 生产库时：见 docs/PHASED_UPGRADE_EXECUTION_GUIDE.md；新增检查须并入本脚本（或经评审的显式子步骤），勿另立「第二套合并真源」。
-# 本脚本不跑 spa-sync：改根 *.html 或 docs/ 且维护 SPA 时须 make spa-sync（或 make spa-build）；docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help
+# 本脚本不跑 spa-sync：改根 *.html 或 docs/ 且维护 SPA 时须 make spa-sync（或 make spa-build）；docs/MERGE_AND_RELEASE_CHECKLIST.md#pre-merge · #pre-merge-partials-sequence · maintainer-hub.html#mh-spine-map · #mh-boundaries · #mh-reader-admin-matrix · make help（CONTRIBUTING.md#contributing-five-minute · #contributing-pr-evidence-triad · #contributing-change-to-command）
 # 在项目根由 Makefile / 钩子调用；勿在子 shell 中改目录后调用。
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"

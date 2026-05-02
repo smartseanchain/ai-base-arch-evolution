@@ -143,9 +143,11 @@ class TestMergeChecklistDocAnchors(unittest.TestCase):
             f"{path.relative_to(REPO_ROOT)} should link {fragment!r}",
         )
 
-    def test_role_opener_docs_link_invariants_and_pr_triad(self) -> None:
+    def test_role_opener_docs_link_invariants_and_contributing_triad(self) -> None:
         inv = "#architect-invariants-index"
+        five = "#contributing-five-minute"
         pr_triad = "#contributing-pr-evidence-triad"
+        cmd = "#contributing-change-to-command"
         for relpath in (
             "CONTRIBUTING.md",
             "docs/README.md",
@@ -173,6 +175,16 @@ class TestMergeChecklistDocAnchors(unittest.TestCase):
                     pr_triad,
                     body,
                     f"{relpath} 文首判型链应含 CONTRIBUTING{pr_triad}",
+                )
+                self.assertIn(
+                    five,
+                    body,
+                    f"{relpath} 文首判型链应含 CONTRIBUTING{five}",
+                )
+                self.assertIn(
+                    cmd,
+                    body,
+                    f"{relpath} 文首判型链应含 CONTRIBUTING{cmd}",
                 )
 
     def test_no_merge_checklist_markdown_link_without_fragment(self) -> None:

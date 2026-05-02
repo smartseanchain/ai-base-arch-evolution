@@ -93,7 +93,7 @@
             <li><a href="evolvable-architecture.html">可进化架构</a></li>
           </ul>
         </details>
-        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-five-minute · CONTRIBUTING#contributing-pr-evidence-triad · CONTRIBUTING#contributing-change-to-command">维护导读</a>
         <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
       <div class="site-nav-meta-row">
@@ -106,24 +106,28 @@
     <div class="page-head">
       <h1>全站总览</h1>
       <p class="lead">
-        可先 <a href="#read-guide">读站指路</a> 选一条入口，再读 <a href="#three-questions">三问</a>（在哪 → 做什么 → 去哪），用 <a href="#hub-catalog">分区速跳</a> 或卡片下钻。定性脚手架，非单点预言。
+        <strong>一句承诺</strong>：用分页与判据帮你<strong>对齐变量、传导与分叉</strong>，不代替你下结论。<strong>谁该先读</strong>：关心栈与制度张力的<strong>读者</strong>、要动仓库的<strong>贡献者</strong>、跑沉淀与闸门的<strong>数据侧</strong>、要起本地或容器的<strong>部署侧</strong>——先在下卡定角色，再下钻分区或 <a href="#read-guide">读站指路</a>。
       </p>
-      <div class="index-intent-pick card" id="index-intent-pick" role="navigation" aria-label="判型入口 · 我是来…">
-        <p class="index-intent-pick-kicker">我是来…</p>
+      <div class="index-intent-pick card" id="index-intent-pick" role="navigation" aria-label="四条动线 · 从哪进">
+        <p class="index-intent-pick-kicker">四条动线 · 从哪进</p>
+        <p class="index-intent-pick-lead">与 <a href="README.md#pm-four-journeys">README · 四条动线（产品表）</a> 同骨架；五类分页不必一次记全，用 <a href="#hub-catalog">分区速跳</a> 或顶栏即可。</p>
         <ul class="index-intent-pick-list">
-          <li><a href="#read-guide"><strong>系统深读</strong></a> — 读站指路 → 三问 → 枢纽下钻</li>
-          <li><a href="#hub-time"><strong>押时间线与情景</strong></a> — 历史 · 廿年 · 十年窗</li>
-          <li><a href="maintainer-hub.html#mh-reader-admin-matrix"><strong>合 PR / 改站 / 管道</strong></a> — 维护导读 · 衔接矩阵与闸门</li>
+          <li><strong>读者</strong> — <a href="README.md#readme-start-here">README · 从这里开始</a> · 本页 <a href="#three-questions">三问</a> / <a href="#read-guide">读站指路</a></li>
+          <li><strong>贡献 / 改站</strong> — <a href="CONTRIBUTING.md#contributing-env-and-cmd">CONTRIBUTING</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a></li>
+          <li><strong>数据管道</strong> — <a href="docs/README.md#quick-paths">docs · 最短链（0c）</a> · <a href="analysis-hub.html">分析引擎</a> · <a href="docs/README.md#content-framework">真源分层</a></li>
+          <li><strong>部署</strong> — <a href="docs/DOCKER.md#quickstart">DOCKER</a> · 根 <a href="README.md">README</a> · <a href="README.md#readme-dual-track-map">双轨真源</a></li>
         </ul>
       </div>
       <p class="index-scroll-hint" role="note"><span class="index-scroll-hint-inner" aria-hidden="true">↓</span> 向下浏览分区与卡片</p>
       <div class="read-hint page-head-deck" role="note" aria-label="导读提要">
-        <p class="muted note-kicker"><strong>你是谁、从哪进</strong>：<strong>读者</strong> → 下方 <a href="#read-guide">读站指路</a> 与 <a href="#three-questions">三问</a>；<strong>改站 / 合 PR</strong> → <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a>；<strong>跨 PR 架构收束</strong> → <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index">不变量索引</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a>；<strong>数据与管道</strong> → <a href="docs/README.md#quick-paths">docs · 最短链（0c）</a> · <a href="docs/README.md#content-framework">真源分层</a> · <a href="docs/README.md#front-back-modules">前后台</a> · <a href="docs/README.md#system-components-fusion">组件×主链</a> · <a href="analysis-hub.html">分析引擎</a>；<strong>本地与部署</strong> → 页脚与根目录 <a href="README.md">README</a>。</p>
+        <p class="muted page-main-question" id="index-main-question"><strong>本页主问题</strong>：在不对单次未来下注的前提下，看清栈与制度的张力，并能把推演与沙盘对回判据与矩阵。</p>
+        <p class="muted note-kicker"><strong>角色与深链</strong>：上卡已与 <a href="README.md#pm-four-journeys">README · 四条动线</a> 对齐；此处补<strong>站内枢纽</strong>。<strong>读者</strong> → <a href="#read-guide">读站指路</a> · <a href="#three-questions">三问</a>；<strong>改站 / 合 PR</strong> → <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="CONTRIBUTING.md#contributing-five-minute">开 PR 前速览</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a> · <a href="CONTRIBUTING.md#contributing-change-to-command">动手→命令速查</a>；<strong>跨 PR 架构收束</strong> → <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index">不变量索引</a>；<strong>数据与管道</strong> → <a href="docs/README.md#quick-paths">docs · 最短链（0c）</a> · <a href="docs/README.md#content-framework">真源分层</a> · <a href="docs/README.md#front-back-modules">前后台</a> · <a href="docs/README.md#system-components-fusion">组件×主链</a> · <a href="analysis-hub.html">分析引擎</a>；<strong>本地与部署</strong> → 页脚与根目录 <a href="README.md">README</a>。</p>
         <p><strong>一条主脉</strong>：<a href="nexus.html">立体联结</a> → <a href="modules-map.html">模块图谱</a> / <a href="synthesis.html">综合推演</a> → <a href="lab.html">沙盘</a>。<strong>并行窗</strong>：<a href="timeline.html">历史</a>、<a href="decade-scenes.html">十年场景</a>、<a href="net-biz-capital.html">网·商·资·工</a>。<a href="legacy-all-in-one.html">旧版单页</a> 备用。</p>
       </div>
       <nav class="toc toc--pilot" id="index-toc" aria-label="本页目录">
         <p class="toc-pilot-eyebrow">本页目录</p>
-        <a href="#index-intent-pick">判型入口</a>
+        <a href="#index-intent-pick">四条动线</a>
+        <a href="#index-main-question">本页主问题</a>
         <a href="#ext-round-index">本轮提要</a>
         <a href="#three-questions">三问导读</a>
         <a href="#read-guide">读站指路</a>
@@ -158,7 +162,7 @@
         </ol>
         <p class="muted note-post-relaxed">推演认识论与偏误清单：<a href="docs/DEDUCTION_STRATEGY.md#stance">DEDUCTION_STRATEGY</a>；全站重跑更新：<a href="docs/SITE_WIDE_RERUN_DEDUCTION_PLAYBOOK.md#steps">SITE_WIDE_RERUN</a>。</p>
       </div>
-      <aside class="card site-data-live-strip-host" data-site-data-live aria-live="polite" hidden></aside>
+      <aside class="card site-data-live-strip-host" data-site-data-live="snapshot-only" aria-live="polite" hidden></aside>
     </div>
 
     <div class="modular-intro-stack" aria-label="总览 · 本轮提要">
@@ -174,16 +178,19 @@
 
     <section class="card site-round-extension" id="read-guide" aria-labelledby="read-guide-h">
       <h2 class="site-round-extension-h" id="read-guide-h">读站指路</h2>
+      <p class="muted note-kicker">只想<strong>最短闭环</strong>：读者与贡献者各一条「约一分钟」路径见根目录 <a href="README.md#readme-sixty-second">README · 约一分钟路径</a>（与 <a href="README.md#readme-start-here">从这里开始</a> 表格互补）。</p>
       <p class="muted note-kicker">全站是<strong>定性脚手架</strong>：帮你<strong>对齐变量、传导与分叉</strong>，<strong>不代替你下结论</strong>。三条入口可并行，择一条深读即可。</p>
-      <p class="muted note-post-relaxed"><strong>顶栏链多不必慌记</strong>：可先抓住五枢纽——<a href="index.html">总览</a> → <a href="nexus.html">立体联结</a> 或 <a href="modules-map.html">模块图谱</a> → <a href="synthesis.html">综合推演</a> → <a href="analysis-hub.html">分析引擎</a> → <a href="lab.html">沙盘工坊</a>；其余从下方<strong>分区速跳</strong>或顶栏检索即可。</p>
+      <p class="muted note-pull"><strong>第一次来只记三词</strong>：<strong>联结</strong>（多尺度事实与制度如何叠成可讨论命题）· <strong>判据</strong>（组合与分叉是否经得起 <a href="synthesis.html#criteria">§2 五条</a>）· <strong>闸门</strong>（何种变更必须人审、不会自动写 manifest）。与 <a href="#three-questions">三问</a>、各枢纽 <a href="docs/HUB_MAIN_QUESTIONS.md#hub-main-questions">本页主问题</a> 同向。</p>
+      <p class="muted note-post-relaxed"><strong>顶栏链多不必慌记</strong>：可先抓住五枢纽——<a href="index.html">总览</a> → <a href="nexus.html">立体联结</a> 或 <a href="modules-map.html">模块图谱</a> → <a href="synthesis.html">综合推演</a> → <a href="analysis-hub.html">分析引擎</a> → <a href="lab.html">沙盘工坊</a>；其余从下方<strong>分区速跳</strong>或顶栏轻量搜索即可。</p>
+      <p class="muted note-post-relaxed"><strong>顶栏轻量搜索</strong>：按分页标题等做快速跳转，依赖仓库内 <code>assets/site-search-index.json</code>。克隆站可执行 <code>make site-search-index</code> 生成；未生成时搜索可能无结果。维护说明见根目录 <a href="README.md">README</a>「本地读者站」段旁注、<a href="scripts/README.md">scripts/README</a>（<code>make site-search-index</code>）与 <a href="docs/DATA_CONTRACTS.md#readonly-api-routes">DATA_CONTRACTS · 只读路由</a>。</p>
       <p class="muted note-post-relaxed">下方每个分区大标题下还有一行<strong>读后自问</strong>；可先读问题，再点卡片。不少卡片<strong>点开即落到页内关键节</strong>；多数页在该节之上仍有<strong>推演扩展 · 本轮提要</strong>，深链落地后仍建议快速过目。</p>
-      <p class="muted note-post-relaxed">文中链到 <code>docs/*.md</code> 的，在 <strong>GitHub Pages</strong> 等静态根部署下常为浏览器打开 <strong>Markdown 原文</strong>；若要渲染版式，请在 <strong>GitHub 仓库页</strong>打开同路径文件，或克隆仓库本地阅读 <code>docs/</code>。维护说明见 <a href="docs/SITE_REVIEW_THREE_PASSES.md#four-perspectives-review">全站梳理 · 四角色复查</a>。</p>
+      <p class="muted note-pull"><strong>链到仓库内文稿时</strong>：站内点击 <code>docs/*.md</code> 在 GitHub Pages 等静态部署下往往为浏览器直接打开 <strong>Markdown 原文</strong>（不是本站内「排版好的帮助页」）。需要 GitHub 在线渲染或本地 IDE 预览时，请从仓库页打开同路径，或克隆后阅读 <code>docs/</code>。维护说明见 <a href="docs/SITE_REVIEW_THREE_PASSES.md#four-perspectives-review">全站梳理 · 四角色复查</a>。</p>
       <p class="muted note-post-relaxed">
         <strong>克隆到本机后</strong>：总线 JSON（如 <code>evolution.js</code> 拉取的文件）须用 <strong><code>http://</code></strong> 打开站点；勿仅用 <strong><code>file://</code></strong> 双击 <code>index.html</code>。仓库根执行 <code>make serve-reader</code> 后访问 <strong>127.0.0.1:8000</strong>，或用 Docker 映射 <strong>8765</strong>；读者 / 贡献者入口与双轨说明见根目录 <a href="README.md#readme-start-here">README · 从这里开始</a> · <a href="README.md#readme-dual-track-map">双轨真源</a>，运维快启见 <a href="docs/DOCKER.md#quickstart">DOCKER.md</a>。
       </p>
-      <p class="muted note-post-relaxed"><strong>线上 / 子路径 / 可选 SPA</strong>：GitHub Pages 须在仓库 <strong>Settings → Pages</strong> 选对源与目录；默认以根目录 <strong>MPA</strong> 为主读形态，若要发布<strong>全站单页壳</strong>，构建前须设与仓库路径一致的 <strong><code>VITE_BASE</code></strong>（见 <a href="spa/README.md#spa-github-pages">spa/README · GitHub Pages</a>）。</p>
+      <p class="muted note-post-relaxed"><strong>日常阅读</strong>用根目录 <strong>MPA</strong> 分页即可。<strong>可选 SPA</strong>：若要在同一壳内快速切换注册表内分页，再用 <a href="spa/README.md#spa-default-read">全站壳</a>；合并闸门仍以 MPA 为准（<a href="README.md#readme-dual-track-map">README · 双轨真源</a>）。<strong>线上 / 子路径</strong>：GitHub Pages 须在 <strong>Settings → Pages</strong> 选对源与目录；发布 SPA 时构建前须设与仓库路径一致的 <strong><code>VITE_BASE</code></strong>（见 <a href="spa/README.md#spa-github-pages">spa/README · GitHub Pages</a>）。</p>
       <ul>
-        <li><strong>维护者 / 数据管家</strong>：写操作与闸门在 <strong>Git、脚本、CI</strong>（管理端/后端侧），不在站内静默改库；导读见 <a href="maintainer-hub.html">维护导读</a>，一页内「本页 ↔ 注册表 ↔ 文档锚点」见 <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵（站内速览）</a>；跨 PR 架构收束见 <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步表</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index">不变量索引</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a>；分拆说明见 <a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#reader-frontend-admin-backend">用户端/管理端 · 前端与后端</a>，总览与全文矩阵见 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面速查</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-contract-matrix">衔接矩阵</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-scenarios">场景×面</a>。读者仍以本页与 <a href="evolution-loop.html">进化闭环</a> 为主链。</li>
+        <li><strong>维护者 / 数据管家</strong>：写操作与闸门在 <strong>Git、脚本、CI</strong>（管理端/后端侧），不在站内静默改库；导读见 <a href="maintainer-hub.html">维护导读</a>，一页内「本页 ↔ 注册表 ↔ 文档锚点」见 <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵（站内速览）</a>；跨 PR 架构收束见 <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步表</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index">不变量索引</a> · <a href="CONTRIBUTING.md#contributing-five-minute">开 PR 前速览</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a> · <a href="CONTRIBUTING.md#contributing-change-to-command">动手→命令速查</a>；分拆说明见 <a href="docs/USER_ADMIN_SPLIT_AND_EVOLUTION_DESIGN.md#reader-frontend-admin-backend">用户端/管理端 · 前端与后端</a>，总览与全文矩阵见 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面速查</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-contract-matrix">衔接矩阵</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-scenarios">场景×面</a>。读者仍以本页与 <a href="evolution-loop.html">进化闭环</a> 为主链。</li>
         <li><strong>第一次系统读</strong>：<a href="#three-questions">三问导读</a> → <a href="nexus.html">立体联结</a> 或 <a href="modules-map.html">模块图谱</a> → <a href="synthesis.html#criteria">五条判据</a> → 按下方分区卡片下钻。</li>
         <li><strong>想押时间线与情景</strong>：<a href="timeline.html#timeline-five-eras">历史 · 五代横轴</a>、<a href="past-future.html#past-future-comparison">廿年 · 对照总表</a>、<a href="decade.html#decade-six-dim">十年 · 六维总表</a> / <a href="decade.html#decade-phase-bars">阶段条</a>、<a href="decade-scenes.html#matrix">十年场景 · 矩阵</a>；动手用 <a href="lab.html">沙盘</a> 与 <a href="synthesis.html#continuation">继续推演矩阵</a> 加压。</li>
         <li><strong>想看读数与站内核如何迭代</strong>：<a href="analysis-hub.html#panorama">分析引擎 · 方法与演进全景</a>、<a href="evolution-loop.html">进化闭环</a>、<a href="evolvable-architecture.html">可进化架构</a>；推演纪律与偏误自检见 <a href="docs/DEDUCTION_STRATEGY.md#stance">DEDUCTION_STRATEGY</a>。</li>
@@ -694,7 +701,7 @@
           </div>
         </a>
       </div>
-      <p class="muted hub-map-foot">维护者与闸门：<a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a>（文档链 / 注册表 / 锚点）· <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a>；不写 manifest。跨 PR 收束 <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index">不变量索引</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a>；前后台职责速查 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a>。</p>
+      <p class="muted hub-map-foot">维护者与闸门：<a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a>（文档链 / 注册表 / 锚点）· <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a>；不写 manifest。跨 PR 收束 <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-invariants-index">不变量索引</a> · <a href="CONTRIBUTING.md#contributing-five-minute">开 PR 前速览</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a> · <a href="CONTRIBUTING.md#contributing-change-to-command">动手→命令速查</a>；前后台职责速查 <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a>。</p>
     </section>
 
     <section class="card reader-home-next hub-cluster-next" id="reader-next" aria-labelledby="reader-next-h">

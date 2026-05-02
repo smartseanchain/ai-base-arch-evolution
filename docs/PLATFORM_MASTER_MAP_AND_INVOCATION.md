@@ -1,6 +1,6 @@
 # 平台总览：内容 · 架构 · 组件与合理调用
 
-**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**本文侧重**：三维总表、读者面/管理面、**`make` / `merge-ready` / CI** 黄金路径；字段契约与数据流总览仍落 **[DATA_CONTRACTS](./DATA_CONTRACTS.md)** · **[ARCHITECTURE](./ARCHITECTURE.md)**；跨 PR 收束节奏见 **[ONE_PAGER · 架构师五步](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship)** · **[不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index)** · **[PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)**。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [总览 MPA · 四条动线卡](../index.html#index-intent-pick) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**读站顺序（含步骤 0）**：[PLATFORM_CAPABILITY_MAP · §5](./PLATFORM_CAPABILITY_MAP.md#reading-order)。**本文侧重**：三维总表、读者面/管理面、**`make` / `merge-ready` / CI** 黄金路径；字段契约与数据流总览仍落 **[DATA_CONTRACTS](./DATA_CONTRACTS.md)** · **[ARCHITECTURE](./ARCHITECTURE.md)**；跨 PR 收束节奏见 **[ONE_PAGER · 架构师五步](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship)** · **[不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index)** · **[开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute)** · **[PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)** · **[动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)**。
 
 **本文定位**：用**一张总表 + 三条黄金路径**回答——整站**内容**落在哪、**架构**分层怎么读、**组件**各自干什么、怎样**调用**（读文档的顺序、跑的命令、触发的 CI）才能**少绕路、闸门不松、扩展不漂移**。
 
@@ -84,7 +84,7 @@
 
 **目标**：与 **CI `validate`**、**pre-commit** 一致，避免「本地绿、远端红」。
 
-**红线与 PR 描述速查**：[ONE_PAGER · 不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [EVOLUTION_RUNBOOK · 证据三联](./EVOLUTION_RUNBOOK.md#pr-evidence-triad)。
+**红线与 PR 描述速查**：[ONE_PAGER · 不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [CONTRIBUTING · PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [CONTRIBUTING · 动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command) · [EVOLUTION_RUNBOOK · 证据三联](./EVOLUTION_RUNBOOK.md#pr-evidence-triad)。
 
 1. **`make validate`**（必跑，全闸门）。  
 2. 若动到只读 API 或相关脚本：**`make test-readonly-api`**。  
@@ -111,11 +111,12 @@
 
 **目标**：先建立**枢纽路径**，再按需深链，避免在单页里迷路。
 
+0. **[index.html · 四条动线](../index.html#index-intent-pick)**（与根 [README · #pm-four-journeys](../README.md#pm-four-journeys) 对表；与 **[PLATFORM · §5 新读者](./PLATFORM_CAPABILITY_MAP.md#reading-order)** 步骤 **0** 一致）→ 再按需 1—5。  
 1. **[index.html · 读站指路](../index.html#read-guide)** → **nexus** 或 **modules-map**。  
 2. **[synthesis · 判据与继续推演](../synthesis.html#criteria)** → **continuation 矩阵**。  
 3. 时间窗与五代横轴等：**[PLATFORM_CAPABILITY_MAP · §5 读者路径](./PLATFORM_CAPABILITY_MAP.md#reading-order)**。  
 4. 发布质量抽样：**[SITE_REVIEW_THREE_PASSES.md](./SITE_REVIEW_THREE_PASSES.md)**。  
-5. **本机预览读者 MPA**（须 **http**，勿 **`file://`**）：根 **`make serve-reader`**（**127.0.0.1:8000**）或 **Docker / compose**（**8765**）— **[README.md](../README.md)** · **[DOCKER.md](./DOCKER.md#quickstart)**。
+5. **本机预览读者 MPA**（须 **http**，勿 **`file://`**）：根 **`make serve-reader`**（默认 **127.0.0.1:8000**，**`READER_PORT`** 可改）或 **Docker / compose**（**8765**）— **[README.md](../README.md)** · **[DOCKER.md](./DOCKER.md#quickstart)**。
 
 ---
 

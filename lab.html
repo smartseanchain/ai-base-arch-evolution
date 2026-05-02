@@ -90,7 +90,7 @@
             <li><a href="evolvable-architecture.html">可进化架构</a></li>
           </ul>
         </details>
-        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-pr-evidence-triad">维护导读</a>
+        <a href="maintainer-hub.html" title="维护者闸门与文档索引；读者面/管理面见 PLATFORM_MASTER_MAP#reader-admin-surfaces；跨 PR 收束见 ARCHITECTURE_ONE_PAGER#architect-stewardship；不变量/PR 复盘见 ONE_PAGER#architect-invariants-index · CONTRIBUTING#contributing-five-minute · CONTRIBUTING#contributing-pr-evidence-triad · CONTRIBUTING#contributing-change-to-command">维护导读</a>
         <a href="legacy-all-in-one.html">单页归档</a>
       </nav>
       <div class="site-nav-meta-row">
@@ -103,13 +103,15 @@
     <div class="page-head">
       <h1>沙盘工坊</h1>
       <p class="lead">依赖流<strong>自上而下穿透</strong>；下方为可交互的<strong>七步向导</strong>与<strong>多因子合成</strong>。</p>
+      <p class="muted hub-cluster-thread" role="note">本簇主题：用「判据—方法—沙盘—闭环」做可复核的组合与压力测试。</p>
       <div class="read-hint page-head-deck" role="note" aria-label="沙盘与综合推演、进化闭环的对照说明">
+        <p class="muted page-main-question" id="lab-main-question"><strong>本页主问题</strong>：多因子勾选结果如何能对回推演配方与扩展域并经得起压测？</p>
         <p class="muted note-kicker"><strong>本页侧重</strong>：多因子沙盘与启示；<strong>回总览</strong> → <a href="index.html#three-questions">三问</a> / <a href="index.html#read-guide">读站指路</a>；<strong>registry / manifest 闸门</strong> → <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="evolution-loop.html">进化闭环</a>。</p>
         <p>整站鸟瞰见 <a href="index.html#three-questions">总览 · 三问导读</a>。</p>
         <p><strong>与主站叙事对表</strong>：勾选结果可与 <a href="synthesis.html">综合推演</a> 配方 F、<a href="synthesis-extensions.html#stack-domains">叠加五域 I—V</a>（含 Q—V）、<a href="synthesis-extensions.html#matrix">复合焦点总表</a>及 <a href="synthesis-methods.html#perpetual">持续迭代环</a>对照，检查是否经得起多轮压测（正文节号 §5—§7、§11 仍可用于检索）。</p>
         <p><strong>manifest 高亮</strong>：<a href="evolution-loop.html">进化闭环</a> 的 <code>evolution-manifest.json</code> 会<strong>高亮</strong>与当前观测相关的因子（需本地 HTTP 打开以加载 JSON）。</p>
         <p><strong>研究套路索引</strong>：可靠性树、敏感性分析、情景规划等见 <a href="synthesis-methods.html#methods">推演·方法 · 跨学科办法</a>对照表。</p>
-        <p><strong>维护面与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a>。</p>
+        <p><strong>维护面与契约</strong>：<a href="docs/ARCHITECTURE_ONE_PAGER.md#architect-stewardship">ONE_PAGER · 五步</a> · <a href="maintainer-hub.html">维护导读</a> · <a href="maintainer-hub.html#mh-spine-map">关系视图</a> · <a href="maintainer-hub.html#mh-boundaries">系统边界</a> · <a href="maintainer-hub.html#mh-reader-admin-matrix">衔接矩阵</a> · <a href="docs/PLATFORM_MASTER_MAP_AND_INVOCATION.md#reader-admin-surfaces">PLATFORM_MASTER_MAP · 读者面/管理面</a> · <a href="CONTRIBUTING.md#contributing-five-minute">开 PR 前速览</a> · <a href="CONTRIBUTING.md#contributing-pr-evidence-triad">PR 证据三联</a> · <a href="CONTRIBUTING.md#contributing-change-to-command">动手→命令速查</a>。</p>
       </div>
       <nav class="page-route-strip" aria-label="与本页相关的站内路径">
         <a href="index.html#hub-catalog"><span class="page-route-ico" aria-hidden="true">◎</span>总览分区</a>
@@ -120,6 +122,7 @@
       </nav>
       <nav class="toc toc--pilot" id="lab-toc" aria-label="本页目录">
         <p class="toc-pilot-eyebrow">本页目录</p>
+        <a href="#lab-main-question">本页主问题</a>
         <a href="#lab-dependency-flow">依赖流</a>
         <a href="#lab-stepper">分步向导</a>
         <a href="#lab-sim">情景沙盘</a>
@@ -189,6 +192,7 @@
           <text x="200" y="270" text-anchor="middle" fill="#4ecf8e" font-size="10" font-family="Noto Sans SC,sans-serif">↻ 降级与恢复闭环</text>
         </svg>
       </div>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>能否从依赖流中说出<strong>自上而下</strong>至少三层，并指出哪一层最常先「绷紧」？</p>
     </section>
 
     <section id="lab-stepper" aria-labelledby="lab-stepper-h">
@@ -204,6 +208,7 @@
           <button type="button" class="btn btn-primary" id="stepNext">下一步</button>
         </div>
       </div>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>走完七步后，能否写一句<strong>可对账输出</strong>（哪类账单或工单会先变）并对照 <a href="synthesis-extensions.html#matrix">§7</a> 表行？</p>
     </section>
 
     <section id="lab-sim" aria-labelledby="lab-sim-h">
@@ -219,6 +224,7 @@
           <p class="muted note-zero">请至少选择一个因子。</p>
         </div>
       </div>
+      <p class="muted note-caption-82 section-readback"><strong>本节自检：</strong>随机或自选因子组合后，启示是否仍能用 <a href="synthesis.html#criteria">§2 判据</a> 之一复述「为何这一组合站得住或站不住」？</p>
     </section>
 
     <section class="card reader-home-next hub-cluster-next" aria-labelledby="lab-synth-next-h">

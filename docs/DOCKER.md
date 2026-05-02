@@ -1,6 +1,6 @@
 # Docker 部署说明
 
-**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**本文侧重**：**Docker / Compose** 起本地或容器内 **MPA**（及可选 **只读 API**、Kafka PoC）；不写 manifest、默认不跑 ingest。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)。
+**角色判型**（读者 / 贡献 / 数据 / 部署 → 第一站）：根 [README · 产品视角](../README.md#pm-four-journeys) · [README · 从这里开始](../README.md#readme-start-here) · [README · 双轨真源](../README.md#readme-dual-track-map)。**本文侧重**：**Docker / Compose** 起本地或容器内 **MPA**（及可选 **只读 API**、Kafka PoC）；不写 manifest、默认不跑 ingest。**架构师梳理与持续改进**：[ARCHITECTURE_ONE_PAGER · 五步表](./ARCHITECTURE_ONE_PAGER.md#architect-stewardship) · [不变量索引](./ARCHITECTURE_ONE_PAGER.md#architect-invariants-index) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) · [PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad) · [动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)。
 
 与根目录 **[Dockerfile](../Dockerfile)**、**[docker-compose.yml](../docker-compose.yml)**、**[docker-compose.dev.yml](../docker-compose.dev.yml)**、**[docker-compose.kafka-dev.yml](../docker-compose.kafka-dev.yml)**（可选 Kafka 协议 PoC）、**[INTEGRATION_AND_READONLY_API.md](./INTEGRATION_AND_READONLY_API.md)** 一致。默认镜像为 **根目录 MPA**（与 CI **`validate` 默认真源**一致）；**不写 manifest**、不启动抓取管道（仅静态 + 可选只读 API）。**五维与分层入口**（MPA / `spa` / 只读 API / `admin-console` 等落点）：**[勿混粒度 · 五维/六域/七类](./PROJECT_ARCHITECTURE_OVERVIEW.md#architecture-grain)** · **[§1a 主链联动与验证](./PROJECT_ARCHITECTURE_OVERVIEW.md#module-linkage-validation)** · **[§1b 仓库物理分层](./PROJECT_ARCHITECTURE_OVERVIEW.md#physical-layout)**。**整体内容框架**：**[docs/README · #content-framework](./README.md#content-framework)** · **前后台模块一页表**：[**#front-back-modules**](./README.md#front-back-modules) · **组件×功能一条表**：[**#system-components-fusion**](./README.md#system-components-fusion)。**按改动判型**（**0c**）：**[docs/README · #quick-paths](./README.md#quick-paths)**。**呈现双轨（`spa-sync` / `spa-build`）**：[README · 双轨真源](../README.md#readme-dual-track-map) · [MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge) · [MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence) · [关系视图](../maintainer-hub.html#mh-spine-map)。**MPA 顶栏与失页**：**`partials/`** → **`make sync-nav`**；**`404.html`** 手调（`sync_site_nav` 不写回）— **[scripts/README · `sync_site_nav` / 真源](../scripts/README.md#sync-site-nav-source)**。
 
@@ -15,7 +15,7 @@ docker compose up -d
 
 浏览器访问 **http://localhost:8765/**（端口见 `docker-compose.yml` 的 `ports` 映射 `8765:80`）。
 
-- **无 Docker、仅要读者站 MPA**：仓库根 **`make serve-reader`** → **http://127.0.0.1:8000/**（与上表 **8765** 错开；须 **http** 以便 `fetch` JSON，见根目录 **[README.md](../README.md)** 文首）。  
+- **无 Docker、仅要读者站 MPA**：仓库根 **`make serve-reader`** → **http://127.0.0.1:8000/**（默认 **`READER_PORT=8000`**；占用时可 **`make serve-reader READER_PORT=8001`**；与上表 **8765** 错开；须 **http** 以便 `fetch` JSON，见根目录 **[README.md](../README.md)** 文首）。  
 - **健康检查**：`web` 服务带 `wget` 探活；`docker compose ps` 可见 `healthy`。  
 - **改站后**：须 **`docker compose build --no-cache`** 或 **`docker compose up -d --build`** 重新打镜像（镜像内 `COPY` 全仓上下文）。
 - **全站顶栏 / skip-bar**：改 **`partials/site-nav.inc.html`** / **`partials/skip-bar.inc.html`** 后 **`make sync-nav`** 写回根目录各注册页；**`maintainer-hub.html`** 五链后三锚由 **`build_skip_bar`** 生成，勿手改 HTML；**`404.html`** **不在** **`sync_site_nav`** 写回范围，须**手调**与 partial 一致 — **[MERGE · §1](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge)** · **[MERGE · partials 手顺](./MERGE_AND_RELEASE_CHECKLIST.md#pre-merge-partials-sequence)**；合并前 **`make validate`**。
@@ -124,14 +124,14 @@ docker compose -f docker-compose.kafka-dev.yml up -d
 
 ## 5. Makefile 快捷目标
 
-根目录 **`make docker-build`** / **`make docker-up`** / **`make docker-down`** / **`make docker-up-api`** / **`make docker-up-admin`** / **`make docker-up-stack`** / **`make docker-up-kafka-dev`** / **`make docker-down-kafka-dev`**（等价于上述 compose 命令，见 **`make help`**）。**`make docker-build`** 与 **`make docker-up-stack`** 默认 **`COMPOSE_BAKE=false`** 且 **`DOCKER_BUILDKIT=0`**，减轻中文路径下 Buildx/gRPC 报错（见 **[§8](#troubleshoot-bake-grpc)**）。
+根目录 **`make docker-build`** / **`make docker-up`** / **`make docker-down`** / **`make docker-up-api`** / **`make docker-up-admin`** / **`make docker-up-stack`** / **`make docker-up-kafka-dev`** / **`make docker-down-kafka-dev`**（等价于上述 compose 命令，见 **`make help`**；文首 echo 与根目录 **[CONTRIBUTING · 开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute)** · **[PR 证据三联](../CONTRIBUTING.md#contributing-pr-evidence-triad)** · **[动手→命令速查](../CONTRIBUTING.md#contributing-change-to-command)** 三锚对表）。**`make docker-build`** 与 **`make docker-up-stack`** 默认 **`COMPOSE_BAKE=false`** 且 **`DOCKER_BUILDKIT=0`**，减轻中文路径下 Buildx/gRPC 报错（见 **[§8](#troubleshoot-bake-grpc)**）。
 
 <a id="ignorefile"></a>
 
 ## 6. 构建上下文与 `.dockerignore`
 
 - **`.dockerignore`**：排除 **`.git`**、**`spa/node_modules`**、**`artifacts`** 等；**`docs/`** 下 Markdown **会进入**默认 MPA 镜像，以便站内链到设计文档。  
-- **根目录** [README.md](../README.md) / [CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd) / [AGENTS.md](../AGENTS.md#agents-contract) 默认不进镜像（可在浏览器打开仓库页阅读）。
+- **根目录** [README.md](../README.md) / [CONTRIBUTING.md](../CONTRIBUTING.md#contributing-env-and-cmd) · [开 PR 前速览](../CONTRIBUTING.md#contributing-five-minute) / [AGENTS.md](../AGENTS.md#agents-contract) 默认不进镜像（可在浏览器打开仓库页阅读）。
 
 <a id="reverse-proxy"></a>
 
