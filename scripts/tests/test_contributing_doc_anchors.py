@@ -15,6 +15,8 @@ PR_TEMPLATE = REPO_ROOT / ".github" / "pull_request_template.md"
 MAINTAINER_HUB = REPO_ROOT / "maintainer-hub.html"
 INDEX_HTML = REPO_ROOT / "index.html"
 ANALYSIS_HUB = REPO_ROOT / "analysis-hub.html"
+EVOLUTION_LOOP_HTML = REPO_ROOT / "evolution-loop.html"
+NEXUS_HTML = REPO_ROOT / "nexus.html"
 
 _REQUIRED_CONTRIBUTING_ANCHORS = (
     "contributing-five-minute",
@@ -167,6 +169,26 @@ class TestContributingDocAnchors(unittest.TestCase):
             2,
             f"{ANALYSIS_HUB.relative_to(REPO_ROOT)} should link {frag!r} "
             "at least twice (note-kicker + 架构与读数总线)",
+        )
+
+    def test_evolution_loop_html_links_hub_main_questions(self) -> None:
+        body = EVOLUTION_LOOP_HTML.read_text(encoding="utf-8")
+        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
+        self.assertGreaterEqual(
+            body.count(frag),
+            2,
+            f"{EVOLUTION_LOOP_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
+            "at least twice (read-hint)",
+        )
+
+    def test_nexus_html_links_hub_main_questions(self) -> None:
+        body = NEXUS_HTML.read_text(encoding="utf-8")
+        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
+        self.assertGreaterEqual(
+            body.count(frag),
+            2,
+            f"{NEXUS_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
+            "at least twice (read-hint)",
         )
 
     def test_maintainer_hub_docs_readme_hrefs_have_url_fragments(self) -> None:
