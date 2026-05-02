@@ -42,6 +42,17 @@
         margin: 0;
         color: #aab6ca;
       }
+      .spa-noscript-fallback .spa-ns-body a {
+        color: #7dd3fc;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .spa-noscript-fallback .spa-ns-body a:hover {
+        text-decoration: underline;
+      }
+      .spa-noscript-fallback .spa-ns-links {
+        margin: 0.75rem 0 0;
+      }
     </style>
   </head>
   <body>
@@ -49,7 +60,19 @@
       <div class="spa-noscript-fallback">
         <p class="spa-ns-title">基础架构演变推演 · SPA</p>
         <p class="spa-ns-body">
-          单页壳需启用 JavaScript 才能加载分页与 iframe 正文。请启用后刷新，或直接使用根目录多页 HTML（MPA）。
+          单页壳需启用 JavaScript 才能加载分页与 iframe 正文。请启用后刷新；若暂时无法启用脚本，可先读站内分页快照与备忘链接（路径随部署 <code>BASE_URL</code> 前缀，与壳内深链同源）。
+        </p>
+        <p class="spa-ns-body spa-ns-links">
+          <a href="%BASE_URL%legacy-index.html#read-guide">读站指路（快照）</a>
+          ·
+          <a href="%BASE_URL%legacy-index.html#three-questions">三问导读（快照）</a>
+          ·
+          <a href="%BASE_URL%docs/HUB_MAIN_QUESTIONS.md#hub-main-questions">枢纽主问题备忘</a>
+        </p>
+        <p class="spa-ns-body">
+          维护口径备忘：
+          <a href="%BASE_URL%docs/HUB_MAIN_QUESTIONS.md#hub-main-questions">枢纽主问题备忘</a>
+          （与 MPA / SPA 壳脚注对表）。
         </p>
       </div>
     </noscript>

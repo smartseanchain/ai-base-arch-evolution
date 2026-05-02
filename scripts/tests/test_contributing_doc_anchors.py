@@ -43,6 +43,7 @@ LEGACY_ALL_IN_ONE_HTML = REPO_ROOT / "legacy-all-in-one.html"
 NOT_FOUND_404_HTML = REPO_ROOT / "404.html"
 ADMIN_CONSOLE_INDEX_HTML = REPO_ROOT / "admin-console" / "static" / "index.html"
 SPA_LAYOUT_TSX = REPO_ROOT / "spa" / "src" / "SpaLayout.tsx"
+SPA_INDEX_HTML = REPO_ROOT / "spa" / "index.html"
 
 _HUB_MAIN_QUESTIONS_FRAG = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
 
@@ -300,6 +301,16 @@ class TestContributingDocAnchors(unittest.TestCase):
             f"{SPA_LAYOUT_TSX.relative_to(REPO_ROOT)} should surface {label!r} "
             "at least twice (壳说明 · 维护脚注)",
         )
+
+    def test_spa_index_html_noscript_links_hub_main_questions(self) -> None:
+        body = SPA_INDEX_HTML.read_text(encoding="utf-8")
+        self.assertGreaterEqual(
+            body.count(_HUB_MAIN_QUESTIONS_FRAG),
+            2,
+            f"{SPA_INDEX_HTML.relative_to(REPO_ROOT)} noscript 兜底应至少两处 "
+            f"{_HUB_MAIN_QUESTIONS_FRAG!r}",
+        )
+        self.assertIn("%BASE_URL%legacy-index.html#three-questions", body)
 
     def test_maintainer_hub_docs_readme_hrefs_have_url_fragments(self) -> None:
         body = MAINTAINER_HUB.read_text(encoding="utf-8")
