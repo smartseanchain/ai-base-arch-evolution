@@ -115,6 +115,16 @@ class TestContributingDocAnchors(unittest.TestCase):
             "at least twice (kicker · read-guide / 分区脚 · hub-map foot)",
         )
 
+    def test_index_html_links_hub_main_questions(self) -> None:
+        body = INDEX_HTML.read_text(encoding="utf-8")
+        frag = "docs/HUB_MAIN_QUESTIONS.md#hub-main-questions"
+        self.assertGreaterEqual(
+            body.count(frag),
+            2,
+            f"{INDEX_HTML.relative_to(REPO_ROOT)} should link {frag!r} "
+            "at least twice (page-head kicker · read-guide)",
+        )
+
     def test_analysis_hub_html_links_invariants_index_and_pr_triad(self) -> None:
         body = ANALYSIS_HUB.read_text(encoding="utf-8")
         for frag in (
